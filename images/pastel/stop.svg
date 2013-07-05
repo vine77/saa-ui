@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Stop</title>
+	<desc>Stop</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#eba39e" />
+				<stop offset="100%" stop-color="#d12e25" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcd4c4" />
+				<stop offset="100%" stop-color="#f49486" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffaf8b" />
+				<stop offset="100%" stop-color="#fa4225" />
+			</linearGradient>
+		</defs>
+		<!--
+			<path d="M-3,-7 h6 l4.24264,4.24264 v6 l-4.24264,4.24264 h-6
+			l-4.24264,-4.24264 v-6 l4.24264,-4.24264 z" fill="url(#backing)" /> <path
+			d="M-2.5,-6 l5.1,0 l3.60624,3.60624 v5.1 l-3.60624,3.60624 l-5.1,0
+			l-3.60624,-3.60624 v-5.1 l3.60624,-3.60624 z" fill="url(#inner)" /> <path
+			d="M-2,-5 l4.2,0 l2.96985,2.96985 v4.2 l-2.96985,2.96985 l-4.2,0
+			l-2.96985,-2.96985 v-4.2 l2.96985,-2.96985 z" fill="url(#center)" />
+		-->
+		<polygon
+			points="-2.89949,-7 2.89949,-7 7,-2.89949 7,2.89949 2.89949,7 -2.89949,7 -7,2.89949 -7,-2.89949 -2.89949,-7 2.89949,-7"
+			fill="url(#backing)" />
+		<polygon
+			points="-2.48528,-6 2.48528,-6 6,-2.48528 6,2.48528 2.48528,6 -2.48528,6 -6,2.48528 -6,-2.48528 -2.48528,-6 2.48528,-6"
+			fill="url(#inner)" />
+		<polygon
+			points="-2.07107,-5 2.07107,-5 5,-2.07107 5,2.07107 2.07107,5 -2.07107,5 -5,2.07107 -5,-2.07107 -2.07107,-5 2.07107,-5"
+			fill="url(#center)" />
+	</g>
+</svg>

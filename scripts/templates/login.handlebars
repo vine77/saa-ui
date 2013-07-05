@@ -1,0 +1,64 @@
+{{#if message}}
+ <div id="login-notification" class="notification">
+   <div class="alert">
+     <button type="button" class="close" onclick="$('#login-notification').hide()">&times;</button>
+     {{message}}
+   </div>
+ </div>
+{{/if}}
+
+<div id="login" class="container">
+  <div class="portlet" style="float:none; margin:20px auto;">
+    {{#if changingPassword}}
+      <div class="header" style="text-align:left;">Change Password</div>
+    {{else}}
+      <div class="header" style="text-align:left;">User Login</div>
+    {{/if}}
+    <form>
+      <label for="inputUsername"><small>Username</small></label>
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-user"></i></span>
+        {{view Ember.TextField valueBinding="username" id="username" placeholder="Username" autofocus="autofocus"}}
+      </div>
+      {{#if changingPassword}}
+        <label for="inputOldPassword"><small>Current Password</small></label>
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          {{view Ember.TextField valueBinding="oldPassword" id="old_password" placeholder="Current Password" type="password"}}
+        </div>
+        <label for="inputNewPassword1"><small>New Password</small></label>
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          {{view Ember.TextField valueBinding="newPassword1" id="new_password_1" placeholder="New Password" type="password"}}
+        </div>
+        <label for="inputNewPassword2"><small>New Password again</small></label>
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          {{view Ember.TextField valueBinding="newPassword2" id="new_password_2" placeholder="New Password" type="password"}}
+        </div>
+      {{else}}
+        <label for="inputPassword"><small>Password</small></label>
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          {{view Ember.TextField valueBinding="password" id="password" placeholder="Password" type="password"}}
+        </div>
+        <p class="login-help">
+          <a class="pull-right tooltip-right" rel="tooltip" data-original-title="Sign up here"><small>Register</small></a>
+          <a class="tooltip-left" rel="tooltip" data-original-title="Not a problem!"><small>Forgot your password?</small></a>
+        </p>
+      {{/if}}
+      <div class="form-actions" style="margin:20px -19px -39px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;">
+        {{#if changingPassword}}
+          <button class="btn btn-primary" {{action changePassword}}>Change Password</button>
+        {{else}}
+          {{!--
+            <label class="checkbox">
+              {{view Ember.Checkbox checkedBinding="rememberMe" class="remember"}} Keep me logged in
+            </label>
+          --}}
+          <button class="btn btn-primary" {{action login}}>Sign in</button>
+        {{/if}}
+      </div>
+    </form>
+  </div>
+</div>

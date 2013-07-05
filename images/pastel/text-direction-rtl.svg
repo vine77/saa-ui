@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Text Direction RTL</title>
+	<desc>Text Direction RTL</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#999999" />
+				<stop offset="100%" stop-color="#000000" />
+			</linearGradient>
+			<linearGradient id="arrow" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9ac1ed" />
+				<stop offset="30%" stop-color="#83b2e7" />
+				<stop offset="100%" stop-color="#477fd8" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)" transform="translate(-4,4) scale(0.0110,-0.0080)"
+			d="M412 1321H485L821 33H905V0H485V35H565L479 365H233L182 137Q178 121 178 109Q178 33 252 33H287V0H20V35H53Q121 35 141 125L412 1321ZM346 868L240 399H471L350 868H346Z" />
+		<path shape-rendering="crispEdges" fill="url(#arrow)" transform="scale(-1,1)" d="M0,5 h4 v-1 l0.5,0 l1.5,1.5 l-1.5,1.5 l-0.5,0 v-1 h-11 v-1" />
+	</g>
+</svg>

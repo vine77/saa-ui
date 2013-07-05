@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Phone</title>
+	<desc>Phone</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#929292" />
+				<stop offset="100%" stop-color="#adadad" />
+			</linearGradient>
+			<linearGradient id="shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#000000" stop-opacity="0.5" />
+				<stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#e8e8e8" />
+				<stop offset="100%" stop-color="#cacaca" />
+			</linearGradient>
+			<linearGradient id="screen" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#1e95f9" />
+				<stop offset="100%" stop-color="#21a1f5" />
+			</linearGradient>
+			<linearGradient id="screen-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#9dd8f8" />
+				<stop offset="100%" stop-color="#a5daf6" />
+			</linearGradient>
+			<linearGradient id="on-button" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#78be6f" />
+				<stop offset="100%" stop-color="#7fc576" />
+			</linearGradient>
+			<linearGradient id="buttons" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#a0a0a0" />
+				<stop offset="100%" stop-color="#aaaaaa" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-4,-6 h7 v-2 h2 v15 a1,1 0 0,1 -1,1 h-7 a1,1 0 0,1 -1,-1 v-12 a1,1 0 0,1 1,-1 z" />
+		<path fill="url(#shadow)" d="M4,-5 v-2 h1 v14 a1,1 0 0,1 -1,1 h-7 v-1" />
+		<rect width="7" x="-3" height="12" y="-5" fill="url(#center)" />
+		<rect width="5" height="10" x="-2" y="-4" fill="#000" opacity="0.1" />
+		<rect width="5" height="4" x="-2" y="-4" fill="url(#screen)" />
+		<rect width="3" height="2" x="-1" y="-3" fill="url(#screen-center)" />
+		<rect width="2" height="1" x="-2" y="1" fill="url(#on-button)" />
+		<rect width="1" height="1" x="2" y="1" fill="#d4525e" />
+		<path fill="url(#buttons)"
+			d="M0,1 h1 v1 h-1 v-1 m-2,2 h1 v1 h-1 v-1 m2,0 h1 v1 h-1 v-1 m2,0 h1 v1 h-1 v-1 m-4,2 h1 v1 h-1 v-1 m2,0 h1 v1 h-1 v-1 m2,0 h1 v1 h-1 v-1" />
+	</g>
+</svg>

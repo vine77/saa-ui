@@ -1,0 +1,78 @@
+{
+  "node": {
+    "status": {
+      "locked": false,
+      "trust_message": "bios: unknown vmm: unknown",
+      "operational": 2,
+      "long_message": "",
+      "health": 2,
+      "trust": false,
+      "short_message": ""
+    },
+    "memory": {
+      "max": 65536,
+      "used": 1024
+    },
+    "contention": {
+      "socket": [
+        {
+          "llc": {
+            "value": 0,
+            "label": "HIGH"
+          }
+        },
+        {
+          "llc": {
+            "value": 1,
+            "label": "HIGH"
+          }
+        }
+      ]
+    },
+    "utilization": {
+      "ipc": "",
+      "uptime": "",
+      "network": "",
+      "cpu_frequency_current": "",
+      "normalized_load": "",
+      "gips_max": "-1.0",
+      "io": "",
+      "memory": "",
+      "gips_current": "-1.0",
+      "cpu": ""
+    },
+    "graphite_url": "/render?target=stats.SAM",
+    "uri": "/nodes/BB4FDBCC-F79A-E111-BD1D-001E67497037",
+    "ids": {
+      "platform_id": "BB4FDBCC-F79A-E111-BD1D-001E67497037",
+      "mac": "00:1e:67:49:70:37",
+      "ip_address": "10.102.44.38"
+    },
+    "capabilities": {
+      "hyperthreading": "on",
+      "cores_per_socket": 8,
+      "cpu_frequency": "2700 MHz",
+      "turbo_mode": "off",
+      "memory_size": "65536 MB",
+      "cpu_type": "cpu_type",
+      "cache_size": "20480 kB",
+      "sockets": 2
+    },
+    "node_name": "gklab-044-038",
+    "vcpus": {
+      "max": 256,
+      "used": 2
+    },
+    "vm_info": {
+      "count": 2,
+      "max": -1
+    },
+    "logs_url": "/logs?node=BB4FDBCC-F79A-E111-BD1D-001E67497037",
+    "tier": "",
+    "id": "BB4FDBCC-F79A-E111-BD1D-001E67497037",
+    "vm_ids": [
+      "17f83d1c-849c-4947-b64c-a7540a433d77",
+      "3838cb9e-a3f8-43fc-9b95-e5dac126b3c8"
+    ]
+  }
+}

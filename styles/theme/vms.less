@@ -1,0 +1,82 @@
+#vms {
+  .sidebar {
+    .btn-group {
+      width: 100%;
+    }
+  }
+  .header {
+    width: 100%;
+    overflow: auto;
+    margin-bottom: 15px;
+  }
+  .content > table {
+    > thead,
+    > tbody {
+      > tr {
+        > th:not(.sortable),
+        td.column-small,
+        > td.column-small {
+          text-align: center;
+        }
+      }
+      > tr:not(.is-expanded):not(.is-selected) {
+        > th:first-of-type,
+        > td:first-of-type,
+        > th:nth-last-of-type(2),
+        > td:nth-last-of-type(2),
+        > th:last-of-type,
+        > td:last-of-type {
+          background-color: #f9f9f9;
+        }
+      }
+      > tr:hover:not(.is-expanded):not(.is-selected) {
+        > td {
+          background-color: transparent;
+        }
+      }
+    }
+    .sparkline {
+      display: inline-block;
+      width: 150px;
+      height: 20px;
+      vertical-align: middle;
+      path {
+        stroke: steelblue;
+        stroke-width: 1;
+        fill: none;
+      }
+    }
+    .label-left {
+      text-align:right;
+      width:50%;
+    }
+    .slo-gates-table {
+      width:50%;
+      display:inline-table;
+      vertical-align:top;
+    }
+    .ranked-nodes-table {
+      width:49.5%;
+      display:inline-table;
+      vertical-align:top;
+    }
+    .nested-slos-table th{
+      font-style:italic;
+      border-left:0;
+    }
+    .nested-slos-table td {
+      border-left:0;
+    }
+  }
+  .treemap {
+    display: none;
+    height: 200px;
+    margin-bottom: 10px;
+    .node {
+      min-width: 10px;
+      min-height: 10px;
+      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+      text-indent: 5px;
+    }
+  }
+}

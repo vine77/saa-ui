@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	height="16" width="16" version="1.1">
+	<title>Drive Network</title>
+	<desc>Drive Network</desc>
+	<g id="icon" transform="translate(8,5)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="60%" y2="100%">
+				<stop offset="0%" stop-color="#d8d8d8" />
+				<stop offset="70%" stop-color="#a0a0a0" />
+				<stop offset="100%" stop-color="#5b5b5b" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f3f3f3" />
+				<stop offset="100%" stop-color="#e2e2e2" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#000000" stop-opacity="0.05" />
+				<stop offset="100%" stop-color="#000000" stop-opacity="0.125" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-5.5,-5 h11 l2.5,4 v6 a1,1 1 0,1 -1,1 h-14 a1,1 1 0,1 -1,-1 v-6 l2.5,-4 z" />
+		<path fill="url(#inner)" d="M-5,-4 h10 l2,3.2 v5.8 h-14 v-5.8 " />
+		<path fill="url(#center)" d="M-4.5,-3 h9 l1.5,2.4 v6.6 h-12 v-6.6 " />
+		<rect width="16" height="4" x="-8" y="0" fill="url(#center)" />
+		<rect width="12" height="4" x="-6" y="0" opacity="0.15" />
+		<path opacity="0.2" d="M-6,1 h12 v1 h-12 m0,1 h12 v1 h-12" />
+		<path d="M-4.5,-2.8 a7.5,7.5 1 0,0 9,0" fill="none" stroke="url(#center)"
+			stroke-width="1" />
+		<g id="network">
+			<defs>
+				<linearGradient id="network-center" x1="0%" y1="25%" x2="0%"
+					y2="75%">
+					<stop offset="0%" stop-color="#8ab8ff" />
+					<stop offset="100%" stop-color="#7bafff" />
+				</linearGradient>
+			</defs>
+			<path fill="#6a6a6a" d="M-2,6 h4 v1 h6 v3 h-16 v-3 h6 v-1" />
+			<path fill="#8d8d8d"
+				d="M-1,6 h2 v1 h-2 v-1 m-1,2 h-5 v1 h5 m9,0 h-5 v-1 h5" />
+			<rect width="2" height="2" x="-1" y="7.8" fill="url(#network-center)" />
+			<path fill="#0054f8" d="M-2,9.8 a1,1 0 0,0 1,1 h2 a1,1 0 0,0 1,-1 h-4" />
+		</g>
+	</g>
+</svg>

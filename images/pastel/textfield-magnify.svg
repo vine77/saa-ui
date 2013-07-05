@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Textfield Magnify</title>
+	<desc>Tectfield Text Field Magnify Search</desc>
+	<g id="icon" transform="translate(8,8)">
+		<rect width="16" height="8" x="-8" y="-4" fill="#c9c9c9" />
+		<path fill="#e8e8e8" d="M-7,-3 h15 v7 h-16 v-1 h1 z" />
+		<rect width="14" height="6" x="-7" y="-3" fill="#ffffff" />
+		<rect width="1" height="4" x="-6" y="-2" fill="#c9c9c9" />
+		<g id="find-icon" transform="translate(4,4)">
+			<defs>
+				<linearGradient id="find-border" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#bedbfa" />
+					<stop offset="100%" stop-color="#769ccd" />
+				</linearGradient>
+				<linearGradient id="find-in-border" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#e3eefa" />
+					<stop offset="100%" stop-color="#d2e4f7" />
+				</linearGradient>
+				<linearGradient id="find-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#cce1f6" />
+					<stop offset="100%" stop-color="#bbd6f3" />
+				</linearGradient>
+				<linearGradient id="find-handel" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#b57d41" />
+					<stop offset="100%" stop-color="#9d6722" />
+				</linearGradient>
+				<linearGradient id="find-hold" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#e8cbab" />
+					<stop offset="100%" stop-color="#ddb589" />
+				</linearGradient>
+			</defs>
+			<g>
+				<path transform="rotate(45)" d="M0,-1 h4 a1,1 0 0,1 0,2 h-4" fill="url(#find-handel)" />
+				<path transform="rotate(45)" d="M0,-0.5 h4 a0.5,0.5 0 0,1 0,1 h-4"
+					fill="url(#find-hold)" />
+			</g>
+			<circle r="3.5" cx="-1.5" cy="-1.5" fill="url(#find-border)" />
+			<circle r="2.5" cx="-1.5" cy="-1.5" fill="url(#find-in-border)" />
+			<circle r="1.5" cx="-1.5" cy="-1.5" fill="url(#find-center)" />
+		</g>
+	</g>
+</svg>

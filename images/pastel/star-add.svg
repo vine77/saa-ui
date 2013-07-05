@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Star Add</title>
+	<desc>Star Add</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#e9c73b" />
+				<stop offset="50%" stop-color="#dfaf2b" />
+				<stop offset="100%" stop-color="#cc810c" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f5de5e" />
+				<stop offset="50%" stop-color="#f1ce54" />
+				<stop offset="100%" stop-color="#e5ae39" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#efc62a" />
+				<stop offset="100%" stop-color="#e9b31b" />
+			</linearGradient>
+		</defs>
+		<path id="branch" fill="url(#backing)"
+			d="M-8,-2.18766 l5.41743,-0.95524 l2.58257,-4.8571 l2.58257,4.8571 l5.41743,0.95524 l-3.82132,3.95709 l0.765592,5.44747 l-4.94427,-2.41148 l-4.94427,2.41148 l0.765592,-5.44747 l-3.82132,-3.95709 z" />
+		<path id="branch-inner" fill="url(#inner)"
+			d="M-6,-1.64074 l4.06308,-0.71643 l1.93692,-3.64283 l1.93692,3.64283 l4.06308,0.71643 l-2.86599,2.96782 l0.574194,4.0856 l-3.7082,-1.80861 l-3.7082,1.80861 l0.574194,-4.0856 l-2.86599,-2.96782 z" />
+		<path id="branch-center" fill="url(#center)"
+			d="M-4,-1.09383 l2.70872,-0.47762 l1.29128,-2.42855 l1.29128,2.42855 l2.70872,0.47762 l-1.91066,1.97855 l0.382796,2.72374 l-2.47214,-1.20574 l-2.47214,1.20574 l0.382796,-2.72374 l-1.91066,-1.97855 z" />
+		<g id="add" transform="translate(4.5,4.5)">
+			<defs>
+				<linearGradient id="backing_add" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#6e9458" />
+					<stop offset="100%" stop-color="#376b19" />
+				</linearGradient>
+				<linearGradient id="center_add" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#b1d390" />
+					<stop offset="100%" stop-color="#8fbc67" />
+				</linearGradient>
+			</defs>
+			<circle id="back" r="3.5" fill="url(#backing_add)" />
+			<circle id="center-dot" r="2.5" fill="url(#center_add)" />
+			<path fill="#fff"
+				d="M-0.5,-0.5 v-1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z " />
+		</g>
+
+	</g>
+</svg>

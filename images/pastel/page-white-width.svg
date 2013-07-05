@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>White Page Width</title>
+	<desc>White Page Width</desc>
+	<g id="icon" transform="translate(8,10)">
+		<defs>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#cacaca" />
+				<stop offset="10%" stop-color="#e9e9e9" />
+				<stop offset="50%" stop-color="#fff" />
+			</linearGradient>
+			<linearGradient id="corner" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#c1c1c1" />
+			</linearGradient>
+		</defs>
+		<g transform="rotate(90) scale(-1,1)">
+			<path fill="#000" opacity="0.21"
+				d="M0,-8 h-5 a1,1 0 0,0 -1,1 v14 a1,1 0 0,0 1,1 h11 a1,1 0 0,0 1,-1 v-11.5 l-3.5,-3.5 l-4.5,0 Z" />
+			<path fill="#fff" d="M0,-7 h-5 v14 h11 v-11 l-3,-3 h-3 Z" />
+			<path fill="url(#center)" d="M0,-6 h-4 v12 h9 v-10 l-2,-2 h-2 Z" />
+			<path fill="#fff" d="M2,-7 h1 l3,3 v1 h-4 v-4 Z" />
+			<path fill="url(#corner)" d="M3,-7 l0.1,0 l3,3 l-3.1,0 v-3 Z" />
+		</g>
+		<path fill="#000" opacity="0.2" d="M-8,5 h16 a1,1 0 0,1 -1,1 h-14 a1,1 0 0,1 -1,-1" />
+	</g>
+</svg>

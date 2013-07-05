@@ -1,0 +1,30 @@
+<div class="modal hide fade" id="modal" data-backdrop="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Trust Report {{view.content.name}} ({{view.content.ids.ip_address}})</h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered">
+      <tr>
+        <th class="column-small">Trust Status</th>
+        <th>Message</th>
+        <th>Timestamp</th>
+      </tr>
+      {{#each attestation in view.content.nodeTrustReport.attestations}}
+        <tr>
+          <td class="column-small">
+            {{#view App.TooltipView titleBinding="attestation.trust_message" dataContainer="body"}}
+              <i {{bindAttr class=":icon-large attestation.trust_status:icon-lock:icon-unlock attestation.trust_status:trusted:untrusted"}}></i>
+            {{/view}}
+          </td>
+          <td>{{attestation.report_message}}</td>
+          <td>{{attestation.attestation_time_formatted}}</td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" {{action modalHide target="view"}}> Close </button>
+    <button class="btn btn-primary" {{action exportTrustReport view.content target="controller"}}> Export as PDF </button>
+  </div>
+</div>

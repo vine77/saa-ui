@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Page Printer</title>
+	<desc>Page Document Printer Print Setup</desc>
+	<g id="icon" transform="translate(9,8)">
+		<defs>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#a0bedc" />
+				<stop offset="10%" stop-color="#b3d2f1" />
+				<stop offset="50%" stop-color="#d5e5fe" />
+			</linearGradient>
+			<linearGradient id="corner" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#cde6fc" />
+				<stop offset="100%" stop-color="#7db2e2" />
+			</linearGradient>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#4f8cc8" />
+				<stop offset="100%" stop-color="#2e62b7" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#68bffd" />
+				<stop offset="100%" stop-color="#4fb2f7" />
+			</linearGradient>
+			<linearGradient id="base-center" x1="0%" y1="100%" x2="100%"
+				y2="0%">
+				<stop offset="0%" stop-color="#a0d8ff" />
+				<stop offset="100%" stop-color="#93d4ff" />
+			</linearGradient>
+			<linearGradient id="line" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#eaf1f8" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-8 h-6 a1,1 0 0,0 -1,1 v14 a1,1 0 0,0 1,1 h12 a1,1 0 0,0 1,-1 v-11.5 l-3.5,-3.5 l-4.5,0 Z" />
+		<path fill="url(#line)" d="M0,-7 h-6 v14 h12 v-11 l-3,-3 h-3 Z" />
+		<path fill="url(#center)" d="M0,-6 h-5 v9 h10 v-7 l-2,-2 h-2 Z" />
+		<path fill="#fff" d="M2,-7 h1 l3,3 v1 h-4 v-4 Z" />
+		<path fill="url(#corner)" d="M3,-7 l0.1,0 l3,3 l-3.1,0 v-3 Z" />
+		<rect width="10" height="3" x="-5" y="3" fill="url(#base)" />
+		<rect width="8" height="1" x="-4" y="4" fill="url(#base-center)" />
+		<g id="printer" transform="translate(-3,2)">
+			<defs>
+				<linearGradient id="page-border" x1="100%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#457ec2" />
+					<stop offset="100%" stop-color="#6195c8" />
+				</linearGradient>
+				<linearGradient id="page-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#ecf1f9" />
+					<stop offset="100%" stop-color="#f6f7f9" />
+				</linearGradient>
+				<linearGradient id="page-flap" x1="100%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#457ec2" />
+					<stop offset="30%" stop-color="#457ec2" />
+					<stop offset="100%" stop-color="#cde6fc" />
+				</linearGradient>
+				<linearGradient id="page-center" x1="100%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#b5d4f3" />
+					<stop offset="30%" stop-color="#bbd6f5" />
+					<stop offset="100%" stop-color="#d8e8fe" />
+				</linearGradient>
+				<linearGradient id="page-base" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#ecf1f9" />
+					<stop offset="100%" stop-color="#d8e8fe" />
+				</linearGradient>
+				<linearGradient id="printer-back" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#9a9a9a" />
+					<stop offset="100%" stop-color="#232323" />
+				</linearGradient>
+				<linearGradient id="printer-case" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#cbcbcb" />
+					<stop offset="25%" stop-color="#ffffff" />
+					<stop offset="100%" stop-color="#d7d7d7" />
+				</linearGradient>
+				<linearGradient id="printer-front" x1="0%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#000" stop-opacity="0.05" />
+					<stop offset="20%" stop-color="#000" stop-opacity="0.10" />
+					<stop offset="100%" stop-color="#000" stop-opacity="0.30" />
+				</linearGradient>
+				<linearGradient id="printer-lid" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#7d7d7d" />
+					<stop offset="25%" stop-color="#d8d8d8" />
+					<stop offset="100%" stop-color="#616161" />
+				</linearGradient>
+				<linearGradient id="printer-lid-inner" x1="0%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#f2f2f2" />
+					<stop offset="100%" stop-color="#d7d7d7" />
+				</linearGradient>
+				<linearGradient id="printer-lid-center" x1="0%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#cbcbcb" />
+					<stop offset="100%" stop-color="#b9b9b9" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#printer-back)"
+				d="M-6,0 l2,-3 h9 l2,3 v4 a1,1 0 0,1 -1,1 h-11 a1,1 0 0,1 -1,-1 v-4" />
+			<path fill="url(#printer-case)" d="M-5,0 l1.33,-2 l8.33,0 l1.33,2 v4 h-11 v-4" />
+			<g transform="translate(0,2)">
+				<path fill="url(#page-border)"
+					d="M-2,-8 h3 l3,3 v8 a1,1 0 0,1 -1,1 h-5 a1,1 0 0,1 -1,-1 v-10 a1,1 0 0,1 1,-1 Z" />
+				<path fill="url(#page-inner)" d="M-2,-7 h3 l2,2 v8 h-5 v-10 Z" />
+				<path fill="url(#page-flap)" d="M1,-7 l2,2 h-2 v-2 Z" />
+				<path fill="url(#page-center)" d="M-1,-6 h1 v2 h2 v2 h-3" />
+				<rect x="-1" y="1" width="3" height="2" fill="url(#page-base)" />
+			</g>
+			<rect x="-3" y="-1" width="7" height="4" fill="url(#printer-lid)" />
+			<rect x="-2" y="0" width="5" height="2" fill="url(#printer-lid-inner)" />
+			<rect x="-1" y="1" width="3" height="1" fill="url(#printer-lid-center)" />
+			<rect x="-6" y="1" width="13" height="3" fill="url(#printer-front)" />
+			-->
+		</g>
+	</g>
+</svg>

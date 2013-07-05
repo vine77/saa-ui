@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Arrow Rotate Clockwise</title>
+	<desc>Arrow Rotate Clockwise</desc>
+	<g id="icon" transform="translate(8,8) rotate(180)">
+		<defs>
+			<linearGradient id="arrow-backing" x1="100%" y1="100%" x2="0%"
+				y2="0%">
+				<stop offset="0%" stop-color="#72c466" />
+				<stop offset="100%" stop-color="#22601e" />
+			</linearGradient>
+			<linearGradient id="arrow-center" x1="100%" y1="100%" x2="0%"
+				y2="0%">
+				<stop offset="0%" stop-color="#a7d69e" />
+				<stop offset="100%" stop-color="#78bd72" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#arrow-backing)"
+			d="M-6,0 a6,6 0 1,1 6,6 v2 l-4,-4 l4,-4 v2 a2,2 0 1,0 -2,-2 z" />
+		<path fill="url(#arrow-center)"
+			d="M-4.9,-1 a5,5 0 1,1 4.9,6 l-.5,0 v1.5 l-2.5,-2.5 l2.5,-2.5 v1.5 l0.5,0 a3,3 0 1,0 -2.83,-4 z" />
+	</g>
+</svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Table Error</title>
+	<desc>Table Error</desc>
+	<g id="table" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="table-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#a3c2ef" />
+				<stop offset="100%" stop-color="#4277bb" />
+			</linearGradient>
+			<linearGradient id="table-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f4f7fb" />
+				<stop offset="100%" stop-color="#d8e2f0" />
+			</linearGradient>
+			<linearGradient id="table-lines" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a6c3e9" />
+				<stop offset="100%" stop-color="#b5cdea" />
+			</linearGradient>
+			<linearGradient id="table-title" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a5d59c" />
+				<stop offset="100%" stop-color="#7cbe76" />
+			</linearGradient>
+		</defs>
+		<rect width="14" height="14" rx="1" ry="1" x="-7" y="-7" fill="url(#table-backing)" />
+		<rect width="12" height="12" x="-6" y="-6" fill="url(#table-inner)" />
+		<rect width="10" height="10" x="-5" y="-5" fill="#fff" />
+		<rect width="10" height="8" x="-5" y="-3" fill="url(#table-lines)" />
+		<path fill="#fff"
+			d="M-4,-2 h1 v1 h-1 m0,1 h1 v1 h-1 m0,1 h1 v1 h-1 m0,1 h1 v1 h-1 m2,-7 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m4,-7 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 " />
+		<rect width="10" height="1" x="-5" y="-5" fill="url(#table-title)" />
+		<g id="error" transform="translate(2,3)">
+			<defs>
+				<linearGradient id="error-backing" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#debd5c" />
+					<stop offset="100%" stop-color="#bd7723" />
+				</linearGradient>
+				<linearGradient id="error-center" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#fbf4dc" />
+					<stop offset="100%" stop-color="#f8eaab" />
+				</linearGradient>
+				<linearGradient id="error-in-border" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#f5da58" />
+					<stop offset="100%" stop-color="#f6de6a" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#error-backing)" d="M0.5,-5 l5.5,10 h-11 l5.5,-10 Z" />
+			<path fill="url(#error-center)" d="M0.5,-3.5 l4,7.5 h-8 l4,-7.5 Z" />
+			<path fill="url(#error-in-border)" d="M0.5,-2 l2.5,5 h-5 l2.5,-5 Z" />
+			<rect width="1" height="2" y="-1" fill="#c28832" />
+			<rect width="1" height="1" y="2" fill="#c28832" />
+		</g>
+	</g>
+</svg>

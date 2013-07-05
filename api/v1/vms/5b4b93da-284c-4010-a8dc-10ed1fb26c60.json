@@ -1,0 +1,30 @@
+{
+  "vm": {
+    "vm_name": "shui01_m1_tiny_secure_bronze",
+    "status": {
+      "locked": false,
+      "long_message": "",
+      "short_message": "",
+      "health": 5,
+      "operational": 1
+    },
+    "vm_instantiation_detailed_id": null,
+    "macs": [],
+    "cloud_id": "5b4b93da-284c-4010-a8dc-10ed1fb26c60",
+    "stack_id": null,
+    "vm_instantiation_simple_id": null,
+    "graphite_url": null,
+    "hostname": null,
+    "sla_name": null,
+    "uri": "/vms/5b4b93da-284c-4010-a8dc-10ed1fb26c60",
+    "node_name": "novamgmt44",
+    "sla_id": null,
+    "stack_name": null,
+    "node_id": "71798A3B-7994-E111-BD1D-001E6747F24A",
+    "logs_url": null,
+    "floating_ips": [],
+    "vm_trust_report_id": null,
+    "fixed_ips": [],
+    "id": "5b4b93da-284c-4010-a8dc-10ed1fb26c60"
+  }
+}

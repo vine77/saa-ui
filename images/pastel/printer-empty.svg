@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Printer Empty</title>
+	<desc>Printer Print Empty</desc>
+	<g id="icon" transform="translate(8,7)">
+		<defs>
+			<linearGradient id="printer-back" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#9a9a9a" />
+				<stop offset="100%" stop-color="#232323" />
+			</linearGradient>
+			<linearGradient id="printer-case" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#cbcbcb" />
+				<stop offset="25%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#d7d7d7" />
+			</linearGradient>
+			<linearGradient id="printer-front" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#000" stop-opacity="0.05" />
+				<stop offset="20%" stop-color="#000" stop-opacity="0.10" />
+				<stop offset="100%" stop-color="#000" stop-opacity="0.30" />
+			</linearGradient>
+			<linearGradient id="printer-lid" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#7d7d7d" />
+				<stop offset="25%" stop-color="#d8d8d8" />
+				<stop offset="90%" stop-color="#616161" />
+				<stop offset="100%" stop-color="#525252" />
+			</linearGradient>
+			<linearGradient id="printer-lid-inner" x1="0%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#f2f2f2" />
+				<stop offset="100%" stop-color="#d7d7d7" />
+			</linearGradient>
+			<linearGradient id="printer-lid-center" x1="0%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#cbcbcb" />
+				<stop offset="100%" stop-color="#b9b9b9" />
+			</linearGradient>
+			<linearGradient id="exit" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#898989" />
+				<stop offset="100%" stop-color="#808080" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#printer-back)"
+			d="M-8,0 l2,-3 h12 l2,3 v6 a1,1 0 0,1 -1,1 h-14 a1,1 0 0,1 -1,-1 v-6" />
+		<path fill="url(#printer-case)" d="M-7,0 l1.33,-2 l11.33,0 l1.33,2 v6 h-14 v-6" />
+		<path fill="url(#printer-lid)" d="M-5,-1 h10 v7 h-1 v-1 h-8 v1 h-1 v-7" />
+		<rect width="8" height="1" x="-4" y="5" fill="url(#exit)" />
+		<rect x="-4" y="0" width="8" height="4" fill="url(#printer-lid-inner)" />
+		<rect x="-3" y="1" width="6" height="3" fill="url(#printer-lid-center)" />
+		<rect x="-8" y="2" width="16" height="4" fill="url(#printer-front)" />
+		<path fill="#9c9c9c" d="M-4,-5 h8 l0.5,2 h-9 l0.5,-2" />
+		<rect width="6" height="1" x="-3" y="-4" fill="#d7d7d7" />
+		<rect width="4" height="1" x="-2" y="-4" fill="#c3c3c3" />
+	</g>
+</svg>

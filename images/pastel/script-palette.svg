@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Script Palette</title>
+	<desc>Script Palette</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#5face2" />
+				<stop offset="50%" stop-color="#598fd4" />
+				<stop offset="100%" stop-color="#335f94" />
+			</linearGradient>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#dfedfd" />
+				<stop offset="100%" stop-color="#bddaf8" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-3,-8 c9,0 11,0 11,3 a2,2 0 0,1 -2,2 c0,9 -1,11 -3,11 c-9,0 -11,0 -11,-3 a2,2 0 0,1 2,-2 c0,-9 0,-11 3,-11" />
+		<path fill="#fff"
+			d="M-4,-7 c9,0 11,0 11,2 a1,1 0 0,1 -1,1 c0,-1.5 0,-1.5 -1,-1.5 c0,10.5 -1,12.5 -2,12.5 c-8,0 -10,0 -10,-2 h9.25 v0.25 a0.5,0.5 0 0,0 1,0 v-1.25 l-8,-0.25 c0,-9 0,-11 2,-11" />
+		<path fill="url(#center)"
+			d="M-3,-6 c7,0 7,0 7,2 c0,8 -1,8 -1,8.25 l-7,-0.25 c0,-10 0,-10 2,-10" />
+		<g id="palette" transform="translate(-3,0) scale(0.65)">
+			<defs>
+				<linearGradient id="palette-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#d79662" />
+					<stop offset="100%" stop-color="#9a6016" />
+				</linearGradient>
+				<linearGradient id="palette-in-border" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#fdf2e7" />
+					<stop offset="100%" stop-color="#f3d7ba" />
+				</linearGradient>
+				<linearGradient id="palette-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ebbc91" />
+					<stop offset="100%" stop-color="#e09560" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#palette-backing)"
+				d="M-1.25,1.25 a0.75,0.75 0 0,0 1.5,-1.5 a0.75,0.75 0 0,0 -1.5,1.5 l-2,2 c-2,-2 -4.75,-1 -4.75,-3.25 c0,-3 4,-8 9,-8 c5,0 7,2 7,7 c0,3 -4,8 -9,8 c-2.25,0 -1.25,-2.75 -3.25,-4.75 Z" />
+			<path fill="url(#palette-in-border)"
+				d="M-2,2 a1.5,1.5 0 0,0 3,-3 a1.5,1.5 0 0,0 -3,3 l-0.5,0.5 c-2,-2 -4.5,-1 -4.5,-3 c0,-3 4,-6.5 7.5,-6.5 c4.75,0 6.5,2.25 6.5,6.5 c0,3 -4,6.5 -7.5,6.5 c-2.25,0 -1.25,-2.75 -3.25,-4.75 Z" />
+			<path
+				d="M-2.75,2.75 a2.25,2.25 0 0,0 4.5,-4.5 a2.25,2.25 0 0,0 -4.5,4.5 c-2,-3.5 -4.5,-1 -3,-4.5 c1.25,-3 4,-4.5 6.5,-4.5 c4,0 5.5,3 5.5,5.5 c0,3 -4,6 -6.5,6.25 c-2.25,0 -1.25,-2.75 -3,-3.5
+ Z"
+				fill="url(#palette-center)" />
+			<g fill="#f04141">
+				<path id="blob"
+					d="M-5.5,-2 c-0.5,1 0.5,1 1.25,1.25 c1,0.5 2,-0.5 1.25,-1 c-1,-1 0,-1.25 0.25,-1.5 c0.5,-0.5 -0.75,-1 -1.75,-0.5 c-0.75,0.25 -0.5,1 -1,1.75 " />
+				<use xlink:href="#blob" id="splot" transform="scale(0.5) rotate(30) translate(-6,2)"
+					fill="#fff" opacity="0.5" />
+			</g>
+			<g fill="#fbaa41" transform="rotate(40)">
+				<use xlink:href="#blob" />
+				<use xlink:href="#splot" />
+			</g>
+			<g fill="#fbd142" transform="rotate(90)">
+				<use xlink:href="#blob" />
+				<use xlink:href="#splot" />
+			</g>
+			<g fill="#7ab83c" transform="rotate(130)">
+				<use xlink:href="#blob" />
+				<use xlink:href="#splot" />
+			</g>
+			<g fill="#2798ae" transform="rotate(220) translate(0,3)">
+				<use xlink:href="#blob" />
+				<use xlink:href="#splot" />
+			</g>
+		</g>
+	</g>
+</svg>

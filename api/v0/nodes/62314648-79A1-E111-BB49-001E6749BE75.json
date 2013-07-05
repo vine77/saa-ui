@@ -1,0 +1,76 @@
+{
+  "node": {
+    "status": {
+      "locked": false,
+      "trust_message": "bios: 1 vmm: 1",
+      "operational": 2,
+      "long_message": "",
+      "health": 2,
+      "trust": true,
+      "short_message": ""
+    },
+    "memory": {
+      "max": -1,
+      "used": -1
+    },
+    "contention": {
+      "socket": [
+        {
+          "llc": {
+            "value": 0,
+            "label": "HIGH"
+          }
+        },
+        {
+          "llc": {
+            "value": 1,
+            "label": "HIGH"
+          }
+        }
+      ]
+    },
+    "utilization": {
+      "ipc": "",
+      "uptime": "",
+      "network": "",
+      "cpu_frequency_current": "",
+      "normalized_load": "",
+      "gips_max": "-1.0",
+      "io": "",
+      "memory": "",
+      "gips_current": "-1.0",
+      "cpu": ""
+    },
+    "graphite_url": "/render?target=stats.SAM",
+    "uri": "/nodes/62314648-79A1-E111-BB49-001E6749BE75",
+    "ids": {
+      "platform_id": "62314648-79A1-E111-BB49-001E6749BE75",
+      "mac": "00:1e:67:49:be:75",
+      "ip_address": "10.102.44.27"
+    },
+    "capabilities": {
+      "hyperthreading": "on",
+      "cores_per_socket": 8,
+      "cpu_frequency": "2700 MHz",
+      "turbo_mode": "off",
+      "memory_size": "65536 MB",
+      "cpu_type": "cpu_type",
+      "cache_size": "20480 kB",
+      "sockets": 2
+    },
+    "node_name": "gklab-044-027",
+    "vcpus": {
+      "max": -1,
+      "used": -1
+    },
+    "vm_info": {
+      "count": -1,
+      "max": -1
+    },
+    "logs_url": "/logs?node=62314648-79A1-E111-BB49-001E6749BE75",
+    "tier": "",
+    "id": "62314648-79A1-E111-BB49-001E6749BE75",
+    "vm_ids": [],
+    "node_trust_report_id": "62314648-79A1-E111-BB49-001E6749BE75"
+  }
+}

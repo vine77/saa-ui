@@ -1,0 +1,67 @@
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="brand">
+        <img id="logo-company" src="images/logo-intel-white.svg" alt="Intel">
+        <div class="application-title">
+          {{App.application.title}}
+          <div class="full-title">{{App.application.longTitle}}</div>
+        </div>
+      </div>
+      {{#if loggedIn}}
+        <nav class="nav-collapse collapse pull-right">
+          <ul class="nav">
+            <li>{{#linkTo "dashboard"}}<i class="icon-th"></i>Dashboard{{/linkTo}}</li>
+            {{#if App.application.isEnabled}}
+              <li>{{#linkTo "nodes"}}<i class="icon-cloud"></i>Nodes{{/linkTo}}</li>
+              <li>{{#linkTo "vms"}}<i class="icon-desktop"></i>VMs{{/linkTo}}</li>
+              <li class="dropdown">
+                {{#linkTo "services" class="dropdown-toggle"}}<i class="icon-tasks"></i>Services{{/linkTo}}
+                <ul class="dropdown-menu">
+                  <li>{{#linkTo "flavors"}}Flavors{{/linkTo}}</li>
+                  <li>{{#linkTo "slas"}}SLAs{{/linkTo}}</li>
+                </ul>
+              </li>
+              {{#if App.mtWilson.isSupported}}
+                <li class="dropdown">
+                  {{#linkTo "trust" class="dropdown-toggle"}}<i class="icon-lock"></i>Trust{{/linkTo}}
+                  {{#if isMtWilsonInstalled}}
+                    <ul class="dropdown-menu">
+                      {{!--
+                      <li>{{#linkTo "trust.fingerprint"}}Fingerprint Nodes{{/linkTo}}</li>
+                      <li>{{#linkTo "trust.whitelist"}}Fingerprint Manager{{/linkTo}}</li>
+                      --}}
+                      <li>{{#linkTo "trust.dashboard"}}Trust Dashboard{{/linkTo}}</li>
+                      <li>{{#linkTo "trust.whitelistPortal"}}Whitelist Portal{{/linkTo}}</li>
+                      <li>{{#linkTo "trust.management"}}Management Console{{/linkTo}}</li>
+                    </ul>
+                  {{/if}}
+                </li>
+              {{/if}}
+            {{else}}
+              <li><a class="disabled"><i class="icon-cloud"></i>Nodes</a></li>
+              <li><a class="disabled"><i class="icon-desktop"></i>VMs</a></li>
+              <li><a class="disabled"><i class="icon-tasks"></i>Services</a></li>
+            {{/if}}
+            <li class="dropdown">
+              {{#linkTo "settings"}}<i class="icon-cog"></i>Settings{{/linkTo}}
+              <ul class="dropdown-menu">
+                <li>{{#linkTo "settings.upload"}}Upload{{/linkTo}}</li>
+                <li>{{#linkTo "settings.network"}}Network{{/linkTo}}</li>
+                {{#if App.application.isEnabled}}
+                  <li>{{#linkTo "settings.users"}}Users{{/linkTo}}</li>
+                  <li>{{#linkTo "settings.log"}}Logs{{/linkTo}}</li>
+                {{/if}}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <ul class="account">
+          <li>Logged in as <em>{{App.session.username}}</em></li>
+          <li><a href="#" {{action logout}}><i class="icon-signout"></i>Log Out</a></li>
+        </ul>
+      {{/if}}
+      {{render "connectivity" connectivity}}
+    </div>
+  </div>
+</header>

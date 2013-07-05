@@ -1,0 +1,86 @@
+#settings {
+  h3 {
+    margin-top: 0;
+  }
+  .instructions {
+    margin: 0 2em 2em;
+    font-size: 90%;
+    font-style: italic;
+  }
+  input[disabled] {
+    color: #555555;
+  }
+  #upload {
+    .control-label {
+      width: 230px;
+    }
+    .controls {
+      margin-left: 250px;
+    }
+    .fileupload {
+      i {
+        display: none;
+      }
+      .fileupload-preview {
+        display: none;
+      }
+      &.fileupload-exists {
+        i {
+          display: inline-block;
+        }
+        .fileupload-preview {
+          display: inline;
+        }
+      }
+    }
+  }
+  #network {
+    .control-label {
+      width: 130px;
+    }
+    .controls {
+      margin-left: 150px;
+      label.inline {
+        margin-right: 20px;
+        white-space: nowrap;
+      }
+    }
+    .form-actions {
+      margin: 40px -19px -19px;
+      padding-left: 170px;
+      .border-bottom-left-radius(3px);
+      .border-bottom-right-radius(3px);
+    }
+  }
+  #users {
+    .header {
+      width: 100%;
+      overflow: auto;
+    }
+  }
+  #log {
+    .form-actions {
+      margin: 40px -19px -19px;
+      padding-left: 170px;
+      .border-bottom-left-radius(3px);
+      .border-bottom-right-radius(3px);
+    }
+  }
+  #dev {
+    .control-label {
+      width: 180px;
+    }
+    .controls {
+      margin-left: 200px;
+      input + .btn {
+        margin-left: 20px;
+      }
+    }
+    .form-actions {
+      margin: 40px -19px -19px;
+      padding-left: 220px;
+      .border-bottom-left-radius(3px);
+      .border-bottom-right-radius(3px);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Bullet Pictures</title>
+	<desc>Bullet Pictures</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#7694c2" />
+				<stop offset="100%" stop-color="#7d98c4" />
+			</linearGradient>
+			<linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ccdbe9" />
+				<stop offset="100%" stop-color="#8db2d6" />
+			</linearGradient>
+			<linearGradient id="grass" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#70a247" />
+				<stop offset="100%" stop-color="#55862c" />
+			</linearGradient>
+			<linearGradient id="trunk" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#cc9e4f" />
+				<stop offset="100%" stop-color="#a17831" />
+			</linearGradient>
+			<linearGradient id="tree" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9fca4a" />
+				<stop offset="100%" stop-color="#4e974e" />
+			</linearGradient>
+		</defs>
+		<g opacity="0.8">
+			<g id="picture" transform="translate(-2,-2)">
+				<path fill="url(#backing)"
+					d="M0,-5 h4 a1,1 0 0,1 1,1 v8 a1,1 0 0,1 -1,1 h-8 a1,1 0 0,1 -1,-1 v-8 a1,1 0 0,1 1,-1 z" />
+				<rect width="8" height="8" x="-4" y="-4" fill="#f1f4f8" />
+				<rect width="6" height="5" x="-3" y="-3" fill="url(#sky)" />
+				<rect width="6" height="1" x="-3" y="2" fill="url(#grass)" />
+				<rect width="2" height="2" x="-1" y="0" fill="url(#trunk)" />
+				<circle r="2" transform="translate(0,-1)" fill="url(#tree)" />
+			</g>
+		</g>
+		<use xlink:href="#picture" transform="translate(2,2)" opacity="0.9" />
+		<use xlink:href="#picture" transform="translate(4,4)" opacity="1" />
+	</g>
+</svg>

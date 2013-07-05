@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="1.1">
+	<title>Table Sort</title>
+	<desc>Table Sort</desc>
+	<g id="table" transform="translate(7,7)">
+		<defs>
+			<linearGradient id="table-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#a3c2ef" />
+				<stop offset="100%" stop-color="#4277bb" />
+			</linearGradient>
+			<linearGradient id="table-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f4f7fb" />
+				<stop offset="100%" stop-color="#d8e2f0" />
+			</linearGradient>
+			<linearGradient id="table-lines" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a6c3e9" />
+				<stop offset="100%" stop-color="#b5cdea" />
+			</linearGradient>
+			<linearGradient id="table-title" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a5d59c" />
+				<stop offset="100%" stop-color="#7cbe76" />
+			</linearGradient>
+			<linearGradient id="sort-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#bcbcbc" />
+				<stop offset="100%" stop-color="#727272" />
+			</linearGradient>
+			<linearGradient id="sort-center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f6f6f6" />
+				<stop offset="100%" stop-color="#e8e8e8" />
+			</linearGradient>
+		</defs>
+		<rect width="14" height="14" rx="1" ry="1" x="-7" y="-7" fill="url(#table-backing)" />
+		<rect width="12" height="12" x="-6" y="-6" fill="url(#table-inner)" />
+		<rect width="10" height="10" x="-5" y="-5" fill="#fff" />
+		<rect width="10" height="8" x="-5" y="-3" fill="url(#table-lines)" />
+		<path fill="#fff"
+			d="M-4,-2 h1 v1 h-1 m0,1 h1 v1 h-1 m0,1 h1 v1 h-1 m0,1 h1 v1 h-1 m2,-7 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m4,-7 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 m0,1 h3 v1 h-3 v-4 " />
+		<rect width="10" height="1" x="-5" y="-5" fill="url(#table-title)" />
+		<path fill="url(#sort-backing)"
+			d="M-2,1 a2,2 0 0,1 2,-2 h2 l1.5,-1.5 l1.5,1.5 h2 a2,2 0 0,1 2,2 v4 a2,2 0 0,1 -2,2 h-2 l-1.5,1.5 l-1.5,-1.5 h-2 a2,2 0 0,1 -2,-2 " />
+		<path fill="#f4f4f4"
+			d="M-1,0 h3 l1.5,-1.5 l1.5,1.5 h3 v6 h-3 l-1.5,1.5 l-1.5,-1.5 h-3 v-6" />
+		<rect fill="url(#sort-center)" width="7" height="4" y="1" />
+	</g>
+</svg>

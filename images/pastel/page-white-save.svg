@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>White Page Save</title>
+	<desc>White Page Save</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#cacaca" />
+				<stop offset="10%" stop-color="#e9e9e9" />
+				<stop offset="50%" stop-color="#fff" />
+			</linearGradient>
+			<linearGradient id="corner" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#c1c1c1" />
+			</linearGradient>
+		</defs>
+		<path fill="#000" opacity="0.21"
+			d="M0,-8 h-6 a1,1 0 0,0 -1,1 v14 a1,1 0 0,0 1,1 h12 a1,1 0 0,0 1,-1 v-11.5 l-3.5,-3.5 l-4.5,0 Z" />
+		<path fill="#fff" d="M0,-7 h-6 v14 h12 v-11 l-3,-3 h-3 Z" />
+		<path fill="url(#center)" d="M0,-6 h-5 v12 h10 v-10 l-2,-2 h-2 Z" />
+		<path fill="#fff" d="M2,-7 h1 l3,3 v1 h-4 v-4 Z" />
+		<path fill="url(#corner)" d="M3,-7 l0.1,0 l3,3 l-3.1,0 v-3 Z" />
+		<g id="save" transform="translate(4,3)">
+			<defs>
+				<linearGradient id="backing_disk" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#6e97d4" />
+					<stop offset="100%" stop-color="#5884c3" />
+				</linearGradient>
+				<linearGradient id="center_disk" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#b0cdf3" />
+					<stop offset="100%" stop-color="#85a2dd" />
+				</linearGradient>
+				<linearGradient id="label_disk" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#a8d782" />
+					<stop offset="100%" stop-color="#d7f4a2" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#backing_disk)"
+				d="M0,-5 h-5 a1,1 0 0,0 -1,1 v8 a1,1 0 0,0 1,1 h8 a1,1 0 0,0 1,-1 v-7 l-2,-2  z" />
+			<rect x="-5" y="-4" width="8" height="8" fill="url(#center_disk)" />
+			<rect x="-4" y="-4" width="6" height="3" fill="#fff" />
+			<rect x="-3" y="-4" width="1" height="2" fill="url(#center_disk)" />
+			<rect x="-4" y="1" width="6" height="3" fill="#fff" />
+			<rect id="label_disk_part" x="-3" y="2" width="2" height="2"
+				fill="url(#label_disk)" />
+			<use xlink:href="#label_disk_part" transform="rotate(180) translate(2,-6)" />
+			<rect x="-6" y="-3" width="10" height="6" fill="#000"
+				opacity="0.05" />
+		</g>
+	</g>
+</svg>

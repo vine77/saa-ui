@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Cookie</title>
+	<desc>Cookie</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d79662" />
+				<stop offset="100%" stop-color="#9a6016" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fdf2e7" />
+				<stop offset="100%" stop-color="#f3d7ba" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ebbc91" />
+				<stop offset="100%" stop-color="#e09560" />
+			</linearGradient>
+		</defs>
+		<g id="cookie">
+			<circle fill="url(#backing)" cx="-3" cy="-3" r="5" />
+			<circle fill="url(#in-border)" cx="-3" cy="-3" r="4"/>
+			<circle fill="url(#center)" cx="-3" cy="-3" r="3" />
+		</g>
+		<circle fill="#774c15" r="0.5" cx="-4.5" cy="-4.5" />
+		<circle fill="#774c15" r="0.5" cx="-3.5" cy="-1.5" />
+		<circle fill="#774c15" r="0.5" cx="-2.5" cy="-3.5" />
+		<circle fill="#774c15" r="0.5" cx="-1.5" cy="-5.5" />
+		<use xlink:href="#cookie" transform="translate(-2,2) rotate(135)" />
+		<circle fill="#774c15" r="0.5" cx="2.5" cy="3.5" />
+		<circle fill="#774c15" r="0.5" cx="0.5" cy="1.5" />
+		<circle fill="#774c15" r="0.5" cx="3.5" cy="0.5" />
+	</g>
+</svg>

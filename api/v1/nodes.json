@@ -1,0 +1,2862 @@
+{
+  "nodes": [
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "mac": "00:1e:67:47:f6:82",
+        "ip_address": "172.24.0.21",
+        "cloud_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 128.0,
+        "io": null,
+        "memory": "2457844 KB",
+        "gips_current": 124.0,
+        "cpu": {
+          "iowait": 19.16,
+          "idle": 364278.98,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt21",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": 1,
+      "vm_info": {
+        "count": 1,
+        "max": null
+      },
+      "memory": {
+        "max": 16384,
+        "used": 0
+      },
+      "tier": null,
+      "id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.63,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 4.01,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 4.64,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "41101BF9-C295-E111-BD1D-001E6747F112",
+        "mac": "00:1e:67:47:f1:12",
+        "ip_address": "172.24.0.23",
+        "cloud_id": "41101BF9-C295-E111-BD1D-001E6747F112"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.45,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "2620620 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 52.25,
+          "idle": 2375871.67,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/41101BF9-C295-E111-BD1D-001E6747F112",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt23",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.27,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.29,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 3.56,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+        "mac": "00:1e:67:47:f2:6a",
+        "ip_address": "172.24.0.22",
+        "cloud_id": "6396CA86-4A94-E111-BD1D-001E6747F26A"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 166.4,
+        "io": null,
+        "memory": "2230268 KB",
+        "gips_current": 161.2,
+        "cpu": {
+          "iowait": 27.63,
+          "idle": 1116758.83,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt22",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.36,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.6,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 1.96,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt24",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt24",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "A5A47894-E698-E111-BD1D-001E6747F512",
+        "mac": "00:1e:67:47:f5:12",
+        "ip_address": "172.24.0.25",
+        "cloud_id": "A5A47894-E698-E111-BD1D-001E6747F512"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "2577852 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 55.23,
+          "idle": 2372644.46,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/A5A47894-E698-E111-BD1D-001E6747F512",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt25",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 16384,
+        "used": 0
+      },
+      "tier": null,
+      "id": "A5A47894-E698-E111-BD1D-001E6747F512",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.7,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 3.76,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 4.46,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+        "mac": "00:1e:67:47:f5:4e",
+        "ip_address": "172.24.0.26",
+        "cloud_id": "A155FF49-9D95-E111-BD1D-001E6747F54E"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.23,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "2658136 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 60.61,
+          "idle": 2371700.27,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt26",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 16384,
+        "used": 0
+      },
+      "tier": null,
+      "id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.65,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.96,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.61,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+        "mac": "00:1e:67:47:f6:4a",
+        "ip_address": "172.24.0.31",
+        "cloud_id": "3184A832-DB98-E111-BD1D-001E6747F64A"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.26,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 128.0,
+        "io": null,
+        "memory": "4259716 KB",
+        "gips_current": 124.0,
+        "cpu": {
+          "iowait": 58.62,
+          "idle": 3297742.89,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/3184A832-DB98-E111-BD1D-001E6747F64A",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt31",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.64,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 3.72,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 4.36,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+        "mac": "00:1e:67:47:f6:f2",
+        "ip_address": "172.24.0.32",
+        "cloud_id": "5385D478-D295-E111-BD1D-001E6747F6F2"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.28,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4497396 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 87.45,
+          "idle": 3282674.09,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/5385D478-D295-E111-BD1D-001E6747F6F2",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt32",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.75,
+              "label": "LOW"
+            },
+           "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 3.83,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 4.58,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "mac": "00:1e:67:47:f3:de",
+        "ip_address": "172.24.0.33",
+        "cloud_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.72,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 96.0,
+        "io": null,
+        "memory": "3433400 KB",
+        "gips_current": 92.0,
+        "cpu": {
+          "iowait": 70.67,
+          "idle": 2365657.08,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt33",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 2
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 2,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 1024
+      },
+      "tier": null,
+      "id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.86,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 4.47,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 5.33,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "62EC022B-7294-E111-BD1D-001E6747F6FA",
+        "mac": "00:1e:67:47:f6:fa",
+        "ip_address": "172.24.0.34",
+        "cloud_id": "62EC022B-7294-E111-BD1D-001E6747F6FA"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.29,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "3804512 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 36.35,
+          "idle": 1122739.16,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/62EC022B-7294-E111-BD1D-001E6747F6FA",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt34",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "62EC022B-7294-E111-BD1D-001E6747F6FA",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.75,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 4.51,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 5.26,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "64EC022B-7294-E111-BD1D-001E6747F342",
+        "mac": "00:1e:67:47:f3:42",
+        "ip_address": "172.24.0.35",
+        "cloud_id": "64EC022B-7294-E111-BD1D-001E6747F342"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.44,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 120.0,
+        "io": null,
+        "memory": "3998780 KB",
+        "gips_current": 115.0,
+        "cpu": {
+          "iowait": 70.12,
+          "idle": 2210596.37,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/64EC022B-7294-E111-BD1D-001E6747F342",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt35",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "64EC022B-7294-E111-BD1D-001E6747F342",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.19,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 4.42,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 5.609999999999999,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt36",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt36",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: warning, Operational status: powered on",
+        "health": 4,
+        "trust": false,
+        "short_message": "Health: warning"
+      },
+      "ids": {
+        "platform_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+        "mac": "00:1e:67:47:f5:06",
+        "ip_address": "172.24.0.41",
+        "cloud_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.53,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4447552 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 55.33,
+          "idle": 5673865.22,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt41",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.61,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.56,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 3.17,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "015288BC-5F94-E111-BD1D-001E6747F296",
+        "mac": "00:1e:67:47:f2:96",
+        "ip_address": "172.24.0.42",
+        "cloud_id": "015288BC-5F94-E111-BD1D-001E6747F296"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.32,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 115.2,
+        "io": null,
+        "memory": "5104220 KB",
+        "gips_current": 111.6,
+        "cpu": {
+          "iowait": 42.96,
+          "idle": 5574020.79,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/015288BC-5F94-E111-BD1D-001E6747F296",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt42",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "015288BC-5F94-E111-BD1D-001E6747F296",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.58,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 7.0,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 7.58,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "623ECF33-5094-E111-BD1D-001E6747F29A",
+        "mac": "00:1e:67:47:f2:9a",
+        "ip_address": "172.24.0.43",
+        "cloud_id": "623ECF33-5094-E111-BD1D-001E6747F29A"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.36,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4664976 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 49.65,
+          "idle": 6041900.75,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/623ECF33-5094-E111-BD1D-001E6747F29A",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt43",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 0
+      },
+      "tier": null,
+      "id": "623ECF33-5094-E111-BD1D-001E6747F29A",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.55,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.25,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.8,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "71798A3B-7994-E111-BD1D-001E6747F24A",
+        "mac": "00:1e:67:47:f2:4a",
+        "ip_address": "172.24.0.44",
+        "cloud_id": "71798A3B-7994-E111-BD1D-001E6747F24A"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.34,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4372828 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 52.99,
+          "idle": 5660454.5,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 13.25
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/71798A3B-7994-E111-BD1D-001E6747F24A",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt44",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 1
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 1,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 512
+      },
+      "tier": null,
+      "id": "71798A3B-7994-E111-BD1D-001E6747F24A",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.63,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.21,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.84,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt45",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt45",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "72815A85-9394-E111-BD1D-001E6747F3DA",
+        "mac": "00:1e:67:47:f3:da",
+        "ip_address": "172.24.0.46",
+        "cloud_id": "72815A85-9394-E111-BD1D-001E6747F3DA"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": -1.0,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": -1.0,
+        "io": null,
+        "memory": "-1",
+        "gips_current": -1.0,
+        "cpu": {
+          "iowait": -1.0,
+          "idle": -1.0,
+          "total": -1.0,
+          "steal": -1.0,
+          "guest": -1.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/72815A85-9394-E111-BD1D-001E6747F3DA",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt46",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 3
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 3,
+        "max": null
+      },
+      "memory": {
+        "max": 32768,
+        "used": 1536
+      },
+      "tier": null,
+      "id": "72815A85-9394-E111-BD1D-001E6747F3DA",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": -1.0,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": -1.0,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "D0769876-ED98-E111-BD1D-001E6747F74E",
+        "mac": "00:1e:67:47:f7:4e",
+        "ip_address": "172.24.0.52",
+        "cloud_id": "D0769876-ED98-E111-BD1D-001E6747F74E"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.29,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 128.0,
+        "io": null,
+        "memory": "4448836 KB",
+        "gips_current": 124.0,
+        "cpu": {
+          "iowait": 113.18,
+          "idle": 5734615.74,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/D0769876-ED98-E111-BD1D-001E6747F74E",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "6144 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt52",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 6144,
+        "used": 0
+      },
+      "tier": null,
+      "id": "D0769876-ED98-E111-BD1D-001E6747F74E",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.41,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 3.71,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 4.12,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+        "mac": "00:1e:67:47:f6:a2",
+        "ip_address": "172.24.0.51",
+        "cloud_id": "A7A47894-E698-E111-BD1D-001E6747F6A2"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.31,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "3121868 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 87.92,
+          "idle": 3506034.34,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt51",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.72,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.38,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 3.0999999999999996,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "F40A4798-7694-E111-BD1D-001E6747F33E",
+        "mac": "00:1e:67:47:f3:3e",
+        "ip_address": "172.24.0.54",
+        "cloud_id": "F40A4798-7694-E111-BD1D-001E6747F33E"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4090868 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 108.01,
+          "idle": 5495753.67,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/F40A4798-7694-E111-BD1D-001E6747F33E",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt54",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "F40A4798-7694-E111-BD1D-001E6747F33E",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.75,
+              "label": "LOW"
+            },
+           "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 6.73,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 7.48,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt62",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt62",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt63",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt63",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "61156675-C894-E111-BD1D-001E6747F6BA",
+        "mac": "00:1e:67:47:f6:ba",
+        "ip_address": "172.24.0.66",
+        "cloud_id": "61156675-C894-E111-BD1D-001E6747F6BA"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.33,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "2030432 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 39.45,
+          "idle": 1110332.39,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/61156675-C894-E111-BD1D-001E6747F6BA",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt66",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "61156675-C894-E111-BD1D-001E6747F6BA",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.43,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.63,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.06,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "10E5063A-E004-11DF-AE03-001517FB45F0",
+        "mac": "00:15:17:fb:45:f0",
+        "ip_address": "172.24.0.71",
+        "cloud_id": "10E5063A-E004-11DF-AE03-001517FB45F0"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.2,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 51.19,
+        "io": null,
+        "memory": "1366056 KB",
+        "gips_current": 47.99,
+        "cpu": {
+          "iowait": 33.25,
+          "idle": 352619.56,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/10E5063A-E004-11DF-AE03-001517FB45F0",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 4,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt71",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 128,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "10E5063A-E004-11DF-AE03-001517FB45F0",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.25,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 2.24,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 3.49,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+        "mac": "00:15:17:fb:46:a8",
+        "ip_address": "172.24.0.72",
+        "cloud_id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.96,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 95.98,
+        "io": null,
+        "memory": "1422820 KB",
+        "gips_current": 91.98,
+        "cpu": {
+          "iowait": 19.82,
+          "idle": 529821.16,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt72",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.92,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.34,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.2600000000000002,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+        "mac": "00:15:17:fb:47:dc",
+        "ip_address": "172.24.0.73",
+        "cloud_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.91,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 100.8,
+        "io": null,
+        "memory": "1552644 KB",
+        "gips_current": 96.6,
+        "cpu": {
+          "iowait": 43.1,
+          "idle": 513157.6,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt73",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.06,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.43,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.49,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "E7581553-918D-11DF-A420-001517F2388C",
+        "mac": "00:15:17:f2:38:8c",
+        "ip_address": "172.24.0.74",
+        "cloud_id": "E7581553-918D-11DF-A420-001517F2388C"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.94,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 95.98,
+        "io": null,
+        "memory": "1387900 KB",
+        "gips_current": 91.98,
+        "cpu": {
+          "iowait": 29.11,
+          "idle": 498916.86,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/E7581553-918D-11DF-A420-001517F2388C",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt74",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "E7581553-918D-11DF-A420-001517F2388C",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.06,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.59,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.6500000000000004,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt75",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt75",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "395E28C3-9144-11DF-B949-001517F23968",
+        "mac": "00:15:17:f2:39:68",
+        "ip_address": "172.24.0.76",
+        "cloud_id": "395E28C3-9144-11DF-B949-001517F23968"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.95,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 95.98,
+        "io": null,
+        "memory": "1402296 KB",
+        "gips_current": 91.98,
+        "cpu": {
+          "iowait": 34.78,
+          "idle": 455125.31,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/395E28C3-9144-11DF-B949-001517F23968",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt76",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 192,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 12288,
+        "used": 0
+      },
+      "tier": null,
+      "id": "395E28C3-9144-11DF-B949-001517F23968",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 1.02,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.67,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.69,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt65",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt65",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: unknown, Operational status: powered on",
+        "health": 0,
+        "trust": false,
+        "short_message": "Health: unknown"
+      },
+      "ids": {
+        "platform_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "mac": "00:1e:67:47:f0:ba",
+        "ip_address": "172.24.0.64",
+        "cloud_id": "61AF1458-9295-E111-BD1D-001E6747F0BA"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": -1.0,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": -1.0,
+        "io": null,
+        "memory": "-1",
+        "gips_current": -1.0,
+        "cpu": {
+          "iowait": -1.0,
+          "idle": -1.0,
+          "total": -1.0,
+          "steal": -1.0,
+          "guest": -1.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt64",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": -1.0,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": -1.0,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "health": null
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": null,
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "uri": null,
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt61",
+      "sam_controlled": false,
+      "vcpus": {
+        "max": null,
+        "used": null
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": null,
+        "max": null
+      },
+      "memory": {
+        "max": null,
+        "used": null
+      },
+      "tier": null,
+      "id": "na_novamgmt61",
+      "contention": {
+        "sockets": null,
+        "system": {}
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "71815A85-9394-E111-BD1D-001E6747F3C6",
+        "mac": "00:1e:67:47:f3:c6",
+        "ip_address": "172.24.0.53",
+        "cloud_id": "71815A85-9394-E111-BD1D-001E6747F3C6"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.48,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 140.8,
+        "io": null,
+        "memory": "4284236 KB",
+        "gips_current": 136.4,
+        "cpu": {
+          "iowait": 114.56,
+          "idle": 5642603.56,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/71815A85-9394-E111-BD1D-001E6747F3C6",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt53",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "71815A85-9394-E111-BD1D-001E6747F3C6",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.6,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 1.67,
+              "label": "LOW"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 2.27,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "trust_message": "bios: -1 vmm: -1",
+        "operational": 2,
+        "long_message": "Health: good, Operational status: powered on",
+        "health": 2,
+        "trust": false,
+        "short_message": "Health: good"
+      },
+      "ids": {
+        "platform_id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
+        "mac": "00:1e:67:47:f0:da",
+        "ip_address": "172.24.0.55",
+        "cloud_id": "B440527D-8F95-E111-BD1D-001E6747F0DA"
+      },
+      "scheduler_persistent": false,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 128.0,
+        "io": null,
+        "memory": "4109224 KB",
+        "gips_current": 124.0,
+        "cpu": {
+          "iowait": 116.38,
+          "idle": 5487956.9,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "4000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt55",
+      "sam_controlled": true,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 8192,
+        "used": 0
+      },
+      "tier": null,
+      "id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "contention": {
+        "sockets": [
+          {
+            "llc": {
+              "value": 0.73,
+              "label": "LOW"
+            },
+            "socket_number": 1
+          },
+          {
+            "llc": {
+              "value": 5.01,
+              "label": "MEDIUM"
+            },
+            "socket_number": 2
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 5.74,
+            "label": "MEDIUM"
+          }
+        }
+      }
+    }
+  ]
+}

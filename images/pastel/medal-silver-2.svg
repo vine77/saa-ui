@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Medal Silver</title>
+	<desc>Medal Silver Award</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d5d5d5" />
+				<stop offset="100%" stop-color="#6b6b6b" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#efefef" />
+				<stop offset="100%" stop-color="#cecece" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d1d1d1" />
+				<stop offset="100%" stop-color="#c1c1c1" />
+			</linearGradient>
+			<linearGradient id="ribbon-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#6bbc60" />
+				<stop offset="100%" stop-color="#377b31" />
+			</linearGradient>
+			<linearGradient id="ribbon-in-border" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#b5e5a9" />
+				<stop offset="100%" stop-color="#a8de9d" />
+			</linearGradient>
+			<linearGradient id="ribbon-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#83d36f" />
+				<stop offset="100%" stop-color="#66c357" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#ribbon-backing)" d="M-5,-8 v2 a5,5 0 0,0 10,0 v-2 " />
+		<path fill="url(#ribbon-in-border)" d="M-4,-8 v2 a4,4 0 0,0 8,0 v-2 " />
+		<path fill="url(#ribbon-center)" d="M-3,-8 v2 a3,3 0 0,0 6,0 v-2 " />
+		<circle id="back" r="6" cy="2" fill="url(#backing)" />
+		<circle id="round" r="5" cy="2" fill="url(#in-border)" />
+		<circle id="round" r="4" cy="2" fill="url(#center)" />
+	</g>
+</svg>

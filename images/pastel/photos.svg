@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Photos</title>
+	<desc>Photos</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a86f26" />
+				<stop offset="40%" stop-color="#925d1a" />
+				<stop offset="100%" stop-color="#7a490d" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d8903f" />
+				<stop offset="40%" stop-color="#cc8a43" />
+				<stop offset="100%" stop-color="#c7883d" />
+			</linearGradient>
+			<linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#61bcf3" />
+				<stop offset="50%" stop-color="#368dde" />
+				<stop offset="100%" stop-color="#00a2ff" />
+			</linearGradient>
+			<linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#35c62d" />
+				<stop offset="60%" stop-color="#57da3f" />
+				<stop offset="100%" stop-color="#78ef69" />
+			</linearGradient>
+			<linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#76c8ff" />
+				<stop offset="50%" stop-color="#68beff" />
+				<stop offset="80%" stop-color="#60b9ff" />
+				<stop offset="100%" stop-color="#2e9cff" />
+			</linearGradient>
+			<linearGradient id="grass" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#80da4f" />
+				<stop offset="100%" stop-color="#9be26e" />
+			</linearGradient>
+			<linearGradient id="bush" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#2bbe3f" />
+				<stop offset="100%" stop-color="#48c055" />
+			</linearGradient>
+			<linearGradient id="plague" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#e8d462" />
+				<stop offset="100%" stop-color="#e9d461" />
+			</linearGradient>
+		</defs>
+		<g transform="translate(-2,-6)" opacity="0.8">
+			<rect width="10" height="8" x="-6" y="-1" fill="url(#backing)" />
+			<rect width="8" height="6" x="-5" y="0" fill="url(#inner)" />
+			<rect width="6" height="4" x="-4" y="1" fill="url(#blue)" />
+		</g>
+		<g transform="translate(3,-3)" opacity="0.9">
+			<rect width="10" height="8" x="-6" y="-1" fill="url(#backing)" />
+			<rect width="8" height="6" x="-5" y="0" fill="url(#inner)" />
+			<rect width="6" height="4" x="-4" y="1" fill="url(#green)" />
+		</g>
+		<g>
+			<rect width="10" height="8" x="-6" y="-1" fill="url(#backing)" />
+			<rect width="8" height="6" x="-5" y="0" fill="url(#inner)" />
+			<rect width="6" height="3" x="-4" y="1" fill="url(#sky)" />
+			<path fill="#f8de60" d="M2,1 v2 a2,2 0 0,1 -2,-2" />
+			<path fill="#fae78c" d="M2,1 v1 a1,1 0 0,1 -1,-1" />
+			<rect width="6" height="1" x="-4" y="4" fill="url(#grass)" />
+			<path fill="url(#bush)" d="M-4,2 c2,0 2,1 3,1 a1,1 0 0,1 1,1 h-4" />
+			<path fill="#60cb70" d="M-4,2 a1,1 0 0,1 0,2" />
+			<rect width="2" height="1" x="-2" y="5" fill="url(#plague)" />
+		</g>
+	</g>
+</svg>

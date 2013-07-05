@@ -1,0 +1,90 @@
+<section id="network">
+  <h3>Network</h3>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <div class="control-group">
+      <label class="control-label">Gateway:</label>
+      <div class="controls">
+        {{view Ember.TextField placeholder="Gateway" valueBinding="App.network.route.gateway"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">DNS Servers:</label>
+      <div class="controls">
+        {{view Ember.TextField class="input-medium" placeholder="Name server 1" valueBinding="App.network.dns.ns1"}}
+        {{view Ember.TextField class="input-medium" placeholder="Name server 2" valueBinding="App.network.dns.ns2"}}
+        {{view Ember.TextField class="input-medium" placeholder="Name server 3" valueBinding="App.network.dns.ns3"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Hostname:</label>
+      <div class="controls">
+        {{view Ember.TextField placeholder="Hostname" valueBinding="App.network.other.hostname"}}
+      </div>
+    </div>
+    <section>
+      <legend>Management Interface</legend>
+      <div class="control-group">
+        <label class="control-label">MAC Address:</label>
+        <div class="controls">
+          <input type="text" class="mac" disabled {{bindAttr value="App.network.management.mac"}}>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Configure IPv4:</label>
+        <div class="controls">
+          <label class="checkbox">
+            {{view Ember.Checkbox class="dhcp" checkedBinding="App.network.management.dhcp"}}
+            Using DHCP
+          </label>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">IPv4 Address:</label>
+        <div class="controls">
+          {{view Ember.TextField class="address" placeholder="IP adress" valueBinding="App.network.management.address" disabledBinding="App.network.management.dhcp"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Subnet Mask:</label>
+        <div class="controls">
+          {{view Ember.TextField class="netmask" placeholder="Netmask" valueBinding="App.network.management.netmask" disabledBinding="App.network.management.dhcp"}}
+        </div>
+      </div>
+    </section>
+    <section>
+      <legend>External Interface</legend>
+      <div class="control-group">
+        <label class="control-label">MAC Address:</label>
+        <div class="controls">
+          <input type="text" class="mac" disabled {{bindAttr value="App.network.external.mac"}}>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Configure IPv4:</label>
+        <div class="controls">
+          <label class="checkbox">
+            {{view Ember.Checkbox class="dhcp" checkedBinding="App.network.external.dhcp"}}
+            Using DHCP
+          </label>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">IPv4 Address:</label>
+        <div class="controls">
+          {{view Ember.TextField class="address" placeholder="IP address" valueBinding="App.network.external.address" disabledBinding="App.network.external.dhcp"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Subnet Mask:</label>
+        <div class="controls">
+          {{view Ember.TextField class="netmask" placeholder="Netmask" valueBinding="App.network.external.netmask" disabledBinding="App.network.external.dhcp"}}
+        </div>
+      </div>
+      <div class="form-actions">
+        <input type="submit" class="btn btn-primary" value="Save" {{action save}}>
+        <button class="btn btn-danger" type="button" {{action cancel}}>Cancel</button>
+        <i class="loading hide"></i>
+      </div>
+    </section>
+  </form>
+</section>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Database Lightning</title>
+	<desc>Database Lightning</desc>
+	<g id="icon" transform="translate(10,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#000" stop-opacity="0.28" />
+				<stop offset="100%" stop-color="#000" stop-opacity="0.46" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="50%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#dedede" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#eaeaea" />
+				<stop offset="25%" stop-color="#d9d9d9" />
+				<stop offset="50%" stop-color="#e3e3e3" />
+				<stop offset="75%" stop-color="#bfbfbf" />
+				<stop offset="100%" stop-color="#bfbfbf" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)" d="M6,-5 v10 a10,10 0 0,1 -12,0 v-10 a10,10 0 0,1 12,0 " />
+		<path fill="url(#inner)" d="M5,-4.25 v8.5 a8,8 0 0,1 -10,0 v-8.5 a8,8 0 0,1 10,0 " />
+		<path fill="url(#center)" d="M4,-3.25 v7 a7,7 0 0,1 -8,0 v-7 a7,7 0 0,0 8,0 " />
+		<path fill="#000" opacity="0.1"
+			d="M4,-3.25 v1 a7,7 0 0,1 -8,0 v-1 a7,7 0 0,0 8,0 " />
+		<g id="lightning-icon" transform="translate(-3,3)">
+			<defs>
+				<linearGradient id="lightning-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ecce40" />
+					<stop offset="100%" stop-color="#daa323" />
+				</linearGradient>
+				<linearGradient id="lightning-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#faed9a" />
+					<stop offset="100%" stop-color="#f2d384" />
+				</linearGradient>
+				<linearGradient id="lightning-inner" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#f4d848" />
+					<stop offset="100%" stop-color="#ebb62f" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#lightning-backing)" d="M-5,-7 h8 l-3,4 h5 l-10,7 l3,-4 h-5 l3,-7 z" />
+			<path fill="url(#lightning-center)" d="M-4,-6 h5 l-3,4 h4 l-4,3 l2,-2 l-5.5,0 l2.5,-5 z" />
+			<path fill="url(#lightning-inner)" d="M-2.5,-5 h2 l-2,3 h-2 l1.75,-3 z" />
+		</g>
+	</g>
+</svg>

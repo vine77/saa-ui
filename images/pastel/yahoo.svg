@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Yahoo</title>
+	<desc>Yahoo</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#b643fc" />
+				<stop offset="100%" stop-color="#a865d2" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#dcadff" />
+				<stop offset="100%" stop-color="#f0deff" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#c176ff" />
+				<stop offset="100%" stop-color="#d6a4fd" />
+			</linearGradient>
+		</defs>
+		<rect fill="url(#backing)" width="13" height="10" x="-8" y="-6" rx="7.5" ry="5" />
+		<rect fill="url(#inner)" width="11" height="8" x="-7" y="-5" rx="7.5" ry="5" />
+		<rect fill="url(#center)" width="9" height="6" x="-6" y="-4" rx="7.5" ry="5" />
+		<path fill="url(#backing)" d="M5,-7 h3 v8 h-2" />
+		<path fill="url(#inner)" d="M6,-6 h1 v6" />
+		<rect fill="url(#backing)" width="2" height="2" x="6" y="2" />
+		<path fill="#fff" d="M-5,-4 h4 v1 h-2 l2,2 l1,-1 l-0.5,0 v-1 h3 v1 h-1 l-1.5,1.5 v1.5 h1 v1 h-4 v-1 h1 v-1 l-3,-3 h-1 v-1" />
+	</g>
+</svg>

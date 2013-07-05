@@ -1,0 +1,13 @@
+{
+  "slo": {
+    "class_name": "security",
+    "uri": "/configuration/slos/5",
+    "value": "1",
+    "sla_id": 2,
+    "unit": "",
+    "operator": "equals",
+    "id": 5,
+    "element_name": "infrastructure",
+    "slo_type": "trusted_platform"
+  }
+}

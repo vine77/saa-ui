@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Image</title>
+	<desc>Image</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#5877ab" />
+				<stop offset="50%" stop-color="#3a64a6" />
+				<stop offset="100%" stop-color="#4a70aa" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f2f3f3" />
+				<stop offset="100%" stop-color="#eaeef1" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#addcf2" />
+				<stop offset="100%" stop-color="#d7e8fe" />
+			</linearGradient>
+			<linearGradient id="hill" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#83bae4" />
+				<stop offset="50%" stop-color="#75ade5" />
+			</linearGradient>
+		</defs>
+		<rect width="14" height="14" x="-7" y="-7" rx="1" ry="1" fill="url(#backing)" />
+		<rect width="12" height="12" x="-6" y="-6" fill="url(#inner)" />
+		<rect width="10" height="10" x="-5" y="-5" fill="url(#center)" />
+		<rect width="10" height="1" x="-5" y="-1" fill="#000" opacity="0.1" />
+		<path fill="url(#hill)"
+			d="M-5,0 v4 h10 v-4 h-1 c-2,0 0,-1 -2,-1 h-1 c-2,0 0,1 -2,1" />
+		<rect width="1" height="9" x="-5" y="-5" fill="#000" opacity="0.3" />
+		<rect width="10" height="1" x="-5" y="-5" fill="#000" opacity="0.3" />
+		<rect width="1" height="9" x="4" y="-5" fill="#000" opacity="0.3" />
+		<rect width="10" height="1" x="-5" y="3" fill="#000" opacity="0.3" />
+	</g>
+</svg>

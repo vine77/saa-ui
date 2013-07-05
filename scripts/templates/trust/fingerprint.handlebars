@@ -1,0 +1,77 @@
+<div class="notification">
+  <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    This screen is in development and has not been integrated with an API.
+  </div>
+</div>
+<div id="fingerprint">
+  <div class="row-fluid">
+    <div class="content">
+      <div class="header">
+        <form id="filter-form" class="input-prepend clear-input pull-right">
+          <span class="add-on"><i class="icon-search"></i></span>
+          {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter nodes"}}
+          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+        </form>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="column-small"><a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a></th>
+            <th {{bindAttr class=":column-small :sortable isColumn2Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Health"}}
+                <a {{action "sortModel" "health"}}><i class="icon-stethoscope icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn3Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Operational State"}}
+                <a {{action "sortModel" "state"}}><i class="icon-off icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn4Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Trust Status"}}
+                <a {{action "sortModel" "status.trust"}}><i class="icon-lock icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":sortable isColumn5Sorted:sorted sortAscending"}}><a {{action "sortModel" "name"}}>Hostname</a></th>
+            <th class="column-medium">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each node in controller}}
+            <tr {{bindAttr class="node.isSelected"}}>
+              <td class="column-small">
+                {{view Ember.Checkbox checkedBinding="node.isSelected"}}
+              </td>
+              <td class="column-small">
+                {{#view App.TooltipView titleBinding="node.status.healthMessage"}}
+                  {{{healthIcon node.status.health}}}
+                {{/view}}
+              </td>
+              <td class="column-small">
+                {{#view App.TooltipView titleBinding="node.status.operationalMessage"}}
+                  {{{operationalIcon node.status.operational}}}
+                {{/view}}
+              </td>
+              <td class="column-small">
+                {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
+                  <i {{bindAttr class=":icon-large node.status.trust:icon-lock:icon-unlock node.status.trust:trusted:untrusted"}}></i>
+                {{/view}}
+              </td>
+              <td>
+                {{#linkTo nodesNode node}}{{node.name}}{{/linkTo}}
+              </td>
+              <td class="column-medium">
+                {{#if node.isFingerprinted}}
+                  <button class="btn disabled btn-mini"><i class="icon-thumbs-up"></i> Fingerprint</button>
+                {{else}}
+                  <button class="btn disabled btn-mini"><i class="icon-thumbs-up"></i> Fingerprint</button>
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Exit</title>
+	<desc>Exit</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#eeada6" />
+				<stop offset="100%" stop-color="#d12a22" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffa281" />
+				<stop offset="100%" stop-color="#fa4225" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcd3c2" />
+				<stop offset="100%" stop-color="#f49486" />
+			</linearGradient>
+		</defs>
+		<rect id="back" rx="2" ry="2" width="14" height="14" x="-7" y="-7"
+			fill="url(#backing)" />
+		<rect id="round" width="12" height="12" x="-6" y="-6" fill="url(#in-border)" />
+		<rect id="round" width="10" height="10" x="-5" y="-5" fill="url(#center)" />
+		<g id="plus">
+			<path transform="rotate(45)"
+				d="M1,-1 h3 v2 h-3 v3 h-2 v-3 h-3 v-2 h3 v-3 h2 Z"
+				fill="#fff" />
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "slo": {
+    "class_name": "performance",
+    "uri": "/configuration/slos/6",
+    "value": "2;4",
+    "sla_id": 3,
+    "unit": "SU",
+    "operator": "in_range",
+    "id": 6,
+    "element_name": "infrastructure",
+    "slo_type": "compute"
+  }
+}

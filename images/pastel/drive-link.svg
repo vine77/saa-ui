@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	height="16" width="16" version="1.1">
+	<title>Drive Link</title>
+	<desc>Drive Link</desc>
+	<g id="icon" transform="translate(8,7)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="60%" y2="100%">
+				<stop offset="0%" stop-color="#d8d8d8" />
+				<stop offset="70%" stop-color="#a0a0a0" />
+				<stop offset="100%" stop-color="#5b5b5b" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f3f3f3" />
+				<stop offset="100%" stop-color="#e2e2e2" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#000000" stop-opacity="0.05" />
+				<stop offset="100%" stop-color="#000000" stop-opacity="0.125" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-5.5,-5 h11 l2.5,4 v6 a1,1 1 0,1 -1,1 h-14 a1,1 1 0,1 -1,-1 v-6 l2.5,-4 z" />
+		<path fill="url(#inner)" d="M-5,-4 h10 l2,3.2 v5.8 h-14 v-5.8 " />
+		<path fill="url(#center)" d="M-4.5,-3 h9 l1.5,2.4 v6.6 h-12 v-6.6 " />
+		<rect width="16" height="4" x="-8" y="0" fill="url(#center)" />
+		<rect width="8" height="2" x="-4" y="1" opacity="0.2" />
+		<path d="M-4.5,-2.8 a7.5,7.5 1 0,0 9,0" fill="none" stroke="url(#center)"
+			stroke-width="1" />
+		<g id="link-icon" transform="translate(1.5,5)">
+			<defs>
+				<linearGradient id="link-border" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#858585" />
+					<stop offset="100%" stop-color="#4a4a4a" />
+				</linearGradient>
+				<linearGradient id="link-inner" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#dddddd" />
+					<stop offset="100%" stop-color="#aeaeae" />
+				</linearGradient>
+				<radialGradient id="link-center-link" cx="50%" cy="0%" r="70%">
+					<stop offset="0%" stop-color="#929292" />
+					<stop offset="100%" stop-color="#414141" />
+				</radialGradient>
+				<radialGradient id="link-center-link-center" cx="50%" cy="50%"
+					r="70%">
+					<stop offset="0%" stop-color="#cecece" />
+					<stop offset="100%" stop-color="#bdbdbd" />
+				</radialGradient>
+			</defs>
+			<g id="link">
+				<path fill="url(#link-border)"
+					d="M-1.5,-3 l-1.5,0 a3.5,3.5 0 0,0 0,7 l1.5,0 a1.5,1.5 0 0,0 0,-3 h-2 a0.5,0.5 0 0,1 0,-1 h2 a1.5,1.5 0 0,0 0,-3   Z" />
+				<path fill="url(#link-inner)"
+					d="M-1.5,-2 l-1.5,0 a2.5,2.5 0 0,0 0,5 l1.5,0 a0.5,0.5 0 0,0 0,-1 l-1.5,0 a1.5,1.5 0 0,1 0,-3 l1.5,0 a0.5,0.5 0 0,0 0,-1 Z" />
+			</g>
+			<use xlink:href="#link" transform="rotate(180) translate(0,-1)" />
+			<rect width="6" height="3" x="-3.25" y="-1" fill="url(#link-center-link)" />
+			<rect width="4" height="1" x="-2.25" y="-0" fill="url(#link-center-link-center)" />
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Email</title>
+	<desc>Email</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#84a4d5" />
+				<stop offset="100%" stop-color="#4983bd" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#a7cdf8" />
+				<stop offset="100%" stop-color="#dbeafd" />
+			</linearGradient>
+			<linearGradient id="flap" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#dae9fd" />
+				<stop offset="100%" stop-color="#eaf3fe" />
+			</linearGradient>
+			<linearGradient id="bottom" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#c5ddfa" />
+				<stop offset="100%" stop-color="#dae9fc" />
+			</linearGradient>
+			<linearGradient id="arrow-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#72c466" />
+				<stop offset="100%" stop-color="#22601e" />
+			</linearGradient>
+			<linearGradient id="arrow-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#a7d69e" />
+				<stop offset="100%" stop-color="#78bd72" />
+			</linearGradient>
+		</defs>
+		<rect width="16" height="11" x="-8" y="-6" rx="1" ry="1" fill="url(#backing)" />
+		<rect width="14" height="9" x="-7" y="-5" fill="#fff" />
+		<rect width="12" height="7" x="-6" y="-4" fill="url(#center)" />
+		<path fill="#89aadc"
+			d="M-6,2.5 h0.5 l0.5,0 l5.5,-5.5 l5.5,5.5 l0.5,0 v-0.5 l-6,-6 l-6,6" />
+		<path fill="url(#bottom)" d="M-5.5,3 l4,-4 c1.5,1.5 1.5,1.5 3,0 l4,4  " />
+		<path fill="#89aadc" 
+			d="M-6,-3.5 l3.5,3.5 c2.5,2.5 2.5,2.5 5,0 l3.5,-3.5 v-0.5 h-12" />
+		<path fill="#fff" d="M-5.5,-4 l4,4 c1.5,1.5 1.5,1.5 3,0 l4,-4 h-11" />
+		<path fill="url(#flap)" d="M-4,-4 l4,4 l4,-4 h-10" />
+		<path fill="url(#arrow-backing)" transform="translate(3,-7) rotate(45)"
+			d="M0,0 h2 v-5 h2 v7 h-4" />
+		<path fill="url(#arrow-center)" transform="translate(3,-7) rotate(45)"
+			d="M0.75,0.75 h2 v-5 l0.5,0 v5.5 l-2.5,0" />
+	</g>
+</svg>

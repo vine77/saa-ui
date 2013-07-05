@@ -1,0 +1,82 @@
+<div id="dashboard" class="container-fluid">
+  <div class="row-fluid">
+    <div class="portlet span4 welcome">
+      <div class="header">Welcome</div>
+      <div class="portlet-contents">
+        <figure class="thumbnail">
+          <img src="/images/diagram.png">
+          <figcaption class="caption">Service Assurance Management</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="portlet span4">
+      <div class="header">To Do</div>
+      <div class="portlet-contents">
+        {{#if App.application.samStarted}}
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            There are no to do items.
+          </div>
+        {{else}}
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Instructions</strong>: Configuration files must be {{#linkTo settings.upload}}uploaded{{/linkTo}} before {{App.application.title}} may be started and the application becomes fully enabled.
+          </div>
+          {{#unless App.nova.exists}}
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Upload <code>nova.conf</code> from the {{#linkTo settings.upload}}Upload{{/linkTo}} page.
+            </div>
+          {{/unless}}
+          {{#unless App.openrc.exists}}
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Upload <code>openrc</code> from the {{#linkTo settings.upload}}Upload{{/linkTo}} page.
+            </div>
+          {{/unless}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="portlet span4 events">
+      <div class="header">Events</div>
+      <div class="portlet-content">
+        {{#if content}}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="column-small"></th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each content}}
+                <tr>
+                  <td class="column-small">{{{healthIcon priority}}}</td>
+                  <td>
+                    {{message}}
+                    <button type="button" class="close" {{action deleteEvent id}}>&times;</button>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="column-small"></th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="column-small"></td>
+                  <td>No events</td>
+                </tr>
+            </tbody>
+          </table>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

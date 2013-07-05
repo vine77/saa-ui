@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Folder Explore</title>
+	<desc>Folder Exolore</desc>
+	<g id="icon" transform="translate(7,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#d9b434" />
+				<stop offset="100%" stop-color="#d8862c" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#fbf2ca" />
+			</linearGradient>
+			<linearGradient id="label-end" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="label" x1="100%" y1="0%" x2="0%" y2="0%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcf2c8" />
+				<stop offset="100%" stop-color="#f0cb26" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-4 h6 a1,1 0 0,1 1,1 v8 a1,1 0 0,1 -1,1 h-12 a1,1 0 0,1 -1,-1 v-9.5 a0.5,0.5 0 0,1 0.5,-0.5 h6  a0.5,0.5 0 0,1 0.5,0.5  a0.5,0.5 0 0,0 0.5,0.5 z" />
+		<path fill="url(#center)" d="M0,-3 h6 v8 h-12 v-9 h6 z" />
+		<rect width="7" height="1" x="-2" y="-2" fill="url(#label)" />
+		<path fill="url(#label-end)" d="M-5,-3 h4 v2 l-1,1 h-3 z" />
+		<path fill="url(#base)" d="M0,0 h5 v5 h-10 v-4 h4 l1,-1 z" />
+		<rect width="12" height="1" x="-6" y="4" fill="#000" opacity="0.05" />
+		<g id="find-icon" transform="translate(5,-3)">
+			<defs>
+				<linearGradient id="find-border" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#bedbfa" />
+					<stop offset="100%" stop-color="#769ccd" />
+				</linearGradient>
+				<linearGradient id="find-in-border" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#e3eefa" />
+					<stop offset="100%" stop-color="#d2e4f7" />
+				</linearGradient>
+				<linearGradient id="find-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#cce1f6" />
+					<stop offset="100%" stop-color="#bbd6f3" />
+				</linearGradient>
+				<linearGradient id="find-handel" x1="0%" y1="0%" x2="100%"
+					y2="0%">
+					<stop offset="0%" stop-color="#b57d41" />
+					<stop offset="100%" stop-color="#9d6722" />
+				</linearGradient>
+				<linearGradient id="find-hold" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#e8cbab" />
+					<stop offset="100%" stop-color="#ddb589" />
+				</linearGradient>
+			</defs>
+			<g>
+				<path transform="rotate(45)" d="M0,-1 h4 a1,1 0 0,1 0,2 h-4" fill="url(#find-handel)" />
+				<path transform="rotate(45)" d="M0,-0.5 h4 a0.5,0.5 0 0,1 0,1 h-4"
+					fill="url(#find-hold)" />
+			</g>
+			<circle r="3.5" cx="-1.5" cy="-1.5" fill="url(#find-border)" />
+			<circle r="2.5" cx="-1.5" cy="-1.5" fill="url(#find-in-border)" />
+			<circle r="1.5" cx="-1.5" cy="-1.5" fill="url(#find-center)" />
+		</g>
+	</g>
+</svg>

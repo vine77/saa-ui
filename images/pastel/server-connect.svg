@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Server Connect</title>
+	<desc>Server Connect</desc>
+	<g id="icon" transform="translate(10,8)">
+		<defs>
+			<linearGradient id="server-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#cbcbcb" />
+				<stop offset="50%" stop-color="#b0b0b0" />
+				<stop offset="100%" stop-color="#636363" />
+			</linearGradient>
+			<linearGradient id="server-inner" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#e9e9e9" />
+				<stop offset="50%" stop-color="#f0f0f0" />
+				<stop offset="100%" stop-color="#cdced3" />
+			</linearGradient>
+			<linearGradient id="server-side" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#dfdfdf" />
+				<stop offset="40%" stop-color="#d8d8d9" />
+				<stop offset="100%" stop-color="#b8b9c0" />
+			</linearGradient>
+			<linearGradient id="server-front" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#c9cacf" />
+				<stop offset="100%" stop-color="#aeafb7" />
+			</linearGradient>
+			<linearGradient id="server-grid" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#979798" />
+				<stop offset="100%" stop-color="#8a8a8a" />
+			</linearGradient>
+			<linearGradient id="server-button" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#a4c8a0" />
+				<stop offset="60%" stop-color="#56a950" />
+				<stop offset="100%" stop-color="#379437" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#server-backing)"
+			d="M5,0 v6 a1,1 0 0,1 -1,1 h-5 c-1,0 -1,0 -2,-0.5 l-2,-2 c-1,-1 -1,-1 -1,-1.5 v-5 c0,-1 1,-2 2,-3 c0.5,-0.5 2,-2 2,-2 h6 a1,1 0 0,1 1,1" />
+		<path fill="url(#server-inner)" d="M4,0 v6 h-6 l-3,-3 v-5.5 l3,-3.5 h6" />
+		<path fill="url(#server-side)" d="M3,0 v5 h-5 l-2,-2.5 v-5 l2,-2.5 h5" />
+		<rect width="5" height="10" x="-2" y="-5" fill="url(#server-front)" />
+		<path fill="url(#server-grid)" d="M-1,-4 h4 v1 h-4 m0,1 h4 v1 h-4" />
+		<rect width="2" height="2" x="1" y="0" fill="url(#server-button)" />
+		<g id="plug" transform="translate(-2,0)">
+			<defs>
+				<linearGradient id="plug-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#9cbbe7" />
+					<stop offset="100%" stop-color="#35529c" />
+				</linearGradient>
+				<linearGradient id="plug-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#c0d6f4" />
+					<stop offset="100%" stop-color="#6c92c3" />
+				</linearGradient>
+				<linearGradient id="plug-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#89abd8" />
+					<stop offset="100%" stop-color="#5c88bd" />
+				</linearGradient>
+				<linearGradient id="plug-prong-inner" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ccc" />
+					<stop offset="100%" stop-color="#bbb" />
+				</linearGradient>
+				<linearGradient id="plug-prong" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#aaa" />
+					<stop offset="100%" stop-color="#555" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#plug-backing)"
+				d="M-4,-2 l6,6 c-2,2 -2,2 -4,2 h-1 l-2.5,2.5 l-2.5,-2.5 l2.5,-2.5 v-1 c0,-2 0,-2 2,-4 " />
+			<path fill="url(#plug-inner)"
+				d="M-4,-0.5 l4.5,4.5 c-1,1 -1,1 -2,1 h-2 l-2,2 l-1,-1 l2,-2 v-2 c0,-1 0,-1 1,-2 " />
+			<path fill="url(#plug-center)" d="M-4,0.5 l3.5,3.5 h-3 v-3  " />
+			<path fill="url(#plug-prong)"
+				d="M-3,-1 l1.5,-1.5 l1.75,1.75 l-1.5,1.5 l1,1 l1.5,-1.5 l1.75,1.75 l-1.5,1.5" />
+			<path fill="url(#plug-prong-inner)"
+				d="M-2.5,-0.5 l1.25,-1.25 l0.75,0.75 l-1.25,1.25 l2,2 l1.25,-1.25 l0.75,0.75 l-1.25,1.25 " />
+		</g>
+	</g>
+</svg>

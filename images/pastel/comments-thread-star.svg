@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Comments Thread Star</title>
+	<desc>Comments Thread Star New Unread</desc>
+	<g id="icon" transform="translate(10,10)">
+		<defs>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#e9f2fe" />
+				<stop offset="50%" stop-color="#dfecfe" />
+				<stop offset="100%" stop-color="#d1e4fc" />
+			</linearGradient>
+			<linearGradient id="center2" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f2fee9" />
+				<stop offset="50%" stop-color="#ecfedf" />
+				<stop offset="100%" stop-color="#e4fcd1" />
+			</linearGradient>
+		</defs>
+		<g transform="translate(-4,-4)">
+			<path fill="#6e9458"
+				d="M0,-6 h4 a2,2 0 0,1 2,2 v4 a2,2 0 0,1 -2,2 h-8 a2,2 0 0,1 -2,-2 v-4 a2,2 0 0,1 2,-2 h4 m-4,8 v3 l4,-3 z" />
+			<path fill="#ffffff"
+				d="M0,-5 h4 a1,1 0 0,1 1,1 v4 a1,1 0 0,1 -1,1 h-8 a1,1 0 0,1 -1,-1 v-4 a1,1 0 0,1 1,-1 h4 m-3,6 v2 l3,-2 z" />
+			<path fill="url(#center2)" d="M0,-4 h4 v4 h-8 v-4" />
+		</g>
+		<g id="comment" transform="scale(-1,1)">
+			<path fill="#5887b8"
+				d="M0,-6 h4 a2,2 0 0,1 2,2 v4 a2,2 0 0,1 -2,2 h-8 a2,2 0 0,1 -2,-2 v-4 a2,2 0 0,1 2,-2 h4 m-4,8 v3 l4,-3 z" />
+			<path fill="#ffffff"
+				d="M0,-5 h4 a1,1 0 0,1 1,1 v4 a1,1 0 0,1 -1,1 h-8 a1,1 0 0,1 -1,-1 v-4 a1,1 0 0,1 1,-1 h4 m-3,6 v2 l3,-2 z" />
+			<path fill="url(#center)" d="M0,-4 h4 v4 h-8 v-4" />
+		</g>
+	</g>
+	<g id="icon" transform="translate(12,4)">
+		<defs>
+			<linearGradient id="star-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#f6d04d" />
+				<stop offset="100%" stop-color="#f3b71c" />
+			</linearGradient>
+			<linearGradient id="star-center" x1="100%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#fae08c" />
+				<stop offset="100%" stop-color="#f9d97a" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#star-backing)"
+			d="M-5,-1.23056 l3.04731,-0.537322 l1.45269,-2.73212 l1.45269,2.73212 l3.04731,0.537322 l-2.14949,2.22586 l0.430646,3.0642 l-2.78115,-1.35646 l-2.78115,1.35646 l0.430646,-3.0642 l-2.14949,-2.22586 z" />
+		<path fill="url(#star-center)"
+			d="M-3.5,-0.820372 l2.03154,-0.358215 l0.968462,-1.82141 l0.968462,1.82141 l2.03154,0.358215 l-1.433,1.48391 l0.287097,2.0428 l-1.8541,-0.904306 l-1.8541,0.904306 l0.287097,-2.0428 l-1.433,-1.48391 z" />
+	</g>
+</svg>

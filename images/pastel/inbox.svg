@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Inbox</title>
+	<desc>Inbox</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#96621f" />
+				<stop offset="100%" stop-color="#774c15" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#eecc8f" />
+				<stop offset="100%" stop-color="#da9874" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ebb865" />
+				<stop offset="100%" stop-color="#c86530" />
+			</linearGradient>
+			<linearGradient id="top" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#bc9360" />
+				<stop offset="100%" stop-color="#b08e67" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a66f2b" />
+				<stop offset="100%" stop-color="#7a4c12" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-6 h5 l3,5 v6 a1,1 0 0,1 -1,1 h-14 a1,1 0 0,1 -1,-1 v-6 l3,-5 z" />
+		<path fill="url(#in-border)" d="M-7,0 v-0.4 l2.8,-4.6 l8.4,0 l2.8,4.6 h0.4z" />
+		<path fill="url(#center)" d="M-6,0 l2.4,-4 l7.2,0 l2.4,4 v2 h-10 z" />
+		<rect fill="url(#inner)" width="6" height="3" x="-3" y="-4" opacity="0.2" />
+		<path fill="url(#inner)" opacity="0.7"
+			d="M-3,-4 l-0.6,0 l-0.4,0.6 v3.4 l2,2 h4 l2,-2 v-3.4 l-0.4,-0.6 l-0.6,0 v3.4 l-1.6,1.6 l-2.8,0 l-1.6,-1.6" />
+		<path fill="url(#inner)" d="M-6,-1 h2 a2,2 0 0,1 2,2 h4 a2,2 0 0,1 2,-2 h2 v3 h-12" />
+		<path fill="url(#in-border)" 
+			d="M-7,0 v5 h14 v-5 h-3 a1,1 0 0,0 -1,1 v1 h-6 v-1 a1,1 0 0,0 -1,-1" />
+		<path fill="url(#center)" 
+			d="M-6,1 v3 h12 v-3 h-2 v2 h-8 v-2" />
+	</g>
+</svg>

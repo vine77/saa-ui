@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Contrast Low</title>
+	<desc>Contrast Low</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="15%" stop-color="#b1b1b1" />
+				<stop offset="50%" stop-color="#ababab" />
+				<stop offset="50%" stop-color="#7f7f7f" />
+				<stop offset="85%" stop-color="#828282" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="15%" stop-color="#dedede" />
+				<stop offset="50%" stop-color="#dadada" />
+				<stop offset="50%" stop-color="#979797" />
+				<stop offset="85%" stop-color="#949494" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="15%" stop-color="#d8d8d8" />
+				<stop offset="50%" stop-color="#d1d1d1" />
+				<stop offset="50%" stop-color="#6f6f6f" />
+				<stop offset="85%" stop-color="#686868" />
+			</linearGradient>
+		</defs>
+		<circle r="7" rx="0" ry="0" fill="url(#backing)" />
+		<circle r="6" rx="0" ry="0" fill="url(#inner)" />
+		<circle r="5" rx="0" ry="0" fill="url(#center)" />
+	</g>
+</svg>

@@ -1,0 +1,7 @@
+{
+  "sla": {
+    "uri": "/configuration/slas/5",
+    "name": "Unsecure Gold",
+    "id": 5
+  }
+}

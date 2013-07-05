@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3>Flavor Creator</h3>
+</div>
+<div class="modal-body">
+  <p>Create a new flavor with an attached SLA based on an existing flavor.</p>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <div class="control-group">
+      <label class="control-label">Flavor name:</label>
+      <div class="controls">
+        {{view Ember.TextField placeholder="" valueBinding="name" autofocus="autofocus"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Clone from:</label>
+      <div class="controls">
+        {{view Ember.Select viewName="select"
+          contentBinding="flavorsWithoutSlas"
+          optionValuePath="content.id"
+          optionLabelPath="content.name"
+          selectionBinding="sourceFlavor"
+        }}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">SLA:</label>
+      <div class="controls">
+        {{view Ember.Select viewName="select"
+          contentBinding="slas"
+          optionValuePath="content.id"
+          optionLabelPath="content.name"
+          selectionBinding="sla"
+        }}
+      </div>
+    </div>
+    {{!
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>SLA Name</th>
+          <th>SLOs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><label><input type="radio" name="" value="test"> Test</label></td>
+          <td>Testing</td>
+        </tr>
+      </tbody>
+    </table>
+    }}
+  </form>
+</div>
+<div class="modal-footer">
+  <a class="btn" data-dismiss="modal">Cancel</a>
+  {{#if isFlavorCreating}}
+    <a class="btn btn-primary" disabled>Save</a>
+  {{else}}
+    <a class="btn btn-primary" {{action createFlavor}}>Save</a>
+  {{/if}}
+</div>

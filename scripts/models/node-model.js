@@ -1,0 +1,271 @@
+// Embedded records
+
+DS.RESTAdapter.map('App.Node', {
+  vcpus: {embedded: 'always'},
+  vmInfo: {embedded: 'always'},
+  memory: {embedded: 'always'},
+  capabilities: {embedded: 'always'},
+  utilization: {embedded: 'always'},
+  status: {embedded: 'always'},
+  contention: {embedded: 'always'},
+  ids: {embedded: 'always'},
+  name: {key: 'node_name'}
+});
+
+DS.RESTAdapter.map('App.NodeUtilization', {
+  cpu: {embedded: 'always'}
+});
+
+DS.RESTAdapter.map('App.ContentionSystem', {
+  llc: {embedded: 'always'}
+});
+
+DS.RESTAdapter.map('App.Contention', {
+  sockets: {embedded: 'always'},
+  system: {embedded: 'always'}
+});
+
+DS.RESTAdapter.map('App.Socket', {
+  llc: {embedded: 'always'}
+});
+
+
+// Embedded models
+
+App.NodeStatus = DS.Model.extend({
+  locked: DS.attr('boolean'),
+  health: DS.attr('number'),
+  short_message: DS.attr('string'),
+  long_message: DS.attr('string'),
+  operational: DS.attr('number'),
+  operationalMessage: function () {
+    return '<strong>State</strong>: ' + App.codeToOperational(this.get('operational')).capitalize();
+  }.property('operational'),
+  trust: DS.attr('boolean'),
+  trust_message: DS.attr('string'),
+  trustMessage: function () {
+    if (App.isEmpty(this.get('trust_message'))) {
+      return 'Trusted: ' + App.priorityToType(this.get('trust')).capitalize();
+    } else {
+      return '<strong>Trust:</strong> ' + this.get('trust_message').capitalize();
+    }
+  }.property('trust', 'trust_message')
+});
+
+App.ContentionSystemLlc = DS.Model.extend({
+  value: DS.attr('number'),
+  valueExists: function () {
+    return typeof this.get('value') !== 'undefined' && this.get('value') !== null;
+  }.property('value'),
+  system: DS.belongsTo('App.ContentionSystem'),
+  valueFormatted: function () {
+    return Math.round(this.get('value') * 100) / 100;
+  }.property('value'),
+  label: DS.attr('string'),
+  contentionMessage: function() {
+    if (App.isEmpty(this.get('value'))) {
+       return '<strong>System LLC Contention:</strong> N/A';
+    } else {
+      return '<strong>System LLC Contention</strong><br>' + this.get('label') + '<br> Value: ' + this.get('value');
+    }
+  }.property('App.ContentionSystemLlc.value', 'App.ContentionSystemLlc.label'),
+  width: function() {
+    var numberOfSockets = App.Node.find(this._reference.parent.parent.parent.id).get('capabilities.sockets');
+    var rangeMaximum = numberOfSockets * 50;
+    if (this.get('value') === 0 || App.isEmpty(this.get('value'))) {
+      return 'display:none;';
+    } else {
+      percent = App.rangeToPercentage(this.get('value'), 0, rangeMaximum);
+      return 'width:' + percent + '%;';
+    }
+  }.property('value')
+});
+
+App.ContentionSystem = DS.Model.extend({
+  llc: DS.belongsTo('App.ContentionSystemLlc')
+});
+
+App.Contention = DS.Model.extend({
+  sockets: DS.hasMany('App.Socket'),
+  node: DS.belongsTo('App.Node'),
+  system: DS.belongsTo('App.ContentionSystem')
+});
+
+App.Socket = DS.Model.extend({
+  llc: DS.belongsTo('App.Llc'),
+  contention: DS.belongsTo('App.Contention'),
+  socket_number: DS.attr('number')
+});
+
+App.Llc = DS.Model.extend({
+  sockets: DS.belongsTo('App.Socket'),
+  value: DS.attr('number'),
+  label: DS.attr('string'),
+  styles: function() {
+    return 'background-color: '+ App.rangeToColor(this.get('value'), 0, 50);
+  }.property('App.Llc.value'),
+  barWidth: function() {
+    if (App.isEmpty(this.get('value'))) {
+      return 'display:none;';
+    } else {
+      percent = App.rangeToPercentage(this.get('value'), 0, 50);
+      return 'width:' + percent + '%;';
+    }
+  }.property('value'),
+  socketMessage: function() {
+    if (this.get('value') == -1) {
+       return '<strong>Socket LLC Contention Not Available</strong>';
+    } else {
+      return '<strong>Socket LLC Contention</strong><br>' + this.get('label') + '<br> Value: ' + this.get('value');
+    }
+  }.property('App.Llc.value', 'App.Llc.label')
+});
+
+App.Cpu = DS.Model.extend({
+  iowait: DS.attr('number'),
+  idle: DS.attr('number'),
+  total: DS.attr('number'),
+  steal: DS.attr('number'),
+  guest: DS.attr('number')
+});
+
+App.NodeUtilization = DS.Model.extend({
+  // Embedded Relationships
+  cpu: DS.belongsTo('App.Cpu'),
+  // Properties
+  ipc: DS.attr('number'),
+  uptime: DS.attr('number'),                  // in seconds
+  cpu_frequency_current: DS.attr('string'),
+  memory: DS.attr('string'),
+  gips_current: DS.attr('number'),            // GIPS = frequency * IPC
+  gips_max: DS.attr('number'),
+  //io: DS.attr('number'),                    // empty for beta
+  //network: DS.attr('number')                // empty for beta
+});
+
+App.NodeCapabilities = DS.Model.extend({
+  hyperthreading: DS.attr('boolean'),
+  cores_per_socket: DS.attr('number'),
+  cpu_frequency: DS.attr('string'),
+  turbo_mode: DS.attr('boolean'),
+  memory_size: DS.attr('string'),
+  cpu_type: DS.attr('string'),
+  cache_size: DS.attr('string'),
+  sockets: DS.attr('number'),
+  socketsEnum: function () {
+    var socketsEnum = [];
+    for (var i = 0; i < this.get('sockets'); i++) {
+      socketsEnum.push(i);
+    }
+    return socketsEnum;
+  }.property('sockets')
+});
+
+App.Vcpus = DS.Model.extend({
+  used: DS.attr('number'),
+  max: DS.attr('number')
+});
+
+App.VmInfo = DS.Model.extend({
+  count: DS.attr('number'),
+  max: DS.attr('number')
+});
+
+App.Memory = DS.Model.extend({
+  used: DS.attr('number'),
+  max: DS.attr('number')
+});
+
+App.Ids = DS.Model.extend({
+  ip_address: DS.attr('string'),
+  mac: DS.attr('string')
+});
+
+
+// Primary model
+App.Node = DS.Model.extend({
+  // Common Properties
+  isActive: false,
+  isSelected: false,
+  isExpanded: function () {
+    return this.get('isActive');
+  }.property('isActive'),
+
+  // Embedded Relationships
+  status: DS.belongsTo('App.NodeStatus'),
+  utilization: DS.belongsTo('App.NodeUtilization'),
+  capabilities: DS.belongsTo('App.NodeCapabilities'),
+  vcpus: DS.belongsTo('App.Vcpus'),
+  vmInfo: DS.belongsTo('App.VmInfo'),
+  memory: DS.belongsTo('App.Memory'),
+  contention: DS.belongsTo('App.Contention'),
+  ids: DS.belongsTo('App.Ids'),
+
+  // Full Relationships
+  vms: DS.hasMany('App.Vm'),
+  nodeTrustReport: DS.belongsTo('App.NodeTrustReport'),
+  didReload: function () {
+    if (this.get('nodeTrustReport.isLoaded')) {
+      this.get('nodeTrustReport').reload();
+    }
+  },
+
+  // Properties from API
+  name: DS.attr('string'),
+  logsUrl: DS.attr('string'),
+  tier: DS.attr('string'),
+  samControlled: DS.attr('boolean'),
+  schedulerMark: DS.attr('number'),
+  schedulerPersistent: DS.attr('boolean'),
+
+  // Computed properties
+  isOn: function () {
+    return (this.get('status.operational') === App.ON);
+  }.property('status.operational'),
+  cpuFrequency: function () {
+    // MHz to GHz conversion
+    var mhz = this.get('capabilities.cpu_frequency');
+    if (!!mhz) {
+      var ghz = mhz.split(' ')[0] / 1000;
+      return ghz + 'GHz';
+    } else {
+      return '';
+    }
+  }.property('App.Capabilities.cpu_frequency'),
+  isScheduled: function () {
+    return !Ember.isNone(this.get('schedulerMark'));
+  }.property('schedulerMark'),
+  scheduledMessage: function () {
+    if (this.get('isScheduled')) {
+      return 'VMs will be placed on this node\'s socket ' + this.get('schedulerMark') + '.';
+    } else {
+      return 'This node is not set for VM placement.';
+    }
+  }.property('schedulerMark', 'isScheduled'),
+  healthMessage: function () {
+    var healthMessage = '';
+    if (!this.get('samControlled') && (this.get('status.health') === App.UNKNOWN) || App.isEmpty(this.get('status.health'))) {
+      return 'Not under ' + App.application.get('title') + ' control';
+    }
+    if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
+      // If both short and long messages are empty, show health as message
+      healthMessage = '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+    } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
+      healthMessage = this.get('status.short_message').capitalize();
+    } else {  // Default to long message
+      healthMessage = this.get('status.long_message').capitalize();
+    }
+    return healthMessage;
+  }.property('status.health', 'status.long_message', 'status.short_message', 'samControlled'),
+
+  // Observers
+  graphObserver: function () {
+    return App.graphs.graph(this.get('id'), this.get('name'), 'node');
+  }.observes('isSelected', 'isExpanded')
+
+  //didLoad: function(){
+    //Notify nessecary observers hotfix
+  //  App.logBar.propertyDidChange('nodesLookup');
+  //}
+
+});

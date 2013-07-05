@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Award Star Bronze</title>
+	<desc>Award Star Bronze</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffb25d" />
+				<stop offset="50%" stop-color="#fd9939" />
+				<stop offset="100%" stop-color="#ff6721" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f8d8c4" />
+				<stop offset="100%" stop-color="#f1b995" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f4cab0" />
+				<stop offset="100%" stop-color="#eb9764" />
+			</linearGradient>
+			<linearGradient id="ribbon-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#6bbc60" />
+				<stop offset="100%" stop-color="#377b31" />
+			</linearGradient>
+			<linearGradient id="ribbon-in-border" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#b5e5a9" />
+				<stop offset="100%" stop-color="#a8de9d" />
+			</linearGradient>
+			<linearGradient id="ribbon-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#83d36f" />
+				<stop offset="100%" stop-color="#66c357" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#ribbon-backing)" d="M-5,-8 v2 a5,5 0 0,0 10,0 v-2 " />
+		<path fill="url(#ribbon-in-border)" d="M-4,-8 v2 a4,4 0 0,0 8,0 v-2 " />
+		<path fill="url(#ribbon-center)" d="M-3,-8 v2 a3,3 0 0,0 6,0 v-2 " />
+		<path id="branch" fill="url(#backing)"
+			d="M-7.5,-1.050931 l5.07884,-0.89553 l2.42115,-4.55353 l2.42115,4.55353 l5.07884,0.89553 l-3.58248,3.70977 l0.71774,5.10700 l-4.63525,-2.26076 l-4.63525,2.26076 l0.71774,-5.10700 l-3.58248,-3.70977 z" />
+		<path id="branch-inner" fill="url(#in-border)"
+			d="M-5.5,-0.50401 l3.72448,-0.65672 l1.77551,-3.33925 l1.77551,3.33925 l3.72448,0.65672 l-2.62715,2.72050 l0.52634,3.74513 l-3.39918,-1.65789 l-3.39918,1.65789 l0.52634,-3.74513 l-2.62715,-2.72050 z" />
+		<path id="branch-center" fill="url(#center)"
+			d="M-3.5,0.04290 l2.37012,-0.41791 l1.12987,-2.12498 l1.12987,2.12498 l2.37012,0.41791 l-1.67182,1.73122 l0.33494,2.38326 l-2.16311,-1.05502 l-2.16311,1.05502 l0.33494,-2.38326 l-1.67182,-1.73122 z" />
+	</g>
+</svg>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Folder Wrench</title>
+	<desc>Folder Wrench</desc>
+	<g id="icon" transform="translate(7,10)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#d9b434" />
+				<stop offset="100%" stop-color="#d8862c" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#fbf2ca" />
+			</linearGradient>
+			<linearGradient id="label-end" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="label" x1="100%" y1="0%" x2="0%" y2="0%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcf2c8" />
+				<stop offset="100%" stop-color="#f0cb26" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-4 h6 a1,1 0 0,1 1,1 v8 a1,1 0 0,1 -1,1 h-12 a1,1 0 0,1 -1,-1 v-9.5 a0.5,0.5 0 0,1 0.5,-0.5 h6  a0.5,0.5 0 0,1 0.5,0.5  a0.5,0.5 0 0,0 0.5,0.5 z" />
+		<path fill="url(#center)" d="M0,-3 h6 v8 h-12 v-9 h6 z" />
+		<rect width="7" height="1" x="-2" y="-2" fill="url(#label)" />
+		<path fill="url(#label-end)" d="M-5,-3 h4 v2 l-1,1 h-3 z" />
+		<path fill="url(#base)" d="M0,0 h5 v5 h-10 v-4 h4 l1,-1 z" />
+		<rect width="12" height="1" x="-6" y="4" fill="#000" opacity="0.05" />
+		<g id="wrench" transform="translate(3,-4)">
+			<defs>
+				<linearGradient id="wrench-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#9d9d9d" />
+					<stop offset="100%" stop-color="#848484" />
+				</linearGradient>
+				<linearGradient id="wrench-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#e1e1e1" />
+					<stop offset="100%" stop-color="#c6c6c6" />
+				</linearGradient>
+				<linearGradient id="wrench-handel" x1="100%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#91b0e3" />
+					<stop offset="100%" stop-color="#497dd1" />
+				</linearGradient>
+				<linearGradient id="wrench-handel-c" x1="100%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#b0c7eb" />
+					<stop offset="100%" stop-color="#a5bfe9" />
+				</linearGradient>
+			</defs>
+			<path transform="rotate(-45)"
+				d="M0,-1.5 l1.4,0 l1.45,-1.45 a1.7,1.7 0 0,1 2.7,0 l1.2,1.2 l-1.75,1.75 l1.75,1.75 l-1.2,1.2 a1.7,1.7 0 0,1 -2.7,0  l-1.45,-1.45 l-1.4,0 "
+				fill="url(#wrench-backing)" />
+			<path transform="rotate(-45)"
+				d="M0,-0.75 l2.4,0 l2,-2 l1.414,1.414 l-0.707,0.707 l-0.707,-0.707 l-1.414,1.414 l1.414,1.414 l0.707,-0.707 l0.707,0.707 l-1.414,1.414 l-2,-2 l-2.4,0 z"
+				fill="url(#wrench-center)" />
+			<path transform="rotate(-45)" d="M0,-1.5 l-1,-.5 l-3.5,0 a2,2 0 0,0 0,4 l3.5,0 l1,-.5 "
+				fill="url(#wrench-handel)" />
+			<path transform="rotate(-45)" d="M-1,-1 l-3.5,0 a1,1 0 0,0 0,2 l3.5,0   "
+				fill="url(#wrench-handel-c)" />
+		</g>
+		<defs>
+			<linearGradient id="mask-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#888" />
+			</linearGradient>
+			<mask id="Mask">
+				<rect width="12" height="6" x="-6" y="-1" fill="url(#mask-grad)" />
+			</mask>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-7,-4 v9 a1,1 0 0,0 1,1 h12 a1,1 0 0,0 1,-1 v-6 a1,1 0 0,0 -1,-1 h-7 l-1,1 h-4 v1 l4.5,0 l1,-1 l6.5,0 v6 h-12 v-9 " />
+		<g id="folder-flap" mask="url(#Mask)">
+			<path fill="url(#center)" d="M0,-1 h6 v6 h-12 v-5 l4.5,0 l1,-1 z" />
+			<path fill="url(#base)" d="M0,0 h5 v5 h-10 v-4 h4 l1,-1 z" />
+		</g>
+	</g>
+</svg>

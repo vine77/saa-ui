@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Newspaper Go</title>
+	<desc>Newspaper Go</desc>
+	<image width="16" height="16" xlink:href="newspaper.png" />
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#b6b6b6" />
+				<stop offset="100%" stop-color="#8a8a8a" />
+			</linearGradient>
+			<mask id="back_mask">
+				<rect width="16" height="16" x="-8" y="-8" fill="#000" />
+				<path fill="#000"
+					d="M0,0 a5,4 0 0,1 5,4 a5,4 0 0,1 -5,4 a5,4 0 0,1 -5,-4 a5,4 0 0,1 5,-4"
+					transform="rotate(45)" />
+				<g fill="#fff" transform="rotate(-45)">
+					<rect width="13" x="-6" y="-4.5" height="7.5" rx="1" ry="1" />
+					<rect width="13" x="-7" y="-3" height="7.5" rx="1" ry="1" />
+				</g>
+			</mask>
+			<mask id="bottom">
+				<rect width="16" height="16" x="-8" y="-8" fill="#fff" />
+				<ellipse fill="#000" rx="1" ry="3" cx="-6.5" cy="0.5" />
+			</mask>
+			<linearGradient id="pic" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#68bffd" />
+				<stop offset="100%" stop-color="#649bc9" />
+			</linearGradient>
+			<linearGradient id="paper" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="20%" stop-color="#efefef" />
+				<stop offset="100%" stop-color="#d3d3d3" />
+			</linearGradient>
+		</defs>
+		<rect mask="url(#back_mask)" width="16" height="16" x="-8" y="-8"
+			fill="url(#backing)" />
+		<g transform="rotate(-45)">
+			<rect mask="url(#bottom)" width="11" height="6" x="-6" y="-2.5" rx="1"
+				ry="1" fill="#fff" />
+			<rect width="11" height="6" x="-5" y="-3.5" rx="1" ry="1" fill="url(#paper)" />
+			<rect width="2" height="2" x="2.5" y="0" fill="url(#pic)" />
+			<rect width="5" height="1" x="-3.5" y="0" fill="url(#backing)" />
+			<rect width="8.5" height="2" x="-3.5" y="-3" fill="url(#backing)" />
+		</g>
+		<g id="go" transform="translate(3,3)">
+			<defs>
+				<linearGradient id="border_go" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#6fa53d" />
+					<stop offset="100%" stop-color="#1e7b03" />
+				</linearGradient>
+				<linearGradient id="inner_go" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#b0ce96" />
+					<stop offset="100%" stop-color="#96c180" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#border_go)"
+				d="M-1,-2 v-2 h1 l4.5,4.5 l-4.5,4.5 h-1 v-2 h-4 v-5 Z" />
+			<path fill="url(#inner_go)" d="M0,-1 v-1.5 l3,3 l-3,3 v-1.5 h-4 v-3 Z" />
+			<path fill="#8eba6f" d="M0.5,0 v-0.5 l1,1 l-1,1 v-0.5 l-3.5,0 v-1 Z" />
+		</g>
+	</g>
+</svg>

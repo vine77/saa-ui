@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Arrow In</title>
+	<desc>Arrow In Shrink</desc>
+	<g id="arrow" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="arrow-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#72c466" />
+				<stop offset="100%" stop-color="#22601e" />
+			</linearGradient>
+			<linearGradient id="arrow-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#a7d69e" />
+				<stop offset="100%" stop-color="#78bd72" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#arrow-backing)"
+			d="M-2,-2 h-6 l1.75,-1.75 l-2,-2 l2.5,-2.5 l2,2 l1.75,-1.75 v6 m4,0 h6 l-1.75,-1.75 l2,-2 l-2.5,-2.5 l-2,2 l-1.75,-1.75 v6 m0,4 h6 l-1.75,1.75 l2,2 l-2.5,2.5 l-2,-2 l-1.75,1.75 v-6 m-4,0 h-6 l1.75,1.75 l-2,2 l2.5,2.5 l2,-2 l1.75,1.75 v-6 z" />
+		<path fill="url(#arrow-center)"
+			d="M-3,-3 h-3 l1,-1 l-2,-2 l1,-1 l2,2 l1,-1 v3 m6,0 h3 l-1,-1 l2,-2 l-1,-1 l-2,2 l-1,-1 v3 m0,6 h3 l-1,1 l2,2 l-1,1 l-2,-2 l-1,1 m-6,0 v-3 h-3 l1,1 l-2,2 l1,1 l2,-2 l1,1 v-3 z" />
+	</g>
+</svg>

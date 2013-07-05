@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Textfield Key</title>
+	<desc>Tectfield Text Field Key</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="selected" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#6b8fc3" />
+				<stop offset="100%" stop-color="#7193c1" />
+			</linearGradient>
+			<linearGradient id="selected-inner" x1="0%" y1="0%" x2="100%"
+				y2="0%">
+				<stop offset="0%" stop-color="#7298d9" />
+				<stop offset="100%" stop-color="#7ba1d6" />
+			</linearGradient>
+			<linearGradient id="caret" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#6b6b6b" />
+				<stop offset="100%" stop-color="#6e6e6e" />
+			</linearGradient>
+		</defs>
+		<rect width="16" height="8" x="-8" y="-4" fill="#c9c9c9" />
+		<path fill="#e8e8e8" d="M-7,-3 h15 v7 h-16 v-1 h1 z" />
+		<rect width="14" height="6" x="-7" y="-3" fill="#ffffff" />
+		<rect width="6" height="4" x="-6" y="-2" fill="url(#selected)" />
+		<rect width="4" height="2" x="-5" y="-1" fill="url(#selected-inner)" />
+		<path fill="url(#caret)"
+			d="M0,-4 h1 v0.25 a0.5,0.5 0 0,0 1,0 v-0.25 h1 v1 h-1 v6 h1 v1 h-1 v-0.25 a0.5,0.5 0 0,0 -1,0 h0.25 h-1 v-1 h1 v-6 h-1 v-1 z" />
+	</g>
+</svg>

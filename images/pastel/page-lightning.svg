@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Page</title>
+	<desc>Page Document</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#a0bedc" />
+				<stop offset="10%" stop-color="#b3d2f1" />
+				<stop offset="50%" stop-color="#d5e5fe" />
+			</linearGradient>
+			<linearGradient id="corner" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#cde6fc" />
+				<stop offset="100%" stop-color="#7db2e2" />
+			</linearGradient>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#4f8cc8" />
+				<stop offset="100%" stop-color="#2e62b7" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="100%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#68bffd" />
+				<stop offset="100%" stop-color="#4fb2f7" />
+			</linearGradient>
+			<linearGradient id="base-center" x1="0%" y1="100%" x2="100%"
+				y2="0%">
+				<stop offset="0%" stop-color="#a0d8ff" />
+				<stop offset="100%" stop-color="#93d4ff" />
+			</linearGradient>
+			<linearGradient id="line" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="100%" stop-color="#eaf1f8" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-8 h-6 a1,1 0 0,0 -1,1 v14 a1,1 0 0,0 1,1 h12 a1,1 0 0,0 1,-1 v-11.5 l-3.5,-3.5 l-4.5,0 Z" />
+		<path fill="url(#line)" d="M0,-7 h-6 v14 h12 v-11 l-3,-3 h-3 Z" />
+		<path fill="url(#center)" d="M0,-6 h-5 v9 h10 v-7 l-2,-2 h-2 Z" />
+		<path fill="#fff" d="M2,-7 h1 l3,3 v1 h-4 v-4 Z" />
+		<path fill="url(#corner)" d="M3,-7 l0.1,0 l3,3 l-3.1,0 v-3 Z" />
+		<rect width="10" height="3" x="-5" y="3" fill="url(#base)" />
+		<rect width="8" height="1" x="-4" y="4" fill="url(#base-center)" />
+		<g id="lightning-icon" transform="translate(-3,3)">
+			<defs>
+				<linearGradient id="lightning-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ecce40" />
+					<stop offset="100%" stop-color="#daa323" />
+				</linearGradient>
+				<linearGradient id="lightning-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#faed9a" />
+					<stop offset="100%" stop-color="#f2d384" />
+				</linearGradient>
+				<linearGradient id="lightning-inner" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#f4d848" />
+					<stop offset="100%" stop-color="#ebb62f" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#lightning-backing)" d="M-5,-7 h8 l-3,4 h5 l-10,7 l3,-4 h-5 l3,-7 z" />
+			<path fill="url(#lightning-center)" d="M-4,-6 h5 l-3,4 h4 l-4,3 l2,-2 l-5.5,0 l2.5,-5 z" />
+			<path fill="url(#lightning-inner)" d="M-2.5,-5 h2 l-2,3 h-2 l1.75,-3 z" />
+		</g>
+	</g>
+</svg>

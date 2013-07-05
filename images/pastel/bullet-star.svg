@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Bullet Star</title>
+	<desc>Star Bullet</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="star-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#f6d04d" />
+				<stop offset="100%" stop-color="#f3b71c" />
+			</linearGradient>
+			<linearGradient id="star-center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#fae08c" />
+				<stop offset="100%" stop-color="#f9d97a" />
+			</linearGradient>
+		</defs>
+		<!--
+			<path d="M-0.25,-4.75 l1.2,3 h3 l-2.4,2.4 l1.2,3 l-3,-1.2 l-3,1.2 l1.2,-3
+			l-2.4,-2.4 h3 l1.2,-3 z" fill="url(#star-backing)" /> <path
+			transform="scale(0.6)" d="M-0.25,-4.75 l1.2,3 h3 l-2.4,2.4 l1.2,3 l-3,-1.2
+			l-3,1.2 l1.2,-3 l-2.4,-2.4 h3 l1.2,-3 z" fill="url(#star-center)" />
+		-->
+		<path fill="url(#star-backing)"
+			d="M-5,-1.23056 l3.04731,-0.537322 l1.45269,-2.73212 l1.45269,2.73212 l3.04731,0.537322 l-2.14949,2.22586 l0.430646,3.0642 l-2.78115,-1.35646 l-2.78115,1.35646 l0.430646,-3.0642 l-2.14949,-2.22586 z" />
+		<path fill="url(#star-center)"
+			d="M-3.5,-0.820372 l2.03154,-0.358215 l0.968462,-1.82141 l0.968462,1.82141 l2.03154,0.358215 l-1.433,1.48391 l0.287097,2.0428 l-1.8541,-0.904306 l-1.8541,0.904306 l0.287097,-2.0428 l-1.433,-1.48391 z" />
+	</g>
+</svg>

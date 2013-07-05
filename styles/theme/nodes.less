@@ -1,0 +1,100 @@
+#nodes {
+  .sidebar {
+    .btn-group {
+      width: 100%;
+    }
+  }
+  .header {
+    width: 100%;
+    overflow: auto;
+    .progress {
+      height: 14px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      #gradient.vertical(#fbfbfb, #ffffff);
+    }
+  }
+  .content > table {
+    @rowHeight: 34px;
+    > thead,
+    > tbody {
+      > tr {
+        > th:not(.sortable),
+        td.column-small,
+        > td.column-small {
+          text-align: center;
+        }
+      }
+      > tr:not(.is-expanded):not(.is-selected).sam-controlled:not(.is-scheduled) {
+        > th:first-of-type,
+        > td:first-of-type,
+        > th:nth-last-of-type(2),
+        > td:nth-last-of-type(2),
+        > th:last-of-type,
+        > td:last-of-type {
+          background-color: #f9f9f9;
+        }
+      }
+      > tr:not(.sam-controlled):not(.expandable-row) {
+        > td {
+          color: rgba(0, 0, 0, 0.5);
+        }
+        #gradient.vertical(#f6f6f6, #fafafa);
+        > td {
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 0%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.03) 100%);
+        }
+      }
+      > tr.is-scheduled {
+        #gradient.vertical(rgba(0, 255, 0, 0.05), rgba(0, 130, 0, 0.1));
+      }
+      > tr:hover:not(.is-expanded):not(.is-selected) {
+        > td {
+          background-color: transparent;
+        }
+      }
+    }
+    .sparkline {
+      display: inline-block;
+      width: 150px;
+      height: 20px;
+      vertical-align: middle;
+      path {
+        stroke: steelblue;
+        stroke-width: 1;
+        fill: none;
+      }
+    }
+    .cpu-typography {
+      margin: -4px 0;
+      white-space: nowrap;
+      .sockets-and-cores{
+        display: inline-block;
+        margin-right: 4px;
+        vertical-align: top;
+        font-size: 0.9em;
+        .cores {
+          font-size: 0.9em;
+          margin-bottom: 0px;
+        }
+        .sockets {
+          margin-bottom: -5px;
+        }
+      }
+      .cpu-frequency {
+        display: inline-block;
+        height: @rowHeight;
+        line-height: @rowHeight;
+        vertical-align: top;
+        font-size: 15px;
+        .at {
+          font-size: 14px;
+        }
+      }
+    }
+    .align-right{
+      width:100%;
+      text-align:right;
+      margin-bottom:8px;
+    }
+  }
+}

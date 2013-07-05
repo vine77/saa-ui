@@ -1,0 +1,20 @@
+{
+  "stacks":[
+    {
+      "status":{
+        "locked":false,
+        "long_message":"Stack successfully created",
+        "short_message":"",
+        "health":2,
+        "operational":2
+      },
+      "updated":"2013-04-26T13:53:49Z",
+      "name":"wordpress1",
+      "created":"2013-04-26T13:53:12Z",
+      "vms_count":2,
+      "uri":"/stacks/a56d0870-ae78-11e2-9aa7-5254000cf43d",
+      "id":"a56d0870-ae78-11e2-9aa7-5254000cf43d",
+      "description":"AWS CloudFormation Sample Template WordPress_Multi_Instance: WordPress is web software you can use to create a beautiful website or blog. This template installs two instances: one running a WordPress deployment and the other using a local MySQL database to store the data."
+    }
+  ]
+}

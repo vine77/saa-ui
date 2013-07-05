@@ -1,0 +1,43 @@
+{
+  "vm": {
+    "vm_name": "wordpress1.DatabaseServer",
+    "status": {
+      "sla_message": "SLA is not violated.",
+      "locked": false,
+      "trust_message": "bios: unknown vmm: unknown",
+      "sla_status": 0,
+      "operational": 2,
+      "long_message": "",
+      "health": 0,
+      "trust": false,
+      "short_message": ""
+    },
+    "macs": [],
+    "cloud_id": "7f3a3af5-7908-404b-97d2-15ee865b69f2",
+    "utilization": {
+      "cpi": "0.705677",
+      "uptime": "",
+      "ipc": "1.417078",
+      "mpi_label": "",
+      "mp10ki": "6.818531",
+      "gips": "-1.0"
+    },
+    "stack_id": "2bd6b066-cd93-4399-bd5b-2099822ea9b8",
+    "graphite_url": "/render?target=stats.SAM",
+    "sla_name": "gold",
+    "uri": "/vms/7f3a3af5-7908-404b-97d2-15ee865b69f2",
+    "capabilities": {
+      "cores": "1",
+      "memory_size": "512",
+      "disk_size": "0"
+    },
+    "node_name": "gklab-044-040",
+    "sla_id": "2",
+    "stack_name": "",
+    "node_id": "BB4FDBCC-F79A-E111-BD1D-001E67497037",
+    "logs_url": "/logs?vm=7f3a3af5-7908-404b-97d2-15ee865b69f2",
+    "floating_ips": [],
+    "fixed_ips": ["10.10.10.3"],
+    "id": "860e9c61-805b-4615-b686-087a5378db86"
+  }
+}

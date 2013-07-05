@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Layout Disk</title>
+	<desc>Layout Disk Save</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#5f93ce" />
+				<stop offset="100%" stop-color="#4d6ea6" />
+			</linearGradient>
+			<linearGradient id="header" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9cc4ed" />
+				<stop offset="100%" stop-color="#9bc4ed" />
+			</linearGradient>
+			<linearGradient id="header-inner" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#c1daf4" />
+				<stop offset="100%" stop-color="#c2dbf4" />
+			</linearGradient>
+			<linearGradient id="sidebar" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#4c7dba" />
+				<stop offset="50%" stop-color="#2c67af" />
+			</linearGradient>
+			<linearGradient id="sidebar-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#83a6d1" />
+				<stop offset="50%" stop-color="#75a0cd" />
+			</linearGradient>
+		</defs>
+		<rect width="14" height="14" x="-7" y="-7" rx="1" ry="1" fill="url(#backing)" />
+		<rect width="12" height="12" x="-6" y="-6" fill="#ffffff" />
+		<rect width="10" height="3" x="-5" y="-5" fill="url(#header)" />
+		<rect width="8" height="1" x="-4" y="-4" fill="url(#header-inner)" />
+		<rect height="6" width="3" x="-5" y="-1" fill="url(#sidebar)" />
+		<rect height="4" width="1" x="-4" y="0" fill="url(#sidebar-inner)" />
+		<rect height="6" width="6" x="-1" y="-1" fill="#dee5f0" />
+		<rect height="4" width="4" x="0" y="0" fill="#ebeff6" />
+		<rect height="2" width="2" x="1" y="1" fill="#e6ecf5" />
+		<g id="save" transform="translate(4,3)">
+			<defs>
+				<linearGradient id="backing_disk" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#6e97d4" />
+					<stop offset="100%" stop-color="#5884c3" />
+				</linearGradient>
+				<linearGradient id="center_disk" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#b0cdf3" />
+					<stop offset="100%" stop-color="#85a2dd" />
+				</linearGradient>
+				<linearGradient id="label_disk" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#a8d782" />
+					<stop offset="100%" stop-color="#d7f4a2" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#backing_disk)"
+				d="M0,-5 h-5 a1,1 0 0,0 -1,1 v8 a1,1 0 0,0 1,1 h8 a1,1 0 0,0 1,-1 v-7 l-2,-2  z" />
+			<rect x="-5" y="-4" width="8" height="8" fill="url(#center_disk)" />
+			<rect x="-4" y="-4" width="6" height="3" fill="#fff" />
+			<rect x="-3" y="-4" width="1" height="2" fill="url(#center_disk)" />
+			<rect x="-4" y="1" width="6" height="3" fill="#fff" />
+			<rect id="label_disk_part" x="-3" y="2" width="2" height="2"
+				fill="url(#label_disk)" />
+			<use xlink:href="#label_disk_part" transform="rotate(180) translate(2,-6)" />
+			<rect x="-6" y="-3" width="10" height="6" fill="#000"
+				opacity="0.05" />
+		</g>
+	</g>
+</svg>

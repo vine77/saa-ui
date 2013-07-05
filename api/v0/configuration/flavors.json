@@ -1,0 +1,69 @@
+{
+  "flavors": [
+    {
+      "name": "m1.tiny",
+      "uri": "/configuration/flavors/1",
+      "vcpus": 1,
+      "memory": 512,
+      "root": 0,
+      "id": 1,
+      "vm_ids": ["3838cb9e-a3f8-43fc-9b95-e5dac126b3c8"]
+    },
+    {
+      "name": "m1.small",
+      "uri": "/configuration/flavors/2",
+      "vcpus": 1,
+      "memory": 2048,
+      "root": 20,
+      "id": 2,
+      "vm_ids": []
+    },
+    {
+      "name": "m1.medium",
+      "uri": "/configuration/flavors/3",
+      "vcpus": 2,
+      "memory": 4096,
+      "root": 40,
+      "id": 3,
+      "vm_ids": []
+    },
+    {
+      "name": "m1.large",
+      "uri": "/configuration/flavors/4",
+      "vcpus": 4,
+      "memory": 8192,
+      "root": 80,
+      "id": 4,
+      "vm_ids": []
+    },
+    {
+      "name": "m1.xlarge",
+      "uri": "/configuration/flavors/5",
+      "vcpus": 8,
+      "memory": 16384,
+      "root": 160,
+      "id": 5,
+      "vm_ids": []
+    },
+    {
+      "name": "m1.tiny + Unsecure Diamond",
+      "uri": "/configuration/flavors/6",
+      "vcpus": 1,
+      "memory": 512,
+      "root": 0,
+      "id": 6,
+      "vm_ids": [],
+      "sla_id": 1
+    },
+    {
+      "name": "m1.small + Unsecure Diamond",
+      "uri": "/configuration/flavors/7",
+      "vcpus": 1,
+      "memory": 2048,
+      "root": 20,
+      "id": 7,
+      "vm_ids": ["17f83d1c-849c-4947-b64c-a7540a433d77"],
+      "sla_id": 1
+    }
+  ]
+}

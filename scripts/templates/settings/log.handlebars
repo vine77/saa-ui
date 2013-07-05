@@ -1,0 +1,42 @@
+<div id="log">
+  <div class="header">
+    <h3> Log Settings</h3>
+  </div>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <section>
+      <legend> Reset Log Data</legend>
+      <dl class="dl-horizontal">
+        <input type="button" value="Delete All Log Data" class="btn btn-danger" {{action deleteLogs}}>
+        <i class="loading hide"></i>
+      </dl>
+    </section>
+    <section>
+      <legend>Log Informational Values</legend>
+      <dl class="dl-horizontal">
+        <dt>Actual Size</dt>
+        <dd>{{numberWithCommas actualSize}} MiB</dd>
+        <dt>Threshold Size</dt>
+        <dd>{{numberWithCommas thresholdSize}} MiB</dd>
+      </dl>
+    </section>
+    <section>
+      <legend>Settable Values</legend> 
+      <div class="control-group">
+        <label class="control-label">Maximum Days:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="App.settingsLog.maximumDays" class="input-small"}} days
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Configured Size:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="App.settingsLog.configuredSize" class="input-small"}} MiB
+        </div>
+      </div>
+      <div class="form-actions">
+        <input type="button" value="Save" class="btn btn-primary" {{action update}}>
+        <i class="loading hide"></i>
+      </div>
+    </section>
+  </form>
+</div>

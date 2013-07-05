@@ -1,0 +1,32 @@
+{{#unless contextualPath}}
+  <div class="alert alert-info"> Navigate to the Nodes or VMs page to view contextual graphs. </div>
+{{else}}
+  {{#if nodePath}}
+    <h3>Node Graphs</h3>
+    {{#if selectedNode}}
+      <h4>({{selectedNode.name}}) selected</h4>
+      {{#each graph in selectedNode.graphs}}
+        <figure class="thumbnail">
+          <img {{bindAttr src="graph.url"}}>
+          <figcaption class="caption">{{graph.desc}}</figcaption>
+        </figure>
+      {{/each}}
+    {{else}}
+      <div class="alert alert-info"> Please select a node to view contextual graphs for that node. </div>
+    {{/if}}
+  {{/if}}
+  {{#if vmPath}}
+    <h3>VM Graphs</h3>
+    {{#if selectedVm}}
+      <h4>({{selectedVm.name}}) selected</h4>
+      {{#each graph in selectedVm.graphs}}
+        <figure class="thumbnail">
+          <img {{bindAttr src="graph.url"}}>
+          <figcaption class="caption">{{graph.desc}}</figcaption>
+        </figure>
+      {{/each}}
+    {{else}}
+      <div class="alert alert-info"> Please select a VM to view contextual graphs for that VM. </div>
+    {{/if}}
+  {{/if}}
+{{/unless}}

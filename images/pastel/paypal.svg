@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>PayPal</title>
+	<desc>PayPal</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#5a90db" />
+				<stop offset="100%" stop-color="#1233b4" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#87aee3" />
+				<stop offset="100%" stop-color="#6b9ede" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#inner)" transform="skewX(-15)"
+			d="M3,-6 a4.5,4.5 0 0,1 0,9 h-3 v5 h-4 v-14 h4" />
+		<path fill="#fff" transform="skewX(-15)"
+			d="M2,-7 a4.5,4.5 0 0,1 0,9 h-3 v5 h-4 v-14 h4" />
+		<path fill="url(#backing)" transform="skewX(-15)"
+			d="M1,-8 a4.5,4.5 0 0,1 0,9 h-3 v5 h-4 v-14 h4 v6 h2 a1.5,1.5 0 0,0 0,-3 h-2 v-3" />
+		<path fill="url(#inner)" transform="skewX(-15)"
+			d="M1,-7 a3.5,3.5 0 0,1 0,7 h-4 v5 h-2 v-12 h2 v6 h3 a2.5,2.5 0 0,0 0,-5 h-3 v-1" />
+	</g>
+</svg>

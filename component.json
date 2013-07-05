@@ -1,0 +1,28 @@
+{
+  "name": "manorfield",
+  "version": "0.0.8",
+  "dependencies": {
+    "jquery": "git://github.com/components/jquery.git#~1.9.1",
+    "underscore": "git://github.com/documentcloud/underscore.git#~1.4.4",
+    "less.js": "git://github.com/cloudhead/less.js.git#~1.3.3",
+    "modernizr": "git://github.com/Modernizr/Modernizr.git#~2.6.2",
+    "d3": "git://github.com/mbostock/d3.git#~3.0.6",
+    "bootstrap": "git://github.com/jasny/bootstrap.git#~2.3.0-j4",
+    "pnotify": "git://github.com/sciactive/pnotify.git#~1.2.0",
+    "jquery-ui": "git://github.com/components/jqueryui#~1.10.1",
+    "jquery-mousewheel": "git://github.com/brandonaaron/jquery-mousewheel.git#~3.0.6",
+    "jquery.cookie": "git://github.com/carhartl/jquery-cookie.git#~1.3.1",
+    "rickshaw": "git://github.com/shutterstock/rickshaw.git#~1.2.0",
+    "jsPlumb": "git://github.com/sporritt/jsPlumb.git#~1.3.16",
+    "moment": "git://github.com/timrwood/moment.git#~2.0.0",
+    "handlebars": "git://github.com/components/handlebars.js.git#~1.0.0-rc.4",
+    "jquery.validation": "git://github.com/jzaefferer/jquery-validation.git#~1.11.0",
+    "webshim": "git://github.com/aFarkas/webshim.git#~1.9.7",
+    "Font-Awesome": "git://github.com/FortAwesome/Font-Awesome.git#~3.0.2",
+    "jspdf": "git://github.com/MrRio/jsPDF.git",
+    "bootstrap-datepicker": "git://github.com/eternicode/bootstrap-datepicker.git",
+    "font-awesome": "git://github.com/FortAwesome/Font-Awesome.git#~3.1.1",
+    "ember": "git://github.com/components/ember.git#~1.0.0-rc.5",
+    "ember-data": "git://github.com/components/ember-data.git#~0.0.13"
+  }
+}

@@ -1,0 +1,40 @@
+<div class="log-bar">
+
+  {{view Ember.Select viewName="select"
+    contentBinding="shortCutTimes"
+    selectionBinding="shortCutTimeSelected"
+    optionLabelPath="content.label"
+    optionValuePath="content.id"
+  }}
+  {{view Ember.TextField valueBinding="searchText" size="30"}}
+  {{view Ember.Select viewName="select"
+    contentBinding="nodes"
+    selectionBinding="nodeSelected"
+    optionLabelPath="content.label"
+    prompt="Select node:"
+    optionValuePath="content.value"
+  }}
+  {{view Ember.Select viewName="select"
+    contentBinding="criticalities"
+    selectionBinding="criticalitySelected"
+    optionLabelPath="content.label"
+    prompt="Select criticality:"
+    optionValuePath="content.id"
+  }}
+  {{view App.DatePickerView valueBinding="timeFrom" dataDateFormat="yyyy-mm-dd" class="datepicker" size="9"}}
+  to
+  {{view App.DatePickerView valueBinding="timeTo" dataDateFormat="yyyy-mm-dd" class="datepicker" size="9"}}
+
+  {{#view App.TooltipView titleBinding="useContextTip" class="inline-block" dataPlacement="bottom"}}
+    <label>
+      {{view Ember.Checkbox checkedBinding="useContextSelected"}}
+      Use Context
+    </label>
+  {{/view}}
+
+  <button {{action updateLogsFrame target="view"}} class="btn btn-primary log-buttons">Search</button>
+  <button {{action reset}} class="btn btn-inverse log-buttons">Reset</button>
+
+</div>
+{{!-- {{view Ember.TextField valueBinding="App.logBar.searchTextQuery" size="30"}} --}}
+<iframe {{bindAttr src="logsUrl"}} id="allLogsFrame" name="allLogsFrame" class="logsFrame"></iframe> 

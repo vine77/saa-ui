@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Flag Blue</title>
+	<desc>Flag Blue</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="pole" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#e2bc86" />
+				<stop offset="100%" stop-color="#d6a256" />
+			</linearGradient>
+			<linearGradient id="flag-back" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#0785f5" />
+				<stop offset="100%" stop-color="#4db5f9" />
+			</linearGradient>
+			<linearGradient id="flag-center" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#9bd7ff" />
+				<stop offset="20%" stop-color="#9bd7ff" />
+				<stop offset="60%" stop-color="#e7f6ff" />
+				<stop offset="100%" stop-color="#c7e9ff" />
+			</linearGradient>
+			<linearGradient id="flag-inner" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#50baff" />
+				<stop offset="20%" stop-color="#50baff" />
+				<stop offset="60%" stop-color="#c4e8ff" />
+				<stop offset="100%" stop-color="#70c0f0" />
+			</linearGradient>
+		</defs>
+		<rect width="3" height="14" y="-7" x="3" fill="#87581d" transform="skewX(-8)" />
+		<rect width="1.5" height="13" y="-6.5" x="3.75" fill="url(#pole)"
+			transform="skewX(-8)" />
+		<path fill="url(#flag-back)"
+			d="M-7,3 a1,1 0 0,1 -1,-1 l1,-6 a1,1 0 0,1 1,-1 h2 a5,5 0 0,0 3.5,-1 a3.5,3.5 0 0,1 5,-0.5  a13,13 0 0,0 -1,8 a3.5,3.5 0 0,0 -5,0.5 a5,5 0 0,1 -3.5,1 z" />
+		<path fill="url(#flag-center)"
+			d="M-6,2 a1,1 0 0,1 -1,-1 l0.6,-4 a1,1 0 0,1 1,-1 h1 a5,5 0 0,0 3.5,-1 a3.5,3.5 0 0,1 5,-0.5  a8,8 0 0,0 -0.7,6 a3.5,3.5 0 0,0 -5,0.5 a5,5 0 0,1 -3.5,1 z" />
+		<path fill="url(#flag-inner)"
+			d="M-5,1 a1,1 0 0,1 -1,-1 l0.2,-2 a1,1 0 0,1 1,-1 a5,5 0 0,0 3.5,-1 a3.5,3.5 0 0,1 5,-0.5  a8,8 0 0,0 -0.4,4 a3.5,3.5 0 0,0 -5,0.5 a5,5 0 0,1 -3.5,1 z" />
+		<circle fill="#333" r="0.5" x="3.5" y="1" />
+		<circle fill="#999" r="0.5" x="4.5" y="-6.4" />
+	</g>
+</svg>

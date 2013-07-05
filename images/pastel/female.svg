@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Female</title>
+	<desc>Female Girl</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#eabbe5" />
+				<stop offset="60%" stop-color="#dc7ed3" />
+				<stop offset="100%" stop-color="#d56cca" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f9e9f8" />
+				<stop offset="60%" stop-color="#f8e4f6" />
+				<stop offset="100%" stop-color="#f2cfee" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-8 a5,5 0 0,0 0,10 a5,5 0 0,0 0,-10 v4 a1,1 0 0,1 0,2 a1,1 0 0,1 0,-2 m-2,5 a1,1 0 0,1 -1,1 a1,1 0 0,0 -1,1 v2 a1,1 0 0,0 1,1 a1,1 0 0,1 1,1 a1,1 0 0,0 1,1 h2 a1,1 0 0,0 1,-1 a1,1 0 0,1 1,-1 a1,1 0 0,0 1,-1 v-2 a1,1 0 0,0 -1,-1 a1,1 0 0,1 -1,-1" />
+		<path fill="url(#center)"
+			d="M0,-7 a4,4 0 0,0 0,8 a4,4 0 0,0 0,-8 v2 a2,2 0 0,1 0,4 a2,2 0 0,1 0,-4 m-1,5 v3 h-2 v2 h2 v2 h2 v-2 h2 v-2 h-2 v-3" />
+	</g>
+</svg>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Application XP</title>
+	<desc>Application Window</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#85acdd" />
+				<stop offset="100%" stop-color="#5171a9" />
+			</linearGradient>
+			<linearGradient id="center" x1="100%" y1="100%" x2="0%" y2="0%">
+				<stop offset="0%" stop-color="#f2f2f2" />
+				<stop offset="100%" stop-color="#fff" />
+			</linearGradient>
+			<linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#000" stop-opacity="0.19" />
+				<stop offset="100%" stop-color="#5171a9" stop-opacity="0.3" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-7 h6 a2,2 0 0,1 2,2 v11 a1,1 0 0,1 -1,1 h-14 a1,1 0 0,1 -1,-1 v-11  a2,2 0 0,1 2,-2 z" />
+		<rect width="14" height="10" x="-7" y="-4" fill="#fff" />
+		<rect width="12" height="6" x="-6" y="-2" fill="url(#center)" />
+		<path fill="#92b9e8" d="M0,-6 h6 a1,1 0 0,1 1,1 h-14 a1,1 0 0,1 1,-1 h4 z" />
+		<rect width="1" height="1" x="5" y="-6" fill="#ff6444" />
+		<rect width="1" height="1" x="3" y="-6" fill="#c5c8cd" />
+		<rect width="1" height="1" x="1" y="-6" fill="#c5c8cd" />
+		<rect width="1" height="1" x="-6" y="-6" fill="#cedcf1" />
+		<rect width="14" height="1" x="-7" y="-4" fill="url(#line)" />
+		<rect width="14" height="1" x="-7" y="5" fill="url(#line)" />
+	</g>
+</svg>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Block</title>
+	<desc>Block</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="red" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f4474a" />
+				<stop offset="100%" stop-color="#f1393f" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#red)" d="M-0,-8 a8,8 0 0,1 0,16 a8,8 0 0,1 0,-16 v3 a5,5 0 0,0 0,10 a5,5 0 0,0 0,-10" />
+		<path fill="#fb7872" d="M0,-7 a7,7 0 0,1 0,14 a7,7 0 0,1 0,-14 v1 a6,6 0 0,0 0,12 a6,6 0 0,0 0,-12" />
+		
+		<g transform="rotate(-45)" >
+			<path fill="url(#red)" d="M-1.5,-5.5 h3 v11 h-3 v-11" />
+			<path fill="#fb7872" d="M-0.5,-6.5 h1 v13 h-1 v-13" />
+		</g>
+	</g>
+</svg>

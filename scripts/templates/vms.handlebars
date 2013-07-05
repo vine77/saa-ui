@@ -1,0 +1,468 @@
+<div id="vms" class="container-fluid">
+  <div class="row-fluid">
+    <div class="content">
+      <div class="treemap"></div>
+      <div class="header">
+        <div class="global-actions">
+          {{!--
+          <a {{action renderTreemap}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
+          --}}
+          <a {{action refresh}} class="btn"><i class="icon-refresh"></i> Refresh VMs</a>
+        </div>
+        {{!--
+        <form id="filter-form" class="input-prepend pull-right clear-input">
+          <span class="add-on"><i class="icon-search"></i></span>
+          {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter VMs"}}
+          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+        </form>
+        --}}
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="column-small">
+              <a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a>
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn2Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Health"}}
+                <a {{action "sortModel" "health"}}><i class="icon-stethoscope icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn3Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Operational State"}}
+                <a {{action "sortModel" "state"}}><i class="icon-off icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn4Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="Trust Status"}}
+                <a {{action "sortModel" "trusted"}}><i class="icon-lock icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":column-small :sortable isColumn5Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="SLA Status"}}
+                <a {{action "sortModel" "sla_status"}}><i class="icon-trophy icon-large"></i></a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":sortable isColumn7Sorted:sorted sortAscending"}}>
+              <a {{action "sortModel" "name"}}>VM Name</a>
+            </th>
+            <th {{bindAttr class=":sortable isColumn8Sorted:sorted sortAscending"}}>
+              <a {{action "sortModel" "node"}}>Hostname</a>
+            </th>
+            <th {{bindAttr class=":sortable isColumn9Sorted:sorted sortAscending"}}>
+              <a {{action "sortModel" "cpu"}}>vCPUs</a>
+            </th>
+            <th {{bindAttr class=":sortable isColumn10Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="The SAM Unit (SU) is a measure of compute consumption of the host server"}}
+                <a {{action "sortModel" "utilization.gips_current"}}>SU</a>
+              {{/view}}
+            </th>
+            <th {{bindAttr class=":sortable isColumn11Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="CPU instructions per cycle"}}
+                <a {{action "sortModel" "utilization.ipc"}}>Throughput</a>
+              {{/view}}
+            </th>
+            <th>Contention</th>
+            <th>Actions</th>
+            <th class="column-small">
+              {{#if content.isUpdating}}
+                <i class="icon-spinner icon-spin"></i>
+              {{/if}}
+            </th>
+          </tr>
+        </thead>
+        {{#each group in groupedModel}}
+          <tbody>
+            {{#each vm in group}}
+              <tr {{bindAttr class="vm.isSelected vm.isExpanded"}}>
+                <td class="column-small">
+                  {{view view.vmCheckbox vmBinding="vm" checkedBinding="vm.isSelected"}}
+                </td>
+                <td class="column-small">
+                  {{#view App.TooltipView titleBinding="vm.status.healthMessage"}}
+                    {{{healthIcon vm.status.health}}}
+                  {{/view}}
+                </td>
+                <td class="column-small">
+                  {{#view App.TooltipView titleBinding="vm.status.operationalMessage"}}
+                    {{{operationalIcon vm.status.operational}}}
+                  {{/view}}
+                </td>
+                <td class="column-small">
+                  {{#view App.TooltipView titleBinding="vm.status.trustMessage"}}
+                    <i {{bindAttr class=":icon-large vm.status.trust:icon-lock:icon-unlock vm.status.trust:trusted:untrusted"}}></i>
+                  {{/view}}
+                </td>
+                <td class="column-small">
+                  {{#view App.TooltipView titleBinding="vm.status.slaMessage"}}
+                    <i {{bindAttr class=":icon-large vm.status.slaViolated:icon-remove:icon-trophy vm.status.slaViolated:error vm.status.slaNotViolated:success vm.status.slaUnknown:inset"}}></i>
+                  {{/view}}
+                </td>
+                <td><a {{action "expand" vm}}>{{vm.name}}</a></td>
+                <td>
+                  {{#if vm.node.samControlled}}
+                    {{#linkTo nodesNode vm.node}}{{vm.nodeName}}{{/linkTo}}
+                  {{else}}
+                    {{vm.nodeName}}
+                  {{/if}}
+                </td>
+                <td>{{na vm.capabilities.cores}}</td>
+                <td>{{na vm.utilization.gips_current}}</td>
+                <td>{{na vm.utilization.ipc}}</td>
+                <td>
+                  <div class="contention-container"> 
+                    {{#if vm.contention.system.llc.valueExists}}
+                      <div class="socket">
+                        <div class="socket-label">System</div>
+                        <div class="contention-bar-container">
+                          {{#view App.TooltipView titleBinding="vm.contention.system.llc.contentionMessage" barBinding="vm.contention.system.llc.barWidth" class="contention-tooltip" }}
+                            <div class="contention-bar-width" {{bindAttr style="vm.contention.system.llc.barWidth"}} >
+                              <div class="contention-gradient"> </div> 
+                            </div>
+                          {{/view}}
+                        </div>
+                        <div class="socket-value">{{na vm.contention.system.llc.value}}</div>
+                      </div>
+                    {{else}}
+                      <span class="not-applicable-contention"> n/a </span>
+                    {{/if}}
+                  </div>
+                </td>
+                <td>
+                  {{#if vm.isOn}}
+                    <div class="btn-group">
+                      <button class="btn disabled btn-mini"><i class="icon-off"></i> Power Off</button>
+                      <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a class="disabled"><i class="icon-refresh"></i> Restart</a></li>
+                        <li><a {{action exportTrustReport vm}}><i class="icon-external-link"></i> Export Trust Report </a></li>
+                      </ul>
+                    </div>
+                  {{else}}
+                    <div class="btn-group">
+                      <button class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</button>
+                      <button data-toggle="dropdown" class="btn dropdown-toggle  btn-mini"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a {{action exportTrustReport vm}}><i class="icon-external-link"></i> Export Trust Report </a></li>
+                        </ul>
+                    </div>
+                  {{/if}}
+                </td>
+                <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" vm}}><i {{bindAttr class="vm.isActive:icon-minus:icon-plus"}}></i></a></td>
+              </tr>
+              <tr class="expandable-row">
+                <td colspan="100%">
+                  <div class="details">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a onclick="App.selectTab(event)">Details</a></li>
+                      <li><a onclick="App.selectTab(event)">Utilization</a></li>
+                      <li><a onclick="App.selectTab(event)">SLAs</a></li>
+                      <li><a onclick="App.selectTab(event)">Graphs</a></li>
+                      <li><a onclick="App.selectTab(event)">Trust</a></li>
+                      <li><a onclick="App.selectTab(event)">Instantiation</a></li>
+                      <li><a onclick="App.selectTab(event)">Instantiation Detailed</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane active details">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>VM Name</th>
+                            <th>Health</th>
+                            <th>State</th>
+                            <th>Trusted</th>
+                            <th>Locked</th>
+                            <th>vCPU Cores</th>
+                            <th>Memory Size</th>
+                          </tr>
+                          <tr>
+                            <td>{{vm.name}}</td>
+                            <td>{{status vm.status.health}}</td>
+                            <td>{{operational vm.status.operational}}</td>
+                            <td>{{capitalize vm.status.trust}}</td>
+                            <td>{{capitalize vm.status.locked}}</td>
+                            <td>{{capitalize vm.capabilities.cores}}</td>
+                            <td>{{readableSize vm.capabilities.memory_size}}</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="tab-pane utilization">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>SAM Units</th>
+                            <th>CPU Throughput</th>
+                            <th>Memory</th>
+                            <th>CPU</th>
+                            <th>Uptime</th>
+                          </tr>
+                          <tr>
+                            <td>{{na vm.utilization.gips_current}} out of {{na vm.capabilities.gips_allocated}} SAM Units allocated</td>
+                            <td>{{na vm.utilization.ipc}}</td>
+                            <td>{{readableSize vm.utilization.memory}} out of {{readableSize vm.capabilities.memory_size}}</td>
+                            <td>{{oneDecimal vm.utilization.cpu}}</td>
+                            <td>{{na vm.utilization.uptime}}</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="tab-pane slas">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>SLA Name</th>
+                            <th>SLA Violated</th>
+                            <th>SLA Message</th>
+                          </tr>
+                          <tr>
+                            <td>{{capitalize vm.slaName}}</td>
+                            <td>{{capitalize vm.status.slaViolated}}</td>
+                            <td>{{vm.status.slaMessage}}</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="tab-pane graphs">
+                        {{#each graph in vm.graphs}}
+                          <figure class="thumbnail">
+                            <img {{bindAttr src="graph.url"}}>
+                            <figcaption class="caption">{{graph.desc}}</figcaption>
+                          </figure>
+                        {{/each}}
+                      </div>
+                      <div class="tab-pane trust">
+                        {{#if vm.vmTrustReport.attestations}}
+                          <div class="pull-right">
+                            <button class="btn btn-primary" {{action trustReportModal vm}}>Generate Trust Report</button>
+                          </div>
+                          <br><br>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th class="column-small">Trust Status</th>
+                              <th>Message</th>
+                              <th>Node</th>
+                              <th>Timestamp</th>
+                            </tr>
+                            {{#each attestation in vm.vmTrustReport.attestations}}
+                              <tr>
+                                <td class="column-small">
+                                  {{#view App.TooltipView titleBinding="attestation.node.trust_message" dataContainer="body"}}
+                                    <i {{bindAttr class=":icon-large attestation.node.trust_status:icon-lock:icon-unlock attestation.node.trust_status:trusted:untrusted"}}></i>
+                                  {{/view}}
+                                </td>
+                                <td>{{attestation.node.report_message}}</td>
+                                <td> 
+                                  {{#if vm.node.samControlled}}
+                                      {{#linkTo nodesNode vm.node}}{{vm.nodeName}}{{/linkTo}}
+                                    {{else}}
+                                      {{vm.nodeName}}
+                                  {{/if}}
+                                </td>
+                                <td>{{timestamp attestation.node.attestation_time}}</td>
+                              </tr>
+                            {{/each}}
+                          </table>
+                        {{else}}
+                          {{#unless content.isUpdating}}
+                            <div class="alert alert-info">No attestations found.</div>
+                          {{/unless}}
+                        {{/if}}
+                      </div>
+                      <div class="tab-pane instantiation">
+                        {{#if vm.vmInstantiationSimple}}
+                          <table class="table table-bordered">
+                            <tbody>
+                              <tr>
+                                <td class="label-left">VM Name</td>
+                                <td>{{vm.vmInstantiationSimple.vmName}}</td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">VM ID</td>
+                                <td>{{vm.vmInstantiationSimple.id}}</td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">VM Instantiation Trust</td>
+                                <td>
+                                  <strong>
+                                    {{#if vm.vmInstantiationSimple.vmTrustStatus}}
+                                      <i class="icon-lock"></i> Trusted
+                                    {{else}}
+                                      <i class="icon-unlock"></i> Untrusted
+                                    {{/if}}
+                                  </strong>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">Generation Time</td>
+                                <td>{{timestamp vm.vmInstantiationSimple.generationTime}}</td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">SLA</td>
+                                <td>{{vm.vmInstantiationSimple.slaName}}</td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">Total number of nodes</td>
+                                <td>{{vm.vmInstantiationSimple.nodesCount.total}}</td>
+                              </tr>
+                              <tr>
+                                <td class="label-left">Number of nodes under SAM control</td>
+                                <td>{{vm.vmInstantiationSimple.nodesCount.under_sam_control}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <table class="table table-bordered slo-gates-table">
+                            <caption> <h4>SLO Gates</h4> </caption>
+                            <thead>
+                              <tr>
+                                <th>SLO</th>
+                                <th>Units</th>
+                                <th>Description</th>
+                                <th>Nodes Count</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each gate in vm.vmInstantiationSimple.sloGates}}
+                                <tr>
+                                  <td>{{gate.slo.id}}</td>
+                                  <td>{{na gate.slo.unit}}</td>
+                                  <td>{{gate.description}}</td>
+                                  <td>{{gate.nodes_count}}</td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+
+                           <table class="table table-bordered ranked-nodes-table">
+                            <caption> <h4>Ranked Nodes</h4> </caption>
+                            <thead>
+                              <tr>
+                                <th>Node</th>
+                                <th>Selected</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each rankedNode in vm.vmInstantiationSimple.rankedNodes}}
+                                <tr {{bindAttr class="rankedNode.selected:success"}}>
+                                  <td>{{#linkTo nodesNode rankedNode.node}}{{rankedNode.node.name}}{{/linkTo}}</td>
+                                  <td>{{capitalize rankedNode.selected}}</td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+                        {{else}}
+                            <div class="alert alert-info">Instantiation Report is not available.</div>
+                        {{/if}}
+                      </div>
+                      <div class="tab-pane instantiation-detailed">
+                        {{#if vm.vmInstantiationDetailed}}
+                          <table class="table table-bordered">
+                              <tbody>
+                                <tr>
+                                  <td class="label-left">VM Name</td>
+                                  <td>{{vm.vmInstantiationSimple.vmName}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">VM ID</td>
+                                  <td>{{vm.vmInstantiationSimple.id}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">VM Instantiation Trust</td>
+                                  <td>
+                                    <strong>
+                                      {{#if vm.vmInstantiationSimple.vmTrustStatus}}
+                                        <i class="icon-lock"></i> Trusted
+                                      {{else}}
+                                        <i class="icon-unlock"></i> Untrusted
+                                      {{/if}}
+                                    </strong>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">Generation Time</td>
+                                  <td>{{timestamp vm.vmInstantiationDetailed.generation_time}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">Schedule Time</td>
+                                  <td>{{timestamp vm.vmInstantiationDetailed.schedule_time}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">SLA</td>
+                                  <td>{{vm.vmInstantiationSimple.slaName}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">Total number of nodes</td>
+                                  <td>{{vm.vmInstantiationDetailed.nodesCount.total}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="label-left">Number of nodes under SAM control</td>
+                                  <td>{{vm.vmInstantiationDetailed.nodesCount.under_sam_control}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <table class="table table-bordered">
+                              <caption> <h4>Instantiation Nodes</h4> </caption>
+                              <thead>
+                                <tr>
+                                  <th>Node</th>
+                                  <th>Selected</th>
+                                  <th>Instantiation SLOs</th>
+                                  <th>Contention</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {{#each instantiationNode in vm.vmInstantiationDetailed.instantiation_nodes}}
+                                  <tr>
+                                    <td>{{#linkTo nodesNode instantiationNode.node}}{{instantiationNode.node.name}}{{/linkTo}}</td>
+                                    <td>{{capitalize instantiationNode.selected}}</td>
+                                    <td>
+                                      <table class="table nested-slos-table">
+                                        <thead>
+                                          <tr>
+                                            <th>Description</th>
+                                            <th>Value</th>
+                                            <th>Unit</th>
+                                            <th>Passed</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {{#each slo in instantiationNode.instantiation_slos}}
+                                            <tr>
+                                              <td>{{slo.description}}</td>
+                                              <td>{{capitalize slo.value}}</td>
+                                              <td>{{capitalize slo.unit}}</td>
+                                              <td>{{capitalize slo.passed}}</td>
+                                            </tr>
+                                          {{/each}}
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                    <td>
+                                      System LLC: {{instantiationNode.contention.system.llc.label}} ({{instantiationNode.contention.system.llc.value}}) <br>
+                                      Sockets:<br>
+                                      {{instantiationNode.contention.socketsValues}}
+                                    </td>
+                                  </tr>
+                                {{/each}}
+                              </tbody>
+                            </table>
+
+                          {{else}}
+                            <div class="alert alert-info">Instantiation Report is not available.</div>
+                          {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td colspan="100%">
+                  {{#unless content.isUpdating}}
+                    <div class="alert alert-info">No VMs found.</div>
+                  {{/unless}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</div>

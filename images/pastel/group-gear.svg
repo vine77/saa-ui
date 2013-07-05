@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Group Gear</title>
+	<desc>Group Gear</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="user1-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#1c48bc" />
+				<stop offset="100%" stop-color="#1f3d9f" />
+			</linearGradient>
+			<linearGradient id="user1-in-border" x1="0%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="50%" stop-color="#d6e4f6" />
+				<stop offset="100%" stop-color="#61b9fe" />
+			</linearGradient>
+			<linearGradient id="user1-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#6dc7fe" />
+				<stop offset="50%" stop-color="#64b9fe" />
+				<stop offset="100%" stop-color="#438dff" />
+			</linearGradient>
+			<linearGradient id="user1-hair" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9b5812" />
+				<stop offset="100%" stop-color="#5c330f" />
+			</linearGradient>
+			<linearGradient id="user2-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#5d9437" />
+				<stop offset="100%" stop-color="#538a2d" />
+			</linearGradient>
+			<linearGradient id="user2-in-border" x1="0%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="50%" stop-color="#c8f5b3" />
+				<stop offset="100%" stop-color="#8ac163" />
+			</linearGradient>
+			<linearGradient id="user2-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="20%" stop-color="#b8ef91" />
+				<stop offset="50%" stop-color="#8bc264" />
+				<stop offset="100%" stop-color="#70a749" />
+			</linearGradient>
+			<linearGradient id="user2-hair" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#e5b528" />
+				<stop offset="100%" stop-color="#ed9f1c" />
+			</linearGradient>
+			<linearGradient id="user-head" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9b5e1f" />
+				<stop offset="50%" stop-color="#94591c" />
+				<stop offset="100%" stop-color="#ae7434" />
+			</linearGradient>
+			<linearGradient id="user-head-in" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#e4b78a" />
+				<stop offset="50%" stop-color="#e5bb8e" />
+				<stop offset="100%" stop-color="#f6cfa5" />
+			</linearGradient>
+			<linearGradient id="user-hand-fill" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#c77429" />
+				<stop offset="100%" stop-color="#ce7e2e" />
+			</linearGradient>
+		</defs>
+		<linearGradient id="user-hand-in-fill" x1="0%" y1="0%" x2="100%"
+			y2="100%">
+			<stop offset="0%" stop-color="#edb87e" />
+			<stop offset="100%" stop-color="#efbc83" />
+		</linearGradient>
+		<g transform="translate(3,-2)">
+			<path fill="url(#user2-backing)" d="M-5.75,2 a5.25,3 0 0,0 10.5,0 l-5.25,-5.25 l-5.25,5.25 " />
+			<path fill="url(#user2-in-border)" d="M-4.5,2 a4,2 0 0,0 8,0 l-4,-4 l-4,4 " />
+			<path fill="url(#user2-center)" d="M-3.25,2 a2.25,1 0 0,0 5.5,0 l-2.75,-2.75 l-2.75,2.75 " />
+			<circle r="3.5" cy="-2.5" cx="-0.5" fill="url(#user-head)" />
+			<circle r="2.5" cy="-2.5" cx="-0.5" fill="url(#user-head-in)" />
+			<path fill="url(#user2-hair)"
+				d="M-4,-2.5 a3.5,3.5 0 0,1 7,0 c-1.75,0 -3.5,0 -3.5,-0.875 c0,-0.875 -3.5,0 -3.5,0.875 " />
+			<use xlink:href="#user-hand" />
+			<use xlink:href="#user-hand" transform="scale(-1,1) translate(1,0)" />
+		</g>
+		<g transform="translate(-2,3)">
+			<path fill="url(#user1-backing)" d="M-5.75,2 a5.25,3 0 0,0 10.5,0 l-5.25,-5.25 l-5.25,5.25 " />
+			<path fill="url(#user1-in-border)" d="M-4.5,2 a4,2 0 0,0 8,0 l-4,-4 l-4,4 " />
+			<path fill="url(#user1-center)" d="M-3.25,2 a2.25,1 0 0,0 5.5,0 l-2.75,-2.75 l-2.75,2.75 " />
+			<circle r="3.5" cy="-2.5" cx="-0.5" fill="url(#user-head)" />
+			<circle r="2.5" cy="-2.5" cx="-0.5" fill="url(#user-head-in)" />
+			<path fill="url(#user1-hair)"
+				d="M-4,-2.5 a3.5,3.5 0 0,1 7,0 c-1.75,0 -3.5,0 -3.5,-0.875 c0,-0.875 -3.5,0 -3.5,0.875 " />
+			<g id="user-hand">
+				<path fill="url(#user-hand-fill)"
+					d="M3.5,2 l1.5,0 v1.25 a1,1 0 0,1 -1,1 l-0.5,0 a0.5,0.5 0 0,1 -0.5,-0.5 v-1.25 a0.5,0.5 0 0,1 0.5,-0.5" />
+				<rect fill="url(#user-hand-in-fill)" width="1" height="1" rx="0.25" ry="0.25"
+					x="3" y="2" />
+			</g>
+			<use xlink:href="#user-hand" transform="scale(-1,1) translate(1,0)" />
+		</g>
+		<g id="gear">
+			<defs>
+				<linearGradient id="gear-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ccc" />
+					<stop offset="100%" stop-color="#222" />
+				</linearGradient>
+				<radialGradient id="gear-inner" cx="55%" cy="55%" r="50%">
+					<stop offset="0%" stop-color="#aaa" />
+					<stop offset="100%" stop-color="#eee" />
+				</radialGradient>
+			</defs>
+			<path transform="scale(0.8)" id="branch"
+				d="M4,4 a1,1 0 0,0 -2,0 a1,1 0 0,0 2,0 m2.75,-1.5 h2 l1.83691e-16,3 h-2 v0 l1.41421,1.41421 l-2.12132,2.12132 l-1.41421,-1.41421 h0 l1.22461e-16,2 l-3,3.67382e-16 l-1.22461e-16,-2 h0 l-1.41421,1.41421 l-2.12132,-2.12132 l1.41421,-1.41421 h0 l-2,2.44921e-16 l-5.51073e-16,-3 l2,-2.44921e-16 h0 l-1.41421,-1.41421 l2.12132,-2.12132 l1.41421,1.41421 h0 l-3.67382e-16,-2 l3,-7.34764e-16 l3.67382e-16,2 h0 l1.41421,-1.41421 l2.12132,2.12132 l-1.41421,1.41421 h0 z z"
+				fill="url(#gear-backing)" />
+			<path transform="scale(0.8)" id="inner-branch"
+				d="M5,4 a2,2 0 0,0 -4,0 a2,2 0 0,0 4,0 m1.75,-0.5 h1 l6.12303e-17,1 h-1 l-0.727099,1.75537 l0.707107,0.707107 l-0.707107,0.707107 l-0.707107,-0.707107 l-1.75537,0.727099 l6.12303e-17,1 l-1,1.22461e-16 l-6.12303e-17,-1 l-1.75537,-0.727099 l-0.707107,0.707107 l-0.707107,-0.707107 l0.707107,-0.707107 l-0.727099,-1.75537 l-1,1.22461e-16 l-1.83691e-16,-1 l1,-1.22461e-16 l0.727099,-1.75537 l-0.707107,-0.707107 l0.707107,-0.707107 l0.707107,0.707107 l1.75537,-0.727099 l-1.83691e-16,-1 l1,-2.44921e-16 l1.83691e-16,1 l1.75537,0.727099 l0.707107,-0.707107 l0.707107,0.707107 l-0.707107,0.707107 l0.727099,1.75537 z"
+				fill="url(#gear-inner)" />
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Purple Bullet</title>
+	<desc>Purple Bullet</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#8c00ff" />
+				<stop offset="100%" stop-color="#48009c" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#dfb9fb" />
+				<stop offset="100%" stop-color="#c385f3" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#c77ef8" />
+				<stop offset="100%" stop-color="#b767f4" />
+			</linearGradient>
+		</defs>
+		<circle id="back" r="3" fill="url(#backing)" />
+		<circle id="round" r="2" fill="url(#in-border)" />
+		<circle id="round" r="1" fill="url(#center)" />
+	</g>
+</svg>

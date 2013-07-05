@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Cup Link</title>
+	<desc>Cup Link</desc>
+	<g id="icon" transform="translate(8,7)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d9d9d9" />
+				<stop offset="100%" stop-color="#bebebe" />
+			</linearGradient>
+			<linearGradient id="java" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#9d654c" />
+				<stop offset="100%" stop-color="#915238" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#e3e3e3" />
+				<stop offset="70%" stop-color="#d8d8d8" />
+				<stop offset="100%" stop-color="#c4c4c4" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-8,-2 c0,-5 16,-5 16,0 c0,3 -2,8 -6,9 h-4 c-4,-1 -6,-6 -6,-9" />
+		<path fill="#fff"
+			d="M-7,-2 c0,-4 14,-4 14,0 c0,3 -2,7 -5,8 h-4 c-3,-1 -5,-5 -5,-8" />
+		<ellipse cx="0" cy="-2.5" rx="5" ry="1.5" fill="url(#java)" />
+		<path fill="url(#center)"
+			d="M-6,-2 c0,3 12,3 12,0 c0,3 -2,6 -4,7 h-4 c-2,-1 -4,-4 -4,-7" />
+		<path fill="url(#backing)" d="M-7,-2 c-1.5,1.5 -2,7 3,8 l1,-0.5 c-1.5,-1.5 -2,-4 -1,-5.5" />
+		<path fill="#fff" d="M-6,-2 c-1.5,1.5 -2,6 2,7 c-1.5,-1.5 -2,-4 -1,-6" />
+	</g>
+	<g id="link-icon" transform="translate(9.5,12)">
+		<defs>
+			<linearGradient id="link-border" x1="0%" y1="0%" x2="100%"
+				y2="0%">
+				<stop offset="0%" stop-color="#858585" />
+				<stop offset="100%" stop-color="#4a4a4a" />
+			</linearGradient>
+			<linearGradient id="link-inner" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#dddddd" />
+				<stop offset="100%" stop-color="#aeaeae" />
+			</linearGradient>
+			<radialGradient id="link-center-link" cx="50%" cy="0%" r="70%">
+				<stop offset="0%" stop-color="#929292" />
+				<stop offset="100%" stop-color="#414141" />
+			</radialGradient>
+			<radialGradient id="link-center-link-center" cx="50%" cy="50%"
+				r="70%">
+				<stop offset="0%" stop-color="#cecece" />
+				<stop offset="100%" stop-color="#bdbdbd" />
+			</radialGradient>
+		</defs>
+		<g id="link">
+			<path fill="url(#link-border)"
+				d="M-1.5,-3 l-1.5,0 a3.5,3.5 0 0,0 0,7 l1.5,0 a1.5,1.5 0 0,0 0,-3 h-2 a0.5,0.5 0 0,1 0,-1 h2 a1.5,1.5 0 0,0 0,-3   Z" />
+			<path fill="url(#link-inner)"
+				d="M-1.5,-2 l-1.5,0 a2.5,2.5 0 0,0 0,5 l1.5,0 a0.5,0.5 0 0,0 0,-1 l-1.5,0 a1.5,1.5 0 0,1 0,-3 l1.5,0 a0.5,0.5 0 0,0 0,-1 Z" />
+		</g>
+		<use xlink:href="#link" transform="rotate(180) translate(0,-1)" />
+		<rect width="6" height="3" x="-3.25" y="-1" fill="url(#link-center-link)" />
+		<rect width="4" height="1" x="-2.25" y="-0" fill="url(#link-center-link-center)" />
+	</g>
+</svg>

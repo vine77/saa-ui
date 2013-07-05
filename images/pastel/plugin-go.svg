@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Plugin Go</title>
+	<desc>Plugin Add-on Go</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#83d079" />
+				<stop offset="100%" stop-color="#3a8a36" />
+			</linearGradient>
+			<linearGradient id="in-border" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a6d99b" />
+				<stop offset="100%" stop-color="#7cc376" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#77c369" />
+				<stop offset="100%" stop-color="#59b54f" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-7,7 h5 v-1 a1,1 0 1,1 2,0 v1 h4 v-4 h1 a2,2 0 1,0 0,-4 h-1 v-3 h-3 v-1 a2,2 0 1,0 -4,0 v1 h-4 v4 h1 a1,1 0 1,1 0,2 h-1" />
+		<path fill="url(#in-border)"
+			d="M-6,6 h3 a2,2 0 1,1 4,0 h2 v-4 h2 a1,1 0 1,0 0,-2 h-2 v-3 h-3 v-2 a1,1 0 1,0 -2,0 v2 h-4 v2 a2,2 0 1,1 0,4" />
+		<path fill="url(#center)"
+			d="M-5,5 h1 a1.8,1.5 0 0,1 6,0 v-7 h-7 a1.5,1.8 0 0,1 0,6 " />
+		<g id="go" transform="translate(3,3)">
+			<defs>
+				<linearGradient id="border_go" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#6fa53d" />
+					<stop offset="100%" stop-color="#1e7b03" />
+				</linearGradient>
+				<linearGradient id="inner_go" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#b0ce96" />
+					<stop offset="100%" stop-color="#96c180" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#border_go)"
+				d="M-1,-2 v-2 h1 l4.5,4.5 l-4.5,4.5 h-1 v-2 h-4 v-5 Z" />
+			<path fill="url(#inner_go)" d="M0,-1 v-1.5 l3,3 l-3,3 v-1.5 h-4 v-3 Z" />
+			<path fill="#8eba6f" d="M0.5,0 v-0.5 l1,1 l-1,1 v-0.5 l-3.5,0 v-1 Z" />
+		</g>
+	</g>
+</svg>

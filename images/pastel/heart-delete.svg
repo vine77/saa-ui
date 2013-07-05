@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Heart Delete</title>
+	<desc>Heart Delete</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcb3b3" />
+				<stop offset="100%" stop-color="#cf3838" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffd6d4" />
+				<stop offset="100%" stop-color="#febeb9" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffb2b2" />
+				<stop offset="100%" stop-color="#ff6e6d" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,7 c0,-1 6,-5.5 7,-7 a3.5,3.5 0 0,0 -7,-5 a3.5,3.5 0 0,0 -7,5 c1,1.5 7,6 7,7 z" />
+		<path transform="scale(0.825)"
+			d="M0,7 c0,-1 6.75,-6.25 7.75,-7.75 a3,3 0 0,0 -7.75,-4 a3,3 0 0,0 -7.75,4 c1,1.5 7.75,6.75 7.75,7.75 z"
+			fill="url(#inner)" />
+		<path transform="scale(0.65)"
+			d="M0,7 c0,-1 7.75,-7.25 8.75,-8.75 a4.5,4.5 0 0,0 -8.75,-3 a4.5,4.5 0 0,0 -8.75,3 c1,1.5 8.75,7.75 8.75,8.75 z"
+			fill="url(#center)" />
+		<g id="delete" transform="translate(4.5,4.5)">
+			<defs>
+				<linearGradient id="backing_delete" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#c4581e" />
+					<stop offset="100%" stop-color="#b84503" />
+				</linearGradient>
+				<linearGradient id="center_delete" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#fed6b8" />
+					<stop offset="100%" stop-color="#dd6401" />
+				</linearGradient>
+			</defs>
+			<circle id="back" r="3.5" fill="url(#backing_delete)" />
+			<circle id="center-dot" r="2.5" fill="url(#center_delete)" />
+			<path fill="#fff" d="M-1.5,-0.5 h3 v1 h-3 v-1 z " />
+		</g>
+	</g>
+</svg>

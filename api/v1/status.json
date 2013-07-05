@@ -1,0 +1,11 @@
+{
+  "status": {
+    "messages": [
+      {
+        "message": "The system is healthy.",
+        "health": 1
+      }
+    ],
+    "health": 1
+  }
+}

@@ -1,0 +1,69 @@
+<div class="portlet">
+  <h3>Definitions</h3>
+  <h4>SAM Unit (SU) Definition</h4>
+  <p>A SAM Unit (SU) is a measure of compute consumption of the host server. SAM unit is equivalent to the performance of a hyper-thread in Intel Xeon 2650, 2 GHZ, 8 Core, 20MB L3 Cache.</p>
+  <h4>SAM Unit Usage</h4>
+  <p>Service Provider can determine SAM Units available in a host server by running Intel's SAM Compute Capacity Tool. The tool provides the total capacity of the Host server. A single SAM unit is equivalent to the performance of a hyper-thread in Intel Xeon 2650, 2 GHZ, 8 Core, 20MB L3 Cache.</p>
+  <h3>Examples</h3>
+  <h4>Host Servers</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>CPU</th>
+        <th>Frequency</th>
+        <th>Sockets</th>
+        <th>Core</th>
+        <th>Cache</th>
+        <th>SU Capacity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Xeon E5-2650</td>
+        <td>2.0 GHz</td>
+        <td>2</td>
+        <td>8</td>
+        <td>20 MB</td>
+        <td>64.0 SUs</td>
+      </tr>
+      <tr>
+        <td>Xeon E5-4650</td>
+        <td>2.7 GHz</td>
+        <td>4</td>
+        <td>8</td>
+        <td>20 MB</td>
+        <td>172.8 SUs</td>
+      </tr>
+      <tr>
+        <td>Xeon E3-1275 v2</td>
+        <td>3.5 GHz</td>
+        <td>1</td>
+        <td>4</td>
+        <td>8 MB</td>
+        <td>47.6 SUs (1.7 CPU Throughput)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>Web Workloads</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>CPU</th>
+        <th>SQL Server SUs (Unshared)</th>
+        <th>Web Server</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Xeon E5-2650</td>
+        <td>3.6 SUs</td>
+        <td>1.5 SUs</td>
+      </tr>
+      <tr>
+        <td>Xeon E5-5670</td>
+        <td>5.27 SUs</td>
+        <td>2.93 SUs</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

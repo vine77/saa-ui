@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Font Shrink</title>
+	<desc>Font Shrink</desc>
+	<g id="icon" transform="translate(7,7)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#438bd8" />
+				<stop offset="100%" stop-color="#3155c6" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#91bce9" />
+				<stop offset="100%" stop-color="#6b96dc" />
+			</linearGradient>
+			<linearGradient id="backing_small" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#2b7e2b" />
+				<stop offset="100%" stop-color="#216b21" />
+			</linearGradient>
+			<linearGradient id="center_small" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#71ba71" />
+				<stop offset="100%" stop-color="#5b985b" />
+			</linearGradient>
+		</defs>
+		<g transform="translate(-1,0)">
+			<g >
+				<path fill="url(#backing)"
+					d="M1,-6 l4.5,0 v2 h-1 v7 a2,2 0 0,0 2,2 h-6 a2,2 0 0,0 2,-2 v-1 l-2.6666,0 l-0.6666,1 a2,2 0 0,0 2,2 h-7 a2.7,2.7 0 0,0 2,-1 l5,-8 h-1 v-2 h2 m0.333,4 l-2,3 h2 v-3 Z" />
+				<path fill="url(#center)"
+					d="M1,-5.5 h4 v1 h-1 v8 a1,1 0 0,0 1,1 h-3 a1,1 0 0,0 1,-1 v-7 l-4.3333,6.5 h0.5 a1,1 0 0,0 1,1 l-3.5,0 a2,2 0 0,0 1,-1 l4.8,-8 l-1.5,0 v-1 h2 Z" />
+			</g>
+		</g>
+
+		<g transform="translate(3.5,3)">
+			<g transform="scale(.75)">
+				<path fill="url(#backing_small)"
+					d="M1,-6 l4.5,0 v2 h-1 v7 a2,2 0 0,0 2,2 h-6 a2,2 0 0,0 2,-2 v-1 l-2.6666,0 l-0.6666,1 a2,2 0 0,0 2,2 h-7 a2.7,2.7 0 0,0 2,-1 l5,-8 h-1 v-2 h2 m0.333,4 l-2,3 h2 v-3 Z" />
+				<path fill="url(#center_small)"
+					d="M1,-5.5 h4 v1 h-1 v8 a1,1 0 0,0 1,1 h-3 a1,1 0 0,0 1,-1 v-7 l-4.3333,6.5 h0.5 a1,1 0 0,0 1,1 l-3.5,0 a2,2 0 0,0 1,-1 l4.8,-8 l-1.5,0 v-1 h2 Z" />
+			</g>
+		</g>
+
+	</g>
+</svg>

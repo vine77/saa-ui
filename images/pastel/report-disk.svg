@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Report Disk</title>
+	<desc>Report Save Disk</desc>
+	<g id="icon" transform="translate(7,8)">
+		<defs>
+			<linearGradient id="spine" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#b84c00" />
+				<stop offset="100%" stop-color="#a52700" />
+			</linearGradient>
+			<linearGradient id="spine-center" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#be6700" />
+				<stop offset="100%" stop-color="#b35800" />
+			</linearGradient>
+			<linearGradient id="label" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#7aa5e1" />
+				<stop offset="100%" stop-color="#6a93d4" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#dcdcdc" />
+				<stop offset="100%" stop-color="#c7c7c7" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fafafa" />
+				<stop offset="30%" stop-color="#f2f2f2" />
+				<stop offset="100%" stop-color="#f8f8f8" />
+			</linearGradient>
+			<linearGradient id="corner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#c8c8c8" />
+			</linearGradient>
+			<filter id="gaussian-blur">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+			</filter>
+		</defs>
+		<rect width="14" height="16" rx="1" ry="1" x="-6" y="-8" fill="#000"
+			opacity="0.21" />
+		<rect width="3" height="15.5" x="-6" y="-8" fill="url(#spine)" />
+		<rect width="1" height="13" x="-5" y="-7" fill="url(#spine-center)" />
+		<rect width="10" height="1" x="-3" y="6" fill="url(#base)" />
+		<rect width="10" height="13" x="-3" y="-7" fill="#fff" />
+		<rect width="9" height="12" x="-3" y="-6" fill="url(#center)" />
+		<rect width="5" height="5" x="2" y="1" filter="url(#gaussian-blur)" fill="#c7c7c7" />
+		<rect width="5" height="5" x="2" y="1" fill="#fff" />
+		<path fill="url(#corner)" d="M2,5.5 h0.5 h1 l4,-4 v-1 l-0.5,0" />
+		<path fill="#ccc"
+			d="M-7.2,-7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0 m0,0.7 l3.2,0 v1.3 l-3.2,0" />
+		<path fill="url(#label)" d="M-1,-4 h6 v3 h-6 m0,1 h6 v1 h-6" />
+		<rect width="4" height="1" x="0" y="-3" fill="#a2c0ea" />
+	</g>
+	<g id="save" transform="translate(12,11)">
+		<defs>
+			<linearGradient id="backing_disk" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#6e97d4" />
+				<stop offset="100%" stop-color="#5884c3" />
+			</linearGradient>
+			<linearGradient id="center_disk" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#b0cdf3" />
+				<stop offset="100%" stop-color="#85a2dd" />
+			</linearGradient>
+			<linearGradient id="label_disk" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#a8d782" />
+				<stop offset="100%" stop-color="#d7f4a2" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing_disk)"
+			d="M0,-5 h-5 a1,1 0 0,0 -1,1 v8 a1,1 0 0,0 1,1 h8 a1,1 0 0,0 1,-1 v-7 l-2,-2  z" />
+		<rect x="-5" y="-4" width="8" height="8" fill="url(#center_disk)" />
+		<rect x="-4" y="-4" width="6" height="3" fill="#fff" />
+		<rect x="-3" y="-4" width="1" height="2" fill="url(#center_disk)" />
+		<rect x="-4" y="1" width="6" height="3" fill="#fff" />
+		<rect id="label_disk_part" x="-3" y="2" width="2" height="2"
+			fill="url(#label_disk)" />
+		<use xlink:href="#label_disk_part" transform="rotate(180) translate(2,-6)" />
+		<rect x="-6" y="-3" width="10" height="6" fill="#000"
+			opacity="0.05" />
+	</g>
+</svg>

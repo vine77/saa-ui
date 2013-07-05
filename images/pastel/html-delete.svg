@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>HTML Delete</title>
+	<desc>HTML Delete</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#80abea" />
+				<stop offset="40%" stop-color="#236ecd" />
+				<stop offset="100%" stop-color="#1233b4" />
+			</linearGradient>
+			<linearGradient id="inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#b7d0f3" />
+				<stop offset="40%" stop-color="#87afe4" />
+				<stop offset="100%" stop-color="#538cd5" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a9c6ef" />
+				<stop offset="40%" stop-color="#74a3e0" />
+				<stop offset="100%" stop-color="#3579ce" />
+			</linearGradient>
+		</defs>
+		<rect width="16" height="11" x="-8" y="-5" fill="url(#backing)" />
+		<rect width="14" height="9" x="-7" y="-4" fill="url(#inner)" />
+		<rect width="12" height="7" x="-6" y="-3" fill="url(#center)" />
+		<path fill="#fff" transform="translate(-6.25,-2) scale(0.0025,0.0035)"
+			d="M150 0V1466H446V889H1026V1466H1322V0H1026V641H446V0H150Z" />
+		<path fill="#fff" transform="translate(-3.25,3.15) scale(0.0025,-0.0035)"
+			d="M479 0V1218H44V1466H1209V1218H775V0H479Z" />
+		<path fill="#fff" transform="translate(-0.25,3.15) scale(0.0025,-0.0035)"
+			d="M145 0V1466H588L854 466L1117 1466H1561V0H1286V1154L995 0H710L420 1154V0H145Z" />
+		<path fill="#fff" transform="translate(3,3.15) scale(0.0025,-0.0035)" d="M157 0V1454H453V247H1189V0H157Z" />
+		<g id="delete" transform="translate(4.5,4.5)">
+			<defs>
+				<linearGradient id="backing_delete" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#c4581e" />
+					<stop offset="100%" stop-color="#b84503" />
+				</linearGradient>
+				<linearGradient id="center_delete" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#fed6b8" />
+					<stop offset="100%" stop-color="#dd6401" />
+				</linearGradient>
+			</defs>
+			<circle id="back" r="3.5" fill="url(#backing_delete)" />
+			<circle id="center-dot" r="2.5" fill="url(#center_delete)" />
+			<path fill="#fff" d="M-1.5,-0.5 h3 v1 h-3 v-1 z " />
+		</g>
+	</g>
+</svg>

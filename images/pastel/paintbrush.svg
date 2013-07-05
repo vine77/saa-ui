@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Paint Brush</title>
+	<desc>Paint Brush</desc>
+	<g id="paint" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#dbc174" />
+				<stop offset="100%" stop-color="#ae7b1a" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#f3e8be" />
+				<stop offset="100%" stop-color="#f8e87e" />
+			</linearGradient>
+			<linearGradient id="hairs" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#888" />
+				<stop offset="100%" stop-color="#bbb" />
+				-+
+			</linearGradient>
+			<linearGradient id="base-color" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#8095a4" />
+				<stop offset="100%" stop-color="#4b668c" />
+			</linearGradient>
+			<linearGradient id="paint-color" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#a4c8e1" />
+				<stop offset="100%" stop-color="#5b8cd5" />
+			</linearGradient>
+			<mask id="brush-tip">
+				<rect transform="rotate(45)" width="16" height="16" x="-8" y="-8" fill="#fff" />
+				<rect transform="rotate(45)" width="16" height="4" x="-8" y="3.75"
+					fill="#000" />
+			</mask>
+			<mask id="brush-tip2">
+				<rect transform="rotate(45)" width="16" height="16" x="-8" y="-8" fill="#fff" />
+				<rect transform="rotate(45)" width="16" height="4" x="-8" y="3.45"
+					fill="#000" />
+			</mask>
+			<mask id="brush-color">
+				<rect transform="rotate(45)" width="16" height="16" x="-8" y="-8" fill="#000" />
+				<rect transform="rotate(45)" width="16" height="4" x="-8" y="3.5" fill="#fff" />
+			</mask>
+		</defs>
+		<g transform="rotate(-45)">
+			<path fill="url(#backing)" d="M-2.25,-0.5 l10.5,0.5 c1.5,0.125 1.5,2.375 0,2.5 l-10.5,0.5" />
+			<path fill="url(#center)" d="M-1.5,0.5 h9.4 c1.5,0.125 1.5,0.655 0,0.75 h-9.4" />
+			<path fill="url(#base-color)" mask="url(#brush-color)"
+				d="M-2.25,-0.5 v3.375 c-4,0 -5,1 -8,-4 c2,0 1,-0.5 3,0 c 2,0.5 3,-1 5,0.625" />
+			<path fill="url(#paint-color)" mask="url(#brush-color)"
+				d="M-2.25,2.25 c-4,0 -4,0 -6.25,-2.5 c1.5,0 1.5-0.5 3,0 c1,0.5 2,-1 3.25,0.5" />
+			<path fill="url(#hairs)" mask="url(#brush-tip)"
+				d="M-2.25,-0.5 v3.375 c-4,0 -5,1 -8,-4 c2,0 1,-0.5 3,0 c 2,0.5 3,-1 5,0.625" />
+			<path fill="#fff" mask="url(#brush-tip2)"
+				d="M-2.25,2.25 c-4,0 -4,0 -6.25,-2.5 c1.5,0 1.5-0.5 3,0 c1,0.5 2,-1 3.25,0.5" />
+		</g>
+	</g>
+</svg>

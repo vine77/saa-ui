@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Shape Flip Horizontal</title>
+	<desc>Shape Flip Horizontal</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="shape1" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#afcbf5" />
+				<stop offset="100%" stop-color="#90b6f3" />
+			</linearGradient>
+			<linearGradient id="shape1inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#c0d5f7" />
+				<stop offset="100%" stop-color="#adc9f6" />
+			</linearGradient>
+			<linearGradient id="shape2" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#8cb3e6" />
+				<stop offset="100%" stop-color="#5883d2" />
+			</linearGradient>
+			<linearGradient id="shape2inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a7c5ec" />
+				<stop offset="100%" stop-color="#81a1de" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#shape1)" d="M-1,-5 v9 h-6 z" />
+		<path fill="url(#shape1inner)" d="M-2,-2 v5 l-3.333,0 z" />
+		<path fill="url(#shape2)" d="M0,-5 v9 h6 z" />
+		<path fill="url(#shape2inner)" d="M1,-2  v5 l3.333,0 z" />
+	</g>
+</svg>

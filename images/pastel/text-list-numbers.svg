@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Text List Numbers</title>
+	<desc>Text List Numbers</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="bullets" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a2c3ee" />
+				<stop offset="100%" stop-color="#73a3e3" />
+			</linearGradient>
+			<linearGradient id="lines" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#777777" />
+				<stop offset="100%" stop-color="#030303" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#bullets)"
+			d="M-6,-7 h1 v3 h1 v1 h-3 v-1 h1 v-1 h-1 v-1 h1 M-7,-2 h2 a1,1 0 0,1 1,1 v1 h-1 v1 h1 v1 h-3 v-1 h1 v-1 h1 v-1 h-2 M-7,3 h3 v1 h-1 v1 h1 v1 a1,1 0 0,1 -1,1 h-2 v-1 h2 v-1 h-1 v-1 h-1" />
+		<path fill="url(#lines)"
+			d="M-2.5,-5 l8.5,0 v1 l-8.5,0 m0,4 l8.5,0 v1 l-8.5,0 m0,4 l8.5,0 v1 l-8.5,0" />
+	</g>
+</svg>

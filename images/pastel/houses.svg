@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>House</title>
+	<desc>House Home</desc>
+	<use xlink:href="#icon" transform="translate(-2,-5)" opacity="0.75" />
+	<g id="icon" transform="translate(9,9)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#bbb" />
+				<stop offset="100%" stop-color="#555" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#eee" />
+				<stop offset="100%" stop-color="#fff" />
+			</linearGradient>
+			<linearGradient id="door" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#777" />
+				<stop offset="100%" stop-color="#999" />
+			</linearGradient>
+			<linearGradient id="door-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#999" />
+				<stop offset="100%" stop-color="#aaa" />
+			</linearGradient>
+			<linearGradient id="roof" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#b87931" />
+				<stop offset="100%" stop-color="#793e25" />
+			</linearGradient>
+			<linearGradient id="top" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#d3ad76" />
+				<stop offset="100%" stop-color="#b18c5c" />
+			</linearGradient>
+			<linearGradient id="bush" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a8d6a1" />
+				<stop offset="100%" stop-color="#246321" />
+			</linearGradient>
+			<linearGradient id="bush-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#8fca84" />
+				<stop offset="100%" stop-color="#80c174" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)" d="M-5,7 h9 v-6 l-4.5,-4.5 l-4.5,4.5 v7 z" />
+		<path fill="url(#center)" d="M-4,6 h7 v-6 l-3.5,-3.5 l-3.5,3.5 v7 z" />
+		<rect width="3" height="4" x="-2" y="2" fill="url(#door)" />
+		<rect width="1" height="2" x="-1" y="3" fill="url(#door-inner)" />
+		<path fill="url(#roof)" d="M-5.5,4 l-2,-2 l6,-6 h2 l6,6 l-2,2 l-5,-5 l-5,5 z" />
+		<path fill="url(#top)" d="M-5.5,3 l-1,-1 l5,-5 h2 l5,5 l-1,1 l-5,-5 l-5,5 z" />
+		<g id="bushs">
+			<path fill="url(#bush)"
+				d="M2.5,7 h4 a0.5,0.5 0 0,0 0.5,-0.5 v-0.5 a0.5,0.5 0 0,0 -0.5,-0.5 a1,1 0 0,1 -1,-1 a0.5,0.5 0 0,0 -0.5,-0.5 l-1.5,0 a0.5,0.5 0 0,0 -0.5,0.5 a0.5,0.5 0 0,1 -0.5,0.5 a0.5,0.5 0 0,0 -0.5,0.5 v1 a0.5,0.5 0 0,0 0.5,0.5 z" />
+			<path fill="url(#bush-inner)"
+				d="M3,6.5 l2.5,0 a0.5,0.5 0 0,0 0.5,-0.5 a0.5,0.5 0 0,0 -0.5,-0.5 a0.5,0.5 0 0,1 -0.5,-0.5 a0.5,0.5 0 0,0 -0.5,-0.5 l-0.5,0 a0.5,0.5 0 0,0 -0.5,0.5 a0.5,0.5 0 0,1 -0.5,0.5 a0.5,0.5 0 0,0 -0.5,0.5 a0.5,0.5 0 0,0 0.5,0.5 z" />
+		</g>
+		<use xlink:href="#bushs" transform="scale(-1, 1) translate(1,0)" />
+	</g>
+</svg>

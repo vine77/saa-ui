@@ -1,0 +1,11 @@
+temp
+.tmp
+.sass-cache
+scripts/templates.js
+styles/main.css
+
+# Ignore node_modules not used for Node.js server (i.e. dev/build tools)
+node_modules/
+!node_modules/.bin/
+!node_modules/crypto/
+!node_modules/express/

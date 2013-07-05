@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Redo</title>
+	<desc>Redo</desc>
+	<g id="icon" transform="scale(-1,1) translate(-8,8)">
+		<defs>
+			<linearGradient id="backing" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#d9b434" />
+				<stop offset="100%" stop-color="#d8862c" />
+			</linearGradient>
+			<linearGradient id="inner" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#fbf2ca" />
+			</linearGradient>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#fcf2c8" />
+				<stop offset="100%" stop-color="#f0cb26" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M7,2 v-2 l-3,-3 h-6 v-3 l-6,6 l6,6 v-3 h3 v3 h6 " />
+		<rect width="4" height="2" x="2" y="3" fill="url(#inner)" />
+		<rect width="2" height="1" x="3" y="3" fill="url(#center)" />
+		<path fill="url(#inner)" d="M6,2 v-1.5 l-2.5,-2.5 l-6.5,0 v-2 l-4,4 l4,4 v-2 " />
+		<path fill="url(#center)" d="M5,1 l-2,-2 l-6.75,0 v-1 l-2,2 l2,2 v-1" />
+	</g>
+</svg>

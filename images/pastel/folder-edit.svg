@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Folder Edit</title>
+	<desc>Folder Edit</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#d9b434" />
+				<stop offset="100%" stop-color="#d8862c" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffffff" />
+				<stop offset="100%" stop-color="#fbf2ca" />
+			</linearGradient>
+			<linearGradient id="label-end" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="label" x1="100%" y1="0%" x2="0%" y2="0%">
+				<stop offset="0%" stop-color="#f8e48e" />
+				<stop offset="100%" stop-color="#e9c173" />
+			</linearGradient>
+			<linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fcf2c8" />
+				<stop offset="100%" stop-color="#f0cb26" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M0,-4 h6 a1,1 0 0,1 1,1 v8 a1,1 0 0,1 -1,1 h-12 a1,1 0 0,1 -1,-1 v-9.5 a0.5,0.5 0 0,1 0.5,-0.5 h6  a0.5,0.5 0 0,1 0.5,0.5  a0.5,0.5 0 0,0 0.5,0.5 z" />
+		<path fill="url(#center)" d="M0,-3 h6 v8 h-12 v-9 h6 z" />
+		<rect width="7" height="1" x="-2" y="-2" fill="url(#label)" />
+		<path fill="url(#label-end)" d="M-5,-3 h4 v2 l-1,1 h-3 z" />
+		<path fill="url(#base)" d="M0,0 h5 v5 h-10 v-4 h4 l1,-1 z" />
+		<rect width="12" height="1" x="-6" y="4" fill="#000" opacity="0.05" />
+		<g id="pencil" transform="translate(2,2)">
+			<defs>
+				<linearGradient id="top_center" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#f7e1c9" />
+					<stop offset="100%" stop-color="#f4cfa5" />
+				</linearGradient>
+				<linearGradient id="pencil-back" x1="100%" y1="0%" x2="0%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ca9350" stop-opacity="1.0" />
+					<stop offset="20%" stop-color="#ca9350" stop-opacity="0.5" />
+					<stop offset="30%" stop-color="#ca9350" stop-opacity="0.0" />
+					<stop offset="55%" stop-color="#936d1e" stop-opacity="0.0" />
+					<stop offset="65%" stop-color="#936d1e" stop-opacity="0.3" />
+					<stop offset="80%" stop-color="#936d1e" stop-opacity="0.9" />
+					<stop offset="92%" stop-color="#936d1e" stop-opacity="1.0" />
+					<stop offset="94%" stop-color="#594212" stop-opacity="1.0" />
+				</linearGradient>
+				<linearGradient id="pencil-cross" x1="37%" y1="37%" x2="63%"
+					y2="63%">
+					<stop offset="0%" stop-color="#e4ba2f" />
+					<stop offset="100%" stop-color="#d98f3b" />
+				</linearGradient>
+				<linearGradient id="pencil-nib" x1="100%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#fae7d1" stop-opacity="1.0" />
+					<stop offset="75%" stop-color="#fae7d1" stop-opacity="0.9" />
+					<stop offset="100%" stop-color="#fae7d1" stop-opacity="0.0" />
+				</linearGradient>
+				<linearGradient id="pencil-outer" x1="37%" y1="37%" x2="63%"
+					y2="63%">
+					<stop offset="0%" stop-color="#f8edc3" />
+					<stop offset="10%" stop-color="#fcf4b3" />
+					<stop offset="45%" stop-color="#f4d644" />
+					<stop offset="55%" stop-color="#f4d644" />
+					<stop offset="90%" stop-color="#fcf4b3" />
+					<stop offset="100%" stop-color="#faee8e" />
+				</linearGradient>
+				<linearGradient id="pencil-nib-shadow" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#e07500" stop-opacity="0.0" />
+					<stop offset="40%" stop-color="#e07500" stop-opacity="0.2" />
+					<stop offset="50%" stop-color="#e07500" stop-opacity="0.45" />
+					<stop offset="60%" stop-color="#e07500" stop-opacity="0.4" />
+					<stop offset="100%" stop-color="#e07500" stop-opacity="0.0" />
+				</linearGradient>
+			</defs>
+			<path fill="url(#pencil-cross)" d="M2,-5 l-8,8 v3 h3 l8,-8 a2,1.25 45 0,0 -3,-3" />
+			<path fill="url(#pencil-back)" d="M2,-5 l-8,8 v3 h3 l8,-8 a2,1.25 45 0,0 -3,-3" />
+			<ellipse transform="translate(3.5,-3.5) rotate(45)" cx="0" cy="0" rx="1.25"
+				ry="0.75" fill="url(#top_center)" />
+			<path fill="url(#pencil-nib)" d="M-5,5 h2 l1,-1 a1.41,0.75 45 0,1 -2,-2 l-1,1 v2" />
+			<path fill="url(#pencil-nib-shadow)" d="M-5,5 h2 l1,-1 a1.41,0.75 45 0,1 -2,-2 l-1,1 v2" />
+			<path fill="url(#pencil-outer)"
+				d="M2,-4 l-5.5,5.5 a1.41,0.75 45 0,0 2,2 l5.5,-5.5 a1.41,0.75 45 0,1 -2,-2" />
+		</g>
+	</g>
+</svg>

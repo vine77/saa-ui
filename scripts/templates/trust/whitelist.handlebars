@@ -1,0 +1,63 @@
+<div class="notification">
+  <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    This screen is in development and has not been integrated with an API.
+  </div>
+</div>
+<div id="whitelist">
+  <div class="row-fluid">
+    <div class="content">
+      <div class="header">
+        <form id="filter-form" class="input-prepend clear-input pull-right">
+          <span class="add-on"><i class="icon-search"></i></span>
+          {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter nodes"}}
+          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+        </form>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}><a {{action "sortModel" "name"}}>Name</a></th>
+            <th {{bindAttr class=":sortable isColumn2Sorted:sorted sortAscending"}}><a {{action "sortModel" "version"}}>Version</a></th>
+            <th {{bindAttr class=":sortable isColumn3Sorted:sorted sortAscending"}}><a {{action "sortModel" "attestationType"}}>Attestation Type</a></th>
+            <th {{bindAttr class=":sortable isColumn4Sorted:sorted sortAscending"}}><a {{action "sortModel" "mleType"}}><acronym title="Measured Launch Environment">MLE</acronym> Type</a></th>
+            <th {{bindAttr class=":sortable isColumn5Sorted:sorted sortAscending"}}><a {{action "sortModel" "osInfo"}}><acronym title="Operating System">OS</acronym> Info</a></th>
+            <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}><a {{action "sortModel" "oemName"}}><acronym title="Original Equipment Manufacturer">OEM</acronym> Name</a></th>
+            <th {{bindAttr class=":sortable isColumn7Sorted:sorted sortAscending"}}><a {{action "sortModel" "description"}}>Description</a></th>
+            <th class="column-medium">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each mle in controller}}
+            <tr {{bindAttr class="mle.isSelected"}}>
+              <td>
+                {{mle.name}}
+              </td>
+              <td>
+                {{mle.version}}
+              </td>
+              <td>
+                {{mle.attestationType}}
+              </td>
+              <td>
+                {{mle.mleType}}
+              </td>
+              <td>
+                {{mle.osInfo}}
+              </td>
+              <td>
+                {{mle.oemName}}
+              </td>
+              <td>
+                {{mle.description}}
+              </td>
+              <td class="column-medium">
+                <button class="btn disabled btn-mini"><i class="icon-remove"></i> Delete Fingerprint</button>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

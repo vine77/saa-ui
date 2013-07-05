@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Tab Stop</title>
+	<desc>Tab Stop</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#aaa" />
+				<stop offset="100%" stop-color="#999" />
+			</linearGradient>
+			<linearGradient id="shade" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#e4e4db" />
+				<stop offset="100%" stop-color="#f1f1ec" />
+			</linearGradient>
+			<linearGradient id="center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#c1c1c1" />
+				<stop offset="100%" stop-color="#d8d8d7" />
+			</linearGradient>
+		</defs>
+		<path fill="url(#backing)"
+			d="M-8,4 h16 v-1 a1,1 0 0,0 -1,-1 v-4 a2,2 0 0,0 -2,-2 h-10 a2,2 0 0,0 -2,2 v4 a1,1 0 0,0 -1,1 z" />
+		<path fill="url(#shade)"
+			d="M-7,3 h14 a1,1 0 0,0 -1,-1 v-4 a1,1 0 0,0 -1,-1 h-10 a1,1 0 0,0 -1,1 v4 a1,1 0 0,0 -1,1 z" />
+		<rect width="10" height="4" x="-5" y="-2" fill="url(#center)" opacity="0.9" />
+		<g id="stop" transform="translate(0,-0.5)">
+			<defs>
+				<linearGradient id="stop-backing" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#eba39e" />
+					<stop offset="100%" stop-color="#d12e25" />
+				</linearGradient>
+				<linearGradient id="stop-inner" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#fcd4c4" />
+					<stop offset="100%" stop-color="#f49486" />
+				</linearGradient>
+				<linearGradient id="stop-center" x1="0%" y1="0%" x2="100%"
+					y2="100%">
+					<stop offset="0%" stop-color="#ffaf8b" />
+					<stop offset="100%" stop-color="#fa4225" />
+				</linearGradient>
+			</defs>
+			<path id="oct4"
+				d="M1,-1 h4 l2.82843,2.82843 v4 l-2.82843,2.82843 h-4 l-2.82843,-2.82843 v-4 l2.82843,-2.82843 z"
+				fill="url(#stop-backing)" />
+			<path id="oct3"
+				d="M1.5,0 l3.1,0 l2.19203,2.19203 v3.1 l-2.19203,2.19203 l-3.1,0 l-2.19203,-2.19203 v-3.1 l2.19203,-2.19203 z"
+				fill="url(#stop-inner)" />
+			<path id="oct2"
+				d="M2,1 l2.2,0 l1.55563,1.55563 v2.2 l-1.55563,1.55563 l-2.2,0 l-1.55563,-1.55563 v-2.2 l1.55563,-1.55563 z"
+				fill="url(#stop-center)" />
+			<script type="text/javascript">
+  <![CDATA[
+
+   function makeOct(size,x,y){
+    var i = size;
+    while(item = document.getElementById('oct'+size)){
+     var d = 'M'+x+','+y+' ';
+     var yd = Math.sqrt(Math.pow(i,2)/2);
+     var xd = i;
+     d += 'l'+xd+',0 ';
+     d += 'l'+yd+','+yd+' ';
+     d += 'l0,'+xd+' ';
+     d += 'l-'+yd+','+yd+' ';
+     d += 'l-'+xd+',0 ';
+     d += 'l-'+yd+',-'+yd+' ';
+     d += 'l0,-'+xd+' ';
+     d += 'l'+yd+',-'+yd+' ';
+     item.setAttribute('d',d);
+     y++;
+     x += 0.5;
+     i += -0.9;
+     size--;
+    }
+   }
+  makeOct(4,1,-1);
+ 
+  ]]>
+			</script>
+		</g>
+	</g>
+</svg>

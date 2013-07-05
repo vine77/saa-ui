@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>User Bullet</title>
+	<desc>User Bullet</desc>
+	<g id="user" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="user-backing" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#1c48bc" />
+				<stop offset="100%" stop-color="#1f3d9f" />
+			</linearGradient>
+			<linearGradient id="user-in-border" x1="0%" y1="0%" x2="0%"
+				y2="100%">
+				<stop offset="0%" stop-color="#fff" />
+				<stop offset="50%" stop-color="#d6e4f6" />
+				<stop offset="100%" stop-color="#61b9fe" />
+			</linearGradient>
+			<linearGradient id="user-center" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#6dc7fe" />
+				<stop offset="50%" stop-color="#64b9fe" />
+				<stop offset="100%" stop-color="#438dff" />
+			</linearGradient>
+			<linearGradient id="user-head" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9b5e1f" />
+				<stop offset="50%" stop-color="#94591c" />
+				<stop offset="100%" stop-color="#ae7434" />
+			</linearGradient>
+			<linearGradient id="user-head-in" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#e4b78a" />
+				<stop offset="50%" stop-color="#e5bb8e" />
+				<stop offset="100%" stop-color="#f6cfa5" />
+			</linearGradient>
+			<linearGradient id="user-hair" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#9b5812" />
+				<stop offset="100%" stop-color="#5c330f" />
+			</linearGradient>
+			<linearGradient id="user-hand-fill" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#c77429" />
+				<stop offset="100%" stop-color="#ce7e2e" />
+			</linearGradient>
+		</defs>
+		<linearGradient id="user-hand-in-fill" x1="0%" y1="0%" x2="100%"
+			y2="100%">
+			<stop offset="0%" stop-color="#edb87e" />
+			<stop offset="100%" stop-color="#efbc83" />
+		</linearGradient>
+		<path fill="url(#user-backing)" d="M-5.75,2 a5.25,3 0 0,0 10.5,0 l-5.25,-5.25 l-5.25,5.25 " />
+		<path fill="url(#user-in-border)" d="M-4.5,2 a4,2 0 0,0 8,0 l-4,-4 l-4,4 " />
+		<path fill="url(#user-center)" d="M-3.25,2 a2.25,1 0 0,0 5.5,0 l-2.75,-2.75 l-2.75,2.75 " />
+		<circle r="3.5" cy="-2.5" cx="-0.5" fill="url(#user-head)" />
+		<circle r="2.5" cy="-2.5" cx="-0.5" fill="url(#user-head-in)" />
+		<path fill="url(#user-hair)"
+			d="M-4,-2.5 a3.5,3.5 0 0,1 7,0 c-1.75,0 -3.5,0 -3.5,-0.875 c0,-0.875 -3.5,0 -3.5,0.875 " />
+		<g id="user-hand">
+			<path fill="url(#user-hand-fill)"
+				d="M3.5,2 l1.5,0 v1.25 a1,1 0 0,1 -1,1 l-0.5,0 a0.5,0.5 0 0,1 -0.5,-0.5 v-1.25 a0.5,0.5 0 0,1 0.5,-0.5" />
+			<rect fill="url(#user-hand-in-fill)" width="1" height="1" rx="0.25" ry="0.25"
+				x="3" y="2" />
+		</g>
+		<use xlink:href="#user-hand" transform="scale(-1,1) translate(1,0)" />
+	</g>
+</svg>

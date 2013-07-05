@@ -1,0 +1,16 @@
+{
+  "flavor": {
+    "name": "m1.small",
+    "rxtx_factor": 1.0,
+    "ephemeral": 0,
+    "uri": "/configuration/flavors/2",
+    "public": true,
+    "sla_id": null,
+    "vcpus": 1,
+    "swap": 0,
+    "memory": 2048,
+    "root": 20,
+    "id": 2,
+    "vm_ids": []
+  }
+}

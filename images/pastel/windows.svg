@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Windows</title>
+	<desc>Windows</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing-blue" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#4783c1" />
+				<stop offset="100%" stop-color="#2a5ea2" />
+			</linearGradient>
+			<linearGradient id="inner-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#a8d1e5" />
+				<stop offset="100%" stop-color="#9dc4dd" />
+			</linearGradient>
+			<linearGradient id="center-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#6fb2d3" />
+				<stop offset="100%" stop-color="#5693c3" />
+			</linearGradient>
+			<linearGradient id="backing-red" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#fc6d6b" />
+				<stop offset="100%" stop-color="#ef2a31" />
+			</linearGradient>
+			<linearGradient id="inner-red" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ffbbbb" />
+				<stop offset="100%" stop-color="#fc9797" />
+			</linearGradient>
+			<linearGradient id="center-red" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#f85252" />
+				<stop offset="100%" stop-color="#ea2d2d" />
+			</linearGradient>
+			<linearGradient id="backing-green" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#6bbc60" />
+				<stop offset="100%" stop-color="#377b31" />
+			</linearGradient>
+			<linearGradient id="inner-green" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#b5e5a9" />
+				<stop offset="100%" stop-color="#a8de9d" />
+			</linearGradient>
+			<linearGradient id="center-green" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#83d36f" />
+				<stop offset="100%" stop-color="#66c357" />
+			</linearGradient>
+			<linearGradient id="backing-yellow" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#f8ca41" />
+				<stop offset="50%" stop-color="#ecba39" />
+				<stop offset="100%" stop-color="#bd5b00" />
+			</linearGradient>
+			<linearGradient id="inner-yellow" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#fdf6dd" />
+				<stop offset="100%" stop-color="#fbe59a" />
+			</linearGradient>
+			<linearGradient id="center-yellow" x1="0%" y1="0%" x2="100%"
+				y2="100%">
+				<stop offset="0%" stop-color="#f8e7ac" />
+				<stop offset="100%" stop-color="#f1cc50" />
+			</linearGradient>
+		</defs>
+		<g id="red">
+			<path fill="url(#backing-red)"
+				d="M-6,-1 l1.5,-5 c3,-1.5 4,0 5.5,0.5 l-1.5,5 c-3,-2 -4,-1 -5.5,-0.5" />
+			<path fill="url(#inner-red)"
+				d="M-5,-1.25 l1.25,-4 c2,-1 3,0 4.5,0.75 l-1.25,4 c-3,-2 -4,-0.5 -4.5,-1" />
+			<path fill="url(#center-red)"
+				d="M-4,-1.5 l1,-3 c1,-0.5 2,0 3.5,0.75 l-1,3.25 c-1,-1 -2,-1 -3.5,-1" />
+		</g>
+		<g id="blue">
+			<path fill="url(#backing-blue)"
+				d="M-7.5,5 l1.5,-5 c3,-1.5 4,0 5.5,0.5 l-1.5,5 c-3,-2 -4,-1 -5.5,-0.5" />
+			<path fill="url(#inner-blue)"
+				d="M-6.25,3.75 l1.25,-4 c2,-1 3,0 4.5,0.75 l-1.25,4 c-3,-2 -4,-0.5 -4.5,-1" />
+			<path fill="url(#center-blue)"
+				d="M-5,2.5 l1,-3 c1,-0.5 2,0 3.5,0.75 l-1,3.25 c-1,-1 -2,-1 -3.5,-1" />
+		</g>
+		<g id="green">
+			<path fill="url(#backing-green)" d="M0.5,0 l1.5,-5 c3,1 4,0 5.5,0 l-1.5,5 c-3,1 -4,0 -5.5,0" />
+			<path fill="url(#inner-green)"
+				d="M0.5,0 l1.25,-4 c3,1 3,0 4.5,0 l-1.25,4.25 c-3,1 -3,0 -4.5,-0.25" />
+			<path fill="url(#center-green)" d="M0.5,0 l1,-3 c2,1 2,0 3.5,0 l-1,3.5 c-2,0 -2,-0.5 -3.5,-0.5" />
+		</g>
+		<g id="yellow">
+			<path fill="url(#backing-yellow)" d="M-1,6 l1.5,-5 c3,1 4,0 5.5,0 l-1.5,5 c-3,1 -4,0 -5.5,0" />
+			<path fill="url(#inner-yellow)"
+				d="M-0.75,5 l1.25,-4 c3,1 3,0.5 4.5,0 l-1.25,4.25 c-3,1 -3,0 -4.5,-0.25" />
+			<path fill="url(#center-yellow)"
+				d="M-0.5,4 l1,-3 c2,1 2,0.5 3.5,0.5 l-1,3 c-2,0.5 -2,0 -3.5,-0.5" />
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="16" height="16" version="1.1">
+	<title>Application</title>
+	<desc>Application Window</desc>
+	<g id="icon" transform="translate(8,8)">
+		<defs>
+			<linearGradient id="backing" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#85acdd" />
+				<stop offset="100%" stop-color="#5171a9" />
+			</linearGradient>
+			<linearGradient id="center" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#e3e3e3" />
+				<stop offset="50%" stop-color="#f4f4f4" />
+				<stop offset="100%" stop-color="#fbfbfb" />
+			</linearGradient>
+			<linearGradient id="center1" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#bed7ed" />
+				<stop offset="50%" stop-color="#c3dcf2" />
+			</linearGradient>
+			<linearGradient id="center1.1" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#8cc1f0" />
+				<stop offset="100%" stop-color="#7ab8ee" />
+			</linearGradient>
+			<linearGradient id="center2" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#f2cbb1" />
+				<stop offset="50%" stop-color="#f6d0b6" />
+			</linearGradient>
+			<linearGradient id="center2.1" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#faa670" />
+				<stop offset="100%" stop-color="#fa9959" />
+			</linearGradient>
+			<linearGradient id="center3" x1="100%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#b2e9b3" />
+				<stop offset="50%" stop-color="#b7eeb8" />
+			</linearGradient>
+			<linearGradient id="center3.1" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#75e977" />
+				<stop offset="100%" stop-color="#75e877" />
+			</linearGradient>
+			<linearGradient id="bracket" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#bebebe" />
+				<stop offset="100%" stop-color="#5d5d5d" />
+			</linearGradient>
+		</defs>
+		<g id="page">
+			<path fill="#000000" opacity="0.2"
+				d="M0,-8 h1 l2,2 v4 a1,1 0 0,1 -1,1 h-4 a1,1 0 0,1 -1,-1 v-5 a1,1 0 0,1 1,-1 h2 z" />
+			<path fill="#ffffff" d="M0,-7 l0.5,0 l1.5,1.5 v3.5 h-4 v-5 z" />
+		</g>
+		<path d="M0,-6 v1 h1 v2 h-2 v-3" fill="url(#center)" />
+		<use xlink:href="#page" transform="translate(-5,9)" />
+		<path d="M-5,3 v1 h1 v2 h-2 v-3" fill="url(#center1)" />
+		<rect width="1" height="1" x="-5" y="3" fill="#dfedf9" />
+		<rect width="2" height="1" x="-6" y="5" fill="url(#center1.1)" />
+		<use xlink:href="#page" transform="translate(0,9)" />
+		<path d="M0,3 v1 h1 v2 h-2 v-3" fill="url(#center2)" />
+		<rect width="1" height="1" x="0" y="3" fill="#fce6d8" />
+		<rect width="2" height="1" x="-1" y="5" fill="url(#center2.1)" />
+		<use xlink:href="#page" transform="translate(5,9)" />
+		<path d="M5,3 v1 h1 v2 h-2 v-3" fill="url(#center3)" />
+		<rect width="1" height="1" x="5" y="3" fill="#def8df" />
+		<rect width="2" height="1" x="4" y="5" fill="url(#center3.1)" />
+		<path
+			d="M0,-2 h1 v1 h4 a1,1 0 0,1 1,1 v1 h-1 v-1 h-4 v-1 h-2 v1 h-4 v1 h-1 v-1 a1,1 0 0,1 1,-1 h4 v-1 h1"
+			fill="url(#bracket)" />
+	</g>
+</svg>
