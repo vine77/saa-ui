@@ -278,7 +278,7 @@ module.exports = function (grunt) {
           },
           {
             src: '<%= paths.destination %>/**',
-            dest: '../../',
+            dest: '../',
             expand: true,
             dot: true
           }
@@ -290,8 +290,6 @@ module.exports = function (grunt) {
       indent: '  '
     }
   });
-
-  grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -318,7 +316,6 @@ module.exports = function (grunt) {
     'clean:dist',
     'jshint',
     //'test',
-    'coffee',
     'emberTemplates:dist',
     'less:dist',
     'useminPrepare',
