@@ -36,14 +36,30 @@ DS.RESTAdapter.reopen({
     var url = this._super(record, suffix);
     return url + '.json';
   },
-  findAll: function(store, type, since, customErrorHandling) { //findAll customErrorHandling series
-    return this._super(store, type, since, customErrorHandling).then(null, function(error) {
-      customErrorHandling = typeof customErrorHandling !== 'undefined' ? customErrorHandling : true;
-      if (customErrorHandling) {
-        App.event(App.errorMessage(JSON.parse(error.responseText)), App.ERROR);
+
+  findAll: function(store, type, since, customErrorHandling) { //findAll customErrorHandling series. 
+    var root, adapter;
+
+    root = this.rootForType(type);
+    adapter = this;
+
+    return this.ajax(this.buildURL(root), "GET",{
+      data: this.sinceQuery(since)
+    }).then(
+      function(json) {
+        adapter.didFindAll(store, type, json);
+      },
+      function(error) {
+        store.didUpdateAll(type);
+        customErrorHandling = typeof customErrorHandling !== 'undefined' ? customErrorHandling : true;
+        if (customErrorHandling) {
+          App.event(App.errorMessage(JSON.parse(error.responseText)), App.ERROR);
+        } // else { return return this._super(store, type, since, customErrorHandling) }
       }
-    });
-  },
+    ).then(null, DS.rejectionHandler);
+
+  }, 
+  
   didError: function (store, type, record, xhr) {
     var json = JSON.parse(xhr.responseText);
     record.set('error', App.errorMessage(json));  // Store error message on record
@@ -137,20 +153,25 @@ App.Store = DS.Store.extend({
     if (idsOrReferencesOrOpaque === null) idsOrReferencesOrOpaque = [];
     return this._super(type, idsOrReferencesOrOpaque, record, relationship);
   },
+   
   find: function (type, id, customErrorHandling) { //findAll customErrorHandling series
     if ((id === undefined) && (typeof customErrorHandling !== 'undefined')) {
       return this.findAll(type, id, customErrorHandling);
     } else {
-      return this._super(type, id, customErrorHandling);
+      return this._super(type, id);
     }
   },
+  
+  
   findAll: function(type, customErrorHandling) { //findAll customErrorHandling series
     if (typeof customErrorHandling !== 'undefined') {
       return this.fetchAll(type, this.all(type), customErrorHandling);
     } else {
-      this._super(type);
+      return this._super(type);
     }
   },
+  
+  
   fetchAll: function(type, array, customErrorHandling) { //findAll customErrorHandling series
     if (typeof customErrorHandling !== 'undefined') {
       var get = Ember.get, set = Ember.set; //prerequistes

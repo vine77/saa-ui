@@ -58,7 +58,8 @@ module.exports = function (grunt) {
             return [
               function (req, res, next) {
                 console.log(req.method, req.url);
-                if (req.method === 'POST') {
+                //if (req.method === 'POST') {
+                if (req.originalUrl == '/api/v1/nodes.json' && req.method === 'GET') {
                   res.writeHead(404, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'errors': {'name': 'Invalid parameter'}}));
                 } else {
@@ -298,7 +299,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:temp',
-      'coffee:dist',
       'emberTemplates:server',
       'less:server',
       'livereload-start',
