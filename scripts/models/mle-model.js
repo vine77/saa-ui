@@ -1,4 +1,4 @@
-App.Store.registerAdapter('App.Mle', DS.FixtureAdapter);
+App.Store.registerAdapter('App.Mle', DS.RESTTrustAdapter);
 
 App.Mle = DS.Model.extend({
   name: DS.attr('string'),

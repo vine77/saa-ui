@@ -63,7 +63,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       //if (App.VmTrustReport.find(reportContent.get('id'))) { }
       App.VmTrustReport.find(reportContent.get('id')).then(function (vmTrustReport) { 
         
-      //setTimeout(function(){
+        //setTimeout(function(){
         //reportContent = vmTrustReport.get('vmTrustReport');
         reportContent = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('attestations.length') > 0)) {

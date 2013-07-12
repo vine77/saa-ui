@@ -59,7 +59,6 @@ DS.RESTAdapter.reopen({
     ).then(null, DS.rejectionHandler);
 
   }, 
-  
   didError: function (store, type, record, xhr) {
     var json = JSON.parse(xhr.responseText);
     record.set('error', App.errorMessage(json));  // Store error message on record
@@ -153,7 +152,6 @@ App.Store = DS.Store.extend({
     if (idsOrReferencesOrOpaque === null) idsOrReferencesOrOpaque = [];
     return this._super(type, idsOrReferencesOrOpaque, record, relationship);
   },
-   
   find: function (type, id, customErrorHandling) { //findAll customErrorHandling series
     if ((id === undefined) && (typeof customErrorHandling !== 'undefined')) {
       return this.findAll(type, id, customErrorHandling);
@@ -161,8 +159,6 @@ App.Store = DS.Store.extend({
       return this._super(type, id);
     }
   },
-  
-  
   findAll: function(type, customErrorHandling) { //findAll customErrorHandling series
     if (typeof customErrorHandling !== 'undefined') {
       return this.fetchAll(type, this.all(type), customErrorHandling);
@@ -170,8 +166,6 @@ App.Store = DS.Store.extend({
       return this._super(type);
     }
   },
-  
-  
   fetchAll: function(type, array, customErrorHandling) { //findAll customErrorHandling series
     if (typeof customErrorHandling !== 'undefined') {
       var get = Ember.get, set = Ember.set; //prerequistes
