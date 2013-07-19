@@ -1,1 +1,85 @@
-{"node": {"status": {"locked": false, "trust_message": "bios: -1 vmm: -1", "operational": 2, "long_message": "Health: unknown, Operational status: powered on", "health": 0, "trust": false, "short_message": "Health: unknown"}, "ids": {"platform_id": "61AF1458-9295-E111-BD1D-001E6747F0BA", "mac": "00:1e:67:47:f0:ba", "ip_address": "172.24.0.64", "cloud_id": "61AF1458-9295-E111-BD1D-001E6747F0BA"}, "scheduler_persistent": false, "utilization": {"ipc": -1.0, "uptime": null, "network": null, "cpu_frequency_current": null, "gips_max": -1.0, "io": null, "memory": "-1", "gips_current": -1.0, "cpu": {"iowait": -1.0, "idle": -1.0, "total": -1.0, "steal": -1.0, "guest": -1.0}}, "graphite_url": "/render?target=stats.SAM", "memory": {"max": 8192, "used": 0}, "uri": "/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA", "capabilities": {"hyperthreading": true, "cores_per_socket": 8, "cpu_frequency": "4000 MHz", "turbo_mode": true, "memory_size": "8192 MB", "cpu_type": "", "cache_size": "20480 kB", "sockets": 2}, "node_name": "novamgmt64", "sam_controlled": true, "vcpus": {"max": 256, "used": 0}, "scheduler_mark": null, "node_trust_report_id": "61AF1458-9295-E111-BD1D-001E6747F0BA", "vm_info": {"count": 0, "max": null}, "logs_url": "/logs?node=61AF1458-9295-E111-BD1D-001E6747F0BA", "tier": "", "id": "61AF1458-9295-E111-BD1D-001E6747F0BA", "vm_ids": ["736356fe-0f44-4a53-b78e-320c4448f086"], "contention": {"sockets": [{"llc": {"value": -1.0, "label": "LOW"}, "id": "s1"}], "system": {"llc": {"value": -1.0, "label": "LOW"}}}}}
+{
+    "node": {
+        "status": {
+            "locked": false,
+            "trust_message": "bios: -1 vmm: -1",
+            "operational": 2,
+            "long_message": "Health: unknown, Operational status: powered on",
+            "health": 0,
+            "trust": false,
+            "short_message": "Health: unknown"
+        },
+        "ids": {
+            "platform_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+            "mac": "00:1e:67:47:f0:ba",
+            "ip_address": "172.24.0.64",
+            "cloud_id": "61AF1458-9295-E111-BD1D-001E6747F0BA"
+        },
+        "scheduler_persistent": false,
+        "utilization": {
+            "ipc": -1.0,
+            "uptime": null,
+            "network": null,
+            "cpu_frequency_current": null,
+            "gips_max": -1.0,
+            "io": null,
+            "memory": "-1",
+            "gips_current": -1.0,
+            "cpu": {
+                "iowait": -1.0,
+                "idle": -1.0,
+                "total": -1.0,
+                "steal": -1.0,
+                "guest": -1.0
+            }
+        },
+        "graphite_url": "/render?target=stats.SAM",
+        "memory": {
+            "max": 8192,
+            "used": 0
+        },
+        "uri": "/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "capabilities": {
+            "hyperthreading": true,
+            "cores_per_socket": 8,
+            "cpu_frequency": "4000 MHz",
+            "turbo_mode": true,
+            "memory_size": "8192 MB",
+            "cpu_type": "",
+            "cache_size": "20480 kB",
+            "sockets": 2
+        },
+        "node_name": "novamgmt64",
+        "sam_controlled": true,
+        "vcpus": {
+            "max": 256,
+            "used": 0
+        },
+        "scheduler_mark": null,
+        "node_trust_report_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "vm_info": {
+            "count": 0,
+            "max": null
+        },
+        "logs_url": "/logs?node=61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "tier": "",
+        "id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "trust_node_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "vm_ids": ["736356fe-0f44-4a53-b78e-320c4448f086"],
+        "contention": {
+            "sockets": [{
+                "llc": {
+                    "value": -1.0,
+                    "label": "LOW"
+                },
+                "id": "s1"
+            }],
+            "system": {
+                "llc": {
+                    "value": -1.0,
+                    "label": "LOW"
+                }
+            }
+        }
+    }
+}

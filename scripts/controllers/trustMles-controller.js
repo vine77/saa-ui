@@ -1,4 +1,4 @@
-App.TrustWhitelistController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   
   columns: ['mleType', 'name', 'oemname', 'attestationType', 'osname', 'version', 'osversion', 'mleManifests'],
   filteredModel: function () {
@@ -19,9 +19,10 @@ App.TrustWhitelistController = Ember.ArrayController.extend(App.Filterable, App.
   },
   expand: function (model) {
     if (!model.get('isActive')) {
-      this.transitionToRoute('trust.whitelist.mle', model);
+      //model.set('isActive', true);
+      this.transitionToRoute('trust.mle', model);
     } else {
-      this.transitionToRoute('trust.whitelist');
+      this.transitionToRoute('trust.mles');
     }
   }
   

@@ -63,6 +63,7 @@
       },
       "tier": null,
       "id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "trust_node_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682", 
       "contention": {
         "sockets": [
           {
@@ -151,6 +152,7 @@
       },
       "tier": null,
       "id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "trust_node_id": "41101BF9-C295-E111-BD1D-001E6747F112", 
       "contention": {
         "sockets": [
           {
@@ -239,6 +241,7 @@
       },
       "tier": null,
       "id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "trust_node_id": "6396CA86-4A94-E111-BD1D-001E6747F26A", 
       "contention": {
         "sockets": [
           {
@@ -321,6 +324,7 @@
       },
       "tier": null,
       "id": "na_novamgmt24",
+      "trust_node_id": "na_novamgmt24", 
       "contention": {
         "sockets": null,
         "system": {}
@@ -389,6 +393,7 @@
       },
       "tier": null,
       "id": "A5A47894-E698-E111-BD1D-001E6747F512",
+      "trust_node_id": "A5A47894-E698-E111-BD1D-001E6747F512", 
       "contention": {
         "sockets": [
           {
@@ -477,6 +482,7 @@
       },
       "tier": null,
       "id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "trust_node_id": "A155FF49-9D95-E111-BD1D-001E6747F54E", 
       "contention": {
         "sockets": [
           {
@@ -565,6 +571,7 @@
       },
       "tier": null,
       "id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+      "trust_node_id": "3184A832-DB98-E111-BD1D-001E6747F64A", 
       "contention": {
         "sockets": [
           {
@@ -653,6 +660,7 @@
       },
       "tier": null,
       "id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "trust_node_id": "5385D478-D295-E111-BD1D-001E6747F6F2", 
       "contention": {
         "sockets": [
           {
@@ -741,6 +749,7 @@
       },
       "tier": null,
       "id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "trust_node_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE", 
       "contention": {
         "sockets": [
           {
@@ -829,6 +838,7 @@
       },
       "tier": null,
       "id": "62EC022B-7294-E111-BD1D-001E6747F6FA",
+      "trust_node_id": "62EC022B-7294-E111-BD1D-001E6747F6FA", 
       "contention": {
         "sockets": [
           {
@@ -917,6 +927,7 @@
       },
       "tier": null,
       "id": "64EC022B-7294-E111-BD1D-001E6747F342",
+      "trust_node_id": "64EC022B-7294-E111-BD1D-001E6747F342", 
       "contention": {
         "sockets": [
           {
@@ -999,6 +1010,7 @@
       },
       "tier": null,
       "id": "na_novamgmt36",
+      "trust_node_id": "na_novamgmt36", 
       "contention": {
         "sockets": null,
         "system": {}
@@ -1067,6 +1079,7 @@
       },
       "tier": null,
       "id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "trust_node_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506", 
       "contention": {
         "sockets": [
           {
@@ -1155,6 +1168,7 @@
       },
       "tier": null,
       "id": "015288BC-5F94-E111-BD1D-001E6747F296",
+      "trust_node_id": "015288BC-5F94-E111-BD1D-001E6747F296", 
       "contention": {
         "sockets": [
           {
@@ -1243,6 +1257,7 @@
       },
       "tier": null,
       "id": "623ECF33-5094-E111-BD1D-001E6747F29A",
+      "trust_node_id": "623ECF33-5094-E111-BD1D-001E6747F29A", 
       "contention": {
         "sockets": [
           {
@@ -1331,6 +1346,7 @@
       },
       "tier": null,
       "id": "71798A3B-7994-E111-BD1D-001E6747F24A",
+      "trust_node_id": "71798A3B-7994-E111-BD1D-001E6747F24A", 
       "contention": {
         "sockets": [
           {
@@ -1413,6 +1429,7 @@
       },
       "tier": null,
       "id": "na_novamgmt45",
+      "trust_node_id": "na_novamgmt45",
       "contention": {
         "sockets": null,
         "system": {}
@@ -1481,6 +1498,7 @@
       },
       "tier": null,
       "id": "72815A85-9394-E111-BD1D-001E6747F3DA",
+      "trust_node_id": "72815A85-9394-E111-BD1D-001E6747F3DA", 
       "contention": {
         "sockets": [
           {
@@ -1562,6 +1580,7 @@
       },
       "tier": null,
       "id": "D0769876-ED98-E111-BD1D-001E6747F74E",
+      "trust_node_id": "D0769876-ED98-E111-BD1D-001E6747F74E",
       "contention": {
         "sockets": [
           {
@@ -1650,6 +1669,7 @@
       },
       "tier": null,
       "id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "trust_node_id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
       "contention": {
         "sockets": [
           {
@@ -1738,6 +1758,7 @@
       },
       "tier": null,
       "id": "F40A4798-7694-E111-BD1D-001E6747F33E",
+      "trust_node_id": "F40A4798-7694-E111-BD1D-001E6747F33E",
       "contention": {
         "sockets": [
           {
@@ -1820,6 +1841,7 @@
       },
       "tier": null,
       "id": "na_novamgmt62",
+      "trust_node_id": "na_novamgmt62",
       "contention": {
         "sockets": null,
         "system": {}
@@ -1882,6 +1904,7 @@
       },
       "tier": null,
       "id": "na_novamgmt63",
+      "trust_node_id": "na_novamgmt63",
       "contention": {
         "sockets": null,
         "system": {}
@@ -1950,6 +1973,7 @@
       },
       "tier": null,
       "id": "61156675-C894-E111-BD1D-001E6747F6BA",
+      "trust_node_id": "61156675-C894-E111-BD1D-001E6747F6BA",
       "contention": {
         "sockets": [
           {
@@ -2038,6 +2062,7 @@
       },
       "tier": null,
       "id": "10E5063A-E004-11DF-AE03-001517FB45F0",
+      "trust_node_id": "10E5063A-E004-11DF-AE03-001517FB45F0",
       "contention": {
         "sockets": [
           {
@@ -2126,6 +2151,7 @@
       },
       "tier": null,
       "id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "trust_node_id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
       "contention": {
         "sockets": [
           {
@@ -2214,6 +2240,7 @@
       },
       "tier": null,
       "id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "trust_node_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
       "contention": {
         "sockets": [
           {
@@ -2302,6 +2329,7 @@
       },
       "tier": null,
       "id": "E7581553-918D-11DF-A420-001517F2388C",
+      "trust_node_id": "E7581553-918D-11DF-A420-001517F2388C",
       "contention": {
         "sockets": [
           {
@@ -2384,6 +2412,7 @@
       },
       "tier": null,
       "id": "na_novamgmt75",
+      "trust_node_id": "na_novamgmt75",
       "contention": {
         "sockets": null,
         "system": {}
@@ -2452,6 +2481,7 @@
       },
       "tier": null,
       "id": "395E28C3-9144-11DF-B949-001517F23968",
+      "trust_node_id": "395E28C3-9144-11DF-B949-001517F23968",
       "contention": {
         "sockets": [
           {
@@ -2534,6 +2564,7 @@
       },
       "tier": null,
       "id": "na_novamgmt65",
+      "trust_node_id": "na_novamgmt65",
       "contention": {
         "sockets": null,
         "system": {}
@@ -2602,6 +2633,7 @@
       },
       "tier": null,
       "id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "trust_node_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
       "contention": {
         "sockets": [
           {
@@ -2677,6 +2709,7 @@
       },
       "tier": null,
       "id": "na_novamgmt61",
+      "trust_node_id": "na_novamgmt61",
       "contention": {
         "sockets": null,
         "system": {}
@@ -2745,6 +2778,7 @@
       },
       "tier": null,
       "id": "71815A85-9394-E111-BD1D-001E6747F3C6",
+      "trust_node_id": "71815A85-9394-E111-BD1D-001E6747F3C6",
       "contention": {
         "sockets": [
           {
@@ -2833,6 +2867,7 @@
       },
       "tier": null,
       "id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "trust_node_id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
       "contention": {
         "sockets": [
           {

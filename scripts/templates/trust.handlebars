@@ -1,16 +1,7 @@
 <div id="trust" class="container-fluid">
   <div class="row-fluid">
     {{#if isInstalled}}
-      <ul class="nav nav-pills">
-        {{!--
-        <li>{{#linkTo "trust.fingerprint"}}Fingerprint Nodes{{/linkTo}}</li>
-        <li>{{#linkTo "trust.whitelist"}}Fingerprint Manager{{/linkTo}}</li>
-        --}}
-        <li>{{#linkTo "trust.dashboard"}}Trust Dashboard{{/linkTo}}<a {{bindAttr href="dashboardUrl"}} target="_blank"><i class="icon-external-link"></i></a></li>
-        <li>{{#linkTo "trust.whitelistPortal"}}Whitelist Portal{{/linkTo}}<a {{bindAttr href="whitelistUrl"}} target="_blank"><i class="icon-external-link"></i></a></li>
-        <li>{{#linkTo "trust.management"}}Management Console{{/linkTo}}<a {{bindAttr href="managementUrl"}} target="_blank"><i class="icon-external-link"></i></a></li>
-      </ul>
-      {{outlet}}
+    {{outlet}}
     {{else}}
       <h3>Mt. Wilson</h3>
       <form class="form-horizontal well-clean shadow-lifted">

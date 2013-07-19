@@ -1,5 +1,5 @@
 App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  columns: ['select', 'health', 'state', 'status.trust', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
+  columns: ['select', 'health', 'state', 'status.trust', 'isTrustRegistered', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
   //needs: ['logBar'],
   filteredModel: function () {
     return App.Node.find();
@@ -281,6 +281,29 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
+      });
+    }
+  },
+  trustFingerprint: function (node) {
+    var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
+    if (confirmed) {
+      var jsonData = {
+        "node_id": {
+          "node_id": node.get('id')
+        }
+      };
+      var ajaxOptions = $.extend({
+        type: 'POST',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_mles',
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json',
+        dataType: 'json'
+      }, App.ajaxSetup);
+      App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        node.reload();
+        App.event('Successfully fingerprinted node "' + node.get('name') + '"', App.SUCCESS);
+      }, function (qXHR, textStatus, errorThrown) {
+        App.event('Failed to fingerprint node "' + node.get('name') + '"', App.ERROR);
       });
     }
   },

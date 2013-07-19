@@ -1,0 +1,24 @@
+{
+    "trust_node": 
+        {
+            "id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+            "node_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+            "addon_connection_string": "intel:https://172.24.0.64:9999",
+            "vmm_name": "QEMU",
+            "description": null,
+            "bios_name": "Intel_Ubuntu",
+            "hostname": "172.24.0.64",
+            "aik_certificate": null,
+            "vmm_version": "12.04-1.0.0",
+            "bios_oem": "Intel Corp.",
+            "trust_mle_ids": ["T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfVWJ1bnR1JyksICgnT2VtTmFtZScsIHUnSW50ZWwgQ29ycC4nKSwgKCdPc05hbWUnLCBOb25lKSwgKCdPc1ZlcnNpb24nLCBOb25lKSwgKCdWZXJzaW9uJywgdScwMDAyJyldKQ==",
+                        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnUUVNVScpLCAoJ09lbU5hbWUnLCBOb25lKSwgKCdPc05hbWUnLCB1J1VidW50dScpLCAoJ09zVmVyc2lvbicsIHUnMTIuMDQnKSwgKCdWZXJzaW9uJywgdScxMi4wNC0xLjAuMCcpXSk="],
+            "vmm_osname": "Ubuntu",
+            "vmm_osversion": "12.04",
+            "bios_version": "0002",
+            "ipaddress": "172.24.0.64",
+            "port": 9999,
+            "email": null,
+            "location": null
+        }
+}

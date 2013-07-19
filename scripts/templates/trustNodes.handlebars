@@ -50,31 +50,26 @@
                 <a {{action "sortModel" "status.trust"}}><i class="icon-lock icon-large"></i></a>
               {{/view}}
             </th>
-            <th {{bindAttr class=":column-small :sortable isColumn5Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Trust Registered"}}
-                <a {{action "sortModel" "isTrustRegistered"}}><i class="icon-ok icon-large"></i></a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn5Sorted:sorted sortAscending"}}>
               <a {{action "sortModel" "name"}}>Hostname</a>
             </th>
-            <th {{bindAttr class=":sortable isColumn7Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}>
               <a {{action "sortModel" "vmInfo.count"}}># of VMs</a>
             </th>
-            <th {{bindAttr class=":sortable isColumn8Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn7Sorted:sorted sortAscending"}}>
               <a {{action "sortModel" "cpuFrequency"}}>CPU</a>
             </th>
-            <th {{bindAttr class=":sortable isColumn9Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn8Sorted:sorted sortAscending"}}>
               {{#view App.TooltipView title="The SAM Unit (SU) is a measure of compute consumption of the host server"}}
                 <a {{action "sortModel" "utilization.gips_current"}}>SU</a>
               {{/view}}
             </th>
-            <th {{bindAttr class=":sortable isColumn10Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn9Sorted:sorted sortAscending"}}>
               {{#view App.TooltipView title="CPU instructions per cycle"}}
                 <a {{action "sortModel" "utilization.ipc"}}>Throughput</a>
               {{/view}}
             </th>
-            <th {{bindAttr class=":sortable isColumn11Sorted:sorted sortAscending"}}>
+            <th {{bindAttr class=":sortable isColumn10Sorted:sorted sortAscending"}}>
               {{#view App.TooltipView title="Memory utilization"}}
                 <a {{action "sortModel" "utilization.memory"}}>Memory</a>
               {{/view}}
@@ -111,11 +106,6 @@
               <td class="column-small">
                 {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
                   <i {{bindAttr class=":icon-large node.status.trust:icon-lock:icon-unlock node.status.trust:trusted:untrusted"}}></i>
-                {{/view}}
-              </td>              
-              <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.isTrustRegisteredMessage"}}
-                  <i {{bindAttr class=":icon-large node.isTrustRegistered:icon-ok:icon-minus node.isTrustRegistered:trusted:untrusted"}}></i>
                 {{/view}}
               </td>
               <td>
@@ -180,7 +170,6 @@
                         {{else}}
                           <li><a {{action addTrust node}}><i class="icon-lock"></i> Add Trust</a></li>
                         {{/if}}
-                        <li><a {{action trustFingerprint node}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                       {{/if}}
                       <li><a {{action exportTrustReport node}}><i class="icon-external-link"></i> Export Trust Report </a></li>
                       <li><a {{action unregister node}}><i class="icon-remove"></i> Unregister</a></li>
@@ -213,7 +202,6 @@
                     <li><a onclick="App.selectTab(event)">VMs</a></li>
                     <li><a onclick="App.selectTab(event)">Graphs</a></li>
                     <li><a onclick="App.selectTab(event)">Trust</a></li>
-                    <li><a onclick="App.selectTab(event)">MLEs</a></li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane active details">
@@ -331,38 +319,6 @@
                       {{else}}
                         {{#unless content.isUpdating}}
                           <div class="alert alert-info">No attestations found.</div>
-                        {{/unless}}
-                      {{/if}}
-                    </div>
-                    <div class="tab-pane mles">
-                      {{#if node.isTrustRegistered}}
-                        <table class="table table-bordered">
-                          <tr>
-                            <th>MLE Type</th>
-                            <th>Name</th>
-                            <th>OEM Name</th>
-                            <th>Attestation Type</th>
-                            <th>OS Name</th>
-                            <th>Version</th>
-                            <th>OS Version</th>
-                            <th>MLE Manifests</th>
-                          </tr>
-                          {{#each mle in node.trustNode.trustMle}}
-                            <tr>
-                              <td>{{na mle.mleType}}</td>
-                              <td>{{#linkTo trust.mle mle}}{{na mle.name}}{{/linkTo}}</td>
-                              <td>{{na mle.oemname}}</td>
-                              <td>{{na mle.attestationType}}</td>
-                              <td>{{na mle.osname}}</td>
-                              <td>{{na mle.version}}</td>
-                              <td>{{na mle.osversion}}</td>
-                              <td>{{na mle.mleManifests}}</td>
-                            </tr>
-                          {{/each}}
-                        </table>
-                      {{else}}
-                        {{#unless content.isUpdating}}
-                          <div class="alert alert-info">No MLEs found.</div>
                         {{/unless}}
                       {{/if}}
                     </div>

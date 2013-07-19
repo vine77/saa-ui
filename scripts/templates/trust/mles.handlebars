@@ -1,13 +1,6 @@
-<div id="whitelist">
+<div id="whitelist" class="container-fluid">
   <div class="row-fluid">
     <div class="content">
-      <div class="header">
-        <form id="filter-form" class="input-prepend clear-input pull-right">
-          <span class="add-on"><i class="icon-search"></i></span>
-          {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter nodes"}}
-          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
-        </form>
-      </div>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -47,7 +40,7 @@
         </thead>
         <tbody>
           {{#each mle in controller}}
-            <tr {{bindAttr class="mle.isSelected"}}>
+             <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
               <td>{{na mle.mleType}}</td>
               <td>{{na mle.name}}</td>
               <td>{{na mle.oemname}}</td>
@@ -60,9 +53,9 @@
                 <button  {{action "deleteMle" mle}} class="btn btn-mini"><i class="icon-remove"></i> Delete Fingerprint</button>
               </td>
               <td class="column-small">
-                  <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
-                    <i {{bindAttr class="mle.isActive:icon-minus:icon-plus"}}></i>
-                  </a>
+                <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
+                  <i {{bindAttr class="mle.isActive:icon-minus:icon-plus"}}></i>
+                </a>
               </td>
             </tr>
             <tr class="expandable-row">
@@ -79,7 +72,7 @@
                         </tr>
                         {{#each node in mle.trustNode}}
                           <tr>
-                            <td>node.node.name</td>
+                            <td>{{#linkTo nodesNode node.node}}{{node.node.name}}{{/linkTo}}</td>
                           </tr>
                         {{/each}}
                       </table>

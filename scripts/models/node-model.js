@@ -204,6 +204,8 @@ App.Node = DS.Model.extend({
   // Full Relationships
   vms: DS.hasMany('App.Vm'),
   nodeTrustReport: DS.belongsTo('App.NodeTrustReport'),
+  trustNode: DS.belongsTo('App.TrustNode'),
+
   didReload: function () {
     if (this.get('nodeTrustReport.isLoaded')) {
       this.get('nodeTrustReport').reload();
@@ -219,6 +221,21 @@ App.Node = DS.Model.extend({
   schedulerPersistent: DS.attr('boolean'),
 
   // Computed properties
+
+  isTrustRegistered: function () {
+    if (this.get('trustNode.ipaddress')) {
+      return true;
+    } else {
+      return false;
+    }
+  }.property('trustNode'),  
+  isTrustRegisteredMessage: function () {
+    if (this.get('trustNode.ipaddress')) {
+      return 'Currently registered with Trust Server';
+    } else {
+      return 'Not registered with Trust Server';
+    }
+  }.property('trustNode'),
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),

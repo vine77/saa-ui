@@ -47,6 +47,34 @@ DS.RESTAdapter.reopen({
       data: this.sinceQuery(since)
     }).then(
       function(json) {
+        /*
+        console.log('begin');
+        if (type == 'App.Node') { //append the reponse of trust_nodes json as embedded in nodes json
+          var trustNodesRequest = $.ajax({
+            url: "/api/v1/trust_nodes.json",
+            type: "GET",
+            dataType: "json"
+          });
+          trustNodesRequest.done(function(response) {
+            console.log('Inside of done!');
+            var trustNodes = response.trust_nodes;
+            trustNodes.forEach(function (item, index, enumerable) {
+              var currentTrustNode = item;
+              json.nodes.forEach(function (item, index, enumerable) {
+                //console.log(currentTrustNode);
+                if (item.id == currentTrustNode.id) {
+                  item.trust_node = currentTrustNode;
+                  json.nodes[index] = item;
+                  console.log('Json nodes with index object', json.nodes[index]);
+                  console.log('Entire Json inside of inner loop', json);
+                }
+              });
+            });
+            console.log('ending entire Json: ', json);
+          });
+        }
+        console.log('end');
+        */
         adapter.didFindAll(store, type, json);
       },
       function(error) {

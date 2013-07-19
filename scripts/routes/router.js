@@ -29,11 +29,12 @@ App.Router.map(function () {
     });
   });
   this.resource('trust', function () {
-    this.route('fingerprint');
-    this.route('whitelist');
+    this.resource('trust.mles', {path: 'mles'}, function () {
+     this.resource('trust.mle', {path: '/:trustMle_id'});
+    });
     this.route('dashboard');
-    this.route('whitelistPortal');
-    this.route('management');
+    //this.route('whitelistPortal');
+    //this.route('management');
   });
   this.resource('settings', function () {
     this.route('upload');
@@ -229,9 +230,17 @@ App.DashboardRoute = Ember.Route.extend({
 
 // Nodes
 App.NodesRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    App.TrustNode.find().then(function() {
+      controller.set('model', App.Node.all());
+    });
+  }
+  /*
   model: function () {
     return App.Node.all();
   }
+  */
 });
 App.NodesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
@@ -356,23 +365,34 @@ App.TrustIndexRoute = Ember.Route.extend({
   redirect: function () {
     // If Mt. Wilson is installed, go to Trust Dashboard
     if (App.mtWilson.get('isInstalled')) {
-      this.transitionTo('trust.dashboard');
+      this.transitionTo('trust.mles');
     } else {
       // If Mt. Wilson is installing, recheck status
       if (App.mtWilson.get('isInstalling')) App.mtWilson.check();
     }
   }
 });
-// Fingerprint Nodes
-App.TrustFingerprintRoute = Ember.Route.extend({
+
+// Whitelist/Fingerprint Manager
+App.TrustMlesRoute = Ember.Route.extend({
   model: function () {
-    return App.Node.find();
+    return App.TrustMle.find();
   }
 });
-// Whitelist/Fingerprint Manager
-App.TrustWhitelistRoute = Ember.Route.extend({
-  model: function () {
-    return App.Mle.find();
+
+App.TrustMlesIndexRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    App.TrustMle.all().setEach('isActive', false);
+  }
+});
+
+App.TrustMleRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    model.reload();
+    App.TrustMle.all().setEach('isActive', false);
+    model.set('isActive', true);
   }
 });
 
