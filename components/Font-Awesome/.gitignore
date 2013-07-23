@@ -8,7 +8,6 @@
 .coverage
 .DS_Store
 .installed.cfg
-_gh_pages/*
 
 .idea/*
 .svn/*
@@ -16,6 +15,7 @@ src/website/static/*
 src/website/media/*
 
 bin
+build
 cfcache
 develop-eggs
 dist

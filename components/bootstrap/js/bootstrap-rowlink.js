@@ -63,7 +63,7 @@
   * ================== */
 
   $(function () {
-    $('[data-provide="rowlink"],[data-provides="rowlink"]').each(function () {
+    $('[data-provides="rowlink"]').each(function () {
       $(this).rowlink($(this).data())
     })
   })
