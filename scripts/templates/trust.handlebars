@@ -3,13 +3,13 @@
     {{#if isInstalled}}
     {{outlet}}
     {{else}}
-      <h3>Mt. Wilson</h3>
+      <h3>Trust Server</h3>
       <form class="form-horizontal well-clean shadow-lifted">
-        <legend>Install Mt. Wilson</legend>
+        <legend>Install Trust Server</legend>
         {{#if isInstalling}}
           <div class="control-group">
             <div class="controls">
-              Installing Mt. Wilson. Installation may take 5-10 minutes.
+              Installing Trust Server. Installation may take 5-10 minutes.
             </div>
           </div>
           <div class="control-group">
@@ -21,7 +21,7 @@
           {{#if App.network.management.address}}
             <div class="control-group">
               <div class="controls">
-                Mt. Wilson is not installed.
+                Trust Server is not installed.
               </div>
             </div>
             <div class="control-group">
@@ -32,7 +32,7 @@
           {{else}}
             <div class="control-group">
               <div class="controls">
-                Please {{#linkTo settings.network}}set the management IP address{{/linkTo}} before starting the Mt. Wilson install.
+                Please {{#linkTo settings.network}}set the management IP address{{/linkTo}} before starting the Trust Server install.
               </div>
             </div>
             <div class="control-group">

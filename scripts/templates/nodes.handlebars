@@ -175,7 +175,7 @@
                     <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       {{#if App.mtWilson.isInstalled}}
-                        {{#if node.status.trust}}
+                        {{#if node.trustNode.ipaddress}}
                           <li><a {{action removeTrust node}}><i class="icon-unlock"></i> Remove Trust</a></li>
                         {{else}}
                           <li><a {{action addTrust node}}><i class="icon-lock"></i> Add Trust</a></li>

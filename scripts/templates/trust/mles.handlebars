@@ -25,11 +25,6 @@
                 <acronym title="Operating System">OS</acronym> Version
               </a>
             </th>
-            <th {{bindAttr class=":sortable isColumn8Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "mleManifests"}}>
-                <acronym title="Measured Launch Environment">MLE</acronym> Manifests
-              </a>
-            </th>
             <th class="column-medium">Actions</th>
             <th class="column-small">
               {{#if content.isUpdating}}
@@ -48,7 +43,6 @@
               <td>{{na mle.osname}}</td>
               <td>{{na mle.version}}</td>
               <td>{{na mle.osversion}}</td>
-              <td>{{na mle.mleManifests}}</td>
               <td class="column-medium">
                 <button  {{action "deleteMle" mle}} class="btn btn-mini"><i class="icon-remove"></i> Delete Fingerprint</button>
               </td>

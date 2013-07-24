@@ -254,7 +254,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       };
       var ajaxOptions = $.extend({
         type: 'POST',
-        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust/nodes',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes',
         data: JSON.stringify(jsonData),
         contentType: 'application/json',
         dataType: 'json'
@@ -272,7 +272,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     if (confirmed) {
       var ajaxOptions = $.extend({
         type: 'DELETE',
-        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust/nodes/' + node.get('id'),
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes/' + node.get('id'),
         contentType: "application/json",
         dataType: "json"
       }, App.ajaxSetup);
@@ -288,9 +288,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
     if (confirmed) {
       var jsonData = {
-        "node_id": {
-          "node_id": node.get('id')
-        }
+        "node_id": "\""+node.get('id')+"\""
       };
       var ajaxOptions = $.extend({
         type: 'POST',
