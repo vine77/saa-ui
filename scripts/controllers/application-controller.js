@@ -1,6 +1,8 @@
 App.ApplicationController = Ember.ArrayController.extend({
   buildVersionBinding: 'App.Build.firstObject.version',
   buildDateBinding: 'App.Build.firstObject.date',
+  //buildVersionBinding: 'App.Build.firstObject.version',
+  //buildDateBinding: 'App.build.date',
   loggedInBinding: 'App.login.loggedIn',
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   logsUrl: function() {

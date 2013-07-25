@@ -1,6 +1,16 @@
 App.Application = Ember.Object.extend({
   fullTitle: 'Intel® Service Assurance Manager',
   longTitle: 'Service Assurance Manager',
+  //buildVersionBinding: 'App.Build.firstObject.version',
+  //buildDateBinding: 'App.Build.firstObject.date',
+  buildVersion: function() {
+    
+    App.build.find().then(function(){
+      console.log('inside');
+      return 'test';
+    });
+   
+  }.property('App.build.version'),
   title: 'SAM',
   year: function () {
     return moment().format('YYYY')
