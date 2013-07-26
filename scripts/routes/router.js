@@ -232,9 +232,15 @@ App.DashboardRoute = Ember.Route.extend({
 App.NodesRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    App.TrustNode.find().then(function() {
+    if (App.mtWilson.get('isInstalled') === true) {
+      App.TrustNode.find().then(function() {
+        controller.set('model', App.Node.all());
+      });
+    } else {
       controller.set('model', App.Node.all());
-    });
+    }
+
+
   }
   /*
   model: function () {
