@@ -264,7 +264,7 @@
                         {{/if}}
                       </div>
                       <div class="tab-pane instantiation">
-                        {{#if vm.vmInstantiationSimple}}
+                        {{#if vm.vmInstantiationSimple.generation_time}}
                           <table class="table table-bordered">
                             <tbody>
                               <tr>
@@ -350,7 +350,7 @@
                         {{/if}}
                       </div>
                       <div class="tab-pane instantiation-detailed">
-                        {{#if vm.vmInstantiationDetailed}}
+                        {{#if vm.vmInstantiationDetailed.generation_time}}
                           <table class="table table-bordered">
                               <tbody>
                                 <tr>

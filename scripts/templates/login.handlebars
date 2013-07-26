@@ -21,23 +21,25 @@
         {{view Ember.TextField valueBinding="username" id="username" placeholder="Username" autofocus="autofocus"}}
       </div>
       {{#if changingPassword}}
-        <label for="inputOldPassword"><small>Current Password</small></label>
+        <label for="inputOldPassword"><small>Current Password</small> {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}</label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
           {{view Ember.TextField valueBinding="oldPassword" id="old_password" placeholder="Current Password" type="password"}}
         </div>
-        <label for="inputNewPassword1"><small>New Password</small></label>
+        <label for="inputNewPassword1"><small>New Password</small> {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}</label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
           {{view Ember.TextField valueBinding="newPassword1" id="new_password_1" placeholder="New Password" type="password"}}
         </div>
-        <label for="inputNewPassword2"><small>New Password again</small></label>
+        <label for="inputNewPassword2"><small>New Password again</small> {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}</label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
           {{view Ember.TextField valueBinding="newPassword2" id="new_password_2" placeholder="New Password" type="password"}}
         </div>
       {{else}}
-        <label for="inputPassword"><small>Password</small></label>
+        <label for="inputPassword"><small>Password</small>   
+          {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
+        </label> 
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
           {{view Ember.TextField valueBinding="password" id="password" placeholder="Password" type="password"}}

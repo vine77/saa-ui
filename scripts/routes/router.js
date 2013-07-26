@@ -49,21 +49,26 @@ App.Router.map(function () {
 App.ApplicationRoute = Ember.Route.extend({
   initData: function() {
     // Load data from APIs
-    if ((App.nova.get('exists') === true) && (App.openrc.get('exists') === true)) {
-
-      if (App.mtWilson.get('isInstalled') === true) {
-        App.TrustNode.find().then(function() {
+    App.mtWilson.check().then(function() {
+      // Load data from APIs
+      if (App.application.get('isEnabled')) {
+        if (App.mtWilson.get('isInstalled') === true) {
+          App.TrustNode.find().then(function() {
+            App.Node.find();
+          });
+        } else {
           App.Node.find();
-        });
-      } else {
-        App.Node.find();
+        }
+        App.Vm.find();
       }
-
+    },
+    function() {
+      App.Node.find();
       App.Vm.find();
-    }
+    });
 
     //Workaround: This call returns error 410 - ignored
-    App.mtWilson.check();
+    //App.mtWilson.check();
     App.users = App.User.find();
     var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.users];
     return Ember.RSVP.all(promises);
@@ -398,7 +403,7 @@ App.TrustMlesRoute = Ember.Route.extend({
 App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    if (App.mtWilson.get('isInstalled') === true) { //workaround because authentication executes this on logout!
+    if (App.mtWilson.get('isInstalled') === true) {
       App.TrustNode.find().then(function() {
         controller.set('model', App.TrustMle.all());
       });

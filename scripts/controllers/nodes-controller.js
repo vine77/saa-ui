@@ -271,6 +271,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   removeTrust: function (node) {
     var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
     if (confirmed) {
+      console.log('we are inside of confirmed');
       var ajaxOptions = $.extend({
         type: 'DELETE',
         url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes/' + node.get('id'),
@@ -278,10 +279,13 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         dataType: "json"
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        console.log('inside of success');
         node.reload();
         node.get('trustNode').reload();
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
+        console.log('inside of error block');
+        console.log(errorThrown);
         App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
       });
     }
