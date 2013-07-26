@@ -404,10 +404,14 @@ App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (App.mtWilson.get('isInstalled') === true) {
 =======
     if (App.mtWilson.get('isInstalled') === true) { //workaround because authentication executes this on logout!
 >>>>>>> 7a5e315... Round 4 of Trust integration updates + GUI Build
+=======
+    if (App.mtWilson.get('isInstalled') === true) {
+>>>>>>> 7b8302f... -Addressed handling of trust nodes inside of initData of router. -Defect of VM instantiation reports resolved. -Added case senstive tooltips to password fields.
       App.TrustNode.find().then(function() {
         controller.set('model', App.TrustMle.all());
       });
