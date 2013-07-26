@@ -301,6 +301,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
         node.reload();
+        node.get('trustNode').reload();
         App.event('Successfully fingerprinted node "' + node.get('name') + '"', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to fingerprint node "' + node.get('name') + '"', App.ERROR);
