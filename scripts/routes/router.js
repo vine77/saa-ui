@@ -403,7 +403,11 @@ App.TrustMlesRoute = Ember.Route.extend({
 App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
+<<<<<<< HEAD
     if (App.mtWilson.get('isInstalled') === true) {
+=======
+    if (App.mtWilson.get('isInstalled') === true) { //workaround because authentication executes this on logout!
+>>>>>>> 7a5e315... Round 4 of Trust integration updates + GUI Build
       App.TrustNode.find().then(function() {
         controller.set('model', App.TrustMle.all());
       });
