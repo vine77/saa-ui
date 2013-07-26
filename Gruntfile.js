@@ -17,9 +17,9 @@ module.exports = function (grunt) {
   grunt.initConfig({
     paths: pathsConfig,
     watch: {
-      ember_templates: {
+      emberTemplates: {
         files: ['<%= paths.source %>/scripts/templates/**/*.handlebars'],
-        tasks: ['ember_templates']
+        tasks: ['emberTemplates']
       },
       coffee: {
         files: ['<%= paths.source %>/scripts/*.coffee'],
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
         'test/spec/*.js'
       ]
     },
-    ember_templates: {
+    emberTemplates: {
       options: {
         templateName: function (sourceFile) {
           return sourceFile.replace(pathsConfig.source + '/scripts/templates/', '');
@@ -299,7 +299,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:temp',
-      'ember_templates:server',
+      'emberTemplates:server',
       'less:server',
       'livereload-start',
       'connect:livereload',
@@ -316,7 +316,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'jshint',
     //'test',
-    'ember_templates:dist',
+    'emberTemplates:dist',
     'less:dist',
     'useminPrepare',
     //'imagemin',

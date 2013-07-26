@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Accordion 1.10.3
+ * jQuery UI Accordion 1.10.1
  * http://jqueryui.com
  *
  * Copyright 2013 jQuery Foundation and other contributors
@@ -24,7 +24,7 @@ showProps.height = showProps.paddingTop = showProps.paddingBottom =
 	showProps.borderTopWidth = showProps.borderBottomWidth = "show";
 
 $.widget( "ui.accordion", {
-	version: "1.10.3",
+	version: "1.10.1",
 	options: {
 		active: 0,
 		animate: {},
@@ -221,7 +221,7 @@ $.widget( "ui.accordion", {
 			options.active = false;
 			this.active = $();
 		// active false only when collapsible is true
-		} else if ( options.active === false ) {
+		} if ( options.active === false ) {
 			this._activate( 0 );
 		// was active, but active panel is gone
 		} else if ( this.active.length && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {

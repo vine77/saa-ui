@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Autocomplete 1.10.3
+ * jQuery UI Autocomplete 1.10.1
  * http://jqueryui.com
  *
  * Copyright 2013 jQuery Foundation and other contributors
@@ -20,7 +20,7 @@
 var requestIndex = 0;
 
 $.widget( "ui.autocomplete", {
-	version: "1.10.3",
+	version: "1.10.1",
 	defaultElement: "<input>",
 	options: {
 		appendTo: null,
@@ -142,9 +142,7 @@ $.widget( "ui.autocomplete", {
 			keypress: function( event ) {
 				if ( suppressKeyPress ) {
 					suppressKeyPress = false;
-					if ( !this.isMultiLine || this.menu.element.is( ":visible" ) ) {
-						event.preventDefault();
-					}
+					event.preventDefault();
 					return;
 				}
 				if ( suppressKeyPressRepeat ) {
@@ -197,6 +195,8 @@ $.widget( "ui.autocomplete", {
 			.addClass( "ui-autocomplete ui-front" )
 			.appendTo( this._appendTo() )
 			.menu({
+				// custom key handling for now
+				input: $(),
 				// disable ARIA support, the live region takes care of that
 				role: null
 			})
@@ -234,8 +234,7 @@ $.widget( "ui.autocomplete", {
 				}
 			},
 			menufocus: function( event, ui ) {
-				// support: Firefox
-				// Prevent accidental activation of menu items in Firefox (#7024 #9118)
+				// #7024 - Prevent accidental activation of menu items in Firefox
 				if ( this.isNewMenu ) {
 					this.isNewMenu = false;
 					if ( event.originalEvent && /^mouse/.test( event.originalEvent.type ) ) {
@@ -298,7 +297,7 @@ $.widget( "ui.autocomplete", {
 				"aria-live": "polite"
 			})
 			.addClass( "ui-helper-hidden-accessible" )
-			.insertBefore( this.element );
+			.insertAfter( this.element );
 
 		// turning off autocomplete prevents the browser from remembering the
 		// value when navigating through history, so we re-enable autocomplete
@@ -491,7 +490,6 @@ $.widget( "ui.autocomplete", {
 	_suggest: function( items ) {
 		var ul = this.menu.element.empty();
 		this._renderMenu( ul, items );
-		this.isNewMenu = true;
 		this.menu.refresh();
 
 		// size and position menu

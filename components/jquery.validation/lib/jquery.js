@@ -2,8 +2,6 @@
 
 var parts = document.location.search.slice( 1 ).split( "&" ),
 	length = parts.length,
-	scripts = document.getElementsByTagName("script"),
-	src = scripts[ scripts.length - 1].src,
 	i = 0,
 	current,
 	version = "1.9.0",
@@ -18,7 +16,7 @@ for ( ; i < length; i++ ) {
 }
 
 if (version != "git") {
-	file = src.replace(/jquery\.js$/, "jquery-" + version + ".js");
+	file = "../lib/jquery-" + version + ".js";
 }
 
 

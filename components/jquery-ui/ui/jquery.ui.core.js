@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Core 1.10.3
+ * jQuery UI Core 1.10.1
  * http://jqueryui.com
  *
  * Copyright 2013 jQuery Foundation and other contributors
@@ -13,11 +13,16 @@
 var uuid = 0,
 	runiqueId = /^ui-id-\d+$/;
 
-// $.ui might exist from components with no dependencies, e.g., $.ui.position
+// prevent duplicate loading
+// this is only a problem because we proxy existing functions
+// and we don't want to double proxy them
 $.ui = $.ui || {};
+if ( $.ui.version ) {
+	return;
+}
 
 $.extend( $.ui, {
-	version: "1.10.3",
+	version: "1.10.1",
 
 	keyCode: {
 		BACKSPACE: 8,
@@ -47,21 +52,20 @@ $.extend( $.ui, {
 
 // plugins
 $.fn.extend({
-	focus: (function( orig ) {
-		return function( delay, fn ) {
-			return typeof delay === "number" ?
-				this.each(function() {
-					var elem = this;
-					setTimeout(function() {
-						$( elem ).focus();
-						if ( fn ) {
-							fn.call( elem );
-						}
-					}, delay );
-				}) :
-				orig.apply( this, arguments );
-		};
-	})( $.fn.focus ),
+	_focus: $.fn.focus,
+	focus: function( delay, fn ) {
+		return typeof delay === "number" ?
+			this.each(function() {
+				var elem = this;
+				setTimeout(function() {
+					$( elem ).focus();
+					if ( fn ) {
+						fn.call( elem );
+					}
+				}, delay );
+			}) :
+			this._focus.apply( this, arguments );
+	},
 
 	scrollParent: function() {
 		var scrollParent;
@@ -267,7 +271,7 @@ $.fn.extend({
 });
 
 $.extend( $.ui, {
-	// $.ui.plugin is deprecated. Use $.widget() extensions instead.
+	// $.ui.plugin is deprecated.  Use the proxy pattern instead.
 	plugin: {
 		add: function( module, option, set ) {
 			var i,

@@ -1,5 +1,5 @@
-// Version: v0.13-8-g91b7adb
-// Last commit: 91b7adb (2013-05-29 12:02:58 -0700)
+// Version: v0.13-17-g8adb337
+// Last commit: 8adb337 (2013-06-05 19:24:24 -0700)
 
 
 (function() {
@@ -802,8 +802,6 @@ DS.Transaction = Ember.Object.extend({
     current transaction should not be used again.
   */
   rollback: function() {
-    var store = get(this, 'store');
-
     // Destroy all relationship changes and compute
     // all references affected
     var references = Ember.OrderedSet.create();
@@ -1771,8 +1769,7 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
 
     var unloadedReferences = this.unloadedReferences(references),
         manyArray = this.recordArrayManager.createManyArray(type, Ember.A(references)),
-        loadingRecordArrays = this.loadingRecordArrays,
-        reference, clientId, i, l;
+        reference, i, l;
 
     // Start the decrementing counter on the ManyArray at the number of
     // records we need to load from the adapter
@@ -4488,8 +4485,6 @@ DS.RelationshipChange.prototype = {
 
   /** @private */
   getByReference: function(reference) {
-    var store = this.store;
-
     // return null or undefined if the original reference was null or undefined
     if (!reference) { return reference; }
 
@@ -4797,8 +4792,7 @@ DS.hasMany = function(type, options) {
 };
 
 function clearUnmaterializedHasMany(record, relationship) {
-  var store = get(record, 'store'),
-      data = get(record, 'data').hasMany;
+  var data = get(record, 'data').hasMany;
 
   var references = data[relationship.key];
 
@@ -8450,8 +8444,6 @@ DS.RESTSerializer = DS.JSONSerializer.extend({
 
 
 (function() {
-/*global jQuery*/
-
 /**
   @module data
   @submodule data-adapters

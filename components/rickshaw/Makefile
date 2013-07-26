@@ -55,10 +55,10 @@ $(CSS_MIN):
 $(JS_MIN):
 	npm install uglify-js
 
-rickshaw.css: $(CSS_FILES)
+rickshaw.css:
 	cat $(CSS_FILES) > rickshaw.css
 
-rickshaw.js: $(JS_FILES)
+rickshaw.js:
 	cat $(JS_FILES) > rickshaw.js
 
 rickshaw.min.css: $(CSS_MIN) rickshaw.css

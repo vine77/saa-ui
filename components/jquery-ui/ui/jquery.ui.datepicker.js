@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Datepicker 1.10.3
+ * jQuery UI Datepicker 1.10.1
  * http://jqueryui.com
  *
  * Copyright 2013 jQuery Foundation and other contributors
@@ -13,9 +13,10 @@
  */
 (function( $, undefined ) {
 
-$.extend($.ui, { datepicker: { version: "1.10.3" } });
+$.extend($.ui, { datepicker: { version: "1.10.1" } });
 
 var PROP_NAME = "datepicker",
+	dpuuid = new Date().getTime(),
 	instActive;
 
 /* Date picker manager.
@@ -752,10 +753,9 @@ $.extend(Datepicker.prototype, {
 				inst.dpDiv[showAnim || "show"](showAnim ? duration : null);
 			}
 
-			if ( $.datepicker._shouldFocusInput( inst ) ) {
+			if (inst.input.is(":visible") && !inst.input.is(":disabled")) {
 				inst.input.focus();
 			}
-
 			$.datepicker._curInst = inst;
 		}
 	},
@@ -782,7 +782,10 @@ $.extend(Datepicker.prototype, {
 		inst.dpDiv[(this._get(inst, "isRTL") ? "add" : "remove") +
 			"Class"]("ui-datepicker-rtl");
 
-		if (inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput( inst ) ) {
+		// #6694 - don't focus the input if it's already focused
+		// this breaks the change event in IE
+		if (inst === $.datepicker._curInst && $.datepicker._datepickerShowing && inst.input &&
+			inst.input.is(":visible") && !inst.input.is(":disabled") && inst.input[0] !== document.activeElement) {
 			inst.input.focus();
 		}
 
@@ -799,11 +802,16 @@ $.extend(Datepicker.prototype, {
 		}
 	},
 
-	// #6694 - don't focus the input if it's already focused
-	// this breaks the change event in IE
-	// Support: IE and jQuery <1.9
-	_shouldFocusInput: function( inst ) {
-		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" ) && !inst.input.is( ":focus" );
+	/* Retrieve the size of left and top borders for an element.
+	 * @param  elem  (jQuery object) the element of interest
+	 * @return  (number[2]) the left and top borders
+	 */
+	_getBorders: function(elem) {
+		var convert = function(value) {
+			return {thin: 1, medium: 2, thick: 3}[value] || value;
+		};
+		return [parseFloat(convert(elem.css("border-left-width"))),
+			parseFloat(convert(elem.css("border-top-width")))];
 	},
 
 	/* Check positioning to remain on screen. */
@@ -1550,27 +1558,27 @@ $.extend(Datepicker.prototype, {
 		inst.dpDiv.find("[data-handler]").map(function () {
 			var handler = {
 				prev: function () {
-					$.datepicker._adjustDate(id, -stepMonths, "M");
+					window["DP_jQuery_" + dpuuid].datepicker._adjustDate(id, -stepMonths, "M");
 				},
 				next: function () {
-					$.datepicker._adjustDate(id, +stepMonths, "M");
+					window["DP_jQuery_" + dpuuid].datepicker._adjustDate(id, +stepMonths, "M");
 				},
 				hide: function () {
-					$.datepicker._hideDatepicker();
+					window["DP_jQuery_" + dpuuid].datepicker._hideDatepicker();
 				},
 				today: function () {
-					$.datepicker._gotoToday(id);
+					window["DP_jQuery_" + dpuuid].datepicker._gotoToday(id);
 				},
 				selectDay: function () {
-					$.datepicker._selectDay(id, +this.getAttribute("data-month"), +this.getAttribute("data-year"), this);
+					window["DP_jQuery_" + dpuuid].datepicker._selectDay(id, +this.getAttribute("data-month"), +this.getAttribute("data-year"), this);
 					return false;
 				},
 				selectMonth: function () {
-					$.datepicker._selectMonthYear(id, this, "M");
+					window["DP_jQuery_" + dpuuid].datepicker._selectMonthYear(id, this, "M");
 					return false;
 				},
 				selectYear: function () {
-					$.datepicker._selectMonthYear(id, this, "Y");
+					window["DP_jQuery_" + dpuuid].datepicker._selectMonthYear(id, this, "Y");
 					return false;
 				}
 			};
@@ -2033,6 +2041,10 @@ $.fn.datepicker = function(options){
 $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.10.3";
+$.datepicker.version = "1.10.1";
+
+// Workaround for #4055
+// Add another global to avoid noConflict issues with inline event handlers
+window["DP_jQuery_" + dpuuid] = $;
 
 })(jQuery);
