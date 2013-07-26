@@ -49,8 +49,18 @@ App.Router.map(function () {
 App.ApplicationRoute = Ember.Route.extend({
   initData: function() {
     // Load data from APIs
-    App.Node.find();
-    App.Vm.find();
+    if ((App.nova.get('exists') === true) && (App.openrc.get('exists') === true)) {
+
+      if (App.mtWilson.get('isInstalled') === true) {
+        App.TrustNode.find().then(function() {
+          App.Node.find();
+        });
+      } else {
+        App.Node.find();
+      }
+
+      App.Vm.find();
+    }
 
     //Workaround: This call returns error 410 - ignored
     App.mtWilson.check();
@@ -239,8 +249,6 @@ App.NodesRoute = Ember.Route.extend({
     } else {
       controller.set('model', App.Node.all());
     }
-
-
   }
   /*
   model: function () {
@@ -371,7 +379,7 @@ App.TrustIndexRoute = Ember.Route.extend({
   redirect: function () {
     // If Mt. Wilson is installed, go to Trust Dashboard
     if (App.mtWilson.get('isInstalled')) {
-      this.transitionTo('trust.mles');
+      this.transitionTo('trust.mles.index');
     } else {
       // If Mt. Wilson is installing, recheck status
       if (App.mtWilson.get('isInstalling')) App.mtWilson.check();
@@ -383,22 +391,30 @@ App.TrustIndexRoute = Ember.Route.extend({
 App.TrustMlesRoute = Ember.Route.extend({
   model: function () {
     return App.TrustMle.find();
-  }
+  },
+
 });
 
 App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    App.TrustMle.all().setEach('isActive', false);
+    if (App.mtWilson.get('isInstalled') === true) { //workaround because authentication executes this on logout!
+      App.TrustNode.find().then(function() {
+        controller.set('model', App.TrustMle.all());
+      });
+      App.TrustMle.all().setEach('isActive', false);
+    }
   }
 });
 
 App.TrustMleRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    model.reload();
-    App.TrustMle.all().setEach('isActive', false);
-    model.set('isActive', true);
+    if (App.mtWilson.get('isInstalled') === true) {
+      model.reload();
+      App.TrustMle.all().setEach('isActive', false);
+      model.set('isActive', true);
+    }
   }
 });
 

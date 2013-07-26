@@ -34,48 +34,64 @@
           </tr>
         </thead>
         <tbody>
-          {{#each mle in controller}}
-             <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
-              <td>{{na mle.mleType}}</td>
-              <td>{{na mle.name}}</td>
-              <td>{{na mle.oemname}}</td>
-              <td>{{na mle.attestationType}}</td>
-              <td>{{na mle.osname}}</td>
-              <td>{{na mle.version}}</td>
-              <td>{{na mle.osversion}}</td>
-              <td class="column-medium">
-                <button  {{action "deleteMle" mle}} class="btn btn-mini"><i class="icon-remove"></i> Delete Fingerprint</button>
-              </td>
-              <td class="column-small">
-                <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
-                  <i {{bindAttr class="mle.isActive:icon-minus:icon-plus"}}></i>
-                </a>
-              </td>
-            </tr>
-            <tr class="expandable-row">
-              <td colspan="100%">
-                <div class="details">
-                  <ul class="nav nav-tabs">
-                    <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
-                  </ul>
-                  <div class="tab-content">
-                    <div class="tab-pane active nodes">
-                      <table class="table table-bordered">
-                        <tr>
-                          <th>Hostname</th>
-                        </tr>
-                        {{#each node in mle.trustNode}}
-                          <tr>
-                            <td>{{#linkTo nodesNode node.node}}{{node.node.name}}{{/linkTo}}</td>
-                          </tr>
-                        {{/each}}
-                      </table>
+          {{#if model}} 
+            {{#each mle in controller}}
+               <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
+                <td>{{na mle.mleType}}</td>
+                <td>{{na mle.name}}</td>
+                <td>{{na mle.oemname}}</td>
+                <td>{{na mle.attestationType}}</td>
+                <td>{{na mle.osname}}</td>
+                <td>{{na mle.version}}</td>
+                <td>{{na mle.osversion}}</td>
+                <td class="column-medium">
+                  <button  {{action "deleteMle" mle}} class="btn btn-mini"><i class="icon-remove"></i> Delete Fingerprint</button>
+                </td>
+                <td class="column-small">
+                  <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
+                    <i {{bindAttr class="mle.isActive:icon-minus:icon-plus"}}></i>
+                  </a>
+                </td>
+              </tr>
+              <tr class="expandable-row">
+                <td colspan="100%">
+                  <div class="details">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane active nodes">
+                        {{#if mle.trustNode}}
+                          <table class="table table-bordered">
+                            <tr>
+                              <th>Hostname</th>
+                            </tr>
+                            {{#each node in mle.trustNode}}
+                              <tr>
+                                <td>{{#linkTo nodesNode node.node}}{{node.node.name}}{{/linkTo}}</td>
+                              </tr>
+                            {{/each}}
+                          </table>
+                        {{else}}
+                          {{#unless content.isUpdating}}
+                            <div class="alert alert-info">No trust nodes found.</div>
+                          {{/unless}}
+                        {{/if}}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </td>
+              </tr>
+            {{/each}}
+          {{else}}
+            <tr>
+              <td colspan="100%">
+                {{#unless content.isUpdating}}
+                  <div class="alert alert-info">No MLEs found.</div>
+                {{/unless}}
               </td>
             </tr>
-          {{/each}}
+          {{/if}}
         </tbody>
       </table>
     </div>

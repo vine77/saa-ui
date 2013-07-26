@@ -261,6 +261,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
         node.reload();
+        node.get('nodeTrust').reload();
         App.event('Successfully registered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to register node "' + node.get('name') + '" as trusted', App.ERROR);
@@ -278,6 +279,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
         node.reload();
+        node.get('trustNode').reload();
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
@@ -288,7 +290,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
     if (confirmed) {
       var jsonData = {
-        "node_id": "\""+node.get('id')+"\""
+        "node_id": node.get('id')
       };
       var ajaxOptions = $.extend({
         type: 'POST',
@@ -307,6 +309,12 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   },
   refresh: function () {
     App.Node.all().clear();
-    App.Node.find();
+    if (App.mtWilson.get('isInstalled') === true) {
+      App.TrustNode.find().then(function() {
+        App.Node.find();
+      });
+    } else {
+      App.Node.find();
+    }
   }
 });
