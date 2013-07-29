@@ -3,14 +3,6 @@ App.Application = Ember.Object.extend({
   longTitle: 'Service Assurance Manager',
   //buildVersionBinding: 'App.Build.firstObject.version',
   //buildDateBinding: 'App.Build.firstObject.date',
-  buildVersion: function() {
-    
-    App.build.find().then(function(){
-      console.log('inside');
-      return 'test';
-    });
-   
-  }.property('App.build.version'),
   title: 'SAM',
   year: function () {
     return moment().format('YYYY')
@@ -43,9 +35,9 @@ App.Application = Ember.Object.extend({
           App.application.set('statusMessages', App.Status.find('current').get('messages'));
           if (App.priorityToType(status.get('health')) == 'unknown') {
             var statusStyle = 'alert-info';
-            console.log('unknown:'+status.get('health'));
+            //console.log('unknown:'+status.get('health'));
           } else {
-            console.log('not unkown:'+status.get('health'));
+            //console.log('not unkown:'+status.get('health'));
             var statusStyle = 'alert-' + App.priorityToType(status.get('health'));
           }
           App.application.set('statusStyle', statusStyle);
