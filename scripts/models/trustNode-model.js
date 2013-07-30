@@ -17,5 +17,8 @@ App.TrustNode = DS.Model.extend({
   ipaddress: DS.attr('string'),
   port: DS.attr('number'),
   email: DS.attr('string'),
-  location: DS.attr('string')
+  location: DS.attr('string'),
+  becameError: function() {
+    this.get('stateManager').transitionTo('rootState.loaded.saved');
+  }
 });

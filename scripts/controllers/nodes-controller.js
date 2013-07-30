@@ -260,9 +260,19 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         dataType: 'json'
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
-        node.reload();
-        node.get('nodeTrust').reload();
         App.event('Successfully registered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+        if (App.TrustNode.find(node.get('id')).get('isLoaded')) {
+          App.TrustNode.find(node.get('id')).get('stateManager').transitionTo('rootState.loaded.saved');
+          App.TrustNode.find(node.get('id')).reload().then(function() {
+            node.reload();
+          }, function (){
+            node.reload();
+          });
+        } else {
+          App.TrustNode.find(node.get('id')).then(function(){
+            node.reload();
+          });
+        }
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to register node "' + node.get('name') + '" as trusted', App.ERROR);
       });
@@ -270,6 +280,13 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   },
   removeTrust: function (node) {
     var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
+    
+    if (confirmed) {
+      App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+      node.get('trustNode').deleteRecord();
+      node.get('transaction').commit();
+    }
+    /*
     if (confirmed) {
       var ajaxOptions = $.extend({
         type: 'DELETE',
@@ -278,13 +295,16 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         dataType: "json"
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
-        node.reload();
-        node.get('trustNode').reload();
+        //node.reload();
+        //node.get('trustNode').reload();
+          
+          node.get('trustNode').get('stateManager').transitionTo('rootState.loaded.saved');
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
       });
     }
+    */
   },
   trustFingerprint: function (node) {
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');

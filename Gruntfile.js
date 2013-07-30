@@ -330,5 +330,24 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
+    grunt.registerTask('build-lite', [
+    'clean:dist',
+    'jshint',
+    //'test',
+    'emberTemplates:dist',
+    'less:dist',
+    'useminPrepare',
+    //'imagemin',
+    'htmlmin',
+    'concat',
+    //'uglify',
+    'usemin',
+    //'cssmin',
+    'clean:public',
+    'copy',
+    'clean:dist'
+  ]);
+
+
   grunt.registerTask('default', ['build']);
 };

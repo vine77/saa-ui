@@ -396,8 +396,7 @@ App.TrustIndexRoute = Ember.Route.extend({
 App.TrustMlesRoute = Ember.Route.extend({
   model: function () {
     return App.TrustMle.find();
-  },
-
+  }
 });
 
 App.TrustMlesIndexRoute = Ember.Route.extend({
