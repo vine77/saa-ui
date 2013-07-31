@@ -286,7 +286,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.get('trustNode').deleteRecord();
       node.get('transaction').commit();
     }
-    /*
+
+    /**Solution leaves cache still populated. 
+    /**Cache needs to be destroyed, and isTrustRegistered computed property needs to be triggered.
+
     if (confirmed) {
       var ajaxOptions = $.extend({
         type: 'DELETE',
@@ -295,16 +298,18 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         dataType: "json"
       }, App.ajaxSetup);
       App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
-        //node.reload();
-        //node.get('trustNode').reload();
-          
-          node.get('trustNode').get('stateManager').transitionTo('rootState.loaded.saved');
+
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+        App.TrustNode.all().clear();
+        App.TrustMle.all().clear();
+        App.TrustNode.find();
+        App.TrustMle.find();
+
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
       });
     }
-    */
+    **/
   },
   trustFingerprint: function (node) {
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');

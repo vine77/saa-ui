@@ -25,7 +25,6 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
           }, function (qXHR, textStatus, errorThrown) {
             App.event('Failed to delete fingerprint "' + mle.get('name') + '"', App.ERROR);
           });
-          
           //mle.get('transaction').commit();
         }
       }

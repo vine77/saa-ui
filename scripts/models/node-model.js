@@ -228,14 +228,16 @@ App.Node = DS.Model.extend({
     } else {
       return false;
     }
-  }.property('trustNode'),  
+  }.property('trustNode.ipaddress'),  
+  
   isTrustRegisteredMessage: function () {
     if (this.get('trustNode.ipaddress')) {
       return 'Currently registered with Trust Server';
     } else {
       return 'Not registered with Trust Server';
     }
-  }.property('trustNode'),
+  }.property('trustNode.ipaddress'),
+  
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),
