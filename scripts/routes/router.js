@@ -63,8 +63,10 @@ App.ApplicationRoute = Ember.Route.extend({
       }
     },
     function() {
-      App.Node.find();
-      App.Vm.find();
+      if (App.application.get('isEnabled')) {
+        App.Node.find();
+        App.Vm.find();
+      }
     });
 
     //Workaround: This call returns error 410 - ignored

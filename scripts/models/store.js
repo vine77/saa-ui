@@ -81,7 +81,9 @@ DS.RESTAdapter.reopen({
         store.didUpdateAll(type);
         customErrorHandling = typeof customErrorHandling !== 'undefined' ? customErrorHandling : true;
         if (customErrorHandling) {
-          App.event(App.errorMessage(JSON.parse(error.responseText)), App.ERROR);
+
+          App.event(App.errorMessage(JSON.parse(error.responseText)), App.ERROR, false);
+
         } // else { return return this._super(store, type, since, customErrorHandling) }
       }
     ).then(null, DS.rejectionHandler);
