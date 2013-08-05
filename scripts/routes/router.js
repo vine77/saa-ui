@@ -1,5 +1,6 @@
 App.Router.map(function () {
   this.resource('login');
+  this.resource('profile');
   this.resource('modal');
   this.resource('dashboard');
   this.resource('help');
@@ -39,6 +40,7 @@ App.Router.map(function () {
   this.resource('settings', function () {
     this.route('upload');
     this.route('network');
+    this.route('mailserver');
     this.route('users');
     this.route('dev');
     this.route('log');
@@ -72,7 +74,7 @@ App.ApplicationRoute = Ember.Route.extend({
     //Workaround: This call returns error 410 - ignored
     //App.mtWilson.check();
     App.users = App.User.find();
-    var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.users];
+    var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.mailserver.check(), App.users];
     return Ember.RSVP.all(promises);
   },
   redirect: function () {
@@ -135,11 +137,25 @@ App.ApplicationRoute = Ember.Route.extend({
         App.login.set('password', '');
         var session = App.Session.createRecord({"username": username, "password": password});
         session.on('didCreate', redirectPage);
-        session.on('becameInvalid', function () {
+        session.on('becameInvalid', function (error) {
           router.controllerFor('login').setDisable(false);
-          App.login.set('changingPassword', true);
-          App.login.set('retPath', '');
-          router.controllerFor('login').showNotification('Please change the password');
+          ret = JSON.parse(error.error)
+          if(ret.set_profile)
+          {
+            App.login.set('editProfile', true);
+            if(ret.mail_server)
+                App.login.set('configMailServer', true);
+            App.login.set('retPath', 'login');
+            router.transitionTo('profile')
+            router.controllerFor('profile').showNotification('Please enter the profile information.');
+            $('#profile-notification').show();            
+          }
+          else if (ret.change_password)
+          {
+            App.login.set('changingPassword', true);
+            App.login.set('retPath', '');
+            router.controllerFor('login').showNotification('Please change the password');
+          }
         });
         session.on('becameError', function () {
           router.controllerFor('login').setDisable(false);
@@ -184,7 +200,6 @@ App.ApplicationRoute = Ember.Route.extend({
       App.login.set('newPassword2', '');
       if (new_password != new_password_2) {
         router.controllerFor('login').showNotification("Passwords don't match");
-        this.get('stateManager').transitionTo('loaded.saved');
         return;
       }
 
@@ -201,11 +216,19 @@ App.ApplicationRoute = Ember.Route.extend({
           if(App.login.get('retPath') != '') {
             router.transitionTo(App.login.get('retPath'));
           }
+          user.reload();
+          user.off('didLoad');
+          user.off('didUpdate');
+          user.off('becameError');          
         });
         user.on('becameError', function () {
           router.controllerFor('login').showNotification("Unable to change the password");
           router.controllerFor('login').setDisable(false);
           this.get('stateManager').transitionTo('loaded.saved');
+          this.reload();          
+          user.off('didLoad');
+          user.off('didUpdate');
+          user.off('becameError');          
         });
         user.get('transaction').commit();
       };
@@ -218,6 +241,10 @@ App.ApplicationRoute = Ember.Route.extend({
           router.controllerFor('login').showNotification("Unable to change the password");
           router.controllerFor('login').setDisable(false);
           this.get('stateManager').transitionTo('loaded.saved');
+          this.reload();          
+          user.off('didLoad');
+          user.off('didUpdate');
+          user.off('becameError');          
         });
         user.get('transaction').commit();
       }
@@ -442,4 +469,3 @@ App.SettingsLogRoute = Ember.Route.extend({
     return App.settingsLog.fetch();
   }
 });
-

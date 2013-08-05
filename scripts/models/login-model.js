@@ -8,6 +8,7 @@ App.Login = Ember.Object.extend({
   message: '',
   changingPassword: false,
   loggedIn: false,
+  resetPassword: false,
   rememberMe: false
 });
 App.login = App.Login.create();

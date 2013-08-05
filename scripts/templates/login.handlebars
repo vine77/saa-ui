@@ -12,7 +12,11 @@
     {{#if changingPassword}}
       <div class="header" style="text-align:left;">Change Password</div>
     {{else}}
-      <div class="header" style="text-align:left;">User Login</div>
+        {{#if resetPassword}}
+          <div class="header" style="text-align:left;">Generate Temporary Password</div>
+        {{else}}
+            <div class="header" style="text-align:left;">User Login</div>
+        {{/if}}
     {{/if}}
     <form>
       <label for="inputUsername"><small>Username</small></label>
@@ -34,31 +38,34 @@
         <label for="inputNewPassword2"><small>New Password again</small> {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}</label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
-          {{view Ember.TextField valueBinding="newPassword2" id="new_password_2" placeholder="New Password" type="password"}}
+          {{view Ember.TextField valueBinding="newPassword2" id="new_password_2" placeholder="New Password again" type="password"}}
         </div>
       {{else}}
-        <label for="inputPassword"><small>Password</small>   
-          {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
-        </label> 
-        <div class="input-prepend">
-          <span class="add-on"><i class="icon-lock"></i></span>
-          {{view Ember.TextField valueBinding="password" id="password" placeholder="Password" type="password"}}
-        </div>
-        <p class="login-help">
-          <a class="pull-right tooltip-right" rel="tooltip" data-original-title="Sign up here"><small>Register</small></a>
-          <a class="tooltip-left" rel="tooltip" data-original-title="Not a problem!"><small>Forgot your password?</small></a>
-        </p>
+        {{#if resetPassword}}
+        {{else}}
+            <label for="inputPassword"><small>Password</small>   
+              {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
+            </label> 
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-lock"></i></span>
+              {{view Ember.TextField valueBinding="password" id="password" placeholder="Password" type="password"}}
+            </div>
+            <p class="login-help">
+              <a class="tooltip-left" rel="tooltip" data-original-title="Click here to reset your password." {{action "forgot_password"}}>
+                <small>Forgot your password?</small>
+              </a>
+            </p>
+        {{/if}}
       {{/if}}
       <div class="form-actions" style="margin:20px -19px -39px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;">
         {{#if changingPassword}}
           <button class="btn btn-primary" {{action changePassword}}>Change Password</button>
         {{else}}
-          {{!--
-            <label class="checkbox">
-              {{view Ember.Checkbox checkedBinding="rememberMe" class="remember"}} Keep me logged in
-            </label>
-          --}}
-          <button class="btn btn-primary" {{action login}}>Sign in</button>
+            {{#if resetPassword}}
+              <button class="btn btn-primary" {{action reset}}>Generate</button>
+            {{else}}
+              <button class="btn btn-primary" {{action login}}>Sign in</button>
+            {{/if}}
         {{/if}}
       </div>
     </form>

@@ -1,15 +1,10 @@
 <div id="users">
-  <div class="header">
-    <form id="filter-form" class="input-prepend pull-right clear-input">
-      <span class="add-on"><i class="icon-search"></i></span>
-      {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter users"}}
-      <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
-    </form>
-  </div>
+<h3>Edit User Profile</h3>
+<form class="form-horizontal well-clean shadow-lifted">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}> <a {{action "sortModel" "username"}}>Username</th>
+        <th>Username</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -18,7 +13,7 @@
         <tr>
             <td>{{user.username}}</td>
             <td>
-                <button class="btn" {{action "changePassword" user}}>Change Password</button>
+                <button class="btn" {{action "editProfile" user}}>Edit Profile</button>
             </td>
         </tr>
       {{/each}}
@@ -31,78 +26,5 @@
       </tr>
     </tfoot>
   </table>
+</form>
 </div>  
-<!--   <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}> <a {{action "sortModel" "id"}}>ID</a></th>
-        <th {{bindAttr class=":sortable isColumn2Sorted:sorted sortAscending"}}> <a {{action "sortModel" "username"}}>Username</th>
-        <th {{bindAttr class=":sortable isColumn3Sorted:sorted sortAscending"}}> <a {{action "sortModel" "name"}}>Name</th>
-        <th {{bindAttr class=":sortable isColumn4Sorted:sorted sortAscending"}}> <a {{action "sortModel" "email"}}>Email</th>
-        <th {{bindAttr class=":sortable isColumn5Sorted:sorted sortAscending"}}> <a {{action "sortModel" "isEnabled"}}>Enabled</th>
-        <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}> <a {{action "sortModel" "role"}}>Role</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each user in controller}}
-        <tr {{bindAttr class="user.isEditing"}}>
-          {{#if user.isEditing}}
-            <td>{{user.id}}</td>
-            <td>{{view Ember.TextField valueBinding="user.username" class="input-small"}}</td>
-            <td>{{view Ember.TextField valueBinding="user.name" class="input-small"}}</td>
-            <td>{{view Ember.TextField valueBinding="user.email" class="input-medium"}}</td>
-            <td> 
-              <label class="checkbox">
-                {{view Ember.Checkbox checkedBinding="user.isEnabled"}}
-                {{capitalize user.isEnabled}}
-              </label>
-            </td>
-            <td>
-              {{view Ember.Select
-                contentBinding="App.roles.content"
-                valueBinding="user.role"
-                selectionBinding="user.role"
-                class="input-small"
-              }}
-            </td>
-            <td>
-              <button class="btn btn-primary" type="button" {{action "save" user}}>Save</button>
-              <button class="btn" type="button" {{action "cancel" user}}>Cancel</button>
-            </td>
-          {{else}}
-            <td>{{user.id}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
-            <td>{{capitalize user.isEnabled}}</td>
-            <td>{{user.role}}</td>
-            <td>
-              <div class="btn-group">
-                <button class="btn" {{action "startEditing" user}}>Edit</button>
-                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a class="danger" {{action "delete"}}>Delete</a></li>
-                  <li>
-                    {{#if user.isEnabled}}
-                      <a {{action "disable" user}}>Disable</a>
-                    {{else}}
-                      <a {{action "enable" user}}>Enable</a>
-                    {{/if}}
-                  </li>
-                </ul>
-              </div>
-            </td>
-          {{/if}}
-        </tr>
-      {{/each}}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="100%">
-          <small>Displaying {{count}} users</small>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
- -->

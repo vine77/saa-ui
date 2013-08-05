@@ -10,6 +10,7 @@ App.User = DS.Model.extend({
   email: DS.attr('string'),
   isEnabled: DS.attr('boolean'),
   isEditing: DS.attr('boolean'),
-  role: DS.attr('string')
+  resetPassword: DS.attr('boolean'),
+  role: DS.attr('string'),
 });
 

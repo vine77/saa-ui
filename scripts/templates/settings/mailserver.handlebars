@@ -1,0 +1,51 @@
+<section id="mailserver">
+  <h3>Configure Mail Server</h3>
+    <form class="form-horizontal well-clean shadow-lifted">
+    <div class="control-group">
+      <label class="control-label">Hostname</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="App.mailserver.hostname" id="hostname" placeholder="Hostname or IP Address" autofocus="autofocus"}}
+      </div>
+    </div>
+      
+    <div class="control-group">
+      <label class="control-label">Port</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="App.mailserver.port" id="port" placeholder="Port"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Username</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="App.mailserver.username" id="username" placeholder="Username"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Password</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="App.mailserver.password" id="password" placeholder="Password" type="password"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Email</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="App.mailserver.sender_email" id="sender_email" placeholder="Email (From address)"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+        <button class="btn btn-primary" type="button" {{action test_email target=controller}}>Send Test Email</button>
+    </div>
+    
+    <div class="form-actions">
+        <input type="submit" class="btn btn-primary" value="Save" {{action save target=controller}}>
+        <button class="btn btn-danger" type="button" {{action cancel target=controller}}>Cancel</button>
+        <i class="loading hide"></i>
+    </div>
+    
+    </form>
+    
+</section>
