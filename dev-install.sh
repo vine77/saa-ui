@@ -16,7 +16,8 @@ sudo npm install  # Add the other dev dependencies (global option not needed)
 sudo rm -rf /srv/www
 sudo ln -s ~/SAM/overlays/ipm/rootfs/srv/www/ /srv/www
 
-# If specified, install SAMBA share
+# If specified (with switch "-s samba"), install SAMBA share
+# User can access SAMBA share at \\{IP}\{username}
 while getopts ':s:' option; do
   case "${option}" in
     s) SERVER=${OPTARG}
@@ -30,6 +31,9 @@ if [[ "$SERVER" == "samba" ]]; then
   USER="$(whoami)"
   sudo sh -c "echo $USER = $USER > /etc/samba/smbusers"
   sudo cp smb.conf /etc/samba/smb.conf
+  sudo smbpasswd -a $USER
+  sudo /etc/init.d/smbd restart
+  sudo /etc/init.d/nmbd restart
   echo "SAMBA share $USER was created."
 fi
 
