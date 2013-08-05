@@ -264,7 +264,7 @@
                         {{/if}}
                       </div>
                       <div class="tab-pane instantiation">
-                        {{#if vm.vmInstantiationSimple.generation_time}}
+                        {{#if vm.vmInstantiationSimple.generationTime}}
                           <table class="table table-bordered">
                             <tbody>
                               <tr>
@@ -305,7 +305,6 @@
                               </tr>
                             </tbody>
                           </table>
-
                           <table class="table table-bordered slo-gates-table">
                             <caption> <h4>SLO Gates</h4> </caption>
                             <thead>
@@ -327,8 +326,7 @@
                               {{/each}}
                             </tbody>
                           </table>
-
-                           <table class="table table-bordered ranked-nodes-table">
+                          <table class="table table-bordered ranked-nodes-table">
                             <caption> <h4>Ranked Nodes</h4> </caption>
                             <thead>
                               <tr>
@@ -346,7 +344,7 @@
                             </tbody>
                           </table>
                         {{else}}
-                            <div class="alert alert-info">Instantiation Report is not available.</div>
+                          <div class="alert alert-info">The simple instantiation report is not available.</div>
                         {{/if}}
                       </div>
                       <div class="tab-pane instantiation-detailed">
@@ -395,7 +393,6 @@
                                 </tr>
                               </tbody>
                             </table>
-
                             <table class="table table-bordered">
                               <caption> <h4>Instantiation Nodes</h4> </caption>
                               <thead>
@@ -442,9 +439,8 @@
                                 {{/each}}
                               </tbody>
                             </table>
-
                           {{else}}
-                            <div class="alert alert-info">Instantiation Report is not available.</div>
+                            <div class="alert alert-info">The detailed instantiation report is not available.</div>
                           {{/if}}
                       </div>
                     </div>
