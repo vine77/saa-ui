@@ -1,7 +1,7 @@
 <div class="contention-container"> 
   {{!-- Used for Nodes --}}
   {{#if view.content.capabilities.sockets}}
-    {{#each socket in view.content.contention.sockets}}
+    {{#each socket in view.content.contention.socketsSorted}}
       <div class="socket">
         <div class="socket-label">Socket {{socket.socket_number}}</div>
         <div class="contention-bar-container">

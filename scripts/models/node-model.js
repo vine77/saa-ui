@@ -87,6 +87,15 @@ App.ContentionSystem = DS.Model.extend({
 
 App.Contention = DS.Model.extend({
   sockets: DS.hasMany('App.Socket'),
+  socketsSorted: function() {
+    var socketsStore = this.get('sockets');
+    socketsController = Ember.ArrayController.create({
+      content: socketsStore,
+      sortProperties: ['socket_number'],
+      sortAscending: true
+    });
+    return socketsController;
+  }.property('sockets'),
   node: DS.belongsTo('App.Node'),
   system: DS.belongsTo('App.ContentionSystem')
 });
