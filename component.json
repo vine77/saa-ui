@@ -1,6 +1,6 @@
 {
-  "name": "manorfield",
-  "version": "0.0.8",
+  "name": "ReadyCloud",
+  "version": "0.2.0",
   "dependencies": {
     "jquery": "git://github.com/components/jquery.git#~1.9.1",
     "underscore": "git://github.com/documentcloud/underscore.git#~1.4.4",
