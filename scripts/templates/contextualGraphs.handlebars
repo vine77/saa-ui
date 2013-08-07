@@ -3,27 +3,31 @@
 {{else}}
   {{#if nodePath}}
     <h3>Node Graphs</h3>
-    {{#if selectedNode}}
-      <h4>({{selectedNode.name}}) selected</h4>
-      {{#each graph in selectedNode.graphs}}
-        <figure class="thumbnail">
-          <img {{bindAttr src="graph.url"}}>
-          <figcaption class="caption">{{graph.desc}}</figcaption>
-        </figure>
+    {{#if selectedNodes}}
+      {{#each node in selectedNodes}}
+        <h4>({{node.name}}) selected</h4>
+        {{#each graph in node.graphs}}
+          <figure class="thumbnail">
+            <img {{bindAttr src="graph.url"}}>
+            <figcaption class="caption">{{graph.desc}}</figcaption>
+          </figure>
+        {{/each}}
       {{/each}}
     {{else}}
-      <div class="alert alert-info"> Please select a node to view contextual graphs for that node. </div>
+      <div class="alert alert-info"> Please select nodes to view contextual graphs for the selected nodes. </div>
     {{/if}}
   {{/if}}
   {{#if vmPath}}
     <h3>VM Graphs</h3>
-    {{#if selectedVm}}
-      <h4>({{selectedVm.name}}) selected</h4>
-      {{#each graph in selectedVm.graphs}}
-        <figure class="thumbnail">
-          <img {{bindAttr src="graph.url"}}>
-          <figcaption class="caption">{{graph.desc}}</figcaption>
-        </figure>
+    {{#if selectedVms}}
+      {{#each vm in selectedVms}}
+        <h4>({{vm.name}}) selected</h4>
+        {{#each graph in vm.graphs}}
+          <figure class="thumbnail">
+            <img {{bindAttr src="graph.url"}}>
+            <figcaption class="caption">{{graph.desc}}</figcaption>
+          </figure>
+        {{/each}}
       {{/each}}
     {{else}}
       <div class="alert alert-info"> Please select a VM to view contextual graphs for that VM. </div>
