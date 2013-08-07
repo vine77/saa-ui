@@ -41,9 +41,9 @@ App.SettingsLog = Ember.Object.extend({
           App.event('Successfully updated  log settings.', App.SUCCESS);
         } else if (jqXHR.status == 422) {
             var responseMessage = jQuery.parseJSON(jqXHR.responseText);
-            App.event(responseMessage.error_message, App.WARNING);
+            App.event(responseMessage.error_message, App.ERROR);
         } else {
-          App.event('Error updating log settings.', App.WARNING);
+          App.event('Error updating log settings.', App.ERROR);
         }
       }
     }, App.ajaxSetup);
@@ -58,7 +58,7 @@ App.SettingsLog = Ember.Object.extend({
         if (jqXHR.status == 200) {
           App.event('Successfully deleted all log data.', App.SUCCESS);
         } else {
-          App.event('Error updating log settings.', App.WARNING);
+          App.event('Error updating log settings.', App.ERROR);
         }
         $('i.loading').removeClass('hide');
       }
