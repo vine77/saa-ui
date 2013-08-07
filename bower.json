@@ -21,7 +21,7 @@
     "Font-Awesome": "FortAwesome/Font-Awesome#~3.0.2",
     "jspdf": "MrRio/jsPDF",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker",
-    "font-awesome": "FortAwesome/Font-Awesome#~3.1.1",
+    "font-awesome": "components/font-awesome#~3.2.1",
     "ember": "components/ember#1.0.0-rc.5",
     "ember-data": "components/ember-data#~0.0.13",
     "mousetrap": "ccampbell/mousetrap#~1.4.4"

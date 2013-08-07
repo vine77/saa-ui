@@ -110,7 +110,7 @@ module.exports = function (grunt) {
         options: {
           force: true
         },
-        src: ['../../<%= paths.destination %>']
+        src: ['../<%= paths.destination %>']  // This clean path should match the last copy path (one dir up)
       },
       dist: ['.tmp', '<%= paths.destination %>', '<%= paths.source %>/styles/theme.css', '<%= paths.source %>/scripts/templates.js'],
     },
@@ -253,37 +253,39 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= paths.source %>/images/',
-          src: '**',
+          src: ['**', '!pastel/**'],
           dest: '<%= paths.destination %>/images/'
         }]
       },
       fonts: {
         files: [{
           expand: true,
-          cwd: '<%= paths.source %>/fonts/',
+          cwd: '<%= paths.source %>/font/',
           src: '**',
-          dest: '<%= paths.destination %>/fonts/'
+          dest: '<%= paths.destination %>/font/'
+        }, {
+          expand: true,
+          cwd: '<%= paths.source %>/components/font-awesome/font/',
+          src: '**',
+          dest: '<%= paths.destination %>/font/'
+        }]
+      },
+      project: {
+        files: [{
+          cwd: '<%= paths.source %>',
+          src: ['*.{ico,txt}', '.htaccess'],
+          dest: '<%= paths.destination %>',
+          expand: true,
+          dot: true
         }]
       },
       dist: {
-        files: [
-          {
-            cwd: '<%= paths.source %>',
-            src: [
-              '*.{ico,txt}',
-              '.htaccess'
-            ],
-            dest: '<%= paths.destination %>',
-            expand: true,
-            dot: true
-          },
-          {
-            src: '<%= paths.destination %>/**',
-            dest: '../',
-            expand: true,
-            dot: true
-          }
-        ]
+        files: [{
+          src: '<%= paths.destination %>/**',
+          dest: '../',  // This copy path should match the clean path (one dir up)
+          expand: true,
+          dot: true
+        }]
       }
     },
     bower: {
