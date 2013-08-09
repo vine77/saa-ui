@@ -5,6 +5,9 @@ App.ApplicationController = Ember.ArrayController.extend({
   //buildDateBinding: 'App.build.date',
   loggedInBinding: 'App.login.loggedIn',
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
+  horizonUrl: function() {
+    return 'http://' +window.location.hostname + '/horizon';
+  }.property(),
   logsUrl: function() {
     // Kibana: port 5601
     // return 'http://' + window.location.hostname + ':5601';
