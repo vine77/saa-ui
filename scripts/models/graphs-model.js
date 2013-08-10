@@ -1,7 +1,7 @@
 App.Graphs = Ember.Object.extend({
   graph: function(emberId, entityName, entityType) {
-    $.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/graphs/getGraphs.php?entityType=' + entityType + '&entityName=' + entityName,
+    hash = {
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName,
       type: 'GET',
       dataType: 'json',
       success: function (data, textStatus, jqXHR) {
@@ -12,7 +12,9 @@ App.Graphs = Ember.Object.extend({
           return App.Vm.find(emberId).set('graphs', numericArray); 
         }
       }
-    });
+    }
+    hash = $.extend(hash, App.ajaxSetup);
+    return App.ajaxPromise(hash);
   }
 });
 
