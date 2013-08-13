@@ -90,7 +90,7 @@ DS.RESTAdapter.reopen({
 
   }, 
   didError: function (store, type, record, xhr) {
-    var json = JSON.parse(xhr.responseText);
+    var json = (xhr.responseText) ? JSON.parse(xhr.responseText) : {};
     record.set('error', App.errorMessage(json));  // Store error message on record
     if (xhr.status === 422) {
       // Handle cases where backend response is not in expected format for validation errors
