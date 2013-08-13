@@ -278,10 +278,18 @@ App.NodesRoute = Ember.Route.extend({
     this._super(controller, model);
     if (App.mtWilson.get('isInstalled') === true) {
       App.TrustNode.find().then(function() {
-        controller.set('model', App.Node.all());
+        if (App.Node.all().get('length') == 0) {
+          controller.set('model', App.Node.find());
+        } else {
+          controller.set('model', App.Node.all());
+        }
       });
     } else {
-      controller.set('model', App.Node.all());
+      if (App.Node.all().get('length') == 0) {
+        controller.set('model', App.Node.find());
+      } else {
+        controller.set('model', App.Node.all());
+      }
     }
   }
   /*
@@ -308,7 +316,11 @@ App.NodesNodeRoute = Ember.Route.extend({
 // VMs
 App.VmsRoute = Ember.Route.extend({
   model: function () {
-    return App.Vm.all();
+    if (App.Vm.all().get('length') == 0) {
+      return App.Vm.find();
+    } else {
+      return App.Vm.all();
+    }
   }
 });
 App.VmsIndexRoute = Ember.Route.extend({
