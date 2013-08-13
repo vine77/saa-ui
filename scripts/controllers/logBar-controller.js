@@ -166,9 +166,11 @@ App.LogBarController = Ember.ObjectController.extend({
     this.set('criticalitySelected', this.criticalities.objectAt(5));
     this.set('timeFrom', '');
     this.set('timeTo', '');
-    this.set('criticalitySelected', null);
     this.set('nodeSelected', null);
     this.set('searchText', '');
+    setTimeout(function () {
+      frames['allLogsFrame'].sbctl('hide', true);
+    }, 3000);
   }
 
 });

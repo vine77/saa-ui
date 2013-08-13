@@ -6,19 +6,19 @@
     optionLabelPath="content.label"
     optionValuePath="content.id"
   }}
-  {{view Ember.TextField valueBinding="searchText" size="30"}}
+  {{view Ember.TextField valueBinding="searchText" size="17"}}
   {{view Ember.Select viewName="select"
     contentBinding="nodes"
     selectionBinding="nodeSelected"
     optionLabelPath="content.label"
-    prompt="Select node:"
+    prompt="All nodes"
     optionValuePath="content.value"
   }}
   {{view Ember.Select viewName="select"
     contentBinding="criticalities"
     selectionBinding="criticalitySelected"
     optionLabelPath="content.label"
-    prompt="Select criticality:"
+    prompt="All criticalities"
     optionValuePath="content.id"
   }}
   {{view App.DatePickerView valueBinding="timeFrom" dataDateFormat="yyyy-mm-dd" class="datepicker" size="9"}}
@@ -32,8 +32,9 @@
     </label>
   {{/view}}
 
-  <button {{action updateLogsFrame target="view"}} class="btn btn-primary log-buttons">Search</button>
-  <button {{action reset}} class="btn btn-inverse log-buttons">Reset</button>
+  <button {{action updateLogsFrame target="view"}} class="btn btn-primary btn-small log-buttons">Search</button>
+  <button {{action reset}} class="btn btn-inverse btn-small log-buttons">Reset</button>
+  <button {{action reset}} class="btn btn-info btn-small log-buttons">Advanced</button>
 
 </div>
 {{!-- {{view Ember.TextField valueBinding="App.logBar.searchTextQuery" size="30"}} --}}

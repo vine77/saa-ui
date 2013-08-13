@@ -10,7 +10,7 @@ App.ApplicationController = Ember.ArrayController.extend({
   }.property(),
   logsUrl: function() {
     // Kibana: port 5601
-    // return 'http://' + window.location.hostname + ':5601';
+    //return 'http://' + window.location.hostname + ':5601';
     //return 'http://' + window.location.hostname + '/kibana/index.html#eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
     return 'http://' + window.location.hostname + '/kibana/index.html#eyJzZWFyY2giOiIoQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHk6XCJXYXJuaW5nK1wiIE9SIEBmaWVsZHMuc3lzbG9nX3NldmVyaXR5OlwiRXJyb3JcIiBPUiBAZmllbGRzLnN5c2xvZ19zZXZlcml0eTpcIkNyaXRpY2FsXCIpIiwiZmllbGRzIjpbIkBzb3VyY2VfaG9zdCIsIkBtZXNzYWdlIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ3JhbSIsIkBmaWVsZHMuc3lzbG9nX3NldmVyaXR5Il0sIm9mZnNldCI6MCwidGltZWZyYW1lIjoiYWxsIiwiZ3JhcGhtb2RlIjoiY291bnQiLCJ0aW1lIjp7InVzZXJfaW50ZXJ2YWwiOjB9LCJzdGFtcCI6MTM2ODgyODA0ODYzMX0=';
   }.property(),
