@@ -136,6 +136,9 @@ App.numberWithCommas = function (number) {
     } 
 }
 
+App.isOdd = function (number) {
+  return (number % 2) == 1;
+}
 
 // Handlebars helpers
 

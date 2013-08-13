@@ -4,6 +4,9 @@ App.LogBarView = Ember.View.extend({
     //set default values for select list
     //App.logBar.set('shortCutTimeSelected', App.logBar.shortCutTimes.objectAt(7));
     this.get('controller').set('shortCutTimeSelected', this.get('controller').shortCutTimes.objectAt(7));
+    this.get('controller').set('criticalitySelected', this.get('controller').criticalities.objectAt(5));
+
+
     //init datePicker
     $('.datepicker').datepicker();
     //styleLogsFrame

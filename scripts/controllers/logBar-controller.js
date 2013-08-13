@@ -8,11 +8,16 @@ App.LogBarController = Ember.ObjectController.extend({
                   {"id":7, "label":"Last 7d"},
                   {"id":8, "label":"All Time"},
                   {"id":9, "label":"Custom"}],
-  criticalities: [{"id": 1, "label":"Debug"}, 
-                  {"id": 2, "label":"Notice"}, 
-                  {"id": 3, "label":"Warning"}, 
-                  {"id": 4, "label":"Error"},
-                  {"id": 5, "label":"Critical"}],
+  criticalities: [{"id": 0, "label":"Debug"}, 
+                  {"id": 1, "label":"Debug+"},
+                  {"id": 2, "label":"Notice"},
+                  {"id": 3, "label":"Notice+"},
+                  {"id": 4, "label":"Warning"},
+                  {"id": 5, "label":"Warning+"}, 
+                  {"id": 6, "label":"Error"},
+                  {"id": 7, "label":"Error+"},
+                  {"id": 8, "label":"Critical"},
+                  {"id": 9, "label":"Critical+"}],
   criticalitySelected: null,
   shortCutTimeSelected: null,
   searchText: '',
@@ -86,8 +91,22 @@ App.LogBarController = Ember.ObjectController.extend({
     }
     //Criticality @fields.syslog_severity_code
     if (this.get('criticalitySelected.label')) {
-      var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
-      returnVal.push(criticalityString);
+      if (App.isOdd(this.get('criticalitySelected.id'))) {
+        var currentIndex = this.get('criticalitySelected.id');
+        var criticalitiesReturnArray = [];
+        var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
+        criticalitiesReturnArray.push(criticalityString);
+        this.get('criticalities').forEach( function(item, index, enumerable) {
+          if ( (index >= currentIndex) && (App.isOdd(index) === false) ) {
+            var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
+            criticalitiesReturnArray.push(criticalityString);
+          }
+        });
+        returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
+      } else {
+        var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
+        returnVal.push(criticalityString);
+      }
     }
 
     //Vms
@@ -133,15 +152,18 @@ App.LogBarController = Ember.ObjectController.extend({
 
     newURL = JSON.stringify(newURL);
     newURL = btoa(newURL);
+
     frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
   },
   reset: function () {
     //Consider calling this on didInsertElement of the logBarView also. (Might not need to do this since it is being set on logsUrl.)
     //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ2FtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
-    var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
+    //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
+    var defaultQueryString = 'eyJzZWFyY2giOiIoQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHk6XCJXYXJuaW5nK1wiIE9SIEBmaWVsZHMuc3lzbG9nX3NldmVyaXR5OlwiRXJyb3JcIiBPUiBAZmllbGRzLnN5c2xvZ19zZXZlcml0eTpcIkNyaXRpY2FsXCIpIiwiZmllbGRzIjpbIkBzb3VyY2VfaG9zdCIsIkBtZXNzYWdlIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ3JhbSIsIkBmaWVsZHMuc3lzbG9nX3NldmVyaXR5Il0sIm9mZnNldCI6MCwidGltZWZyYW1lIjoiYWxsIiwiZ3JhcGhtb2RlIjoiY291bnQiLCJ0aW1lIjp7InVzZXJfaW50ZXJ2YWwiOjB9LCJzdGFtcCI6MTM2ODgyODA0ODYzMX0=';
     frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
 
     this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(7));
+    this.set('criticalitySelected', this.criticalities.objectAt(5));
     this.set('timeFrom', '');
     this.set('timeTo', '');
     this.set('criticalitySelected', null);
