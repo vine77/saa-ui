@@ -664,6 +664,7 @@ var prepareString = "a"[0] != "a",
 	var defineProperty = 'defineProperty';
 	var advancedObjectProperties = !!(Object.create && Object.defineProperties && Object.getOwnPropertyDescriptor);
 	//safari5 has defineProperty-interface, but it can't be used on dom-object
+	//only do this test in non-IE browsers, because this hurts dhtml-behavior in some IE8 versions
 	if (advancedObjectProperties && Object[defineProperty] && Object.prototype.__defineGetter__) {
 		(function(){
 			try {
@@ -706,11 +707,11 @@ if((!advancedObjectProperties || !Object.create || !Object.defineProperties || !
 		}
 		
 		if(opts){
-			o.options = jQuery.extend(true, {}, o.options || {}, opts);
+			o.options = $.extend(true, {}, o.options || {}, opts);
 			opts = o.options;
 		}
 		
-		if(o._create && jQuery.isFunction(o._create)){
+		if(o._create && $.isFunction(o._create)){
 			o._create(opts);
 		}
 		return o;
@@ -796,6 +797,6 @@ if((!advancedObjectProperties || !Object.create || !Object.defineProperties || !
     };
 
 }
-})(jQuery, jQuery.webshims);
+})(webshims.$, webshims);
 
 

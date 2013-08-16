@@ -1,10 +1,1332 @@
-//DOM-Extension helper
-jQuery.webshims.register('dom-extend', function($, webshims, window, document, undefined){
-	"use strict";
+/*!	SWFMini - a SWFObject 2.2 cut down version for webshims
+ * 
+ * based on SWFObject v2.2 <http://code.google.com/p/swfobject/> 
+	is released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+
+var swfmini = function() {
 	
-	if($('<form />').attr('novalidate') === ""){
-		webshims.warn("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version");
+	var UNDEF = "undefined",
+		OBJECT = "object",
+		webshims = window.webshims,
+		SHOCKWAVE_FLASH = "Shockwave Flash",
+		SHOCKWAVE_FLASH_AX = "ShockwaveFlash.ShockwaveFlash",
+		FLASH_MIME_TYPE = "application/x-shockwave-flash",
+		
+		win = window,
+		doc = document,
+		nav = navigator,
+		
+		plugin = false,
+		domLoadFnArr = [main],
+		objIdArr = [],
+		listenersArr = [],
+		storedAltContent,
+		storedAltContentId,
+		storedCallbackFn,
+		storedCallbackObj,
+		isDomLoaded = false,
+		dynamicStylesheet,
+		dynamicStylesheetMedia,
+		autoHideShow = true,
+	
+	/* Centralized function for browser feature detection
+		- User agent string detection is only used when no good alternative is possible
+		- Is executed directly for optimal performance
+	*/	
+	ua = function() {
+		var w3cdom = typeof doc.getElementById != UNDEF && typeof doc.getElementsByTagName != UNDEF && typeof doc.createElement != UNDEF,
+			u = nav.userAgent.toLowerCase(),
+			p = nav.platform.toLowerCase(),
+			windows = p ? /win/.test(p) : /win/.test(u),
+			mac = p ? /mac/.test(p) : /mac/.test(u),
+			webkit = /webkit/.test(u) ? parseFloat(u.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, // returns either the webkit version or false if not webkit
+			ie = !+"\v1", // feature detection based on Andrea Giammarchi's solution: http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html
+			playerVersion = [0,0,0],
+			d = null;
+		if (typeof nav.plugins != UNDEF && typeof nav.plugins[SHOCKWAVE_FLASH] == OBJECT) {
+			d = nav.plugins[SHOCKWAVE_FLASH].description;
+			if (d && !(typeof nav.mimeTypes != UNDEF && nav.mimeTypes[FLASH_MIME_TYPE] && !nav.mimeTypes[FLASH_MIME_TYPE].enabledPlugin)) { // navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin indicates whether plug-ins are enabled or disabled in Safari 3+
+				plugin = true;
+				ie = false; // cascaded feature detection for Internet Explorer
+				d = d.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
+				playerVersion[0] = parseInt(d.replace(/^(.*)\..*$/, "$1"), 10);
+				playerVersion[1] = parseInt(d.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
+				playerVersion[2] = /[a-zA-Z]/.test(d) ? parseInt(d.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0;
+			}
+		}
+		else if (typeof win.ActiveXObject != UNDEF) {
+			try {
+				var a = new ActiveXObject(SHOCKWAVE_FLASH_AX);
+				if (a) { // a will return null when ActiveX is disabled
+					d = a.GetVariable("$version");
+					if (d) {
+						ie = true; // cascaded feature detection for Internet Explorer
+						d = d.split(" ")[1].split(",");
+						playerVersion = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
+					}
+				}
+			}
+			catch(e) {}
+		}
+		return { w3:w3cdom, pv:playerVersion, wk:webkit, ie:ie, win:windows, mac:mac };
+	}();
+	
+	
+	function callDomLoadFunctions() {
+		if (isDomLoaded) { return; }
+		try { // test if we can really add/remove elements to/from the DOM; we don't want to fire it too early
+			var t = doc.getElementsByTagName("body")[0].appendChild(createElement("span"));
+			t.parentNode.removeChild(t);
+		}
+		catch (e) { return; }
+		isDomLoaded = true;
+		var dl = domLoadFnArr.length;
+		for (var i = 0; i < dl; i++) {
+			domLoadFnArr[i]();
+		}
 	}
+	
+	function addDomLoadEvent(fn) {
+		if (isDomLoaded) {
+			fn();
+		}
+		else { 
+			domLoadFnArr[domLoadFnArr.length] = fn; // Array.push() is only available in IE5.5+
+		}
+	}
+	
+	/* Cross-browser onload
+		- Based on James Edwards' solution: http://brothercake.com/site/resources/scripts/onload/
+		- Will fire an event as soon as a web page including all of its assets are loaded 
+	 */
+	function addLoadEvent(fn) {
+		
+	}
+	
+	/* Main function
+		- Will preferably execute onDomLoad, otherwise onload (as a fallback)
+	*/
+	function main() { 
+		if (plugin) {
+			testPlayerVersion();
+		}
+	}
+	
+	/* Detect the Flash Player version for non-Internet Explorer browsers
+		- Detecting the plug-in version via the object element is more precise than using the plugins collection item's description:
+		  a. Both release and build numbers can be detected
+		  b. Avoid wrong descriptions by corrupt installers provided by Adobe
+		  c. Avoid wrong descriptions by multiple Flash Player entries in the plugin Array, caused by incorrect browser imports
+		- Disadvantage of this method is that it depends on the availability of the DOM, while the plugins collection is immediately available
+	*/
+	function testPlayerVersion() {
+		var b = doc.getElementsByTagName("body")[0];
+		var o = createElement(OBJECT);
+		o.setAttribute("type", FLASH_MIME_TYPE);
+		var t = b.appendChild(o);
+		if (t) {
+			var counter = 0;
+			(function(){
+				if (typeof t.GetVariable != UNDEF) {
+					var d = t.GetVariable("$version");
+					if (d) {
+						d = d.split(" ")[1].split(",");
+						ua.pv = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
+					}
+				}
+				else if (counter < 10) {
+					counter++;
+					setTimeout(arguments.callee, 10);
+					return;
+				}
+				b.removeChild(o);
+				t = null;
+			})();
+		}
+	}
+	
+	
+	function getObjectById(objectIdStr) {
+		var r = null;
+		var o = getElementById(objectIdStr);
+		if (o && o.nodeName == "OBJECT") {
+			if (typeof o.SetVariable != UNDEF) {
+				r = o;
+			}
+			else {
+				var n = o.getElementsByTagName(OBJECT)[0];
+				if (n) {
+					r = n;
+				}
+			}
+		}
+		return r;
+	}
+	
+	
+	/* Cross-browser dynamic SWF creation
+	*/
+	function createSWF(attObj, parObj, id) {
+		var r, el = getElementById(id);
+		if (ua.wk && ua.wk < 312) { return r; }
+		if (el) {
+			if (typeof attObj.id == UNDEF) { // if no 'id' is defined for the object element, it will inherit the 'id' from the alternative content
+				attObj.id = id;
+			}
+			if (ua.ie && ua.win) { // Internet Explorer + the HTML object element + W3C DOM methods do not combine: fall back to outerHTML
+				var att = "";
+				for (var i in attObj) {
+					if (attObj[i] != Object.prototype[i]) { // filter out prototype additions from other potential libraries
+						if (i.toLowerCase() == "data") {
+							parObj.movie = attObj[i];
+						}
+						else if (i.toLowerCase() == "styleclass") { // 'class' is an ECMA4 reserved keyword
+							att += ' class="' + attObj[i] + '"';
+						}
+						else if (i.toLowerCase() != "classid") {
+							att += ' ' + i + '="' + attObj[i] + '"';
+						}
+					}
+				}
+				var par = "";
+				for (var j in parObj) {
+					if (parObj[j] != Object.prototype[j]) { // filter out prototype additions from other potential libraries
+						par += '<param name="' + j + '" value="' + parObj[j] + '" />';
+					}
+				}
+				el.outerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' + att + '>' + par + '</object>';
+				objIdArr[objIdArr.length] = attObj.id; // stored to fix object 'leaks' on unload (dynamic publishing only)
+				r = getElementById(attObj.id);	
+			}
+			else { // well-behaving browsers
+				var o = createElement(OBJECT);
+				o.setAttribute("type", FLASH_MIME_TYPE);
+				for (var m in attObj) {
+					if (attObj[m] != Object.prototype[m]) { // filter out prototype additions from other potential libraries
+						if (m.toLowerCase() == "styleclass") { // 'class' is an ECMA4 reserved keyword
+							o.setAttribute("class", attObj[m]);
+						}
+						else if (m.toLowerCase() != "classid") { // filter out IE specific attribute
+							o.setAttribute(m, attObj[m]);
+						}
+					}
+				}
+				for (var n in parObj) {
+					if (parObj[n] != Object.prototype[n] && n.toLowerCase() != "movie") { // filter out prototype additions from other potential libraries and IE specific param element
+						createObjParam(o, n, parObj[n]);
+					}
+				}
+				el.parentNode.replaceChild(o, el);
+				r = o;
+			}
+		}
+		return r;
+	}
+	
+	function createObjParam(el, pName, pValue) {
+		var p = createElement("param");
+		p.setAttribute("name", pName);	
+		p.setAttribute("value", pValue);
+		el.appendChild(p);
+	}
+	
+	/* Cross-browser SWF removal
+		- Especially needed to safely and completely remove a SWF in Internet Explorer
+	*/
+	function removeSWF(id) {
+		var obj = getElementById(id);
+		if (obj && obj.nodeName == "OBJECT") {
+			if (ua.ie && ua.win) {
+				obj.style.display = "none";
+				(function(){
+					if (obj.readyState == 4) {
+						removeObjectInIE(id);
+					}
+					else {
+						setTimeout(arguments.callee, 10);
+					}
+				})();
+			}
+			else {
+				obj.parentNode.removeChild(obj);
+			}
+		}
+	}
+	
+	function removeObjectInIE(id) {
+		var obj = getElementById(id);
+		if (obj) {
+			for (var i in obj) {
+				if (typeof obj[i] == "function") {
+					obj[i] = null;
+				}
+			}
+			obj.parentNode.removeChild(obj);
+		}
+	}
+	
+	/* Functions to optimize JavaScript compression
+	*/
+	function getElementById(id) {
+		var el = null;
+		try {
+			el = doc.getElementById(id);
+		}
+		catch (e) {}
+		return el;
+	}
+	
+	function createElement(el) {
+		return doc.createElement(el);
+	}
+	
+	/* Updated attachEvent function for Internet Explorer
+		- Stores attachEvent information in an Array, so on unload the detachEvent functions can be called to avoid memory leaks
+	*/	
+	function addListener(target, eventType, fn) {
+		target.attachEvent(eventType, fn);
+		listenersArr[listenersArr.length] = [target, eventType, fn];
+	}
+	
+	/* Flash Player and SWF content version matching
+	*/
+	function hasPlayerVersion(rv) {
+		var pv = ua.pv, v = rv.split(".");
+		v[0] = parseInt(v[0], 10);
+		v[1] = parseInt(v[1], 10) || 0; // supports short notation, e.g. "9" instead of "9.0.0"
+		v[2] = parseInt(v[2], 10) || 0;
+		return (pv[0] > v[0] || (pv[0] == v[0] && pv[1] > v[1]) || (pv[0] == v[0] && pv[1] == v[1] && pv[2] >= v[2])) ? true : false;
+	}
+	
+	
+	
+	function setVisibility(id, isVisible) {
+		if (!autoHideShow) { return; }
+		var elem;
+		var v = isVisible ? "visible" : "hidden";
+		if (isDomLoaded && (elem && getElementById(id))) {
+			getElementById(id).style.visibility = v;
+		}
+	}
+
+	/* Release memory to avoid memory leaks caused by closures, fix hanging audio/video threads and force open sockets/NetConnections to disconnect (Internet Explorer only)
+	*/
+	var cleanup = function() {
+		if (ua.ie && ua.win && window.attachEvent) {
+			window.attachEvent("onunload", function() {
+				// remove listeners to avoid memory leaks
+				var ll = listenersArr.length;
+				for (var i = 0; i < ll; i++) {
+					listenersArr[i][0].detachEvent(listenersArr[i][1], listenersArr[i][2]);
+				}
+				// cleanup dynamically embedded objects to fix audio/video threads and force open sockets and NetConnections to disconnect
+				var il = objIdArr.length;
+				for (var j = 0; j < il; j++) {
+					removeSWF(objIdArr[j]);
+				}
+				// cleanup library's main closures to avoid memory leaks
+				for (var k in ua) {
+					ua[k] = null;
+				}
+				ua = null;
+				for (var l in swfmini) {
+					swfmini[l] = null;
+				}
+				swfmini = null;
+			});
+		}
+	}();
+	
+	webshims.ready('DOM', callDomLoadFunctions);
+	
+	return {
+		/* Public API
+			- Reference: http://code.google.com/p/swfobject/wiki/documentation
+		*/ 
+		registerObject: function() {
+			
+		},
+		
+		getObjectById: function(objectIdStr) {
+			if (ua.w3) {
+				return getObjectById(objectIdStr);
+			}
+		},
+		
+		embedSWF: function(swfUrlStr, replaceElemIdStr, widthStr, heightStr, swfVersionStr, xiSwfUrlStr, flashvarsObj, parObj, attObj, callbackFn) {
+			var callbackObj = {success:false, id:replaceElemIdStr};
+			if (ua.w3 && !(ua.wk && ua.wk < 312) && swfUrlStr && replaceElemIdStr && widthStr && heightStr && swfVersionStr) {
+				setVisibility(replaceElemIdStr, false);
+				addDomLoadEvent(function() {
+					widthStr += ""; // auto-convert to string
+					heightStr += "";
+					var att = {};
+					if (attObj && typeof attObj === OBJECT) {
+						for (var i in attObj) { // copy object to avoid the use of references, because web authors often reuse attObj for multiple SWFs
+							att[i] = attObj[i];
+						}
+					}
+					att.data = swfUrlStr;
+					att.width = widthStr;
+					att.height = heightStr;
+					var par = {}; 
+					if (parObj && typeof parObj === OBJECT) {
+						for (var j in parObj) { // copy object to avoid the use of references, because web authors often reuse parObj for multiple SWFs
+							par[j] = parObj[j];
+						}
+					}
+					if (flashvarsObj && typeof flashvarsObj === OBJECT) {
+						for (var k in flashvarsObj) { // copy object to avoid the use of references, because web authors often reuse flashvarsObj for multiple SWFs
+							if (typeof par.flashvars != UNDEF) {
+								par.flashvars += "&" + k + "=" + flashvarsObj[k];
+							}
+							else {
+								par.flashvars = k + "=" + flashvarsObj[k];
+							}
+						}
+					}
+					if (hasPlayerVersion(swfVersionStr)) { // create SWF
+						var obj = createSWF(att, par, replaceElemIdStr);
+						if (att.id == replaceElemIdStr) {
+							setVisibility(replaceElemIdStr, true);
+						}
+						callbackObj.success = true;
+						callbackObj.ref = obj;
+					}
+					else { // show alternative content
+						setVisibility(replaceElemIdStr, true);
+					}
+					if (callbackFn) { callbackFn(callbackObj); }
+				});
+			}
+			else if (callbackFn) { callbackFn(callbackObj);	}
+		},
+		
+		switchOffAutoHideShow: function() {
+			autoHideShow = false;
+		},
+		
+		ua: ua,
+		
+		getFlashPlayerVersion: function() {
+			return { major:ua.pv[0], minor:ua.pv[1], release:ua.pv[2] };
+		},
+		
+		hasFlashPlayerVersion: hasPlayerVersion,
+		
+		createSWF: function(attObj, parObj, replaceElemIdStr) {
+			if (ua.w3) {
+				return createSWF(attObj, parObj, replaceElemIdStr);
+			}
+			else {
+				return undefined;
+			}
+		},
+		
+		showExpressInstall: function() {
+			
+		},
+		
+		removeSWF: function(objElemIdStr) {
+			if (ua.w3) {
+				removeSWF(objElemIdStr);
+			}
+		},
+		
+		createCSS: function() {
+			
+		},
+		
+		addDomLoadEvent: addDomLoadEvent,
+		
+		addLoadEvent: addLoadEvent,
+		
+		
+		// For internal usage only
+		expressInstallCallback: function() {
+			
+		}
+	};
+}();
+
+// vim: ts=4 sts=4 sw=4 expandtab
+// -- kriskowal Kris Kowal Copyright (C) 2009-2011 MIT License
+// -- tlrobinson Tom Robinson Copyright (C) 2009-2010 MIT License (Narwhal Project)
+// -- dantman Daniel Friesen Copyright (C) 2010 XXX TODO License or CLA
+// -- fschaefer Florian Schäfer Copyright (C) 2010 MIT License
+// -- Gozala Irakli Gozalishvili Copyright (C) 2010 MIT License
+// -- kitcambridge Kit Cambridge Copyright (C) 2011 MIT License
+// -- kossnocorp Sasha Koss XXX TODO License or CLA
+// -- bryanforbes Bryan Forbes XXX TODO License or CLA
+// -- killdream Quildreen Motta Copyright (C) 2011 MIT Licence
+// -- michaelficarra Michael Ficarra Copyright (C) 2011 3-clause BSD License
+// -- sharkbrainguy Gerard Paapu Copyright (C) 2011 MIT License
+// -- bbqsrc Brendan Molloy XXX TODO License or CLA
+// -- iwyg XXX TODO License or CLA
+// -- DomenicDenicola Domenic Denicola XXX TODO License or CLA
+// -- xavierm02 Montillet Xavier XXX TODO License or CLA
+// -- Raynos Raynos XXX TODO License or CLA
+// -- samsonjs Sami Samhuri XXX TODO License or CLA
+// -- rwldrn Rick Waldron Copyright (C) 2011 MIT License
+// -- lexer Alexey Zakharov XXX TODO License or CLA
+
+/*!
+    Copyright (c) 2009, 280 North Inc. http://280north.com/
+    MIT License. http://github.com/280north/narwhal/blob/master/README.md
+*/
+
+(function (undefined) {
+
+/**
+ * Brings an environment as close to ECMAScript 5 compliance
+ * as is possible with the facilities of erstwhile engines.
+ *
+ * ES5 Draft
+ * http://www.ecma-international.org/publications/files/drafts/tc39-2009-050.pdf
+ *
+ * NOTE: this is a draft, and as such, the URL is subject to change.  If the
+ * link is broken, check in the parent directory for the latest TC39 PDF.
+ * http://www.ecma-international.org/publications/files/drafts/
+ *
+ * Previous ES5 Draft
+ * http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+ * This is a broken link to the previous draft of ES5 on which most of the
+ * numbered specification references and quotes herein were taken.  Updating
+ * these references and quotes to reflect the new document would be a welcome
+ * volunteer project.
+ *
+ * @module
+ */
+
+/*whatsupdoc*/
+
+// Shortcut to an often accessed properties, in order to avoid multiple
+// dereference that costs universally.
+// _Please note: Shortcuts are defined after `Function.prototype.bind` as we
+// us it in defining shortcuts.
+var call = Function.prototype.call;
+var prototypeOfArray = Array.prototype;
+var prototypeOfObject = Object.prototype;
+var slice = prototypeOfArray.slice;
+var owns;
+var toString;
+
+// ES-5 15.3.4.5
+// http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+
+if (!Function.prototype.bind) {
+    Function.prototype.bind = function (that) { // .length is 1
+        // 1. Let Target be the this value.
+        var target = this;
+        // 2. If IsCallable(Target) is false, throw a TypeError exception.
+        if (typeof target != "function")
+            throw new TypeError(); // TODO message
+        // 3. Let A be a new (possibly empty) internal list of all of the
+        //   argument values provided after thisArg (arg1, arg2 etc), in order.
+        // XXX slicedArgs will stand in for "A" if used
+        var args = slice.call(arguments, 1); // for normal call
+        // 4. Let F be a new native ECMAScript object.
+        // 9. Set the [[Prototype]] internal property of F to the standard
+        //   built-in Function prototype object as specified in 15.3.3.1.
+        // 10. Set the [[Call]] internal property of F as described in
+        //   15.3.4.5.1.
+        // 11. Set the [[Construct]] internal property of F as described in
+        //   15.3.4.5.2.
+        // 12. Set the [[HasInstance]] internal property of F as described in
+        //   15.3.4.5.3.
+        // 13. The [[Scope]] internal property of F is unused and need not
+        //   exist.
+        var bound = function () {
+
+            if (this instanceof bound) {
+                // 15.3.4.5.2 [[Construct]]
+                // When the [[Construct]] internal method of a function object,
+                // F that was created using the bind function is called with a
+                // list of arguments ExtraArgs the following steps are taken:
+                // 1. Let target be the value of F's [[TargetFunction]]
+                //   internal property.
+                // 2. If target has no [[Construct]] internal method, a
+                //   TypeError exception is thrown.
+                // 3. Let boundArgs be the value of F's [[BoundArgs]] internal
+                //   property.
+                // 4. Let args be a new list containing the same values as the
+                //   list boundArgs in the same order followed by the same
+                //   values as the list ExtraArgs in the same order.
+
+                var F = function(){};
+                F.prototype = target.prototype;
+                var self = new F;
+
+                var result = target.apply(
+                    self,
+                    args.concat(slice.call(arguments))
+                );
+                if (result !== null && Object(result) === result)
+                    return result;
+                return self;
+
+            } else {
+                // 15.3.4.5.1 [[Call]]
+                // When the [[Call]] internal method of a function object, F,
+                // which was created using the bind function is called with a
+                // this value and a list of arguments ExtraArgs the following
+                // steps are taken:
+                // 1. Let boundArgs be the value of F's [[BoundArgs]] internal
+                //   property.
+                // 2. Let boundThis be the value of F's [[BoundThis]] internal
+                //   property.
+                // 3. Let target be the value of F's [[TargetFunction]] internal
+                //   property.
+                // 4. Let args be a new list containing the same values as the list
+                //   boundArgs in the same order followed by the same values as
+                //   the list ExtraArgs in the same order. 5.  Return the
+                //   result of calling the [[Call]] internal method of target
+                //   providing boundThis as the this value and providing args
+                //   as the arguments.
+
+                // equiv: target.call(this, ...boundArgs, ...args)
+                return target.apply(
+                    that,
+                    args.concat(slice.call(arguments))
+                );
+
+            }
+
+        };
+        // XXX bound.length is never writable, so don't even try
+        //
+        // 16. The length own property of F is given attributes as specified in
+        //   15.3.5.1.
+        // TODO
+        // 17. Set the [[Extensible]] internal property of F to true.
+        // TODO
+        // 18. Call the [[DefineOwnProperty]] internal method of F with
+        //   arguments "caller", PropertyDescriptor {[[Value]]: null,
+        //   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
+        //   false}, and false.
+        // TODO
+        // 19. Call the [[DefineOwnProperty]] internal method of F with
+        //   arguments "arguments", PropertyDescriptor {[[Value]]: null,
+        //   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
+        //   false}, and false.
+        // TODO
+        // NOTE Function objects created using Function.prototype.bind do not
+        // have a prototype property.
+        // XXX can't delete it in pure-js.
+        return bound;
+    };
+}
+
+toString = call.bind(prototypeOfObject.toString);
+owns = call.bind(prototypeOfObject.hasOwnProperty);
+
+
+//
+// Array
+// =====
+//
+
+// ES5 15.4.3.2
+if (!Array.isArray) {
+    Array.isArray = function (obj) {
+        return toString(obj) == "[object Array]";
+    };
+}
+
+// The IsCallable() check in the Array functions
+// has been replaced with a strict check on the
+// internal class of the object to trap cases where
+// the provided function was actually a regular
+// expression literal, which in V8 and
+// JavaScriptCore is a typeof "function".  Only in
+// V8 are regular expression literals permitted as
+// reduce parameters, so it is desirable in the
+// general case for the shim to match the more
+// strict and common behavior of rejecting regular
+// expressions.
+
+// ES5 15.4.4.18
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/foreach
+if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function (fun /*, thisp*/) {
+        var self = toObject(this),
+            thisp = arguments[1],
+            i = 0,
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        while (i < length) {
+            if (i in self) {
+                // Invoke the callback function with call, passing arguments:
+                // context, property value, property key, thisArg object context
+                fun.call(thisp, self[i], i, self);
+            }
+            i++;
+        }
+    };
+}
+
+// ES5 15.4.4.19
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
+if (!Array.prototype.map) {
+    Array.prototype.map = function (fun /*, thisp*/) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            result = Array(length),
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self)
+                result[i] = fun.call(thisp, self[i], i, self);
+        }
+        return result;
+    };
+}
+
+// ES5 15.4.4.20
+if (!Array.prototype.filter) {
+    Array.prototype.filter = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            result = [],
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && fun.call(thisp, self[i], i, self))
+                result.push(self[i]);
+        }
+        return result;
+    };
+}
+
+// ES5 15.4.4.16
+if (!Array.prototype.every) {
+    Array.prototype.every = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && !fun.call(thisp, self[i], i, self))
+                return false;
+        }
+        return true;
+    };
+}
+
+// ES5 15.4.4.17
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
+if (!Array.prototype.some) {
+    Array.prototype.some = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && fun.call(thisp, self[i], i, self))
+                return true;
+        }
+        return false;
+    };
+}
+
+// ES5 15.4.4.21
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
+if (!Array.prototype.reduce) {
+    Array.prototype.reduce = function (fun /*, initial*/) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        // no value to return if no initial value and an empty array
+        if (!length && arguments.length == 1)
+            throw new TypeError(); // TODO message
+
+        var i = 0;
+        var result;
+        if (arguments.length >= 2) {
+            result = arguments[1];
+        } else {
+            do {
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
+
+                // if array contains no values, no initial value to return
+                if (++i >= length)
+                    throw new TypeError(); // TODO message
+            } while (true);
+        }
+
+        for (; i < length; i++) {
+            if (i in self)
+                result = fun.call(void 0, result, self[i], i, self);
+        }
+
+        return result;
+    };
+}
+
+// ES5 15.4.4.22
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduceRight
+if (!Array.prototype.reduceRight) {
+    Array.prototype.reduceRight = function (fun /*, initial*/) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        // no value to return if no initial value, empty array
+        if (!length && arguments.length == 1)
+            throw new TypeError(); // TODO message
+
+        var result, i = length - 1;
+        if (arguments.length >= 2) {
+            result = arguments[1];
+        } else {
+            do {
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
+
+                // if array contains no values, no initial value to return
+                if (--i < 0)
+                    throw new TypeError(); // TODO message
+            } while (true);
+        }
+
+        do {
+            if (i in this)
+                result = fun.call(void 0, result, self[i], i, self);
+        } while (i--);
+
+        return result;
+    };
+}
+
+// ES5 15.4.4.14
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (sought /*, fromIndex */ ) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        if (!length)
+            return -1;
+
+        var i = 0;
+        if (arguments.length > 1)
+            i = toInteger(arguments[1]);
+
+        // handle negative indices
+        i = i >= 0 ? i : length - Math.abs(i);
+        for (; i < length; i++) {
+            if (i in self && self[i] === sought) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
+
+// ES5 15.4.4.15
+if (!Array.prototype.lastIndexOf) {
+    Array.prototype.lastIndexOf = function (sought /*, fromIndex */) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        if (!length)
+            return -1;
+        var i = length - 1;
+        if (arguments.length > 1)
+            i = toInteger(arguments[1]);
+        // handle negative indices
+        i = i >= 0 ? i : length - Math.abs(i);
+        for (; i >= 0; i--) {
+            if (i in self && sought === self[i])
+                return i;
+        }
+        return -1;
+    };
+}
+
+//
+// Array
+// =====
+//
+
+// ES5 15.4.4.12
+// http://es5.github.com/#x15.4.4.12
+// Default value for second param
+// [bugfix, ielt9, old browsers]
+// IE < 9 bug: [1,2].splice(0).join("") == "" but should be "12"
+if([1,2].splice(0).length != 2) {
+    var _origArraySplice = Array.prototype.splice;
+
+    Array.prototype.splice = function(start, deleteCount) {
+        if(!arguments.length)return [];
+
+        return _origArraySplice.apply(this, [
+                start === void 0 ? 0 : start,
+                deleteCount === void 0 ? (this.length - start) : deleteCount
+            ].concat(slice.call(arguments, 2)))
+    };
+}
+
+//
+// Object
+// ======
+//
+
+
+// ES5 15.2.3.14
+// http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation
+if (!Object.keys) {
+
+    var hasDontEnumBug = true,
+        dontEnums = [
+            "toString",
+            "toLocaleString",
+            "valueOf",
+            "hasOwnProperty",
+            "isPrototypeOf",
+            "propertyIsEnumerable",
+            "constructor"
+        ],
+        dontEnumsLength = dontEnums.length;
+
+    for (var key in {"toString": null})
+        hasDontEnumBug = false;
+
+    Object.keys = function keys(object) {
+
+        if ((typeof object != "object" && typeof object != "function") || object === null)
+            throw new TypeError("Object.keys called on a non-object");
+
+        var keys = [];
+        for (var name in object) {
+            if (owns(object, name)) {
+                keys.push(name);
+            }
+        }
+
+        if (hasDontEnumBug) {
+            for (var i = 0, ii = dontEnumsLength; i < ii; i++) {
+                var dontEnum = dontEnums[i];
+                if (owns(object, dontEnum)) {
+                    keys.push(dontEnum);
+                }
+            }
+        }
+
+        return keys;
+    };
+
+}
+
+//
+// Date
+// ====
+//
+
+// ES5 15.9.5.43
+// Format a Date object as a string according to a simplified subset of the ISO 8601
+// standard as defined in 15.9.1.15.
+if (!Date.prototype.toISOString) {
+    Date.prototype.toISOString = function toISOString() {
+        var result, length, value;
+        if (!isFinite(this))
+            throw new RangeError;
+
+        // the date time string format is specified in 15.9.1.15.
+        result = [this.getUTCFullYear(), this.getUTCMonth() + 1, this.getUTCDate(),
+            this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds()];
+
+        length = result.length;
+        while (length--) {
+            value = result[length];
+            // pad months, days, hours, minutes, and seconds to have two digits.
+            if (value < 10)
+                result[length] = "0" + value;
+        }
+        // pad milliseconds to have three digits.
+        return result.slice(0, 3).join("-") + "T" + result.slice(3).join(":") + "." +
+            ("000" + this.getUTCMilliseconds()).slice(-3) + "Z";
+    }
+}
+
+// ES5 15.9.4.4
+if (!Date.now) {
+    Date.now = function now() {
+        return new Date().getTime();
+    };
+}
+
+// ES5 15.9.5.44
+if (!Date.prototype.toJSON) {
+    Date.prototype.toJSON = function toJSON(key) {
+        // This function provides a String representation of a Date object for
+        // use by JSON.stringify (15.12.3). When the toJSON method is called
+        // with argument key, the following steps are taken:
+
+        // 1.  Let O be the result of calling ToObject, giving it the this
+        // value as its argument.
+        // 2. Let tv be ToPrimitive(O, hint Number).
+        // 3. If tv is a Number and is not finite, return null.
+        // XXX
+        // 4. Let toISO be the result of calling the [[Get]] internal method of
+        // O with argument "toISOString".
+        // 5. If IsCallable(toISO) is false, throw a TypeError exception.
+        if (typeof this.toISOString != "function")
+            throw new TypeError(); // TODO message
+        // 6. Return the result of calling the [[Call]] internal method of
+        // toISO with O as the this value and an empty argument list.
+        return this.toISOString();
+
+        // NOTE 1 The argument is ignored.
+
+        // NOTE 2 The toJSON function is intentionally generic; it does not
+        // require that its this value be a Date object. Therefore, it can be
+        // transferred to other kinds of objects for use as a method. However,
+        // it does require that any such object have a toISOString method. An
+        // object is free to use the argument key to filter its
+        // stringification.
+    };
+}
+
+
+//
+// String
+// ======
+//
+
+// ES5 15.5.4.20
+var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
+    "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
+    "\u2029\uFEFF";
+if (!String.prototype.trim || ws.trim()) {
+    // http://blog.stevenlevithan.com/archives/faster-trim-javascript
+    // http://perfectionkills.com/whitespace-deviations/
+    ws = "[" + ws + "]";
+    var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
+        trimEndRegexp = new RegExp(ws + ws + "*$");
+    String.prototype.trim = function trim() {
+        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+    };
+}
+
+// ES5 15.5.4.14
+// http://es5.github.com/#x15.5.4.14
+// [bugfix, chrome]
+// If separator is undefined, then the result array contains just one String, which is the this value (converted to a String). If limit is not undefined, then the output array is truncated so that it contains no more than limit elements.
+// "0".split(undefined, 0) -> []
+if("0".split(void 0, 0).length) {
+    var oldSplit = String.prototype.split;
+    String.prototype.split = function(separator, limit) {
+        if(separator === void 0 && limit === 0)return [];
+        return oldSplit.apply(this, arguments);
+    }
+}
+
+// ECMA-262, 3rd B.2.3
+// Note an ECMAScript standart, although ECMAScript 3rd Edition has a non-normative section suggesting uniform semantics
+// and it should be normalized across all browsers
+// [bugfix, IE lt 9] IE < 9 substr() with negative value not working in IE
+if("".substr && "0b".substr(-1) !== "b") {
+    var oldSubstr = String.prototype.substr;
+    /**
+* Get the substring of a string
+* @param {integer} start where to start the substring
+* @param {integer} length how many characters to return
+* @return {string}
+*/
+    String.prototype.substr = function(start, length) {
+        return oldSubstr.call(this, start < 0 ? (start = this.length + start) < 0 ? 0 : start : start, length);
+    }
+}
+
+//
+// Util
+// ======
+//
+
+// http://jsperf.com/to-integer
+var toInteger = function (n) {
+    n = +n;
+    if (n !== n) // isNaN
+        n = -1;
+    else if (n !== 0 && n !== (1/0) && n !== -(1/0))
+        n = (n > 0 || -1) * Math.floor(Math.abs(n));
+    return n;
+};
+
+var prepareString = "a"[0] != "a",
+    // ES5 9.9
+    toObject = function (o) {
+        if (o == null) { // this matches both null and undefined
+            throw new TypeError(); // TODO message
+        }
+        // If the implementation doesn't support by-index access of
+        // string characters (ex. IE < 7), split the string
+        if (prepareString && typeof o == "string" && o) {
+            return o.split("");
+        }
+        return Object(o);
+    };
+
+})();
+
+
+
+(function($, shims){
+	var defineProperty = 'defineProperty';
+	var advancedObjectProperties = !!(Object.create && Object.defineProperties && Object.getOwnPropertyDescriptor);
+	//safari5 has defineProperty-interface, but it can't be used on dom-object
+	//only do this test in non-IE browsers, because this hurts dhtml-behavior in some IE8 versions
+	if (advancedObjectProperties && Object[defineProperty] && Object.prototype.__defineGetter__) {
+		(function(){
+			try {
+				var foo = document.createElement('foo');
+				Object[defineProperty](foo, 'bar', {
+					get: function(){
+						return true;
+					}
+				});
+				advancedObjectProperties = !!foo.bar;
+			} 
+			catch (e) {
+				advancedObjectProperties = false;
+			}
+			foo = null;
+		})();
+	}
+	
+	Modernizr.objectAccessor = !!((advancedObjectProperties || (Object.prototype.__defineGetter__ && Object.prototype.__lookupSetter__)));
+	Modernizr.advancedObjectProperties = advancedObjectProperties;
+	
+if((!advancedObjectProperties || !Object.create || !Object.defineProperties || !Object.getOwnPropertyDescriptor  || !Object.defineProperty)){
+	var call = Function.prototype.call;
+	var prototypeOfObject = Object.prototype;
+	var owns = call.bind(prototypeOfObject.hasOwnProperty);
+	
+	shims.objectCreate = function(proto, props, opts, no__proto__){
+		var o;
+		var f = function(){};
+		
+		f.prototype = proto;
+		o = new f();
+		
+		if(!no__proto__ && !('__proto__' in o) && !Modernizr.objectAccessor){
+			o.__proto__ = proto;
+		}
+		
+		if(props){
+			shims.defineProperties(o, props);
+		}
+		
+		if(opts){
+			o.options = $.extend(true, {}, o.options || {}, opts);
+			opts = o.options;
+		}
+		
+		if(o._create && $.isFunction(o._create)){
+			o._create(opts);
+		}
+		return o;
+	};
+	
+	shims.defineProperties = function(object, props){
+		for (var name in props) {
+			if (owns(props, name)) {
+				shims.defineProperty(object, name, props[name]);
+			}
+		}
+		return object;
+	};
+	
+	var descProps = ['configurable', 'enumerable', 'writable'];
+	shims.defineProperty = function(proto, property, descriptor){
+		if(typeof descriptor != "object" || descriptor === null){return proto;}
+		
+		if(owns(descriptor, "value")){
+			proto[property] = descriptor.value;
+			return proto;
+		}
+		
+		if(proto.__defineGetter__){
+            if (typeof descriptor.get == "function") {
+				proto.__defineGetter__(property, descriptor.get);
+			}
+            if (typeof descriptor.set == "function"){
+                proto.__defineSetter__(property, descriptor.set);
+			}
+        }
+		return proto;
+	};
+	
+	shims.getPrototypeOf = function (object) {
+        return Object.getPrototypeOf && Object.getPrototypeOf(object) || object.__proto__ || object.constructor && object.constructor.prototype;
+    };
+	
+	//based on http://www.refactory.org/s/object_getownpropertydescriptor/view/latest 
+	shims.getOwnPropertyDescriptor = function(obj, prop){
+		if (typeof obj !== "object" && typeof obj !== "function" || obj === null){
+            throw new TypeError("Object.getOwnPropertyDescriptor called on a non-object");
+		}
+		var descriptor;
+		if(Object.defineProperty && Object.getOwnPropertyDescriptor){
+			try{
+				descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+				return descriptor;
+			} catch(e){}
+		}
+        descriptor = {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: undefined
+        };
+		var getter = obj.__lookupGetter__ && obj.__lookupGetter__(prop), 
+			setter = obj.__lookupSetter__ && obj.__lookupSetter__(prop)
+		;
+        
+        if (!getter && !setter) { // not an accessor so return prop
+        	if(!owns(obj, prop)){
+				return;
+			}
+            descriptor.value = obj[prop];
+            return descriptor;
+        }
+        
+        // there is an accessor, remove descriptor.writable; populate descriptor.get and descriptor.set
+        delete descriptor.writable;
+        delete descriptor.value;
+        descriptor.get = descriptor.set = undefined;
+        
+        if(getter){
+			descriptor.get = getter;
+		}
+        
+        if(setter){
+            descriptor.set = setter;
+		}
+        
+        return descriptor;
+    };
+
+}
+})(webshims.$, webshims);
+
+
+
+//DOM-Extension helper
+webshims.register('dom-extend', function($, webshims, window, document, undefined){
+	"use strict";
+	var supportHrefNormalized = !('hrefNormalized' in $.support) || $.support.hrefNormalized;
+	var supportGetSetAttribute = !('getSetAttribute' in $.support) || $.support.getSetAttribute;
+	webshims.assumeARIA = supportGetSetAttribute || Modernizr.canvas || Modernizr.video || Modernizr.boxsizing;
+	
+	if($('<input type="email" />').attr('type') == 'text' || $('<form />').attr('novalidate') === "" || ('required' in $('<input />')[0].attributes)){
+		webshims.error("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version or at least IETester or similiar tools");
+	}
+	
+	if(!$.parseHTML){
+		webshims.error("Webshims needs jQuery 1.8+ to work properly. Please update your jQuery version or downgrade webshims.");
+	}
+	
+	if(webshims.cfg.extendNative === undefined){
+		webshims.warn("extendNative configuration was set to false by default with this release. In case you rely on it set it to 'true' otherwise to 'false'. See http://bit.ly/16OOTQO");
+	}
+	
+	if (!webshims.cfg.no$Switch) {
+		var switch$ = function(){
+			if (window.jQuery && (!window.$ || window.jQuery == window.$) && !window.jQuery.webshims) {
+				webshims.error("jQuery was included more than once. Make sure to include it only once or try the $.noConflict(extreme) feature! Webshims and other Plugins might not work properly. Or set webshims.cfg.no$Switch to 'true'.");
+				if (window.$) {
+					window.$ = webshims.$;
+				}
+				window.jQuery = webshims.$;
+			}
+			if(webshims.M != Modernizr){
+				webshims.error("Modernizr was included more than once. Make sure to include it only once! Webshims and other scripts might not work properly.");
+				for(var i in Modernizr){
+					if(!(i in webshims.M)){
+						webshims.M[i] = Modernizr[i];
+					}
+				}
+				Modernizr = webshims.M;
+			}
+		};
+		switch$();
+		setTimeout(switch$, 90);
+		webshims.ready('DOM', switch$);
+		$(switch$);
+		webshims.ready('WINDOWLOAD', switch$);
+		
+	}
+//	(function(){
+//		var hostNames = {
+//			'afarkas.github.io': 1,
+//			localhost: 1,
+//			'127.0.0.1': 1
+//		};
+//		
+//		if( webshims.debug && (hostNames[location.hostname] || location.protocol == 'file:') ){
+//			var list = $('<ul class="webshims-debug-list" />');
+//			webshims.errorLog.push = function(message){
+//				list.appendTo('body');
+//				$('<li style="display: none;">'+ message +'</li>')
+//					.appendTo(list)
+//					.slideDown()
+//					.delay(3000)
+//					.slideUp(function(){
+//						$(this).remove();
+//						if(!$('li', list).length){
+//							list.detach();
+//						}
+//					})
+//				;
+//			};
+//			$.each(webshims.errorLog, function(i, message){
+//				webshims.errorLog.push(message);
+//			});
+//		}
+//	})();
+
 	//shortcus
 	var modules = webshims.modules;
 	var listReg = /\s*,\s*/;
@@ -21,10 +1343,25 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		return (_argless) ? oldVal.call($(elem)) : oldVal.call($(elem), val);
 	};
 	
-	$.fn.onTrigger = function(evt, fn){
-		return this.on(evt, fn).each(fn);
-	};
+	//jquery mobile and jquery ui
+	if(!$.widget){
+		(function(){
+			var _cleanData = $.cleanData;
+			$.cleanData = function( elems ) {
+				if(!$.widget){
+					for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+						try {
+							$( elem ).triggerHandler( "remove" );
+						// http://bugs.jquery.com/ticket/8235
+						} catch( e ) {}
+					}
+				}
+				_cleanData( elems );
+			};
+		})();
+	}
 	
+
 	$.fn.val = function(val){
 		var elem = this[0];
 		if(arguments.length && val == null){
@@ -53,6 +1390,22 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			}
 		});
 	};
+	$.fn.onTrigger = function(evt, fn){
+		return this.on(evt, fn).each(fn);
+	};
+	
+	$.fn.onWSOff = function(evt, fn, trigger, evtDel){
+		if(!evtDel){
+			evtDel = document;
+		}
+		$(evtDel)[trigger ? 'onTrigger' : 'on'](evt, fn);
+		this.on('remove', function(e){
+			if(!e.originalEvent){
+				$(evtDel).off(evt, fn);
+			}
+		});
+		return this;
+	};
 	
 	var dataID = '_webshimsLib'+ (Math.round(Math.random() * 1000));
 	var elementData = function(elem, key, val){
@@ -74,10 +1427,15 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 
 	[{name: 'getNativeElement', prop: 'nativeElement'}, {name: 'getShadowElement', prop: 'shadowElement'}, {name: 'getShadowFocusElement', prop: 'shadowFocusElement'}].forEach(function(data){
 		$.fn[data.name] = function(){
-			return this.map(function(){
+			var elems = [];
+			this.each(function(){
 				var shadowData = elementData(this, 'shadowData');
-				return shadowData && shadowData[data.prop] || this;
+				var elem = shadowData && shadowData[data.prop] || this;
+				if($.inArray(elem, elems) == -1){
+					elems.push(elem);
+				}
 			});
+			return this.pushStack(elems);
 		};
 	});
 	
@@ -200,7 +1558,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						getSup('set', desc, oldDesc) : 
 						(webshims.cfg.useStrict && prop == 'prop') ? 
 							function(){throw(prop +' is readonly on '+ nodeName);} : 
-							$.noop
+							function(){webshims.info(prop +' is readonly on '+ nodeName);}
 					;
 				}
 				if(!desc.get){
@@ -218,15 +1576,14 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		
 	});
 	
-	//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
-	var isExtendNativeSave = Modernizr.ES5;
 	var extendNativeValue = (function(){
 		var UNKNOWN = webshims.getPrototypeOf(document.createElement('foobar'));
 		var has = Object.prototype.hasOwnProperty;
+		//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
+		var isExtendNativeSave = Modernizr.advancedObjectProperties && Modernizr.objectAccessor;
 		return function(nodeName, prop, desc){
-			var elem;
-			var elemProto;
-			if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
+			var elem , elemProto;
+			 if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
 				var sup = elem[prop];
 				desc._supvalue = function(){
 					if(sup && sup.apply){
@@ -348,15 +1705,24 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var ID = new Date().getTime();
 			return function(elem){
 				elem = $(elem);
-				var id = elem.attr('id');
+				var id = elem.prop('id');
 				if(!id){
 					ID++;
 					id = 'ID-'+ ID;
-					elem.attr('id', id);
+					elem.eq(0).prop('id', id);
 				}
 				return id;
 			};
 		})(),
+		implement: function(elem, type){
+			var data = elementData(elem, 'implemented') || elementData(elem, 'implemented', {});
+			if(data[type]){
+				webshims.warn(type +' already implemented for element #'+elem.id);
+				return false;
+			}
+			data[type] = true;
+			return true;
+		},
 		extendUNDEFProp: function(obj, props){
 			$.each(props, function(name, prop){
 				if( !(name in obj) ){
@@ -451,6 +1817,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						setInterval(this.test, 600);
 						$(this.test);
 						webshims.ready('WINDOWLOAD', this.test);
+						$(document).on('updatelayout', this.handler);
 						$(window).bind('resize', this.handler);
 						(function(){
 							var oldAnimate = $.fn.animate;
@@ -476,42 +1843,52 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 				});
 			};
 			return function(nativeElem, shadowElem, opts){
-				opts = opts || {};
-				if(nativeElem.jquery){
-					nativeElem = nativeElem[0];
-				}
-				if(shadowElem.jquery){
-					shadowElem = shadowElem[0];
-				}
-				var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
-				var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
-				var shadowFocusElementData = {};
-				if(!opts.shadowFocusElement){
-					opts.shadowFocusElement = shadowElem;
-				} else if(opts.shadowFocusElement){
-					if(opts.shadowFocusElement.jquery){
-						opts.shadowFocusElement = opts.shadowFocusElement[0];
+				if(nativeElem && shadowElem){
+					opts = opts || {};
+					if(nativeElem.jquery){
+						nativeElem = nativeElem[0];
 					}
-					shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
-				}
-				
-				nativeData.hasShadow = shadowElem;
-				shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
-				shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
-					nativeElement: nativeElem,
-					shadowElement: shadowElem,
-					shadowFocusElement: opts.shadowFocusElement
-				};
-				if(opts.shadowChilds){
-					opts.shadowChilds.each(function(){
-						elementData(this, 'shadowData', shadowData.shadowData);
+					if(shadowElem.jquery){
+						shadowElem = shadowElem[0];
+					}
+					var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
+					var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
+					var shadowFocusElementData = {};
+					if(!opts.shadowFocusElement){
+						opts.shadowFocusElement = shadowElem;
+					} else if(opts.shadowFocusElement){
+						if(opts.shadowFocusElement.jquery){
+							opts.shadowFocusElement = opts.shadowFocusElement[0];
+						}
+						shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
+					}
+					
+					$(nativeElem).on('remove', function(e){
+						if (!e.originalEvent) {
+							setTimeout(function(){
+								$(shadowElem).remove();
+							}, 4);
+						}
 					});
+					
+					nativeData.hasShadow = shadowElem;
+					shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
+					shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
+						nativeElement: nativeElem,
+						shadowElement: shadowElem,
+						shadowFocusElement: opts.shadowFocusElement
+					};
+					if(opts.shadowChilds){
+						opts.shadowChilds.each(function(){
+							elementData(this, 'shadowData', shadowData.shadowData);
+						});
+					}
+					
+					if(opts.data){
+						shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
+					}
+					opts = null;
 				}
-				
-				if(opts.data){
-					shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
-				}
-				opts = null;
 				webshims.docObserve();
 			};
 		})(),
@@ -564,7 +1941,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							
 							anchor.setAttribute('href', href+'' );
 							
-							if(!$.support.hrefNormalized){
+							if(!supportHrefNormalized){
 								try {
 									$(anchor).insertAfter(this);
 									ret = anchor.getAttribute('href', 4);
@@ -795,7 +2172,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 //				register: moduleName:string,
 //				callback: callback:function
 //			});
-//		get/set including removeLang
+//		get/set including remoteLang
 //			- webshims.activeLang({
 //				module: moduleName:string,
 //				callback: callback:function,
@@ -835,7 +2212,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var callRegister = function(module){
 				if(registeredCallbacks[module]){
 					registeredCallbacks[module].forEach(function(data){
-						data.callback();
+						data.callback(currentLang, shortLang, '');
 					});
 				}
 			};
@@ -876,7 +2253,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							registeredCallbacks[lang.register] = [];
 						}
 						registeredCallbacks[lang.register].push(lang);
-						lang.callback();
+						lang.callback(currentLang, shortLang, '');
 					} else {
 						if(!lang.activeLang){
 							lang.activeLang = '';
@@ -913,8 +2290,20 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 });
 //html5a11y
 (function($, document){
-	//if we support basic styleing or do not support ARIA (assumed) abort
-	if(!Modernizr.localstorage || ('hidden' in document.createElement('a'))){return;}
+	if(!$.webshims.assumeARIA || ('content' in document.createElement('template'))){return;}
+	
+	$(function(){
+		var main = $('main').attr({role: 'main'});
+		if(main.length > 1){
+			webshims.error('only one main element allowed in document');
+		} else if(main.is('article *, section *')) {
+			webshims.error('main not allowed inside of article/section elements');
+		}
+	});
+	
+	if(('hidden' in document.createElement('a'))){
+		return;
+	}
 	
 	var elemMappings = {
 		article: "article",
@@ -930,6 +2319,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	};
 	
+	
 	$.webshims.addReady(function(context, contextElem){
 		$.each(elemMappings, function(name, role){
 			var elems = $(name, context).add(contextElem.filter(name));
@@ -941,6 +2331,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var header = document.getElementsByTagName('header')[0];
 			var footers = document.getElementsByTagName('footer');
 			var footerLen = footers.length;
+			
 			if (header && !$(header).closest('section, article')[0]) {
 				addRole(header, 'banner');
 			}
@@ -954,14 +2345,402 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	});
 	
-})(jQuery, document);
+})(webshims.$, document);
 
-(function($, Modernizr, webshims){
+webshims.register('filereader', function( $, webshims ){
 	"use strict";
+	
+	(function(){
+		var swfobject = swfmini;
+	
+		var readyCallbacks = $.Callbacks('once unique memory'),
+		inputsCount = 0,
+		currentTarget = null;
+	
+		// if native FileReader support, then dont add the polyfill and make the plugin do nothing
+		if (window.FileReader) {
+			$.fn.fileReader = function () { return this; }
+			return ;
+		}
+		
+		/**
+		* JQuery Plugin
+		*/
+		$.fn.fileReader = function( options ) {  
+			if(this.length){
+				options = $.extend($.fn.fileReader.defaults, options);
+				
+				var self = this;
+				readyCallbacks.add(function() {
+					return main(self, options);
+				});
+				if ($.isFunction(options.callback)) readyCallbacks.add(options.callback);
+				
+				if (!FileAPIProxy.ready) {
+					FileAPIProxy.init(options);
+				}
+			}
+			return this;
+		};
+		
+		/**
+		* Default options
+		*  	allows user set default options
+		*/
+		$.fn.fileReader.defaults = {
+			id              : 'fileReaderSWFObject', // ID for the created swf object container,
+			multiple        : null,
+			accept          : null,
+			label           : null,
+			extensions      : null,
+			filereader      : 'files/filereader.swf', // The path to the filereader swf file
+			expressInstall  : null, // The path to the express install swf file
+			debugMode       : false,
+			callback        : false // Callback function when Filereader is ready
+		};
+		
+		/**
+		* Plugin callback
+		*     adds an input to registry
+		*/
+		var main = function(el, options) {
+			return el.each(function(i, input) {
+				input = $(input);
+				var id = input.attr('id');
+				var multiple, accept, label;
+				if (!id) {
+					id = 'flashFileInput' + inputsCount;
+					input.attr('id', id);
+					inputsCount++;
+				}
+				multiple = input.prop('multiple');
+				accept = input.data('swfaccept') || input.prop('accept') ||  options.accept;
+				label = input.jProp('labels')
+					.map(function(){
+						return $(this).text();
+					}).get().join(' ') ||
+					input.data('swflabel') || 
+					options.label;
+
+				FileAPIProxy.inputs[id] = input;
+				FileAPIProxy.swfObject.add(id, multiple, accept, label, options.extensions);
+				
+				input.css('z-index', 0)
+					.mouseover(function (e) {
+						if (id !== currentTarget) {
+							e = e || window.event;
+							currentTarget = id;
+							FileAPIProxy.swfObject.mouseover(id);
+							FileAPIProxy.container
+								.height(input.outerHeight())
+								.width(input.outerWidth())
+								.css(input.offset());
+						}
+					})
+					.click(function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						e.stopImmediatePropagation();
+						return false;
+					});
+			});
+		};
+		
+		/**
+		* Flash FileReader Proxy
+		*/
+		window.FileAPIProxy = {
+			ready: false,
+			_inititalized: false,
+			init: function(o) {
+				var self = this;
+				this.debugMode = o.debugMode;
+				
+				if(!this.container){
+					this.container = $('<div>').attr('id', o.id)
+						.wrap('<div>')
+						.parent()
+						.css({
+							position:'fixed',
+							// top:'0px',
+							width:'1px',
+							height:'1px',
+							display:'inline-block',
+							background:'transparent',
+							'z-index':99999
+						})
+						// Hands over mouse events to original input for css styles
+						.on('mouseover mouseout mousedown mouseup', function(evt) {
+							if(currentTarget){
+								$('#' + currentTarget).trigger(evt.type);
+							}
+						})
+						.appendTo('body');
+					
+					swfobject.embedSWF(o.filereader, o.id, '100%', '100%', '10', o.expressInstall, {debugMode: o.debugMode ? true : ''}, {'wmode':'transparent','allowScriptAccess':'sameDomain'}, {}, function(e) {
+						self.swfObject = e.ref;
+						$(self.swfObject)
+							.css({
+								display: 'block',
+								outline: 0
+							})
+							.attr('tabindex', 0);
+							
+						self.ready = e.success && typeof e.ref.add === "function";
+						
+						if (self.ready) {
+							readyCallbacks.fire();
+						}
+					});
+				}
+			},
+			swfObject: null,
+			container: null,
+			// Inputs Registry
+			inputs: {},
+			// Readers Registry
+			readers: {},
+			// Receives FileInput events
+			onFileInputEvent: function(evt) {
+				if (this.debugMode) console.info('FileInput Event ', evt.type, evt);
+				if (evt.target in this.inputs) {
+					var el = this.inputs[evt.target];
+					evt.target = el[0];
+					if( evt.type === 'change') {
+						webshims.data(evt.target, 'fileList', new FileList(evt.files));
+					}
+					el.trigger(evt);
+				}
+				window.focus();
+			},
+			// Receives FileReader ProgressEvents
+			onFileReaderEvent: function(evt) {
+				if (this.debugMode) console.info('FileReader Event ', evt.type, evt, evt.target in this.readers);
+				if (evt.target in this.readers) {
+					var reader = this.readers[evt.target];
+					evt.target = reader;
+					reader._handleFlashEvent.call(reader, evt);
+				}
+			},
+			// Receives flash FileReader Error Events
+			onFileReaderError: function(error) {
+				if (this.debugMode) console.log(error);
+			},
+			onSWFReady: function() {
+				this.container.css({position: 'absolute'});
+				this.ready = typeof this.swfObject.add === "function";
+				if (this.ready) {
+					readyCallbacks.fire();
+				}
+				
+				return true;
+			}
+		};
+		
+		
+		/**
+		* Add FileReader to the window object
+		*/
+		window.FileReader = function () {
+			// states
+			this.EMPTY = 0;
+			this.LOADING = 1;
+			this.DONE = 2;
+	
+			this.readyState = 0;
+	
+			// File or Blob data
+			this.result = null;
+	
+			this.error = null;
+	
+			// event handler attributes
+			this.onloadstart = null;
+			this.onprogress = null;
+			this.onload = null;
+			this.onabort = null;
+			this.onerror = null;
+			this.onloadend = null;
+			
+			// Event Listeners handling using JQuery Callbacks
+			this._callbacks = {
+				loadstart : $.Callbacks( "unique" ),
+				progress  : $.Callbacks( "unique" ),
+				abort     : $.Callbacks( "unique" ),
+				error     : $.Callbacks( "unique" ),
+				load      : $.Callbacks( "unique" ),
+				loadend   : $.Callbacks( "unique" )
+			};
+			
+			// Custom properties
+			this._id = null;
+		};
+		
+		window.FileReader.prototype = {
+			// async read methods
+			readAsBinaryString: function (file) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsBinaryString');
+			},
+			readAsText: function (file, encoding) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsText');
+			},
+			readAsDataURL: function (file) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsDataURL');
+			},
+			readAsArrayBuffer: function(file){
+				throw("Whoops FileReader.readAsArrayBuffer is unimplemented");
+			},
+			
+			abort: function () {
+				this.result = null;
+				if (this.readyState === this.EMPTY || this.readyState === this.DONE) return;
+				FileAPIProxy.swfObject.abort(this._id);
+			},
+			
+			// Event Target interface
+			addEventListener: function (type, listener) {
+				if (type in this._callbacks) this._callbacks[type].add(listener);
+			},
+			removeEventListener: function (type, listener) {
+				if (type in this._callbacks) this._callbacks[type].remove(listener);
+			},
+			dispatchEvent: function (event) {
+				event.target = this;
+				if (event.type in this._callbacks) {
+					var fn = this['on' + event.type];
+					if ($.isFunction(fn)) fn(event);
+					this._callbacks[event.type].fire(event);
+				}
+				return true;
+			},
+			
+			// Custom private methods
+			
+			// Registers FileReader instance for flash callbacks
+			_register: function(file) {
+				this._id = file.input + '.' + file.name;
+				FileAPIProxy.readers[this._id] = this;
+			},
+			_start: function(file) {
+				this._register(file);
+				if (this.readyState === this.LOADING) throw {type: 'InvalidStateError', code: 11, message: 'The object is in an invalid state.'};
+			},
+			_handleFlashEvent: function(evt) {
+				switch (evt.type) {
+					case 'loadstart':
+						this.readyState = this.LOADING;
+						break;
+					case 'loadend':
+						this.readyState = this.DONE;
+						break;
+					case 'load':
+						this.readyState = this.DONE;
+						this.result = FileAPIProxy.swfObject.result(this._id);
+						break;
+					case 'error':
+						this.result = null;
+						this.error = {
+							name: 'NotReadableError',
+							message: 'The File cannot be read!'
+						};
+				}
+				this.dispatchEvent(new FileReaderEvent(evt));
+			}
+		};
+		
+		/**
+		* FileReader ProgressEvent implenting Event interface
+		*/
+		window.FileReaderEvent = function (e) {
+			this.initEvent(e);
+		};
+	
+		window.FileReaderEvent.prototype = {
+			initEvent: function (event) {
+				$.extend(this, {
+					type: null,
+					target: null,
+					currentTarget: null,
+				
+					eventPhase: 2,
+	
+					bubbles: false,
+					cancelable: false,
+			 
+					defaultPrevented: false,
+	
+					isTrusted: false,
+					timeStamp: new Date().getTime()
+				}, event);
+			},
+			stopPropagation: function (){
+			},
+			stopImmediatePropagation: function (){
+			},
+			preventDefault: function (){
+			}
+		};
+		
+		/**
+		* FileList interface (Object with item function)
+		*/
+		window.FileList = function(array) {
+			if (array) {
+				for (var i = 0; i < array.length; i++) {
+					this[i] = array[i];
+				}
+				this.length = array.length;
+			} else {
+				this.length = 0;
+			}
+		};
+		
+		window.FileList.prototype = {
+			item: function(index) {
+				return (index in this) ? this[index] : null;
+			}
+		};
+	})();
+	
+	webshims.defineNodeNameProperty('input', 'files', {
+			prop: {
+				writeable: false,
+				get: function(){
+					if(this.type != 'file'){return null;}
+					if(!$(this).is('.ws-filereader')){
+						webshims.error("please add the 'ws-filereader' class to your input[type='file'] to implement files-property");
+					}
+					return webshims.data(this, 'fileList') || webshims.data(this, 'fileList', new FileList());
+				}
+			}
+		}
+	);
+	
+	webshims.defineNodeNamesBooleanProperty('input', 'multiple');
+
+	//webshims
+	$.fn.fileReader.defaults.filereader = webshims.cfg.basePath +'swf/filereader.swf';
+	var wait = ['DOM'];
+	if(webshims.modules["form-core"].loaded){
+		wait.push('forms');
+	}
+	webshims.ready(wait, function(){
+		webshims.addReady(function(context, contextElem){
+			$('input[type="file"].ws-filereader', context).fileReader();
+		});
+	});
+});
+
+(function(Modernizr, webshims){
+	"use strict";
+	var $ = webshims.$;
 	var hasNative = Modernizr.audio && Modernizr.video;
 	var supportsLoop = false;
 	var bugs = webshims.bugs;
-	
+	var swfType = 'mediaelement-jaris';
 	var loadSwf = function(){
 		webshims.ready(swfType, function(){
 			if(!webshims.mediaelement.createSWF){
@@ -970,8 +2749,9 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			}
 		});
 	};
-	var options = webshims.cfg.mediaelement;
-	var swfType = options && options.player == 'jwplayer' ? 'mediaelement-swf' : 'mediaelement-jaris';
+	var wsCfg = webshims.cfg;
+	var options = wsCfg.mediaelement;
+	var hasFullTrackSupport;
 	var hasSwf;
 	if(!options){
 		webshims.error("mediaelement wasn't implemented but loaded");
@@ -984,60 +2764,60 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		
 		webshims.capturingEvents(['play', 'playing', 'waiting', 'paused', 'ended', 'durationchange', 'loadedmetadata', 'canplay', 'volumechange']);
 		
-		if(!Modernizr.videoBuffered){
+		if(!Modernizr.videoBuffered ){
 			webshims.addPolyfill('mediaelement-native-fix', {
-				f: 'mediaelement',
-				test: Modernizr.videoBuffered,
 				d: ['dom-support']
 			});
-			
-			webshims.reTest('mediaelement-native-fix');
+			webshims.loader.loadList(['mediaelement-native-fix']);
+		}
+		
+		if(!options.preferFlash){
+			var noSwitch = {
+				1: 1,
+				2: 1
+			};
+			var switchOptions = function(e){
+				var media, error, parent;
+				if(!options.preferFlash && 
+				($(e.target).is('audio, video') || ((parent = e.target.parentNode) && $('source:last', parent)[0] == e.target)) && 
+				(media = $(e.target).closest('audio, video')) && !noSwitch[(error = media.prop('error'))]
+				){
+					if(error == null){
+						webshims.warn("There was an unspecified error on a mediaelement");
+						return;
+						
+					}
+					$(function(){
+						if(hasSwf && !options.preferFlash){
+							loadSwf();
+							webshims.ready('WINDOWLOAD '+swfType, function(){
+								setTimeout(function(){
+									if(!options.preferFlash && webshims.mediaelement.createSWF && !media.is('.nonnative-api-active')){
+										options.preferFlash = true;
+										document.removeEventListener('error', switchOptions, true);
+										$('audio, video').each(function(){
+											webshims.mediaelement.selectSource(this);
+										});
+										webshims.error("switching mediaelements option to 'preferFlash', due to an error with native player: "+e.target.src+" Mediaerror: "+ media.prop('error'));
+									}
+								}, 9);
+							});
+						} else{
+							document.removeEventListener('error', switchOptions, true);
+						}
+					});
+				}
+			};
+			document.addEventListener('error', switchOptions, true);
+			$('audio, video').each(function(){
+				var error = $.prop(this, 'error');
+				if(error && !noSwitch[error]){
+					switchOptions({target: this});
+					return false;
+				}
+			});
 		}
 	}
-	
-	if(hasNative && !options.preferFlash){
-		var noSwitch = {
-			1: 1,
-			2: 1
-		};
-		var switchOptions = function(e){
-			var media;
-			var parent = e.target.parentNode;
-			if(!options.preferFlash && 
-				($(e.target).is('audio, video') || (parent && $('source:last', parent)[0] == e.target)) && 
-				(media = $(e.target).closest('audio, video')) && !noSwitch[media.prop('error')]
-				){
-				$(function(){
-					if(hasSwf && !options.preferFlash){
-						loadSwf();
-						webshims.ready('WINDOWLOAD '+swfType, function(){
-							setTimeout(function(){
-								if(!options.preferFlash && webshims.mediaelement.createSWF && !media.is('.nonnative-api-active')){
-									options.preferFlash = true;
-									document.removeEventListener('error', switchOptions, true);
-									$('audio, video').each(function(){
-										webshims.mediaelement.selectSource(this);
-									});
-									webshims.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+e.target.src+" Mediaerror: "+ media.prop('error'));
-								}
-							}, 9);
-						});
-					} else{
-						document.removeEventListener('error', switchOptions, true);
-					}
-				});
-			}
-		};
-		document.addEventListener('error', switchOptions, true);
-		$('audio, video').each(function(){
-			var error = $.prop(this, 'error');
-			if(error && !noSwitch[error]){
-				switchOptions({target: this});
-				return false;
-			}
-		});
-	}
-	
 	
 	if(Modernizr.track && !bugs.track){
 		(function(){
@@ -1053,47 +2833,15 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 					bugs.track = true;
 				}
 			}
-			
-			var trackOptions = webshims.cfg.track;
-			var trackListener = function(e){
-				$(e.target).filter('track').each(changeApi);
-			};
-			var changeApi = function(){
-				if(bugs.track || (!trackOptions.override && $.prop(this, 'readyState') == 3)){
-					trackOptions.override = true;
-					webshims.reTest('track');
-					document.removeEventListener('error', trackListener, true);
-					if(this && $.nodeName(this, 'track')){
-						webshims.error("track support was overwritten. Please check your vtt including your vtt mime-type");
-					} else {
-						webshims.info("track support was overwritten. due to bad browser support");
-					}
-				}
-			};
-			var detectTrackError = function(){
-				document.addEventListener('error', trackListener, true);
-				
-				if(bugs.track){
-					changeApi();
-				} else {
-					$('track').each(changeApi);
-				}
-			};
-			if(!trackOptions.override){
-				if(webshims.isReady('track')){
-					detectTrackError();
-				} else {
-					$(detectTrackError);
-				}
-			}
 		})();
-		
 	}
+	hasFullTrackSupport = Modernizr.track && !bugs.track;
 
-webshims.register('mediaelement-core', function($, webshims, window, document, undefined){
-	hasSwf = swfobject.hasFlashPlayerVersion('9.0.115');
+webshims.register('mediaelement-core', function($, webshims, window, document, undefined, options){
+	hasSwf = swfmini.hasFlashPlayerVersion('9.0.115');
 	$('html').addClass(hasSwf ? 'swf' : 'no-swf');
 	var mediaelement = webshims.mediaelement;
+	
 	mediaelement.parseRtmp = function(data){
 		var src = data.src.split('://');
 		var paths = src[1].split('/');
@@ -1173,10 +2921,21 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 	var loadTrackUi = function(){
 		if(loadTrackUi.loaded){return;}
 		loadTrackUi.loaded = true;
-		$(function(){
-			webshims.loader.loadList(['track-ui']);
-		});
+		if(!options.noAutoTrack){
+			webshims.ready('WINDOWLOAD', function(){
+				loadThird();
+				webshims.loader.loadList(['track-ui']);
+			});
+		}
 	};
+//	var loadMediaGroup = function(){
+//		if(!loadMediaGroup.loaded){
+//			loadMediaGroup.loaded = true;
+//			webshims.ready(window.MediaController ? 'WINDOWLOAD' : 'DOM', function(){
+//				webshims.loader.loadList(['mediagroup']);
+//			});
+//		}
+//	};
 	var loadYt = (function(){
 		var loaded;
 		return function(){
@@ -1184,7 +2943,7 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 			loaded = true;
 			webshims.loader.loadScript("https://www.youtube.com/player_api");
 			$(function(){
-				webshims.polyfill("mediaelement-yt");
+				webshims._polyfill(["mediaelement-yt"]);
 			});
 		};
 	})();
@@ -1200,6 +2959,11 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		test: !hasYt,
 		d: ['dom-support']
 	});
+	
+	
+//	webshims.addModule('mediagroup', {
+//		d: ['mediaelement', 'dom-support']
+//	});
 	
 	mediaelement.mimeTypes = {
 		audio: {
@@ -1262,7 +3026,6 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 			var src = getSrcObj(mediaElem, nodeName);
 			
 			if(!src.src){
-				
 				$('source', mediaElem).each(function(){
 					src = getSrcObj(this, nodeName);
 					if(src.src){srces.push(src);}
@@ -1277,18 +3040,10 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 				srces = [srces]; 
 			}
 			srces.forEach(function(src){
-				var source = document.createElement('source');
 				if(typeof src == 'string'){
 					src = {src: src};
 				} 
-				source.setAttribute('src', src.src);
-				if(src.type){
-					source.setAttribute('type', src.type);
-				}
-				if(src.media){
-					source.setAttribute('media', src.media);
-				}
-				mediaElem.append(source);
+				mediaElem.append($(document.createElement('source')).attr(src));
 			});
 			
 		}
@@ -1308,7 +3063,7 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		});
 	};
 	
-	mediaelement.swfMimeTypes = ['video/3gpp', 'video/x-msvideo', 'video/quicktime', 'video/x-m4v', 'video/mp4', 'video/m4p', 'video/x-flv', 'video/flv', 'audio/mpeg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a', 'audio/mp3', 'audio/x-fla', 'audio/fla', 'youtube/flv', 'jwplayer/jwplayer', 'video/youtube', 'video/rtmp', 'audio/rtmp'];
+	mediaelement.swfMimeTypes = ['video/3gpp', 'video/x-msvideo', 'video/quicktime', 'video/x-m4v', 'video/mp4', 'video/m4p', 'video/x-flv', 'video/flv', 'audio/mpeg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a', 'audio/mp3', 'audio/x-fla', 'audio/fla', 'youtube/flv', 'video/jarisplayer', 'jarisplayer/jarisplayer', 'video/youtube', 'video/rtmp', 'audio/rtmp'];
 	
 	mediaelement.canThirdPlaySrces = function(mediaElem, srces){
 		var ret = '';
@@ -1333,11 +3088,12 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		if(hasNative){
 			mediaElem = $(mediaElem);
 			var nodeName = (mediaElem[0].nodeName || '').toLowerCase();
-			if(!nativeCanPlayType[nodeName]){return ret;}
+			var nativeCanPlay = (nativeCanPlayType[nodeName] || {prop: {_supvalue: false}}).prop._supvalue || mediaElem[0].canPlayType;
+			if(!nativeCanPlay){return ret;}
 			srces = srces || mediaelement.srces(mediaElem);
 			
 			$.each(srces, function(i, src){
-				if(src.type && nativeCanPlayType[nodeName].prop._supvalue.call(mediaElem[0], src.type) ){
+				if(src.type && nativeCanPlay.call(mediaElem[0], src.type) ){
 					ret = src;
 					return false;
 				}
@@ -1345,27 +3101,40 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		}
 		return ret;
 	};
-	
+	var emptyType = (/^\s*application\/octet\-stream\s*$/i);
+	var getRemoveEmptyType = function(){
+		var ret = emptyType.test($.attr(this, 'type') || '');
+		if(ret){
+			$(this).removeAttr('type');
+		}
+		return ret;
+	};
 	mediaelement.setError = function(elem, message){
-		if(!message){
-			message = "can't play sources";
+		if($('source', elem).filter(getRemoveEmptyType).length){
+			webshims.error('"application/octet-stream" is a useless mimetype for audio/video. Please change this attribute.');
+			try {
+				$(elem).mediaLoad();
+			} catch(er){}
+		} else {
+			if(!message){
+				message = "can't play sources";
+			}
+			$(elem).pause().data('mediaerror', message);
+			webshims.error('mediaelementError: '+ message);
+			setTimeout(function(){
+				if($(elem).data('mediaerror')){
+					$(elem).trigger('mediaerror');
+				}
+			}, 1);
 		}
 		
-		$(elem).pause().data('mediaerror', message);
-		webshims.warn('mediaelementError: '+ message);
-		setTimeout(function(){
-			if($(elem).data('mediaerror')){
-				$(elem).trigger('mediaerror');
-			}
-		}, 1);
+		
 	};
 	
 	var handleThird = (function(){
 		var requested;
 		return function( mediaElem, ret, data ){
-			if(!requested){
-				loadTrackUi();
-			}
+			
 			webshims.ready(hasSwf ? swfType : 'mediaelement-yt', function(){
 				if(mediaelement.createSWF){
 					mediaelement.createSWF( mediaElem, ret, data );
@@ -1422,9 +3191,13 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		
 		if(!_srces.length || !parent || parent.nodeType != 1 || stopParent.test(parent.nodeName || '')){return;}
 		data = data || webshims.data(elem, 'mediaelement');
+		if(mediaelement.sortMedia){
+			_srces.sort(mediaelement.sortMedia);
+		}
 		stepSources(elem, data, options.preferFlash || undefined, _srces);
 	};
 	mediaelement.selectSource = selectSource;
+	
 	
 	$(document).on('ended', function(e){
 		var data = webshims.data(e.target, 'mediaelement');
@@ -1435,124 +3208,201 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 		}, 1);
 		
 	});
-	if(!supportsLoop){
-		webshims.defineNodeNamesBooleanProperty(['audio', 'video'], 'loop');
-	}
 	
-	['audio', 'video'].forEach(function(nodeName){
-		var supLoad = webshims.defineNodeNameProperty(nodeName, 'load',  {
-			prop: {
-				value: function(){
-					var data = webshims.data(this, 'mediaelement');
-					selectSource(this, data);
-					if(hasNative && (!data || data.isActive == 'html5') && supLoad.prop._supvalue){
-						supLoad.prop._supvalue.apply(this, arguments);
-					}
-				}
-			}
-		});
-		nativeCanPlayType[nodeName] = webshims.defineNodeNameProperty(nodeName, 'canPlayType',  {
-			prop: {
-				value: function(type){
-					var ret = '';
-					if(hasNative && nativeCanPlayType[nodeName].prop._supvalue){
-						ret = nativeCanPlayType[nodeName].prop._supvalue.call(this, type);
-						if(ret == 'no'){
-							ret = '';
-						}
-					}
-					if(!ret && hasSwf){
-						type = $.trim((type || '').split(';')[0]);
-						if(mediaelement.swfMimeTypes.indexOf(type) != -1){
-							ret = 'maybe';
-						}
-					}
-					return ret;
-				}
-			}
-		});
-	});
-	webshims.onNodeNamesPropertyModify(['audio', 'video'], ['src', 'poster'], {
-		set: function(){
-			var elem = this;
-			var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
-			clearTimeout(baseData.loadTimer);
-			baseData.loadTimer = setTimeout(function(){
-				selectSource(elem);
-				elem = null;
-			}, 9);
-		}
-	});
-		
+	var handleMedia = false;	
 	var initMediaElements = function(){
-		
-		webshims.addReady(function(context, insertedElement){
-			var media = $('video, audio', context)
-				.add(insertedElement.filter('video, audio'))
-				.each(function(){
-					var data = webshims.data(this, 'mediaelement');
+		var testFixMedia = function(){
+			if(webshims.implement(this, 'mediaelement')){
+				selectSource(this);
+				
+				//fixes for FF 12 and IE9/10 || does not hurt, if run in other browsers
+				if(hasNative && (!supportsLoop || ('ActiveXObject' in window))){
+					var bufferTimer;
+					var lastBuffered;
+					var elem = this;
+					var getBufferedString = function(){
+						var buffered = $.prop(elem, 'buffered');
+						if(!buffered){return;}
+						var bufferString = "";
+						for(var i = 0, len = buffered.length; i < len;i++){
+							bufferString += buffered.end(i);
+						}
+						return bufferString;
+					};
+					var testBuffer = function(){
+						var buffered = getBufferedString();
+						if(buffered != lastBuffered){
+							lastBuffered = buffered;
+							webshims.info('needed to trigger progress manually');
+							$(elem).triggerHandler('progress');
+						}
+					};
 					
-					if(hasNative && $.prop(this, 'paused') && !$.prop(this, 'readyState') && $(this).is('audio[preload="none"][controls]:not([autoplay])') && (!data || data.isActive == 'html5')){
-						//IE controls not visible bug
-						$(this).prop('preload', 'metadata').mediaLoad();
-					} else {
-						selectSource(this, data);
-					}
-					
-					if(hasNative){
-						
-						//FF progress bug
-						(function(){
-							var bufferTimer;
-							var lastBuffered;
-							var elem = this;
-							var getBufferedString = function(){
-								var buffered = $.prop(elem, 'buffered');
-								if(!buffered){return;}
-								var bufferString = "";
-								for(var i = 0, len = buffered.length; i < len;i++){
-									bufferString += buffered.end(i);
+					$(this)
+						.on({
+							'play loadstart progress': function(e){
+								if(e.type == 'progress'){
+									lastBuffered = getBufferedString();
 								}
-								return bufferString;
-							};
-							var testBuffer = function(){
-								var buffered = getBufferedString();
-								if(buffered != lastBuffered){
-									lastBuffered = buffered;
-									$(elem).triggerHandler('progress');
+								clearTimeout(bufferTimer);
+								bufferTimer = setTimeout(testBuffer, 400);
+							},
+							'emptied stalled mediaerror abort suspend': function(e){
+								if(e.type == 'emptied'){
+									lastBuffered = false;
 								}
-							};
-							
-							$(this)
-								.on({
-									'play loadstart progress': function(e){
-										if(e.type == 'progress'){
-											lastBuffered = getBufferedString();
-										}
-										clearTimeout(bufferTimer);
-										bufferTimer = setTimeout(testBuffer, 999);
-									},
-									'emptied stalled mediaerror abort suspend': function(e){
-										if(e.type == 'emptied'){
-											lastBuffered = false;
-										}
-										clearTimeout(bufferTimer);
-									}
-								})
-							;
-						})();
+								clearTimeout(bufferTimer);
+							}
+						})
+					;
+					if('ActiveXObject' in window && $.prop(this, 'paused') && !$.prop(this, 'readyState') && $(this).is('audio[preload="none"][controls]:not([autoplay],.nonnative-api-active)')){
+						$(this).prop('preload', 'metadata').mediaLoad(); 
 					}
-					
-				})
-			;
-			if(!loadTrackUi.loaded && $('track', media).length){
-				loadTrackUi();
+				}
 			}
-			media = null;
+			
+		};
+		
+		webshims.ready('dom-support', function(){
+			handleMedia = true;
+			
+			if(!supportsLoop){
+				webshims.defineNodeNamesBooleanProperty(['audio', 'video'], 'loop');
+			}
+			
+			['audio', 'video'].forEach(function(nodeName){
+				var supLoad, supController;
+				supLoad = webshims.defineNodeNameProperty(nodeName, 'load',  {
+					prop: {
+						value: function(){
+							var data = webshims.data(this, 'mediaelement');
+							selectSource(this, data);
+							if(hasNative && (!data || data.isActive == 'html5') && supLoad.prop._supvalue){
+								supLoad.prop._supvalue.apply(this, arguments);
+							}
+						}
+					}
+				});
+				nativeCanPlayType[nodeName] = webshims.defineNodeNameProperty(nodeName, 'canPlayType',  {
+					prop: {
+						value: function(type){
+							var ret = '';
+							if(hasNative && nativeCanPlayType[nodeName].prop._supvalue){
+								ret = nativeCanPlayType[nodeName].prop._supvalue.call(this, type);
+								if(ret == 'no'){
+									ret = '';
+								}
+							}
+							if(!ret && hasSwf){
+								type = $.trim((type || '').split(';')[0]);
+								if(mediaelement.swfMimeTypes.indexOf(type) != -1){
+									ret = 'maybe';
+								}
+							}
+							return ret;
+						}
+					}
+				});
+				
+//				supController = webshims.defineNodeNameProperty(nodeName, 'controller',  {
+//					prop: {
+//						get: function(type){
+//							if(!loadMediaGroup.loaded){
+//								loadMediaGroup();
+//							}
+//							if(mediaelement.controller){
+//								return mediaelement.controller[nodeName].get.apply(this, arguments);
+//							}
+//							return supController.prop._supget && supController.prop._supget.apply(this, arguments);
+//						},
+//						set: function(){
+//							var that = this;
+//							var args = arguments;
+//							if(!loadMediaGroup.loaded){
+//								loadMediaGroup();
+//							}
+//							if(mediaelement.controller){
+//								return mediaelement.controller[nodeName].set.apply(that, args);
+//							} else {
+//								webshims.ready('mediagroup', function(){
+//									mediaelement.controller[nodeName].set.apply(that, args);
+//								});
+//							}
+//							return supController.prop._supset && supController.prop._supset.apply(this, arguments);
+//						}
+//					}
+//				});
+				
+//				webshims.ready('mediagroup', function(){
+//					mediaelement.controller[nodeName].sup = supController;
+//				});
+			});
+			
+//			webshims.onNodeNamesPropertyModify(['audio', 'video'], ['mediaGroup'], {
+//				set: function(){
+//					var that = this;
+//					var args = arguments;
+//					if(!loadMediaGroup.loaded){
+//						loadMediaGroup();
+//					}
+//					if(mediaelement.mediagroup){
+//						mediaelement.mediagroup.set.apply(that, args);
+//					} else {
+//						webshims.ready('mediagroup', function(){
+//							mediaelement.mediagroup.set.apply(that, args);
+//						});
+//					}
+//				},
+//				initAttr: true
+//			});
+			
+			webshims.onNodeNamesPropertyModify(['audio', 'video'], ['src', 'poster'], {
+				set: function(){
+					var elem = this;
+					var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+					clearTimeout(baseData.loadTimer);
+					baseData.loadTimer = setTimeout(function(){
+						selectSource(elem);
+						elem = null;
+					}, 9);
+				}
+			});
+			
+			
+			webshims.addReady(function(context, insertedElement){
+				var media = $('video, audio', context)
+					.add(insertedElement.filter('video, audio'))
+					.each(testFixMedia)
+				;
+				if(!loadTrackUi.loaded && $('track', media).length){
+					loadTrackUi();
+				}
+//				if(!loadMediaGroup.loaded && this.getAttribute('mediagroup')){
+//					loadMediaGroup();
+//				}
+				media = null;
+			});
 		});
+		
+		if(hasNative && !handleMedia){
+			webshims.addReady(function(context, insertedElement){
+				if(!handleMedia){
+					$('video, audio', context)
+						.add(insertedElement.filter('video, audio'))
+						.each(function(){
+							if(!mediaelement.canNativePlaySrces(this)){
+								loadThird();
+								handleMedia = true;
+								return false;
+							}
+						})
+					;
+				}
+			});
+		}
 	};
 	
-	if(Modernizr.track && !bugs.track){
+	if(hasFullTrackSupport){
 		webshims.defineProperty(TextTrack.prototype, 'shimActiveCues', {
 			get: function(){
 				return this._shimActiveCues || this.activeCues;
@@ -1567,824 +3417,1068 @@ webshims.register('mediaelement-core', function($, webshims, window, document, u
 	} else {
 		webshims.ready(swfType, initMediaElements);
 	}
-	webshims.ready('WINDOWLOAD mediaelement', loadTrackUi);
+	webshims.ready('track', loadTrackUi);
 });
-})(jQuery, Modernizr, jQuery.webshims);
-jQuery.webshims.register('track', function($, webshims, window, document, undefined){
+})(Modernizr, webshims);
+webshims.register('mediaelement-jaris', function($, webshims, window, document, undefined, options){
 	"use strict";
+	
 	var mediaelement = webshims.mediaelement;
-	var id = new Date().getTime();
-	var ADDBACK = $.fn.addBack ? 'addBack' : 'andSelf';
-	//descriptions are not really shown, but they are inserted into the dom
-	var showTracks = {subtitles: 1, captions: 1, descriptions: 1};
-	var notImplemented = function(){
-		webshims.error('not implemented yet');
-	};
-	var dummyTrack = $('<track />');
-	var supportTrackMod = Modernizr.ES5 && Modernizr.objectAccessor;
-	var createEventTarget = function(obj){
-		var eventList = {};
-		obj.addEventListener = function(name, fn){
-			if(eventList[name]){
-				webshims.error('always use $.on to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
-			}
-			eventList[name] = fn;
-			
-		};
-		obj.removeEventListener = function(name, fn){
-			if(eventList[name] && eventList[name] != fn){
-				webshims.error('always use $.on/$.off to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
-			}
-			if(eventList[name]){
-				delete eventList[name];
-			}
-		};
-		return obj;
-	};
-	
-	
-	var cueListProto = {
-		getCueById: function(id){
-			var cue = null;
-			for(var i = 0, len = this.length; i < len; i++){
-				if(this[i].id === id){
-					cue = this[i];
-					break;
-				}
-			}
-			return cue;
-		}
-	};
-	var numericModes = {
-		0: 'disabled',
-		1: 'hidden',
-		2: 'showing'
-	};
-	
-	var textTrackProto = {
-		shimActiveCues: null,
-		_shimActiveCues: null,
-		activeCues: null,
-		cues: null,
-		kind: 'subtitles',
-		label: '',
-		language: '',
-		mode: 'disabled',
+	var swfmini = window.swfmini;
+	var hasNative = Modernizr.audio && Modernizr.video;
+	var hasFlash = swfmini.hasFlashPlayerVersion('9.0.115');
+	var loadedSwf = 0;
+	var needsLoadPreload = 'ActiveXObject' in window && hasNative;
+	var getProps = {
+		paused: true,
+		ended: false,
+		currentSrc: '',
+		duration: window.NaN,
 		readyState: 0,
-		oncuechange: null,
-		toString: function() {
-			return "[object TextTrack]";
-		},
-		addCue: function(cue){
-			if(!this.cues){
-				this.cues = mediaelement.createCueList();
+		networkState: 0,
+		videoHeight: 0,
+		videoWidth: 0,
+		error: null,
+		buffered: {
+			start: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			end: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			length: 0
+		}
+	};
+	var getPropKeys = Object.keys(getProps);
+	
+	var getSetProps = {
+		currentTime: 0,
+		volume: 1,
+		muted: false
+	};
+	var getSetPropKeys = Object.keys(getSetProps);
+	
+	var playerStateObj = $.extend({
+		isActive: 'html5',
+		activating: 'html5',	
+		wasSwfReady: false,
+		_bufferedEnd: 0,
+		_bufferedStart: 0,
+		currentTime: 0,
+		_ppFlag: undefined,
+		_calledMeta: false,
+		lastDuration: 0
+	}, getProps, getSetProps);
+	
+	var idRep = /^jarisplayer-/;
+	var getSwfDataFromID = function(id){
+		
+		var elem = document.getElementById(id.replace(idRep, ''));
+		if(!elem){return;}
+		var data = webshims.data(elem, 'mediaelement');
+		return data.isActive == 'third' ? data : null;
+	};
+	
+	
+	var getSwfDataFromElem = function(elem){
+		try {
+			(elem.nodeName);
+		} catch(er){
+			return null;
+		}
+		var data = webshims.data(elem, 'mediaelement');
+		return (data && data.isActive== 'third') ? data : null;
+	};
+	
+	var trigger = function(elem, evt){
+		evt = $.Event(evt);
+		evt.preventDefault();
+		$.event.trigger(evt, undefined, elem);
+	};
+	
+	var playerSwfPath = options.playerPath || webshims.cfg.basePath + "swf/" + (options.playerName || 'JarisFLVPlayer.swf');
+	
+	webshims.extendUNDEFProp(options.params, {
+		allowscriptaccess: 'always',
+		allowfullscreen: 'true',
+		wmode: 'transparent',
+		allowNetworking: 'all'
+	});
+	webshims.extendUNDEFProp(options.vars, {
+		controltype: '1',
+		jsapi: '1'
+	});
+	webshims.extendUNDEFProp(options.attrs, {
+		bgcolor: '#000000'
+	});
+	
+	var setReadyState = function(readyState, data){
+		if(readyState < 3){
+			clearTimeout(data._canplaythroughTimer);
+		}
+		if(readyState >= 3 && data.readyState < 3){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplay');
+			if(!data.paused){
+				trigger(data._elem, 'playing');
+			}
+			clearTimeout(data._canplaythroughTimer);
+			data._canplaythroughTimer = setTimeout(function(){
+				setReadyState(4, data);
+			}, 4000);
+		}
+		if(readyState >= 4 && data.readyState < 4){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplaythrough');
+		}
+		data.readyState = readyState;
+	};
+	
+	
+	
+	mediaelement.jarisEvent = {};
+	var localConnectionTimer;
+	var onEvent = {
+		onPlayPause: function(jaris, data, override){
+			var playing, type;
+			if(override == null){
+				try {
+					playing = data.api.api_get("isPlaying");
+				} catch(e){}
 			} else {
-				var lastCue = this.cues[this.cues.length-1];
-				if(lastCue && lastCue.startTime > cue.startTime){
-					webshims.error("cue startTime higher than previous cue's startTime");
+				playing = override;
+			}
+			if(playing == data.paused){
+				
+				data.paused = !playing;
+				type = data.paused ? 'pause' : 'play';
+				data._ppFlag = true;
+				trigger(data._elem, type);
+				if(data.readyState < 3){
+					setReadyState(3, data);
 				}
-			}
-			if(cue.track && cue.track.removeCue){
-				cue.track.removeCue(cue);
-			}
-			cue.track = this;
-			this.cues.push(cue);
-		},
-		//ToDo: make it more dynamic
-		removeCue: function(cue){
-			var cues = this.cues || [];
-			var i = 0;
-			var len = cues.length;
-			if(cue.track != this){
-				webshims.error("cue not part of track");
-				return;
-			}
-			for(; i < len; i++){
-				if(cues[i] === cue){
-					cues.splice(i, 1);
-					cue.track = null;
-					break;
+				if(!data.paused){
+					trigger(data._elem, 'playing');
 				}
-			}
-			if(cue.track){
-				webshims.error("cue not part of track");
-				return;
 			}
 		},
-		DISABLED: 'disabled',
-		OFF: 'disabled',
-		HIDDEN: 'hidden',
-		SHOWING: 'showing',
-		ERROR: 3,
-		LOADED: 2,
-		LOADING: 1,
-		NONE: 0
-	};
-	var copyProps = ['kind', 'label', 'srclang'];
-	var copyName = {srclang: 'language'};
-	
-	var owns = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
-	
-	var updateMediaTrackList = function(baseData, trackList){
-		var removed = [];
-		var added = [];
-		var newTracks = [];
-		var i, len;
-		if(!baseData){
-			baseData =  webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
-		}
-		
-		if(!trackList){
-			baseData.blockTrackListUpdate = true;
-			trackList = $.prop(this, 'textTracks');
-			baseData.blockTrackListUpdate = false;
-		}
-		
-		clearTimeout(baseData.updateTrackListTimer);
-		
-		$('track', this).each(function(){
-			var track = $.prop(this, 'track');
-			newTracks.push(track);
-			if(trackList.indexOf(track) == -1){
-				added.push(track);
-			}
-		});
-		
-		if(baseData.scriptedTextTracks){
-			for(i = 0, len = baseData.scriptedTextTracks.length; i < len; i++){
-				newTracks.push(baseData.scriptedTextTracks[i]);
-				if(trackList.indexOf(baseData.scriptedTextTracks[i]) == -1){
-					added.push(baseData.scriptedTextTracks[i]);
-				}
-			}
-		}
-		
-		for(i = 0, len = trackList.length; i < len; i++){
-			if(newTracks.indexOf(trackList[i]) == -1){
-				removed.push(trackList[i]);
-			}
-		}
-		
-		if(removed.length || added.length){
-			trackList.splice(0);
+		onNotBuffering: function(jaris, data){
+			setReadyState(3, data);
+		},
+		onDataInitialized: function(jaris, data){
 			
-			for(i = 0, len = newTracks.length; i < len; i++){
-				trackList.push(newTracks[i]);
+			var oldDur = data.duration;
+			var durDelta;
+			data.duration = jaris.duration;
+			if(oldDur == data.duration || isNaN(data.duration)){return;}
+			
+			if(data._calledMeta && ((durDelta = Math.abs(data.lastDuration - data.duration)) < 2)){return;}
+			
+			
+			
+			data.videoHeight = jaris.height;
+			data.videoWidth = jaris.width;
+			
+			if(!data.networkState){
+				data.networkState = 2;
 			}
-			for(i = 0, len = removed.length; i < len; i++){
-				$([trackList]).triggerHandler($.Event({type: 'removetrack', track: removed[i]}));
+			if(data.readyState < 1){
+				setReadyState(1, data);
 			}
-			for(i = 0, len = added.length; i < len; i++){
-				$([trackList]).triggerHandler($.Event({type: 'addtrack', track: added[i]}));
+			clearTimeout(data._durationChangeTimer);
+			if(data._calledMeta && data.duration){
+				data._durationChangeTimer = setTimeout(function(){
+					data.lastDuration = data.duration;
+					trigger(data._elem, 'durationchange');
+				}, durDelta > 50 ? 0 : durDelta > 9 ? 9 : 99);
+			} else {
+				data.lastDuration = data.duration;
+				if(data.duration){
+					trigger(data._elem, 'durationchange');
+				}
+				if(!data._calledMeta){
+					trigger(data._elem, 'loadedmetadata');
+				}
 			}
-			if(baseData.scriptedTextTracks || removed.length){
-				$(this).triggerHandler('updatetrackdisplay');
+			data._calledMeta = true;
+		},
+		onBuffering: function(jaris, data){
+			if(data.ended){
+				data.ended = false;
 			}
-		}
+			setReadyState(1, data);
+			trigger(data._elem, 'waiting');
+		},
+		onTimeUpdate: function(jaris, data){
+			if(data.ended){
+				data.ended = false;
+			}
+			if(data.readyState < 3){
+				setReadyState(3, data);
+				trigger(data._elem, 'playing');
+			}
+			
+			trigger(data._elem, 'timeupdate');
+		},
+		onProgress: function(jaris, data){
+			if(data.ended){
+				data.ended = false;
+			}
+			if(!data.duration || isNaN(data.duration)){
+				return;
+			}
+			var percentage = jaris.loaded / jaris.total;
+			if(percentage > 0.02 && percentage < 0.2){
+				setReadyState(3, data);
+			} else if(percentage > 0.2){
+				if(percentage > 0.99){
+					data.networkState = 1;
+				}
+				setReadyState(4, data);
+			}
+			if(data._bufferedEnd && (data._bufferedEnd > percentage)){
+				data._bufferedStart = data.currentTime || 0;
+			}
+			
+			data._bufferedEnd = percentage;
+			data.buffered.length = 1;
+			
+			$.event.trigger('progress', undefined, data._elem, true);
+		},
+		onPlaybackFinished: function(jaris, data){
+			if(data.readyState < 4){
+				setReadyState(4, data);
+			}
+			data.ended = true;
+			trigger(data._elem, 'ended');
+		},
+		onVolumeChange: function(jaris, data){
+			if(data.volume != jaris.volume || data.muted != jaris.mute){
+				data.volume = jaris.volume;
+				data.muted = jaris.mute;
+				trigger(data._elem, 'volumechange');
+			}
+		},
+		ready: (function(){
+			var testAPI = function(data){
+				var passed = true;
+				
+				try {
+					data.api.api_get('volume');
+				} catch(er){
+					passed = false;
+				}
+				return passed;
+			};
+			
+			return function(jaris, data){
+				var i = 0;
+				var doneFn = function(){
+					if(i > 9){
+						data.tryedReframeing = 0;
+						return;
+					}
+					i++;
+					
+					data.tryedReframeing++;
+					if(testAPI(data)){
+						data.wasSwfReady = true;
+						data.tryedReframeing = 0;
+						startAutoPlay(data);
+						workActionQueue(data);
+					} else if(data.tryedReframeing < 6) {
+						if(data.tryedReframeing < 3){
+							data.reframeTimer = setTimeout(doneFn, 9);
+							data.shadowElem.css({overflow: 'visible'});
+							setTimeout(function(){
+								data.shadowElem.css({overflow: 'hidden'});
+							}, 1);
+						} else {
+							data.shadowElem.css({overflow: 'hidden'});
+							$(data._elem).mediaLoad();
+						}
+					} else {
+						clearTimeout(data.reframeTimer);
+						webshims.error("reframing error");
+					}
+				};
+				if(!data || !data.api){return;}
+				if(!data.tryedReframeing){
+					data.tryedReframeing = 0;
+				}
+				clearTimeout(localConnectionTimer);
+				clearTimeout(data.reframeTimer);
+				data.shadowElem.removeClass('flashblocker-assumed');
+				
+				if(!i){
+					doneFn();
+				} else {
+					data.reframeTimer = setTimeout(doneFn, 9);
+				}
+				
+			};
+		})()
 	};
 	
-	var refreshTrack = function(track, trackData){
-		if(!trackData){
-			trackData = webshims.data(track, 'trackData');
-		}
-		if(trackData && !trackData.isTriggering){
-			trackData.isTriggering = true;
-			setTimeout(function(){
-				if(!(trackData.track || {}).readyState){
-					$(track).triggerHandler('checktrackmode');
-				} else {
-					$(track).closest('audio, video').triggerHandler('updatetrackdisplay');
+	onEvent.onMute = onEvent.onVolumeChange;
+	
+	
+	var workActionQueue = function(data){
+		var actionLen = data.actionQueue.length;
+		var i = 0;
+		var operation;
+		
+		if(actionLen && data.isActive == 'third'){
+			while(data.actionQueue.length && actionLen > i){
+				i++;
+				operation = data.actionQueue.shift();
+				try{
+					data.api[operation.fn].apply(data.api, operation.args);
+				} catch(er){
+					webshims.warn(er);
 				}
-				trackData.isTriggering = false;
+			}
+		}
+		if(data.actionQueue.length){
+			data.actionQueue = [];
+		}
+	};
+	var startAutoPlay = function(data){
+		if(!data){return;}
+		if( (data._ppFlag === undefined && ($.prop(data._elem, 'autoplay')) || !data.paused)){
+			setTimeout(function(){
+				if(data.isActive == 'third' && (data._ppFlag === undefined || !data.paused)){
+					
+					try {
+						$(data._elem).play();
+						data._ppFlag = true;
+					} catch(er){}
+				}
 			}, 1);
 		}
-	};
-	
-	var emptyDiv = $('<div />')[0];
-	window.TextTrackCue = function(startTime, endTime, text){
-		if(arguments.length != 3){
-			webshims.error("wrong arguments.length for TextTrackCue.constructor");
+		
+		if(data.muted){
+			$.prop(data._elem, 'muted', true);
 		}
-		
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.text = text;
-		
-		this.id = "";
-		this.pauseOnExit = false;
-		
-		createEventTarget(this);
+		if(data.volume != 1){
+			$.prop(data._elem, 'volume', data.volume);
+		}
 	};
 	
-	window.TextTrackCue.prototype = {
+	
+	var addMediaToStopEvents = $.noop;
+	if(hasNative){
+		var stopEvents = {
+			play: 1,
+			playing: 1
+		};
+		var hideEvtArray = ['play', 'pause', 'playing', 'canplay', 'progress', 'waiting', 'ended', 'loadedmetadata', 'durationchange', 'emptied'];
+		var hidevents = hideEvtArray.map(function(evt){
+			return evt +'.webshimspolyfill';
+		}).join(' ');
 		
-		onenter: null,
-		onexit: null,
-		pauseOnExit: false,
-		getCueAsHTML: function(){
-			var lastText = "";
-			var parsedText = "";
-			var fragment = document.createDocumentFragment();
-			var fn;
-			if(!owns(this, 'getCueAsHTML')){
-				fn = this.getCueAsHTML = function(){
-					var i, len;
-					if(lastText != this.text){
-						lastText = this.text;
-						parsedText = mediaelement.parseCueTextToHTML(lastText);
-						emptyDiv.innerHTML = parsedText;
-						
-						for(i = 0, len = emptyDiv.childNodes.length; i < len; i++){
-							fragment.appendChild(emptyDiv.childNodes[i].cloneNode(true));
-						}
-					}
-					return fragment.cloneNode(true);
-				};
+		var hidePlayerEvents = function(event){
+			var data = webshims.data(event.target, 'mediaelement');
+			if(!data){return;}
+			var isNativeHTML5 = ( event.originalEvent && event.originalEvent.type === event.type );
+			if( isNativeHTML5 == (data.activating == 'third') ){
+				event.stopImmediatePropagation();
 				
+				if(stopEvents[event.type]){
+					if(data.isActive != data.activating){
+						$(event.target).pause();
+					} else if(isNativeHTML5){
+						($.prop(event.target, 'pause')._supvalue || $.noop).apply(event.target);
+					}
+				}
 			}
-			return fn ? fn.apply(this, arguments) : fragment.cloneNode(true);
-		},
-		track: null,
+		};
 		
-		
-		id: ''
-		//todo-->
-//			,
-//			snapToLines: true,
-//			line: 'auto',
-//			size: 100,
-//			position: 50,
-//			vertical: '',
-//			align: 'middle'
+		addMediaToStopEvents = function(elem){
+			$(elem)
+				.off(hidevents)
+				.on(hidevents, hidePlayerEvents)
+			;
+			hideEvtArray.forEach(function(evt){
+				webshims.moveToFirstEvent(elem, evt);
+			});
+		};
+		addMediaToStopEvents(document);
+	}
+	
+	
+	mediaelement.setActive = function(elem, type, data){
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		if(!data || data.isActive == type){return;}
+		if(type != 'html5' && type != 'third'){
+			webshims.warn('wrong type for mediaelement activating: '+ type);
+		}
+		var shadowData = webshims.data(elem, 'shadowData');
+		data.activating = type;
+		$(elem).pause();
+		data.isActive = type;
+		if(type == 'third'){
+			shadowData.shadowElement = shadowData.shadowFocusElement = data.shadowElem[0];
+			$(elem).addClass('swf-api-active nonnative-api-active').hide().getShadowElement().show();
+		} else {
+			$(elem).removeClass('swf-api-active nonnative-api-active').show().getShadowElement().hide();
+			shadowData.shadowElement = shadowData.shadowFocusElement = false;
+		}
+		$(elem).trigger('mediaelementapichange');
 	};
 	
 	
 	
+	var resetSwfProps = (function(){
+		var resetProtoProps = ['_calledMeta', 'lastDuration', '_bufferedEnd', '_bufferedStart', '_ppFlag', 'currentSrc', 'currentTime', 'duration', 'ended', 'networkState', 'paused', 'videoHeight', 'videoWidth'];
+		var len = resetProtoProps.length;
+		return function(data){
+			
+			if(!data){return;}
+			var lenI = len;
+			var networkState = data.networkState;
+			setReadyState(0, data);
+			clearTimeout(data._durationChangeTimer);
+			while(--lenI > -1){
+				delete data[resetProtoProps[lenI]];
+			}
+			data.actionQueue = [];
+			data.buffered.length = 0;
+			if(networkState){
+				trigger(data._elem, 'emptied');
+			}
+		};
+	})();
 	
 	
-	mediaelement.createCueList = function(){
-		return $.extend([], cueListProto);
-	};
-	
-	mediaelement.parseCueTextToHTML = (function(){
-		var tagSplits = /(<\/?[^>]+>)/ig;
-		var allowedTags = /^(?:c|v|ruby|rt|b|i|u)/;
-		var regEnd = /\<\s*\//;
-		var addToTemplate = function(localName, attribute, tag, html){
-			var ret;
-			if(regEnd.test(html)){
-				ret = '</'+ localName +'>';
-			} else {
-				tag.splice(0, 1);
-				ret =  '<'+ localName +' '+ attribute +'="'+ (tag.join(' ').replace(/\"/g, '&#34;')) +'">';
+	var transformDimension = (function(){
+		var dimCache = {};
+		var getRealDims = function(data){
+			var ret, poster, img;
+			if(dimCache[data.currentSrc]){
+				ret = dimCache[data.currentSrc];
+			} else if(data.videoHeight && data.videoWidth){
+				dimCache[data.currentSrc] = {
+					width: data.videoWidth,
+					height: data.videoHeight
+				};
+				ret = dimCache[data.currentSrc];
+			} else if((poster = $.attr(data._elem, 'poster'))){
+				ret = dimCache[poster];
+				if(!ret){
+					img = document.createElement('img');
+					img.onload = function(){
+						dimCache[poster] = {
+							width: this.width,
+							height: this.height
+						};
+						
+						if(dimCache[poster].height && dimCache[poster].width){
+							setElementDimension(data, $.prop(data._elem, 'controls'));
+						} else {
+							delete dimCache[poster];
+						}
+					};
+					img.src = poster;
+					if(img.complete){
+						img.onload();
+					}
+				}
+			}
+			return ret || {width: 300, height: data._elemNodeName == 'video' ? 150 : 50};
+		};
+		return function(data){
+			var realDims, ratio;
+			var ret = data.elemDimensions;
+			
+			if(ret.width == 'auto' || ret.height == 'auto'){
+				ret = $.extend({}, data.elemDimensions);
+				realDims = getRealDims(data);
+				ratio = realDims.width / realDims.height;
+				
+				if(ret.width == 'auto' && ret.height == 'auto'){
+					ret = realDims;
+				} else if(ret.width == 'auto'){
+					data.shadowElem.css({height: ret.height});
+					ret.width = data.shadowElem.height() * ratio;
+				} else {
+					data.shadowElem.css({width: ret.width});
+					ret.height = data.shadowElem.width() / ratio;
+				}
 			}
 			return ret;
 		};
-		var replacer = function(html){
-			var tag = html.replace(/[<\/>]+/ig,"").split(/[\s\.]+/);
-			if(tag[0]){
-				tag[0] = tag[0].toLowerCase();
-				if(allowedTags.test(tag[0])){
-					if(tag[0] == 'c'){
-						html = addToTemplate('span', 'class', tag, html);
-					} else if(tag[0] == 'v'){
-						html = addToTemplate('q', 'title', tag, html);
+	})();
+	var setElementDimension = function(data, hasControls){
+		var dims;
+		var elem = data._elem;
+		var box = data.shadowElem;
+		$(elem)[hasControls ? 'addClass' : 'removeClass']('webshims-controls');
+
+		if(data.isActive == 'third'){
+			if(data._elemNodeName == 'audio' && !hasControls){
+				box.css({width: 0, height: 0});
+			} else {
+				data.elemDimensions = {
+					width: elem.style.width || $.attr(elem, 'width') || $(elem).width(),
+					height: elem.style.height || $.attr(elem, 'height') || $(elem).height()
+				};
+				dims = transformDimension(data);
+				dims.minWidth = elem.style.minWidth;
+				dims.minHeight = elem.style.minHeight;
+				box.css(dims);
+			}
+		}
+	};
+	
+	var bufferSrc = (function(){
+		var preloads = {
+			'': 1,
+			'auto': 1
+		};
+		return function(elem){
+			var preload = $.attr(elem, 'preload');
+			if(preload == null || preload == 'none' || $.prop(elem, 'autoplay')){
+				return false;
+			}
+			preload =  $.prop(elem, 'preload');
+			return !!(preloads[preload] || (preload == 'metadata' && $(elem).is('.preload-in-doubt, video:not([poster])')));
+		};
+	})();
+	
+	var regs = {
+		A: /&amp;/g,
+		a: /&/g,
+		e: /\=/g,
+		q: /\?/g
+	},
+	replaceVar = function(val){
+		return (val.replace) ? val.replace(regs.A, '%26').replace(regs.a, '%26').replace(regs.e, '%3D').replace(regs.q, '%3F') : val;
+	};
+	
+	if('matchMedia' in window){
+		var allowMediaSorting = false;
+		try {
+			allowMediaSorting = window.matchMedia('only all').matches;
+		} catch(er){}
+		if(allowMediaSorting){
+			mediaelement.sortMedia = function(src1, src2){
+				try {
+					src1 = !src1.media || matchMedia( src1.media ).matches;
+					src2 = !src2.media || matchMedia( src2.media ).matches;
+				} catch(er){
+					return 0;
+				}
+				return src1 == src2 ? 
+					0 :
+					src1 ? -1
+					: 1;
+			};
+		}
+	}
+
+	mediaelement.createSWF = function( elem, canPlaySrc, data ){
+		if(!hasFlash){
+			setTimeout(function(){
+				$(elem).mediaLoad(); //<- this should produce a mediaerror
+			}, 1);
+			return;
+		}
+
+		if(loadedSwf < 1){
+			loadedSwf = 1;
+		} else {
+			loadedSwf++;
+		}
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		
+		if($.attr(elem, 'height') || $.attr(elem, 'width')){
+			webshims.warn("width or height content attributes used. Webshims prefers the usage of CSS (computed styles or inline styles) to detect size of a video/audio. It's really more powerfull.");
+		}
+		
+		var isRtmp = canPlaySrc.type == 'audio/rtmp' || canPlaySrc.type == 'video/rtmp';
+		var vars = $.extend({}, options.vars, {
+				poster: replaceVar($.attr(elem, 'poster') && $.prop(elem, 'poster') || ''),
+				source: replaceVar(canPlaySrc.streamId || canPlaySrc.srcProp),
+				server: replaceVar(canPlaySrc.server || '')
+		});
+		var elemVars = $(elem).data('vars') || {};
+		
+		
+		
+		var hasControls = $.prop(elem, 'controls');
+		var elemId = 'jarisplayer-'+ webshims.getID(elem);
+		
+		var params = $.extend(
+			{},
+			options.params,
+			$(elem).data('params')
+		);
+		var elemNodeName = elem.nodeName.toLowerCase();
+		var attrs = $.extend(
+			{},
+			options.attrs,
+			{
+				name: elemId,
+				id: elemId
+			},
+			$(elem).data('attrs')
+		);
+		var setDimension = function(){
+			if(data.isActive == 'third'){
+				setElementDimension(data, $.prop(elem, 'controls'));
+			}
+		};
+		
+		var box;
+		
+		if(data && data.swfCreated){
+			mediaelement.setActive(elem, 'third', data);
+			
+			data.currentSrc = canPlaySrc.srcProp;
+			
+			data.shadowElem.html('<div id="'+ elemId +'">');
+			
+			data.api = false;
+			data.actionQueue = [];
+			box = data.shadowElem;
+			resetSwfProps(data);
+		} else {
+			box = $('<div class="polyfill-'+ (elemNodeName) +' polyfill-mediaelement" id="wrapper-'+ elemId +'"><div id="'+ elemId +'"></div>')
+				.css({
+					position: 'relative',
+					overflow: 'hidden'
+				})
+			;
+			data = webshims.data(elem, 'mediaelement', webshims.objectCreate(playerStateObj, {
+				actionQueue: {
+					value: []
+				},
+				shadowElem: {
+					value: box
+				},
+				_elemNodeName: {
+					value: elemNodeName
+				},
+				_elem: {
+					value: elem
+				},
+				currentSrc: {
+					value: canPlaySrc.srcProp
+				},
+				swfCreated: {
+					value: true
+				},
+				id: {
+					value: elemId.replace(/-/g, '')
+				},
+				buffered: {
+					value: {
+						start: function(index){
+							if(index >= data.buffered.length){
+								webshims.error('buffered index size error');
+								return;
+							}
+							return 0;
+						},
+						end: function(index){
+							if(index >= data.buffered.length){
+								webshims.error('buffered index size error');
+								return;
+							}
+							return ( (data.duration - data._bufferedStart) * data._bufferedEnd) + data._bufferedStart;
+						},
+						length: 0
+					}
+				}
+			}));
+			
+			
+		
+			box.insertBefore(elem);
+			
+			if(hasNative){
+				$.extend(data, {volume: $.prop(elem, 'volume'), muted: $.prop(elem, 'muted'), paused: $.prop(elem, 'paused')});
+			}
+			
+			webshims.addShadowDom(elem, box);
+			if(!webshims.data(elem, 'mediaelement')){
+				webshims.data(elem, 'mediaelement', data);
+			}
+			addMediaToStopEvents(elem);
+			
+			mediaelement.setActive(elem, 'third', data);
+			
+			setElementDimension(data, hasControls);
+			
+			$(elem)
+				.on({
+					'updatemediaelementdimensions loadedmetadata emptied': setDimension,
+					'remove': function(e){
+						if(!e.originalEvent && mediaelement.jarisEvent[data.id] && mediaelement.jarisEvent[data.id].elem == elem){
+							delete mediaelement.jarisEvent[data.id];
+							clearTimeout(localConnectionTimer);
+							clearTimeout(data.flashBlock);
+						}
+					}
+				})
+				.onWSOff('updateshadowdom', setDimension)
+			;
+		}
+		
+		
+		if(!mediaelement.jarisEvent[data.id] || mediaelement.jarisEvent[data.id].elem != elem){
+			mediaelement.jarisEvent[data.id] = function(jaris){
+				
+				if(jaris.type == 'ready'){
+					var onReady = function(){
+						if(data.api){
+							if(bufferSrc(elem)){
+								data.api.api_preload();
+							}
+							onEvent.ready(jaris, data);
+						}
+					};
+					if(data.api){
+						onReady();
+					} else {
+						setTimeout(onReady, 9);
 					}
 				} else {
-					html = "";
-				}
-			}
-			return html;
-		};
-		
-		return function(cueText){
-			return cueText.replace(tagSplits, replacer);
-		};
-	})();
-	
-	mediaelement.loadTextTrack = function(mediaelem, track, trackData, _default){
-		var loadEvents = 'play playing timeupdate updatetrackdisplay';
-		var obj = trackData.track;
-		var load = function(){
-			var src = $.prop(track, 'src');
-			var error;
-			var ajax;
-			if(obj.mode != 'disabled' && src && $.attr(track, 'src')){
-				$(mediaelem).unbind(loadEvents, load);
-				$(track).unbind('checktrackmode', load);
-				if(!obj.readyState){
-					error = function(){
-						obj.readyState = 3;
-						obj.cues = null;
-						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = null;
-						$(track).triggerHandler('error');
-					};
-					obj.readyState = 1;
-					try {
-						obj.cues = mediaelement.createCueList();
-						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = mediaelement.createCueList();
-						ajax = $.ajax({
-							dataType: 'text',
-							url: src,
-							success: function(text){
-								if(ajax.getResponseHeader('content-type') != 'text/vtt'){
-									webshims.error('set the mime-type of your WebVTT files to text/vtt. see: http://dev.w3.org/html5/webvtt/#text/vtt');
-								}
-								mediaelement.parseCaptions(text, obj, function(cues){
-									if(cues && 'length' in cues){
-										obj.readyState = 2;
-										$(track).triggerHandler('load');
-										$(mediaelem).triggerHandler('updatetrackdisplay');
-									} else {
-										error();
-									}
-								});
-								
-							},
-							error: error
-						});
-					} catch(er){
-						error();
-						webshims.warn(er);
-					}
-				}
-			}
-		};
-		obj.readyState = 0;
-		obj.shimActiveCues = null;
-		obj._shimActiveCues = null;
-		obj.activeCues = null;
-		obj.cues = null;
-		$(mediaelem).unbind(loadEvents, load);
-		$(track).unbind('checktrackmode', load);
-		$(mediaelem).on(loadEvents, load);
-		$(track).on('checktrackmode', load);
-		if(_default){
-			obj.mode = showTracks[obj.kind] ? 'showing' : 'hidden';
-			load();
-		}
-	};
-	
-	mediaelement.createTextTrack = function(mediaelem, track){
-		var obj, trackData;
-		if(track.nodeName){
-			trackData = webshims.data(track, 'trackData');
-			
-			if(trackData){
-				refreshTrack(track, trackData);
-				obj = trackData.track;
-			}
-		}
-		
-		if(!obj){
-			obj = createEventTarget(webshims.objectCreate(textTrackProto));
-			
-			if(!supportTrackMod){
-				copyProps.forEach(function(copyProp){
-					var prop = $.prop(track, copyProp);
-					if(prop){
-						obj[copyName[copyProp] || copyProp] = prop;
-					}
-				});
-			}
-			
-			
-			if(track.nodeName){
-				
-				if(supportTrackMod){
-					copyProps.forEach(function(copyProp){
-						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
-							get: function(){
-								return $.prop(track, copyProp);
-							}
-						});
-					});
-				}
-				
-				trackData = webshims.data(track, 'trackData', {track: obj});
-				mediaelement.loadTextTrack(mediaelem, track, trackData, ($.prop(track, 'default') && $(track).siblings('track[default]')[ADDBACK]()[0] == track));
-			} else {
-				if(supportTrackMod){
-					copyProps.forEach(function(copyProp){
-						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
-							value: track[copyProp],
-							writeable: false
-						});
-					});
-				}
-				obj.cues = mediaelement.createCueList();
-				obj.activeCues = obj._shimActiveCues = obj.shimActiveCues = mediaelement.createCueList();
-				obj.mode = 'hidden';
-				obj.readyState = 2;
-			}
-		}
-		return obj;
-	};
-	
-	
-/*
-taken from:
-Captionator 0.5.1 [CaptionCrunch]
-Christopher Giffard, 2011
-Share and enjoy
-
-https://github.com/cgiffard/Captionator
-
-modified for webshims
-*/
-	mediaelement.parseCaptionChunk = (function(){
-		// Set up timestamp parsers
-		var WebVTTTimestampParser			= /^(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s+\-\-\>\s+(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s*(.*)/;
-		var GoogleTimestampParser		= /^([\d\.]+)\s+\+([\d\.]+)\s*(.*)/;
-		var WebVTTDEFAULTSCueParser		= /^(DEFAULTS|DEFAULT)\s+\-\-\>\s+(.*)/g;
-		var WebVTTSTYLECueParser		= /^(STYLE|STYLES)\s+\-\-\>\s*\n([\s\S]*)/g;
-		var WebVTTCOMMENTCueParser		= /^(COMMENT|COMMENTS)\s+\-\-\>\s+(.*)/g;
-		
-		return function(subtitleElement,objectCount){
-			var cueDefaults = [];
-		
-			var subtitleParts, timeIn, timeOut, html, timeData, subtitlePartIndex, cueSettings = "", id, specialCueData;
-			var timestampMatch, tmpCue;
-
-			// WebVTT Special Cue Logic
-			if ((specialCueData = WebVTTDEFAULTSCueParser.exec(subtitleElement))) {
-//				cueDefaults = specialCueData.slice(2).join("");
-//				cueDefaults = cueDefaults.split(/\s+/g).filter(function(def) { return def && !!def.length; });
-				return null;
-			} else if ((specialCueData = WebVTTSTYLECueParser.exec(subtitleElement))) {
-				return null;
-			} else if ((specialCueData = WebVTTCOMMENTCueParser.exec(subtitleElement))) {
-				return null; // At this stage, we don't want to do anything with these.
-			}
-			
-			subtitleParts = subtitleElement.split(/\n/g);
-		
-			// Trim off any blank lines (logically, should only be max. one, but loop to be sure)
-			while (!subtitleParts[0].replace(/\s+/ig,"").length && subtitleParts.length > 0) {
-				subtitleParts.shift();
-			}
-		
-			if (subtitleParts[0].match(/^\s*[a-z0-9-\_]+\s*$/ig)) {
-				// The identifier becomes the cue ID (when *we* load the cues from file. Programatically created cues can have an ID of whatever.)
-				id = String(subtitleParts.shift().replace(/\s*/ig,""));
-			}
-		
-			for (subtitlePartIndex = 0; subtitlePartIndex < subtitleParts.length; subtitlePartIndex ++) {
-				var timestamp = subtitleParts[subtitlePartIndex];
-				
-				if ((timestampMatch = WebVTTTimestampParser.exec(timestamp))) {
+					data.currentTime = jaris.position;
 					
-					// WebVTT
-					
-					timeData = timestampMatch.slice(1);
-					
-					timeIn =	parseInt((timeData[0]||0) * 60 * 60,10) +	// Hours
-								parseInt((timeData[1]||0) * 60,10) +		// Minutes
-								parseInt((timeData[2]||0),10) +				// Seconds
-								parseFloat("0." + (timeData[3]||0));		// MS
-					
-					timeOut =	parseInt((timeData[4]||0) * 60 * 60,10) +	// Hours
-								parseInt((timeData[5]||0) * 60,10) +		// Minutes
-								parseInt((timeData[6]||0),10) +				// Seconds
-								parseFloat("0." + (timeData[7]||0));		// MS
-/*
-					if (timeData[8]) {
-						cueSettings = timeData[8];
-					}
-*/
-				}
-				
-				// We've got the timestamp - return all the other unmatched lines as the raw subtitle data
-				subtitleParts = subtitleParts.slice(0,subtitlePartIndex).concat(subtitleParts.slice(subtitlePartIndex+1));
-				break;
-			}
-
-			if (!timeIn && !timeOut) {
-				// We didn't extract any time information. Assume the cue is invalid!
-				webshims.warn("couldn't extract time information: "+[timeIn, timeOut, subtitleParts.join("\n"), id].join(' ; '));
-				return null;
-			}
-/*
-			// Consolidate cue settings, convert defaults to object
-			var compositeCueSettings =
-				cueDefaults
-					.reduce(function(previous,current,index,array){
-						previous[current.split(":")[0]] = current.split(":")[1];
-						return previous;
-					},{});
-			
-			// Loop through cue settings, replace defaults with cue specific settings if they exist
-			compositeCueSettings =
-				cueSettings
-					.split(/\s+/g)
-					.filter(function(set) { return set && !!set.length; })
-					// Convert array to a key/val object
-					.reduce(function(previous,current,index,array){
-						previous[current.split(":")[0]] = current.split(":")[1];
-						return previous;
-					},compositeCueSettings);
-			
-			// Turn back into string like the TextTrackCue constructor expects
-			cueSettings = "";
-			for (var key in compositeCueSettings) {
-				if (compositeCueSettings.hasOwnProperty(key)) {
-					cueSettings += !!cueSettings.length ? " " : "";
-					cueSettings += key + ":" + compositeCueSettings[key];
-				}
-			}
-*/
-			// The remaining lines are the subtitle payload itself (after removing an ID if present, and the time);
-			html = subtitleParts.join("\n");
-			tmpCue = new TextTrackCue(timeIn, timeOut, html);
-			if(id){
-				tmpCue.id = id;
-			}
-			return tmpCue;
-		};
-	})();
-	
-	mediaelement.parseCaptions = function(captionData, track, complete) {
-		var subtitles = mediaelement.createCueList();
-		var cue, lazyProcess, regWevVTT;
-		var startDate;
-		var isWEBVTT;
-		if (captionData) {
-			
-			regWevVTT = /^WEBVTT(\s*FILE)?/ig;
-			
-			lazyProcess = function(i, len){
-				
-				for(; i < len; i++){
-					cue = captionData[i];
-					if(regWevVTT.test(cue)){
-						isWEBVTT = true;
-					} else if(cue.replace(/\s*/ig,"").length){
-						if(!isWEBVTT){
-							webshims.error('please use WebVTT format. This is the standard');
-							complete(null);
-							break;
+					if(data.api){
+						if(!data._calledMeta && isNaN(jaris.duration) && data.duration != jaris.duration && isNaN(data.duration)){
+							onEvent.onDataInitialized(jaris, data);
 						}
-						cue = mediaelement.parseCaptionChunk(cue, i);
-						if(cue){
-							track.addCue(cue);
-						}
-					}
-					if(startDate < (new Date().getTime()) - 30){
-						i++;
-						setTimeout(function(){
-							startDate = new Date().getTime();
-							lazyProcess(i, len);
-						}, 90);
 						
-						break;
+						if(!data._ppFlag && jaris.type != 'onPlayPause'){
+							onEvent.onPlayPause(jaris, data);
+						}
+						
+						if(onEvent[jaris.type]){
+							onEvent[jaris.type](jaris, data);
+						}
 					}
-				}
-				if(i >= len){
-					if(!isWEBVTT){
-						webshims.error('please use WebVTT format. This is the standard');
-					}
-					complete(track.cues);
+					data.duration = jaris.duration;
 				}
 			};
-			
-			captionData = captionData.replace(/\r\n/g,"\n");
-			
-			setTimeout(function(){
-				captionData = captionData.replace(/\r/g,"\n");
-				setTimeout(function(){
-					startDate = new Date().getTime();
-					captionData = captionData.split(/\n\n+/g);
-					lazyProcess(0, captionData.length);
-				}, 9);
-			}, 9);
-			
-		} else {
-			webshims.error("Required parameter captionData not supplied.");
+			mediaelement.jarisEvent[data.id].elem = elem;
 		}
-	};
-	
-	
-	mediaelement.createTrackList = function(mediaelem, baseData){
-		baseData = baseData || webshims.data(mediaelem, 'mediaelementBase') || webshims.data(mediaelem, 'mediaelementBase', {});
-		if(!baseData.textTracks){
-			baseData.textTracks = [];
-			webshims.defineProperties(baseData.textTracks, {
-				onaddtrack: {value: null},
-				onremovetrack: {value: null}
-			});
-			createEventTarget(baseData.textTracks);
-		}
-		return baseData.textTracks;
-	};
-	
-	if(!Modernizr.track){
-		webshims.defineNodeNamesBooleanProperty(['track'], 'default');
-		webshims.reflectProperties(['track'], ['srclang', 'label']);
 		
-		webshims.defineNodeNameProperties('track', {
-			src: {
+		$.extend(vars, 
+			{
+				id: elemId,
+				evtId: data.id,
+				controls: ''+hasControls,
+				autostart: 'false',
+				nodename: elemNodeName
+			},
+			elemVars
+		);
+		
+		if(isRtmp){
+			vars.streamtype = 'rtmp';
+		} else if(canPlaySrc.type == 'audio/mpeg' || canPlaySrc.type == 'audio/mp3'){
+			vars.type = 'audio';
+			vars.streamtype = 'file';
+		} else if(canPlaySrc.type == 'video/youtube'){
+			vars.streamtype = 'youtube';
+		}
+		options.changeSWF(vars, elem, canPlaySrc, data, 'embed');
+		clearTimeout(data.flashBlock);
+		
+		swfmini.embedSWF(playerSwfPath, elemId, "100%", "100%", "9.0.115", false, vars, params, attrs, function(swfData){
+			if(swfData.success){
+				var fBlocker = function(){
+					if((!swfData.ref.parentNode && box[0].parentNode) || swfData.ref.style.display == "none"){
+						box.addClass('flashblocker-assumed');
+						$(elem).trigger('flashblocker');
+						webshims.warn("flashblocker assumed");
+					}
+					$(swfData.ref).css({'minHeight': '2px', 'minWidth': '2px', display: 'block'});
+				};
+				data.api = swfData.ref;
+				
+				if(!hasControls){
+					$(swfData.ref).attr('tabindex', '-1').css('outline', 'none');
+				}
+				
+				data.flashBlock = setTimeout(fBlocker, 99);
+				
+				if(!localConnectionTimer){
+					clearTimeout(localConnectionTimer);
+					localConnectionTimer = setTimeout(function(){
+						fBlocker();
+						var flash = $(swfData.ref);
+						if(flash[0].offsetWidth > 1 && flash[0].offsetHeight > 1 && location.protocol.indexOf('file:') === 0){
+							webshims.error("Add your local development-directory to the local-trusted security sandbox:  http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html");
+						} else if(flash[0].offsetWidth < 2 || flash[0].offsetHeight < 2) {
+							webshims.warn("JS-SWF connection can't be established on hidden or unconnected flash objects");
+						}
+						flash = null;
+					}, 8000);
+				}
+			}
+		});
+		
+	};
+	
+	
+	var queueSwfMethod = function(elem, fn, args, data){
+		data = data || getSwfDataFromElem(elem);
+		
+		if(data){
+			if(data.api && data.api[fn]){
+				data.api[fn].apply(data.api, args || []);
+			} else {
+				//todo add to queue
+				data.actionQueue.push({fn: fn, args: args});
+				
+				if(data.actionQueue.length > 10){
+					setTimeout(function(){
+						if(data.actionQueue.length > 5){
+							data.actionQueue.shift();
+						}
+					}, 99);
+				}
+			}
+			return data;
+		}
+		return false;
+	};
+	
+	['audio', 'video'].forEach(function(nodeName){
+		var descs = {};
+		var mediaSup;
+		var createGetProp = function(key){
+			if(nodeName == 'audio' && (key == 'videoHeight' || key == 'videoWidth')){return;}
+			
+			descs[key] = {
+				get: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						return data[key];
+					} else if(hasNative && mediaSup[key].prop._supget) {
+						return mediaSup[key].prop._supget.apply(this);
+					} else {
+						return playerStateObj[key];
+					}
+				},
+				writeable: false
+			};
+		};
+		var createGetSetProp = function(key, setFn){
+			createGetProp(key);
+			delete descs[key].writeable;
+			descs[key].set = setFn;
+		};
+		
+		createGetSetProp('volume', function(v){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				v *= 1;
+				if(!isNaN(v)){
+					
+					if(v < 0 || v > 1){
+						webshims.error('volume greater or less than allowed '+ (v / 100));
+					}
+					
+					queueSwfMethod(this, 'api_volume', [v], data);
+					
+					
+					if(data.volume != v){
+						data.volume = v;
+						trigger(data._elem, 'volumechange');
+					}
+					data = null;
+				} 
+			} else if(mediaSup.volume.prop._supset) {
+				return mediaSup.volume.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		createGetSetProp('muted', function(m){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				m = !!m;
+				queueSwfMethod(this, 'api_muted', [m], data);
+				if(data.muted != m){
+					data.muted = m;
+					trigger(data._elem, 'volumechange');
+				}
+				data = null;
+			} else if(mediaSup.muted.prop._supset) {
+				return mediaSup.muted.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		
+		createGetSetProp('currentTime', function(t){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				t *= 1;
+				if (!isNaN(t)) {
+					queueSwfMethod(this, 'api_seek', [t], data);
+				}
+				 
+			} else if(mediaSup.currentTime.prop._supset) {
+				return mediaSup.currentTime.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		['play', 'pause'].forEach(function(fn){
+			descs[fn] = {
+				value: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						if(data.stopPlayPause){
+							clearTimeout(data.stopPlayPause);
+						}
+						queueSwfMethod(this, fn == 'play' ? 'api_play' : 'api_pause', [], data);
+						
+						data._ppFlag = true;
+						if(data.paused != (fn != 'play')){
+							data.paused = fn != 'play';
+							trigger(data._elem, fn);
+						}
+					} else if(mediaSup[fn].prop._supvalue) {
+						return mediaSup[fn].prop._supvalue.apply(this, arguments);
+					}
+				}
+			};
+		});
+		
+		getPropKeys.forEach(createGetProp);
+		
+		webshims.onNodeNamesPropertyModify(nodeName, 'controls', function(val, boolProp){
+			var data = getSwfDataFromElem(this);
+			$(this)[boolProp ? 'addClass' : 'removeClass']('webshims-controls');
+			
+			if(data){
+				if(nodeName == 'audio'){
+					setElementDimension(data, boolProp);
+				}
+				queueSwfMethod(this, 'api_controls', [boolProp], data);
+			}
+		});
+		
+		
+		webshims.onNodeNamesPropertyModify(nodeName, 'preload', function(val){
+			var data, baseData, elem;
+			
+			
+			if(bufferSrc(this)){
+				data = getSwfDataFromElem(this);
+				if(data){
+					queueSwfMethod(this, 'api_preload', [], data);
+				} else if(needsLoadPreload && this.paused && !this.error && !$.data(this, 'mediaerror') && !this.readyState && !this.networkState && !this.autoplay && $(this).is(':not(.nonnative-api-active)')){
+					elem = this;
+					baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+					clearTimeout(baseData.loadTimer);
+					baseData.loadTimer = setTimeout(function(){
+						$(elem).mediaLoad();
+					}, 9);
+				}
+			}
+		});
+		
+		mediaSup = webshims.defineNodeNameProperties(nodeName, descs, 'prop');
+	});
+	
+	if(hasFlash && $.cleanData){
+		var oldClean = $.cleanData;
+		var flashNames = {
+			object: 1,
+			OBJECT: 1
+		};
+		
+		$.cleanData = function(elems){
+			var i, len, prop;
+			if(elems && (len = elems.length) && loadedSwf){
+				
+				for(i = 0; i < len; i++){
+					if(flashNames[elems[i].nodeName] && 'api_pause' in elems[i]){
+						loadedSwf--;
+						try {
+							elems[i].api_pause();
+						} catch(er){}
+					}
+				}
+				
+			}
+			return oldClean.apply(this, arguments);
+		};
+	}
+
+	if(!hasNative){
+		
+		['poster', 'src'].forEach(function(prop){
+			webshims.defineNodeNamesProperty(prop == 'src' ? ['audio', 'video', 'source'] : ['video'], prop, {
 				//attr: {},
 				reflect: true,
 				propType: 'src'
-			}
+			});
 		});
-	}
-	
-	webshims.defineNodeNameProperties('track', {
-		kind: {
-			attr: Modernizr.track ? {
-				set: function(value){
-					var trackData = webshims.data(this, 'trackData');
-					this.setAttribute('data-kind', value);
-					if(trackData){
-						trackData.attrKind = value;
-					}
-				},
-				get: function(){
-					var trackData = webshims.data(this, 'trackData');
-					if(trackData && ('attrKind' in trackData)){
-						return trackData.attrKind;
-					}
-					return this.getAttribute('kind');
-				}
-			} : {},
+		
+		webshims.defineNodeNamesProperty(['audio', 'video'], 'preload', {
 			reflect: true,
 			propType: 'enumarated',
-			defaultValue: 'subtitles',
-			limitedTo: ['subtitles', 'captions', 'descriptions', 'chapters', 'metadata']
-		}
-	});
-	
-	$.each(copyProps, function(i, copyProp){
-		var name = copyName[copyProp] || copyProp;
-		webshims.onNodeNamesPropertyModify('track', copyProp, function(){
-			var trackData = webshims.data(this, 'trackData');
-			var track = this;
-			if(trackData){
-				if(copyProp == 'kind'){
-					refreshTrack(this, trackData);
-				}
-				if(!supportTrackMod){
-					trackData.track[name] = $.prop(this, copyProp);
-				}
-				clearTimeout(trackData.changedTrackPropTimer);
-				trackData.changedTrackPropTimer = setTimeout(function(){
-					$(track).trigger('updatesubtitlestate');
-				}, 1); 
-			}
+			defaultValue: '',
+			limitedTo: ['', 'auto', 'metadata', 'none']
 		});
-	});		
-	
-	
-	webshims.onNodeNamesPropertyModify('track', 'src', function(val){
-		if(val){
-			var data = webshims.data(this, 'trackData');
-			var media;
-			if(data){
-				media = $(this).closest('video, audio');
-				if(media[0]){
-					mediaelement.loadTextTrack(media, this, data);
-				}
-			}
-		}
 		
-	});
-	
-	//
-	
-	webshims.defineNodeNamesProperties(['track'], {
-		ERROR: {
-			value: 3
-		},
-		LOADED: {
-			value: 2
-		},
-		LOADING: {
-			value: 1
-		},
-		NONE: {
-			value: 0
-		},
-		readyState: {
-			get: function(){
-				return ($.prop(this, 'track') || {readyState: 0}).readyState;
-			},
-			writeable: false
-		},
-		track: {
-			get: function(){
-				return mediaelement.createTextTrack($(this).closest('audio, video')[0], this);
-			},
-			writeable: false
-		}
-	}, 'prop');
-	
-	webshims.defineNodeNamesProperties(['audio', 'video'], {
-		textTracks: {
-			get: function(){
-				var media = this;
-				var baseData = webshims.data(media, 'mediaelementBase') || webshims.data(media, 'mediaelementBase', {});
-				var tracks = mediaelement.createTrackList(media, baseData);
-				if(!baseData.blockTrackListUpdate){
-					updateMediaTrackList.call(media, baseData, tracks);
-				}
-				return tracks;
-			},
-			writeable: false
-		},
-		addTextTrack: {
-			value: function(kind, label, lang){
-				var textTrack = mediaelement.createTextTrack(this, {
-					kind: dummyTrack.prop('kind', kind || '').prop('kind'),
-					label: label || '',
-					srclang: lang || ''
-				});
-				var baseData = webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
-				if (!baseData.scriptedTextTracks) {
-					baseData.scriptedTextTracks = [];
-				}
-				baseData.scriptedTextTracks.push(textTrack);
-				updateMediaTrackList.call(this);
-				return textTrack;
-			}
-		}
-	}, 'prop');
-
-	
-	$(document).on('emptied ended updatetracklist', function(e){
-		if($(e.target).is('audio, video')){
-			var baseData = webshims.data(e.target, 'mediaelementBase');
-			if(baseData){
-				clearTimeout(baseData.updateTrackListTimer);
-				baseData.updateTrackListTimer = setTimeout(function(){
-					updateMediaTrackList.call(e.target, baseData);
-				}, 0);
-			}
-		}
-	});
-	
-	var getNativeReadyState = function(trackElem, textTrack){
-		return textTrack.readyState || trackElem.readyState;
-	};
-	
-	webshims.addReady(function(context, insertedElement){
-		var insertedMedia = insertedElement.filter('video, audio, track').closest('audio, video');
-		$('video, audio', context)
-			.add(insertedMedia)
-			.each(function(){
-				updateMediaTrackList.call(this);
-			})
-			.each(function(){
-				if(Modernizr.track){
-					var shimedTextTracks = $.prop(this, 'textTracks');
-					var origTextTracks = this.textTracks;
-					if(shimedTextTracks.length != origTextTracks.length){
-						webshims.error("textTracks couldn't be copied");
-					}
-					
-					$('track', this)
-						.each(function(){
-							var shimedTrack = $.prop(this, 'track');
-							var origTrack = this.track;
-							var kind;
-							var readyState;
-							if(origTrack){
-								kind = $.prop(this, 'kind');
-								readyState = getNativeReadyState(this, origTrack);
-								if (origTrack.mode || readyState) {
-									shimedTrack.mode = numericModes[origTrack.mode] || origTrack.mode;
-								}
-								//disable track from showing + remove UI
-								if(kind != 'descriptions'){
-									origTrack.mode = (typeof origTrack.mode == 'string') ? 'disabled' : 0;
-									this.kind = 'metadata';
-									$(this).attr({kind: kind});
-								}
-								
-							}
-						})
-						.on('load error', function(e){
-							if(e.originalEvent){
-								e.stopImmediatePropagation();
-							}
-						})
-					;
-				}
-			})
-		;
-		insertedMedia.each(function(){
-			var media = this;
-			var baseData = webshims.data(media, 'mediaelementBase');
-			if(baseData){
-				clearTimeout(baseData.updateTrackListTimer);
-				baseData.updateTrackListTimer = setTimeout(function(){
-					updateMediaTrackList.call(media, baseData);
-				}, 9);
-			}
+		webshims.reflectProperties('source', ['type', 'media']);
+		
+		
+		['autoplay', 'controls'].forEach(function(name){
+			webshims.defineNodeNamesBooleanProperty(['audio', 'video'], name);
 		});
-	});
-	
-	if(Modernizr.track){
-		$('video, audio').trigger('trackapichange');
+			
+		webshims.defineNodeNamesProperties(['audio', 'video'], {
+			HAVE_CURRENT_DATA: {
+				value: 2
+			},
+			HAVE_ENOUGH_DATA: {
+				value: 4
+			},
+			HAVE_FUTURE_DATA: {
+				value: 3
+			},
+			HAVE_METADATA: {
+				value: 1
+			},
+			HAVE_NOTHING: {
+				value: 0
+			},
+			NETWORK_EMPTY: {
+				value: 0
+			},
+			NETWORK_IDLE: {
+				value: 1
+			},
+			NETWORK_LOADING: {
+				value: 2
+			},
+			NETWORK_NO_SOURCE: {
+				value: 3
+			}
+					
+		}, 'prop');
+	} else if(!('media' in document.createElement('source'))){
+		webshims.reflectProperties('source', ['media']);
 	}
+	
 });

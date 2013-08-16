@@ -15,7 +15,7 @@ Implemented Features:
 
 * HTML5 shiv and innerShiv solution including basic CSS-support
 * canvas
-* HTML5 form features including: constraint validation and form widgets (input[type="range"], input[type="date"], input[type="number"], output, input[list]/datalist)
+* HTML5 form features including: constraint validation and form widgets (input[type="range"], input[type="date"], input[type="number"], input[type="time"], input[type="month"], output, progress, input[list]/datalist)
 * HTML5 audio/video/track implementation
 * interactive elements: summary/details
 * JSON (stringify and parse)
@@ -74,67 +74,92 @@ The Webshims Lib core is licensed under the [MIT-License](http://aFarkas.github.
 Questions?
 ----------
 
-If you have any questions, please feel free to ask them on the [Using jQuery Plugins
-forum](http://forum.jquery.com/using-jquery-plugins).
+If you have any questions, please feel free to ask them on [stackoverflow.com/questions/tagged/webshim](http://stackoverflow.com/questions/tagged/webshim).
 
-**Please tag your questions with 'webshims' or 'polyfill'.**
+**Please tag your questions with 'webshim'.**
 
-
-Release 1.9.7
+upcomming Release 1.11.0
 ----------
 
-- fixed placeholder with datalist combination
-- fixed Chrome change bug with input type widgets
-- improved flashfallback for mediaelements 
+- implemented input[type="datetime-local"]
+- implmented picker for input[type="time"]
+- implemented validityState.badInput
+- all input widget popover can be displayed inline
 
-Release 1.9.6
+Release 1.10.10
 ----------
 
-- jQuery 1.9.1 compatibility
-- improve flash fallback for mediaelements in case of an error event
+- improved positioning support of popover (datalist, datepicker etc.) (if jQuery UI position utility is detected)
+- re-added width: auto/height: auto support for mediaelement flash fallback [demo](http://afarkas.github.io/webshim/demos/demos/mediaelement/responsive-mediaelement.html)
+- added media attribute support for mediaelement flash fallback
+- updated regular expression for type="email"
+- optional IDN support for type="email" for polyfilled browsers ([punycode](https://github.com/bestiejs/punycode.js) has to be included) 
 
-Release 1.9.5
+Release 1.10.9
 ----------
 
-- improve youtube playback with jarisplayer
-- fix position bug of error messages in nested overflow: scroll boxes
-- fix chrome issue with dynamically created required radio buttons
-- favorize custom validation message before vendor validation message
+- fixed regression introduced in 1.10.8 with input[type="month"] [see Issue #258](https://github.com/aFarkas/webshim/issues/258)
 
-Release 1.9.4
+Release 1.10.8
 ----------
 
-- improved rtmp handling for both Jaris and JW player
-- fixed bug on iOS in conjunction with input[type=date]
-- fixed creditcard validation
-- allow placeholder for type=number
-- show mediaelement fallback, if flash isn't installed and mediaelements aren't supported
-- a lot of improvements to the free and open source swf media player Jaris (we will switch to Jaris by default with next release)
+- improved input event for input widgets (date, time, number)
+- added en-AU locale (thx to @tomascassidy)
+- Browserify compatibility (thx to @joeybaker)
+- improved mediaelement error- and flashblock handling
+- added mediaelement width/height content attribute support (deprecated, but used too much in the wild)
+- use polyfilled input widgets in old Android stock browser (there are simply too much small bugs)
+- tested jQuery 1.10.1 and 2.0.2 compatibility
 
-
-Release 1.9.3
+Release 1.10.7
 ----------
 
-- add option to use alternative jarisplayer as mediaelement fallback
-- fixed track[default] in IE10 (initial copying of track.mode)
-- implement .prop-checked in browsers, which do not support the :checked selector
-- implement .user-error selector
-- limit track.kind property using addTextTrack to only known values
+- fixed several localization date formatting issues 
+- much improved french localization  (thx to @jls2933)
 
-Release 1.9.2
+Release 1.10.6
 ----------
 
-- implemented input[type="time"]
-- allow dynamically changing label/kind/srclang of existing track elements
-- added removeCue to texttrack API
-- added screenreader-support for track[kind="descriptions"]
-- improved change events for input[type=range] and spinbutton controls (input[type=number])
+- fixed regression from 1.10.5 (selectedOption not implemented in all browsers)
+- added Lithuanian (lt-LT) translations (thx @Gamesh)
+- small style tweaks for input[type="color"] [demo](http://jsfiddle.net/trixta/sYVEd/)
 
-Release 1.9.1
+Release 1.10.5
 ----------
 
-- added onaddtrack/onremovetrack events to TextTrackList interface
-- datalist polyfill is now default for forms feature
-- added swedish locale (thx to @leon)
-- improved errorbubble style
-- updated JW player
+- input[type="color"]
+- Instant Form Validation helper (enhances the HTML5 UI for much better UX) [demo](http://jsfiddle.net/trixta/XqPhQ/)
+- FileReader API
+- improved range UI styleability
+- lazy load mostly everything (performance)
+
+
+Release 1.10.4
+----------
+
+- override IE10's type="number" UI
+- improved styleability of input[type="range"]
+- improved loading of mediaelement/track support
+- improved performance for dynamic content (i.e.: updatePolyfill)
+- optional override of IE10's placeholder
+- new fix for placeholder orientationchange bug on Safari iOS
+
+
+Release 1.10.3
+----------
+
+- tested support for jQuery 2.0.0
+- fixed invisible native audio controls in IE9 in case of preload="none"
+- improved datepicker type="date"/type="number"
+- fixed flash encoding vars for special charakters in video path
+- check initially invalid inputs in Firefox
+- removed unused packages (jQuery UI, swfobject, jwplayer)
+
+
+Release 1.10.2
+----------
+
+- improved list/datalist options [demo](http://jsfiddle.net/trixta/7DETa/)
+- small improvements to type="range" and type="date" [demo](http://jsfiddle.net/trixta/VNuct/)
+- fixed animate bug in jQuery 1.8.3
+- fixed dutch language

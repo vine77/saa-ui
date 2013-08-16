@@ -1,10 +1,77 @@
 //DOM-Extension helper
-jQuery.webshims.register('dom-extend', function($, webshims, window, document, undefined){
+webshims.register('dom-extend', function($, webshims, window, document, undefined){
 	"use strict";
+	var supportHrefNormalized = !('hrefNormalized' in $.support) || $.support.hrefNormalized;
+	var supportGetSetAttribute = !('getSetAttribute' in $.support) || $.support.getSetAttribute;
+	webshims.assumeARIA = supportGetSetAttribute || Modernizr.canvas || Modernizr.video || Modernizr.boxsizing;
 	
-	if($('<form />').attr('novalidate') === ""){
-		webshims.warn("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version");
+	if($('<input type="email" />').attr('type') == 'text' || $('<form />').attr('novalidate') === "" || ('required' in $('<input />')[0].attributes)){
+		webshims.error("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version or at least IETester or similiar tools");
 	}
+	
+	if(!$.parseHTML){
+		webshims.error("Webshims needs jQuery 1.8+ to work properly. Please update your jQuery version or downgrade webshims.");
+	}
+	
+	if(webshims.cfg.extendNative === undefined){
+		webshims.warn("extendNative configuration was set to false by default with this release. In case you rely on it set it to 'true' otherwise to 'false'. See http://bit.ly/16OOTQO");
+	}
+	
+	if (!webshims.cfg.no$Switch) {
+		var switch$ = function(){
+			if (window.jQuery && (!window.$ || window.jQuery == window.$) && !window.jQuery.webshims) {
+				webshims.error("jQuery was included more than once. Make sure to include it only once or try the $.noConflict(extreme) feature! Webshims and other Plugins might not work properly. Or set webshims.cfg.no$Switch to 'true'.");
+				if (window.$) {
+					window.$ = webshims.$;
+				}
+				window.jQuery = webshims.$;
+			}
+			if(webshims.M != Modernizr){
+				webshims.error("Modernizr was included more than once. Make sure to include it only once! Webshims and other scripts might not work properly.");
+				for(var i in Modernizr){
+					if(!(i in webshims.M)){
+						webshims.M[i] = Modernizr[i];
+					}
+				}
+				Modernizr = webshims.M;
+			}
+		};
+		switch$();
+		setTimeout(switch$, 90);
+		webshims.ready('DOM', switch$);
+		$(switch$);
+		webshims.ready('WINDOWLOAD', switch$);
+		
+	}
+//	(function(){
+//		var hostNames = {
+//			'afarkas.github.io': 1,
+//			localhost: 1,
+//			'127.0.0.1': 1
+//		};
+//		
+//		if( webshims.debug && (hostNames[location.hostname] || location.protocol == 'file:') ){
+//			var list = $('<ul class="webshims-debug-list" />');
+//			webshims.errorLog.push = function(message){
+//				list.appendTo('body');
+//				$('<li style="display: none;">'+ message +'</li>')
+//					.appendTo(list)
+//					.slideDown()
+//					.delay(3000)
+//					.slideUp(function(){
+//						$(this).remove();
+//						if(!$('li', list).length){
+//							list.detach();
+//						}
+//					})
+//				;
+//			};
+//			$.each(webshims.errorLog, function(i, message){
+//				webshims.errorLog.push(message);
+//			});
+//		}
+//	})();
+
 	//shortcus
 	var modules = webshims.modules;
 	var listReg = /\s*,\s*/;
@@ -21,10 +88,25 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		return (_argless) ? oldVal.call($(elem)) : oldVal.call($(elem), val);
 	};
 	
-	$.fn.onTrigger = function(evt, fn){
-		return this.on(evt, fn).each(fn);
-	};
+	//jquery mobile and jquery ui
+	if(!$.widget){
+		(function(){
+			var _cleanData = $.cleanData;
+			$.cleanData = function( elems ) {
+				if(!$.widget){
+					for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+						try {
+							$( elem ).triggerHandler( "remove" );
+						// http://bugs.jquery.com/ticket/8235
+						} catch( e ) {}
+					}
+				}
+				_cleanData( elems );
+			};
+		})();
+	}
 	
+
 	$.fn.val = function(val){
 		var elem = this[0];
 		if(arguments.length && val == null){
@@ -53,6 +135,22 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			}
 		});
 	};
+	$.fn.onTrigger = function(evt, fn){
+		return this.on(evt, fn).each(fn);
+	};
+	
+	$.fn.onWSOff = function(evt, fn, trigger, evtDel){
+		if(!evtDel){
+			evtDel = document;
+		}
+		$(evtDel)[trigger ? 'onTrigger' : 'on'](evt, fn);
+		this.on('remove', function(e){
+			if(!e.originalEvent){
+				$(evtDel).off(evt, fn);
+			}
+		});
+		return this;
+	};
 	
 	var dataID = '_webshimsLib'+ (Math.round(Math.random() * 1000));
 	var elementData = function(elem, key, val){
@@ -74,10 +172,15 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 
 	[{name: 'getNativeElement', prop: 'nativeElement'}, {name: 'getShadowElement', prop: 'shadowElement'}, {name: 'getShadowFocusElement', prop: 'shadowFocusElement'}].forEach(function(data){
 		$.fn[data.name] = function(){
-			return this.map(function(){
+			var elems = [];
+			this.each(function(){
 				var shadowData = elementData(this, 'shadowData');
-				return shadowData && shadowData[data.prop] || this;
+				var elem = shadowData && shadowData[data.prop] || this;
+				if($.inArray(elem, elems) == -1){
+					elems.push(elem);
+				}
 			});
+			return this.pushStack(elems);
 		};
 	});
 	
@@ -200,7 +303,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						getSup('set', desc, oldDesc) : 
 						(webshims.cfg.useStrict && prop == 'prop') ? 
 							function(){throw(prop +' is readonly on '+ nodeName);} : 
-							$.noop
+							function(){webshims.info(prop +' is readonly on '+ nodeName);}
 					;
 				}
 				if(!desc.get){
@@ -218,15 +321,14 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		
 	});
 	
-	//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
-	var isExtendNativeSave = Modernizr.ES5;
 	var extendNativeValue = (function(){
 		var UNKNOWN = webshims.getPrototypeOf(document.createElement('foobar'));
 		var has = Object.prototype.hasOwnProperty;
+		//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
+		var isExtendNativeSave = Modernizr.advancedObjectProperties && Modernizr.objectAccessor;
 		return function(nodeName, prop, desc){
-			var elem;
-			var elemProto;
-			if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
+			var elem , elemProto;
+			 if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
 				var sup = elem[prop];
 				desc._supvalue = function(){
 					if(sup && sup.apply){
@@ -348,15 +450,24 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var ID = new Date().getTime();
 			return function(elem){
 				elem = $(elem);
-				var id = elem.attr('id');
+				var id = elem.prop('id');
 				if(!id){
 					ID++;
 					id = 'ID-'+ ID;
-					elem.attr('id', id);
+					elem.eq(0).prop('id', id);
 				}
 				return id;
 			};
 		})(),
+		implement: function(elem, type){
+			var data = elementData(elem, 'implemented') || elementData(elem, 'implemented', {});
+			if(data[type]){
+				webshims.warn(type +' already implemented for element #'+elem.id);
+				return false;
+			}
+			data[type] = true;
+			return true;
+		},
 		extendUNDEFProp: function(obj, props){
 			$.each(props, function(name, prop){
 				if( !(name in obj) ){
@@ -451,6 +562,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						setInterval(this.test, 600);
 						$(this.test);
 						webshims.ready('WINDOWLOAD', this.test);
+						$(document).on('updatelayout', this.handler);
 						$(window).bind('resize', this.handler);
 						(function(){
 							var oldAnimate = $.fn.animate;
@@ -476,42 +588,52 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 				});
 			};
 			return function(nativeElem, shadowElem, opts){
-				opts = opts || {};
-				if(nativeElem.jquery){
-					nativeElem = nativeElem[0];
-				}
-				if(shadowElem.jquery){
-					shadowElem = shadowElem[0];
-				}
-				var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
-				var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
-				var shadowFocusElementData = {};
-				if(!opts.shadowFocusElement){
-					opts.shadowFocusElement = shadowElem;
-				} else if(opts.shadowFocusElement){
-					if(opts.shadowFocusElement.jquery){
-						opts.shadowFocusElement = opts.shadowFocusElement[0];
+				if(nativeElem && shadowElem){
+					opts = opts || {};
+					if(nativeElem.jquery){
+						nativeElem = nativeElem[0];
 					}
-					shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
-				}
-				
-				nativeData.hasShadow = shadowElem;
-				shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
-				shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
-					nativeElement: nativeElem,
-					shadowElement: shadowElem,
-					shadowFocusElement: opts.shadowFocusElement
-				};
-				if(opts.shadowChilds){
-					opts.shadowChilds.each(function(){
-						elementData(this, 'shadowData', shadowData.shadowData);
+					if(shadowElem.jquery){
+						shadowElem = shadowElem[0];
+					}
+					var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
+					var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
+					var shadowFocusElementData = {};
+					if(!opts.shadowFocusElement){
+						opts.shadowFocusElement = shadowElem;
+					} else if(opts.shadowFocusElement){
+						if(opts.shadowFocusElement.jquery){
+							opts.shadowFocusElement = opts.shadowFocusElement[0];
+						}
+						shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
+					}
+					
+					$(nativeElem).on('remove', function(e){
+						if (!e.originalEvent) {
+							setTimeout(function(){
+								$(shadowElem).remove();
+							}, 4);
+						}
 					});
+					
+					nativeData.hasShadow = shadowElem;
+					shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
+					shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
+						nativeElement: nativeElem,
+						shadowElement: shadowElem,
+						shadowFocusElement: opts.shadowFocusElement
+					};
+					if(opts.shadowChilds){
+						opts.shadowChilds.each(function(){
+							elementData(this, 'shadowData', shadowData.shadowData);
+						});
+					}
+					
+					if(opts.data){
+						shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
+					}
+					opts = null;
 				}
-				
-				if(opts.data){
-					shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
-				}
-				opts = null;
 				webshims.docObserve();
 			};
 		})(),
@@ -564,7 +686,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							
 							anchor.setAttribute('href', href+'' );
 							
-							if(!$.support.hrefNormalized){
+							if(!supportHrefNormalized){
 								try {
 									$(anchor).insertAfter(this);
 									ret = anchor.getAttribute('href', 4);
@@ -795,7 +917,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 //				register: moduleName:string,
 //				callback: callback:function
 //			});
-//		get/set including removeLang
+//		get/set including remoteLang
 //			- webshims.activeLang({
 //				module: moduleName:string,
 //				callback: callback:function,
@@ -835,7 +957,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var callRegister = function(module){
 				if(registeredCallbacks[module]){
 					registeredCallbacks[module].forEach(function(data){
-						data.callback();
+						data.callback(currentLang, shortLang, '');
 					});
 				}
 			};
@@ -876,7 +998,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							registeredCallbacks[lang.register] = [];
 						}
 						registeredCallbacks[lang.register].push(lang);
-						lang.callback();
+						lang.callback(currentLang, shortLang, '');
 					} else {
 						if(!lang.activeLang){
 							lang.activeLang = '';
@@ -913,8 +1035,20 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 });
 //html5a11y
 (function($, document){
-	//if we support basic styleing or do not support ARIA (assumed) abort
-	if(!Modernizr.localstorage || ('hidden' in document.createElement('a'))){return;}
+	if(!$.webshims.assumeARIA || ('content' in document.createElement('template'))){return;}
+	
+	$(function(){
+		var main = $('main').attr({role: 'main'});
+		if(main.length > 1){
+			webshims.error('only one main element allowed in document');
+		} else if(main.is('article *, section *')) {
+			webshims.error('main not allowed inside of article/section elements');
+		}
+	});
+	
+	if(('hidden' in document.createElement('a'))){
+		return;
+	}
 	
 	var elemMappings = {
 		article: "article",
@@ -930,6 +1064,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	};
 	
+	
 	$.webshims.addReady(function(context, contextElem){
 		$.each(elemMappings, function(name, role){
 			var elems = $(name, context).add(contextElem.filter(name));
@@ -941,6 +1076,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var header = document.getElementsByTagName('header')[0];
 			var footers = document.getElementsByTagName('footer');
 			var footerLen = footers.length;
+			
 			if (header && !$(header).closest('section, article')[0]) {
 				addRole(header, 'banner');
 			}
@@ -954,4 +1090,4 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	});
 	
-})(jQuery, document);
+})(webshims.$, document);

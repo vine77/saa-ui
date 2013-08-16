@@ -16,26 +16,14 @@
 			font: bold;
 		}
 	</style>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../js-webshim/minified/extras/modernizr-custom.js"></script>
-	<script>
-		// set options for html5shiv
-		if(!window.html5){
-			window.html5 = {}; 
-		}
-		window.html5.shivMethods = false;
-	</script>
-	<script src="../js-webshim/minified/extras/mousepress.js"></script>
 	<script src="../js-webshim/minified/polyfiller.js"></script>
-	
-	
 	<!--
 		<script src="../../src/polyfiller.js"></script> 
 		<script>
 			$.webshims.setOptions({
 				mediaelement: {
-					player: 'jaris',
-					preferFlash: true,
 					playerPath: '../../swfs/jaris/bin/JarisFLVPlayer.swf'
 				}
 			});
@@ -43,7 +31,6 @@
 		</script>
 	-->
 	<script>
-		
 		$.webshims.polyfill();
 		
 		
@@ -136,10 +123,10 @@
 				$('input.volume-slider', player).bind('input', getSetVolume.set);
 				
 				$('input.play', player).bind('click', function(){
-					$('video, audio', player)[0].play();
+					$('video, audio', player).callProp('play');
 				});
 				$('input.pause', player).bind('click', function(){
-					$('video, audio', player)[0].pause();
+					$('video, audio', player).callProp('pause');
 				});
 				$('input.muted', player).bind('click updatemuted', function(){
 					$('video, audio', player).prop('muted', $.prop(this, 'checked'));
@@ -176,9 +163,9 @@
 									$(document.createElement('source')).attr(src).appendTo(mediaElement);
 								});
 							})
-							[0].load()
+							.callProp('load')
 						;
-						$('video, audio', player)[0].play();
+						$('video, audio', player).callProp('play');
 					}
 				}).prop('selectedIndex', 0);
 			});
@@ -208,7 +195,7 @@
 						}, 0);
 					}
 				};
-			};
+			}
 			
 			function getActiveTimeRange(range, time){
 				var len = range.length;
@@ -222,7 +209,22 @@
 					}
 				}
 				return [index, start, end];
-			};
+			}
+			
+			//implement callProp abstraction for webshims (extendNative = false)
+			if(!$.fn.callProp){
+				$.fn.callProp = function(prop, args){
+					var ret;
+					var fn = this.prop(prop);
+					if(!args){
+						args = []; 
+					}
+					if (fn && fn.apply) {
+						ret = fn.apply(this[0], args);
+					}
+					return (ret !== undefined) ? ret : this;
+				};
+			}
 			
 		});
 	</script>
@@ -266,7 +268,7 @@
 				<h3>Implemented/fixed elements, attributes, properties, methods, events</h3>
 				<ul>
 					<li><strong>elements:</strong> <a href="http://www.w3.org/TR/html5/video.html#video">video</a>, <a href="http://www.w3.org/TR/html5/video.html#audio">audio</a>, <a href="http://www.w3.org/TR/html5/video.html#the-source-element">source</a></li>
-					<li><strong>attributes and IDL/properties</strong>: <a href="http://www.w3.org/TR/html5/video.html#attr-media-controls">controls</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-media-loop">loop</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-media-autoplay">autoplay</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-source-src">src</a></li>
+					<li><strong>attributes and IDL/properties</strong>: <a href="http://www.w3.org/TR/html5/video.html#attr-media-controls">controls</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-media-loop">loop</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-media-autoplay">autoplay</a>, <a href="http://www.w3.org/TR/html5/video.html#attr-source-src">src</a>, <a href="http://www.w3.org/TR/html5/embedded-content-0.html#dom-source-media">media</a>, <a href="http://www.w3.org/TR/html5/embedded-content-0.html#dom-source-media">type</a></li>
 					<li><strong>properties/IDLs</strong>: <a href="http://www.w3.org/TR/html5/video.html#dom-media-paused">paused</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-ended">ended</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-muted">muted</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-volume">volume</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-currenttime">currentTime</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-duration">duration</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-buffered">buffered</a><sup>1</sup>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-currentsrc">currentSrc</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-readystate">readyState</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-networkstate">networkState</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-video-videoheight">videoHeight</a><sup>2</sup>, <a href="http://www.w3.org/TR/html5/video.html#dom-video-videowidth">videoWidth</a><sup>2</sup></li>
 					<li><strong>methods</strong>: <a href="http://www.w3.org/TR/html5/video.html#dom-media-play">play</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-pause">pause</a>, <a href="http://www.w3.org/TR/html5/video.html#dom-media-load">load</a> (mediaLoad<sup>3</sup>), <a href="http://www.w3.org/TR/html5/video.html#dom-navigator-canplaytype">canPlayType</a> <sup>4</sup> </li>
 					<li><strong>events</strong>: <a href="http://www.w3.org/TR/html5/video.html#event-media-loadedmetadata">loadedmetadata</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-play">play</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-pause">pause</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-playing">playing</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-canplay">canplay</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-ended">ended</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-waiting">waiting</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-timeupdate">timeupdate</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-progress">progress</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-emptied">emptied</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-volumechange">volumechange</a>, <a href="http://www.w3.org/TR/html5/video.html#event-media-durationchange">durationchange</a></li>
@@ -281,11 +283,9 @@
 				<h3>Options for the <code>mediaelement</code> feature</h3>
 				
 				<ul>
-					<li><strong>player</strong> 'jwplayer' (default) || 'jaris': Use the free and open source <a href="http://jarisflvplayer.org/">Jarisplayer</a> or <a href="http://www.longtailvideo.com/players/">JW Player</a></li>
 					<li><strong>preferFlash</strong> (false): If preferFlash is set to true the mediaelements will be replaced by flash, if flash is available. Otherwise only, if mediaelements aren't supported or the current audio/video container/codec isn't supported by the browser.</li>
-					<li><strong>vars</strong> (Flahsvars Object): Object with default flashvars to configure<a href="http://jarisflvplayer.org/docs/">Jarisplayer</a> or  <a href="http://www.longtailvideo.com/support/jw-player/jw-player-for-flash-v5/12536/configuration-options">JWPlayer</a>. This general configuration can be changed by using a data-vars attribute, too.</li>
-					<li><strong>changeSWF</strong> (Manipulation function): Callback function to also modify the flashvars object for Jarisplayer/JWPlayer.</li>
-					<!--<li><strong>hasToPlay</strong> (string default: "any" (or "ogg", "webm", "h264", "flv", "mp3", "wav", "m4a", "fla")): If a page is only using for example h.264 encoded videos, this can be set to <code>"h264"</code>. If a browser does not support h264, mp3 or flv/fla, but this property is set to "any", the video format will be still polyfilled.</li>-->
+					<li><strong>vars</strong> (Flahsvars Object): Object with default flashvars to configure <a href="http://jarisflvplayer.org/docs/">Jarisplayer</a>. This general configuration can be changed by using a data-vars attribute, too.</li>
+					<li><strong>changeSWF</strong> (Manipulation function): Callback function to also modify the flashvars object for Jarisplayer.</li>
 				</ul>
 				
 				<h3>Extensions/Abstractions to the standard</h3>
@@ -333,17 +333,20 @@ $("video.my-video").loadMediaSrc(
 				<h3>Simple Demo</h3>
 				<h4>Video example</h4>
 				<div class="player">
-					
-					<video controls preload="none" poster="http://corrupt-system.de/assets/media/sintel/sintel-trailer.jpg" style="width: 630px; height: 356px;">
-						<source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.m4v" type="video/mp4" />
-						<source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.webm" type="video/webm" />
-						<track src="subtitle.vtt" srclang="en" label="some description" kind="subtitles" default />
-						<p>You need a modern Browser or install the Flash Plugin or simply download the video (<a href="http://corrupt-system.de/assets/media/sintel/sintel-trailer.m4v">mp4</a>, <a href="http://corrupt-system.de/assets/media/sintel/sintel-trailer.webm">webm</a>)</p>
-					</video>
+					<div class="mediaplayer videoplayer">
+						<video controls preload="none" poster="http://corrupt-system.de/assets/media/sintel/sintel-trailer.jpg" style="width: 630px; height: 356px;">
+							<source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.m4v" type="video/mp4" />
+							<source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.webm" type="video/webm" />
+							<track src="subtitle.vtt" srclang="en" label="some description" kind="subtitles" default />
+							<p>You need a modern Browser or install the Flash Plugin or simply download the video (<a href="http://corrupt-system.de/assets/media/sintel/sintel-trailer.m4v">mp4</a>, <a href="http://corrupt-system.de/assets/media/sintel/sintel-trailer.webm">webm</a>)</p>
+						</video>
+					</div>
 					<table>
 						<thead>
-							<th>property</th>
-							<th>value/control</th>
+							<tr>
+								<th>property</th>
+								<th>value/control</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
@@ -430,15 +433,18 @@ $("video.my-video").loadMediaSrc(
 				</div>
 				<h4>Audio example using mp3 only</h4>
 				<div class="player">
-					
-					<audio controls preload="none" style="width: 400px; height: 45px;">
-						<source src="http://media.libsyn.com/media/sitepoint/sitepointpodcast044.mp3" type="audio/mpeg" />
-						<p>You need a modern Browser or install the Flash Plugin</p>
-					</audio>
+					<div class="mediaplayer audioplayer">
+						<audio controls preload="none" style="width: 400px; height: 45px;">
+							<source src="http://media.libsyn.com/media/sitepoint/sitepointpodcast044.mp3" type="audio/mpeg" />
+							<p>You need a modern Browser or install the Flash Plugin</p>
+						</audio>
+					</div>
 					<table>
 						<thead>
-							<th>property</th>
-							<th>value/control</th>
+							<tr>
+								<th>property</th>
+								<th>value/control</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
@@ -520,21 +526,15 @@ $("video.my-video").loadMediaSrc(
 
 				<h3>Styling the video/audio elements</h3>
 				<h4>Setting dimensions</h4>
-				<p>Webshims lib does not use the width/height content attributes to get the dimensions of your audio/video elements. Instead webshims lib mediaelement implementation only looks for the CSS styles.</p>
-				<p>If an width-/height- inline style is used, these properties are taken. In this case also % or em units are fully supported. If styles are set through an stylesheet, webshims lib will use the computed styles.</p>
+				<p>If an width-/height- inline style is used, these properties are taken. In this case also % or em units and the auto keyword are fully supported. If styles are set through an stylesheet, webshims lib will use the computed styles (always px units).</p>
 				
 				<h4>Using additional styles (margin, background, float etc.)</h4>
 				<p>Additional styles like margin, float etc. are not transferred from the audio/video element to the flash-fallback. The best way to use margin, float and other styles is to use an additional wrapper for your mediaelement.</p>
 
 				<h4>Using custom styleable controls</h4>
 				<p>Webshims lib does not provide custom styleable controls out of the box. Instead webshims lib polyfills the HTML5 API, so that you can easily build your own controls. Simply have a look into the source code of this site, to see how we have build the controls in our demo. If you are interested in a ready-to-use solution for CSS styleable controls, try <a href="https://github.com/aFarkas/jMediaelement">JME2</a>. JME2 works in all HTML5 browsers without a polyfill and in all browsers including IE6 in conjunction with webshims lib.</p>
-				<h4>Updating JWPlayer/Using licensed JWPlayer</h4>
-				<p>Simply place player.swf into your shims/jwplayer folder.</p>
-				<h4>Changing path to swfobject</h4>
-<code class="block">
-$.webshims.modules.swfobject.src = "/path/to/swfobject.js";
-</code>
 				
+				<p>See also our <a href="mediaelement/responsive-mediaelement.html">responsive/custom styleable Mediaplayer example</a></p>
 				<h2>Cookbook</h2>
 				
 				<h3>Stop other media if media starts to play</h3>

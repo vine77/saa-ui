@@ -21,35 +21,35 @@
 		}
 		
 		
-		.validity-alert .va-box,
-		.validity-alert .va-arrow {
-			border-color: #e66;
+		.ws-success {
+			border-color: #0a0;
 		}
-		.validity-alert .va-box {
-			font: 12px arial;
-			color: #600;
+		.ws-invalid {
+			border-color: #a00;
 		}
 	</style>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	<script src="../../js-webshim/minified/extras/mousepress.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../../js-webshim/minified/extras/modernizr-custom.js"></script>
-	<script>
-		// set options for html5shiv
-		if(!window.html5){
-			window.html5 = {}; 
-		}
-		window.html5.shivMethods = false;
-	</script>
 	<script src="../../js-webshim/minified/polyfiller.js"></script>
+	
+	
+	<!--
+		<script src="../../../src/polyfiller.js"></script> 
+		<script>
+			$.webshims.debug = 'noCombo';
+			//style calendar, datalist, validation bubble
+			//$('html').on('wspopoverbeforehide', false);
+		</script>
+	-->
 	<script>
 		//configure
-		$.webshims.setOptions('forms', {
-			overrideMessages: true
-		});
-		$.webshims.setOptions({
-			//we do not use any DOM-/JS-APIs on DOM-ready, so we do not need to delay the ready event <- good against fouc
-			waitReady: false
+		$.webshims.setOptions('forms', { 
+			lazyCustomMessages: true,
+			iVal: {
+				fieldWrapper: '.form-element',
+				handleBubble: true // 'hide' || false
+			}
 		});
 		//load all polyfill features
 		//or load only a specific feature with $.webshims.polyfill('feature-name');
@@ -93,21 +93,31 @@
 				<li>Preventing the native invalid message to appear and replacing it with your own invalid UI (including own validation message or native validation message)</li>
 				<li>changing the messages through the setCustomValidity-method - without changing the native UI</li>
 			</ul>
-			<p>A starting point for Preventing the default invalid UI and then replacing it, could look like this:</p>
+			<p>A starting point for preventing the default invalid UI and then replacing it, could look like this:</p>
 <code class="block">
 $('form').bind('invalid', function(e){
 	//prevent browser from showing native validation message
 	e.preventDefault();
 	//implement custom UI and custom message according to the validityState $(e.target).attr('validity')
 });
-</code>		
+</code>
 			<p><small>Note: The HTML5 invalid event does not bubble. Webshims lib <a href="../../index.html#polyfill-abstractions">uses event capturing</a> for listening to the invalid event, so that it can be captured on the form/all ancestor elements</small><p>
+			<p>Another way to remove the native validation UI using HTML markup could look like this: </p>
+<code class="block">
+&lt;form novalidate="" action="#"&gt;
+	&lt;!-- ... --&gt;
+&lt;/form&gt;
+</code>
+<code class="block">
+$('form').attr('novalidate', 'novalidate');
+</code>
 			<p>Webshims lib gives you some extensions to make styling validation error message or changing the error-messages really simple.</p>
 			<ul>
 				<li>firstinvalid (event)</li>
-				<li>customValidationMessage (DOM-Property) (Note: to get this new property either <code>customMessages</code> or <code>overrideValidationMessage</code> has to be set to true before calling <code>$.webshims.polyfill();</code>)</li>
+				<li>customValidationMessage (webshims DOM-Property) (Note: to get this new property the <code>customMessages</code> or <code>lazyCustomMessages</code> option has to be set to true before calling <code>$.webshims.polyfill();</code>)</li>
 				<li>$.webshims.validityAlert (Helper Object)</li>
-				<li>data-errormessage/-x-moz-errormessage content attributes (are automatically used by validityAlert)</li>
+				<li>data-errormessage/x-moz-errormessage content attributes (are automatically used by validityAlert)</li>
+				<li>.ws-instantvalidation for Live Inline Form Validation</li>
 			</ul>
 			<p>Preventing the default and replacing the invalid-bubble with your own message, could look like this:</p>
 <code class="block run-once">
@@ -124,18 +134,20 @@ $('form')
 			<p>Using <code>$.webshims.validityAlert.showFor</code> will generate the following styleable HTML structure:</p>
 			
 <code class="block">
-&lt;!-- note: span.validity-alert-wrapper is label.validity-alert in old browser, which do not support WAI-ARIA --&gt;
-&lt;span class="validity-alert-wrapper" role="alert"&gt;
-	&lt;span class="validity-alert"&gt;
-		&lt;span class="va-arrow"&gt;&lt;span class="va-arrow-box"&gt;&lt;/span&gt;&lt;/span&gt;
-		&lt;span class="va-box"&gt;Error message of the current field&lt;/span&gt;
-	&lt;/span&gt;
-&lt;/span&gt;
+&lt;!-- data-id and data-class attributes are filled with the corresponding id/class strings of the input element --&gt;
+&lt;div class="ws-popover validity-alert" role="alert" data-class="" data-id=""&gt;
+	&lt;div class="ws-po-outerbox"&gt;
+		&lt;div class="ws-po-arrow"&gt;
+			&lt;div class="ws-po-arrowbox"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="ws-po-box"&gt;ERRORMESSAGE.&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
 </code>
 			
-			<p>Firefox 4.0 also shows an invalid hint on mouseover, which can't be replaced by this technique. If you want to remove this you can use a title-attribute with an emtpy string or use the <a href="https://developer.mozilla.org/en/HTML/element/input#Error_messages">x-moz-errormessage</a> to control the error message.</p>
+			<p>Firefox and some other browsers also show an invalid hint on mouseover, which can't be replaced by this technique. If you want to remove this you can use a title-attribute (with an emtpy string) or use the <a href="https://developer.mozilla.org/en/HTML/element/input#Error_messages">-x-moz-errormessage</a> to control the error message.</p>
 			
-			<p>Using instead the <code>setCustomValidity</code> approach will fully replace the validation message, while the native validation UI stays. Changing the validation message with setCustomValidity, would look like this:</p>
+			<p>Using the <code>setCustomValidity</code> approach will fully replace the validation message, while the native validation UI stays. Changing the validation message with setCustomValidity, would look like this:</p>
 			
 <code class="block">
 $('input[required]').setCustomValidity('You have to enter something');
@@ -145,35 +157,37 @@ $('input[required]').setCustomValidity('You have to enter something');
 //remove customError flag:
 $('input[required]').setCustomValidity('');
 </code>
-			<p>Due to the fact, that Webshims Lib already had to implement the setCustomValidity approach to do a lot of bugfixing in capable browsers/implementing in uncapable/semi-capable browsers, webshims lib gives you a simple configuration property to dynamically overriding the validationMessage with the customValidationMessage. Simply set the <code>overrideMessages</code> to true, before calling <code>polyfill</code>.</p>
 			
+			<h3 id="instant-validation">Improving UX using the Instant Form Validation feature</h3>
+			
+			<p>Webshims can dramatically enhance the UX of the HTML5 form validation by adding the class 'ws-instantvalidation' to your form element. The instant validation feature can be configured by changing the iVal options:</p>
 <code class="block">
-//configure custom validation messages before you call polyfill
-$.webshims.setOptions('forms', {
-	overrideMessages: true
+$.webshims.setOptions('forms', { 
+	iVal: {
+		fieldWrapper: '.form-element', // default: ':not(span, em, strong, p)'
+		handleBubble: 'hide', // defaults: true. true (bubble and focus first invalid element) | false (no focus and no bubble) | 'hide' (no bubble, but focus first invalid element)
+		fx: 'slide', //defaults 'slide' or 'fade'
+		sel: '.ws-instantvalidation' // simple selector for the form element, setting this to false, will remove this feature
+	}
 });
-
-$.webshims.polyfill();
-</code>
-			<p>Note: This site is loaded with <code>overrideMessages = true;</code>.</p>
-			
-			<p>Recommendation: Prefer <code>customMessages = true</code> to <code>overrideMessages = true</code> (less obtrusiv)</p>
-			<p>Or a simple rule: If you want to style the validation tooltip use <code>customMessages</code> and if you want to only change the validationMessage without changing the validation UI use <code>overrideMessages</code>.</p>
+</code>			
 			
 			<h3 id="change-validation-messages">Changing and Adding validation messages</h3>
-			<p>Webshims Lib validation messages are stored @ <code>$.webshims.validityMessages</code> as an object. The index is the specific language code. Currently there are only really bad validation messages for "en" and "de".</p>
+			<p>Webshims Lib validation messages are stored @ <code>$.webshims.validityMessages</code> as an object. The index is the specific language code.</p>
 			<p>Webshims Lib automatically shows the validation message in the detected language of the browser. If the script doesn't find the right language, it will show the default language which is stored under the key "" (defaults to "en").</p>
 			<p>You can easily add/change a language by specifying a certain language code.</p>
 <code class="block">
 $.webshims.validityMessages['en'] = {
 	typeMismatch: {
 		email: 'changed {%value} is not a legal email address',
-		url: 'changed {%value} is not a valid web address',
-		number: 'changed {%value} is not a number!',
-		date: 'changed {%value} is not a date',
-		time: 'changed {%value} is not a time',
-		range: 'changed {%value} is not a number!',
-		"datetime-local": 'changed {%value} is not a correct date-time format.'
+		url: 'changed {%value} is not a valid web address'
+	},
+	badInput: {
+		number: 'changed Enter a number!',
+		date: 'changed Enter a date',
+		time: 'changed Enter a time',
+		range: 'changed Enter a number!',
+		"datetime-local": 'changed Enter a correct date-time format.'
 	},
 	rangeUnderflow: 'changed {%value} is too low. The lowest value you can use is {%min}.',
 	rangeOverflow: 'changed {%value} is too high. The highest value you can use is {%max}.',
@@ -274,8 +288,7 @@ $.webshims.activeLang("en");
 </code>
 			<section>
 				<h3>Simple Demo</h3>
-				<form action="#">
-				   
+				<form action="#" class="ws-instantvalidation">
 					<p class="required"><span>*</span> Required fields</p>
 					<fieldset>
 						<div class="form-element">
@@ -286,15 +299,15 @@ $.webshims.activeLang("en");
 						</div>
 						<div class="form-element">
 							<label for="email">
-								E-Mail:
+								E-Mail*:
 							</label>
-						   	<input name="email" type="email" id="email" />
+							<input name="email" type="email" id="email" required />
 						</div>
 						<div class="form-element">
 							<label for="range">
 								range:
 							</label>
-						   	<input name="range" type="range" id="range" />
+							<input name="range" type="range" id="range" />
 						</div>
 						
 						<div class="form-element">
@@ -302,7 +315,7 @@ $.webshims.activeLang("en");
 								date: <dfn title="required">*</dfn>
 							</label>
 							
-						   	<input min="2010-12-10" max="2016-01-01" name="date" required="required" type="date" id="date" />
+							<input min="2010-12-10" max="2016-01-01" name="date" required="required" type="date" id="date" />
 							(min="2010-12-10" max="2016-01-01")
 						</div>
 						<!--
@@ -318,27 +331,25 @@ $.webshims.activeLang("en");
 								number: <dfn title="required">*</dfn>
 							</label>
 							
-						   	<input min="3" name="number" required="required" type="number" id="number" />
+							<input min="3" name="number" required="required" type="number" id="number" />
 							(min="3")
 						</div>
-					   
-						<!--
 						<div class="form-element">
 							<label for="time">
 								time: 
 							</label>
-						   	<input name="time" type="time" id="time" />
+							<input name="time" type="time" id="time" />
 						</div>
-						-->
+						
 						
 						<div class="form-element">
-							<label for="password">
-								password: 
+							<label for="no-constraints">
+								text (no constraints): 
 							</label>
-						   	<input placeholder="password" name="password" type="password" id="password" />
+							<input name="no-constraints" type="text" id="no-constraints" />
 						</div>
 						
-						<div>
+						<div class="form-element">
 							<h4>Radio-Group Headline Short Labels  <dfn title="required">*</dfn></h4>
 							<fieldset class="mod">
 								<legend>Legend Short Labels  <dfn title="required">*</dfn></legend>
@@ -350,7 +361,7 @@ $.webshims.activeLang("en");
 								</div>
 								<div class="form-item">
 									<input type="radio" id="field7-1" name="radio-grp1-1" />
-								   	<label for="field7-1"> 
+									<label for="field7-1"> 
 										Radiooption 2
 									</label>
 								</div>
@@ -369,33 +380,6 @@ $.webshims.activeLang("en");
 					</fieldset>
 				</form>
 			</section>
-			
-			<h3>Now add some extras:</h3>
-			<p>Add valid/invalid Classes on focusout.</p>
-<code class="block">	
-//on focusout / blur
-$('form').bind('focusout invalid', function(e){
-	// get target element
-	var $elem = $(e.target);
-	//if the element is a candidate for constraint
-	if($elem.attr('willValidate') && $elem.attr('type') !== 'submit'){
-		//test wether it is valid and set/remove the classes
-		if(e.type !== 'invalid' && $elem.is(':valid-element')){
-			$elem
-				.closest('.form-element, fieldset')
-				.addClass('valid')
-				.removeClass('invalid')
-			;
-		} else {
-			$elem
-				.closest('.form-element, fieldset')
-				.addClass('invalid')
-				.removeClass('valid')
-			;
-		}	
-	}
-});
-</code>	
 	
 	</section>
 	</div>

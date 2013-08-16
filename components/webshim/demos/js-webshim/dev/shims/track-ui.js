@@ -1,4 +1,37 @@
-jQuery.webshims.register('track-ui', function($, webshims, window, document, undefined){
+(function($){
+	if(Modernizr.track && Modernizr.texttrackapi && document.addEventListener){
+		var trackOptions = webshims.cfg.track;
+		var trackListener = function(e){
+			$(e.target).filter('track').each(changeApi);
+		};
+		var trackBugs = webshims.bugs.track;
+		var changeApi = function(){
+			if(trackBugs || (!trackOptions.override && $.prop(this, 'readyState') == 3)){
+				trackOptions.override = true;
+				webshims.reTest('track');
+				document.removeEventListener('error', trackListener, true);
+				if(this && $.nodeName(this, 'track')){
+					webshims.error("track support was overwritten. Please check your vtt including your vtt mime-type");
+				} else {
+					webshims.info("track support was overwritten. due to bad browser support");
+				}
+				return false;
+			}
+		};
+		var detectTrackError = function(){
+			document.addEventListener('error', trackListener, true);
+			if(trackBugs){
+				changeApi();
+			} else {
+				$('track').each(changeApi);
+			}
+		};
+		if(!trackOptions.override){
+			detectTrackError();
+		}
+	}
+})(webshims.$)
+webshims.register('track-ui', function($, webshims, window, document, undefined){
 	"use strict";
 	var options = webshims.cfg.track;
 	var enterE = {type: 'enter'};
@@ -7,7 +40,7 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 	var showTracks = {subtitles: 1, captions: 1, descriptions: 1};
 	var mediaelement = webshims.mediaelement;
 	var usesNativeTrack =  function(){
-		return !options.override && Modernizr.track;
+		return !options.override && Modernizr.texttrackapi;
 	};
 	
 	var trackDisplay = {
@@ -80,8 +113,7 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 					positionDisplay(true);
 				};
 				media.on('playerdimensionchange mediaelementapichange updatetrackdisplay updatemediaelementdimensions swfstageresize', delayed);
-				$(document).on('updateshadowdom', delayed);
-				media.on('forceupdatetrackdisplay', forceUpdate);
+				media.on('forceupdatetrackdisplay', forceUpdate).onWSOff('updateshadowdom', delayed);
 				forceUpdate();
 			}
 		},
@@ -111,10 +143,6 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 		return ret;
 	}
 	
-	$.extend($.event.customEvent, {
-		updatetrackdisplay: true,
-		forceupdatetrackdisplay: true
-	});
 	
 	mediaelement.trackDisplay = trackDisplay;
 	
@@ -143,7 +171,7 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 			track._lastFoundCue = {index: 0, time: 0};
 		}
 		
-		if(Modernizr.track && !options.override && !track._shimActiveCues){
+		if(Modernizr.texttrackapi && !options.override && !track._shimActiveCues){
 			track._shimActiveCues = mediaelement.createCueList();
 		}
 		
@@ -223,14 +251,23 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 				createUpdateFn('nodeName', 'addTextTrack', 'value');
 			});
 		})();
+		$.propHooks.activeCues = {
+			get: function(obj, value){
+				return obj._shimActiveCues || obj.activeCues;
+			}
+		};
 	}
 	
 	webshims.addReady(function(context, insertedElement){
 		$('video, audio', context)
 			.add(insertedElement.filter('video, audio'))
+			.filter(function(){
+				return webshims.implement(this, 'trackui');
+			})
 			.each(function(){
-				var elem = $(this);
+				var baseData, trackList, updateTimer, updateTimer2;
 				
+				var elem = $(this);
 				var getDisplayCues = function(e){
 					var track;
 					var time;
@@ -262,12 +299,11 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 					clearTimeout(updateTimer);
 					if(e && e.type == 'timeupdate'){
 						getDisplayCues();
-						setTimeout(onUpdate, 90);
+						updateTimer2 = setTimeout(onUpdate, 90);
 					} else {
 						updateTimer = setTimeout(getDisplayCues, 9);
 					}
 				};
-				
 				var addTrackView = function(){
 					
 					elem
@@ -275,7 +311,14 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 						.on('play.trackview timeupdate.trackview updatetrackdisplay.trackview', onUpdate)
 					;
 				};
-				var baseData, trackList, updateTimer;
+				
+				elem.on('remove', function(e){
+					if(!e.originalEvent && baseData && baseData.trackDisplay){
+						setTimeout(function(){
+							baseData.trackDisplay.remove();
+						}, 4);
+					}
+				});
 				
 				if(!usesNativeTrack()){
 					addTrackView();
@@ -284,6 +327,9 @@ jQuery.webshims.register('track-ui', function($, webshims, window, document, und
 						if(!usesNativeTrack() || elem.is('.nonnative-api-active')){
 							addTrackView();
 						} else {
+							clearTimeout(updateTimer);
+							clearTimeout(updateTimer2);
+							
 							trackList = elem.prop('textTracks');
 							baseData = webshims.data(elem[0], 'mediaelementBase') || webshims.data(elem[0], 'mediaelementBase', {});
 							

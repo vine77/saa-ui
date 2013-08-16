@@ -189,23 +189,28 @@ if (!('sessionStorage' in window)) {window.sessionStorage = new Storage('session
 	var shim;
 	var localStorageSwfCallback = function(type){
 		clearTimeout(swfTimer);
-		
+		var getType;
 		if(window.localStorage && (type != 'swf' || (shim && shim.key))){
 			$.webshims.isReady('json-storage', true);
 			return;
 		}
+		
 
 		if(type === 'swf'){
 			shim = document.getElementById('swflocalstorageshim');
+			getType = shim ? typeof(shim.GetVariable) : 'undefined';
+			
 			//brute force flash getter
-			if( !shim || typeof shim.GetVariable == 'undefined' ){
+			if( getType == 'undefined' ){
 				shim = document.swflocalstorageshim;
-			}
-			if( !shim || typeof shim.GetVariable == 'undefined'){
-				shim = window.localstorageshim;
+				getType = shim ? typeof(shim.GetVariable) : 'undefined';
+				if( getType == 'undefined' ){
+					shim = window.localstorageshim;
+					getType = shim ? typeof(shim.GetVariable) : 'undefined';
+				}
 			}
 			
-			if(shim && typeof shim.GetVariable !== 'undefined'){
+			if(getType != 'undefined'){
 				window.localStorage = {};
 				
 				window.localStorage.clear = function(){
@@ -245,11 +250,10 @@ if (!('sessionStorage' in window)) {window.sessionStorage = new Storage('session
 			window.localStorage = new Storage('local');
 			$.webshims.warn('implement cookie-localStorage');
 		}
-		
 		$.webshims.isReady('json-storage', true);
 	};
 	var storageCFG = $.webshims.cfg['json-storage'];
-	$.webshims.swfLocalStorage = {
+	webshims.swfLocalStorage = {
 		show: function(){
 			if(storageCFG.exceededMessage){
 				$('#swflocalstorageshim-wrapper').prepend('<div class="polyfill-exceeded-message">'+ storageCFG.exceededMessage +'</div>');
@@ -280,12 +284,14 @@ if (!('sessionStorage' in window)) {window.sessionStorage = new Storage('session
 //		
 //	};
 	
-	$.webshims.ready('DOM swfobject', function(){
+	webshims.ready('DOM swfmini', function(){
+		
+		var swfmini = window.swfmini;
 		if(runStart || (('localStorage' in window) && document.getElementById('swflocalstorageshim')) ){return;}
 		runStart = true;
-		if(window.swfobject && swfobject.hasFlashPlayerVersion('8.0.0')){
+		if(swfmini && swfmini.hasFlashPlayerVersion('8.0.0')){
 			$('body').append('<div id="swflocalstorageshim-wrapper"><div id="swflocalstorageshim" /></div>');
-			swfobject.embedSWF($.webshims.cfg.basePath +'swf/localStorage.swf' +($.webshims.cfg.addCacheBuster || ''), 'swflocalstorageshim', '295', '198', '8.0.0', '', {allowscriptaccess: 'always'}, {name: 'swflocalstorageshim'}, function(e){
+			swfmini.embedSWF(webshims.cfg.basePath +'swf/localStorage.swf' +(webshims.cfg.addCacheBuster || ''), 'swflocalstorageshim', '295', '198', '8.0.0', null, {allowscriptaccess: 'always'}, {name: 'swflocalstorageshim'}, function(e){
 				if(!e.success && !window.localStorage){
 					localStorageSwfCallback();
 				}
@@ -293,7 +299,7 @@ if (!('sessionStorage' in window)) {window.sessionStorage = new Storage('session
 			clearTimeout(swfTimer);
 			swfTimer = setTimeout(function(){
 				if(!('localStorage' in window)){
-					$.webshims.warn('Add your development-directory to the local-trusted security sandbox: http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html');
+					webshims.warn('Add your development-directory to the local-trusted security sandbox: http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html');
 				}
 				localStorageSwfCallback();
 			}, (location.protocol.indexOf('file') === 0) ? 500 : 9999);

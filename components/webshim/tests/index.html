@@ -10,9 +10,9 @@
 		(function(){
 			var hash = location.hash.replace('#', '');
 			if(hash.indexOf('legacyjquery') != -1){
-				document.write('<script src="http:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1.8.3\/jquery.js"><\/script>');
+				document.write('<script src="http:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1.8\/jquery.js"><\/script>');
 			} else {
-				document.write('<script src="http:\/\/code.jquery.com\/jquery-1.9.1.js"><\/script>');
+				document.write('<script src="http:\/\/code.jquery.com\/jquery-1.10.1.min.js"><\/script>');
 			}
 		})();
 	</script>
@@ -41,9 +41,6 @@
 			
 			var hash = location.hash.replace('#', '');
 			
-			if(hash.indexOf('overrideValidationMessages') !== -1){
-				$.webshims.cfg.forms.overrideMessages = true; 
-			}
 			if(hash.indexOf('customValidationMessage') !== -1){
 				$.webshims.cfg.forms.customMessages = true; 
 			}
@@ -51,16 +48,22 @@
 				$.webshims.cfg.extendNative = false; 
 			}
 			if(hash.indexOf('useCustomUI') !== -1){
+				$.webshims.setOptions('forms', { customDatalist: true });
 				$.webshims.setOptions('forms-ext', { replaceUI: true });
+			}
+			
+			if(hash.indexOf('punycode') !== -1){
+				document.write('<script src="test-ext\/punycode.js"><\/script>');
 			}
 			
 						
 			$(function(){
 				$('#customValidationMessage').prop('checked', !!$.webshims.cfg.forms.customMessages);
-				$('#overrideValidationMessages').prop('checked', !!$.webshims.cfg.forms.overrideMessages);
 				$('#noNativeMethods').prop('checked', !$.webshims.cfg.extendNative);
 				$('#useCustomUI').prop('checked', $.webshims.cfg['forms-ext'].replaceUI);
 				$('#legacyjquery').prop('checked', (hash.indexOf('legacyjquery') != -1));
+				$('#noConflictExtreme').prop('checked', (hash.indexOf('noConflictExtreme') != -1));
+				$('#punycode').prop('checked', (hash.indexOf('punycode') !== -1));
 				$('input.webshim-config')
 					.bind('click', function(){
 						var addHash = '';
@@ -87,7 +90,6 @@
 			
 			module("init");
 			asyncTest("init", function(){
-				
 				$.webshims.ready('DOM forms-ext forms canvas json-storage', start);
 			});
 			$.webshims.ready('forms-ext', function(){
@@ -118,6 +120,7 @@
 
 	<script src="test-ext/test-helper.js"></script>
 	
+	<script src="unit/updatepolyfill.js"></script>
 	
 	<script src="unit/placeholder.js"></script>
 	<script src="unit/validity.js"></script>
@@ -125,25 +128,31 @@
 	<script src="unit/number-date.js"></script>
 	<script src="unit/dynamic-webshim.js"></script>
 	<script src="unit/stepup-down.js"></script>
+	<script src="unit/progress.js"></script>
 	<script src="unit/input-ui.js"></script>
 	<script src="unit/storage.js"></script>
 	<script src="unit/es5.js"></script>
 	<script src="unit/boolean-attr.js"></script>
 	<script src="unit/interactive-validation.js"></script>
-	<script src="unit/form-submitters.js"></script>
 	<script src="unit/form-features.js"></script>
 	<script src="unit/loading.js"></script>
+	<script src="unit/form-submitters.js"></script>
 	
-	<!-- last test: -->
 	<script src="unit/datalist.js"></script>
 	
 	<script>
 		jQuery.noConflict();
 		(function($){
+			var hash = location.hash.replace('#', '');
+			
 //			$.webshims.debug = "noCombo";
 			$(window).load(function(){
 				$.webshims.polyfill();
 			});
+			if(hash.indexOf('noConflictExtreme') != -1){
+				webshims.cfg.no$Switch = true;
+				jQuery.noConflict(true);
+			}
 		})(jQuery);
 	</script>
 	<style type="text/css">
@@ -166,11 +175,13 @@
 	<foobar></foobar>
 	<foobarbaz></foobarbaz>
 <div>
-	<input type="checkbox" id="overrideValidationMessages" value="overrideValidationMessages" class="webshim-config" /> <label for="overrideValidationMessages">overrideValidationMessages</label>
 	<input type="checkbox" id="customValidationMessage" value="customValidationMessage" class="webshim-config" /> <label for="customValidationMessage">customValidationMessage</label>
 	<input type="checkbox" id="noNativeMethods" value="noNativeMethods" class="webshim-config" /> <label for="noNativeMethods">noNativeMethods</label>
 	<input type="checkbox" id="useCustomUI" value="useCustomUI" class="webshim-config" /> <label for="useCustomUI">use custom input widgets</label>
 	<input type="checkbox" id="legacyjquery" value="legacyjquery" class="webshim-config" /> <label for="legacyjquery">use legacy jquery</label>
+	<input type="checkbox" id="noConflictExtreme" value="noConflictExtreme" class="webshim-config" /> <label for="noConflictExtreme">jQuery.noConflict(true)</label>
+	<input type="checkbox" id="punycode" value="punycode" class="webshim-config" /> <label for="punycode">punycode</label>
+	
 	
 </div>
 <small>Note: These tests are made to test webshims lib implementation. If there are some failing tests in native implementations, fill a browser bug. We currently only fix heavy/easy to fix errors in native implementations.</small>
@@ -194,6 +205,7 @@
 			<input type="checkbox" name="radio-outside" />
 		</div>
 		<form id="form-1" action="" method="post">
+			<progress></progress>
 			<!-- hidden fields should not be visible -->
 			<div class="form-item-hidden">
 				<input type="hidden" name="test1" />

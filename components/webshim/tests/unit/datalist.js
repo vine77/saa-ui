@@ -15,15 +15,16 @@ asyncTest("datalist", function(){
 	
 	strictEqual($('#email').prop('list'), $('#dlist')[0], 'list property returns right datalist');
 	
-	if(!Modernizr.input.list){
+	if(!Modernizr.input.list || $.webshims.cfg.forms.customDatalist){
+		$('#email').data('datalistWidget').showList();
 		var shadowListItems = $('div.datalist-polyfill li');
 		$.each(['yes aßäöâ', 'yes "2"', "yes '3'"], function(i, val){
 			equals($('span.option-value', shadowListItems[i]).text(), val, 'shadow datalistitems value equals options value');
 		});
+		
+		
 		strictEqual($('#email').attr('aria-haspopup'), 'true', 'input[list] has aria');
 	}
-	
-	
 	
 	$('#email').attr('list', 'blasdsa');
 	strictEqual($('#email').prop('list'), null, 'list property is null, if id is not in document');
@@ -38,62 +39,13 @@ asyncTest("datalist", function(){
 	$('#email').attr('list', 'dlist2');
 	strictEqual($('#email').prop('list'), $('#dlist2')[0], 'list property changed through content attribute');
 	
-	if(!Modernizr.input.list){
+	if(!Modernizr.input.list || webshims.cfg.forms.customDatalist){
 		strictEqual($('#email').attr('aria-haspopup'), 'true', 'input[list] has aria');
 		
 		$('#email').removeAttr('list');
 		ok(!$('#email').attr('aria-haspopup'), 'removed list attribute removes aria in shim');
 	}
 	
-	if (!Modernizr.input.list) {
-	
-		$.webshims.ready('DOM form-datalist', function(){
-			$('#email').attr('list', 'dlist2');
-			$('#dlist2 select').appendPolyfill('<option value="dynamic appended"></option>');
-			
-			start();
-			var shadowList = $('div.dlist2-shadowdom');
-			var shadowListItems = $('li', shadowList);
-			strictEqual(shadowList.length, 1, 'there is one dlist2 element');
-			$.each(['secondlist', 'dynamic appended'], function(i, val){
-				equals($('span.option-value', shadowListItems.eq(i)).text(), val, 'shadow datalistitems value equals options value');
-			});
-			shadowList.remove();
-			
-		});
-		/*
-		$.webshims.ready('DOM form-datalist', function(){
-			$('#email').attr('list', 'dlist2');
-			$('#dlist2').htmlPolyfill('<select><option value="dynamic appended1" /><option value="dynamic appended2"></option></select>');
-			
-			start();
-			var shadowList = $('div.dlist2-shadowdom');
-			var shadowListItems = $('li', shadowList);
-			strictEqual(shadowList.length, 1, 'there is one dlist2 element');
-			$.each(['dynamic appended1', 'dynamic appended2'], function(i, val){
-				equals($('span.option-value', shadowListItems.eq(i)).text(), val, 'shadow datalistitems value equals options value');
-			});
-			shadowList.remove();
-			
-		});
-		
-		
-			
-		$.webshims.ready('DOM form-datalist', function(){
-			$('#email').attr('list', 'dlist2');
-			$('#dlist2 select').htmlPolyfill('<option value="dynamic appended1"></option><option value="dynamic appended2"></option>');
-			start();
-			var shadowList = $('div.dlist2-shadowdom');
-			var shadowListItems = $('li', shadowList);
-			strictEqual(shadowList.length, 1, 'there is on dlist2 element');
-			$.each(['dynamic appended1', 'dynamic appended2'], function(i, val){
-				equals($('span.option-value', shadowListItems.eq(i)).text(), val, 'shadow datalistitems value equals options value');
-			});
-			shadowList.remove();
-			
-		});
-		*/
-	}
 	
 	$.webshims.ready('DOM forms forms-ext', function(){
 		start();

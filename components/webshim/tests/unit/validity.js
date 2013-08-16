@@ -96,6 +96,7 @@ asyncTest("general validity Modul", function(){
 	if(navigator.userAgent.indexOf('Chrome') === -1){
 		same($('#email').prop('validity'), {
 			typeMismatch: false,
+			badInput: false,
 			rangeUnderflow: false,
 			rangeOverflow: false,
 			stepMismatch: false,
@@ -109,6 +110,7 @@ asyncTest("general validity Modul", function(){
 		$('#email').val('some input');
 		same($('#email').prop('validity'), {
 			typeMismatch: true,
+			badInput: false,
 			rangeUnderflow: false,
 			rangeOverflow: false,
 			stepMismatch: false,
@@ -174,7 +176,7 @@ asyncTest('email, url, pattern, maxlength', function(){
 });
 
 asyncTest('validationMessage/setCustomValidity', function(){
-	var firstInvalid = $('#name').attr('value', '');
+	var firstInvalid = $('#name').prop('value', '');
 	var lang = $.webshims.activeLang()[0];
 	//select + customValidity
 	ok($('#select').is(':valid'), 'select is valid');
@@ -182,16 +184,8 @@ asyncTest('validationMessage/setCustomValidity', function(){
 	ok($('#select').is(':invalid'), 'select is set invalid');
 	ok($('#select').prop('validity').customError, 'select has customerror');
 	equals($('#select').prop('validationMessage'), 'has an error', 'custom error message set');
-	if($.webshims.cfg.forms.overrideMessages){
-		equals(firstInvalid.prop('validationMessage'), firstInvalid.prop('customValidationMessage'), 'custom message equals native message if messages are overridden');
-		$.webshims.activeLang('en');
-		equals(firstInvalid.prop('validationMessage'), firstInvalid.prop('customValidationMessage'), 'switched message to en');
-		$.webshims.activeLang('de');
-		equals(firstInvalid.prop('validationMessage'), firstInvalid.prop('customValidationMessage'), 'switched message to de');
-		$.webshims.activeLang(lang);
-		equals(firstInvalid.prop('validationMessage'), firstInvalid.prop('customValidationMessage'), 'switched message to '+ lang);
-	}
-	if($.webshims.cfg.forms.overrideMessages || $.webshims.cfg.forms.customMessages){
+	
+	if($.webshims.cfg.forms.customMessages){
 		$.webshims.activeLang('en');
 		var enMessage = firstInvalid.prop('customValidationMessage');
 		$.webshims.activeLang('de');
@@ -234,7 +228,7 @@ asyncTest('output test', function(){
 		
 	}
 	ok( !/&outputtest=somecontent&/.test($('form').serialize()) , 'does not find output serialized in shim');
-	$('#rangeId').attr('value', 30);
+	$('#rangeId').prop('value', 30);
 	
 	$($('#form-1')[0]['outputtest']).prop('value', 'value');
 	equals($('#labeled-output').prop('value'), 'value', 'value is set through form elements');

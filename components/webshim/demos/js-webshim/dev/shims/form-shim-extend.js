@@ -1,9 +1,10 @@
-if(!Modernizr.formvalidation || jQuery.webshims.bugs.bustedValidity){
-jQuery.webshims.register('form-shim-extend', function($, webshims, window, document){
+if(!Modernizr.formvalidation || webshims.bugs.bustedValidity){
+webshims.register('form-shim-extend', function($, webshims, window, document, undefined, options){
 "use strict";
 webshims.inputTypes = webshims.inputTypes || {};
 //some helper-functions
 var cfg = webshims.cfg.forms;
+var bugs = webshims.bugs;
 var isSubmit;
 
 var isNumber = function(string){
@@ -19,6 +20,51 @@ var isNumber = function(string){
 	}
 ;
 
+(function(){
+	if('querySelector' in document){
+		try {
+			bugs.findRequired = !($('<form action="#" style="width: 1px; height: 1px; overflow: hidden;"><select name="b" required="" /></form>')[0].querySelector('select:required'));
+		} catch(er){
+			bugs.findRequired = false;
+		}
+		
+		if (bugs.bustedValidity || bugs.findRequired) {
+			(function(){
+				var find = $.find;
+				var matchesSelector = $.find.matchesSelector;
+				
+				var regExp = /(\:valid|\:invalid|\:optional|\:required|\:in-range|\:out-of-range)(?=[\s\[\~\.\+\>\:\#*]|$)/ig;
+				var regFn = function(sel){
+					return sel + '-element';
+				};
+				
+				$.find = (function(){
+					var slice = Array.prototype.slice;
+					var fn = function(sel){
+						var ar = arguments;
+						ar = slice.call(ar, 1, ar.length);
+						ar.unshift(sel.replace(regExp, regFn));
+						return find.apply(this, ar);
+					};
+					for (var i in find) {
+						if(find.hasOwnProperty(i)){
+							fn[i] = find[i];
+						}
+					}
+					return fn;
+				})();
+				if(!Modernizr.prefixed || Modernizr.prefixed("matchesSelector", document.documentElement)){
+					$.find.matchesSelector = function(node, expr){
+						expr = expr.replace(regExp, regFn);
+						return matchesSelector.call(this, node, expr);
+					};
+				}
+				
+			})();
+		}
+	}
+})();
+
 //API to add new input types
 webshims.addInputType = function(type, obj){
 	typeModels[type] = obj;
@@ -29,6 +75,7 @@ var validityPrototype = {
 	customError: false,
 
 	typeMismatch: false,
+	badInput: false,
 	rangeUnderflow: false,
 	rangeOverflow: false,
 	stepMismatch: false,
@@ -46,7 +93,29 @@ var isPlaceholderOptionSelected = function(select){
 	} 
 	return false;
 };
-
+var modules = webshims.modules;
+var emptyJ = $([]);
+var getGroupElements = function(elem){
+	elem = $(elem);
+	var name;
+	var form;
+	var ret = emptyJ;
+	if(elem[0].type == 'radio'){
+		form = elem.prop('form');
+		name = elem[0].name;
+		if(!name){
+			ret = elem;
+		} else if(form){
+			ret = $(form[name]);
+		} else {
+			ret = $(document.getElementsByName(name)).filter(function(){
+				return !$.prop(this, 'form');
+			});
+		}
+		ret = ret.filter('[type="radio"]');
+	}
+	return ret;
+};
 var validityRules = {
 		valueMissing: function(input, val, cache){
 			if(!input.prop('required')){return false;}
@@ -57,7 +126,7 @@ var validityRules = {
 			if(cache.nodeName == 'select'){
 				ret = (!val && (input[0].selectedIndex < 0 || isPlaceholderOptionSelected(input[0]) ));
 			} else if(checkTypes[cache.type]){
-				ret = (cache.type == 'checkbox') ? !input.is(':checked') : !webshims.modules["form-core"].getGroupElements(input).filter(':checked')[0];
+				ret = (cache.type == 'checkbox') ? !input.is(':checked') : !getGroupElements(input).filter(':checked')[0];
 			} else {
 				ret = !(val);
 			}
@@ -65,20 +134,6 @@ var validityRules = {
 		},
 		tooLong: function(){
 			return false;
-		},
-		typeMismatch: function (input, val, cache){
-			if(val === '' || cache.nodeName == 'select'){return false;}
-			var ret = false;
-			if(!('type' in cache)){
-				cache.type = getType(input[0]);
-			}
-			
-			if(typeModels[cache.type] && typeModels[cache.type].mismatch){
-				ret = typeModels[cache.type].mismatch(val, input);
-			} else if('validity' in input[0]){
-				ret = input[0].validity.typeMismatch;
-			}
-			return ret;
 		},
 		patternMismatch: function(input, val, cache) {
 			if(val === '' || cache.nodeName == 'select'){return false;}
@@ -95,6 +150,23 @@ var validityRules = {
 		}
 	}
 ;
+
+$.each({typeMismatch: 'mismatch', badInput: 'bad'}, function(name, fn){
+	validityRules[name] = function (input, val, cache){
+		if(val === '' || cache.nodeName == 'select'){return false;}
+		var ret = false;
+		if(!('type' in cache)){
+			cache.type = getType(input[0]);
+		}
+		
+		if(typeModels[cache.type] && typeModels[cache.type][fn]){
+			ret = typeModels[cache.type][fn](val, input);
+		} else if('validity' in input[0] && ('name' in input[0].validity)){
+			ret = input[0].validity[name] || false;
+		}
+		return ret;
+	};
+});
 
 webshims.addValidityRule = function(type, fn){
 	validityRules[type] = fn;
@@ -141,8 +213,9 @@ $.event.special.invalid = {
 	}
 };
 
+var supportSubmitBubbles = !('submitBubbles' in $.support) || $.support.submitBubbles;
 var addSubmitBubbles = function(form){
-	if (!$.support.submitBubbles && form && typeof form == 'object' && !form._submit_attached ) {
+	if (!supportSubmitBubbles && form && typeof form == 'object' && !form._submit_attached ) {
 				
 		$.event.add( form, 'submit._submit', function( event ) {
 			event._submit_bubble = true;
@@ -151,7 +224,7 @@ var addSubmitBubbles = function(form){
 		form._submit_attached = true;
 	}
 };
-if(!$.support.submitBubbles && $.event.special.submit){
+if(!supportSubmitBubbles && $.event.special.submit){
 	$.event.special.submit.setup = function() {
 		// Only need this for delegated form submit events
 		if ( $.nodeName( this, "form" ) ) {
@@ -189,8 +262,16 @@ $(window).on('invalid', $.noop);
 webshims.addInputType('email', {
 	mismatch: (function(){
 		//taken from http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
-		var test = cfg.emailReg || /^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		var test = cfg.emailReg || /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 		return function(val){
+			// optional punycode support: https://github.com/bestiejs/punycode.js
+			if(window.punycode && punycode.toASCII){
+				try {
+					if( test.test(punycode.toASCII(val)) ){
+						return false;
+					}
+				} catch(er){}
+			}
 			return !test.test(val);
 		};
 	})()
@@ -324,8 +405,8 @@ webshims.defineNodeNamesProperties(['input', 'textarea', 'select'], {
 			if( !$.prop(elem, 'willValidate') || elem.type == 'submit' ){
 				return validityState;
 			}
-			var val				= jElm.val(),
-				cache 			= {nodeName: elem.nodeName.toLowerCase()}
+			var val 	= jElm.val(),
+				cache 	= {nodeName: elem.nodeName.toLowerCase()}
 			;
 			
 			validityState.customError = !!(webshims.data(elem, 'customvalidationMessage'));
@@ -351,7 +432,7 @@ webshims.defineNodeNamesBooleanProperty(['input', 'textarea', 'select'], 'requir
 	set: function(value){
 		$(this).getShadowFocusElement().attr('aria-required', !!(value)+'');
 	},
-	initAttr: (Modernizr.localstorage)//only if we have aria-support
+	initAttr: Modernizr.localstorage //only if we have aria-support
 });
 
 webshims.reflectProperties(['input'], ['pattern']);
@@ -672,7 +753,10 @@ if(Modernizr.inputtypes.date && /webkit/i.test(navigator.userAgent)){
 		var noInputTriggerEvts = {updateInput: 1, input: 1},
 			fixInputTypes = {
 				date: 1,
-				time: 1
+				time: 1,
+				month: 1,
+				week: 1,
+				"datetime-local": 1
 			},
 			noFocusEvents = {
 				focusout: 1,
@@ -741,83 +825,7 @@ if(Modernizr.inputtypes.date && /webkit/i.test(navigator.userAgent)){
 				;
 			}
 		;
-		if($.event.customEvent){
-			$.event.customEvent.updateInput = true;
-		}
 		
-		(function(){
-			
-			var correctValue = function(elem){
-				var i = 1;
-				var len = 3;
-				var abort, val;
-				if(elem.type == 'date' && (isSubmit || !$(elem).is(':focus'))){
-					val = elem.value;
-					if(val && val.length < 10 && (val = val.split('-')) && val.length == len){
-						for(; i < len; i++){
-							if(val[i].length == 1){
-								val[i] = '0'+val[i];
-							} else if(val[i].length != 2){
-								abort = true;
-								break;
-							}
-						}
-						if(!abort){
-							val = val.join('-');
-							$.prop(elem, 'value', val);
-							return val;
-						}
-					}
-				}
-			};
-			var inputCheckValidityDesc, formCheckValidityDesc, inputValueDesc, inputValidityDesc;
-			
-			inputCheckValidityDesc = webshims.defineNodeNameProperty('input', 'checkValidity', {
-				prop: {
-					value: function(){
-						correctValue(this);
-						return inputCheckValidityDesc.prop._supvalue.apply(this, arguments);
-					}
-				}
-			});
-			
-			formCheckValidityDesc = webshims.defineNodeNameProperty('form', 'checkValidity', {
-				prop: {
-					value: function(){
-						$('input', this).each(function(){
-							correctValue(this);
-						});
-						return formCheckValidityDesc.prop._supvalue.apply(this, arguments);
-					}
-				}
-			});
-			
-			inputValueDesc = webshims.defineNodeNameProperty('input', 'value', {
-				prop: {
-					set: function(){
-						return inputValueDesc.prop._supset.apply(this, arguments);
-					},
-					get: function(){
-						return correctValue(this) || inputValueDesc.prop._supget.apply(this, arguments);
-					}
-				}
-			});
-			
-			inputValidityDesc = webshims.defineNodeNameProperty('input', 'validity', {
-				prop: {
-					writeable: false,
-					get: function(){
-						correctValue(this);
-						return inputValidityDesc.prop._supget.apply(this, arguments);
-					}
-				}
-			});
-			
-			$(document).on('change', function(e){
-				correctValue(e.target);
-			});
-			
-		})();
 		
 		$(document)
 			.on('focusin', function(e){
@@ -851,6 +859,52 @@ webshims.addReady(function(context, contextElem){
 	
 });
 
+if(!Modernizr.input.list){
+	webshims.defineNodeNameProperty('datalist', 'options', {
+		prop: {
+			writeable: false,
+			get: function(){
+				var elem = this;
+				var select = $('select', elem);
+				var options;
+				if(select[0]){
+					options = select[0].options;
+				} else {
+					options = $('option', elem).get();
+					if(options.length){
+						webshims.warn('you should wrap your option-elements for a datalist in a select element to support IE and other old browsers.');
+					}
+				}
+				return options;
+			}
+		}
+	});
+	
+	webshims.ready('form-datalist', function(){
+		webshims.defineNodeNameProperties('input', {
+			list: {
+				attr: {
+					get: function(){
+						var val = webshims.contentAttr(this, 'list');
+						return (val == null) ? undefined : val;
+					},
+					set: function(value){
+						var elem = this;
+						webshims.contentAttr(elem, 'list', value);
+						webshims.objectCreate(options.shadowListProto, undefined, {input: elem, id: value, datalist: $.prop(elem, 'list')});
+						$(elem).triggerHandler('listdatalistchange');
+					}
+				},
+				initAttr: true,
+				reflect: true,
+				propType: 'element',
+				propNodeName: 'datalist'
+			}
+		});
+	});
+	
+}
+
 if(!Modernizr.formattribute || !Modernizr.fieldsetdisabled){
 	(function(){
 		(function(prop, undefined){
@@ -880,9 +934,7 @@ if(!Modernizr.formattribute || !Modernizr.fieldsetdisabled){
 				$.removeData(form, 'webshimsAddedElements');
 			}
 		};
-		var rCRLF = /\r?\n/g,
-			rinput = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
-			rselectTextarea = /^(?:select|textarea)/i;
+		
 		
 		if(!Modernizr.formattribute){
 			webshims.defineNodeNamesProperty(['input', 'textarea', 'select', 'button', 'fieldset'], 'form', {
@@ -990,36 +1042,186 @@ if(!Modernizr.formattribute || !Modernizr.fieldsetdisabled){
 			});
 		}
 		
-		$.fn.serializeArray = function() {
-				return this.map(function(){
-					var elements = $.prop(this, 'elements');
-					return elements ? $.makeArray( elements ) : this;
-				})
-				.filter(function(){
-					return this.name && !this.disabled &&
-						( this.checked || rselectTextarea.test( this.nodeName ) ||
-							rinput.test( this.type ) );
-				})
-				.map(function( i, elem ){
-					var val = $( this ).val();
-		
-					return val == null ?
-						null :
-						$.isArray( val ) ?
-							$.map( val, function( val, i ){
-								return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-							}) :
-							{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-				}).get();
-			};
+		if(!$.fn.finish && parseFloat($.fn.jquery, 10) < 1.9){
+			var rCRLF = /\r?\n/g,
+				rinput = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
+				rselectTextarea = /^(?:select|textarea)/i;
+			$.fn.serializeArray = function() {
+					return this.map(function(){
+						var elements = $.prop(this, 'elements');
+						return elements ? $.makeArray( elements ) : this;
+					})
+					.filter(function(){
+						return this.name && !this.disabled &&
+							( this.checked || rselectTextarea.test( this.nodeName ) ||
+								rinput.test( this.type ) );
+					})
+					.map(function( i, elem ){
+						var val = $( this ).val();
+			
+						return val == null ?
+							null :
+							$.isArray( val ) ?
+								$.map( val, function( val, i ){
+									return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+								}) :
+								{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+					}).get();
+				};
+		}
 		
 	})();
 }
+
+	if($('<input />').prop('labels') == null){
+		webshims.defineNodeNamesProperty('button, input, keygen, meter, output, progress, select, textarea', 'labels', {
+			prop: {
+				get: function(){
+					if(this.type == 'hidden'){return null;}
+					var id = this.id;
+					var labels = $(this)
+						.closest('label')
+						.filter(function(){
+							var hFor = (this.attributes['for'] || {});
+							return (!hFor.specified || hFor.value == id);
+						})
+					;
+					
+					if(id) {
+						labels = labels.add('label[for="'+ id +'"]');
+					}
+					return labels.get();
+				},
+				writeable: false
+			}
+		});
+	}
+	
+	if(!('value' in document.createElement('progress'))){
+		(function(){
+			
+			var nan = parseInt('NaN', 10);
+			
+			var updateProgress = function(progress){
+				var position;
+				
+				
+				position = $.prop(progress, 'position');
+				
+				$.attr(progress, 'data-position', position);
+				$('> span', progress).css({width: (position < 0 ?  100 : position * 100) +'%'});
+			};
+			var desc = {
+				position: {
+					prop: {
+						get: function(){
+							var max;
+							//jQuery 1.8.x try's to normalize "0" to 0
+							var val = this.getAttribute('value');
+							var ret = -1;
+							
+							val = val ? (val * 1) : nan; 
+							if(!isNaN(val)){
+								max = $.prop(this, 'max');
+								ret = Math.max(Math.min(val / max, 1), 0);
+								if(updateProgress.isInChange){
+									$.attr(this, 'aria-valuenow', ret * 100);
+									if(updateProgress.isInChange == 'max'){
+										$.attr(this, 'aria-valuemax', max);
+									}
+								}
+							} else if(updateProgress.isInChange) {
+								$(this).removeAttr('aria-valuenow');
+							}
+							return ret;
+						},
+						writeable: false
+					}
+				}
+			};
+			
+			$.each({value: 0, max: 1}, function(name, defValue){
+				var removeProp = (name == 'value' && !$.fn.finish);
+				desc[name] = {
+					attr: {
+						set: function(value){
+							var ret = desc[name].attr._supset.call(this, value);
+							updateProgress.isInChange = name;
+							updateProgress(this);
+							updateProgress.isInChange = false;
+							return ret;
+						}
+					},
+					removeAttr: {
+						value: function(){
+							this.removeAttribute(name);
+							if(removeProp){
+								try {
+									delete this.value;
+								} catch(er){}
+							}
+							updateProgress.isInChange = name;
+							updateProgress(this);
+							updateProgress.isInChange = false;
+						}
+					},
+					prop: {
+						get: function(){
+							var max;
+							var ret = (desc[name].attr.get.call(this) * 1);
+							if(ret < 0 || isNaN(ret)){
+								ret = defValue;
+							} else if(name == 'value'){
+								ret = Math.min(ret, $.prop(this, 'max'));
+							} else if(ret === 0){
+								ret = defValue;
+							}
+							return ret;
+						},
+						set: function(value){
+							value = value * 1;
+							if(isNaN(value)){
+								webshims.error('Floating-point value is not finite.');
+							}
+							return desc[name].attr.set.call(this, value);
+						}
+					}
+				};
+			});
+			
+			webshims.createElement(
+				'progress', 
+				function(){
+					var labels = $(this)
+						.attr({role: 'progressbar', 'aria-valuemin': '0'})
+						.html('<span class="progress-value" />')
+						.jProp('labels')
+						.map(function(){
+							return webshims.getID(this);
+						})
+						.get()
+					;
+					if(labels.length){
+						$.attr(this, 'aria-labelledby', labels.join(' '));
+					} else {
+						webshims.info("you should use label elements for your prgogress elements");
+					}
+					
+					updateProgress.isInChange = 'max';
+					updateProgress(this);
+					updateProgress.isInChange = false;
+				}, 
+				desc
+			);
+				
+		})();
+	}
 
 try {
 	document.querySelector(':checked');
 } catch(er){
 	(function(){
+		$('html').addClass('no-csschecked');
 		var checkInputs = {
 			radio: 1,
 			checkbox: 1
@@ -1055,7 +1257,7 @@ try {
 		webshims.onNodeNamesPropertyModify('input', 'checked', function(value, boolVal){
 			var type = this.type;
 			if(type == 'radio' && boolVal){
-				webshims.modules["form-core"].getGroupElements(this).each(checkChange);
+				getGroupElements(this).each(checkChange);
 			} else if(checkInputs[type]) {
 				$(this).each(checkChange);
 			}
@@ -1065,7 +1267,7 @@ try {
 			
 			if(checkInputs[e.target.type]){
 				if(e.target.type == 'radio'){
-					webshims.modules["form-core"].getGroupElements(e.target).each(checkChange);
+					getGroupElements(e.target).each(checkChange);
 				} else {
 					$(e.target)[$.prop(e.target, 'checked') ? 'addClass' : 'removeClass']('prop-checked');
 				}
@@ -1083,7 +1285,7 @@ try {
 						prop = 'checked';
 					} else if(this.nodeName.toLowerCase() == 'option'){
 						prop = 'selected';
-					}  
+					}
 					if(prop){
 						$(this)[$.prop(this, prop) ? 'addClass' : 'removeClass']('prop-checked');
 					}
@@ -1095,13 +1297,41 @@ try {
 }
 
 (function(){
+	var bustedPlaceholder;
 	Modernizr.textareaPlaceholder = !!('placeholder' in $('<textarea />')[0]);
-	if(Modernizr.input.placeholder && Modernizr.textareaPlaceholder){return;}
+	if(Modernizr.input.placeholder && options.overridePlaceholder){
+		bustedPlaceholder = true;
+	}
+	if(Modernizr.input.placeholder && Modernizr.textareaPlaceholder && !bustedPlaceholder){
+		(function(){
+			var ua = navigator.userAgent;
+			
+			if(ua.indexOf('Mobile') != -1 && ua.indexOf('Safari') != -1){
+				$(window).on('orientationchange', (function(){
+					var timer;
+					var retVal = function(i, value){
+						return value;
+					};
+					
+					var set = function(){
+						$('input[placeholder], textarea[placeholder]').attr('placeholder', retVal);
+					};
+					return function(e){
+						clearTimeout(timer);
+						timer = setTimeout(set, 9);
+					};
+				})());
+			}
+		})();
+		
+		//abort
+		return;
+	}
 	
 	var isOver = (webshims.cfg.forms.placeholderType == 'over');
 	var isResponsive = (webshims.cfg.forms.responsivePlaceholder);
 	var polyfillElements = ['textarea'];
-	if(!Modernizr.input.placeholder){
+	if(!Modernizr.input.placeholder || bustedPlaceholder){
 		polyfillElements.push('input');
 	}
 	
@@ -1125,6 +1355,7 @@ try {
 			if(value === false){
 				value = $.prop(elem, 'value');
 			}
+			
 			if(!isOver && elem.type != 'password'){
 				if(!value && _onFocus && setSelection(elem)){
 					var selectTimer  = setTimeout(function(){
@@ -1154,8 +1385,9 @@ try {
 						})
 					;
 					return;
+				} else if(!_onFocus && !value && elem.value){ //especially on submit
+					elem.value = value;
 				}
-				elem.value = value;
 			} else if(!value && _onFocus){
 				$(elem)
 					.off('.placeholderremove')
@@ -1215,21 +1447,13 @@ try {
 				hidePlaceholder(elem, data, value);
 			}
 		},
+		hasLabel = function(elem){
+			elem = $(elem);
+			return !!(elem.prop('title') || elem.attr('aria-labelledby') || elem.attr('aria-label') || elem.jProp('labels').length);
+		},
 		createPlaceholder = function(elem){
 			elem = $(elem);
-			var id 			= elem.prop('id'),
-				hasLabel	= !!(elem.prop('title') || elem.attr('aria-labelledby'))
-			;
-			if(!hasLabel && id){
-				hasLabel = !!( $('label[for="'+ id +'"]', elem[0].form)[0] );
-			}
-			if(!hasLabel){
-				if(!id){
-					id = $.webshims.getID(elem);
-				}
-				hasLabel = !!($('label #'+ id)[0]);
-			}
-			return $( hasLabel ? '<span class="placeholder-text"></span>' : '<label for="'+ id +'" class="placeholder-text"></label>');
+			return $( hasLabel(elem) ? '<span class="placeholder-text"></span>' : '<label for="'+ elem.prop('id') +'" class="placeholder-text"></label>');
 		},
 		pHolder = (function(){
 			var delReg 	= /\n|\r|\f|\t/g,
@@ -1243,6 +1467,10 @@ try {
 					number: 1
 				}
 			;
+			
+			if(modules["form-number-date-ui"].loaded){
+				delete allowedPlaceholder.number;
+			}
 			
 			return {
 				create: function(elem){
@@ -1258,11 +1486,11 @@ try {
 					});
 					
 					if((form = $.prop(elem, 'form'))){
-						$(form).on('reset.placeholder', function(e){
+						$(elem).onWSOff('reset.placeholder', function(e){
 							setTimeout(function(){
 								changePlaceholderVisibility(elem, false, false, data, e.type );
 							}, 0);
-						});
+						}, false, form);
 					}
 					
 					if(elem.type == 'password' || isOver){
@@ -1301,8 +1529,8 @@ try {
 							data.text.css('padding'+ side, size);
 						});
 						
-						$(document)
-							.onTrigger('updateshadowdom', function(){
+						$(elem)
+							.onWSOff('updateshadowdom', function(){
 								var height, width; 
 								if((width = elem.offsetWidth) || (height = elem.offsetHeight)){
 									data.text
@@ -1313,27 +1541,25 @@ try {
 										.css($(elem).position())
 									;
 								}
-							})
+							}, true)
 						;
 						
 					} else {
 						var reset = function(e){
 							if($(elem).hasClass('placeholder-visible')){
 								hidePlaceholder(elem, data, '');
-								if(e && e.type == 'submit'){
-									setTimeout(function(){
-										if(e.isDefaultPrevented()){
-											changePlaceholderVisibility(elem, false, false, data );
-										}
-									}, 9);
-								}
+								setTimeout(function(){
+									if(!e || e.type != 'submit' || e.isDefaultPrevented()){
+										changePlaceholderVisibility(elem, false, false, data );
+									}
+								}, 9);
 							}
 						};
 						
-						$(window).on('beforeunload', reset);
+						$(elem).onWSOff('beforeunload', reset, false, window);
 						data.box = $(elem);
 						if(form){
-							$(form).submit(reset);
+							$(elem).onWSOff('submit', reset, false, form);
 						}
 					}
 					
@@ -1342,10 +1568,7 @@ try {
 				update: function(elem, val){
 					var type = ($.attr(elem, 'type') || $.prop(elem, 'type') || '').toLowerCase();
 					if(!allowedPlaceholder[type] && !$.nodeName(elem, 'textarea')){
-						webshims.error('placeholder not allowed on input[type="'+type+'"]');
-						if(type == 'date'){
-							webshims.error('but you can use data-placeholder for input[type="date"]');
-						}
+						webshims.warn('placeholder not allowed on input[type="'+type+'"], but it is a good fallback :-)');
 						return;
 					}
 					
@@ -1369,11 +1592,20 @@ try {
 			attr: {
 				set: function(val){
 					var elem = this;
-					webshims.contentAttr(elem, 'placeholder', val);
+					if(bustedPlaceholder){
+						webshims.data(elem, 'bustedPlaceholder', val);
+						elem.placeholder = '';
+					} else {
+						webshims.contentAttr(elem, 'placeholder', val);
+					}
 					pHolder.update(elem, val);
 				},
 				get: function(){
-					return webshims.contentAttr(this, 'placeholder');
+					var placeholder;
+					if(bustedPlaceholder){
+						placeholder = webshims.data(this, 'bustedPlaceholder');
+					}
+					return  placeholder || webshims.contentAttr(this, 'placeholder');
 				}
 			},
 			reflect: true,
@@ -1389,9 +1621,13 @@ try {
 			placeholderValueDesc[propType] = {
 				set: function(val){
 					var elem = this;
-					var placeholder = webshims.contentAttr(elem, 'placeholder');
-					 
-					
+					var placeholder;
+					if(bustedPlaceholder){
+						placeholder = webshims.data(elem, 'bustedPlaceholder');
+					}
+					if(!placeholder){
+						placeholder = webshims.contentAttr(elem, 'placeholder');
+					}
 					$.removeData(elem, 'cachedValidity');
 					var ret = desc[propType]._supset.call(elem, val);
 					if(placeholder && 'value' in elem){
@@ -1442,7 +1678,7 @@ try {
 			if(elem.getAttribute('aria-live')){return;}
 			elem = $(elem);
 			var value = (elem.text() || '').trim();
-			var	id 	= elem.attr('id');
+			var	id 	= elem.prop('id');
 			var	htmlFor = elem.attr('for');
 			var shim = $('<input class="output-shim" type="text" disabled name="'+ (elem.attr('name') || '')+'" value="'+value+'" style="display: none !important;" />').insertAfter(elem);
 			var form = shim[0].form || doc;
@@ -1459,7 +1695,9 @@ try {
 			elem.attr({'aria-live': 'polite'});
 			if(id){
 				shim.attr('id', id);
-				elem.attr('aria-labelledby', webshims.getID($('label[for="'+id+'"]', form)));
+				elem.attr('aria-labelledby', elem.jProp('labels').map(function(){
+					return webshims.getID(this);
+				}).get().join(' '));
 			}
 			if(htmlFor){
 				id = webshims.getID(elem);
@@ -1506,7 +1744,6 @@ try {
 							//input === null
 							if(!input){return;}
 							var newVal = input.prop('value');
-							
 							if(newVal !== lastVal){
 								lastVal = newVal;
 								if(!e || !noInputTriggerEvts[e.type]){
@@ -1531,7 +1768,7 @@ try {
 					;
 					
 					clearInterval(timer);
-					timer = setInterval(trigger, 99);
+					timer = setInterval(trigger, 200);
 					extraTest();
 					input.on({
 						'keyup keypress keydown paste cut': extraTest,
@@ -1540,13 +1777,10 @@ try {
 					});
 				}
 			;
-			if($.event.customEvent){
-				$.event.customEvent.updateInput = true;
-			} 
-			
+						
 			$(doc)
 				.on('focusin', function(e){
-					if( e.target && e.target.type && !e.target.readOnly && !e.target.disabled && (e.target.nodeName || '').toLowerCase() == 'input' && !noInputTypes[e.target.type] ){
+					if( e.target && !e.target.readOnly && !e.target.disabled && (e.target.nodeName || '').toLowerCase() == 'input' && !noInputTypes[e.target.type] && !(webshims.data(e.target, 'implemented') || {}).inputwidgets){
 						observe($(e.target));
 					}
 				})

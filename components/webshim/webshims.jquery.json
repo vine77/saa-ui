@@ -1,6 +1,6 @@
 {
 	"name": "webshims",
-	"version": "1.9.7",
+	"version": "1.11.0",
 	"title": "Webshims - polyfills jQuery with many HTML5 features",
 	"licenses" : [
 		{
@@ -9,7 +9,7 @@
 		}
 	],
 	"dependencies" : {
-		"jquery" : "1.7.2 - 1.9.1",
+		"jquery" : "1.8.3 - 2.0.x",
 		"modernizr" : ">=2.6.2"
 	},
 	"author": {
@@ -17,22 +17,17 @@
 		"url": "https://github.com/aFarkas/"
 	},
 	
-	"keywords": ["webshims", "polyfill", "HTML5", "forms", "audio", "video", "validation", "canvas", "localstorage", "geolocation", "ui", "widgets"],
+	"keywords": ["webshims", "polyfill", "HTML5", "forms", "form", "audio", "video", "validation", "formvalidation", "colorpicker", "slider", "canvas", "localstorage", "geolocation", "ui", "widgets", "datepicker", "range"],
 	"homepage": "http://afarkas.github.com/webshim/demos/index.html",
 	"description": "modular capability-based polyfill loading libary, which extends jQuery with HTML5 features in legacy browsers",
 	"docs": "http://afarkas.github.com/webshim/demos/index.html",
 	"demo": "http://afarkas.github.com/webshim/demos/index.html",
 	"bugs": "https://github.com/aFarkas/webshim/issues",
-	"download": "http://corrupt-system.de/webshims-1.9.7.zip",
+	"download": "http://corrupt-system.de/webshims-1.11.0.zip",
 	
 	"repository": {
 		"type" : "git",
 		"url" : "https://github.com/aFarkas/webshim.git"
 	},
-	"main": "./master/demos/js-webshim/minified/",
-	"devDependencies": {
-		"grunt-css": ">=0.3.2",
-		"grunt-contrib-copy": ">=0.3.1",
-		"grunt": ">=0.3.1"
-	}
+	"main": "./master/demos/js-webshim/minified/"
 }

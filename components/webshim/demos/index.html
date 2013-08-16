@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7" />
 	<link href="css/styles.css" rel="stylesheet" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
 		// set options for html5shiv
 		if(!window.html5){
@@ -17,11 +17,7 @@
 	
 	<script src="js-webshim/minified/polyfiller.js"></script>
 	<script src="demo-js/demo.js"></script>
-	<script class="example">
-		$.webshims.setOptions({
-			//we do not use any DOM-/JS-APIs on DOM-ready, so we do not need to delay the ready event <- good against fouc
-			waitReady: false
-		});
+	<script>
 		//load all polyfill features
 		$.webshims.polyfill();
 		
@@ -86,12 +82,12 @@
 				<div class="home-box supported-browser-box">
 					<h3 title="Webshims should work in a lot more browsers/browser versions">tested Browser Support</h3>
 					<ul>
-						<li>IE6+</li>
+						<li>IE7+</li>
 						<li>Firefox 3.6+</li>
-						<li>Safari 4.0+</li>
+						<li>Safari 5.1+</li>
 						<li>Safari for iOS 5+</li>
-						<li>Chrome 16.0+</li>
-						<li>Opera 11.6+</li>
+						<li>Chrome 24.0+</li>
+						<li>Opera 12.1+</li>
 					</ul>
 					
 				</div>
@@ -144,7 +140,7 @@
 				<div class="panel">
 <code class="block">
 &lt;!-- dependencies: jQuery + Modernizr with yepnope --&gt;
-&lt;script src="js/jquery-1.7.1.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery-1.9.1.js"&gt;&lt;/script&gt;
 &lt;script src="js/modernizr-yepnope-custom.js"&gt;&lt;/script&gt;
 	
 &lt;!-- reference the base script --&gt;
@@ -173,7 +169,7 @@
 					</ul>
 				
 <code class="block">
-&lt;script src="js/jquery-1.8.2.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery-1.9.1.js"&gt;&lt;/script&gt;
 &lt;script src="js/modernizr-yepnope-custom.js"&gt;&lt;/script&gt;
 &lt;script src="js-webshim/minified/polyfiller.js"&gt;&lt;/script&gt;
 
@@ -200,6 +196,7 @@ $.webshims.polyfill('json-storage geolocation');
 							<li><code>forms-ext</code></li>
 							<li><code>mediaelement</code></li>
 							<li><code>track</code></li>
+							<li><code>filereader</code></li>
 							<li><code>details</code></li>
 						</ul>
 						
@@ -212,7 +209,7 @@ $.webshims.polyfill('json-storage geolocation');
 </code>			
 					<p>If you dont want any log messsages, simply set <code>$.webshims.debug</code> explicitly to <code>false</code>.</p>
 					<h3>Custom Modernizr build</h3>
-					<p>Webshims lib does not need every Modernizr test and supports creating a <a href="http://modernizr.com/download/#-canvas-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-shiv-cssclasses-addtest-prefixed-testprop-testallprops-prefixes-domprefixes-elem_track-load">custom Modernizr build</a>. (Webshims lib uses <a href="http://requirejs.org/">requireJS</a> as a script loader, if this is included, if not it uses Modernizr.load/yepnope.) </p>
+					<p>Webshims lib does not need every Modernizr test and supports creating a <a href="http://modernizr.com/download/#-canvas-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-shiv-cssclasses-addtest-prefixed-testprop-testallprops-prefixes-domprefixes-elem_track-load">custom Modernizr build</a>. (Webshims lib uses <a href="http://requirejs.org/">requireJS</a> or <a href="https://gist.github.com/aFarkas/936413">sssl</a> as a script loader, if this is included, if not it uses Modernizr.load/yepnope.) </p>
 					
 					<h3>changing Options path to shims folder</h3>
 					
@@ -263,15 +260,15 @@ $.webshims.ready('DOM canvas', function(){
 					<p><code>setOptions</code> should always be called before the <code>polyfill</code> method.</p>
 					<p>The available general options are the following:</p>
 					<ul>
-						<li><strong>extendNative</strong> (default: true): Webshims lib will automatically extend DOM-Objects with polyfilled methods and will additionally generate a jQuery plugin with this method name. If extendNative is set to false, webshims lib won't touch any DOM-Objects and will only implement jQuery plugins. Setting this option to false, might be also good for DOM performance.</li>
+						<li><strong>extendNative</strong> (default: false): Webshims lib will automatically extend DOM-Objects with polyfilled methods and will additionally generate a jQuery plugin with this method name. If extendNative is set to false, webshims lib won't touch any DOM-Objects and will only implement jQuery plugins. Setting this option to false, might be also good for DOM performance (<a href="index.html#polyfill-abstractions">see also</a>).</li>
 						<li><strong>basePath</strong> (default: "automatially computed path to the shims folder"): If polyfiller.js was renamed <strong>and</strong> is loaded dynamically, the basePath should be changed manually.</li>
 						<li><strong>waitReady</strong> (default: true): If this option is true, jQuery's ready-event will be delayed until all needed features are ready to use. This option should be set to false, if webshims lib polyfiller.js is loaded async (see also Loading webshims async in the <a href="#polyfill-foucs">loading documentation</a>) or from bottom of the body element. This option can also be set to false, if a website is using only HTML5 markup APIs (pure HTML or $.attr) and do not use any DOM-/JS-APIs on DOM-ready. If this feature is set to false, which might be good against FOUCs, scripted access to polyfilled APIs have to be added inside of a <a href="#polyfill-ready"><code>$.webshims.ready</code></a> callback.</li>
-						<li><strong>disableShivMethods</strong> (default: true): Automatically disables the <a href="https://github.com/aFarkas/html5shiv">shivMethods</a> option of html5shiv, if jQuery 1.7.x is used, which provides a suitable innerShiv method.</li>
+						<li><strong>disableShivMethods</strong> (default: true): Automatically disables the <a href="https://github.com/aFarkas/html5shiv">shivMethods</a> option of html5shiv.</li>
 					</ul>
 <code class="block">
 $.webshims.setOptions("extendNative", false);
 </code>	
-		<p><code>setOptions</code> can also take a single options parameter:</p>			
+		<p><code>setOptions</code> can also take a single options parameter:</p>
 <code class="block">
 $.webshims.setOptions({
 	extendNative: false
@@ -326,22 +323,25 @@ $('video').prop('currentTime', 200);
 </code>
 						</li>
 						<li>
-							<p><strong>calling a DOM method</strong>: While DOM properties have to be accessed through jQuery's <code>$.prop/$.attr</code> methods, DOM methods are added to DOM elements themselves, so you can call them directly:</p>
+							<p><strong>calling a DOM method</strong>: While DOM properties have to be accessed through jQuery's <code>$.prop/$.attr</code> methods, DOM methods have to be accesed using $.prop and executed in the context of the DOMK element.</p>
 <code class="block">
 // "this" refers to a DOM element, not a jQuery object
-this.checkValidity();
+var fn = $.prop(this, 'checkValidity');
+fn.apply(this);
 </code>
-							<p>Webshims lib also generates a jQuery plugin which wraps the feature, so you can use jQuery too:</p>
+							<p>To make this more easier Webshims lib also generates a jQuery plugin which wraps the featured method, so you can use jQuery too:</p>
 <code class="block">
 $(this).checkValidity();
+
+$(this).callProp('checkValidity'); // $(this).callProp('play');
 </code>
 							<p>If you pass a list of nodes and the method doesn't return anything, the method will be called on each element in this list, otherwise it will be called on the first element.</p>
-							<p>A lot of developers deprecate extending the DOM directly, in those cases the general option <code>extendNative</code> can be set to <code>false</code>.</p>
+							<p>In case a developer wants to make method calling "feel more native", ithe general option <code>extendNative</code> can be set to <code>true</code>.</p>
 <code class="block">
-$.webshims.setOptions("extendNative", false);
+$.webshims.setOptions("extendNative", true);
 $.webshims.polyfill('forms');
 //...
-//this.checkValidity() does not work cross-browser anymore use: $(this).checkValidity(); or $(this).callProp('checkValidity');
+this.checkValidity() //does now work cross-browser. $(this).checkValidity(); or $(this).callProp('checkValidity'); can still be used
 </code>	
 
 						</li>

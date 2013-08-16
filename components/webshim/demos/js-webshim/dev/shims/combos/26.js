@@ -1,10 +1,77 @@
 //DOM-Extension helper
-jQuery.webshims.register('dom-extend', function($, webshims, window, document, undefined){
+webshims.register('dom-extend', function($, webshims, window, document, undefined){
 	"use strict";
+	var supportHrefNormalized = !('hrefNormalized' in $.support) || $.support.hrefNormalized;
+	var supportGetSetAttribute = !('getSetAttribute' in $.support) || $.support.getSetAttribute;
+	webshims.assumeARIA = supportGetSetAttribute || Modernizr.canvas || Modernizr.video || Modernizr.boxsizing;
 	
-	if($('<form />').attr('novalidate') === ""){
-		webshims.warn("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version");
+	if($('<input type="email" />').attr('type') == 'text' || $('<form />').attr('novalidate') === "" || ('required' in $('<input />')[0].attributes)){
+		webshims.error("IE browser modes are busted in IE10. Please test your HTML/CSS/JS with a real IE version or at least IETester or similiar tools");
 	}
+	
+	if(!$.parseHTML){
+		webshims.error("Webshims needs jQuery 1.8+ to work properly. Please update your jQuery version or downgrade webshims.");
+	}
+	
+	if(webshims.cfg.extendNative === undefined){
+		webshims.warn("extendNative configuration was set to false by default with this release. In case you rely on it set it to 'true' otherwise to 'false'. See http://bit.ly/16OOTQO");
+	}
+	
+	if (!webshims.cfg.no$Switch) {
+		var switch$ = function(){
+			if (window.jQuery && (!window.$ || window.jQuery == window.$) && !window.jQuery.webshims) {
+				webshims.error("jQuery was included more than once. Make sure to include it only once or try the $.noConflict(extreme) feature! Webshims and other Plugins might not work properly. Or set webshims.cfg.no$Switch to 'true'.");
+				if (window.$) {
+					window.$ = webshims.$;
+				}
+				window.jQuery = webshims.$;
+			}
+			if(webshims.M != Modernizr){
+				webshims.error("Modernizr was included more than once. Make sure to include it only once! Webshims and other scripts might not work properly.");
+				for(var i in Modernizr){
+					if(!(i in webshims.M)){
+						webshims.M[i] = Modernizr[i];
+					}
+				}
+				Modernizr = webshims.M;
+			}
+		};
+		switch$();
+		setTimeout(switch$, 90);
+		webshims.ready('DOM', switch$);
+		$(switch$);
+		webshims.ready('WINDOWLOAD', switch$);
+		
+	}
+//	(function(){
+//		var hostNames = {
+//			'afarkas.github.io': 1,
+//			localhost: 1,
+//			'127.0.0.1': 1
+//		};
+//		
+//		if( webshims.debug && (hostNames[location.hostname] || location.protocol == 'file:') ){
+//			var list = $('<ul class="webshims-debug-list" />');
+//			webshims.errorLog.push = function(message){
+//				list.appendTo('body');
+//				$('<li style="display: none;">'+ message +'</li>')
+//					.appendTo(list)
+//					.slideDown()
+//					.delay(3000)
+//					.slideUp(function(){
+//						$(this).remove();
+//						if(!$('li', list).length){
+//							list.detach();
+//						}
+//					})
+//				;
+//			};
+//			$.each(webshims.errorLog, function(i, message){
+//				webshims.errorLog.push(message);
+//			});
+//		}
+//	})();
+
 	//shortcus
 	var modules = webshims.modules;
 	var listReg = /\s*,\s*/;
@@ -21,10 +88,25 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		return (_argless) ? oldVal.call($(elem)) : oldVal.call($(elem), val);
 	};
 	
-	$.fn.onTrigger = function(evt, fn){
-		return this.on(evt, fn).each(fn);
-	};
+	//jquery mobile and jquery ui
+	if(!$.widget){
+		(function(){
+			var _cleanData = $.cleanData;
+			$.cleanData = function( elems ) {
+				if(!$.widget){
+					for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+						try {
+							$( elem ).triggerHandler( "remove" );
+						// http://bugs.jquery.com/ticket/8235
+						} catch( e ) {}
+					}
+				}
+				_cleanData( elems );
+			};
+		})();
+	}
 	
+
 	$.fn.val = function(val){
 		var elem = this[0];
 		if(arguments.length && val == null){
@@ -53,6 +135,22 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			}
 		});
 	};
+	$.fn.onTrigger = function(evt, fn){
+		return this.on(evt, fn).each(fn);
+	};
+	
+	$.fn.onWSOff = function(evt, fn, trigger, evtDel){
+		if(!evtDel){
+			evtDel = document;
+		}
+		$(evtDel)[trigger ? 'onTrigger' : 'on'](evt, fn);
+		this.on('remove', function(e){
+			if(!e.originalEvent){
+				$(evtDel).off(evt, fn);
+			}
+		});
+		return this;
+	};
 	
 	var dataID = '_webshimsLib'+ (Math.round(Math.random() * 1000));
 	var elementData = function(elem, key, val){
@@ -74,10 +172,15 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 
 	[{name: 'getNativeElement', prop: 'nativeElement'}, {name: 'getShadowElement', prop: 'shadowElement'}, {name: 'getShadowFocusElement', prop: 'shadowFocusElement'}].forEach(function(data){
 		$.fn[data.name] = function(){
-			return this.map(function(){
+			var elems = [];
+			this.each(function(){
 				var shadowData = elementData(this, 'shadowData');
-				return shadowData && shadowData[data.prop] || this;
+				var elem = shadowData && shadowData[data.prop] || this;
+				if($.inArray(elem, elems) == -1){
+					elems.push(elem);
+				}
 			});
+			return this.pushStack(elems);
 		};
 	});
 	
@@ -200,7 +303,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						getSup('set', desc, oldDesc) : 
 						(webshims.cfg.useStrict && prop == 'prop') ? 
 							function(){throw(prop +' is readonly on '+ nodeName);} : 
-							$.noop
+							function(){webshims.info(prop +' is readonly on '+ nodeName);}
 					;
 				}
 				if(!desc.get){
@@ -218,15 +321,14 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		
 	});
 	
-	//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
-	var isExtendNativeSave = Modernizr.ES5;
 	var extendNativeValue = (function(){
 		var UNKNOWN = webshims.getPrototypeOf(document.createElement('foobar'));
 		var has = Object.prototype.hasOwnProperty;
+		//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
+		var isExtendNativeSave = Modernizr.advancedObjectProperties && Modernizr.objectAccessor;
 		return function(nodeName, prop, desc){
-			var elem;
-			var elemProto;
-			if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
+			var elem , elemProto;
+			 if( isExtendNativeSave && (elem = document.createElement(nodeName)) && (elemProto = webshims.getPrototypeOf(elem)) && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
 				var sup = elem[prop];
 				desc._supvalue = function(){
 					if(sup && sup.apply){
@@ -348,15 +450,24 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var ID = new Date().getTime();
 			return function(elem){
 				elem = $(elem);
-				var id = elem.attr('id');
+				var id = elem.prop('id');
 				if(!id){
 					ID++;
 					id = 'ID-'+ ID;
-					elem.attr('id', id);
+					elem.eq(0).prop('id', id);
 				}
 				return id;
 			};
 		})(),
+		implement: function(elem, type){
+			var data = elementData(elem, 'implemented') || elementData(elem, 'implemented', {});
+			if(data[type]){
+				webshims.warn(type +' already implemented for element #'+elem.id);
+				return false;
+			}
+			data[type] = true;
+			return true;
+		},
 		extendUNDEFProp: function(obj, props){
 			$.each(props, function(name, prop){
 				if( !(name in obj) ){
@@ -451,6 +562,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 						setInterval(this.test, 600);
 						$(this.test);
 						webshims.ready('WINDOWLOAD', this.test);
+						$(document).on('updatelayout', this.handler);
 						$(window).bind('resize', this.handler);
 						(function(){
 							var oldAnimate = $.fn.animate;
@@ -476,42 +588,52 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 				});
 			};
 			return function(nativeElem, shadowElem, opts){
-				opts = opts || {};
-				if(nativeElem.jquery){
-					nativeElem = nativeElem[0];
-				}
-				if(shadowElem.jquery){
-					shadowElem = shadowElem[0];
-				}
-				var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
-				var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
-				var shadowFocusElementData = {};
-				if(!opts.shadowFocusElement){
-					opts.shadowFocusElement = shadowElem;
-				} else if(opts.shadowFocusElement){
-					if(opts.shadowFocusElement.jquery){
-						opts.shadowFocusElement = opts.shadowFocusElement[0];
+				if(nativeElem && shadowElem){
+					opts = opts || {};
+					if(nativeElem.jquery){
+						nativeElem = nativeElem[0];
 					}
-					shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
-				}
-				
-				nativeData.hasShadow = shadowElem;
-				shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
-				shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
-					nativeElement: nativeElem,
-					shadowElement: shadowElem,
-					shadowFocusElement: opts.shadowFocusElement
-				};
-				if(opts.shadowChilds){
-					opts.shadowChilds.each(function(){
-						elementData(this, 'shadowData', shadowData.shadowData);
+					if(shadowElem.jquery){
+						shadowElem = shadowElem[0];
+					}
+					var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
+					var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
+					var shadowFocusElementData = {};
+					if(!opts.shadowFocusElement){
+						opts.shadowFocusElement = shadowElem;
+					} else if(opts.shadowFocusElement){
+						if(opts.shadowFocusElement.jquery){
+							opts.shadowFocusElement = opts.shadowFocusElement[0];
+						}
+						shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
+					}
+					
+					$(nativeElem).on('remove', function(e){
+						if (!e.originalEvent) {
+							setTimeout(function(){
+								$(shadowElem).remove();
+							}, 4);
+						}
 					});
+					
+					nativeData.hasShadow = shadowElem;
+					shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
+					shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
+						nativeElement: nativeElem,
+						shadowElement: shadowElem,
+						shadowFocusElement: opts.shadowFocusElement
+					};
+					if(opts.shadowChilds){
+						opts.shadowChilds.each(function(){
+							elementData(this, 'shadowData', shadowData.shadowData);
+						});
+					}
+					
+					if(opts.data){
+						shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
+					}
+					opts = null;
 				}
-				
-				if(opts.data){
-					shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
-				}
-				opts = null;
 				webshims.docObserve();
 			};
 		})(),
@@ -564,7 +686,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							
 							anchor.setAttribute('href', href+'' );
 							
-							if(!$.support.hrefNormalized){
+							if(!supportHrefNormalized){
 								try {
 									$(anchor).insertAfter(this);
 									ret = anchor.getAttribute('href', 4);
@@ -795,7 +917,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 //				register: moduleName:string,
 //				callback: callback:function
 //			});
-//		get/set including removeLang
+//		get/set including remoteLang
 //			- webshims.activeLang({
 //				module: moduleName:string,
 //				callback: callback:function,
@@ -835,7 +957,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var callRegister = function(module){
 				if(registeredCallbacks[module]){
 					registeredCallbacks[module].forEach(function(data){
-						data.callback();
+						data.callback(currentLang, shortLang, '');
 					});
 				}
 			};
@@ -876,7 +998,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 							registeredCallbacks[lang.register] = [];
 						}
 						registeredCallbacks[lang.register].push(lang);
-						lang.callback();
+						lang.callback(currentLang, shortLang, '');
 					} else {
 						if(!lang.activeLang){
 							lang.activeLang = '';
@@ -913,8 +1035,20 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 });
 //html5a11y
 (function($, document){
-	//if we support basic styleing or do not support ARIA (assumed) abort
-	if(!Modernizr.localstorage || ('hidden' in document.createElement('a'))){return;}
+	if(!$.webshims.assumeARIA || ('content' in document.createElement('template'))){return;}
+	
+	$(function(){
+		var main = $('main').attr({role: 'main'});
+		if(main.length > 1){
+			webshims.error('only one main element allowed in document');
+		} else if(main.is('article *, section *')) {
+			webshims.error('main not allowed inside of article/section elements');
+		}
+	});
+	
+	if(('hidden' in document.createElement('a'))){
+		return;
+	}
 	
 	var elemMappings = {
 		article: "article",
@@ -930,6 +1064,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	};
 	
+	
 	$.webshims.addReady(function(context, contextElem){
 		$.each(elemMappings, function(name, role){
 			var elems = $(name, context).add(contextElem.filter(name));
@@ -941,6 +1076,7 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 			var header = document.getElementsByTagName('header')[0];
 			var footers = document.getElementsByTagName('footer');
 			var footerLen = footers.length;
+			
 			if (header && !$(header).closest('section, article')[0]) {
 				addRole(header, 'banner');
 			}
@@ -954,2079 +1090,391 @@ jQuery.webshims.register('dom-extend', function($, webshims, window, document, u
 		}
 	});
 	
-})(jQuery, document);
+})(webshims.$, document);
 
-//additional tests for partial implementation of forms features
-(function($){
-	"use strict";
-	var isWebkit = /webkit/i.test(navigator.userAgent);
-	var Modernizr = window.Modernizr;
-	var webshims = $.webshims;
-	var bugs = webshims.bugs;
-	var form = $('<form action="#" style="width: 1px; height: 1px; overflow: hidden;"><select name="b" required="" /><input required="" name="a" /></form>');
-	var testRequiredFind = function(){
-		if(form[0].querySelector){
-			try {
-				bugs.findRequired = !(form[0].querySelector('select:required'));
-			} catch(er){
-				bugs.findRequired = false;
-			}
-		}
-	};
-	var inputElem = $('input', form).eq(0);
-	var onDomextend = function(fn){
-		webshims.loader.loadList(['dom-extend']);
-		webshims.ready('dom-extend', fn);
-	};
-	
-	bugs.findRequired = false;
-	bugs.validationMessage = false;
-	
-	webshims.capturingEventPrevented = function(e){
-		if(!e._isPolyfilled){
-			var isDefaultPrevented = e.isDefaultPrevented;
-			var preventDefault = e.preventDefault;
-			e.preventDefault = function(){
-				clearTimeout($.data(e.target, e.type + 'DefaultPrevented'));
-				$.data(e.target, e.type + 'DefaultPrevented', setTimeout(function(){
-					$.removeData(e.target, e.type + 'DefaultPrevented');
-				}, 30));
-				return preventDefault.apply(this, arguments);
-			};
-			e.isDefaultPrevented = function(){
-				return !!(isDefaultPrevented.apply(this, arguments) || $.data(e.target, e.type + 'DefaultPrevented') || false);
-			};
-			e._isPolyfilled = true;
-		}
-	};
-	
-	if(!Modernizr.formvalidation || bugs.bustedValidity){
-		testRequiredFind();
-	} else {
-		//create delegatable events
-		webshims.capturingEvents(['input']);
-		webshims.capturingEvents(['invalid'], true);
-		
-		if(window.opera || window.testGoodWithFix){
-			
-			form.appendTo('head');
-			
-			testRequiredFind();
-			bugs.validationMessage = !(inputElem.prop('validationMessage'));
-			
-			webshims.reTest(['form-native-extend', 'form-message']);
-			
-			form.remove();
-				
-			$(function(){
-				onDomextend(function(){
-					
-					//Opera shows native validation bubbles in case of input.checkValidity()
-					// Opera 11.6/12 hasn't fixed this issue right, it's buggy
-					var preventDefault = function(e){
-						e.preventDefault();
-					};
-					
-					['form', 'input', 'textarea', 'select'].forEach(function(name){
-						var desc = webshims.defineNodeNameProperty(name, 'checkValidity', {
-							prop: {
-								value: function(){
-									if (!webshims.fromSubmit) {
-										$(this).on('invalid.checkvalidity', preventDefault);
-									}
-									
-									webshims.fromCheckValidity = true;
-									var ret = desc.prop._supvalue.apply(this, arguments);
-									if (!webshims.fromSubmit) {
-										$(this).unbind('invalid.checkvalidity', preventDefault);
-									}
-									webshims.fromCheckValidity = false;
-									return ret;
-								}
-							}
-						});
-					});
-					
-				});
-			});
-		}
-		
-		if(isWebkit && !webshims.bugs.bustedValidity){
-			(function(){
-				var elems = /^(?:textarea|input)$/i;
-				var form = false;
-				
-				document.addEventListener('contextmenu', function(e){
-					if(elems.test( e.target.nodeName || '') && (form = e.target.form)){
-						setTimeout(function(){
-							form = false;
-						}, 1);
-					}
-				}, false);
-				
-				$(window).on('invalid', function(e){
-					if(e.originalEvent && form && form == e.target.form){
-						e.wrongWebkitInvalid = true;
-						e.stopImmediatePropagation();
-					}
-				});
-				
-			})();
-		}
-	}
-	
-
-
-jQuery.webshims.register('form-core', function($, webshims, window, document, undefined, options){
+webshims.register('filereader', function( $, webshims ){
 	"use strict";
 	
-	
-	var checkTypes = {checkbox: 1, radio: 1};
-	var emptyJ = $([]);
-	var bugs = webshims.bugs;
-	var groupTypes = {radio: 1};
-	var getGroupElements = function(elem){
-		elem = $(elem);
-		var name;
-		var form;
-		var ret = emptyJ;
-		if(groupTypes[elem[0].type]){
-			form = elem.prop('form');
-			name = elem[0].name;
-			if(!name){
-				ret = elem;
-			} else if(form){
-				ret = $(form[name]);
-			} else {
-				ret = $(document.getElementsByName(name)).filter(function(){
-					return !$.prop(this, 'form');
-				});
-			}
-			ret = ret.filter('[type="radio"]');
-		}
-		return ret;
-	};
-	
-	var getContentValidationMessage = webshims.getContentValidationMessage = function(elem, validity, key){
-		var message = $(elem).data('errormessage') || elem.getAttribute('x-moz-errormessage') || '';
-		if(key && message[key]){
-			message = message[key];
-		}
-		if(typeof message == 'object'){
-			validity = validity || $.prop(elem, 'validity') || {valid: 1};
-			if(!validity.valid){
-				$.each(validity, function(name, prop){
-					if(prop && name != 'valid' && message[name]){
-						message = message[name];
-						return false;
-					}
-				});
-			}
-		}
-		
-		if(typeof message == 'object'){
-			message = message.defaultMessage;
-		}
-		return message || '';
-	};
-	
-	/*
-	 * Selectors for all browsers
-	 */
-	var rangeTypes = {number: 1, range: 1, date: 1/*, time: 1, 'datetime-local': 1, datetime: 1, month: 1, week: 1*/};
-	var hasInvalid = function(elem){
-		var ret = false;
-		$($.prop(elem, 'elements')).each(function(){
-			ret = $(this).is(':invalid');
-			if(ret){
-				return false;
-			}
-		});
-		return ret;
-	};
-	$.extend($.expr[":"], {
-		"valid-element": function(elem){
-			return $.nodeName(elem, 'form') ? !hasInvalid(elem) :!!($.prop(elem, 'willValidate') && isValid(elem));
-		},
-		"invalid-element": function(elem){
-			return $.nodeName(elem, 'form') ? hasInvalid(elem) : !!($.prop(elem, 'willValidate') && !isValid(elem));
-		},
-		"required-element": function(elem){
-			return !!($.prop(elem, 'willValidate') && $.prop(elem, 'required'));
-		},
-		"user-error": function(elem){
-			return ($.prop(elem, 'willValidate') && $(elem).hasClass('user-error'));
-		},
-		"optional-element": function(elem){
-			return !!($.prop(elem, 'willValidate') && $.prop(elem, 'required') === false);
-		},
-		"in-range": function(elem){
-			if(!rangeTypes[$.prop(elem, 'type')] || !$.prop(elem, 'willValidate')){
-				return false;
-			}
-			var val = $.prop(elem, 'validity');
-			return !!(val && !val.rangeOverflow && !val.rangeUnderflow);
-		},
-		"out-of-range": function(elem){
-			if(!rangeTypes[$.prop(elem, 'type')] || !$.prop(elem, 'willValidate')){
-				return false;
-			}
-			var val = $.prop(elem, 'validity');
-			return !!(val && (val.rangeOverflow || val.rangeUnderflow));
-		}
-		
-	});
-	
-	['valid', 'invalid', 'required', 'optional'].forEach(function(name){
-		$.expr[":"][name] = $.expr.filters[name+"-element"];
-	});
-	
-	
-	$.expr[":"].focus = function( elem ) {
-		try {
-			var doc = elem.ownerDocument;
-			return elem === doc.activeElement && (!doc.hasFocus || doc.hasFocus());
-		} catch(e){}
-		return false;
-	};
-	
-	if(Modernizr.formvalidation && isWebkit && !webshims.bugs.bustedValidity){
-		(function(){
-			var retriggerRadioValidity = function(){
-				var validity;
-				if((validity = this.validity) && !validity.customError){
-					this.setCustomValidity('');
-				}
-			};
-			
-			webshims.addReady(function(context, insertedElement){
-				if(context !== document){
-					$('input[type="radio"]:invalid', context)
-						.add(insertedElement.filter('input[type="radio"]:invalid'))
-						.each(retriggerRadioValidity)
-					;
-				}
-			});
-		})();
-	}
-	
-	var customEvents = $.event.customEvent || {};
-	var isValid = function(elem){
-		return ($.prop(elem, 'validity') || {valid: 1}).valid;
-	};
-	
-	if (bugs.bustedValidity || bugs.findRequired) {
-		(function(){
-			var find = $.find;
-			var matchesSelector = $.find.matchesSelector;
-			
-			var regExp = /(\:valid|\:invalid|\:optional|\:required|\:in-range|\:out-of-range)(?=[\s\[\~\.\+\>\:\#*]|$)/ig;
-			var regFn = function(sel){
-				return sel + '-element';
-			};
-			
-			$.find = (function(){
-				var slice = Array.prototype.slice;
-				var fn = function(sel){
-					var ar = arguments;
-					ar = slice.call(ar, 1, ar.length);
-					ar.unshift(sel.replace(regExp, regFn));
-					return find.apply(this, ar);
-				};
-				for (var i in find) {
-					if(find.hasOwnProperty(i)){
-						fn[i] = find[i];
-					}
-				}
-				return fn;
-			})();
-			if(!Modernizr.prefixed || Modernizr.prefixed("matchesSelector", document.documentElement)){
-				$.find.matchesSelector = function(node, expr){
-					expr = expr.replace(regExp, regFn);
-					return matchesSelector.call(this, node, expr);
-				};
-			}
-			
-		})();
-	}
-	
-	//ToDo needs testing
-	var oldAttr = $.prop;
-	var changeVals = {selectedIndex: 1, value: 1, checked: 1, disabled: 1, readonly: 1};
-	$.prop = function(elem, name, val){
-		var ret = oldAttr.apply(this, arguments);
-		if(elem && 'form' in elem && changeVals[name] && val !== undefined && $(elem).hasClass(invalidClass)){
-			if(isValid(elem)){
-				$(elem).getShadowElement().removeClass(invalidClasses);
-				if(name == 'checked' && val) {
-					getGroupElements(elem).not(elem).removeClass(invalidClasses).removeAttr('aria-invalid');
-				}
-			}
-		}
-		return ret;
-	};
-	
-	var returnValidityCause = function(validity, elem){
-		var ret;
-		$.each(validity, function(name, value){
-			if(value){
-				ret = (name == 'customError') ? $.prop(elem, 'validationMessage') : name;
-				return false;
-			}
-		});
-		return ret;
-	};
-	
-	var isInGroup = function(name){
-		var ret;
-		try {
-			ret = document.activeElement.name === name;
-		} catch(e){}
-		return ret;
-	};
-	/* form-ui-invalid/form-ui-valid are deprecated. use user-error/user-success instead */
-	var invalidClass = 'user-error';
-	var invalidClasses = 'user-error form-ui-invalid';
-	var validClass = 'user-success';
-	var validClasses = 'user-success form-ui-valid';
-	var stopChangeTypes = {
-		time: 1,
-		date: 1,
-		month: 1,
-		datetime: 1,
-		week: 1,
-		'datetime-local': 1
-	};
-	var switchValidityClass = function(e){
-		var elem, timer;
-		if(!e.target){return;}
-		elem = $(e.target).getNativeElement()[0];
-		if(elem.type == 'submit' || !$.prop(elem, 'willValidate')){return;}
-		timer = $.data(elem, 'webshimsswitchvalidityclass');
-		var switchClass = function(){
-			if(e.type == 'focusout' && elem.type == 'radio' && isInGroup(elem.name)){return;}
-			
-			var validity = $.prop(elem, 'validity');
-			var shadowElem = $(elem).getShadowElement();
-			var addClass, removeClass, trigger, generaltrigger, validityCause;
-			if(isWebkit && e.type == 'change' && !bugs.bustedValidity && stopChangeTypes[shadowElem.prop('type')] && shadowElem.is(':focus')){return;}
-			$(elem).trigger('refreshCustomValidityRules');
-			if(validity.valid){
-				if(!shadowElem.hasClass(validClass)){
-					addClass = validClasses;
-					removeClass = invalidClasses;
-					generaltrigger = 'changedvaliditystate';
-					trigger = 'changedvalid';
-					if(checkTypes[elem.type] && elem.checked){
-						getGroupElements(elem).not(elem).removeClass(removeClass).addClass(addClass).removeAttr('aria-invalid');
-					}
-					$.removeData(elem, 'webshimsinvalidcause');
-				}
-			} else {
-				validityCause = returnValidityCause(validity, elem);
-				if($.data(elem, 'webshimsinvalidcause') != validityCause){
-					$.data(elem, 'webshimsinvalidcause', validityCause);
-					generaltrigger = 'changedvaliditystate';
-				}
-				if(!shadowElem.hasClass(invalidClass)){
-					addClass = invalidClasses;
-					removeClass = validClasses;
-					if (checkTypes[elem.type] && !elem.checked) {
-						getGroupElements(elem).not(elem).removeClass(removeClass).addClass(addClass);
-					}
-					trigger = 'changedinvalid';
-				}
-			}
-			if(addClass){
-				shadowElem.addClass(addClass).removeClass(removeClass);
-				//jQuery 1.6.1 IE9 bug (doubble trigger bug)
-				setTimeout(function(){
-					$(elem).trigger(trigger);
-				}, 0);
-			}
-			if(generaltrigger){
-				setTimeout(function(){
-					$(elem).trigger(generaltrigger);
-				}, 0);
-			}
-			$.removeData(e.target, 'webshimsswitchvalidityclass');
-		};
-		
-		if(timer){
-			clearTimeout(timer);
-		}
-		if(e.type == 'refreshvalidityui'){
-			switchClass();
-		} else {
-			$.data(elem, 'webshimsswitchvalidityclass', setTimeout(switchClass, 9));
-		}
-	};
-	
-	$(document).on(options.validityUIEvents || 'focusout change refreshvalidityui', switchValidityClass);
-	customEvents.changedvaliditystate = true;
-	customEvents.refreshCustomValidityRules = true;
-	customEvents.changedvalid = true;
-	customEvents.changedinvalid = true;
-	customEvents.refreshvalidityui = true;
-	
-	
-	webshims.triggerInlineForm = function(elem, event){
-		$(elem).trigger(event);
-	};
-	
-	webshims.modules["form-core"].getGroupElements = getGroupElements;
-	
-	
-	var setRoot = function(){
-		webshims.scrollRoot = (isWebkit || document.compatMode == 'BackCompat') ?
-			$(document.body) : 
-			$(document.documentElement)
-		;
-	};
-	setRoot();
-	webshims.ready('DOM', setRoot);
-	
-	webshims.getRelOffset = function(posElem, relElem){
-		posElem = $(posElem);
-		var offset = $(relElem).offset();
-		var bodyOffset;
-		$.swap($(posElem)[0], {visibility: 'hidden', display: 'inline-block', left: 0, top: 0}, function(){
-			bodyOffset = posElem.offset();
-		});
-		offset.top -= bodyOffset.top;
-		offset.left -= bodyOffset.left;
-		return offset;
-	};
-	
-	/* some extra validation UI */
-	webshims.validityAlert = (function(){
-		var alertElem = 'span';
-		var errorBubble;
-		var hideTimer = false;
-		var focusTimer = false;
-		var resizeTimer = false;
-		var boundHide;
-		
-		var api = {
-			hideDelay: 5000,
-			
-			showFor: function(elem, message, noFocusElem, noBubble){
-				api._create();
-				elem = $(elem);
-				var visual = $(elem).getShadowElement();
-				var offset = api.getOffsetFromBody(visual);
-				api.clear();
-				if(noBubble){
-					this.hide();
-				} else {
-					
-					this.getMessage(elem, message);
-					this.position(visual, offset);
-					
-					this.show();
-					if(this.hideDelay){
-						hideTimer = setTimeout(boundHide, this.hideDelay);
-					}
-					$(window)
-						.on('resize.validityalert reposoverlay.validityalert', function(){
-							clearTimeout(resizeTimer);
-							resizeTimer = setTimeout(function(){
-								api.position(visual);
-							}, 9);
-						})
-					;
-				}
-				
-				if(!noFocusElem){
-					this.setFocus(visual, offset);
-				}
-			},
-			getOffsetFromBody: function(elem){
-				return webshims.getRelOffset(errorBubble, elem);
-			},
-			setFocus: function(visual, offset){
-				var focusElem = $(visual).getShadowFocusElement();
-				var scrollTop = webshims.scrollRoot.scrollTop();
-				var elemTop = ((offset || focusElem.offset()).top) - 30;
-				var smooth;
-				
-				if(webshims.getID && alertElem == 'label'){
-					errorBubble.attr('for', webshims.getID(focusElem));
-				}
-				
-				if(scrollTop > elemTop){
-					webshims.scrollRoot.animate(
-						{scrollTop: elemTop - 5}, 
-						{
-							queue: false, 
-							duration: Math.max( Math.min( 600, (scrollTop - elemTop) * 1.5 ), 80 )
-						}
-					);
-					smooth = true;
-				}
-				try {
-					focusElem[0].focus();
-				} catch(e){}
-				if(smooth){
-					webshims.scrollRoot.scrollTop(scrollTop);
-					setTimeout(function(){
-						webshims.scrollRoot.scrollTop(scrollTop);
-					}, 0);
-				}
-				setTimeout(function(){
-					$(document).on('focusout.validityalert', boundHide);
-				}, 10);
-				$(window).triggerHandler('reposoverlay');
-			},
-			getMessage: function(elem, message){
-				if (!message) {
-					message = getContentValidationMessage(elem[0]) || elem.prop('customValidationMessage') || elem.prop('validationMessage');
-				}
-				if (message) {
-					$('span.va-box', errorBubble).text(message);
-				}
-				else {
-					this.hide();
-				}
-			},
-			position: function(elem, offset){
-				offset = offset ? $.extend({}, offset) : api.getOffsetFromBody(elem);
-				offset.top += elem.outerHeight();
-				errorBubble.css(offset);
-			},
-			show: function(){
-				if(errorBubble.css('display') === 'none'){
-					errorBubble.css({opacity: 0}).show();
-				}
-				errorBubble.addClass('va-visible').fadeTo(400, 1);
-			},
-			hide: function(){
-				errorBubble.removeClass('va-visible').fadeOut();
-			},
-			clear: function(){
-				clearTimeout(focusTimer);
-				clearTimeout(hideTimer);
-				$(document).unbind('.validityalert');
-				$(window).unbind('.validityalert');
-				errorBubble.stop().removeAttr('for');
-			},
-			_create: function(){
-				if(errorBubble){return;}
-				errorBubble = api.errorBubble = $('<'+alertElem+' class="validity-alert-wrapper" role="alert"><span  class="validity-alert"><span class="va-arrow"><span class="va-arrow-box"></span></span><span class="va-box"></span></span></'+alertElem+'>').css({position: 'absolute', display: 'none'});
-				webshims.ready('DOM', function(){
-					errorBubble.appendTo('body');
-					if($.fn.bgIframe){
-						errorBubble.bgIframe();
-					}
-				});
-			}
-		};
-		
-		
-		boundHide = $.proxy(api, 'hide');
-		
-		return api;
-	})();
-	
-	
-	/* extension, but also used to fix native implementation workaround/bugfixes */
 	(function(){
-		var firstEvent,
-			invalids = [],
-			stopSubmitTimer,
-			form
-		;
-		
-		$(document).on('invalid', function(e){
-			if(e.wrongWebkitInvalid){return;}
-			var jElm = $(e.target);
-			var shadowElem = jElm.getShadowElement();
-			if(!shadowElem.hasClass(invalidClass)){
-				shadowElem.addClass(invalidClasses).removeClass(validClasses);
-				setTimeout(function(){
-					$(e.target).trigger('changedinvalid').trigger('changedvaliditystate');
-				}, 0);
-			}
-			
-			if(!firstEvent){
-				//trigger firstinvalid
-				firstEvent = $.Event('firstinvalid');
-				firstEvent.isInvalidUIPrevented = e.isDefaultPrevented;
-				var firstSystemInvalid = $.Event('firstinvalidsystem');
-				$(document).triggerHandler(firstSystemInvalid, {element: e.target, form: e.target.form, isInvalidUIPrevented: e.isDefaultPrevented});
-				jElm.trigger(firstEvent);
-			}
-
-			//if firstinvalid was prevented all invalids will be also prevented
-			if( firstEvent && firstEvent.isDefaultPrevented() ){
-				e.preventDefault();
-			}
-			invalids.push(e.target);
-			e.extraData = 'fix'; 
-			clearTimeout(stopSubmitTimer);
-			stopSubmitTimer = setTimeout(function(){
-				var lastEvent = {type: 'lastinvalid', cancelable: false, invalidlist: $(invalids)};
-				//reset firstinvalid
-				firstEvent = false;
-				invalids = [];
-				$(e.target).trigger(lastEvent, lastEvent);
-			}, 9);
-			jElm = null;
-			shadowElem = null;
-		});
-	})();
+		var swfobject = swfmini;
 	
-	$.fn.getErrorMessage = function(){
-		var message = '';
-		var elem = this[0];
-		if(elem){
-			message = getContentValidationMessage(elem) || $.prop(elem, 'customValidationMessage') || $.prop(elem, 'validationMessage');
+		var readyCallbacks = $.Callbacks('once unique memory'),
+		inputsCount = 0,
+		currentTarget = null;
+	
+		// if native FileReader support, then dont add the polyfill and make the plugin do nothing
+		if (window.FileReader) {
+			$.fn.fileReader = function () { return this; }
+			return ;
 		}
-		return message;
-	};
-	
-	if(options.replaceValidationUI){
-		webshims.ready('DOM forms', function(){
-			$(document).on('firstinvalid', function(e){
-				if(!e.isInvalidUIPrevented()){
-					e.preventDefault();
-					$.webshims.validityAlert.showFor( e.target ); 
-				}
-			});
-		});
-	}
-});
-
-})(jQuery);
-(function($, Modernizr, webshims){
-	"use strict";
-	var hasNative = Modernizr.audio && Modernizr.video;
-	var supportsLoop = false;
-	var bugs = webshims.bugs;
-	
-	var loadSwf = function(){
-		webshims.ready(swfType, function(){
-			if(!webshims.mediaelement.createSWF){
-				webshims.mediaelement.loadSwf = true;
-				webshims.reTest([swfType], hasNative);
-			}
-		});
-	};
-	var options = webshims.cfg.mediaelement;
-	var swfType = options && options.player == 'jwplayer' ? 'mediaelement-swf' : 'mediaelement-jaris';
-	var hasSwf;
-	if(!options){
-		webshims.error("mediaelement wasn't implemented but loaded");
-		return;
-	}
-	if(hasNative){
-		var videoElem = document.createElement('video');
-		Modernizr.videoBuffered = ('buffered' in videoElem);
-		supportsLoop = ('loop' in videoElem);
 		
-		webshims.capturingEvents(['play', 'playing', 'waiting', 'paused', 'ended', 'durationchange', 'loadedmetadata', 'canplay', 'volumechange']);
-		
-		if(!Modernizr.videoBuffered){
-			webshims.addPolyfill('mediaelement-native-fix', {
-				f: 'mediaelement',
-				test: Modernizr.videoBuffered,
-				d: ['dom-support']
-			});
-			
-			webshims.reTest('mediaelement-native-fix');
-		}
-	}
-	
-	if(hasNative && !options.preferFlash){
-		var noSwitch = {
-			1: 1,
-			2: 1
-		};
-		var switchOptions = function(e){
-			var media;
-			var parent = e.target.parentNode;
-			if(!options.preferFlash && 
-				($(e.target).is('audio, video') || (parent && $('source:last', parent)[0] == e.target)) && 
-				(media = $(e.target).closest('audio, video')) && !noSwitch[media.prop('error')]
-				){
-				$(function(){
-					if(hasSwf && !options.preferFlash){
-						loadSwf();
-						webshims.ready('WINDOWLOAD '+swfType, function(){
-							setTimeout(function(){
-								if(!options.preferFlash && webshims.mediaelement.createSWF && !media.is('.nonnative-api-active')){
-									options.preferFlash = true;
-									document.removeEventListener('error', switchOptions, true);
-									$('audio, video').each(function(){
-										webshims.mediaelement.selectSource(this);
-									});
-									webshims.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+e.target.src+" Mediaerror: "+ media.prop('error'));
-								}
-							}, 9);
-						});
-					} else{
-						document.removeEventListener('error', switchOptions, true);
-					}
+		/**
+		* JQuery Plugin
+		*/
+		$.fn.fileReader = function( options ) {  
+			if(this.length){
+				options = $.extend($.fn.fileReader.defaults, options);
+				
+				var self = this;
+				readyCallbacks.add(function() {
+					return main(self, options);
 				});
-			}
-		};
-		document.addEventListener('error', switchOptions, true);
-		$('audio, video').each(function(){
-			var error = $.prop(this, 'error');
-			if(error && !noSwitch[error]){
-				switchOptions({target: this});
-				return false;
-			}
-		});
-	}
-	
-	
-	if(Modernizr.track && !bugs.track){
-		(function(){
-			
-			if(!bugs.track){
-				bugs.track = typeof $('<track />')[0].readyState != 'number';
-			}
-			
-			if(!bugs.track){
-				try {
-					new TextTrackCue(2, 3, '');
-				} catch(e){
-					bugs.track = true;
-				}
-			}
-			
-			var trackOptions = webshims.cfg.track;
-			var trackListener = function(e){
-				$(e.target).filter('track').each(changeApi);
-			};
-			var changeApi = function(){
-				if(bugs.track || (!trackOptions.override && $.prop(this, 'readyState') == 3)){
-					trackOptions.override = true;
-					webshims.reTest('track');
-					document.removeEventListener('error', trackListener, true);
-					if(this && $.nodeName(this, 'track')){
-						webshims.error("track support was overwritten. Please check your vtt including your vtt mime-type");
-					} else {
-						webshims.info("track support was overwritten. due to bad browser support");
-					}
-				}
-			};
-			var detectTrackError = function(){
-				document.addEventListener('error', trackListener, true);
+				if ($.isFunction(options.callback)) readyCallbacks.add(options.callback);
 				
-				if(bugs.track){
-					changeApi();
-				} else {
-					$('track').each(changeApi);
-				}
-			};
-			if(!trackOptions.override){
-				if(webshims.isReady('track')){
-					detectTrackError();
-				} else {
-					$(detectTrackError);
+				if (!FileAPIProxy.ready) {
+					FileAPIProxy.init(options);
 				}
 			}
-		})();
+			return this;
+		};
 		
-	}
+		/**
+		* Default options
+		*  	allows user set default options
+		*/
+		$.fn.fileReader.defaults = {
+			id              : 'fileReaderSWFObject', // ID for the created swf object container,
+			multiple        : null,
+			accept          : null,
+			label           : null,
+			extensions      : null,
+			filereader      : 'files/filereader.swf', // The path to the filereader swf file
+			expressInstall  : null, // The path to the express install swf file
+			debugMode       : false,
+			callback        : false // Callback function when Filereader is ready
+		};
+		
+		/**
+		* Plugin callback
+		*     adds an input to registry
+		*/
+		var main = function(el, options) {
+			return el.each(function(i, input) {
+				input = $(input);
+				var id = input.attr('id');
+				var multiple, accept, label;
+				if (!id) {
+					id = 'flashFileInput' + inputsCount;
+					input.attr('id', id);
+					inputsCount++;
+				}
+				multiple = input.prop('multiple');
+				accept = input.data('swfaccept') || input.prop('accept') ||  options.accept;
+				label = input.jProp('labels')
+					.map(function(){
+						return $(this).text();
+					}).get().join(' ') ||
+					input.data('swflabel') || 
+					options.label;
 
-webshims.register('mediaelement-core', function($, webshims, window, document, undefined){
-	hasSwf = swfobject.hasFlashPlayerVersion('9.0.115');
-	$('html').addClass(hasSwf ? 'swf' : 'no-swf');
-	var mediaelement = webshims.mediaelement;
-	mediaelement.parseRtmp = function(data){
-		var src = data.src.split('://');
-		var paths = src[1].split('/');
-		var i, len, found;
-		data.server = src[0]+'://'+paths[0]+'/';
-		data.streamId = [];
-		for(i = 1, len = paths.length; i < len; i++){
-			if(!found && paths[i].indexOf(':') !== -1){
-				paths[i] = paths[i].split(':')[1];
-				found = true;
-			}
-			if(!found){
-				data.server += paths[i]+'/';
-			} else {
-				data.streamId.push(paths[i]);
-			}
-		}
-		if(!data.streamId.length){
-			webshims.error('Could not parse rtmp url');
-		}
-		data.streamId = data.streamId.join('/');
-	};
-	var getSrcObj = function(elem, nodeName){
-		elem = $(elem);
-		var src = {src: elem.attr('src') || '', elem: elem, srcProp: elem.prop('src')};
-		var tmp;
-		
-		if(!src.src){return src;}
-		
-		tmp = elem.attr('data-server');
-		if(tmp != null){
-			src.server = tmp;
-		}
-		
-		tmp = elem.attr('type');
-		if(tmp){
-			src.type = tmp;
-			src.container = $.trim(tmp.split(';')[0]);
-		} else {
-			if(!nodeName){
-				nodeName = elem[0].nodeName.toLowerCase();
-				if(nodeName == 'source'){
-					nodeName = (elem.closest('video, audio')[0] || {nodeName: 'video'}).nodeName.toLowerCase();
-				}
-			}
-			if(src.server){
-				src.type = nodeName+'/rtmp';
-				src.container = nodeName+'/rtmp';
-			} else {
+				FileAPIProxy.inputs[id] = input;
+				FileAPIProxy.swfObject.add(id, multiple, accept, label, options.extensions);
 				
-				tmp = mediaelement.getTypeForSrc( src.src, nodeName, src );
-				
-				if(tmp){
-					src.type = tmp;
-					src.container = tmp;
-				}
-			}
-		}
-		tmp = elem.attr('media');
-		if(tmp){
-			src.media = tmp;
-		}
-		if(src.type == 'audio/rtmp' || src.type == 'video/rtmp'){
-			if(src.server){
-				src.streamId = src.src;
-			} else {
-				mediaelement.parseRtmp(src);
-			}
-		}
-		return src;
-	};
-	
-	
-	
-	var hasYt = !hasSwf && ('postMessage' in window) && hasNative;
-	
-	var loadTrackUi = function(){
-		if(loadTrackUi.loaded){return;}
-		loadTrackUi.loaded = true;
-		$(function(){
-			webshims.loader.loadList(['track-ui']);
-		});
-	};
-	var loadYt = (function(){
-		var loaded;
-		return function(){
-			if(loaded || !hasYt){return;}
-			loaded = true;
-			webshims.loader.loadScript("https://www.youtube.com/player_api");
-			$(function(){
-				webshims.polyfill("mediaelement-yt");
+				input.css('z-index', 0)
+					.mouseover(function (e) {
+						if (id !== currentTarget) {
+							e = e || window.event;
+							currentTarget = id;
+							FileAPIProxy.swfObject.mouseover(id);
+							FileAPIProxy.container
+								.height(input.outerHeight())
+								.width(input.outerWidth())
+								.css(input.offset());
+						}
+					})
+					.click(function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						e.stopImmediatePropagation();
+						return false;
+					});
 			});
 		};
-	})();
-	var loadThird = function(){
-		if(hasSwf){
-			loadSwf();
-		} else {
-			loadYt();
-		}
-	};
-	
-	webshims.addPolyfill('mediaelement-yt', {
-		test: !hasYt,
-		d: ['dom-support']
-	});
-	
-	mediaelement.mimeTypes = {
-		audio: {
-				//ogm shouldn´t be used!
-				'audio/ogg': ['ogg','oga', 'ogm'],
-				'audio/ogg;codecs="opus"': 'opus',
-				'audio/mpeg': ['mp2','mp3','mpga','mpega'],
-				'audio/mp4': ['mp4','mpg4', 'm4r', 'm4a', 'm4p', 'm4b', 'aac'],
-				'audio/wav': ['wav'],
-				'audio/3gpp': ['3gp','3gpp'],
-				'audio/webm': ['webm'],
-				'audio/fla': ['flv', 'f4a', 'fla'],
-				'application/x-mpegURL': ['m3u8', 'm3u']
-			},
-			video: {
-				//ogm shouldn´t be used!
-				'video/ogg': ['ogg','ogv', 'ogm'],
-				'video/mpeg': ['mpg','mpeg','mpe'],
-				'video/mp4': ['mp4','mpg4', 'm4v'],
-				'video/quicktime': ['mov','qt'],
-				'video/x-msvideo': ['avi'],
-				'video/x-ms-asf': ['asf', 'asx'],
-				'video/flv': ['flv', 'f4v'],
-				'video/3gpp': ['3gp','3gpp'],
-				'video/webm': ['webm'],
-				'application/x-mpegURL': ['m3u8', 'm3u'],
-				'video/MP2T': ['ts']
-			}
-		}
-	;
-	
-	mediaelement.mimeTypes.source =  $.extend({}, mediaelement.mimeTypes.audio, mediaelement.mimeTypes.video);
-	
-	mediaelement.getTypeForSrc = function(src, nodeName, data){
-		if(src.indexOf('youtube.com/watch?') != -1 || src.indexOf('youtube.com/v/') != -1){
-			return 'video/youtube';
-		}
-		if(src.indexOf('rtmp') === 0){
-			return nodeName+'/rtmp';
-		}
-		src = src.split('?')[0].split('.');
-		src = src[src.length - 1];
-		var mt;
 		
-		$.each(mediaelement.mimeTypes[nodeName], function(mimeType, exts){
-			if(exts.indexOf(src) !== -1){
-				mt = mimeType;
-				return false;
-			}
-		});
-		return mt;
-	};
-	
-	
-	mediaelement.srces = function(mediaElem, srces){
-		mediaElem = $(mediaElem);
-		if(!srces){
-			srces = [];
-			var nodeName = mediaElem[0].nodeName.toLowerCase();
-			var src = getSrcObj(mediaElem, nodeName);
-			
-			if(!src.src){
+		/**
+		* Flash FileReader Proxy
+		*/
+		window.FileAPIProxy = {
+			ready: false,
+			_inititalized: false,
+			init: function(o) {
+				var self = this;
+				this.debugMode = o.debugMode;
 				
-				$('source', mediaElem).each(function(){
-					src = getSrcObj(this, nodeName);
-					if(src.src){srces.push(src);}
-				});
-			} else {
-				srces.push(src);
-			}
-			return srces;
-		} else {
-			mediaElem.removeAttr('src').removeAttr('type').find('source').remove();
-			if(!$.isArray(srces)){
-				srces = [srces]; 
-			}
-			srces.forEach(function(src){
-				var source = document.createElement('source');
-				if(typeof src == 'string'){
-					src = {src: src};
-				} 
-				source.setAttribute('src', src.src);
-				if(src.type){
-					source.setAttribute('type', src.type);
-				}
-				if(src.media){
-					source.setAttribute('media', src.media);
-				}
-				mediaElem.append(source);
-			});
-			
-		}
-	};
-	
-	
-	$.fn.loadMediaSrc = function(srces, poster){
-		return this.each(function(){
-			if(poster !== undefined){
-				$(this).removeAttr('poster');
-				if(poster){
-					$.attr(this, 'poster', poster);
-				}
-			}
-			mediaelement.srces(this, srces);
-			$(this).mediaLoad();
-		});
-	};
-	
-	mediaelement.swfMimeTypes = ['video/3gpp', 'video/x-msvideo', 'video/quicktime', 'video/x-m4v', 'video/mp4', 'video/m4p', 'video/x-flv', 'video/flv', 'audio/mpeg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a', 'audio/mp3', 'audio/x-fla', 'audio/fla', 'youtube/flv', 'jwplayer/jwplayer', 'video/youtube', 'video/rtmp', 'audio/rtmp'];
-	
-	mediaelement.canThirdPlaySrces = function(mediaElem, srces){
-		var ret = '';
-		if(hasSwf || hasYt){
-			mediaElem = $(mediaElem);
-			srces = srces || mediaelement.srces(mediaElem);
-			$.each(srces, function(i, src){
-				if(src.container && src.src && ((hasSwf && mediaelement.swfMimeTypes.indexOf(src.container) != -1) || (hasYt && src.container == 'video/youtube'))){
-					ret = src;
-					return false;
-				}
-			});
-			
-		}
-		
-		return ret;
-	};
-	
-	var nativeCanPlayType = {};
-	mediaelement.canNativePlaySrces = function(mediaElem, srces){
-		var ret = '';
-		if(hasNative){
-			mediaElem = $(mediaElem);
-			var nodeName = (mediaElem[0].nodeName || '').toLowerCase();
-			if(!nativeCanPlayType[nodeName]){return ret;}
-			srces = srces || mediaelement.srces(mediaElem);
-			
-			$.each(srces, function(i, src){
-				if(src.type && nativeCanPlayType[nodeName].prop._supvalue.call(mediaElem[0], src.type) ){
-					ret = src;
-					return false;
-				}
-			});
-		}
-		return ret;
-	};
-	
-	mediaelement.setError = function(elem, message){
-		if(!message){
-			message = "can't play sources";
-		}
-		
-		$(elem).pause().data('mediaerror', message);
-		webshims.warn('mediaelementError: '+ message);
-		setTimeout(function(){
-			if($(elem).data('mediaerror')){
-				$(elem).trigger('mediaerror');
-			}
-		}, 1);
-	};
-	
-	var handleThird = (function(){
-		var requested;
-		return function( mediaElem, ret, data ){
-			if(!requested){
-				loadTrackUi();
-			}
-			webshims.ready(hasSwf ? swfType : 'mediaelement-yt', function(){
-				if(mediaelement.createSWF){
-					mediaelement.createSWF( mediaElem, ret, data );
-				} else if(!requested) {
-					requested = true;
-					loadThird();
-					//readd to ready
-					handleThird( mediaElem, ret, data );
-				}
-			});
-			if(!requested && hasYt && !mediaelement.createSWF){
-				loadYt();
-			}
-		};
-	})();
-	
-	var stepSources = function(elem, data, useSwf, _srces, _noLoop){
-		var ret;
-		if(useSwf || (useSwf !== false && data && data.isActive == 'third')){
-			ret = mediaelement.canThirdPlaySrces(elem, _srces);
-			if(!ret){
-				if(_noLoop){
-					mediaelement.setError(elem, false);
-				} else {
-					stepSources(elem, data, false, _srces, true);
-				}
-			} else {
-				handleThird(elem, ret, data);
-			}
-		} else {
-			ret = mediaelement.canNativePlaySrces(elem, _srces);
-			if(!ret){
-				if(_noLoop){
-					mediaelement.setError(elem, false);
-					if(data && data.isActive == 'third') {
-						mediaelement.setActive(elem, 'html5', data);
-					}
-				} else {
-					stepSources(elem, data, true, _srces, true);
-				}
-			} else if(data && data.isActive == 'third') {
-				mediaelement.setActive(elem, 'html5', data);
-			}
-		}
-	};
-	var stopParent = /^(?:embed|object|datalist)$/i;
-	var selectSource = function(elem, data){
-		var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
-		var _srces = mediaelement.srces(elem);
-		var parent = elem.parentNode;
-		
-		clearTimeout(baseData.loadTimer);
-		$.data(elem, 'mediaerror', false);
-		
-		if(!_srces.length || !parent || parent.nodeType != 1 || stopParent.test(parent.nodeName || '')){return;}
-		data = data || webshims.data(elem, 'mediaelement');
-		stepSources(elem, data, options.preferFlash || undefined, _srces);
-	};
-	mediaelement.selectSource = selectSource;
-	
-	$(document).on('ended', function(e){
-		var data = webshims.data(e.target, 'mediaelement');
-		if( supportsLoop && (!data || data.isActive == 'html5') && !$.prop(e.target, 'loop')){return;}
-		setTimeout(function(){
-			if( $.prop(e.target, 'paused') || !$.prop(e.target, 'loop') ){return;}
-			$(e.target).prop('currentTime', 0).play();
-		}, 1);
-		
-	});
-	if(!supportsLoop){
-		webshims.defineNodeNamesBooleanProperty(['audio', 'video'], 'loop');
-	}
-	
-	['audio', 'video'].forEach(function(nodeName){
-		var supLoad = webshims.defineNodeNameProperty(nodeName, 'load',  {
-			prop: {
-				value: function(){
-					var data = webshims.data(this, 'mediaelement');
-					selectSource(this, data);
-					if(hasNative && (!data || data.isActive == 'html5') && supLoad.prop._supvalue){
-						supLoad.prop._supvalue.apply(this, arguments);
-					}
-				}
-			}
-		});
-		nativeCanPlayType[nodeName] = webshims.defineNodeNameProperty(nodeName, 'canPlayType',  {
-			prop: {
-				value: function(type){
-					var ret = '';
-					if(hasNative && nativeCanPlayType[nodeName].prop._supvalue){
-						ret = nativeCanPlayType[nodeName].prop._supvalue.call(this, type);
-						if(ret == 'no'){
-							ret = '';
-						}
-					}
-					if(!ret && hasSwf){
-						type = $.trim((type || '').split(';')[0]);
-						if(mediaelement.swfMimeTypes.indexOf(type) != -1){
-							ret = 'maybe';
-						}
-					}
-					return ret;
-				}
-			}
-		});
-	});
-	webshims.onNodeNamesPropertyModify(['audio', 'video'], ['src', 'poster'], {
-		set: function(){
-			var elem = this;
-			var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
-			clearTimeout(baseData.loadTimer);
-			baseData.loadTimer = setTimeout(function(){
-				selectSource(elem);
-				elem = null;
-			}, 9);
-		}
-	});
-		
-	var initMediaElements = function(){
-		
-		webshims.addReady(function(context, insertedElement){
-			var media = $('video, audio', context)
-				.add(insertedElement.filter('video, audio'))
-				.each(function(){
-					var data = webshims.data(this, 'mediaelement');
+				if(!this.container){
+					this.container = $('<div>').attr('id', o.id)
+						.wrap('<div>')
+						.parent()
+						.css({
+							position:'fixed',
+							// top:'0px',
+							width:'1px',
+							height:'1px',
+							display:'inline-block',
+							background:'transparent',
+							'z-index':99999
+						})
+						// Hands over mouse events to original input for css styles
+						.on('mouseover mouseout mousedown mouseup', function(evt) {
+							if(currentTarget){
+								$('#' + currentTarget).trigger(evt.type);
+							}
+						})
+						.appendTo('body');
 					
-					if(hasNative && $.prop(this, 'paused') && !$.prop(this, 'readyState') && $(this).is('audio[preload="none"][controls]:not([autoplay])') && (!data || data.isActive == 'html5')){
-						//IE controls not visible bug
-						$(this).prop('preload', 'metadata').mediaLoad();
-					} else {
-						selectSource(this, data);
-					}
-					
-					if(hasNative){
-						
-						//FF progress bug
-						(function(){
-							var bufferTimer;
-							var lastBuffered;
-							var elem = this;
-							var getBufferedString = function(){
-								var buffered = $.prop(elem, 'buffered');
-								if(!buffered){return;}
-								var bufferString = "";
-								for(var i = 0, len = buffered.length; i < len;i++){
-									bufferString += buffered.end(i);
-								}
-								return bufferString;
-							};
-							var testBuffer = function(){
-								var buffered = getBufferedString();
-								if(buffered != lastBuffered){
-									lastBuffered = buffered;
-									$(elem).triggerHandler('progress');
-								}
-							};
+					swfobject.embedSWF(o.filereader, o.id, '100%', '100%', '10', o.expressInstall, {debugMode: o.debugMode ? true : ''}, {'wmode':'transparent','allowScriptAccess':'sameDomain'}, {}, function(e) {
+						self.swfObject = e.ref;
+						$(self.swfObject)
+							.css({
+								display: 'block',
+								outline: 0
+							})
+							.attr('tabindex', 0);
 							
-							$(this)
-								.on({
-									'play loadstart progress': function(e){
-										if(e.type == 'progress'){
-											lastBuffered = getBufferedString();
-										}
-										clearTimeout(bufferTimer);
-										bufferTimer = setTimeout(testBuffer, 999);
-									},
-									'emptied stalled mediaerror abort suspend': function(e){
-										if(e.type == 'emptied'){
-											lastBuffered = false;
-										}
-										clearTimeout(bufferTimer);
-									}
-								})
-							;
-						})();
-					}
-					
-				})
-			;
-			if(!loadTrackUi.loaded && $('track', media).length){
-				loadTrackUi();
-			}
-			media = null;
-		});
-	};
-	
-	if(Modernizr.track && !bugs.track){
-		webshims.defineProperty(TextTrack.prototype, 'shimActiveCues', {
-			get: function(){
-				return this._shimActiveCues || this.activeCues;
-			}
-		});
-	}
-	//set native implementation ready, before swf api is retested
-	if(hasNative){
-		webshims.isReady('mediaelement-core', true);
-		initMediaElements();
-		webshims.ready('WINDOWLOAD mediaelement', loadThird);
-	} else {
-		webshims.ready(swfType, initMediaElements);
-	}
-	webshims.ready('WINDOWLOAD mediaelement', loadTrackUi);
-});
-})(jQuery, Modernizr, jQuery.webshims);
-jQuery.webshims.register('track', function($, webshims, window, document, undefined){
-	"use strict";
-	var mediaelement = webshims.mediaelement;
-	var id = new Date().getTime();
-	var ADDBACK = $.fn.addBack ? 'addBack' : 'andSelf';
-	//descriptions are not really shown, but they are inserted into the dom
-	var showTracks = {subtitles: 1, captions: 1, descriptions: 1};
-	var notImplemented = function(){
-		webshims.error('not implemented yet');
-	};
-	var dummyTrack = $('<track />');
-	var supportTrackMod = Modernizr.ES5 && Modernizr.objectAccessor;
-	var createEventTarget = function(obj){
-		var eventList = {};
-		obj.addEventListener = function(name, fn){
-			if(eventList[name]){
-				webshims.error('always use $.on to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
-			}
-			eventList[name] = fn;
-			
-		};
-		obj.removeEventListener = function(name, fn){
-			if(eventList[name] && eventList[name] != fn){
-				webshims.error('always use $.on/$.off to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
-			}
-			if(eventList[name]){
-				delete eventList[name];
-			}
-		};
-		return obj;
-	};
-	
-	
-	var cueListProto = {
-		getCueById: function(id){
-			var cue = null;
-			for(var i = 0, len = this.length; i < len; i++){
-				if(this[i].id === id){
-					cue = this[i];
-					break;
-				}
-			}
-			return cue;
-		}
-	};
-	var numericModes = {
-		0: 'disabled',
-		1: 'hidden',
-		2: 'showing'
-	};
-	
-	var textTrackProto = {
-		shimActiveCues: null,
-		_shimActiveCues: null,
-		activeCues: null,
-		cues: null,
-		kind: 'subtitles',
-		label: '',
-		language: '',
-		mode: 'disabled',
-		readyState: 0,
-		oncuechange: null,
-		toString: function() {
-			return "[object TextTrack]";
-		},
-		addCue: function(cue){
-			if(!this.cues){
-				this.cues = mediaelement.createCueList();
-			} else {
-				var lastCue = this.cues[this.cues.length-1];
-				if(lastCue && lastCue.startTime > cue.startTime){
-					webshims.error("cue startTime higher than previous cue's startTime");
-				}
-			}
-			if(cue.track && cue.track.removeCue){
-				cue.track.removeCue(cue);
-			}
-			cue.track = this;
-			this.cues.push(cue);
-		},
-		//ToDo: make it more dynamic
-		removeCue: function(cue){
-			var cues = this.cues || [];
-			var i = 0;
-			var len = cues.length;
-			if(cue.track != this){
-				webshims.error("cue not part of track");
-				return;
-			}
-			for(; i < len; i++){
-				if(cues[i] === cue){
-					cues.splice(i, 1);
-					cue.track = null;
-					break;
-				}
-			}
-			if(cue.track){
-				webshims.error("cue not part of track");
-				return;
-			}
-		},
-		DISABLED: 'disabled',
-		OFF: 'disabled',
-		HIDDEN: 'hidden',
-		SHOWING: 'showing',
-		ERROR: 3,
-		LOADED: 2,
-		LOADING: 1,
-		NONE: 0
-	};
-	var copyProps = ['kind', 'label', 'srclang'];
-	var copyName = {srclang: 'language'};
-	
-	var owns = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
-	
-	var updateMediaTrackList = function(baseData, trackList){
-		var removed = [];
-		var added = [];
-		var newTracks = [];
-		var i, len;
-		if(!baseData){
-			baseData =  webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
-		}
-		
-		if(!trackList){
-			baseData.blockTrackListUpdate = true;
-			trackList = $.prop(this, 'textTracks');
-			baseData.blockTrackListUpdate = false;
-		}
-		
-		clearTimeout(baseData.updateTrackListTimer);
-		
-		$('track', this).each(function(){
-			var track = $.prop(this, 'track');
-			newTracks.push(track);
-			if(trackList.indexOf(track) == -1){
-				added.push(track);
-			}
-		});
-		
-		if(baseData.scriptedTextTracks){
-			for(i = 0, len = baseData.scriptedTextTracks.length; i < len; i++){
-				newTracks.push(baseData.scriptedTextTracks[i]);
-				if(trackList.indexOf(baseData.scriptedTextTracks[i]) == -1){
-					added.push(baseData.scriptedTextTracks[i]);
-				}
-			}
-		}
-		
-		for(i = 0, len = trackList.length; i < len; i++){
-			if(newTracks.indexOf(trackList[i]) == -1){
-				removed.push(trackList[i]);
-			}
-		}
-		
-		if(removed.length || added.length){
-			trackList.splice(0);
-			
-			for(i = 0, len = newTracks.length; i < len; i++){
-				trackList.push(newTracks[i]);
-			}
-			for(i = 0, len = removed.length; i < len; i++){
-				$([trackList]).triggerHandler($.Event({type: 'removetrack', track: removed[i]}));
-			}
-			for(i = 0, len = added.length; i < len; i++){
-				$([trackList]).triggerHandler($.Event({type: 'addtrack', track: added[i]}));
-			}
-			if(baseData.scriptedTextTracks || removed.length){
-				$(this).triggerHandler('updatetrackdisplay');
-			}
-		}
-	};
-	
-	var refreshTrack = function(track, trackData){
-		if(!trackData){
-			trackData = webshims.data(track, 'trackData');
-		}
-		if(trackData && !trackData.isTriggering){
-			trackData.isTriggering = true;
-			setTimeout(function(){
-				if(!(trackData.track || {}).readyState){
-					$(track).triggerHandler('checktrackmode');
-				} else {
-					$(track).closest('audio, video').triggerHandler('updatetrackdisplay');
-				}
-				trackData.isTriggering = false;
-			}, 1);
-		}
-	};
-	
-	var emptyDiv = $('<div />')[0];
-	window.TextTrackCue = function(startTime, endTime, text){
-		if(arguments.length != 3){
-			webshims.error("wrong arguments.length for TextTrackCue.constructor");
-		}
-		
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.text = text;
-		
-		this.id = "";
-		this.pauseOnExit = false;
-		
-		createEventTarget(this);
-	};
-	
-	window.TextTrackCue.prototype = {
-		
-		onenter: null,
-		onexit: null,
-		pauseOnExit: false,
-		getCueAsHTML: function(){
-			var lastText = "";
-			var parsedText = "";
-			var fragment = document.createDocumentFragment();
-			var fn;
-			if(!owns(this, 'getCueAsHTML')){
-				fn = this.getCueAsHTML = function(){
-					var i, len;
-					if(lastText != this.text){
-						lastText = this.text;
-						parsedText = mediaelement.parseCueTextToHTML(lastText);
-						emptyDiv.innerHTML = parsedText;
+						self.ready = e.success && typeof e.ref.add === "function";
 						
-						for(i = 0, len = emptyDiv.childNodes.length; i < len; i++){
-							fragment.appendChild(emptyDiv.childNodes[i].cloneNode(true));
+						if (self.ready) {
+							readyCallbacks.fire();
 						}
-					}
-					return fragment.cloneNode(true);
-				};
-				
-			}
-			return fn ? fn.apply(this, arguments) : fragment.cloneNode(true);
-		},
-		track: null,
-		
-		
-		id: ''
-		//todo-->
-//			,
-//			snapToLines: true,
-//			line: 'auto',
-//			size: 100,
-//			position: 50,
-//			vertical: '',
-//			align: 'middle'
-	};
-	
-	
-	
-	
-	
-	mediaelement.createCueList = function(){
-		return $.extend([], cueListProto);
-	};
-	
-	mediaelement.parseCueTextToHTML = (function(){
-		var tagSplits = /(<\/?[^>]+>)/ig;
-		var allowedTags = /^(?:c|v|ruby|rt|b|i|u)/;
-		var regEnd = /\<\s*\//;
-		var addToTemplate = function(localName, attribute, tag, html){
-			var ret;
-			if(regEnd.test(html)){
-				ret = '</'+ localName +'>';
-			} else {
-				tag.splice(0, 1);
-				ret =  '<'+ localName +' '+ attribute +'="'+ (tag.join(' ').replace(/\"/g, '&#34;')) +'">';
-			}
-			return ret;
-		};
-		var replacer = function(html){
-			var tag = html.replace(/[<\/>]+/ig,"").split(/[\s\.]+/);
-			if(tag[0]){
-				tag[0] = tag[0].toLowerCase();
-				if(allowedTags.test(tag[0])){
-					if(tag[0] == 'c'){
-						html = addToTemplate('span', 'class', tag, html);
-					} else if(tag[0] == 'v'){
-						html = addToTemplate('q', 'title', tag, html);
-					}
-				} else {
-					html = "";
-				}
-			}
-			return html;
-		};
-		
-		return function(cueText){
-			return cueText.replace(tagSplits, replacer);
-		};
-	})();
-	
-	mediaelement.loadTextTrack = function(mediaelem, track, trackData, _default){
-		var loadEvents = 'play playing timeupdate updatetrackdisplay';
-		var obj = trackData.track;
-		var load = function(){
-			var src = $.prop(track, 'src');
-			var error;
-			var ajax;
-			if(obj.mode != 'disabled' && src && $.attr(track, 'src')){
-				$(mediaelem).unbind(loadEvents, load);
-				$(track).unbind('checktrackmode', load);
-				if(!obj.readyState){
-					error = function(){
-						obj.readyState = 3;
-						obj.cues = null;
-						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = null;
-						$(track).triggerHandler('error');
-					};
-					obj.readyState = 1;
-					try {
-						obj.cues = mediaelement.createCueList();
-						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = mediaelement.createCueList();
-						ajax = $.ajax({
-							dataType: 'text',
-							url: src,
-							success: function(text){
-								if(ajax.getResponseHeader('content-type') != 'text/vtt'){
-									webshims.error('set the mime-type of your WebVTT files to text/vtt. see: http://dev.w3.org/html5/webvtt/#text/vtt');
-								}
-								mediaelement.parseCaptions(text, obj, function(cues){
-									if(cues && 'length' in cues){
-										obj.readyState = 2;
-										$(track).triggerHandler('load');
-										$(mediaelem).triggerHandler('updatetrackdisplay');
-									} else {
-										error();
-									}
-								});
-								
-							},
-							error: error
-						});
-					} catch(er){
-						error();
-						webshims.warn(er);
-					}
-				}
-			}
-		};
-		obj.readyState = 0;
-		obj.shimActiveCues = null;
-		obj._shimActiveCues = null;
-		obj.activeCues = null;
-		obj.cues = null;
-		$(mediaelem).unbind(loadEvents, load);
-		$(track).unbind('checktrackmode', load);
-		$(mediaelem).on(loadEvents, load);
-		$(track).on('checktrackmode', load);
-		if(_default){
-			obj.mode = showTracks[obj.kind] ? 'showing' : 'hidden';
-			load();
-		}
-	};
-	
-	mediaelement.createTextTrack = function(mediaelem, track){
-		var obj, trackData;
-		if(track.nodeName){
-			trackData = webshims.data(track, 'trackData');
-			
-			if(trackData){
-				refreshTrack(track, trackData);
-				obj = trackData.track;
-			}
-		}
-		
-		if(!obj){
-			obj = createEventTarget(webshims.objectCreate(textTrackProto));
-			
-			if(!supportTrackMod){
-				copyProps.forEach(function(copyProp){
-					var prop = $.prop(track, copyProp);
-					if(prop){
-						obj[copyName[copyProp] || copyProp] = prop;
-					}
-				});
-			}
-			
-			
-			if(track.nodeName){
-				
-				if(supportTrackMod){
-					copyProps.forEach(function(copyProp){
-						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
-							get: function(){
-								return $.prop(track, copyProp);
-							}
-						});
 					});
 				}
-				
-				trackData = webshims.data(track, 'trackData', {track: obj});
-				mediaelement.loadTextTrack(mediaelem, track, trackData, ($.prop(track, 'default') && $(track).siblings('track[default]')[ADDBACK]()[0] == track));
-			} else {
-				if(supportTrackMod){
-					copyProps.forEach(function(copyProp){
-						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
-							value: track[copyProp],
-							writeable: false
-						});
-					});
-				}
-				obj.cues = mediaelement.createCueList();
-				obj.activeCues = obj._shimActiveCues = obj.shimActiveCues = mediaelement.createCueList();
-				obj.mode = 'hidden';
-				obj.readyState = 2;
-			}
-		}
-		return obj;
-	};
-	
-	
-/*
-taken from:
-Captionator 0.5.1 [CaptionCrunch]
-Christopher Giffard, 2011
-Share and enjoy
-
-https://github.com/cgiffard/Captionator
-
-modified for webshims
-*/
-	mediaelement.parseCaptionChunk = (function(){
-		// Set up timestamp parsers
-		var WebVTTTimestampParser			= /^(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s+\-\-\>\s+(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s*(.*)/;
-		var GoogleTimestampParser		= /^([\d\.]+)\s+\+([\d\.]+)\s*(.*)/;
-		var WebVTTDEFAULTSCueParser		= /^(DEFAULTS|DEFAULT)\s+\-\-\>\s+(.*)/g;
-		var WebVTTSTYLECueParser		= /^(STYLE|STYLES)\s+\-\-\>\s*\n([\s\S]*)/g;
-		var WebVTTCOMMENTCueParser		= /^(COMMENT|COMMENTS)\s+\-\-\>\s+(.*)/g;
-		
-		return function(subtitleElement,objectCount){
-			var cueDefaults = [];
-		
-			var subtitleParts, timeIn, timeOut, html, timeData, subtitlePartIndex, cueSettings = "", id, specialCueData;
-			var timestampMatch, tmpCue;
-
-			// WebVTT Special Cue Logic
-			if ((specialCueData = WebVTTDEFAULTSCueParser.exec(subtitleElement))) {
-//				cueDefaults = specialCueData.slice(2).join("");
-//				cueDefaults = cueDefaults.split(/\s+/g).filter(function(def) { return def && !!def.length; });
-				return null;
-			} else if ((specialCueData = WebVTTSTYLECueParser.exec(subtitleElement))) {
-				return null;
-			} else if ((specialCueData = WebVTTCOMMENTCueParser.exec(subtitleElement))) {
-				return null; // At this stage, we don't want to do anything with these.
-			}
-			
-			subtitleParts = subtitleElement.split(/\n/g);
-		
-			// Trim off any blank lines (logically, should only be max. one, but loop to be sure)
-			while (!subtitleParts[0].replace(/\s+/ig,"").length && subtitleParts.length > 0) {
-				subtitleParts.shift();
-			}
-		
-			if (subtitleParts[0].match(/^\s*[a-z0-9-\_]+\s*$/ig)) {
-				// The identifier becomes the cue ID (when *we* load the cues from file. Programatically created cues can have an ID of whatever.)
-				id = String(subtitleParts.shift().replace(/\s*/ig,""));
-			}
-		
-			for (subtitlePartIndex = 0; subtitlePartIndex < subtitleParts.length; subtitlePartIndex ++) {
-				var timestamp = subtitleParts[subtitlePartIndex];
-				
-				if ((timestampMatch = WebVTTTimestampParser.exec(timestamp))) {
-					
-					// WebVTT
-					
-					timeData = timestampMatch.slice(1);
-					
-					timeIn =	parseInt((timeData[0]||0) * 60 * 60,10) +	// Hours
-								parseInt((timeData[1]||0) * 60,10) +		// Minutes
-								parseInt((timeData[2]||0),10) +				// Seconds
-								parseFloat("0." + (timeData[3]||0));		// MS
-					
-					timeOut =	parseInt((timeData[4]||0) * 60 * 60,10) +	// Hours
-								parseInt((timeData[5]||0) * 60,10) +		// Minutes
-								parseInt((timeData[6]||0),10) +				// Seconds
-								parseFloat("0." + (timeData[7]||0));		// MS
-/*
-					if (timeData[8]) {
-						cueSettings = timeData[8];
+			},
+			swfObject: null,
+			container: null,
+			// Inputs Registry
+			inputs: {},
+			// Readers Registry
+			readers: {},
+			// Receives FileInput events
+			onFileInputEvent: function(evt) {
+				if (this.debugMode) console.info('FileInput Event ', evt.type, evt);
+				if (evt.target in this.inputs) {
+					var el = this.inputs[evt.target];
+					evt.target = el[0];
+					if( evt.type === 'change') {
+						webshims.data(evt.target, 'fileList', new FileList(evt.files));
 					}
-*/
+					el.trigger(evt);
+				}
+				window.focus();
+			},
+			// Receives FileReader ProgressEvents
+			onFileReaderEvent: function(evt) {
+				if (this.debugMode) console.info('FileReader Event ', evt.type, evt, evt.target in this.readers);
+				if (evt.target in this.readers) {
+					var reader = this.readers[evt.target];
+					evt.target = reader;
+					reader._handleFlashEvent.call(reader, evt);
+				}
+			},
+			// Receives flash FileReader Error Events
+			onFileReaderError: function(error) {
+				if (this.debugMode) console.log(error);
+			},
+			onSWFReady: function() {
+				this.container.css({position: 'absolute'});
+				this.ready = typeof this.swfObject.add === "function";
+				if (this.ready) {
+					readyCallbacks.fire();
 				}
 				
-				// We've got the timestamp - return all the other unmatched lines as the raw subtitle data
-				subtitleParts = subtitleParts.slice(0,subtitlePartIndex).concat(subtitleParts.slice(subtitlePartIndex+1));
-				break;
+				return true;
 			}
-
-			if (!timeIn && !timeOut) {
-				// We didn't extract any time information. Assume the cue is invalid!
-				webshims.warn("couldn't extract time information: "+[timeIn, timeOut, subtitleParts.join("\n"), id].join(' ; '));
-				return null;
-			}
-/*
-			// Consolidate cue settings, convert defaults to object
-			var compositeCueSettings =
-				cueDefaults
-					.reduce(function(previous,current,index,array){
-						previous[current.split(":")[0]] = current.split(":")[1];
-						return previous;
-					},{});
-			
-			// Loop through cue settings, replace defaults with cue specific settings if they exist
-			compositeCueSettings =
-				cueSettings
-					.split(/\s+/g)
-					.filter(function(set) { return set && !!set.length; })
-					// Convert array to a key/val object
-					.reduce(function(previous,current,index,array){
-						previous[current.split(":")[0]] = current.split(":")[1];
-						return previous;
-					},compositeCueSettings);
-			
-			// Turn back into string like the TextTrackCue constructor expects
-			cueSettings = "";
-			for (var key in compositeCueSettings) {
-				if (compositeCueSettings.hasOwnProperty(key)) {
-					cueSettings += !!cueSettings.length ? " " : "";
-					cueSettings += key + ":" + compositeCueSettings[key];
-				}
-			}
-*/
-			// The remaining lines are the subtitle payload itself (after removing an ID if present, and the time);
-			html = subtitleParts.join("\n");
-			tmpCue = new TextTrackCue(timeIn, timeOut, html);
-			if(id){
-				tmpCue.id = id;
-			}
-			return tmpCue;
 		};
-	})();
+		
+		
+		/**
+		* Add FileReader to the window object
+		*/
+		window.FileReader = function () {
+			// states
+			this.EMPTY = 0;
+			this.LOADING = 1;
+			this.DONE = 2;
 	
-	mediaelement.parseCaptions = function(captionData, track, complete) {
-		var subtitles = mediaelement.createCueList();
-		var cue, lazyProcess, regWevVTT;
-		var startDate;
-		var isWEBVTT;
-		if (captionData) {
+			this.readyState = 0;
+	
+			// File or Blob data
+			this.result = null;
+	
+			this.error = null;
+	
+			// event handler attributes
+			this.onloadstart = null;
+			this.onprogress = null;
+			this.onload = null;
+			this.onabort = null;
+			this.onerror = null;
+			this.onloadend = null;
 			
-			regWevVTT = /^WEBVTT(\s*FILE)?/ig;
-			
-			lazyProcess = function(i, len){
-				
-				for(; i < len; i++){
-					cue = captionData[i];
-					if(regWevVTT.test(cue)){
-						isWEBVTT = true;
-					} else if(cue.replace(/\s*/ig,"").length){
-						if(!isWEBVTT){
-							webshims.error('please use WebVTT format. This is the standard');
-							complete(null);
-							break;
-						}
-						cue = mediaelement.parseCaptionChunk(cue, i);
-						if(cue){
-							track.addCue(cue);
-						}
-					}
-					if(startDate < (new Date().getTime()) - 30){
-						i++;
-						setTimeout(function(){
-							startDate = new Date().getTime();
-							lazyProcess(i, len);
-						}, 90);
-						
-						break;
-					}
-				}
-				if(i >= len){
-					if(!isWEBVTT){
-						webshims.error('please use WebVTT format. This is the standard');
-					}
-					complete(track.cues);
-				}
+			// Event Listeners handling using JQuery Callbacks
+			this._callbacks = {
+				loadstart : $.Callbacks( "unique" ),
+				progress  : $.Callbacks( "unique" ),
+				abort     : $.Callbacks( "unique" ),
+				error     : $.Callbacks( "unique" ),
+				load      : $.Callbacks( "unique" ),
+				loadend   : $.Callbacks( "unique" )
 			};
 			
-			captionData = captionData.replace(/\r\n/g,"\n");
-			
-			setTimeout(function(){
-				captionData = captionData.replace(/\r/g,"\n");
-				setTimeout(function(){
-					startDate = new Date().getTime();
-					captionData = captionData.split(/\n\n+/g);
-					lazyProcess(0, captionData.length);
-				}, 9);
-			}, 9);
-			
-		} else {
-			webshims.error("Required parameter captionData not supplied.");
-		}
-	};
-	
-	
-	mediaelement.createTrackList = function(mediaelem, baseData){
-		baseData = baseData || webshims.data(mediaelem, 'mediaelementBase') || webshims.data(mediaelem, 'mediaelementBase', {});
-		if(!baseData.textTracks){
-			baseData.textTracks = [];
-			webshims.defineProperties(baseData.textTracks, {
-				onaddtrack: {value: null},
-				onremovetrack: {value: null}
-			});
-			createEventTarget(baseData.textTracks);
-		}
-		return baseData.textTracks;
-	};
-	
-	if(!Modernizr.track){
-		webshims.defineNodeNamesBooleanProperty(['track'], 'default');
-		webshims.reflectProperties(['track'], ['srclang', 'label']);
+			// Custom properties
+			this._id = null;
+		};
 		
-		webshims.defineNodeNameProperties('track', {
-			src: {
-				//attr: {},
-				reflect: true,
-				propType: 'src'
+		window.FileReader.prototype = {
+			// async read methods
+			readAsBinaryString: function (file) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsBinaryString');
+			},
+			readAsText: function (file, encoding) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsText');
+			},
+			readAsDataURL: function (file) {
+				this._start(file);
+				FileAPIProxy.swfObject.read(file.input, file.name, 'readAsDataURL');
+			},
+			readAsArrayBuffer: function(file){
+				throw("Whoops FileReader.readAsArrayBuffer is unimplemented");
+			},
+			
+			abort: function () {
+				this.result = null;
+				if (this.readyState === this.EMPTY || this.readyState === this.DONE) return;
+				FileAPIProxy.swfObject.abort(this._id);
+			},
+			
+			// Event Target interface
+			addEventListener: function (type, listener) {
+				if (type in this._callbacks) this._callbacks[type].add(listener);
+			},
+			removeEventListener: function (type, listener) {
+				if (type in this._callbacks) this._callbacks[type].remove(listener);
+			},
+			dispatchEvent: function (event) {
+				event.target = this;
+				if (event.type in this._callbacks) {
+					var fn = this['on' + event.type];
+					if ($.isFunction(fn)) fn(event);
+					this._callbacks[event.type].fire(event);
+				}
+				return true;
+			},
+			
+			// Custom private methods
+			
+			// Registers FileReader instance for flash callbacks
+			_register: function(file) {
+				this._id = file.input + '.' + file.name;
+				FileAPIProxy.readers[this._id] = this;
+			},
+			_start: function(file) {
+				this._register(file);
+				if (this.readyState === this.LOADING) throw {type: 'InvalidStateError', code: 11, message: 'The object is in an invalid state.'};
+			},
+			_handleFlashEvent: function(evt) {
+				switch (evt.type) {
+					case 'loadstart':
+						this.readyState = this.LOADING;
+						break;
+					case 'loadend':
+						this.readyState = this.DONE;
+						break;
+					case 'load':
+						this.readyState = this.DONE;
+						this.result = FileAPIProxy.swfObject.result(this._id);
+						break;
+					case 'error':
+						this.result = null;
+						this.error = {
+							name: 'NotReadableError',
+							message: 'The File cannot be read!'
+						};
+				}
+				this.dispatchEvent(new FileReaderEvent(evt));
 			}
-		});
-	}
+		};
+		
+		/**
+		* FileReader ProgressEvent implenting Event interface
+		*/
+		window.FileReaderEvent = function (e) {
+			this.initEvent(e);
+		};
 	
-	webshims.defineNodeNameProperties('track', {
-		kind: {
-			attr: Modernizr.track ? {
-				set: function(value){
-					var trackData = webshims.data(this, 'trackData');
-					this.setAttribute('data-kind', value);
-					if(trackData){
-						trackData.attrKind = value;
-					}
-				},
+		window.FileReaderEvent.prototype = {
+			initEvent: function (event) {
+				$.extend(this, {
+					type: null,
+					target: null,
+					currentTarget: null,
+				
+					eventPhase: 2,
+	
+					bubbles: false,
+					cancelable: false,
+			 
+					defaultPrevented: false,
+	
+					isTrusted: false,
+					timeStamp: new Date().getTime()
+				}, event);
+			},
+			stopPropagation: function (){
+			},
+			stopImmediatePropagation: function (){
+			},
+			preventDefault: function (){
+			}
+		};
+		
+		/**
+		* FileList interface (Object with item function)
+		*/
+		window.FileList = function(array) {
+			if (array) {
+				for (var i = 0; i < array.length; i++) {
+					this[i] = array[i];
+				}
+				this.length = array.length;
+			} else {
+				this.length = 0;
+			}
+		};
+		
+		window.FileList.prototype = {
+			item: function(index) {
+				return (index in this) ? this[index] : null;
+			}
+		};
+	})();
+	
+	webshims.defineNodeNameProperty('input', 'files', {
+			prop: {
+				writeable: false,
 				get: function(){
-					var trackData = webshims.data(this, 'trackData');
-					if(trackData && ('attrKind' in trackData)){
-						return trackData.attrKind;
+					if(this.type != 'file'){return null;}
+					if(!$(this).is('.ws-filereader')){
+						webshims.error("please add the 'ws-filereader' class to your input[type='file'] to implement files-property");
 					}
-					return this.getAttribute('kind');
-				}
-			} : {},
-			reflect: true,
-			propType: 'enumarated',
-			defaultValue: 'subtitles',
-			limitedTo: ['subtitles', 'captions', 'descriptions', 'chapters', 'metadata']
-		}
-	});
-	
-	$.each(copyProps, function(i, copyProp){
-		var name = copyName[copyProp] || copyProp;
-		webshims.onNodeNamesPropertyModify('track', copyProp, function(){
-			var trackData = webshims.data(this, 'trackData');
-			var track = this;
-			if(trackData){
-				if(copyProp == 'kind'){
-					refreshTrack(this, trackData);
-				}
-				if(!supportTrackMod){
-					trackData.track[name] = $.prop(this, copyProp);
-				}
-				clearTimeout(trackData.changedTrackPropTimer);
-				trackData.changedTrackPropTimer = setTimeout(function(){
-					$(track).trigger('updatesubtitlestate');
-				}, 1); 
-			}
-		});
-	});		
-	
-	
-	webshims.onNodeNamesPropertyModify('track', 'src', function(val){
-		if(val){
-			var data = webshims.data(this, 'trackData');
-			var media;
-			if(data){
-				media = $(this).closest('video, audio');
-				if(media[0]){
-					mediaelement.loadTextTrack(media, this, data);
+					return webshims.data(this, 'fileList') || webshims.data(this, 'fileList', new FileList());
 				}
 			}
 		}
-		
-	});
+	);
 	
-	//
-	
-	webshims.defineNodeNamesProperties(['track'], {
-		ERROR: {
-			value: 3
-		},
-		LOADED: {
-			value: 2
-		},
-		LOADING: {
-			value: 1
-		},
-		NONE: {
-			value: 0
-		},
-		readyState: {
-			get: function(){
-				return ($.prop(this, 'track') || {readyState: 0}).readyState;
-			},
-			writeable: false
-		},
-		track: {
-			get: function(){
-				return mediaelement.createTextTrack($(this).closest('audio, video')[0], this);
-			},
-			writeable: false
-		}
-	}, 'prop');
-	
-	webshims.defineNodeNamesProperties(['audio', 'video'], {
-		textTracks: {
-			get: function(){
-				var media = this;
-				var baseData = webshims.data(media, 'mediaelementBase') || webshims.data(media, 'mediaelementBase', {});
-				var tracks = mediaelement.createTrackList(media, baseData);
-				if(!baseData.blockTrackListUpdate){
-					updateMediaTrackList.call(media, baseData, tracks);
-				}
-				return tracks;
-			},
-			writeable: false
-		},
-		addTextTrack: {
-			value: function(kind, label, lang){
-				var textTrack = mediaelement.createTextTrack(this, {
-					kind: dummyTrack.prop('kind', kind || '').prop('kind'),
-					label: label || '',
-					srclang: lang || ''
-				});
-				var baseData = webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
-				if (!baseData.scriptedTextTracks) {
-					baseData.scriptedTextTracks = [];
-				}
-				baseData.scriptedTextTracks.push(textTrack);
-				updateMediaTrackList.call(this);
-				return textTrack;
-			}
-		}
-	}, 'prop');
+	webshims.defineNodeNamesBooleanProperty('input', 'multiple');
 
-	
-	$(document).on('emptied ended updatetracklist', function(e){
-		if($(e.target).is('audio, video')){
-			var baseData = webshims.data(e.target, 'mediaelementBase');
-			if(baseData){
-				clearTimeout(baseData.updateTrackListTimer);
-				baseData.updateTrackListTimer = setTimeout(function(){
-					updateMediaTrackList.call(e.target, baseData);
-				}, 0);
-			}
-		}
-	});
-	
-	var getNativeReadyState = function(trackElem, textTrack){
-		return textTrack.readyState || trackElem.readyState;
-	};
-	
-	webshims.addReady(function(context, insertedElement){
-		var insertedMedia = insertedElement.filter('video, audio, track').closest('audio, video');
-		$('video, audio', context)
-			.add(insertedMedia)
-			.each(function(){
-				updateMediaTrackList.call(this);
-			})
-			.each(function(){
-				if(Modernizr.track){
-					var shimedTextTracks = $.prop(this, 'textTracks');
-					var origTextTracks = this.textTracks;
-					if(shimedTextTracks.length != origTextTracks.length){
-						webshims.error("textTracks couldn't be copied");
-					}
-					
-					$('track', this)
-						.each(function(){
-							var shimedTrack = $.prop(this, 'track');
-							var origTrack = this.track;
-							var kind;
-							var readyState;
-							if(origTrack){
-								kind = $.prop(this, 'kind');
-								readyState = getNativeReadyState(this, origTrack);
-								if (origTrack.mode || readyState) {
-									shimedTrack.mode = numericModes[origTrack.mode] || origTrack.mode;
-								}
-								//disable track from showing + remove UI
-								if(kind != 'descriptions'){
-									origTrack.mode = (typeof origTrack.mode == 'string') ? 'disabled' : 0;
-									this.kind = 'metadata';
-									$(this).attr({kind: kind});
-								}
-								
-							}
-						})
-						.on('load error', function(e){
-							if(e.originalEvent){
-								e.stopImmediatePropagation();
-							}
-						})
-					;
-				}
-			})
-		;
-		insertedMedia.each(function(){
-			var media = this;
-			var baseData = webshims.data(media, 'mediaelementBase');
-			if(baseData){
-				clearTimeout(baseData.updateTrackListTimer);
-				baseData.updateTrackListTimer = setTimeout(function(){
-					updateMediaTrackList.call(media, baseData);
-				}, 9);
-			}
+	//webshims
+	$.fn.fileReader.defaults.filereader = webshims.cfg.basePath +'swf/filereader.swf';
+	var wait = ['DOM'];
+	if(webshims.modules["form-core"].loaded){
+		wait.push('forms');
+	}
+	webshims.ready(wait, function(){
+		webshims.addReady(function(context, contextElem){
+			$('input[type="file"].ws-filereader', context).fileReader();
 		});
 	});
-	
-	if(Modernizr.track){
-		$('video, audio').trigger('trackapichange');
-	}
 });
