@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "dependencies": {
     "jquery": "components/jquery#~1.10.2",
-    "less.js": "less/less.js#~1.4.2",
     "handlebars": "components/handlebars.js#~1.0.0",
     "d3": "mbostock/d3#~3.2.8",
     "bootstrap": "jasny/bootstrap#2.3.0-p4",
