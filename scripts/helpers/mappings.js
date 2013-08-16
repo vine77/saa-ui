@@ -8,7 +8,7 @@ App.ERROR = 4;
 // Constants for operational status codes
 App.OFF = 1;
 App.ON = 2;
-App.MISSING = 3;
+App.PAUSED = 3;
 App.BOOTING = 4;
 App.REBOOTING = 4;
 App.UPDATING = 5;
@@ -166,10 +166,10 @@ App.codeToOperational = function (code) {
     case App.OFF.toString():
     case 'off':
       return 'off';
-    case App.MISSING:
-    case App.MISSING.toString():
-    case 'missing':
-      return 'missing';
+    case App.PAUSED:
+    case App.PAUSED.toString():
+    case 'paused':
+      return 'paused';
     case App.REBOOTING:
     case App.REBOOTING.toString():
     case 'booting':
@@ -209,9 +209,9 @@ App.operationalToCode = function (operational) {
     case App.OFF.toString():
     case 'off':
       return 2;
-    case App.MISSING:
-    case App.MISSING.toString():
-    case 'missing':
+    case App.PAUSED:
+    case App.PAUSED.toString():
+    case 'paused':
       return 3;
     case App.REBOOTING:
     case App.REBOOTING.toString():
@@ -252,10 +252,10 @@ App.operationalToIconClass = function (code) {
     case App.OFF.toString():
     case 'off':
       return 'icon-off';
-    case App.MISSING:
-    case App.MISSING.toString():
-    case 'missing':
-      return 'icon-warning-sign';
+    case App.PAUSED:
+    case App.PAUSED.toString():
+    case 'paused':
+      return 'icon-pause';
     case App.REBOOTING:
     case App.REBOOTING.toString():
     case 'booting':
