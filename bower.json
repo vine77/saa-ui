@@ -10,7 +10,6 @@
     "pnotify": "sciactive/pnotify#~1.2.0",
     "jquery.cookie": "carhartl/jquery-cookie#~1.3.1",
     "rickshaw": "shutterstock/rickshaw#~1.4.3",
-    "jsPlumb": "sporritt/jsPlumb#~1.3.16",
     "moment": "timrwood/moment#~2.0.0",
     "handlebars": "components/handlebars.js#~1.0.0",
     "webshim": "aFarkas/webshim#~1.9.7",
