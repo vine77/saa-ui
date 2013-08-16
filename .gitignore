@@ -1,6 +1,7 @@
 temp
 .tmp
 .sass-cache
+.bower.json
 scripts/templates.js
 styles/main.css
 
