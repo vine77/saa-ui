@@ -28,15 +28,17 @@ Rickshaw.Graph.Renderer = Rickshaw.Class.create( {
 		};
 	},
 
-	domain: function() {
+	domain: function(data) {
 
-		var values = { xMin: [], xMax: [], y: [] };
-
-		var stackedData = this.graph.stackedData || this.graph.stackData();
+		var stackedData = data || this.graph.stackedData || this.graph.stackData();
 		var firstPoint = stackedData[0][0];
 
+		if (firstPoint === undefined) {
+			return { x: [null, null], y: [null, null] };
+		}
+
 		var xMin = firstPoint.x;
-		var xMax = firstPoint.x
+		var xMax = firstPoint.x;
 
 		var yMin = firstPoint.y + firstPoint.y0;
 		var yMax = firstPoint.y + firstPoint.y0;
@@ -44,6 +46,8 @@ Rickshaw.Graph.Renderer = Rickshaw.Class.create( {
 		stackedData.forEach( function(series) {
 
 			series.forEach( function(d) {
+
+				if (d.y == null) return;
 
 				var y = d.y + d.y0;
 
@@ -59,7 +63,7 @@ Rickshaw.Graph.Renderer = Rickshaw.Class.create( {
 		xMax += (xMax - xMin) * this.padding.right;
 
 		yMin = this.graph.min === 'auto' ? yMin : this.graph.min || 0;
-		yMax = this.graph.max || yMax;
+		yMax = this.graph.max === undefined ? yMax : this.graph.max;
 
 		if (this.graph.min === 'auto' || yMin < 0) {
 			yMin -= (yMax - yMin) * this.padding.bottom;
@@ -72,19 +76,27 @@ Rickshaw.Graph.Renderer = Rickshaw.Class.create( {
 		return { x: [xMin, xMax], y: [yMin, yMax] };
 	},
 
-	render: function() {
+	render: function(args) {
+
+		args = args || {};
 
 		var graph = this.graph;
+		var series = args.series || graph.series;
 
-		graph.vis.selectAll('*').remove();
+		var vis = args.vis || graph.vis;
+		vis.selectAll('*').remove();
 
-		var nodes = graph.vis.selectAll("path")
-			.data(this.graph.stackedData)
+		var data = series
+			.filter(function(s) { return !s.disabled })
+			.map(function(s) { return s.stack });
+
+		var nodes = vis.selectAll("path")
+			.data(data)
 			.enter().append("svg:path")
 			.attr("d", this.seriesPathFactory());
 
 		var i = 0;
-		graph.series.forEach( function(series) {
+		series.forEach( function(series) {
 			if (series.disabled) return;
 			series.path = nodes[0][i++];
 			this._styleSeries(series);
