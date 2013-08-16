@@ -1,11 +1,10 @@
 module('Options', {
     setup: function(){},
     teardown: function(){
-        return
         $('#qunit-fixture *').each(function(){
             var t = $(this);
             if ('datepicker' in t.data())
-                t.data('datepicker').picker.remove();
+                t.datepicker('remove');
         });
     }
 });
@@ -262,6 +261,79 @@ test('Today Highlight: today\'s date is highlighted when not active', patch_date
         ok(!target.hasClass('today'), 'Tomorrow is not marked with "today" class');
 }));
 
+test('Clear Button: clear visibility when enabled', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-03-05')
+                .datepicker({
+                    format: 'yyyy-mm-dd',
+                    clearBtn: true
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+        input.focus();
+        ok(picker.find('.datepicker-days').is(':visible'), 'Days view visible');
+        ok(picker.find('.datepicker-days tfoot .clear').is(':visible'), 'Clear button visible');
+
+        picker.find('.datepicker-days thead th.datepicker-switch').click();
+        ok(picker.find('.datepicker-months').is(':visible'), 'Months view visible');
+        ok(picker.find('.datepicker-months tfoot .clear').is(':visible'), 'Clear button visible');
+
+        picker.find('.datepicker-months thead th.datepicker-switch').click();
+        ok(picker.find('.datepicker-years').is(':visible'), 'Years view visible');
+        ok(picker.find('.datepicker-years tfoot .clear').is(':visible'), 'Clear button visible');
+});
+
+test('Clear Button: clears input value', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-03-05')
+                .datepicker({
+                    format: 'yyyy-mm-dd',
+                    clearBtn: true
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+        input.focus();
+        ok(picker.find('.datepicker-days').is(':visible'), 'Days view visible');
+        ok(picker.find('.datepicker-days tfoot .clear').is(':visible'), 'Today button visible');
+
+        target = picker.find('.datepicker-days tfoot .clear');
+        target.click();
+
+        equal(input.val(),'',"Input value has been cleared.")
+        ok(picker.is(':visible'), 'Picker is visible');
+});
+
+test('Clear Button: hides datepicker if autoclose is on', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-03-05')
+                .datepicker({
+                    format: 'yyyy-mm-dd',
+                    clearBtn: true,
+                    autoclose: true
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+        input.focus();
+        ok(picker.find('.datepicker-days').is(':visible'), 'Days view visible');
+        ok(picker.find('.datepicker-days tfoot .clear').is(':visible'), 'Today button visible');
+
+        target = picker.find('.datepicker-days tfoot .clear');
+        target.click();
+
+        equal(input.val(),'',"Input value has been cleared.");
+        ok(picker.is(':not(:visible)'), 'Picker is hidden');
+
+});
+
 test('DaysOfWeekDisabled', function(){
     var input = $('<input />')
                 .appendTo('#qunit-fixture')
@@ -333,3 +405,125 @@ test('BeforeShowDay', function(){
     target = picker.find('.datepicker-days tbody td:nth(29)');
     ok(!target.hasClass('disabled'), '29th is enabled');
 });
+
+test('Orientation: values are parsed correctly', function(){
+
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-10-26')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                }),
+        dp = input.data('datepicker');
+
+    equal(dp.o.orientation.x, 'auto');
+    equal(dp.o.orientation.y, 'auto');
+
+    dp._process_options({orientation: ''});
+    equal(dp.o.orientation.x, 'auto', 'Empty value');
+    equal(dp.o.orientation.y, 'auto', 'Empty value');
+
+    dp._process_options({orientation: 'left'});
+    equal(dp.o.orientation.x, 'left', '"left"');
+    equal(dp.o.orientation.y, 'auto', '"left"');
+
+    dp._process_options({orientation: 'right'});
+    equal(dp.o.orientation.x, 'right', '"right"');
+    equal(dp.o.orientation.y, 'auto', '"right"');
+
+    dp._process_options({orientation: 'top'});
+    equal(dp.o.orientation.x, 'auto', '"top"');
+    equal(dp.o.orientation.y, 'top', '"top"');
+
+    dp._process_options({orientation: 'bottom'});
+    equal(dp.o.orientation.x, 'auto', '"bottom"');
+    equal(dp.o.orientation.y, 'bottom', '"bottom"');
+
+    dp._process_options({orientation: 'left top'});
+    equal(dp.o.orientation.x, 'left', '"left top"');
+    equal(dp.o.orientation.y, 'top', '"left top"');
+
+    dp._process_options({orientation: 'left bottom'});
+    equal(dp.o.orientation.x, 'left', '"left bottom"');
+    equal(dp.o.orientation.y, 'bottom', '"left bottom"');
+
+    dp._process_options({orientation: 'right top'});
+    equal(dp.o.orientation.x, 'right', '"right top"');
+    equal(dp.o.orientation.y, 'top', '"right top"');
+
+    dp._process_options({orientation: 'right bottom'});
+    equal(dp.o.orientation.x, 'right', '"right bottom"');
+    equal(dp.o.orientation.y, 'bottom', '"right bottom"');
+
+    dp._process_options({orientation: 'left right'});
+    equal(dp.o.orientation.x, 'left', '"left right"');
+    equal(dp.o.orientation.y, 'auto', '"left right"');
+
+    dp._process_options({orientation: 'right left'});
+    equal(dp.o.orientation.x, 'right', '"right left"');
+    equal(dp.o.orientation.y, 'auto', '"right left"');
+
+    dp._process_options({orientation: 'top bottom'});
+    equal(dp.o.orientation.x, 'auto', '"top bottom"');
+    equal(dp.o.orientation.y, 'top', '"top bottom"');
+
+    dp._process_options({orientation: 'bottom top'});
+    equal(dp.o.orientation.x, 'auto', '"bottom top"');
+    equal(dp.o.orientation.y, 'bottom', '"bottom top"');
+
+    dp._process_options({orientation: 'foo bar'});
+    equal(dp.o.orientation.x, 'auto', '"foo bar"');
+    equal(dp.o.orientation.y, 'auto', '"foo bar"');
+
+    dp._process_options({orientation: 'foo left'});
+    equal(dp.o.orientation.x, 'left', '"foo left"');
+    equal(dp.o.orientation.y, 'auto', '"foo left"');
+
+    dp._process_options({orientation: 'top bar'});
+    equal(dp.o.orientation.x, 'auto', '"top bar"');
+    equal(dp.o.orientation.y, 'top', '"top bar"');
+});
+
+test('startDate', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-10-26')
+                .datepicker({
+                    format: 'yyyy-mm-dd',
+                    startDate: new Date(2012, 9, 26)
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+    input.focus();
+    target = picker.find('.datepicker-days tbody td:nth(25)');
+    ok(target.hasClass('disabled'), 'Previous day is disabled');
+    target = picker.find('.datepicker-days tbody td:nth(26)');
+    ok(!target.hasClass('disabled'), 'Specified date is enabled');
+    target = picker.find('.datepicker-days tbody td:nth(27)');
+    ok(!target.hasClass('disabled'), 'Next day is enabled');
+});
+
+test('endDate', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-10-26')
+                .datepicker({
+                    format: 'yyyy-mm-dd',
+                    endDate: new Date(2012, 9, 26)
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+    input.focus();
+    target = picker.find('.datepicker-days tbody td:nth(25)');
+    ok(!target.hasClass('disabled'), 'Previous day is enabled');
+    target = picker.find('.datepicker-days tbody td:nth(26)');
+    ok(!target.hasClass('disabled'), 'Specified date is enabled');
+    target = picker.find('.datepicker-days tbody td:nth(27)');
+    ok(target.hasClass('disabled'), 'Next day is disabled');
+});
+
+
