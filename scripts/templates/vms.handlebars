@@ -4,9 +4,7 @@
       <div class="treemap"></div>
       <div class="header">
         <div class="global-actions">
-          {{!--
           <a {{action renderTreemap}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
-          --}}
           <a {{action refresh}} class="btn"><i class="icon-refresh"></i> Refresh VMs</a>
         </div>
         {{!--
@@ -110,14 +108,14 @@
                 <td>{{na vm.utilization.gips_current}}</td>
                 <td>{{na vm.utilization.ipc}}</td>
                 <td>
-                  <div class="contention-container"> 
+                  <div class="contention-container">
                     {{#if vm.contention.system.llc.valueExists}}
                       <div class="socket">
                         <div class="socket-label">System</div>
                         <div class="contention-bar-container">
                           {{#view App.TooltipView titleBinding="vm.contention.system.llc.contentionMessage" barBinding="vm.contention.system.llc.barWidth" class="contention-tooltip" }}
                             <div class="contention-bar-width" {{bindAttr style="vm.contention.system.llc.barWidth"}} >
-                              <div class="contention-gradient"> </div> 
+                              <div class="contention-gradient"> </div>
                             </div>
                           {{/view}}
                         </div>
@@ -246,7 +244,7 @@
                                   {{/view}}
                                 </td>
                                 <td>{{attestation.node.report_message}}</td>
-                                <td> 
+                                <td>
                                   {{#if vm.node.samControlled}}
                                       {{#linkTo nodesNode vm.node}}{{vm.nodeName}}{{/linkTo}}
                                     {{else}}
