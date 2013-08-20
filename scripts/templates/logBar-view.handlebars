@@ -25,16 +25,9 @@
   to
   {{view App.DatePickerView valueBinding="timeTo" dataDateFormat="yyyy-mm-dd" class="datepicker" size="9"}}
 
-  {{#view App.TooltipView titleBinding="useContextTip" class="inline-block" dataPlacement="bottom"}}
-    <label>
-      {{view Ember.Checkbox checkedBinding="useContextSelected"}}
-      Use Context
-    </label>
-  {{/view}}
-
   <button {{action updateLogsFrame target="view"}} class="btn btn-primary btn-small log-buttons">Search</button>
   <button {{action reset}} class="btn btn-inverse btn-small log-buttons">Reset</button>
-  <button {{action reset}} class="btn btn-info btn-small log-buttons">Advanced</button>
+  <button {{action advancedSearch}} class="btn btn-info btn-small log-buttons">Advanced</button>
 
 </div>
 {{!-- {{view Ember.TextField valueBinding="App.logBar.searchTextQuery" size="30"}} --}}

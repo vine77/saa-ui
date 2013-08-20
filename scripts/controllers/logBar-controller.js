@@ -1,53 +1,118 @@
+App.CriticalitiesController = Ember.ArrayController.extend({
+    content: []
+});
+
+App.CriticalityController = Ember.ObjectController.extend({
+  isSelected: false,
+  isSelectedObserver: function() {
+    if (this.get('isSelected')) {
+      App.currentSelections.get('selectedCriticalities').addObject(this);
+    } else {
+      App.currentSelections.get('selectedCriticalities').removeObject(this);
+    }
+    App.currentSelections.propertyDidChange('selectedCriticalities');
+  }.observes('isSelected')
+});
+
 App.LogBarController = Ember.ObjectController.extend({
   shortCutTimes: [{"id": 1, "label":"Last 15min"}, 
-                  {"id":2, "label":"Last 60min"},
-                  {"id":3, "label":"Last 4h"},
-                  {"id":4, "label":"Last 12h"},
-                  {"id":5, "label":"Last 24h"},
-                  {"id":6, "label":"Last 48h"},
-                  {"id":7, "label":"Last 7d"},
-                  {"id":8, "label":"All Time"},
-                  {"id":9, "label":"Custom"}],
-  criticalities: [{"id": 0, "label":"Debug"}, 
-                  {"id": 1, "label":"Debug+"},
-                  {"id": 2, "label":"Notice"},
-                  {"id": 3, "label":"Notice+"},
-                  {"id": 4, "label":"Warning"},
-                  {"id": 5, "label":"Warning+"}, 
-                  {"id": 6, "label":"Error"},
-                  {"id": 7, "label":"Error+"},
-                  {"id": 8, "label":"Critical"},
-                  {"id": 9, "label":"Critical+"}],
+                  {"id":2,  "label":"Last 60min"},
+                  {"id":3,  "label":"Last 4h"},
+                  {"id":4,  "label":"Last 12h"},
+                  {"id":5,  "label":"Last 24h"},
+                  {"id":6,  "label":"Last 48h"},
+                  {"id":7,  "label":"Last 7d"},
+                  {"id":8,  "label":"All Time"},
+                  {"id":9,  "label":"Custom"}],
+  criticalities: App.CriticalitiesController.create({
+    content: [{"id": 0,  "label":"Debug"},
+              {"id": 1,  "label":"Debug+"},
+              {"id": 2,  "label":"Notice"},
+              {"id": 3,  "label":"Notice+"},
+              {"id": 4,  "label":"Warning"},
+              {"id": 5,  "label":"Warning+"},
+              {"id": 6,  "label":"Error"},
+              {"id": 7,  "label":"Error+"},
+              {"id": 8,  "label":"Critical"},
+              {"id": 9,  "label":"Critical+"},
+              {"id": "context", "label":"Multiple Selections"}]
+  }),
+  criticalitiesFiltered: function () {
+    var returnArray = [];
+    this.get('criticalities').forEach( function (item, index, enumerable) {
+      if ((App.isOdd(item.id) == false) && (item.id != 'context')) {
+        returnArray.push(item);
+      }
+    });
+    return returnArray;
+  }.property('criticalities'),
   criticalitySelected: null,
   shortCutTimeSelected: null,
   searchText: '',
   nodeSelected: '',
   timeFrom: '',
   timeTo: '',
-  useContextSelected: false,
-  useContextTip : '<strong>Use Context Feature</strong><br>Use the checkboxes outside of this pane on the Nodes and VMs pages to select components by which to filter.',
   selectedNodes: [],
   selectedVms: [],
+  selectedCriticalities: [],
   selectedNodesBinding: 'App.currentSelections.selectedNodes',
   selectedVmsBinding: 'App.currentSelections.selectedVms',
-  needs: ["nodes", "application"],
-  //applicationBinding: "controllers.nodes",
+  selectedCriticalitiesBinding: 'App.currentSelections.selectedCriticalities',
+  needs: ["nodes", "application", "vms"],
   logsUrl: function () {
     return this.get('controllers.application.logsUrl');
   }.property('controllers.application'),
-  //container: App.__container__,
   nodes: function() {
-    if (this.get('useContextSelected')) {
-      return [{value:"context", label:"Using Context"}];
-    } else {
-      var returnArray = [];
-      App.Node.all().forEach( function (item, index, enumerable) {
-        var nodeObj = {"value": item.get('id'), "label": item.get('name')};
-        returnArray.pushObject(nodeObj);
-      });
-      return returnArray;
+    var returnArray = [];
+    App.Node.all().forEach( function (item, index, enumerable) {
+      var nodeObj = {"value": item.get('id'), "label": item.get('name')};
+      returnArray.pushObject(nodeObj);
+    });
+    returnArray.pushObject({value:"context", label:"Multiple Selections"});
+    return returnArray;
+  }.property('controllers.nodes.model.@each'),
+  nodesMultipleObserver: function() {
+    if (this.get('selectedNodes').length > 0) {
+      this.set('nodeSelected', this.get('nodes.lastObject'));
     }
-  }.property('useContextSelected','controllers.nodes.model.@each'),
+  }.observes('controllers.nodes.model.@each.isSelected'),
+  criticalitiesMultipleObserver: function() {
+    if (this.get('selectedCriticalities').length > 0) {
+      this.set('criticalitySelected', this.get('criticalities.lastObject'));
+    }
+  }.observes('selectedCriticalities.@each.isSelected'),
+  nodeSelectedObserver: function () {
+    var nodeSelected = this.get('nodeSelected');
+    if (nodeSelected) {
+      if (nodeSelected.value !== "context") {
+        this.set('selectedNodes', []);
+        App.Node.all().forEach( function (item, index, enumerable) {
+          if (item.get('isSelected')) {
+            item.set('isSelected', false);
+          }
+        });
+      }
+    }
+  }.observes('nodeSelected'),
+  criticalitySelectedObserver: function () {
+    var criticalitySelected = this.get('criticalitySelected');
+    if (criticalitySelected) {
+      if (criticalitySelected.value !== "context") {
+        this.set('selectedCriticalities', []);
+        this.get('selectedCriticalities').forEach( function (item, index, enumerable) {
+          if (item.get('isSelected')) {
+            item.set('isSelected', false);
+          }
+        });
+      }
+    }
+  }.observes('criticalitySelected'),
+  nodeObjects: function() {
+    return App.Node.all();
+  }.property('controllers.nodes.model.@each'),
+  vmObjects: function() {
+    return App.Vm.all();
+  }.property('controllers.vms.model.@each'),
   timeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
       this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
@@ -66,54 +131,51 @@ App.LogBarController = Ember.ObjectController.extend({
       returnVal.push(this.get('searchText'));
     }
     //Node
-    if (this.get('useContextSelected') && (App.get('currentPath') == 'nodes.index')) {
-      if (this.get('selectedNodes')) {
-        //update select list for nodes...
-        var nodesReturnArray = [];
-        //this.set('nodes', [{value:"context", label:"Using Context"}]);
-        this.set('nodeSelected', this.nodes.objectAt(0));
-        this.get('selectedNodes').forEach(function (item, index, enumerable) {
-          var nodeString = '@fields.host_id:\"' + item.get('id') + '\"';
-          nodesReturnArray.push(nodeString);
-        });
-        if (nodesReturnArray.length > 0) { returnVal.push('(' + nodesReturnArray.join(' OR ') + ')'); }
-      }
-    } else {
-      //this.set('nodes', this.get('nodesLookup'));
-      //App.logBar.propertyDidChange('nodes');
-      //App.logBar.propertyDidChange('nodesLookup');
-      //this.set('nodeSelected', null);
+    if (this.get('nodeSelected.value') == 'context') { //using advanced search or multiple global selections
+      var nodesReturnArray = [];
+      this.get('selectedNodes').forEach(function (item, index, enumerable) {
+        var nodeString = '@fields.host_id:\"' + item.get('id') + '\"';
+        nodesReturnArray.push(nodeString);
+      });
+      if (nodesReturnArray.length > 0) { returnVal.push('(' + nodesReturnArray.join(' OR ') + ')'); }
+    } else { //using select list in log bar
       if (this.get('nodeSelected.value') && this.get('nodeSelected.value') != 'context') {
-        //"search":" @fields.host_id:\"E7F5D9ABC294E111BD1D001E6747F682\""
         var nodeString = '@fields.host_id:\"' + this.get('nodeSelected.value') + '\"';
         returnVal.push(nodeString);
       }
     }
+
     //Criticality @fields.syslog_severity_code
-    if (this.get('criticalitySelected.label')) {
-      if (App.isOdd(this.get('criticalitySelected.id'))) {
-        var currentIndex = this.get('criticalitySelected.id');
-        var criticalitiesReturnArray = [];
-        var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
+    if (this.get('criticalitySelected.value') == 'context') { //using advanced search or multiple global selections
+      var criticalitiesReturnArray = [];
+      this.get('selectedCriticalities').forEach( function (item, index, enumerable) {
+        var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
         criticalitiesReturnArray.push(criticalityString);
-        this.get('criticalities').forEach( function(item, index, enumerable) {
-          if ( (index >= currentIndex) && (App.isOdd(index) === false) ) {
-            var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
-            criticalitiesReturnArray.push(criticalityString);
-          }
-        });
-        returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
-      } else {
-        var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
-        returnVal.push(criticalityString);
+      });
+      returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
+    } else { //select list in logbar
+      if (this.get('criticalitySelected.label')) {
+        if (App.isOdd(this.get('criticalitySelected.id'))) {
+          var currentIndex = this.get('criticalitySelected.id');
+          var criticalitiesReturnArray = [];
+          var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
+          criticalitiesReturnArray.push(criticalityString);
+          this.get('criticalities').forEach( function(item, index, enumerable) {
+            if ( (index >= currentIndex) && (App.isOdd(index) === false) ) {
+              var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
+              criticalitiesReturnArray.push(criticalityString);
+            }
+          });
+          returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
+        } else {
+          var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
+          returnVal.push(criticalityString);
+        }
       }
     }
-
     //Vms
-    if (this.get('useContextSelected') && (App.get('currentPath') == 'vms.index')) {
+    if (this.get('selectedVms').length > 0) { //using advanced search or multiple global selections
       if (this.get('selectedVms')) {
-        //this.set('vms', [{value:"context", label:"Using Context"}]);
-        //this.set('vmSelected', this.nodes.objectAt(0));
         vmsReturnArray = [];
         this.get('selectedVms').forEach(function (item, index, enumerable) {
           var vmString = '@fields.vm_id:\"' + item.get('id') + '\"';
@@ -122,13 +184,8 @@ App.LogBarController = Ember.ObjectController.extend({
         returnVal.push('(' + vmsReturnArray.join(' OR ') + ')');
       }
     }
-    
-    //var returnValues = returnVal.join(' AND ') + ((nodesReturnArray)?' OR '+nodesReturnArray:'');
-    //return returnValues;
-
     return returnVal.join(' AND ');
-
-  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','useContextSelected'),
+  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each'),
   updateLogsFrame: function() {
     var currentURL = frames['allLogsFrame'].location.href;
     currentURL = currentURL.split("#");
@@ -149,16 +206,12 @@ App.LogBarController = Ember.ObjectController.extend({
     }
     //Search Text Query (node, criticality, and search text)
     newURL['search'] = this.get('searchTextQuery');
-
     newURL = JSON.stringify(newURL);
     newURL = btoa(newURL);
 
     frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
   },
   reset: function () {
-    //Consider calling this on didInsertElement of the logBarView also. (Might not need to do this since it is being set on logsUrl.)
-    //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ2FtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
-    //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
     var defaultQueryString = 'eyJzZWFyY2giOiIoQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHk6XCJXYXJuaW5nK1wiIE9SIEBmaWVsZHMuc3lzbG9nX3NldmVyaXR5OlwiRXJyb3JcIiBPUiBAZmllbGRzLnN5c2xvZ19zZXZlcml0eTpcIkNyaXRpY2FsXCIpIiwiZmllbGRzIjpbIkBzb3VyY2VfaG9zdCIsIkBtZXNzYWdlIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ3JhbSIsIkBmaWVsZHMuc3lzbG9nX3NldmVyaXR5Il0sIm9mZnNldCI6MCwidGltZWZyYW1lIjoiYWxsIiwiZ3JhcGhtb2RlIjoiY291bnQiLCJ0aW1lIjp7InVzZXJfaW50ZXJ2YWwiOjB9LCJzdGFtcCI6MTM2ODgyODA0ODYzMX0=';
     frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
 
@@ -171,25 +224,39 @@ App.LogBarController = Ember.ObjectController.extend({
     setTimeout(function () {
       frames['allLogsFrame'].sbctl('hide', true);
     }, 3000);
+  },
+  advancedSearch: function (model) {
+    var controller = this;
+    modal = Ember.View.create({
+      templateName: "logAdvancedSearch-modal",
+      controller: controller,
+      content: model,
+      modalHide: function() {
+        $('#advanced-search-modal').modal('hide');
+        var context = this;
+        //setTimeout(context.remove, 3000);
+        this.remove(); //destroys the element
+      },
+      didInsertElement: function () {
+        $('#advanced-search-modal').modal('show');
+      },
+      updateLogsFrame: function () { 
+        this.styleLogsFrame();
+        //App.logBar.updateLogsFrame();
+        this.get('controller').updateLogsFrame();
+      },
+      styleLogsFrame: function () {
+        setTimeout(function () {
+          try {
+            frames['allLogsFrame'].sbctl('hide', true);
+          } catch(error) {
+            // Kibana is not loaded in iFrame
+          }
+        }, 3000);
+      }
+    }).appendTo('body');
   }
 
 });
 
 //App.logBar = App.LogBarController.create();
-
-
-
-  /*
-  useContext: function(selectedNodes) {
-    //fetch the number of nodes selected
-    console.log('useContext')
-    if (this.get('useContextSelected')) {
-
-      if (this.get('selectedNodes')) {
-        //update select list for nodes...
-        this.set('nodes', [{value:"context", label:"Using Context"}]);
-        this.set('nodeSelected', this.nodes.objectAt(0));
-      }
-    }
-  }.observes('useContextSelected')
-  */

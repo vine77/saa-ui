@@ -74,7 +74,7 @@
             {{#each vm in group}}
               <tr {{bindAttr class="vm.isSelected vm.isExpanded"}}>
                 <td class="column-small">
-                  {{view view.vmCheckbox vmBinding="vm" checkedBinding="vm.isSelected"}}
+                  {{view Ember.Checkbox checkedBinding="vm.isSelected"}}
                 </td>
                 <td class="column-small">
                   {{#view App.TooltipView titleBinding="vm.status.healthMessage"}}

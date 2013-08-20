@@ -200,6 +200,16 @@ App.Node = DS.Model.extend({
     return this.get('isActive');
   }.property('isActive'),
 
+  isSelectedObserver: function() {
+    if ((this.get('isSelected')) && (this.get('samControlled'))) {
+      App.currentSelections.get('selectedNodes').addObject(this);
+    } else {
+      App.currentSelections.get('selectedNodes').removeObject(this);
+    }
+    App.contextualGraphs.propertyDidChange('selectedNodes');
+    App.currentSelections.propertyDidChange('selectedNodes');
+  }.observes('isSelected'),
+
   // Embedded Relationships
   status: DS.belongsTo('App.NodeStatus'),
   utilization: DS.belongsTo('App.NodeUtilization'),

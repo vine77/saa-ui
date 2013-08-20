@@ -171,6 +171,16 @@ App.Vm = DS.Model.extend({
     return this.get('isActive');
   }.property('isActive'),
 
+  isSelectedObserver: function() {
+    if ((this.get('isSelected')) && (this.get('samControlled'))) {
+      App.currentSelections.get('selectedVms').addObject(this);
+    } else {
+      App.currentSelections.get('selectedVms').removeObject(this);
+    }
+    App.contextualGraphs.propertyDidChange('selectedVms');
+    App.currentSelections.propertyDidChange('selectedVms');
+  }.observes('isSelected'),
+
   graphObserver: function () {
      return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isSelected', 'isExpanded'),

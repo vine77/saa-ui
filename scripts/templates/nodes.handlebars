@@ -95,7 +95,7 @@
             <tr {{bindAttr class="node.isSelected node.isExpanded node.samControlled node.isScheduled"}}>
               <td class="column-small">
                 {{#if node.samControlled}}
-                  {{view view.nodeCheckbox nodeBinding="node" checkedBinding="node.isSelected"}}
+                  {{view Ember.Checkbox checkedBinding="node.isSelected"}}
                 {{/if}}
               </td>
               <td class="column-small">

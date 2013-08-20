@@ -1,0 +1,52 @@
+<div class="modal hide fade" id="advanced-search-modal" data-backdrop="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Advanced Log Search</h3>
+  </div>
+  <div class="modal-body">
+    <ul class="nav nav-tabs" id="logAdvancedSearchTabs">
+      <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
+      <li><a onclick="App.selectTab(event)">VMs</a></li>
+      <li><a onclick="App.selectTab(event)">Criticalities</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active nodes">
+        <ul class="three-columns no-disc-list">
+          {{#each node in nodeObjects}}
+            {{#if node.samControlled}}
+              <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+      <div class="tab-pane vms">
+        <ul class="three-columns no-disc-list">
+          {{#each vm in vmObjects}}
+            <li>
+              <label {{bindAttr title="vm.name"}}>
+                {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}} 
+              </label>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="tab-pane criticalities">
+        <ul class="three-columns no-disc-list">
+          {{#each criticality in criticalitiesFiltered itemController="criticality"}}
+            <li>
+              <label>
+                {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}} 
+              </label>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" {{action modalHide target="view"}}> Close </button>
+    <button class="btn btn-primary" {{action updateLogsFrame target="view"}}> Apply </button>
+  </div>
+</div>

@@ -6,7 +6,6 @@ App.LogBarView = Ember.View.extend({
     this.get('controller').set('shortCutTimeSelected', this.get('controller').shortCutTimes.objectAt(7));
     this.get('controller').set('criticalitySelected', this.get('controller').criticalities.objectAt(5));
 
-
     //init datePicker
     $('.datepicker').datepicker();
     //styleLogsFrame
@@ -20,21 +19,6 @@ App.LogBarView = Ember.View.extend({
   styleLogsFrame: function () {
     setTimeout(function () {
       try {
-        /*frames['allLogsFrame'].$('#sidebar').remove();
-        frames['allLogsFrame'].$('#sbctl').css('display', 'none');
-
-        frames['allLogsFrame'].$('#feedlinks').css('display', 'none');
-        frames['allLogsFrame'].$('.form-inline').css('display', 'none');
-        frames['allLogsFrame'].$('.navbar-fixed-top').css('left', '2000px');
-        frames['allLogsFrame'].$('#graph_container').css('position', 'relative');
-        frames['allLogsFrame'].$('#graph_container').css('top', '-50px');
-
-        frames['allLogsFrame'].$('#main').addClass("content span12 sidebar-collapsed");
-        frames['allLogsFrame'].$('#main').removeClass("span10");
-        frames['allLogsFrame'].$(window).resize();
-        frames['allLogsFrame'].$('#graph_container').resize();*/
-        
-
         frames['allLogsFrame'].sbctl('hide', true);
       } catch(error) {
         // Kibana is not loaded in iFrame

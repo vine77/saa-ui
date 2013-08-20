@@ -1,6 +1,8 @@
 App.CurrentSelections = Ember.Object.extend({
   selectedNodes: [],
-  selectedVms: []
+  selectedVms: [],
+  selectedCriticalities: []
 });
 
 App.currentSelections = App.CurrentSelections.create();
+
