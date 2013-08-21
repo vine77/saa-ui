@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "Installing development tools..."
+echo -e "Installing front-end development tools... \n"
 
 # Add persistent environmental variables for Intel's proxy
 export HTTP_PROXY=http://proxy.jf.intel.com:911
@@ -17,7 +17,7 @@ sudo rm -rf /srv/www  # Remove www folder that was created from overlays
 # Replace it with a symbolic link to the corresponding location in the repository
 sudo ln -s ~/SAM/overlays/ipm/rootfs/srv/www/ /srv/www
 # Also add www shortcut in home folder as a convenience, e.g. cd ~/www/source
-sudo ln -s ~/SAM/overlays/ipm/rootfs/srv/www/ ~/www
+sudo ln -s ~/SAM/overlays/ipm/rootfs/srv/www/ ~/
 
 # If specified (with switch "-s samba"), install SAMBA share
 # User can access SAMBA share at \\{IP}\{username}
@@ -40,4 +40,8 @@ if [[ "$SERVER" == "samba" ]]; then
   echo "SAMBA share $USER was created."
 fi
 
-echo "Finished installing development tools."
+echo -e "\nFinished installing front-end development tools. \n"
+
+echo -e "Running setup.jf-osdev01 (nova.conf, openrc, is-slave)... \n"
+yes | sudo ~/SAM/overlays/ipm/rootfs/etc/sam-testing/setup.jf-osdev01
+echo -e "Finished running setup.jf-osdev01 \n"
