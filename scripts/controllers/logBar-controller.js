@@ -1,9 +1,20 @@
 App.CriticalitiesController = Ember.ArrayController.extend({
-    content: []
+    //content: []
+    content: [{"id": 0,  "label":"Debug"},
+              {"id": 1,  "label":"Debug+"},
+              {"id": 2,  "label":"Notice"},
+              {"id": 3,  "label":"Notice+"},
+              {"id": 4,  "label":"Warning"},
+              {"id": 5,  "label":"Warning+"},
+              {"id": 6,  "label":"Error"},
+              {"id": 7,  "label":"Error+"},
+              {"id": 8,  "label":"Critical"},
+              {"id": 9,  "label":"Critical+"},
+              {"id": "context", "label":"Multiple Selections"}]
 });
 
 App.CriticalityController = Ember.ObjectController.extend({
-  isSelected: false,
+  //isSelected: false,
   isSelectedObserver: function() {
     if (this.get('isSelected')) {
       App.currentSelections.get('selectedCriticalities').addObject(this);
@@ -24,7 +35,7 @@ App.LogBarController = Ember.ObjectController.extend({
                   {"id":7,  "label":"Last 7d"},
                   {"id":8,  "label":"All Time"},
                   {"id":9,  "label":"Custom"}],
-  criticalities: App.CriticalitiesController.create({
+/*  criticalities: App.CriticalitiesController.create({
     content: [{"id": 0,  "label":"Debug"},
               {"id": 1,  "label":"Debug+"},
               {"id": 2,  "label":"Notice"},
@@ -36,7 +47,8 @@ App.LogBarController = Ember.ObjectController.extend({
               {"id": 8,  "label":"Critical"},
               {"id": 9,  "label":"Critical+"},
               {"id": "context", "label":"Multiple Selections"}]
-  }),
+  }),*/
+  criticalities: App.CriticalitiesController.create(),
   criticalitiesFiltered: function () {
     var returnArray = [];
     this.get('criticalities').forEach( function (item, index, enumerable) {
@@ -75,7 +87,7 @@ App.LogBarController = Ember.ObjectController.extend({
     if (this.get('selectedNodes').length > 0) {
       this.set('nodeSelected', this.get('nodes.lastObject'));
     }
-  }.observes('controllers.nodes.model.@each.isSelected'),
+  }.observes('controllers.nodes.model.@each.isSelected', 'App.currentSelections.selectedNodes', 'controllers.nodes.model.@each'),
   criticalitiesMultipleObserver: function() {
     if (this.get('selectedCriticalities').length > 0) {
       this.set('criticalitySelected', this.get('criticalities.lastObject'));
@@ -97,7 +109,7 @@ App.LogBarController = Ember.ObjectController.extend({
   criticalitySelectedObserver: function () {
     var criticalitySelected = this.get('criticalitySelected');
     if (criticalitySelected) {
-      if (criticalitySelected.value !== "context") {
+      if (criticalitySelected.id !== "context") {
         this.set('selectedCriticalities', []);
         this.get('selectedCriticalities').forEach( function (item, index, enumerable) {
           if (item.get('isSelected')) {
@@ -146,10 +158,15 @@ App.LogBarController = Ember.ObjectController.extend({
     }
 
     //Criticality @fields.syslog_severity_code
-    if (this.get('criticalitySelected.value') == 'context') { //using advanced search or multiple global selections
+    //var criticalitySelected = this.get('criticalitySelected');
+    //var criticalitySelectedgetid = this.get('criticalitySelected.id');
+    //console.log('criticalitySelected:', criticalitySelected);
+    //console.log('criticalitySelected.getid', criticalitySelectedgetid);
+
+    if (this.get('criticalitySelected.id') == 'context') { //using advanced search or multiple global selections
       var criticalitiesReturnArray = [];
       this.get('selectedCriticalities').forEach( function (item, index, enumerable) {
-        var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
+        var criticalityString = '@fields.syslog_severity:\"' + item.get('label') + '\"';
         criticalitiesReturnArray.push(criticalityString);
       });
       returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
@@ -185,7 +202,7 @@ App.LogBarController = Ember.ObjectController.extend({
       }
     }
     return returnVal.join(' AND ');
-  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each'),
+  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','selectedCriticalities.@each'),
   updateLogsFrame: function() {
     var currentURL = frames['allLogsFrame'].location.href;
     currentURL = currentURL.split("#");
@@ -244,6 +261,7 @@ App.LogBarController = Ember.ObjectController.extend({
         this.styleLogsFrame();
         //App.logBar.updateLogsFrame();
         this.get('controller').updateLogsFrame();
+        //this.modalHide();
       },
       styleLogsFrame: function () {
         setTimeout(function () {

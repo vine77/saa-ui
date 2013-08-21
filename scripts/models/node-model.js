@@ -201,6 +201,7 @@ App.Node = DS.Model.extend({
   }.property('isActive'),
 
   isSelectedObserver: function() {
+    console.log('we are inside of isSelected observer for node');
     if ((this.get('isSelected')) && (this.get('samControlled'))) {
       App.currentSelections.get('selectedNodes').addObject(this);
     } else {
