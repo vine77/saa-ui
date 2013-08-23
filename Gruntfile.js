@@ -177,6 +177,11 @@ module.exports = function (grunt) {
         files: {
           '<%= paths.source %>/styles/theme.css': '<%= paths.source %>/styles/theme.less'
         }
+      },
+      debug: {
+        files: {
+          '<%= paths.destination %>/styles/theme.css': '<%= paths.source %>/styles/theme.less'
+        }
       }
     },
     concat: {
@@ -249,6 +254,24 @@ module.exports = function (grunt) {
       }
     },
     copy: {
+      js: {
+        files: [{
+          expand: true,
+          flatten: false,
+          cwd: '<%= paths.source %>/scripts/',
+          src: ['main.js', '**/*.js'],
+          dest: '<%= paths.destination %>/scripts/'
+        }]
+      },
+      components: {
+        files: [{
+          expand: true,
+          flatten: false,
+          cwd: '<%= paths.source %>/components/',
+          src: ['**/*.js', '**/*.css'],
+          dest: '<%= paths.destination %>/components/'
+        }]
+      },
       images: {
         files: [{
           expand: true,
@@ -328,7 +351,10 @@ module.exports = function (grunt) {
     'usemin',
     'cssmin',
     'clean:public',
-    'copy',
+    'copy:images',
+    'copy:fonts',
+    'copy:project',
+    'copy:dist',
     'clean:dist'
   ]);
 
@@ -344,6 +370,27 @@ module.exports = function (grunt) {
     'concat',
     //'uglify',
     'usemin',
+    //'cssmin',
+    'clean:public',
+    'copy:images',
+    'copy:fonts',
+    'copy:project',
+    'copy:dist',
+    'clean:dist'
+  ]);
+
+    grunt.registerTask('build-debug', [
+    'clean:dist',
+    'jshint',
+    //'test',
+    'emberTemplates:dist',
+    'less:debug',
+    //'useminPrepare',
+    //'imagemin',
+    'htmlmin',
+    'concat',
+    //'uglify',
+    //'usemin',
     //'cssmin',
     'clean:public',
     'copy',
