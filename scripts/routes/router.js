@@ -80,7 +80,7 @@ App.ApplicationRoute = Ember.Route.extend({
   redirect: function () {
     // Sunil: TODO: Remember Me
     var router = this;
-    if (App.session) {
+    if (App.session && App.session.get('isLoaded')) {
       App.session.reload();
       App.session.on('didReload', function () {
         App.login.set('loggedIn', true);
