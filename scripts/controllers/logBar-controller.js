@@ -1,5 +1,4 @@
 App.CriticalitiesController = Ember.ArrayController.extend({
-    //content: []
     content: [{"id": 0,  "label":"Debug"},
               {"id": 1,  "label":"Debug+"},
               {"id": 2,  "label":"Notice"},
@@ -14,7 +13,6 @@ App.CriticalitiesController = Ember.ArrayController.extend({
 });
 
 App.CriticalityController = Ember.ObjectController.extend({
-  //isSelected: false,
   isSelectedObserver: function() {
     if (this.get('isSelected')) {
       App.currentSelections.get('selectedCriticalities').addObject(this);
@@ -22,6 +20,21 @@ App.CriticalityController = Ember.ObjectController.extend({
       App.currentSelections.get('selectedCriticalities').removeObject(this);
     }
     App.currentSelections.propertyDidChange('selectedCriticalities');
+  }.observes('isSelected')
+});
+
+App.LogCategoriesController = Ember.ArrayController.extend({
+  content: App.definitions.logs.categories
+});
+
+App.LogCategoryController = Ember.ObjectController.extend({
+  isSelectedObserver: function() {
+    if (this.get('isSelected')) {
+      App.currentSelections.get('selectedLogCategories').addObject(this);
+    } else {
+      App.currentSelections.get('selectedLogCategories').removeObject(this);
+    }
+    App.currentSelections.propertyDidChange('selectedLogCategories');
   }.observes('isSelected')
 });
 
@@ -35,19 +48,6 @@ App.LogBarController = Ember.ObjectController.extend({
                   {"id":7,  "label":"Last 7d"},
                   {"id":8,  "label":"All Time"},
                   {"id":9,  "label":"Custom"}],
-/*  criticalities: App.CriticalitiesController.create({
-    content: [{"id": 0,  "label":"Debug"},
-              {"id": 1,  "label":"Debug+"},
-              {"id": 2,  "label":"Notice"},
-              {"id": 3,  "label":"Notice+"},
-              {"id": 4,  "label":"Warning"},
-              {"id": 5,  "label":"Warning+"},
-              {"id": 6,  "label":"Error"},
-              {"id": 7,  "label":"Error+"},
-              {"id": 8,  "label":"Critical"},
-              {"id": 9,  "label":"Critical+"},
-              {"id": "context", "label":"Multiple Selections"}]
-  }),*/
   criticalities: App.CriticalitiesController.create(),
   criticalitiesFiltered: function () {
     var returnArray = [];
@@ -58,6 +58,7 @@ App.LogBarController = Ember.ObjectController.extend({
     });
     return returnArray;
   }.property('criticalities'),
+  logCategories: App.LogCategoriesController.create(),
   criticalitySelected: null,
   shortCutTimeSelected: null,
   searchText: '',
@@ -67,9 +68,11 @@ App.LogBarController = Ember.ObjectController.extend({
   selectedNodes: [],
   selectedVms: [],
   selectedCriticalities: [],
+  selectedLogCategories: [],
   selectedNodesBinding: 'App.currentSelections.selectedNodes',
   selectedVmsBinding: 'App.currentSelections.selectedVms',
   selectedCriticalitiesBinding: 'App.currentSelections.selectedCriticalities',
+  selectedLogCategoriesBinding: 'App.currentSelections.selectedLogCategories',
   needs: ["nodes", "application", "vms"],
   logsUrl: function () {
     return this.get('controllers.application.logsUrl');
@@ -125,6 +128,9 @@ App.LogBarController = Ember.ObjectController.extend({
   vmObjects: function() {
     return App.Vm.all();
   }.property('controllers.vms.model.@each'),
+  logCategoryObjects: function () {
+    return App.definitions.logs.categories;
+  }.property(''),
   timeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
       this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
@@ -201,14 +207,27 @@ App.LogBarController = Ember.ObjectController.extend({
         returnVal.push('(' + vmsReturnArray.join(' OR ') + ')');
       }
     }
+
+    //Log Categories
+    if (this.get('selectedLogCategories').length > 0) { //using advanced search or multiple global selections
+      if (this.get('selectedLogCategories')) {
+        var returnArray = [];
+        this.get('selectedLogCategories').forEach(function (item, index, enumerable) {
+          var returnString = '@fields.category:\"' + item.get('label') + '\"';
+          returnArray.push(returnString);
+        });
+        returnVal.push('(' + returnArray.join(' OR ') + ')');
+      }
+    }
+
     return returnVal.join(' AND ');
-  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','selectedCriticalities.@each'),
+  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','selectedCriticalities.@each', 'selectedLogCategories.@each'),
   updateLogsFrame: function() {
     var currentURL = frames['allLogsFrame'].location.href;
     currentURL = currentURL.split("#");
     currentURL = atob(currentURL[1]);
     currentURL = jQuery.parseJSON(currentURL);
-    var newURL = currentURL;
+    var newURL = currentURL; 
 
     //Time
     if (this.get('shortCutTimeSelected.label') == 'Custom') {

@@ -8,6 +8,7 @@
       <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
       <li><a onclick="App.selectTab(event)">VMs</a></li>
       <li><a onclick="App.selectTab(event)">Criticalities</a></li>
+      <li><a onclick="App.selectTab(event)">Categories</a></li>
     </ul>
 
     <div class="tab-content">
@@ -25,7 +26,7 @@
           {{#each vm in vmObjects}}
             <li>
               <label {{bindAttr title="vm.name"}}>
-                {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}} 
+                {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}}
               </label>
             </li>
           {{/each}}
@@ -36,7 +37,18 @@
           {{#each criticality in criticalitiesFiltered itemController="criticality"}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}} 
+                {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}}
+              </label>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="tab-pane categories">
+        <ul class="three-columns no-disc-list">
+          {{#each logCategory in logCategories itemController="logCategory"}}
+            <li>
+              <label>
+                {{view Ember.Checkbox checkedBinding="logCategory.isSelected"}} {{logCategory.label}}
               </label>
             </li>
           {{/each}}
