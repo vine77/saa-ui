@@ -14,12 +14,12 @@
     "pnotify": "sciactive/pnotify#~1.2.0",
     "d3": "mbostock/d3#~3.2.8",
     "rickshaw": "shutterstock/rickshaw#~1.4.3",
-    "jspdf": "MrRio/jsPDF#*",
+    "jspdf": "MrRio/jsPDF",
+    "filesaver": "eligrey/FileSaver.js",
     "mousetrap": "ccampbell/mousetrap#~1.4.4"
   },
   "resolutions": {
     "jquery": "~1.10.2",
-    "ember": "1.0.0-rc.7",
-    "handlebars": "1.0.0"
+    "ember": "1.0.0-rc.7"
   }
 }
