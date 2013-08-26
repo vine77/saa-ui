@@ -12,7 +12,7 @@
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active nodes">
+      <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-disc-list">
           {{#each node in nodeObjects}}
             {{#if node.samControlled}}
@@ -21,7 +21,7 @@
           {{/each}}
         </ul>
       </div>
-      <div class="tab-pane vms">
+      <div class="tab-pane modal-overflow vms">
         <ul class="three-columns no-disc-list">
           {{#each vm in vmObjects}}
             <li>
@@ -32,8 +32,8 @@
           {{/each}}
         </ul>
       </div>
-      <div class="tab-pane criticalities">
-        <ul class="three-columns no-disc-list">
+      <div class="tab-pane modal-overflow criticalities">
+        <ul class="no-disc-list">
           {{#each criticality in criticalitiesFiltered itemController="criticality"}}
             <li>
               <label>
@@ -43,7 +43,7 @@
           {{/each}}
         </ul>
       </div>
-      <div class="tab-pane categories">
+      <div class="tab-pane modal-overflow categories">
         <ul class="three-columns no-disc-list">
           {{#each logCategory in logCategories itemController="logCategory"}}
             <li>

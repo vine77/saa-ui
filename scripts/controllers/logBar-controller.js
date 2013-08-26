@@ -227,7 +227,7 @@ App.LogBarController = Ember.ObjectController.extend({
     currentURL = currentURL.split("#");
     currentURL = atob(currentURL[1]);
     currentURL = jQuery.parseJSON(currentURL);
-    var newURL = currentURL; 
+    var newURL = currentURL;
 
     //Time
     if (this.get('shortCutTimeSelected.label') == 'Custom') {
@@ -248,18 +248,32 @@ App.LogBarController = Ember.ObjectController.extend({
     frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
   },
   reset: function () {
+
     var defaultQueryString = 'eyJzZWFyY2giOiIoQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHk6XCJXYXJuaW5nK1wiIE9SIEBmaWVsZHMuc3lzbG9nX3NldmVyaXR5OlwiRXJyb3JcIiBPUiBAZmllbGRzLnN5c2xvZ19zZXZlcml0eTpcIkNyaXRpY2FsXCIpIiwiZmllbGRzIjpbIkBzb3VyY2VfaG9zdCIsIkBtZXNzYWdlIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ3JhbSIsIkBmaWVsZHMuc3lzbG9nX3NldmVyaXR5Il0sIm9mZnNldCI6MCwidGltZWZyYW1lIjoiYWxsIiwiZ3JhcGhtb2RlIjoiY291bnQiLCJ0aW1lIjp7InVzZXJfaW50ZXJ2YWwiOjB9LCJzdGFtcCI6MTM2ODgyODA0ODYzMX0=';
     frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
 
     this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(7));
     this.set('criticalitySelected', this.criticalities.objectAt(5));
+    this.set('nodeSelected', '');
+
+    this.set('selectedNodes', []);
+    this.set('selectedVms', []);
+    this.set('selectedCriticalities', []);
+    this.set('selectedLogCategories', []);
+
+    App.currentSelections.resetSelection('selectedNodes');
+    App.currentSelections.resetSelection('selectedVms');
+    App.currentSelections.resetSelection('selectedCriticalities');
+    App.currentSelections.resetSelection('selectedLogCategories');
+
     this.set('timeFrom', '');
     this.set('timeTo', '');
-    this.set('nodeSelected', null);
     this.set('searchText', '');
+    
     setTimeout(function () {
       frames['allLogsFrame'].sbctl('hide', true);
     }, 3000);
+
   },
   advancedSearch: function (model) {
     var controller = this;
@@ -276,11 +290,11 @@ App.LogBarController = Ember.ObjectController.extend({
       didInsertElement: function () {
         $('#advanced-search-modal').modal('show');
       },
-      updateLogsFrame: function () { 
+      updateLogsFrame: function () {
         this.styleLogsFrame();
         //App.logBar.updateLogsFrame();
         this.get('controller').updateLogsFrame();
-        //this.modalHide();
+        this.modalHide();
       },
       styleLogsFrame: function () {
         setTimeout(function () {
