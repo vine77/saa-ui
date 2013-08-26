@@ -36,5 +36,27 @@ App.ApplicationController = Ember.ArrayController.extend({
   },
   updateCurrentPath: function () {
     App.set('currentPath', this.get('currentPath'));
-  }.observes('currentPath')
+  }.observes('currentPath'),
+  // Debug Toolbar actions
+  refreshNodes: function () {
+    App.Node.all().clear();
+    if (App.mtWilson.get('isInstalled') === true) {
+      App.TrustNode.find().then(function() {
+        App.Node.find();
+      });
+    } else {
+      App.Node.find();
+    }
+  },
+  refreshVms: function () {
+    App.Vm.all().clear();
+    App.Vm.find();
+  },
+  bypassLogin: function () {
+    App.nova.set('exists', true);
+    App.openrc.set('exists', true);
+    App.login.set('loggedIn', true);
+    App.application.set('isEnabled', true);
+    this.transitionTo('index');
+  }
 });

@@ -133,7 +133,7 @@ App.readableSize = function (size) {
 App.numberWithCommas = function (number) {
     if (number){
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    } 
+    }
 }
 
 App.isOdd = function (number) {
@@ -221,7 +221,7 @@ Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
 });
 
 Ember.Handlebars.registerBoundHelper('numberWithCommas', function (value) {
-  return App.numberWithCommas(value); 
+  return App.numberWithCommas(value);
 });
 
 // Miscellaneous helpers
@@ -256,7 +256,7 @@ App.selectTab = function (event) {
   var verticalRowPosition = 55;
   var leftPosition = 10;
 
-  if (reportContent.get(enumerablePath)) { 
+  if (reportContent.get(enumerablePath)) {
     reportContent.get(enumerablePath).forEach(function (item, index, enumerable) {
       rowContent.forEach(function (item2, index2, enumerable2) {
         if (rowCounter % 22 == 0 && rowCounter != 0) {
@@ -284,7 +284,7 @@ App.percentageToRange = function (value, minimum, maximum) {
 
 App.associativeToNumericArray = function (associativeArray) {
   var numericArray = [];
-  for (var key in associativeArray) { 
+  for (var key in associativeArray) {
     numericArray.push(associativeArray[key]);
   }
   return numericArray;
@@ -313,3 +313,8 @@ App.errorMessage = function (response, separator) {
     return '';
   }
 };
+
+// Keyboard shortcuts
+Mousetrap.bind('shift+ctrl+alt+i', function (e) {
+  $('footer').toggle();
+});
