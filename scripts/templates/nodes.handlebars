@@ -291,7 +291,7 @@
                     <div class="tab-pane vms">
                       <ul>
                         {{#each vm in node.vms}}
-                          <li>{{#linkTo vmsVm vm}}{{vm.name}}{{/linkTo}}</li>
+                          <li>{{#linkTo "vmsVm" vm}}{{vm.name}}{{/linkTo}}</li>
                         {{else}}
                           <li>No VMs</li>
                         {{/each}}
@@ -350,7 +350,7 @@
                           {{#each mle in node.trustNode.trustMle}}
                             <tr>
                               <td>{{na mle.mleType}}</td>
-                              <td>{{#linkTo trust.mle mle}}{{na mle.name}}{{/linkTo}}</td>
+                              <td>{{#linkTo "trust.mle" mle}}{{na mle.name}}{{/linkTo}}</td>
                               <td>{{na mle.oemname}}</td>
                               <td>{{na mle.attestationType}}</td>
                               <td>{{na mle.osname}}</td>

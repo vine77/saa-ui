@@ -3,7 +3,7 @@
     <div class="content">
       <div class="header row-fluid">
         <div class="actions">
-          {{#linkTo flavors.create class="btn"}}<i class="icon-plus"></i> Create Flavor{{/linkTo}}
+          {{#linkTo "flavors.create" class="btn"}}<i class="icon-plus"></i> Create Flavor{{/linkTo}}
           <a {{action refresh}} class="btn"><i class="icon-refresh"></i> Refresh Flavors</a>
         </div>
         {{!--
@@ -96,7 +96,7 @@
                     <div class="tab-pane vms">
                       <ul>
                         {{#each vm in flavor.vms}}
-                          <li>{{#linkTo vmsVm vm}}{{vm.name}}{{/linkTo}}</li>
+                          <li>{{#linkTo "vmsVm" vm}}{{vm.name}}{{/linkTo}}</li>
                         {{else}}
                           <li>No VMs</li>
                         {{/each}}

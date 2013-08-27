@@ -55,9 +55,9 @@ App.ApplicationController = Ember.ArrayController.extend({
   bypassLogin: function () {
     App.nova.set('exists', true);
     App.openrc.set('exists', true);
-    App.login.set('loggedIn', true);
-    App.application.set('isEnabled', true);
-    this.transitionTo('index');
+    App.state.set('loggedIn', true);
+    App.session.set('bypass', true);
+    this.transitionToRoute('dashboard');
   },
   initModels: function() {
     // Load data from APIs

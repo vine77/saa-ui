@@ -64,7 +64,7 @@ Ember.Route.reopen({
         
         // Not using 'isLoaded'. On error, the state is reset to 'loaded.saved' (from modelhelper). 
         // Hence isLoaded may be misleading.
-        var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) : false;
+        var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) || App.session.get('bypass') : false;
         
         if(!isLoaded) {
             // Load current session
