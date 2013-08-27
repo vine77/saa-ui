@@ -3,8 +3,6 @@ App.SettingsUsersController = Ember.ArrayController.extend(App.Filterable, App.S
   columns: ['username'],
   
   editProfile: function(user) {
-    App.login.set('username', user.get('username'));
-    App.login.set('email', user.get('email'));
     this.transitionToRoute('profile');
   },
 

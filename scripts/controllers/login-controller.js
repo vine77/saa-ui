@@ -1,79 +1,42 @@
-App.LoginController = Ember.Controller.extend({
-  usernameBinding: 'App.login.username',
-  passwordBinding: 'App.login.password',
-  rememberMeBinding: 'App.login.rememberMe',
-  loggedInBinding: 'App.login.loggedIn',  
-  messageBinding: 'App.login.message',  
-  editProfileBinding: 'App.login.editProfile',
-  changingPasswordBinding: 'App.login.changingPassword',
-  configMailServerBinding: 'App.login.configMailServer',
-  resetPasswordBinding: 'App.login.resetPassword',
-  oldPasswordBinding: 'App.login.oldPassword',
-  newPassword1Binding: 'App.login.newPassword1',
-  newPassword2Binding: 'App.login.newPassword2',
-  showNotification: function(message) {
-    App.login.set('message', message);
-    $('#login-notification').show();
-  },
-  setDisable: function(state, element) {
-    if (typeof element === 'undefined') element = '';
-    $('#login ' + element + ' :input').prop('disabled', state);
-  },
-  forgot_password: function(){
-    App.login.set('resetPassword', true);
-    this.showNotification('Please confirm user name');
-  },
-  reset: function(){
-      var controller = this;
-      username = App.login.get('username')
-      var user = App.User.find(username);
-      controller.setDisable(true);
-
-      var resetPassword = function () {
-        if(user.get('resetPassword')){
-            user.reload();
+App.LoginController = App.FormController.extend({
+    username: '',
+    password: '',
+    id: '#login',
+    validated_fields: ['username', 'password'],    
+    fieldname: {
+        username: 'user name',
+        password: 'password'
+    },
+    createSession: function(route) {
+        var controller = this;
+        var record = {'username': controller.get('username'), 'password': controller.get('password')};
+        if(controller.prepare_commit(record))
+        {
+            controller.set('password', '');
+            var updateUI = function(message) {
+                return function(model, controller, route) {
+                    controller.showNotification(message);
+                    controller.reset_form();
+                    }
+            };
+            var getUserProfile = function(model, controller, route, error_args) {
+                var username = controller.get('username');
+                var user = App.User.find(username);
+                route.controllerFor('profile').set('message', 'Please change your password.');
+                route.controllerFor('profile').set('redirectOnSave', 'login');
+                route.controllerFor('profile').set('getMailServer', true);
+                user.on('didLoad', function() {
+                                        route.controllerFor('profile').initFields(user);
+                                    });
+                route.transitionTo('profile', user);
+            };
+            var session = App.Session.createRecord(record);
+            var handlers = {
+                'didCreate' : {postFun:updateUI(''), nextRoute:'index'},
+                'becameError' : {postFun:updateUI('Invalid Credentials.'), resetState:true},
+                'becameInvalid' : {postFun:getUserProfile}
+            };
+            App.modelhelper.doTransaction(session, controller, route, handlers);
         }
-        user.set('resetPassword', true);
-        user.on('didUpdate', function () {
-          App.login.set('resetPassword', false);
-          user.set('resetPassword', false);
-          controller.setDisable(false);
-          controller.showNotification("A temporary password has been generated and emailed.");
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');
-        });
-        user.on('becameError', function () {
-          App.login.set('resetPassword', false);
-          controller.setDisable(false);
-          controller.showNotification("Failed to generate temporary password.");
-          this.get('stateManager').transitionTo('loaded.saved');          
-          this.reload().then(function(){
-          user.set('resetPassword', false);
-          });
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');
-        });
-        user.get('transaction').commit();
-      };
-
-      if (user.get('isLoaded')) {
-        resetPassword();
-      } else {
-        user.on('didLoad', resetPassword);
-        user.on('becameError', function () {
-          controller.setDisable(false);
-          controller.showNotification("Failed to generate temporary password.");
-          this.get('stateManager').transitionTo('loaded.saved');          
-          this.reload();
-          App.login.set('resetPassword', false);
-          user.set('resetPassword', false);
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');
-        });
-        user.get('transaction').commit();
-      }
-  }
+    }
 });

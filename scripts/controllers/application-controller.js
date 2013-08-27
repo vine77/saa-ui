@@ -3,7 +3,7 @@ App.ApplicationController = Ember.ArrayController.extend({
   buildDateBinding: 'App.Build.firstObject.date',
   //buildVersionBinding: 'App.Build.firstObject.version',
   //buildDateBinding: 'App.build.date',
-  loggedInBinding: 'App.login.loggedIn',
+  loggedInBinding: 'App.state.loggedIn',
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   horizonUrl: function() {
     return 'http://' +window.location.hostname + '/horizon';
@@ -58,5 +58,29 @@ App.ApplicationController = Ember.ArrayController.extend({
     App.login.set('loggedIn', true);
     App.application.set('isEnabled', true);
     this.transitionTo('index');
-  }
+  },
+  initModels: function() {
+    // Load data from APIs
+    App.mtWilson.check().then(function() {
+      if (App.application.get('isEnabled')) {
+        if (App.mtWilson.get('isInstalled') === true) {
+          App.TrustNode.find().then(function() {
+            App.Node.find();
+          });
+        } else {
+          App.Node.find();
+        }
+        App.Vm.find();
+      }
+    },
+    function() {
+      if (App.application.get('isEnabled')) {
+        App.Node.find();
+        App.Vm.find();
+      }
+    });
+    App.users = App.User.find();
+    var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.users];
+    return Ember.RSVP.all(promises);
+  }  
 });

@@ -1,6 +1,7 @@
 App.Router.map(function () {
   this.resource('login');
-  this.resource('profile');
+  this.resource('tempPassword');
+  this.resource('profile', {path: 'profiles/:user_id'});
   this.resource('modal');
   this.resource('dashboard');
   this.resource('help');
@@ -47,207 +48,59 @@ App.Router.map(function () {
   });
 });
 
+Ember.Route.reopen({
+  activate: function () {
+    var route = this;
+    var currentRoute = this.get('routeName');
+    var noauth = ['login', 'profile', 'tempPassword']
+    if($.inArray(currentRoute, noauth) == -1)
+    {
+        if((currentRoute != 'application') && (currentRoute != 'index'))
+        {
+            var context = this.get('context');
+            App.state.set('route', currentRoute);
+            App.state.set('context', context);
+        }
+        
+        // Not using 'isLoaded'. On error, the state is reset to 'loaded.saved' (from modelhelper). 
+        // Hence isLoaded may be misleading.
+        var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) : false;
+        
+        if(!isLoaded) {
+            // Load current session
+            var initAndLoad = function(model, controller, route) {
+                    App.state.set('loggedIn', true);
+                    route.controllerFor('application').initModels().then(function () {
+                          route.transitionTo('index');
+                        }, function () {
+                            route.transitionTo('index');
+                        });            
+                };
+            var unloadModel = function(model, controller, route) {
+                    model.unloadRecord();
+                };
+            App.session = App.Session.find('current_session');
+            var handlers = {
+                    'didLoad' : {postFun:initAndLoad},
+                    'becameError' : {postFun:unloadModel, nextRoute:'login', resetState:true}
+                };
+            App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
+        }
+    }
+    this._super();    
+  }
+});
+
 // Application
 App.ApplicationRoute = Ember.Route.extend({
-  initData: function() {
-    // Load data from APIs
-    App.mtWilson.check().then(function() {
-      // Load data from APIs
-      if (App.application.get('isEnabled')) {
-        if (App.mtWilson.get('isInstalled') === true) {
-          App.TrustNode.find().then(function() {
-            App.Node.find();
-          });
-        } else {
-          App.Node.find();
-        }
-        App.Vm.find();
-      }
-    },
-    function() {
-      if (App.application.get('isEnabled')) {
-        App.Node.find();
-        App.Vm.find();
-      }
-    });
-
-    //Workaround: This call returns error 410 - ignored
-    //App.mtWilson.check();
-    App.users = App.User.find();
-    var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.mailserver.check(), App.users];
-    return Ember.RSVP.all(promises);
-  },
-  redirect: function () {
-    // Sunil: TODO: Remember Me
-    var router = this;
-    if (App.session && App.session.get('isLoaded')) {
-      App.session.reload();
-      App.session.on('didReload', function () {
-        App.login.set('loggedIn', true);
-        router.initData().then(function () {
-          router.transitionTo('index');
-        }, function () {
-          router.transitionTo('index');
-        });
-      });
-      App.session.get('transaction').commit();
-    } else {
-      App.session = App.Session.find('current_session');
-      App.session.on('didLoad', function () {
-        App.login.set('loggedIn', true);
-        router.initData().then(function () {
-          router.transitionTo('index');
-        }, function () {
-          router.transitionTo('index');
-        });
-      });
-      App.session.on('becameError', function () {
-        // Reload doesn't happen if the data is in error state. This is to enable reload.
-        this.get('stateManager').transitionTo('loaded.saved');
-        router.transitionTo('login');
-      });
-      App.session.get('transaction').commit();
-    }
-
-  },
   events: {
-    login: function () {
-      if (!$('#username').val()) {
-        $('#username').tooltip({
-          title: 'Please enter a username.',
-          placement: 'right',
-          trigger: 'manual'
-        }).tooltip('show');
-        return false;
-      } else if (!$('#password').val()) {
-        $('#password').tooltip({
-          title: 'Please enter a password.',
-          placement: 'right',
-          trigger: 'manual'
-        }).tooltip('show');
-        return false;
-      } else {
-        var router = this;
-        router.controllerFor('login').setDisable(true);
-        var redirectPage = function () { 
-          router.redirect();
-        }
-        var username = App.login.get('username');
-        var password = App.login.get('password');
-        App.login.set('password', '');
-        var session = App.Session.createRecord({"username": username, "password": password});
-        session.on('didCreate', redirectPage);
-        session.on('becameInvalid', function (error) {
-          router.controllerFor('login').setDisable(false);
-          ret = JSON.parse(error.error)
-          if(ret.set_profile)
-          {
-            App.login.set('editProfile', true);
-            if(ret.mail_server)
-                App.login.set('configMailServer', true);
-            App.login.set('retPath', 'login');
-            router.transitionTo('profile')
-            router.controllerFor('profile').showNotification('Please enter the profile information.');
-            $('#profile-notification').show();            
-          }
-          else if (ret.change_password)
-          {
-            App.login.set('changingPassword', true);
-            App.login.set('retPath', '');
-            router.controllerFor('login').showNotification('Please change the password');
-          }
-        });
-        session.on('becameError', function () {
-          router.controllerFor('login').setDisable(false);
-          router.controllerFor('login').showNotification('Invalid Credentials');
-          this.get('stateManager').transitionTo('loaded.saved');
-        });
-        session.get('transaction').commit();
-      }
-    },
-    logout: function () {
-      var router = this;
-      App.session.deleteRecord();
-      App.session.on('didDelete', function () {
-        App.login.set('loggedIn', false);
-        router.transitionTo('login');
-        location.reload();  // Refresh page for full teardown
-      });
-      App.session.get('transaction').commit();
-    },
-    changePassword: function () {
-      var router = this;
-      var isValid = true;
-      var fields = ['#username', '#old_password', '#new_password_1', '#new_password_2'];
-      var types = ['username', 'password', 'password', 'password'];
-      for (var i=0; i < fields.length; i++) {
-        if (!$(fields[i]).val()) {
-          $(fields[i]).tooltip({
-            title: 'Please enter a ' + types[i] + '.',
-            placement: 'right',
-            trigger: 'manual'
-          }).tooltip('show');
-          isValid = false;
-        }
-      }
-      if (!isValid) return;
-      var username = App.login.get('username');
-      var old_password = App.login.get('oldPassword');
-      var new_password = App.login.get('newPassword1');
-      var new_password_2 = App.login.get('newPassword2');
-      App.login.set('oldPassword', '');
-      App.login.set('newPassword1', '');
-      App.login.set('newPassword2', '');
-      if (new_password != new_password_2) {
-        router.controllerFor('login').showNotification("Passwords don't match");
-        return;
-      }
-
-      router.controllerFor('login').setDisable(true);
-      var user = App.User.find(username);
-
-      var changePassword = function () {
-        user.set('oldPassword', old_password);
-        user.set('newPassword', new_password);
-        user.on('didUpdate', function () {
-          App.login.set('changingPassword', false);
-          router.controllerFor('login').showNotification("Password changed successfully");
-          router.controllerFor('login').setDisable(false);
-          if(App.login.get('retPath') != '') {
-            router.transitionTo(App.login.get('retPath'));
-          }
-          user.reload();
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');          
-        });
-        user.on('becameError', function () {
-          router.controllerFor('login').showNotification("Unable to change the password");
-          router.controllerFor('login').setDisable(false);
-          this.get('stateManager').transitionTo('loaded.saved');
-          this.reload();          
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');          
-        });
-        user.get('transaction').commit();
-      };
-
-      if (user.get('isLoaded')) {
-        changePassword();
-      } else {
-        user.on('didLoad', changePassword);
-        user.on('becameError', function () {
-          router.controllerFor('login').showNotification("Unable to change the password");
-          router.controllerFor('login').setDisable(false);
-          this.get('stateManager').transitionTo('loaded.saved');
-          this.reload();          
-          user.off('didLoad');
-          user.off('didUpdate');
-          user.off('becameError');          
-        });
-        user.get('transaction').commit();
-      }
+    logout: function() {
+        var cleanup = function() {
+                location.href = '/';
+            };
+        App.session.deleteRecord();
+        var handlers = {'didDelete' : {postFun:cleanup, nextRoute:'login'}};
+        App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
     },
     showModal: function (modalName, controllerName) {
       App.ModalView.create({
@@ -260,9 +113,18 @@ App.ApplicationRoute = Ember.Route.extend({
 
 // Index
 App.IndexRoute = Ember.Route.extend({
-  redirect: function () {
-    this.transitionTo('dashboard');
-  }
+    redirect: function() {
+        var route = App.state.get('route');
+        var context = App.state.get('context');
+        if(context != null)
+        {
+            this.transitionTo(route, context);
+        }
+        else
+        {
+            this.transitionTo(route);
+        }
+    }
 });
 
 // Dashboard
@@ -270,6 +132,65 @@ App.DashboardRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     controller.set('model', App.Event.find());
   }
+});
+
+App.LoginRoute = Ember.Route.extend({
+    events: {
+        login: function () {
+            this.controller.createSession(this);
+        }
+    }
+});
+
+App.TempPasswordRoute = Ember.Route.extend({
+    setupController: function(controller, model) {
+        this._super(controller, model);
+    },
+    events: {
+        generate_password: function() {
+            this.controller.generatePassword(this);
+        }        
+    }
+});
+
+App.ProfileRoute = Ember.Route.extend({
+    model: function(params) {
+        return App.User.find(params.user_id);
+    },
+    setupController: function(controller, model) {
+        if(!model.get('isLoaded')) {
+            model.on('didLoad', function() {
+                    model.off('didLoad');
+                    controller.initFields(model);
+                });
+        }
+        else {
+            controller.initFields(model);
+        }
+        
+        if(controller.getMailServer)
+        {
+            var mail_controller = this.controllerFor('settings.mailserver');            
+            var mail_server = App.Mailserver.find('default');
+            mail_controller.set('model', mail_server);
+            mail_server.on('didLoad', function() {
+                                    mail_controller.initFields(mail_server);
+                                });            
+            mail_controller.set('standalone', false);
+        }
+        this._super(controller, model);
+    },
+    events: {
+        save: function () {
+            this.controller.saveProfile(this);
+        },
+        test_email: function() {
+            this.controller.sendTestEmail(this);
+        },
+        reset: function() {
+            this.controller.resetProfile(this);
+        }
+    }
 });
 
 // Nodes
@@ -298,6 +219,7 @@ App.NodesRoute = Ember.Route.extend({
   }
   */
 });
+
 App.NodesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
@@ -480,4 +402,34 @@ App.SettingsLogRoute = Ember.Route.extend({
   {
     return App.settingsLog.fetch();
   }
+});
+
+App.SettingsMailserverRoute = Ember.Route.extend({
+    model: function() {
+        return App.Mailserver.find('default');
+    },
+    setupController: function(controller, model) {
+        if(!model.get('isLoaded')) {
+            model.on('didLoad', function() {
+                    controller.initFields(model);
+                    model.off('didLoad');
+                });
+        }
+        else {
+            controller.initFields(model);    
+        }
+        controller.set('standalone', true);
+        this._super(controller,model);
+    },
+    events: {
+      save: function () {
+        this.controller.saveConfig(this, false);
+      },
+      test_email: function() {
+        this.controller.saveConfig(this, true);
+      },
+      reset: function () {
+        this.controller.resetConfig(this);
+      }
+    }
 });

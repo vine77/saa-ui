@@ -18,7 +18,7 @@ App.Application = Ember.Object.extend({
     var self = this;
     var timerInterval = 10000;
     setInterval(function () {
-      if (App.login.get('loggedIn')) {
+      if (App.state.get('loggedIn')) {
         // Update contextual graphs
         if (App.contextualGraphs.get('selectedNode')) {
           App.graphs.graph(App.contextualGraphs.get('selectedNode.id'), App.contextualGraphs.get('selectedNode.name'), 'node');

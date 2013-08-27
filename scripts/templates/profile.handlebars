@@ -1,96 +1,58 @@
-{{#if notification}}
- <div id="profile-notification" class="notification">
-   <div class="alert">
-     <button type="button" class="close" onclick="$('#profile-notification').hide()">&times;</button>
-     {{notification}}
-   </div>
- </div>
-{{/if}}
-
-<section id="profile" class="container">
-<h3>Edit User Profile</h3>
+<section id="profile">
+    {{#if message}}
+     <div id="profile-notification" class="notification">
+       <div class="alert">
+         <button type="button" class="close" {{action removeNotification}}>&times;</button>
+         {{message}}
+       </div>
+     </div>
+    {{/if}}
+    <h3>Edit User Profile</h3>
     <form class="form-horizontal well-clean shadow-lifted">
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="App.login.username" id="profile-username" placeholder="Username" disabled="true"}}
+        {{view Ember.TextField valueBinding="username" id="profile-username" placeholder="Username" disabled="true"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Current Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="App.login.oldPassword" id="profile-old_password" placeholder="Current Password" type="password"  autofocus="autofocus"}}
+        {{view Ember.TextField valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="App.login.newPassword1" id="profile-new_password_1" placeholder="New Password" type="password"}}
+        {{view Ember.TextField valueBinding="newPassword1" id="profile-newPassword1" placeholder="New Password" type="password"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="App.login.newPassword2" id="profile-new_password_2" placeholder="New Password again" type="password"}}
+        {{view Ember.TextField valueBinding="newPassword2" id="profile-newPassword2" placeholder="New Password again" type="password"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Email address</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="App.login.email" id="profile-email" placeholder="Email address"}}
+        {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
       </div>
     </div>
         
     </form>
     
-    {{#if App.login.configMailServer}}
-        <h3>Configure Mail Server</h3>
-        <form class="form-horizontal well-clean shadow-lifted">
-        <div class="control-group">
-          <label class="control-label">Hostname</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="App.mailserver.hostname" id="hostname" placeholder="Hostname or IP Address"}}
-          </div>
-        </div>
-          
-        <div class="control-group">
-          <label class="control-label">Port</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="App.mailserver.port" id="port" placeholder="Port"}}
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Username</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="App.mailserver.username" id="username" placeholder="Username"}}
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Password</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="App.mailserver.password" id="password" placeholder="Password" type="password"}}
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Email</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="App.mailserver.sender_email" id="sender_email" placeholder="Email (From address)"}}
-          </div>
-        
-        <div class="control-group">
-            <button class="btn btn-primary" type="button" {{action test_email target=controller}}>Send Test Email</button>
-        </div>        
-        </div>            
-        </form>
+    {{#if getMailServer}}
+        {{render 'settings.mailserver'}}
     {{/if}}
-
-    <input type="submit" class="btn btn-primary" value="Save" {{action "save" target=controller}}>
     
+    <div class="form-actions">
+        <input type="submit" class="btn btn-primary" value="Save" {{action save}}>
+        <button class="btn btn-danger" type="button" {{action reset}}>Cancel</button>
+    </div>
+        
 </section>
