@@ -172,7 +172,7 @@ App.Vm = DS.Model.extend({
   }.property('isActive'),
 
   isSelectedObserver: function() {
-    if ((this.get('isSelected')) && (this.get('samControlled'))) {
+    if ((this.get('isSelected'))) {
       App.currentSelections.get('selectedVms').addObject(this);
     } else {
       App.currentSelections.get('selectedVms').removeObject(this);

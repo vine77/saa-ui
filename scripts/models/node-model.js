@@ -201,7 +201,7 @@ App.Node = DS.Model.extend({
   }.property('isActive'),
 
   isSelectedObserver: function() {
-    if ((this.get('isSelected')) && (this.get('samControlled'))) {
+    if ((this.get('isSelected')) && (this.get('isAgentInstalled'))) {
       App.currentSelections.get('selectedNodes').addObject(this);
     } else {
       App.currentSelections.get('selectedNodes').removeObject(this);
@@ -235,20 +235,25 @@ App.Node = DS.Model.extend({
   name: DS.attr('string'),
   logsUrl: DS.attr('string'),
   tier: DS.attr('string'),
-  samControlled: DS.attr('boolean'),
+  samControlled: DS.attr('number'),  // 0: Not under SAM control (agent not installed), 1: SAM monitored, 2: SAM assured (can place SLA VMs on node)
+  samRegistered: DS.attr('boolean'),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
 
   // Computed properties
-
+  isAgentInstalled: function () {
+    return Boolean(this.get('samControlled'));
+  }.property('samControlled'),
+  isAssured: function () {
+    return this.get('samControlled') === 2;
+  },
   isTrustRegistered: function () {
     if (this.get('trustNode.ipaddress')) {
       return true;
     } else {
       return false;
     }
-  }.property('trustNode.ipaddress'),  
-  
+  }.property('trustNode.ipaddress'),
   isTrustRegisteredMessage: function () {
     if (this.get('trustNode.ipaddress')) {
       return 'Currently registered with Trust Server';
@@ -256,7 +261,6 @@ App.Node = DS.Model.extend({
       return 'Not registered with Trust Server';
     }
   }.property('trustNode.ipaddress'),
-  
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),
@@ -282,7 +286,7 @@ App.Node = DS.Model.extend({
   }.property('schedulerMark', 'isScheduled'),
   healthMessage: function () {
     var healthMessage = '';
-    if (!this.get('samControlled') && (this.get('status.health') === App.UNKNOWN) || App.isEmpty(this.get('status.health'))) {
+    if (!this.get('isAgentInstalled') && (this.get('status.health') === App.UNKNOWN) || App.isEmpty(this.get('status.health'))) {
       return 'Not under ' + App.application.get('title') + ' control';
     }
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
@@ -294,16 +298,11 @@ App.Node = DS.Model.extend({
       healthMessage = this.get('status.long_message').capitalize();
     }
     return healthMessage;
-  }.property('status.health', 'status.long_message', 'status.short_message', 'samControlled'),
+  }.property('status.health', 'status.long_message', 'status.short_message', 'isAgentInstalled'),
 
   // Observers
   graphObserver: function () {
     return App.graphs.graph(this.get('id'), this.get('name'), 'node');
   }.observes('isSelected', 'isExpanded')
-
-  //didLoad: function(){
-    //Notify nessecary observers hotfix
-  //  App.logBar.propertyDidChange('nodesLookup');
-  //}
 
 });
