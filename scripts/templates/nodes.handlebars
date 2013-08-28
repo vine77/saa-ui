@@ -51,8 +51,8 @@
               {{/view}}
             </th>
             <th {{bindAttr class=":column-small :sortable isColumn5Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Trust Registered"}}
-                <a {{action "sortModel" "isTrustRegistered"}}><i class="icon-ok icon-large"></i></a>
+              {{#view App.TooltipView title="Assured"}}
+                <a {{action "sortModel" "isAssured"}}><i class="icon-trophy icon-large"></i></a>
               {{/view}}
             </th>
             <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}>
@@ -109,13 +109,19 @@
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
-                  <i {{bindAttr class=":icon-large node.status.trust:icon-lock:icon-unlock node.status.trust:trusted:untrusted"}}></i>
-                {{/view}}
+                {{#if node.isTrustRegistered}}
+                  {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
+                    <i {{bindAttr class=":icon-large node.status.trust:icon-lock:icon-unlock node.status.trust:trusted:untrusted"}}></i>
+                  {{/view}}
+                {{else}}
+                  {{#view App.TooltipView titleBinding="node.isTrustRegisteredMessage"}}
+                    <i {{bindAttr class=":icon-large :icon-unlock :notTrustRegistered"}}></i>
+                  {{/view}}
+                {{/if}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.isTrustRegisteredMessage"}}
-                  <i {{bindAttr class=":icon-large node.isTrustRegistered:icon-ok:icon-minus node.isTrustRegistered:trusted:untrusted"}}></i>
+                {{#view App.TooltipView titleBinding="node.assuredMessage"}}
+                  <i {{bindAttr class=":icon-large :icon-trophy node.isAssured:assured:unassured"}}></i>
                 {{/view}}
               </td>
               <td>
