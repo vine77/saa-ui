@@ -44,6 +44,7 @@
         </div>
       </div>
     </form>
+
     <form id="quantumForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Quantum</legend>
@@ -65,5 +66,29 @@
         </div>
       </div>
     </form>
+
+    {{#if App.application.isEnabled}}
+      <form id="overridesForm" class="form-horizontal" action="/nova/configuration" method="post">
+        <legend>Configuration Overrides</legend>
+        <div class="control-group">
+          <label class="control-label" for="">Rabbit Host IP</label>
+          <div class="controls">
+            {{view App.UrlField valueBinding="App.overrides.rabbitHostIp"}}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="">Horizon Host IP</label>
+          <div class="controls">
+            {{view App.UrlField valueBinding="App.overrides.horizonHostIp"}}
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
+            <i id="overridesLoading" class="loading hide"></i>
+          </div>
+        </div>
+      </form>
+    {{/if}}
   </div>
 </section>

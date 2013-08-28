@@ -13,5 +13,8 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   },
   uploadQuantum: function () {
     App.quantum.upload();
+  },
+  updateOverrides: function () {
+    App.overrides.update();
   }
 });

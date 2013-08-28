@@ -387,6 +387,9 @@ App.TrustMleRoute = Ember.Route.extend({
 
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
+  model: function() {
+    return App.overrides.fetch();
+  },
   redirect: function () {
     this.transitionTo('settings.upload');
   }
@@ -401,6 +404,13 @@ App.SettingsLogRoute = Ember.Route.extend({
   model: function()
   {
     return App.settingsLog.fetch();
+  }
+});
+
+App.SettingsUploadRoute = Ember.Route.extend({
+  model: function ()
+  {
+    return App.overrides.fetch();
   }
 });
 
