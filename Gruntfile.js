@@ -339,7 +339,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jshint',
+    //'jshint',
     //'test',
     'emberTemplates:dist',
     'less:dist',
