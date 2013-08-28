@@ -1,7 +1,7 @@
 <section id="upload">
   <h3>Upload Files</h3>
   <div class="well-clean shadow-lifted">
-    <form id="novaForm" {{bindAttr class="exists :form-horizontal"}} action="/nova/configuration" method="post" enctype="multipart/form-data">
+    <form id="novaForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Nova</legend>
       <div class="control-group">
@@ -23,7 +23,7 @@
         </div>
       </div>
     </form>
-    <form id="openrcForm" {{bindAttr class="exists :form-horizontal"}} action="/nova/configuration" method="post" enctype="multipart/form-data">
+    <form id="openrcForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Credentials</legend>
       <div class="control-group">
@@ -40,6 +40,27 @@
       <div class="control-group">
         <div class="controls">
           <a class="btn btn-primary" {{action uploadOpenrc}}>Upload File</a>
+          <i class="loading hide"></i>
+        </div>
+      </div>
+    </form>
+    <form id="quantumForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
+      <input type="hidden" name="app" value="sam">
+      <legend>Quantum</legend>
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Upload <code>ovs_quantum_plugin.ini</code> (required)</label>
+        <div class="controls">
+          <div {{bindAttr class=":fileupload quantumExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="quantumFile">
+            <div class="input-append">
+              <div class="uneditable-input span3"><i {{bindAttr class="quantumSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">ovs_quantum_plugin.ini</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="quantumFile"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="instructions">Please upload your OpenStack Quantum network configuration file (<code>ovs_quantum_plugin.ini</code>). This file can be found at the file path <code>/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini</code>.</p>
+      <div class="control-group">
+        <div class="controls">
+          <a class="btn btn-primary" {{action uploadQuantum}}>Upload File</a>
           <i class="loading hide"></i>
         </div>
       </div>

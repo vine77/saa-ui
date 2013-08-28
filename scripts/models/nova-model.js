@@ -36,7 +36,7 @@ App.Nova = Ember.Object.extend({
             // File uploaded successfully
             $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
             // Start SAM
-            if (App.openrc.get('exists')) {
+            if (App.openrc.get('exists') && App.quantum.get('exists')) {
               App.nova.start();
             } else {
               App.nova.set('exists', true);

@@ -1,20 +1,20 @@
-App.Openrc = Ember.Object.extend({
+App.Quantum = Ember.Object.extend({
   exists: false,
   success: false,
   check: function () {
-    // Check if openrc file exists
+    // Check if quantum file exists
     hash = {
-      url: '/api/v1/openrcconfig',
+      url: '/api/v1/quantumconfig',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
-        App.log(xhr.status + ' response from GET /api/v1/openrcconfig: ' + xhr.statusText);
+        App.log(xhr.status + ' response from GET /api/v1/quantumconfig: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
-            App.openrc.set('exists', true);
+            App.quantum.set('exists', true);
             break;
           default:
-            App.openrc.set('exists', false);
+            App.quantum.set('exists', false);
         }
       }
     };
@@ -22,24 +22,24 @@ App.Openrc = Ember.Object.extend({
     return App.ajaxPromise(hash);
   },
   upload: function () {
-    // Upload openrc file
-    var formData = new FormData($('#openrcForm')[0]);
-    $('#openrcForm i.loading').removeClass('hide');
+    // Upload quantum file
+    var formData = new FormData($('#quantumForm')[0]);
+    $('#quantumForm i.loading').removeClass('hide');
     hash = {
       type: 'PUT',
-      url: '/api/v1/openrcconfig',
+      url: '/api/v1/quantumconfig',
       data: formData,
       complete: function (xhr) {
-        App.log(xhr.status + ' response from PUT /api/v1/openrcconfig: ' + xhr.statusText);
+        App.log(xhr.status + ' response from PUT /api/v1/quantumconfig: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
             // File uploaded successfully
-            $('#openrcForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
+            $('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
             // Start SAM
-            if (App.nova.get('exists') && App.quantum.get('exists')) {
+            if (App.nova.get('exists') && App.openrc.get('exists')) {
               App.nova.start();
             } else {
-              App.openrc.set('exists', true);
+              App.quantum.set('exists', true);
               $('i.loading').addClass('hide');
               App.event('File uploaded successfully', App.SUCCESS);
             }
@@ -66,4 +66,4 @@ App.Openrc = Ember.Object.extend({
   }
 });
 
-App.openrc = App.Openrc.create();
+App.quantum = App.Quantum.create();

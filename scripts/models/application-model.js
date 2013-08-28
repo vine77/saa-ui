@@ -12,8 +12,8 @@ App.Application = Ember.Object.extend({
   }.property(),
   health: App.SUCCESS,
   isEnabled: function () {
-    return App.nova.get('exists') && App.openrc.get('exists') && this.get('health') === App.SUCCESS;
-  }.property('App.nova.exists', 'App.openrc.exists', 'health'),
+    return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists') && this.get('health') === App.SUCCESS;
+  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'health'),
   timer: function () {
     var self = this;
     var timerInterval = 10000;

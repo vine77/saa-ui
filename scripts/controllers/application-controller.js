@@ -80,7 +80,7 @@ App.ApplicationController = Ember.ArrayController.extend({
       }
     });
     App.users = App.User.find();
-    var promises = [App.nova.check(), App.openrc.check(), App.network.check(), App.build.find(), App.users];
+    var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.users];
     return Ember.RSVP.all(promises);
   }  
 });
