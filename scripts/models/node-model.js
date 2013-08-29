@@ -248,7 +248,7 @@ App.Node = DS.Model.extend({
     return this.get('samControlled') === 2;
   }.property('samControlled'),
   assuredMessage: function () {
-    return (this.get('isAssured')) ? 'This is an assured node.' : 'This is not an assured node';
+    return (this.get('isAssured')) ? 'This is an assured node. VMs with SLAs may be placed here.' : 'This is not an assured node. VMs with SLAs may not be placed here.';
   }.property('samControlled'),
   isTrustRegistered: function () {
     if (this.get('trustNode.ipaddress')) {
