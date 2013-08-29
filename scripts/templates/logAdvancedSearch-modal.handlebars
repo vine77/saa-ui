@@ -15,9 +15,7 @@
       <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-disc-list">
           {{#each node in nodeObjects}}
-            {{#if node.samControlled}}
-              <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
-            {{/if}}
+            <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
