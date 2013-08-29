@@ -7,7 +7,7 @@
     <ul class="nav nav-tabs" id="logAdvancedSearchTabs">
       <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
       <li><a onclick="App.selectTab(event)">VMs</a></li>
-      <li><a onclick="App.selectTab(event)">Criticalities</a></li>
+      <li><a onclick="App.selectTab(event)">Severities</a></li>
       <li><a onclick="App.selectTab(event)">Categories</a></li>
     </ul>
 
@@ -30,7 +30,7 @@
           {{/each}}
         </ul>
       </div>
-      <div class="tab-pane modal-overflow criticalities">
+      <div class="tab-pane modal-overflow severities">
         <ul class="no-disc-list">
           {{#each criticality in criticalitiesFiltered itemController="criticality"}}
             <li>

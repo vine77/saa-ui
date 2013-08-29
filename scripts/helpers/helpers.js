@@ -140,6 +140,16 @@ App.isOdd = function (number) {
   return (number % 2) == 1;
 }
 
+App.isCriticalityPlus = function(criticality) {
+  var criticality = (typeof criticality.get === 'function' ? criticality.get('label') : criticality.label);
+
+  if (criticality.indexOf('+') > -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Handlebars helpers
 
 Ember.Handlebars.registerBoundHelper('capitalize', function (string) {

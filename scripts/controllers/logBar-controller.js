@@ -1,14 +1,10 @@
 App.CriticalitiesController = Ember.ArrayController.extend({
     content: [{"id": 0,  "label":"Debug"},
-              {"id": 1,  "label":"Debug+"},
-              {"id": 2,  "label":"Notice"},
               {"id": 3,  "label":"Notice+"},
               {"id": 4,  "label":"Warning"},
               {"id": 5,  "label":"Warning+"},
               {"id": 6,  "label":"Error"},
-              {"id": 7,  "label":"Error+"},
               {"id": 8,  "label":"Critical"},
-              {"id": 9,  "label":"Critical+"},
               {"id": "context", "label":"Multiple Selections"}]
 });
 
@@ -52,7 +48,8 @@ App.LogBarController = Ember.ObjectController.extend({
   criticalitiesFiltered: function () {
     var returnArray = [];
     this.get('criticalities').forEach( function (item, index, enumerable) {
-      if ((App.isOdd(item.id) == false) && (item.id != 'context')) {
+      //if ((App.isOdd(item.id) == false) && (item.id != 'context')) {
+      if ((App.isCriticalityPlus(item) == false) && (item.id != 'context')) {
         returnArray.push(item);
       }
     });
@@ -143,7 +140,7 @@ App.LogBarController = Ember.ObjectController.extend({
       this.set('timeTo', null);
     }
   }.observes('shortCutTimeSelected','timeTo', 'timeFrom'),
-  searchTextQuery: function() { //composed of :text search, node, and criticality
+  searchTextQuery: function () { //composed of :text search, node, and criticality
     var returnVal = [];
     //Text search
     if (this.get('searchText')) {
@@ -182,13 +179,15 @@ App.LogBarController = Ember.ObjectController.extend({
       returnVal.push('(' + criticalitiesReturnArray.join(' OR ') + ')');
     } else { //select list in logbar
       if (this.get('criticalitySelected.label')) {
-        if (App.isOdd(this.get('criticalitySelected.id'))) {
+        //if (App.isOdd(this.get('criticalitySelected.id'))) {
+        if (App.isCriticalityPlus(this.get('criticalitySelected'))) {
           var currentIndex = this.get('criticalitySelected.id');
           var criticalitiesReturnArray = [];
           var criticalityString = '@fields.syslog_severity:\"' + this.get('criticalitySelected.label') + '\"';
           criticalitiesReturnArray.push(criticalityString);
           this.get('criticalities').forEach( function(item, index, enumerable) {
-            if ( (index >= currentIndex) && (App.isOdd(index) === false) ) {
+            //if ( (index >= currentIndex) && (App.isOdd(index) === false) ) {
+            if ( (index >= currentIndex) && (App.isCriticalityPlus(item) === false) ) {
               var criticalityString = '@fields.syslog_severity:\"' + item.label + '\"';
               criticalitiesReturnArray.push(criticalityString);
             }
@@ -258,7 +257,7 @@ App.LogBarController = Ember.ObjectController.extend({
     frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
 
     this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(7));
-    this.set('criticalitySelected', this.criticalities.objectAt(5));
+    this.set('criticalitySelected', this.criticalities.objectAt(3));
     this.set('nodeSelected', '');
 
     this.set('selectedNodes', []);
