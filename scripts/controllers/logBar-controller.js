@@ -79,6 +79,7 @@ App.LogBarController = Ember.ObjectController.extend({
   }.property('controllers.application'),
   nodes: function() {
     var returnArray = [];
+    returnArray.pushObject({value:"ipm", label:App.build.get('hostname')});
     App.Node.all().forEach( function (item, index, enumerable) {
       var nodeObj = {"value": item.get('id'), "label": item.get('name')};
       returnArray.pushObject(nodeObj);
@@ -157,7 +158,10 @@ App.LogBarController = Ember.ObjectController.extend({
       });
       if (nodesReturnArray.length > 0) { returnVal.push('(' + nodesReturnArray.join(' OR ') + ')'); }
     } else { //using select list in log bar
-      if (this.get('nodeSelected.value') && this.get('nodeSelected.value') != 'context') {
+      if (this.get('nodeSelected.value') == 'ipm') {
+        var nodeString = '@source_host:\"' + this.get('nodeSelected.label') + '\"';
+        returnVal.push(nodeString);
+      } else if (this.get('nodeSelected.value') && this.get('nodeSelected.value') != 'context') {
         var nodeString = '@fields.host_id:\"' + this.get('nodeSelected.value') + '\"';
         returnVal.push(nodeString);
       }
