@@ -24,7 +24,7 @@ App.SettingsLog = Ember.Object.extend({
     // # Not settable:
     // * ThresholdSize: App.settingsLog.get('thresholdSize')
     // * ActualSize: App.settingsLog.get('actualSize')
-    $('i.loading').removeClass('hide');
+    $('#settable-values i.loading').removeClass('hide');
     var dataJson = {
       MaximumDays: App.settingsLog.get('maximumDays'),
       ConfiguredSize: App.settingsLog.get('configuredSize')
@@ -36,7 +36,7 @@ App.SettingsLog = Ember.Object.extend({
       data: JSON.stringify(dataJson),
       dataType: 'json',
       complete: function (jqXHR, textStatus) {
-        $('i.loading').addClass('hide');
+        $('#settable-values i.loading').addClass('hide');
         if (jqXHR.status == 200) {
           App.event('Successfully updated  log settings.', App.SUCCESS);
         } else if (jqXHR.status == 422) {
@@ -50,7 +50,7 @@ App.SettingsLog = Ember.Object.extend({
     $.ajax(ajaxOptions);
   },
   deleteLogs: function () {
-    $('i.loading').removeClass('hide');
+    $('#reset-log-data i.loading').removeClass('hide');
     var ajaxOptions = $.extend({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logs',
       type: 'DELETE',
@@ -60,7 +60,7 @@ App.SettingsLog = Ember.Object.extend({
         } else {
           App.event('Error updating log settings.', App.ERROR);
         }
-        $('i.loading').removeClass('hide');
+        $('#reset-log-data i.loading').addClass('hide');
       }
     }, App.ajaxSetup);
     $.ajax(ajaxOptions);
