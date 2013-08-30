@@ -195,6 +195,7 @@ table .dropdown-menu {
   th,
   td {
     padding: 4px 8px;
+    vertical-align: middle;
   }
   th {
     .user-select(none);
@@ -906,89 +907,116 @@ table {
 }
 
 
-.rounded-corners (@radius: 5px) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  -ms-border-radius: @radius;
-  -o-border-radius: @radius;
-  border-radius: @radius;
-}
-
-// Contention Sockets View
-
-.contention-container {
+// Contention Widgets
+.contention {
   font-size: 0.7em;
-  width: 215px;
   color: #333;
-  .contention-tooltip {
-    display: inline-block;
-  }
-  .contention-bar-container {
-    @maxWidth: 30px;
-    width: @maxWidth;
-    .box-shadow(~"inset 0 1px 4px rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .02)");
-    .rounded-corners(5px);
-    overflow: hidden;
-    height: 10px;
-    float: left;
+  .tooltip-container {
     vertical-align: top;
-    background-color: white;
+  }
+  .contention-bar {
+    display: inline-block;
+    vertical-align: text-top;
+    @maxWidth: 100px;
+    width: @maxWidth;
+    height: 10px;
+    overflow: hidden;
+    .box-shadow(~"inset 0 1px 4px rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .02)");
+    .border-radius(5px);
+    background: linear-gradient(to right,
+      hsla(120, 70%, 40%, 0.1) 0%,
+      hsla(120, 70%, 40%, 0.1) 9%,
+      hsla(120, 70%, 40%, 0) 9%,
+      hsla(120, 70%, 40%, 0) 11%,
+      hsla(120, 70%, 40%, 0.1) 11%,
+      hsla(120, 70%, 40%, 0.1) 19%,
+      hsla(120, 70%, 40%, 0) 19%,
+      hsla(120, 70%, 40%, 0) 21%,
+      hsla(120, 70%, 40%, 0.1) 21%,
+      hsla(120, 70%, 40%, 0.1) 29%,
+      hsla(120, 70%, 40%, 0) 29%,
+      hsla(120, 70%, 40%, 0) 31%,
+      hsla(120, 70%, 40%, 0.1) 31%,
+      hsla(120, 70%, 40%, 0.1) 39%,
+      hsla(120, 70%, 40%, 0) 39%,
+      hsla(120, 70%, 40%, 0) 41%,
+      hsla(120, 70%, 40%, 0.1) 41%,
+      hsla(120, 70%, 40%, 0.1) 49%,
+      hsla(120, 70%, 40%, 0) 49%,
+      hsla(40, 100%, 50%, 0) 51%,
+      hsla(40, 100%, 50%, 0.1) 51%,
+      hsla(40, 100%, 50%, 0.1) 59%,
+      hsla(40, 100%, 50%, 0) 59%,
+      hsla(40, 100%, 50%, 0) 61%,
+      hsla(40, 100%, 50%, 0.1) 61%,
+      hsla(40, 100%, 50%, 0.1) 69%,
+      hsla(40, 100%, 50%, 0) 69%,
+      hsla(40, 100%, 50%, 0) 71%,
+      hsla(40, 100%, 50%, 0.1) 71%,
+      hsla(40, 100%, 50%, 0.1) 79%,
+      hsla(40, 100%, 50%, 0) 79%,
+      hsla(0, 80%, 40%, 0) 81%,
+      hsla(0, 80%, 40%, 0.1) 81%,
+      hsla(0, 80%, 40%, 0.1) 89%,
+      hsla(0, 80%, 40%, 0) 89%,
+      hsla(0, 80%, 40%, 0) 91%,
+      hsla(0, 80%, 40%, 0.1) 91%,
+      hsla(0, 80%, 40%, 0.1) 100%);
     .contention-bar-width {
       overflow: hidden;
-      height: auto;
       min-width: 3px;
+      height: auto;
     }
     .contention-gradient {
       width: @maxWidth;
-      height: 15px;
-      #gradient > .horizontal-three-colors(@green, @yellow, 50%, @red);
+      height: 10px;
+      background: linear-gradient(to right,
+        hsla(120, 70%, 40%, 1) 0%,
+        hsla(120, 70%, 40%, 1) 9%,
+        hsla(120, 70%, 40%, 0) 9%,
+        hsla(120, 70%, 40%, 0) 11%,
+        hsla(120, 70%, 40%, 1) 11%,
+        hsla(120, 70%, 40%, 1) 19%,
+        hsla(120, 70%, 40%, 0) 19%,
+        hsla(120, 70%, 40%, 0) 21%,
+        hsla(120, 70%, 40%, 1) 21%,
+        hsla(120, 70%, 40%, 1) 29%,
+        hsla(120, 70%, 40%, 0) 29%,
+        hsla(120, 70%, 40%, 0) 31%,
+        hsla(120, 70%, 40%, 1) 31%,
+        hsla(120, 70%, 40%, 1) 39%,
+        hsla(120, 70%, 40%, 0) 39%,
+        hsla(120, 70%, 40%, 0) 41%,
+        hsla(120, 70%, 40%, 1) 41%,
+        hsla(120, 70%, 40%, 1) 49%,
+        hsla(120, 70%, 40%, 0) 49%,
+        hsla(40, 100%, 50%, 0) 51%,
+        hsla(40, 100%, 50%, 1) 51%,
+        hsla(40, 100%, 50%, 1) 59%,
+        hsla(40, 100%, 50%, 0) 59%,
+        hsla(40, 100%, 50%, 0) 61%,
+        hsla(40, 100%, 50%, 1) 61%,
+        hsla(40, 100%, 50%, 1) 69%,
+        hsla(40, 100%, 50%, 0) 69%,
+        hsla(40, 100%, 50%, 0) 71%,
+        hsla(40, 100%, 50%, 1) 71%,
+        hsla(40, 100%, 50%, 1) 79%,
+        hsla(40, 100%, 50%, 0) 79%,
+        hsla(0, 80%, 40%, 0) 81%,
+        hsla(0, 80%, 40%, 1) 81%,
+        hsla(0, 80%, 40%, 1) 89%,
+        hsla(0, 80%, 40%, 0) 89%,
+        hsla(0, 80%, 40%, 0) 91%,
+        hsla(0, 80%, 40%, 1) 91%,
+        hsla(0, 80%, 40%, 1) 100%);
     }
   }
-  .system-contention-bar-container {
-    .contention-bar-container;
-    @maxWidth: 134px;
-    width: @maxWidth;
-    margin-left: 5px;
-    .system-contention-bar-width {
-      .contention-bar-width;
-    .system-contention-gradient {
-      width: @maxWidth;
-      height: 15px;
-      #gradient > .horizontal-three-colors(@green, @yellow, 50%, @red);
-    }
-    }
-  }
-  .socket {
-    //width:50px;
-    margin-bottom:9px;
-    margin-left:8px;
-    height:10px;
-    float:left;
-    .socket-label {
-      float:left;
-      margin-right:4px;
-      line-height:10px;
-    }
-    .socket-value{
-      line-height:10px;
-      width:20px;
-      float:left;
-      margin-left:4px;
-    }
-  }
-
 }
 
 
 .not-applicable {
   color: rgba(0, 0, 0, 0.5);
   font-size: 0.9em;
-}
-
-.not-applicable-contention {
-  color: rgba(0, 0, 0, 0.5);
-  //font-size: 0.9em;
-  font-size: 1.3em;
 }
 
 // Custom modal context styles //

@@ -64,11 +64,18 @@ App.ContentionSystemLlc = DS.Model.extend({
   label: DS.attr('string'),
   contentionMessage: function() {
     if (App.isEmpty(this.get('value'))) {
-       return '<strong>System LLC Contention:</strong> N/A';
+      return '<strong>System LLC Contention</strong>: N/A';
     } else {
-      return '<strong>System LLC Contention</strong><br>' + this.get('label') + '<br> Value: ' + this.get('value');
+      var message = 'Overall LLC Contention: ' + this.get('value') + ' (' + this.get('label') + ')';
+      var sockets = App.Node.find(this._reference.parent.parent.parent.id).get('contention.sockets');
+      sockets.forEach(function (item, index, enumerable) {
+        var socket = item.get('llc');
+        var socketNumber = item.get('socket_number');
+        message += '<br>' + 'Socket ' + socketNumber + ' Contention: ' + socket.get('value') + ' (' + socket.get('label') + ')';
+      });
+      return message;
     }
-  }.property('App.ContentionSystemLlc.value', 'App.ContentionSystemLlc.label'),
+  }.property('value', 'label'),
   width: function() {
     var numberOfSockets = App.Node.find(this._reference.parent.parent.parent.id).get('capabilities.sockets');
     var rangeMaximum = numberOfSockets * 50;

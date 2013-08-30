@@ -60,7 +60,11 @@
                 <a {{action "sortModel" "utilization.ipc"}}>Throughput</a>
               {{/view}}
             </th>
-            <th>Contention</th>
+            <th {{bindAttr class=":sortable isColumn12Sorted:sorted sortAscending"}}>
+              {{#view App.TooltipView title="LLC Cache Contention"}}
+                <a {{action "sortModel" "contention.system.llc.value"}}>Contention</a>
+              {{/view}}
+            </th>
             <th>Actions</th>
             <th class="column-small">
               {{#if content.isUpdating}}
@@ -108,21 +112,18 @@
                 <td>{{na vm.utilization.gips_current}}</td>
                 <td>{{na vm.utilization.ipc}}</td>
                 <td>
-                  <div class="contention-container">
+                  <div class="contention">
                     {{#if vm.contention.system.llc.valueExists}}
-                      <div class="socket">
-                        <div class="socket-label">System</div>
-                        <div class="contention-bar-container">
-                          {{#view App.TooltipView titleBinding="vm.contention.system.llc.contentionMessage" barBinding="vm.contention.system.llc.barWidth" class="contention-tooltip" }}
-                            <div class="contention-bar-width" {{bindAttr style="vm.contention.system.llc.barWidth"}} >
-                              <div class="contention-gradient"> </div>
-                            </div>
-                          {{/view}}
-                        </div>
-                        <div class="socket-value">{{na vm.contention.system.llc.value}}</div>
+                      <div class="contention-bar">
+                        {{#view App.TooltipView titleBinding="vm.contention.system.llc.contentionMessage" barBinding="vm.contention.system.llc.barWidth"}}
+                          <div class="contention-bar-width" {{bindAttr style="vm.contention.system.llc.barWidth"}} >
+                            <div class="contention-gradient"> </div>
+                          </div>
+                        {{/view}}
                       </div>
+                      {{na vm.contention.system.llc.value}}
                     {{else}}
-                      <span class="not-applicable-contention"> n/a </span>
+                      <span class="not-applicable">n/a</span>
                     {{/if}}
                   </div>
                 </td>

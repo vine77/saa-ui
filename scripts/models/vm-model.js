@@ -123,15 +123,14 @@ App.VmContentionSystemLlc = DS.Model.extend({
     }
   }.property('value'),
   contentionMessage: function () {
-    if (this.get('value') == -1) {
+    if (App.isEmpty(this.get('value'))) {
       return '<strong>Contention Not Available</strong>';
     } else {
-      var message = '<strong>System Contention</strong><br> Value: '+this.get('value')+'<br />';
-      message += '<strong>vCPU Contention Values</strong> <br />';
+      var message = 'Overall Cache Contention: ' + this.get('value');
       var vCPUs = App.Vm.find(this._reference.parent.parent.parent.id).get('contention.threads');
       vCPUs.forEach(function (item, index, enumerable) {
         vCPU = item.get('llc');
-        message += 'vCPU:'+vCPU.get('value')+'<br/>';
+        message += '<br>' + 'vCPU Contention: ' + vCPU.get('value');
       });
       return message;
     }
