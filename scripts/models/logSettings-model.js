@@ -64,7 +64,7 @@ App.SettingsLog = Ember.Object.extend({
       }
     }, App.ajaxSetup);
     $.ajax(ajaxOptions);
-  } 
+  }
 });
 
 App.settingsLog = App.SettingsLog.create();
