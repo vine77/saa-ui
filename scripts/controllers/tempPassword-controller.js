@@ -5,18 +5,35 @@ App.TempPasswordController = App.FormController.extend({
     fieldname: {
         username: 'user name'
     },
+    errorString: function(error) {
+        var errorTbl = {
+            'unauthorized.' : 'Temporary passwords can be generated only once every 120 mins.',
+            'internal server error.' : 'Email not sent.',
+        };
+        var key = error.toLowerCase();
+        if( typeof(errorTbl[key]) != 'undefined' ) {
+            return errorTbl[key];
+        }
+        else {
+            return error;
+        }
+    },        
     generatePassword: function(route) {
         var controller = this;
         var user = App.User.find(controller.get('username'));
         var request_reset = function(model, controller, route) {
             user.set('resetPassword', true);
             var updateUI = function(message) {
-                return function(model, controller, route) {
+                return function(model, controller, route, error_args) {                
                     controller.reset_form();
+                    var error = error_args[0].error;
+                    if(typeof(error) != 'undefined') {
+                        message = message + ' ' + controller.errorString(error);
+                    }                                                            
                     var login_controller = route.controllerFor('login');
                     login_controller.showNotification(message);
                     controller.setDisable(false);
-                    model.reload();
+                    model.unloadRecord();
                 }
             };
             var handlers = {

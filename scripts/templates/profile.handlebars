@@ -37,12 +37,14 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <label class="control-label">Email address</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
-      </div>
-    </div>
+    {{#if getEmail}}
+        <div class="control-group">
+          <label class="control-label">Email address</label>
+          <div class="controls">
+            {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
+          </div>
+        </div>
+    {{/if}}
         
     </form>
     

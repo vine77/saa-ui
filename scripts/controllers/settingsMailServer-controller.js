@@ -8,6 +8,18 @@ App.SettingsMailserverController = App.FormController.extend({
     id: '#mailserver',
     validated_fields: ['hostname', 'port', 'sender_email'],
     reset_fields: ['password'],
+    errorString: function(error) {
+        var errorTbl = {
+            'internal server error.' : 'An internal error occured.',
+        };
+        var key = error.toLowerCase();
+        if( typeof(errorTbl[key]) != 'undefined' ) {
+            return errorTbl[key];
+        }
+        else {
+            return error;
+        }
+    },    
     fieldname: {
         hostname: 'mail server host name or IP address',
         port: 'mail server port number',
@@ -22,7 +34,7 @@ App.SettingsMailserverController = App.FormController.extend({
         this.set('password', model.get('password'));
         this.set('sender_email', model.get('sender_email'));
     },
-    saveConfig: function (route, testConfig) {
+    saveConfig: function (route, testConfig, notify) {
         var controller = this;
         var model = controller.get('model');
         var record = {
@@ -36,31 +48,44 @@ App.SettingsMailserverController = App.FormController.extend({
         if(controller.prepare_commit(record)) {
             model.setProperties(record);
             var updateStatus = function(message) {
-                return function(model, contoller, route) {
+                return function(model, contoller, route, error_args) {
+                    var error = error_args[0].error;
+                    if(typeof(error) != 'undefined') {
+                        message = message + ' ' + controller.errorString(error);
+                    }                                        
                     if(controller.standalone) {
                         controller.showNotification(message);
+                    }
+                    else if (typeof notify != 'undefined') {
+                        notify(message);
                     }
                     model.reload();
                     controller.reset_form();
                 }
             };
             if(model.get('isDirty')) {
-                successMsg = 'Mail server settings saved successfully';
+                successMsg = 'Mail server settings saved.';
+                errorMsg = 'Failed to save mail server settings.';
                 if(testConfig) {
-                    successMsg = 'Sent test email successfully to ' + this.get('sender_email');
+                    successMsg = 'Sent test email to ' + this.get('sender_email');
+                    errorMsg = 'Failed to send test email.';
                 }
                 var handlers = {
                     'didUpdate': {postFun:updateStatus(successMsg)},
-                    'becameError': {postFun:updateStatus('Failed to save mail server settings'), resetState: true},
+                    'becameError': {postFun:updateStatus(errorMsg), resetState: true},
                 };
                 controller.setDisable(true);
                 App.modelhelper.doTransaction(model, controller, route, handlers);
             }
+            else {
+                    controller.showNotification('');
+                    controller.reset_form();
+            }
         }
         else {
-                var update = updateStatus('');
-                update();
+            return false;
         }
+        return true;
     },
     resetConfig: function(route) {
         var controller = this;
