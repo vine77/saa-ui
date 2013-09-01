@@ -12,6 +12,10 @@ DS.RESTAdapter.map('App.Node', {
   name: {key: 'node_name'}
 });
 
+DS.RESTAdapter.map('App.NodeStatus', {
+  trust_details: {embedded: 'always'}
+});
+
 DS.RESTAdapter.map('App.NodeUtilization', {
   cpu: {embedded: 'always'}
 });
@@ -41,15 +45,45 @@ App.NodeStatus = DS.Model.extend({
   operationalMessage: function () {
     return '<strong>State</strong>: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),
-  trust: DS.attr('boolean'),
-  trust_message: DS.attr('string'),
+  trust: DS.attr('number'),
+  trust_details: DS.belongsTo('App.NodeStatusTrustDetails'),
+  trustMessage: function () {
+    var message = '';
+    if (this.get('trust') === 0) {
+      message = 'Trust Status is unknown.';
+    } else if (this.get('trust') === 1) {
+      message = 'Trust Status: Not Trusted';
+    } else if (this.get('trust') === 2) {
+      message = 'Trust Status: Trusted';
+    }
+
+    message += '<br />';
+    message += 'BIOS:'+App.trustDetailsToBoolean(this.get('trust_details.bios'));
+    message += '<br />';
+    message += 'VMMM:'+App.trustDetailsToBoolean(this.get('trust_details.vmm'));
+
+    /*
+    message += '<br /> Testing Begin <br />';
+    message += 'trust_details value:' +this.get('trust_details')+'<br/>';
+    message += 'trust_details.bios value:' +this.get('trust_details.bios')+'<br/>';
+    message += 'trust_details.vmm value:' +this.get('trust_details.vmm');
+    */
+
+    return message;
+  }.property('trust')
+  /*trust_message: DS.attr('string'),
   trustMessage: function () {
     if (App.isEmpty(this.get('trust_message'))) {
       return 'Trusted: ' + App.priorityToType(this.get('trust')).capitalize();
     } else {
       return '<strong>Trust:</strong> ' + this.get('trust_message').capitalize();
     }
-  }.property('trust', 'trust_message')
+  }.property('trust', 'trust_message')*/
+});
+
+App.NodeStatusTrustDetails = DS.Model.extend({
+  bios: DS.attr('string'),
+  vmm: DS.attr('string')
 });
 
 App.ContentionSystemLlc = DS.Model.extend({

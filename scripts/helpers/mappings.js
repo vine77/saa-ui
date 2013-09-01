@@ -347,3 +347,17 @@ App.rangeToPercentage = function(value, minimum, maximum) {
   percentage = Math.round(percentage * 100);
   return percentage;
 }
+
+App.trustDetailsToBoolean = function (value) {
+  switch (value) {
+    case '0':
+    case 0:
+      return 'False';
+    case '1':
+    case 1:
+      return 'True';
+    case 'unknown':
+    case null:
+      return 'Unknown';
+  }
+}
