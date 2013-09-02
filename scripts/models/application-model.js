@@ -14,10 +14,11 @@ App.Application = Ember.Object.extend({
   isEnabled: function () {
     return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists') && this.get('health') === App.SUCCESS;
   }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'health'),
+  timerId: null,
   timer: function () {
     var self = this;
     var timerInterval = 10000;
-    setInterval(function () {
+    var timerId = setInterval(function () {
       if (App.state.get('loggedIn')) {
         // Update contextual graphs
         if (App.contextualGraphs.get('selectedNode')) {
@@ -57,6 +58,7 @@ App.Application = Ember.Object.extend({
         });
       }
     }, timerInterval);
+    this.set('timerId', timerId);
   },
   samStarted: function () {
     return App.nova.get('exists') && App.openrc.get('exists');

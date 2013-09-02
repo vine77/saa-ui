@@ -2,10 +2,24 @@
   "status": {
     "messages": [
       {
-        "message": "The system is healthy.",
+        "message": "Database is configured.",
+        "health": 1
+      },
+      {
+        "message": "SAM server is configured",
+        "health": 1
+      },
+      {
+        "message": "Cloud software database is connected.",
+        "health": 1
+      },
+      {
+        "message": "RabbitMQ connected.",
         "health": 1
       }
     ],
-    "health": 1
+    "version": "lxc-2013.08.30.0718",
+    "health": 1,
+    "master": 0
   }
 }

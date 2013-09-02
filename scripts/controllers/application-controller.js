@@ -64,6 +64,19 @@ App.ApplicationController = Ember.ArrayController.extend({
   clearConsole: function () {
     console.clear();
   },
+  stopTimer: function () {
+    clearInterval(App.application.get('timerId'));
+    App.application.set('timerId', null);
+    console.log('Paused timer');
+  },
+  startTimer: function () {
+    if (!App.application.get('timerId')) {
+      App.application.timer();
+      console.log('Unpaused timer');
+    } else {
+      console.log('Timer is already running.');
+    }
+  },
   initModels: function() {
     // Load data from APIs
     App.mtWilson.check().then(function() {
