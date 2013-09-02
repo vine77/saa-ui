@@ -61,6 +61,9 @@ App.ApplicationController = Ember.ArrayController.extend({
     App.session.set('bypass', true);
     this.transitionToRoute('dashboard');
   },
+  clearConsole: function () {
+    console.clear();
+  },
   initModels: function() {
     // Load data from APIs
     App.mtWilson.check().then(function() {
@@ -84,5 +87,5 @@ App.ApplicationController = Ember.ArrayController.extend({
     App.users = App.User.find();
     var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.settingsLog.fetch(), App.users];
     return Ember.RSVP.all(promises);
-  }  
+  }
 });
