@@ -113,11 +113,15 @@
               <td class="column-small">
                 {{#if node.isTrustRegistered}}
                   {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
-                    <i {{bindAttr class=":icon-large node.status.trust:icon-lock:icon-unlock node.status.trust:trusted:untrusted"}}></i>
+                    {{#if node.status.isTrustUnknown}}
+                      <i class="icon-large icon-question-sign trust-unknown"></i>
+                    {{else}}
+                      <i {{bindAttr class=":icon-large node.status.isTrusted:icon-lock:icon-unlock node.status.isTrusted:trusted:untrusted"}}></i>
+                    {{/if}}
                   {{/view}}
                 {{else}}
                   {{#view App.TooltipView titleBinding="node.isTrustRegisteredMessage"}}
-                    <i {{bindAttr class=":icon-large :icon-unlock :notTrustRegistered"}}></i>
+                    <i class="icon-large icon-unlock trust-unregistered"></i>
                   {{/view}}
                 {{/if}}
               </td>

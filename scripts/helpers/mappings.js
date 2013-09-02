@@ -348,14 +348,14 @@ App.rangeToPercentage = function(value, minimum, maximum) {
   return percentage;
 }
 
-App.trustDetailsToBoolean = function (value) {
+App.trustDetailsToString = function (value) {
   switch (value) {
     case '0':
     case 0:
-      return 'False';
+      return 'Not Trusted';
     case '1':
     case 1:
-      return 'True';
+      return 'Trusted';
     case 'unknown':
     case null:
       return 'Unknown';

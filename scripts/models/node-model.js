@@ -45,40 +45,24 @@ App.NodeStatus = DS.Model.extend({
   operationalMessage: function () {
     return '<strong>State</strong>: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),
-  trust: DS.attr('number'),
+  trust: DS.attr('number'),  // 0: UNKNOWN , 1: NOT TRUSTED, 2: TRUSTED
+  isTrusted: Ember.computed.equal('trust', 2),
+  isNotTrusted: Ember.computed.equal('trust', 1),
+  isTrustUnknown: Ember.computed.equal('trust', 0),
   trust_details: DS.belongsTo('App.NodeStatusTrustDetails'),
   trustMessage: function () {
     var message = '';
     if (this.get('trust') === 0) {
-      message = 'Trust Status is unknown.';
+      message = 'Trust Status: Unknown.';
     } else if (this.get('trust') === 1) {
       message = 'Trust Status: Not Trusted';
     } else if (this.get('trust') === 2) {
       message = 'Trust Status: Trusted';
     }
-
-    message += '<br />';
-    message += 'BIOS:'+App.trustDetailsToBoolean(this.get('trust_details.bios'));
-    message += '<br />';
-    message += 'VMMM:'+App.trustDetailsToBoolean(this.get('trust_details.vmm'));
-
-    /*
-    message += '<br /> Testing Begin <br />';
-    message += 'trust_details value:' +this.get('trust_details')+'<br/>';
-    message += 'trust_details.bios value:' +this.get('trust_details.bios')+'<br/>';
-    message += 'trust_details.vmm value:' +this.get('trust_details.vmm');
-    */
-
+    message += '<br>' + 'BIOS: ' + App.trustDetailsToString(this.get('trust_details.bios'));
+    message += '<br>' + 'VMM: ' + App.trustDetailsToString(this.get('trust_details.vmm'));
     return message;
   }.property('trust')
-  /*trust_message: DS.attr('string'),
-  trustMessage: function () {
-    if (App.isEmpty(this.get('trust_message'))) {
-      return 'Trusted: ' + App.priorityToType(this.get('trust')).capitalize();
-    } else {
-      return '<strong>Trust:</strong> ' + this.get('trust_message').capitalize();
-    }
-  }.property('trust', 'trust_message')*/
 });
 
 App.NodeStatusTrustDetails = DS.Model.extend({
@@ -292,11 +276,7 @@ App.Node = DS.Model.extend({
     return (this.get('isAssured')) ? 'This is an assured node. VMs with SLAs may be placed here.' : 'This is not an assured node. VMs with SLAs may not be placed here.';
   }.property('samControlled'),
   isTrustRegistered: function () {
-    if (this.get('trustNode.ipaddress')) {
-      return true;
-    } else {
-      return false;
-    }
+    return (this.get('trustNode.ipaddress')) ? true : false;
   }.property('trustNode.ipaddress'),
   isTrustRegisteredMessage: function () {
     if (this.get('trustNode.ipaddress')) {
