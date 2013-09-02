@@ -29,7 +29,7 @@ App.definitions = {
       {"id": 25, "label":"redis"},
       {"id": 26, "label":"rocksteady"},
       {"id": 27, "label":"sam"},
-      {"id": 28, "label":"scheduler"}
+      {"id": 28, "label":"scheduler"},
       {"id": 29, "label":"statsd"},
       {"id": 30, "label":"startup"},
       {"id": 31, "label":"syslog"},
