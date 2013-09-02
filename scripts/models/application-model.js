@@ -12,7 +12,7 @@ App.Application = Ember.Object.extend({
   }.property(),
   health: App.SUCCESS,
   isEnabled: function () {
-    return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists') && this.get('health') === App.SUCCESS;
+    return this.get('health') <= App.WARNING && App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'health'),
   timerId: null,
   timer: function () {
@@ -36,9 +36,7 @@ App.Application = Ember.Object.extend({
           App.application.set('statusMessages', App.Status.find('current').get('messages'));
           if (App.priorityToType(status.get('health')) == 'unknown') {
             var statusStyle = 'alert-info';
-            //console.log('unknown:'+status.get('health'));
           } else {
-            //console.log('not unkown:'+status.get('health'));
             var statusStyle = 'alert-' + App.priorityToType(status.get('health'));
           }
           App.application.set('statusStyle', statusStyle);
