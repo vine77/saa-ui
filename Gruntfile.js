@@ -197,15 +197,8 @@ module.exports = function (grunt) {
         }
       }
     },
-    targethtml: {
-      dist: {
-        files: {
-          '.tmp/index.prod.html': '<%= paths.source %>/index.html'
-        }
-      }
-    },
     useminPrepare: {
-      html: '.tmp/index.prod.html',
+      html: '<%= paths.source %>/index.html',
       options: {
         dest: '<%= paths.destination %>'
       }
@@ -350,7 +343,6 @@ module.exports = function (grunt) {
     //'test',
     'emberTemplates:dist',
     'less:dist',
-    'targethtml',
     'useminPrepare',
     //'imagemin',
     'htmlmin',
