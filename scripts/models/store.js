@@ -36,59 +36,38 @@ DS.RESTAdapter.reopen({
     var url = this._super(record, suffix);
     return url + '.json';
   },
+  findAll: function(store, type, since, deleteMissing, customErrorHandling) {  // findAll customErrorHandling series exit point
+    globalStore = store;
 
-  findAll: function(store, type, since, customErrorHandling) { //findAll customErrorHandling series. 
     var root, adapter;
 
     root = this.rootForType(type);
     adapter = this;
 
-    return this.ajax(this.buildURL(root), "GET",{
+    var storedJson;
+
+    return this.ajax(this.buildURL(root), "GET", {
       data: this.sinceQuery(since)
-    }).then(
-      function(json) {
-        /*
-        console.log('begin');
-        if (type == 'App.Node') { //append the reponse of trust_nodes json as embedded in nodes json
-          var trustNodesRequest = $.ajax({
-            url: "/api/v1/trust_nodes.json",
-            type: "GET",
-            dataType: "json"
-          });
-          trustNodesRequest.done(function(response) {
-            console.log('Inside of done!');
-            var trustNodes = response.trust_nodes;
-            trustNodes.forEach(function (item, index, enumerable) {
-              var currentTrustNode = item;
-              json.nodes.forEach(function (item, index, enumerable) {
-                //console.log(currentTrustNode);
-                if (item.id == currentTrustNode.id) {
-                  item.trust_node = currentTrustNode;
-                  json.nodes[index] = item;
-                  console.log('Json nodes with index object', json.nodes[index]);
-                  console.log('Entire Json inside of inner loop', json);
-                }
-              });
-            });
-            console.log('ending entire Json: ', json);
-          });
-        }
-        console.log('end');
-        */
+    }).then(function(json) {
+        storedJson = json;
         adapter.didFindAll(store, type, json);
-      },
-      function(error) {
+      }, function(error) {
         store.didUpdateAll(type);
-        customErrorHandling = typeof customErrorHandling !== 'undefined' ? customErrorHandling : true;
         if (customErrorHandling) {
-
           App.event(App.errorMessage(JSON.parse(error.responseText)), App.ERROR, false);
-
-        } // else { return return this._super(store, type, since, customErrorHandling) }
+        }
       }
-    ).then(null, DS.rejectionHandler);
-
-  }, 
+    ).then(function () {
+      if (deleteMissing) {
+        eval(type).all().toArray().forEach(function (item, index, enumerable) {
+          var missing = JSON.stringify(storedJson).indexOf(item.get('id')) === -1;
+          if (missing) {
+            item.unloadRecord();
+          }
+        });
+      }
+    }, DS.rejectionHandler);
+  },
   didError: function (store, type, record, xhr) {
     var json = (xhr.responseText) ? JSON.parse(xhr.responseText) : {};
     record.set('error', App.errorMessage(json));  // Store error message on record
@@ -108,10 +87,10 @@ DS.RESTAdapter.reopen({
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       hash = hash || {};
-      
+
       // Customization: Merge settings from App object
       hash = $.extend(hash, App.ajaxSetup);
-      
+
       hash.url = url;
       hash.type = type;
       hash.dataType = 'json';
@@ -182,22 +161,24 @@ App.Store = DS.Store.extend({
     if (idsOrReferencesOrOpaque === null) idsOrReferencesOrOpaque = [];
     return this._super(type, idsOrReferencesOrOpaque, record, relationship);
   },
-  find: function (type, id, customErrorHandling) { //findAll customErrorHandling series
-    if ((id === undefined) && (typeof customErrorHandling !== 'undefined')) {
-      return this.findAll(type, id, customErrorHandling);
+  find: function (type, id, deleteMissing, customErrorHandling) {  // findAll customErrorHandling series entry point
+    if ((id === undefined) && (deleteMissing || customErrorHandling))  {
+      return this.findAll(type, deleteMissing, customErrorHandling);
     } else {
       return this._super(type, id);
     }
   },
-  findAll: function(type, customErrorHandling) { //findAll customErrorHandling series
-    if (typeof customErrorHandling !== 'undefined') {
-      return this.fetchAll(type, this.all(type), customErrorHandling);
+  findAll: function(type, deleteMissing, customErrorHandling) {  // findAll customErrorHandling series
+    if (deleteMissing || customErrorHandling) {
+      return this.fetchAll(type, this.all(type), deleteMissing, customErrorHandling);
     } else {
       return this._super(type);
     }
   },
-  fetchAll: function(type, array, customErrorHandling) { //findAll customErrorHandling series
-    if (typeof customErrorHandling !== 'undefined') {
+  fetchAll: function(type, array, deleteMissing, customErrorHandling) {  // findAll customErrorHandling series
+    if (deleteMissing || customErrorHandling) {
+
+
       var get = Ember.get, set = Ember.set; //prerequistes
 
       var adapter = this.adapterForType(type),
@@ -208,7 +189,7 @@ App.Store = DS.Store.extend({
       Ember.assert("You tried to load all records but you have no adapter (for " + type + ")", adapter);
       Ember.assert("You tried to load all records but your adapter does not implement `findAll`", adapter.findAll);
 
-      adapter.findAll(this, type, sinceToken, customErrorHandling);
+      adapter.findAll(this, type, sinceToken, deleteMissing, customErrorHandling);
 
       return array;
     } else {
@@ -217,5 +198,7 @@ App.Store = DS.Store.extend({
   }
 });
 
-//DS.Model.reopenClass({
-//});
+/*
+DS.Model.reopen({
+});
+*/
