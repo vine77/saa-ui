@@ -10,6 +10,10 @@ DS.RESTAdapter.map('App.Vm', {
   contention: {embedded: 'always'}
 });
 
+DS.RESTAdapter.map('App.VmStatus', {
+  trust_details: {embedded: 'always'}
+});
+
 DS.RESTAdapter.map('App.VmContention', {
   threads: {embedded: 'always'},
   system: {embedded: 'always'}
@@ -44,14 +48,20 @@ App.VmStatus = DS.Model.extend({
     return '<strong>State</strong>: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),
   trust: DS.attr('boolean'),
-  trust_message: DS.attr('string'),
+  trust_details: DS.belongsTo('App.VmStatusTrustDetails'),
   trustMessage: function () {
-    if (App.isEmpty(this.get('trust_message'))) {
-      return 'Trusted: ' + App.priorityToType(this.get('trust')).capitalize();
-    } else {
-      return '<strong>Trust:</strong> ' + this.get('trust_message').capitalize();
+    var message = '';
+    if (this.get('trust') === 0) {
+      message = 'Trust Status: Unknown.';
+    } else if (this.get('trust') === 1) {
+      message = 'Trust Status: Not Trusted';
+    } else if (this.get('trust') === 2) {
+      message = 'Trust Status: Trusted';
     }
-  }.property('trust', 'trust_message'),
+    message += '<br>' + 'BIOS: ' + App.trustDetailsToString(this.get('trust_details.bios'));
+    message += '<br>' + 'VMM: ' + App.trustDetailsToString(this.get('trust_details.vmm'));
+    return message;
+  }.property('trust'),
   sla_status: DS.attr('number'),
   slaViolated: function () {
     return this.get('sla_status') === 1;
@@ -82,6 +92,10 @@ App.VmStatus = DS.Model.extend({
       return messages.join('; ');
     }
   }.property('sla_status', 'sla_message')
+});
+App.VmStatusTrustDetails = DS.Model.extend({
+  bios: DS.attr('string'),
+  vmm: DS.attr('string')
 });
 App.VmUtilization = DS.Model.extend({
   ipc: DS.attr('number'),
