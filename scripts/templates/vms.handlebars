@@ -89,7 +89,11 @@
                 </td>
                 <td class="column-small">
                   {{#view App.TooltipView titleBinding="vm.status.trustMessage"}}
-                    <i {{bindAttr class=":icon-large vm.status.trust:icon-lock:icon-unlock vm.status.trust:trusted:untrusted"}}></i>
+                    {{#if vm.status.isTrustUnknown}}
+                      <i class="icon-large icon-question-sign trust-unknown"></i>
+                    {{else}}
+                      <i {{bindAttr class=":icon-large vm.status.isTrusted:icon-lock:icon-unlock vm.status.isTrusted:trusted:untrusted"}}></i>
+                    {{/if}}
                   {{/view}}
                 </td>
                 <td class="column-small">

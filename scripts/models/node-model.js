@@ -48,7 +48,7 @@ App.NodeStatus = DS.Model.extend({
   trust: DS.attr('number'),  // 0: UNKNOWN , 1: NOT TRUSTED, 2: TRUSTED
   isTrusted: Ember.computed.equal('trust', 2),
   isNotTrusted: Ember.computed.equal('trust', 1),
-  isTrustUnknown: Ember.computed.equal('trust', 0),
+  isTrustUnknown: Ember.computed.not('trust'),
   trust_details: DS.belongsTo('App.NodeStatusTrustDetails'),
   trustMessage: function () {
     var message = '';

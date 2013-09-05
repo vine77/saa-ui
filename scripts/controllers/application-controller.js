@@ -99,10 +99,12 @@ App.ApplicationController = Ember.ArrayController.extend({
     return Ember.RSVP.all(promises);
   },
   autoRefresh: function () {
-    this.refreshNodes();
-    this.refreshVms();
-    App.Flavor.find(undefined, true);
-    App.Sla.find(undefined, true);
+    if (App.application.get('isEnabled') && App.state.get('loggedIn')) {
+      this.refreshNodes();
+      this.refreshVms();
+      App.Flavor.find(undefined, true);
+      App.Sla.find(undefined, true);
+    }
     Ember.run.later(this, 'autoRefresh', 30000);
   }
 });
