@@ -19,7 +19,6 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
     }
   },
   refresh: function () {
-    App.Sla.all().clear();
-    App.Sla.find();
+    App.Sla.find(undefined, true);
   }
 });

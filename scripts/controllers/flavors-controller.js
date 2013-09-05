@@ -36,8 +36,7 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
     }
   },
   refresh: function () {
-    App.Flavor.all().clear();
-    App.Flavor.find();
+    App.Flavor.find(undefined, true);
   }
 
 });

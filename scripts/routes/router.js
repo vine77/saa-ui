@@ -198,16 +198,16 @@ App.NodesRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     if (App.mtWilson.get('isInstalled') === true) {
-      App.TrustNode.find().then(function() {
+      App.TrustNode.find(undefined, true).then(function() {
         if (App.Node.all().get('length') == 0) {
-          controller.set('model', App.Node.find());
+          controller.set('model', App.Node.find(undefined, true));
         } else {
           controller.set('model', App.Node.all());
         }
       });
     } else {
       if (App.Node.all().get('length') == 0) {
-        controller.set('model', App.Node.find());
+        controller.set('model', App.Node.find(undefined, true));
       } else {
         controller.set('model', App.Node.all());
       }
@@ -229,7 +229,6 @@ App.NodesIndexRoute = Ember.Route.extend({
 App.NodesNodeRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    model.reload();
     App.Node.all().setEach('isActive', false);
     model.set('isActive', true);
   }
@@ -239,7 +238,7 @@ App.NodesNodeRoute = Ember.Route.extend({
 App.VmsRoute = Ember.Route.extend({
   model: function () {
     if (App.Vm.all().get('length') == 0) {
-      return App.Vm.find();
+      return App.Vm.find(undefined, true);
     } else {
       return App.Vm.all();
     }
@@ -254,7 +253,6 @@ App.VmsIndexRoute = Ember.Route.extend({
 App.VmsVmRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    model.reload();
     App.Vm.all().setEach('isActive', false);
     model.set('isActive', true);
   }
@@ -270,8 +268,11 @@ App.ServicesIndexRoute = Ember.Route.extend({
 // Flavors
 App.FlavorsRoute = Ember.Route.extend({
   model: function () {
-    App.Sla.find();
-    return App.Flavor.find().addObjects(App.Flavor.find({sla_aware: true}));
+    if (App.Flavor.all().get('length') == 0) {
+      return App.Flavor.find(undefined, true);
+    } else {
+      return App.Flavor.all();
+    }
   }
 });
 App.FlavorsIndexRoute = Ember.Route.extend({
@@ -283,7 +284,6 @@ App.FlavorsIndexRoute = Ember.Route.extend({
 App.FlavorRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    model.reload();
     App.Flavor.all().setEach('isActive', false);
     model.set('isActive', true);
   }
@@ -303,8 +303,11 @@ App.FlavorsCreateRoute = Ember.Route.extend({
 // SLAs
 App.SlasRoute = Ember.Route.extend({
   model: function () {
-    App.Slo.find();
-    return App.Sla.find();
+    if (App.Sla.all().get('length') == 0) {
+      return App.Sla.find(undefined, true);
+    } else {
+      return App.Sla.all();
+    }
   }
 });
 App.SlasIndexRoute = Ember.Route.extend({
@@ -317,27 +320,6 @@ App.SlaRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     App.Sla.all().setEach('isActive', false);
-    model.set('isActive', true);
-  }
-});
-
-// Catalog
-App.CatalogRoute = Ember.Route.extend({
-  model: function () {
-    return App.Template.find();
-  }
-});
-App.CatalogIndexRoute = Ember.Route.extend({
-  setupController: function (controller, model) {
-    this._super(controller, model);
-    App.Template.all().setEach('isActive', false);
-  }
-});
-App.TemplateRoute = Ember.Route.extend({
-  setupController: function (controller, model) {
-    this._super(controller, model);
-    model.reload();
-    App.Template.all().setEach('isActive', false);
     model.set('isActive', true);
   }
 });
@@ -358,7 +340,7 @@ App.TrustIndexRoute = Ember.Route.extend({
 // Whitelist/Fingerprint Manager
 App.TrustMlesRoute = Ember.Route.extend({
   model: function () {
-    return App.TrustMle.find();
+    return App.TrustMle.find(undefined, true);
   }
 });
 
@@ -366,7 +348,7 @@ App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     if (App.mtWilson.get('isInstalled') === true) {
-      App.TrustNode.find().then(function() {
+      App.TrustNode.find(undefined, true).then(function() {
         controller.set('model', App.TrustMle.all());
       });
       App.TrustMle.all().setEach('isActive', false);
