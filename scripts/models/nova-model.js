@@ -80,7 +80,7 @@ App.Nova = Ember.Object.extend({
             setTimeout(function () {
               // Restart app for full reload and redirect to index
               document.location.href = '/';
-            }, 5000);
+            }, 8000);
             /*
             App.openrc.set('exists', true);
             App.openrc.set('success', true);
