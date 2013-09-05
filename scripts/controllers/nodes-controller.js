@@ -334,13 +334,14 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     }
   },
   refresh: function () {
-    App.Node.all().clear();
-    if (App.mtWilson.get('isInstalled') === true) {
-      App.TrustNode.find().then(function() {
-        App.Node.find();
-      });
-    } else {
-      App.Node.find();
+    if (!this.get('isUpdating')) {
+      if (App.mtWilson.get('isInstalled') === true) {
+        App.TrustNode.find(undefined, true).then(function() {
+          App.Node.find(undefined, true);
+        });
+      } else {
+        App.Node.find(undefined, true);
+      }
     }
   }
 });

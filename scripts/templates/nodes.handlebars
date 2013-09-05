@@ -19,9 +19,7 @@
           </div>
         </div>
         <div class="span5">
-          <div class="global-actions">
-            <a {{action refresh}} class="btn"><i {{bindAttr class=":icon-refresh content.isUpdating:icon-spin"}}></i> Refresh Nodes</a>
-          </div>
+          <div class="global-actions"></div>
           {{!--
           <form id="filter-form" class="input-prepend clear-input pull-right">
             <span class="add-on"><i class="icon-search"></i></span>
@@ -86,9 +84,7 @@
             </th>
             <th>Actions</th>
             <th class="column-small">
-              {{#if content.isUpdating}}
-                <i class="icon-spinner icon-spin"></i>
-              {{/if}}
+              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh content.isUpdating:icon-spin content.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>

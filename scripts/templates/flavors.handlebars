@@ -4,7 +4,6 @@
       <div class="header row-fluid">
         <div class="actions">
           {{#linkTo "flavors.create" class="btn"}}<i class="icon-plus"></i> Create Flavor{{/linkTo}}
-          <a {{action refresh}} class="btn"><i class="icon-refresh"></i> Refresh Flavors</a>
         </div>
         {{!--
         <form id="filter-form" class="input-prepend clear-input pull-right">
@@ -22,9 +21,7 @@
             <th {{bindAttr class=":column-large :sortable isColumn3Sorted:sorted sortAscending"}}><a {{action sortModel "sla"}}>SLA</a></th>
             <th class="column-medium">Actions</th>
             <th class="column-small">
-              {{#if content.isUpdating}}
-                <i class="icon-spinner icon-spin"></i>
-              {{/if}}
+              <a {{action refresh}} class="btn btn-mini"><i class="icon-refresh"></i></a>
             </th>
           </tr>
         </thead>

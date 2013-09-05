@@ -81,8 +81,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       });
   },
   refresh: function () {
-    App.Vm.all().clear();
-    App.Vm.find();
+    App.Vm.find(undefined, true);
   },
 
   renderTreemap: function () {

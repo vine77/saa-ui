@@ -6,7 +6,6 @@
           {{#view App.TooltipView title="Not available in Beta API" class="inline-block"}}
             <a class="btn disabled"><i class="icon-plus"></i> Create SLA</a>
           {{/view}}
-          <a {{action refresh}} class="btn"><i class="icon-refresh"></i> Refresh SLAs</a>
         </div>
         {{!--
         <form id="filter-form" class="input-prepend clear-input pull-right">
@@ -24,9 +23,7 @@
             <th {{bindAttr class=":column-large :sortable isColumn3Sorted:sorted sortAscending"}}><a {{action sortModel "sloTypes"}}>SLO Types</a></th>
             <th class="column-medium">Actions</th>
             <th class="column-small">
-              {{#if content.isUpdating}}
-                <i class="icon-spinner icon-spin"></i>
-              {{/if}}
+              <a {{action refresh}} class="btn btn-mini"><i class="icon-refresh"></i></a>
             </th>
           </tr>
         </thead>
