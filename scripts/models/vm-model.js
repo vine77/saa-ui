@@ -47,12 +47,15 @@ App.VmStatus = DS.Model.extend({
   operationalMessage: function () {
     return '<strong>State</strong>: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),
-  trust: DS.attr('boolean'),
+  trust: DS.attr('number'),  // 0: UNKNOWN , 1: NOT TRUSTED, 2: TRUSTED
+  isTrusted: Ember.computed.equal('trust', 2),
+  isNotTrusted: Ember.computed.equal('trust', 1),
+  isTrustUnknown: Ember.computed.not('trust'),
   trust_details: DS.belongsTo('App.VmStatusTrustDetails'),
   trustMessage: function () {
     var message = '';
     if (this.get('trust') === 0) {
-      message = 'Trust Status: Unknown.';
+      message = 'Trust Status: Unknown';
     } else if (this.get('trust') === 1) {
       message = 'Trust Status: Not Trusted';
     } else if (this.get('trust') === 2) {
