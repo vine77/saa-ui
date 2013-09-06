@@ -130,8 +130,9 @@ App.ProfileController = App.FormController.extend({
                 controller.setDisable(true, 'username');
             };
             var mail_controller = route.controllerFor('settings.mailserver');
-            mail_controller.saveConfig(route, true, updateNotification);
-            controller.setDisable(true);
+            if(mail_controller.saveConfig(route, true, updateNotification)) {
+                controller.setDisable(true);
+            }
         }                    
     },
     resetProfile: function(route) {
