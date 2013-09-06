@@ -76,21 +76,17 @@ App.ApplicationController = Ember.ArrayController.extend({
   initModels: function() {
     // Load data from APIs
     App.mtWilson.check().then(function() {
-      if (App.application.get('isEnabled')) {
-        if (App.mtWilson.get('isInstalled') === true) {
-          App.TrustNode.find().then(function() {
-            App.Node.find();
-          });
-        } else {
+      if (App.mtWilson.get('isInstalled') === true) {
+        App.TrustNode.find().then(function() {
           App.Node.find();
-        }
-        App.Vm.find();
-      }
-    }, function() {
-      if (App.application.get('isEnabled')) {
+        });
+      } else {
         App.Node.find();
-        App.Vm.find();
       }
+      App.Vm.find();
+    }, function() {
+      App.Node.find();
+      App.Vm.find();
     });
     App.Flavor.find();
     App.Sla.find();
