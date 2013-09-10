@@ -2,7 +2,6 @@
   {{#unless App.application.status}}
     <div class="notification-top">
       <div {{bindAttr class=":alert App.application.statusStyle"}}>
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
         <ul>
           {{#each item in App.application.statusMessages}}
             <li>{{item.message}}</li>
@@ -14,8 +13,7 @@
 {{else}}
   <div class="notification-top">
     <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      Error: API connectivity has been lost. 
+      Error: API connectivity has been lost.
     </div>
   </div>
 {{/if}}
