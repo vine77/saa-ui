@@ -1,11 +1,11 @@
 {
   "name": "ember",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0",
   "main": [
     "./ember.js"
   ],
   "dependencies": {
-    "jquery": "~1.9.1",
+    "jquery": ">= 1.7",
     "handlebars": "1.0.0"
   }
 }
