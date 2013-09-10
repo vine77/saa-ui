@@ -29,6 +29,7 @@ App.Application = Ember.Object.extend({
         }
       }
       // Update SAM status
+      /*
       var statusCheck = function (status, self) {
         var newStatus = status;
         if (self.get('health') !== newStatus.get('health')) self.set('health', newStatus.get('health'));
@@ -55,6 +56,7 @@ App.Application = Ember.Object.extend({
           statusCheck(status, self);
         });
       }
+      */
     }, timerInterval);
     this.set('timerId', timerId);
   },
@@ -66,4 +68,4 @@ App.Application = Ember.Object.extend({
   statusStyle: null
 });
 App.application = App.Application.create();
-App.application.timer();
+//App.application.timer();

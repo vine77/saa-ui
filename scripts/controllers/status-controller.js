@@ -1,4 +1,16 @@
-App.ConnectivityController = Ember.ObjectController.extend({
+App.StatusController = Ember.ObjectController.extend({
+  init: function () {
+    this.set('model', App.Status.find('current'));
+    this.autoRefresh();
+  },
+  autoRefresh: function () {
+    if (App.Status.find('current').get('isLoaded')) {
+      App.Status.find('current').reload();
+    }
+    Ember.run.later(this, 'autoRefresh', 10000);
+  }
+
+  /*
   model: function () {
     return App.Connectivity.find('current');
   }.property('App.Connectivity'),
@@ -20,4 +32,7 @@ App.ConnectivityController = Ember.ObjectController.extend({
     hash = $.extend(hash, App.ajaxSetup);
     return App.ajaxPromise(hash);    
   }
+  */
+ 
+
 });
