@@ -1,13 +1,32 @@
 App.StatusController = Ember.ObjectController.extend({
   init: function () {
+    this._super();
     this.set('model', App.Status.find('current'));
-    this.autoRefresh();
+    App.Status.find('current').on('becameError', function () {
+      console.log('App.Status.current becameError');
+    });
+    this.updateCurrentStatus();
   },
-  autoRefresh: function () {
-    if (App.Status.find('current').get('isLoaded')) {
-      App.Status.find('current').reload();
+  /*
+  model: function () {
+    return App.Status.find('current');
+  },
+  */
+  updateCurrentStatus: function () {
+    if (!App.Status.find('current').get('isLoaded')) {
+      App.Status.find('current').then(function () {
+        console.log('PROMISE fulfill 1');
+      }, function () {
+        console.log('PROMISE reject 1');
+      });
+    } else if (!App.Status.find('current').get('isLoading') && !App.Status.find('current').get('isReloading')) {
+      App.Status.find('current').reload().then(function () {
+        console.log('PROMISE fulfill 2');
+      }, function () {
+        console.log('PROMISE reject 2');
+      });
     }
-    Ember.run.later(this, 'autoRefresh', 10000);
+    Ember.run.later(this, 'updateCurrentStatus', 10000);
   }
 
   /*
@@ -33,6 +52,5 @@ App.StatusController = Ember.ObjectController.extend({
     return App.ajaxPromise(hash);    
   }
   */
- 
 
 });
