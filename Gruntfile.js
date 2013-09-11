@@ -263,6 +263,15 @@ module.exports = function (grunt) {
           dest: '<%= paths.destination %>/scripts/'
         }]
       },
+      definitions: {
+        files: [{
+          expand: true,
+          flatten: false,
+          cwd: '<%= paths.source %>/definitions/',
+          src: ['**/*.json'],
+          dest: '<%= paths.destination %>/definitions/'
+        }]
+      },
       components: {
         files: [{
           expand: true,
@@ -353,6 +362,7 @@ module.exports = function (grunt) {
     'clean:public',
     'copy:images',
     'copy:fonts',
+    'copy:definitions',
     'copy:project',
     'copy:dist',
     'clean:dist'
@@ -374,7 +384,8 @@ module.exports = function (grunt) {
     'clean:public',
     'copy:images',
     'copy:fonts',
-    'copy:project',
+    'copy:fonts',
+    'copy:definitions',
     'copy:dist',
     'clean:dist'
   ]);

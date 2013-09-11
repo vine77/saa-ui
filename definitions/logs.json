@@ -1,0 +1,40 @@
+{
+  "logs": {
+    "categories": [
+      "agent",
+      "apache-error",
+      "auth",
+      "dmesg",
+      "dpkg",
+      "kern",
+      "libvirt",
+      "libvirtshutdown",
+      "monit",
+      "monit_startup",
+      "nova-api",
+      "nova-api-metadata",
+      "nova-api-metadata-upstart",
+      "nova-boot-publisher",
+      "nova-boot-publisher-upstart",
+      "nova-cert",
+      "nova-compute",
+      "nova-compute-upstart",
+      "nova-consoleauth",
+      "nova-manage",
+      "nova-proc-stats-upstart",
+      "nova-scheduler",
+      "ovsdb-server",
+      "ovs-vswitchd",
+      "openvsswitch-agent",
+      "redis",
+      "rocksteady",
+      "sam",
+      "scheduler",
+      "statsd",
+      "startup",
+      "syslog",
+      "trust-agent",
+      "trust-server"
+    ]
+  }
+}
