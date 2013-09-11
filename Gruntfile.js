@@ -358,7 +358,7 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
-    grunt.registerTask('build-lite', [
+  grunt.registerTask('build-lite', [
     'clean:dist',
     //'jshint',
     //'test',
@@ -379,7 +379,7 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
-    grunt.registerTask('build-debug', [
+  grunt.registerTask('build-debug', [
     'clean:dist',
     'jshint',
     //'test',
@@ -397,6 +397,37 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
+  /*
+   * Run "grunt scrape --server=127.0.0.1" from the command line
+   */
+  grunt.registerTask('scrape', 'Download JSON files from API', function () {
+    var path = require('path');
+    var fs = require('fs');
+    var http = require('http');
+    var request = require('request');
+    var mkpath = require('mkpath');
+    var done = this.async();
+
+    var server = grunt.option('server') || 'localhost';
+    var jsonFiles = [
+      '/api/v1/nodes.json',
+      '/api/v1/vms.json'
+    ];
+
+    jsonFiles.forEach(function (jsonFile) {
+      var requestUrl = 'http://' + server + jsonFile;
+      var absolutePath = __dirname + jsonFile.split('/').join(path.sep);
+      request(requestUrl, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+          mkpath.sync(absolutePath.split(path.sep).slice(0, -1).join(path.sep));
+          var beautifiedJson = JSON.stringify(JSON.parse(body), null, 2);
+          fs.writeFile(absolutePath, beautifiedJson);
+        }
+      });
+      //request(requestUrl).pipe(fs.createWriteStream(absolutePath));
+    });
+
+  });
 
   grunt.registerTask('default', ['build']);
 };
