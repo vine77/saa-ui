@@ -350,6 +350,19 @@ App.rangeToPercentage = function(value, minimum, maximum) {
 
 App.trustDetailsToString = function (value) {
   switch (value) {
+    case 0:
+    case '0':
+      return 'Unknown';
+    case 1:
+    case '1':
+      return 'Not Trusted';
+    case 2:
+    case '2':
+      return 'Trusted';
+  }
+
+  /** Old
+  switch (value) {
     case '0':
     case 0:
       return 'Not Trusted';
@@ -360,4 +373,5 @@ App.trustDetailsToString = function (value) {
     case null:
       return 'Unknown';
   }
+  **/
 }
