@@ -25,9 +25,12 @@ App.LogCategoriesController = Ember.ArrayController.extend({
 
 App.LogCategoryController = Ember.ObjectController.extend({
   isSelectedObserver: function() {
+    console.log('inside of isSelectedObserver');
     if (this.get('isSelected')) {
       App.currentSelections.get('selectedLogCategories').addObject(this);
     } else {
+      console.log('remove block');
+      console.log('this inside of remove block', this);
       App.currentSelections.get('selectedLogCategories').removeObject(this);
     }
     App.currentSelections.propertyDidChange('selectedLogCategories');
@@ -35,7 +38,7 @@ App.LogCategoryController = Ember.ObjectController.extend({
 });
 
 App.LogBarController = Ember.ObjectController.extend({
-  shortCutTimes: [{"id": 1, "label":"Last 15min"}, 
+  shortCutTimes: [{"id": 1, "label":"Last 15min"},
                   {"id":2,  "label":"Last 60min"},
                   {"id":3,  "label":"Last 4h"},
                   {"id":4,  "label":"Last 12h"},
@@ -56,6 +59,7 @@ App.LogBarController = Ember.ObjectController.extend({
     return returnArray;
   }.property('criticalities'),
   logCategories: App.LogCategoriesController.create(),
+  //logCategories: App.Logs.find(),
   criticalitySelected: null,
   shortCutTimeSelected: null,
   searchText: '',
@@ -134,7 +138,7 @@ App.LogBarController = Ember.ObjectController.extend({
       this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
     }
   }.observes('timeTo', 'timeFrom'),
-  shortCutTimeSelectionChanged: function()  {
+  shortCutTimeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
       this.set('timeFrom', null);
       this.set('timeTo', null);
@@ -245,7 +249,9 @@ App.LogBarController = Ember.ObjectController.extend({
     }
     //Search Text Query (node, criticality, and search text)
     newURL['search'] = this.get('searchTextQuery');
+    console.log('newURL before stringify:', newURL);
     newURL = JSON.stringify(newURL);
+    console.log('newURL after stringify:', newURL);
     newURL = btoa(newURL);
 
     frames['allLogsFrame'].location.href = 'kibana/#' + newURL;

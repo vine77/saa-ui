@@ -88,7 +88,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       App.Event('Failed to load node trust report', App.ERROR);
     });
   },
-  trustReportModal: function (model){
+  trustReportModal: function (model) {
     var controller = this;
     modal = Ember.View.create({
       templateName: "nodeTrustReport-modal",
@@ -247,6 +247,31 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   addTrust: function (node) {
     var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
     if (confirmed) {
+
+      trustNode = App.TrustNode.createRecord({
+        node: App.Node.find(node.get('id'))
+      });
+      trustNode.get('transaction').commit();
+      trustNode.get('store').commit();
+
+      trustNode.on('becameError', function () {
+        var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+        App.event(errorMessage, App.ERROR);
+        trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustNode.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustNode.on('becameInvalid', function () {
+        var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+        App.event(errorMessage, App.WARNING);
+        trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustNode.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustNode.on('didCreate', function () {
+        App.event('Successfully trusted node "' + trustNode.get('name') + '"', App.SUCCESS);
+      });
+      /*
       var jsonData = {
         "node_ids": [{
           "node_id": node.get('id')
@@ -276,6 +301,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to register node "' + node.get('name') + '" as trusted', App.ERROR);
       });
+      */
+
     }
   },
   removeTrust: function (node) {
@@ -285,6 +312,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
       node.get('trustNode').deleteRecord();
       node.get('transaction').commit();
+      node.get('store').commit();
     }
 
     /**Solution leaves cache still populated. 
@@ -314,6 +342,31 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   trustFingerprint: function (node) {
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
     if (confirmed) {
+      trustMle = App.TrustMle.createRecord({
+        node: App.Node.find(node.get('id'))
+      });
+      trustMle.get('transaction').commit();
+      trustMle.get('store').commit();
+
+      trustMle.on('becameError', function () {
+        var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+        App.event(errorMessage, App.ERROR);
+        trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustMle.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustMle.on('becameInvalid', function () {
+        var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+        App.event(errorMessage, App.WARNING);
+        trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustMle.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustMle.on('didCreate', function () {
+        App.event('Successfully trusted node "' + trustMle.get('name') + '"', App.SUCCESS);
+      });
+
+      /* Old Implementation ...
       var jsonData = {
         "node_id": node.get('id')
       };
@@ -331,6 +384,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, function (qXHR, textStatus, errorThrown) {
         App.event('Failed to fingerprint node "' + node.get('name') + '"', App.ERROR);
       });
+      */
     }
   },
   refresh: function () {

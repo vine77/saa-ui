@@ -131,7 +131,8 @@ DS.RESTAdapter.configure('plurals', {
   connectivity: 'connectivity',
   vm_instantiation_simple: 'vm_instantiation_simple',
   vm_instantiation_detailed: 'vm_instantiation_detailed',
-  status: 'status'
+  status: 'status',
+  logs: 'logs'
 });
 
 // RESTConfigAdapter for nested configuration namespace
@@ -153,6 +154,12 @@ DS.RESTSingletonAdapter.reopen({
 DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend();
 DS.RESTSingletonConfigAdapter.reopen({
   namespace: 'api/v1/configuration'
+});
+
+// RESTDefinitionsAdapter 
+DS.RESTDefinitionsAdapter = DS.RESTSingletonAdapter.extend();
+DS.RESTDefinitionsAdapter.reopen({
+  namespace: 'definitions'
 });
 
 App.Store = DS.Store.extend({

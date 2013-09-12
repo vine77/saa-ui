@@ -4,8 +4,12 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}><a {{action "sortModel" "mleType"}}>MLE Type</a></th>
-            <th {{bindAttr class=":sortable isColumn2Sorted:sorted sortAscending"}}><a {{action "sortModel" "name"}}>Name</a></th>
+            <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}>
+              <a {{action "sortModel" "mleType"}}>MLE Type</a>
+            </th>
+            <th {{bindAttr class=":sortable isColumn2Sorted:sorted sortAscending"}}>
+              <a {{action "sortModel" "name"}}>Name</a>
+            </th>
             <th {{bindAttr class=":sortable isColumn3Sorted:sorted sortAscending"}}>
               <a {{action "sortModel" "oemname"}}>
                 <acronym title="Original Equipment Manufacturer">OEM</acronym> Name
@@ -34,7 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#if model}} 
+          {{#if model}}
             {{#each mle in controller}}
                <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
                 <td>{{na mle.mleType}}</td>
@@ -58,6 +62,7 @@
                   <div class="details">
                     <ul class="nav nav-tabs">
                       <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
+                      <li class="active"><a onclick="App.selectTab(event)">Manifest</a></li>
                     </ul>
                     <div class="tab-content">
                       <div class="tab-pane active nodes">
@@ -69,6 +74,26 @@
                             {{#each node in mle.trustNode}}
                               <tr>
                                 <td>{{#linkTo "nodesNode" node.node}}{{node.node.name}}{{/linkTo}}</td>
+                              </tr>
+                            {{/each}}
+                          </table>
+                        {{else}}
+                          {{#unless content.isUpdating}}
+                            <div class="alert alert-info">No trust nodes found.</div>
+                          {{/unless}}
+                        {{/if}}
+                      </div>                      
+                      <div class="tab-pane active manifest">
+                        {{#if mle.mleManifests}}
+                          <table class="table table-bordered">
+                            <tr>
+                              <th>PCR</th>
+                              <th>Value</th>
+                            </tr>
+                            {{#each pcr in mle.mleManifests}}
+                              <tr>
+                                <td>{{na pcr.name}}</td>
+                                <td>{{na pcr.value}}</td>
                               </tr>
                             {{/each}}
                           </table>
