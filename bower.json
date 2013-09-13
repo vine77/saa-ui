@@ -5,7 +5,7 @@
     "jquery": "components/jquery#~1.10.2",
     "handlebars": "components/handlebars.js#1.0.0",
     "ember": "components/ember#1.0.0",
-    "ember-data": "components/ember-data#0.0.14",
+    "ember-data": "components/ember-data#1.0.0-beta.2",
     "bootstrap": "jasny/bootstrap#2.3.0-p4",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.2.0",
     "font-awesome": "components/font-awesome#~3.2.1",
@@ -21,7 +21,6 @@
     "group-helper": "emberjs/group-helper"
   },
   "resolutions": {
-    "jquery": "~1.10.2",
-    "ember": "1.0.0"
+    "jquery": "~1.10.2"
   }
 }

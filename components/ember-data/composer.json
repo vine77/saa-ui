@@ -13,9 +13,7 @@
             ],
             "files": [
                 "ember-data.min.js",
-                "ember-data.prod.js",
-                "ember-spade.js",
-                "ember-tests.js"
+                "ember-data.prod.js"
             ],
             "shim": {
                 "exports": "Ember",
