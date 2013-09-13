@@ -1,1 +1,17 @@
-{"slo": {"class_name": "performance", "uri": "/configuration/slos/11", "value": "1;2", "sla_id": 5, "unit": "SU", "operator": "in_range", "id": 11, "element_name": "infrastructure", "slo_type": "compute"}}
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/11",
+      "slas": "/api/v1/configuration/slas/3"
+    },
+    "class_name": "security",
+    "uri": "/configuration/slos/11",
+    "value": "0",
+    "sla_id": 3,
+    "unit": "",
+    "operator": "equals",
+    "id": 11,
+    "element_name": "infrastructure",
+    "slo_type": "trusted_platform"
+  }
+}

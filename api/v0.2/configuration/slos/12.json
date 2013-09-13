@@ -1,0 +1,1 @@
+{"slo": {"class_name": "performance", "uri": "/configuration/slos/12", "value": "2", "sla_id": 5, "unit": "", "operator": "equals", "id": 12, "element_name": "infrastructure", "slo_type": "vcpu_cores"}}

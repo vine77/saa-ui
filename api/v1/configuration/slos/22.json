@@ -1,1 +1,17 @@
-{"slo": {"class_name": "performance", "uri": "/configuration/slos/22", "value": "1", "sla_id": 9, "unit": "", "operator": "equals", "id": 22, "element_name": "infrastructure", "slo_type": "vcpu_cores"}}
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/22",
+      "slas": "/api/v1/configuration/slas/6"
+    },
+    "class_name": "performance",
+    "uri": "/configuration/slos/22",
+    "value": "2",
+    "sla_id": 6,
+    "unit": "",
+    "operator": "equals",
+    "id": 22,
+    "element_name": "infrastructure",
+    "slo_type": "vcpu_cores"
+  }
+}

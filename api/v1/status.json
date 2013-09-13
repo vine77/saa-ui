@@ -7,6 +7,7 @@
       },
       {
         "message": "SAM server is configured",
+<<<<<<< Updated upstream
         "health": 1
       },
       {
@@ -19,6 +20,24 @@
       }
     ],
     "version": "lxc-2013.08.30.0718",
+=======
+        "health": 1
+      },
+      {
+        "message": "Cloud software database is connected.",
+        "health": 1
+      },
+      {
+        "message": "RabbitMQ connected.",
+        "health": 1
+      },
+      {
+        "message": "Log communications active",
+        "health": 1
+      }
+    ],
+    "version": "1.0.3.48",
+>>>>>>> Stashed changes
     "health": 1,
     "master": 0
   }
