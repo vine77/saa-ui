@@ -1,0 +1,68 @@
+{
+  "vm": {
+    "status": {
+      "sla_messages": [
+        "SLA status for VM: unknown"
+      ],
+      "locked": false,
+      "sla_status": null,
+      "operational": 1,
+      "trust_details": {
+        "bios": 0,
+        "vmm": 0
+      },
+      "long_message": "VM data is not available because VM was placed on a non-SAM node. VM's health is unknown. VM is powered off.",
+      "health": 0,
+      "trust": 0,
+      "short_message": "VM's health is unknown."
+    },
+    "links": {
+      "nodes": "/api/v1/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+      "uri": "/api/v1/vms/13ad2bec-f545-486d-a84c-2d488f36668f",
+      "logs": "/api/v1/logs?vm=13ad2bec-f545-486d-a84c-2d488f36668f"
+    },
+    "stack_name": null,
+    "vm_instantiation_detailed_id": null,
+    "vm_instantiation_simple_id": null,
+    "id": "13ad2bec-f545-486d-a84c-2d488f36668f",
+    "cloud_id": "13ad2bec-f545-486d-a84c-2d488f36668f",
+    "utilization": {
+      "ipc": null,
+      "uptime": null,
+      "network": null,
+      "io": null,
+      "memory": null,
+      "gips_current": null,
+      "cpu": null
+    },
+    "fixed_ips": [],
+    "graphite_url": null,
+    "floating_ips": [],
+    "capabilities": {
+      "cores": null,
+      "memory_size": null,
+      "gips_allocated": null
+    },
+    "sla_id": null,
+    "vm_name": "sample_36-13ad2bec-f545-486d-a84c-2d488f36668f",
+    "macs": [
+      "fa:16:3e:fb:95:78"
+    ],
+    "contention": {
+      "threads": null,
+      "system": {
+        "llc": {
+          "value": null,
+          "label": null
+        }
+      }
+    },
+    "sla_name": null,
+    "vm_trust_report_id": null,
+    "node_id": "97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+    "logs_url": null,
+    "stack_id": null,
+    "uri": "/vms/13ad2bec-f545-486d-a84c-2d488f36668f",
+    "node_name": "novamgmt26"
+  }
+}

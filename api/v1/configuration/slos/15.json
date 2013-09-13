@@ -1,1 +1,17 @@
-{"slo": {"class_name": "security", "uri": "/configuration/slos/15", "value": "1", "sla_id": 6, "unit": "", "operator": "equals", "id": 15, "element_name": "infrastructure", "slo_type": "trusted_platform"}}
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/15",
+      "slas": "/api/v1/configuration/slas/4"
+    },
+    "class_name": "security",
+    "uri": "/configuration/slos/15",
+    "value": "1",
+    "sla_id": 4,
+    "unit": "",
+    "operator": "equals",
+    "id": 15,
+    "element_name": "infrastructure",
+    "slo_type": "trusted_platform"
+  }
+}

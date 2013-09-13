@@ -1,0 +1,99 @@
+{
+  "slas": [
+    {
+      "slo_ids": [
+        1,
+        2
+      ],
+      "uri": "/configuration/slas/1",
+      "name": "Unsecure Diamond",
+      "id": 1
+    },
+    {
+      "slo_ids": [
+        3,
+        4,
+        5
+      ],
+      "uri": "/configuration/slas/2",
+      "name": "Secure Diamond",
+      "id": 2
+    },
+    {
+      "slo_ids": [
+        6,
+        7
+      ],
+      "uri": "/configuration/slas/3",
+      "name": "Unsecure Platinum",
+      "id": 3
+    },
+    {
+      "slo_ids": [
+        8,
+        9,
+        10
+      ],
+      "uri": "/configuration/slas/4",
+      "name": "Secure Platinum",
+      "id": 4
+    },
+    {
+      "slo_ids": [
+        11,
+        12
+      ],
+      "uri": "/configuration/slas/5",
+      "name": "Unsecure Gold",
+      "id": 5
+    },
+    {
+      "slo_ids": [
+        13,
+        14,
+        15
+      ],
+      "uri": "/configuration/slas/6",
+      "name": "Secure Gold",
+      "id": 6
+    },
+    {
+      "slo_ids": [
+        16,
+        17
+      ],
+      "uri": "/configuration/slas/7",
+      "name": "Unsecure Silver",
+      "id": 7
+    },
+    {
+      "slo_ids": [
+        18,
+        19,
+        20
+      ],
+      "uri": "/configuration/slas/8",
+      "name": "Secure Silver",
+      "id": 8
+    },
+    {
+      "slo_ids": [
+        21,
+        22
+      ],
+      "uri": "/configuration/slas/9",
+      "name": "Unsecure Bronze",
+      "id": 9
+    },
+    {
+      "slo_ids": [
+        23,
+        24,
+        25
+      ],
+      "uri": "/configuration/slas/10",
+      "name": "Secure Bronze",
+      "id": 10
+    }
+  ]
+}

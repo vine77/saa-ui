@@ -1,1 +1,17 @@
-{"sla": {"slo_ids": [6, 7], "uri": "/configuration/slas/3", "name": "Unsecure Platinum", "id": 3}}
+{
+  "sla": {
+    "links": {
+      "uri": "/api/v1/configuration/slas/3",
+      "slos": "/api/v1/configuration/slos?ids=9,10,11,12"
+    },
+    "slo_ids": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "uri": "/configuration/slas/3",
+    "name": "Unsecure Platinum",
+    "id": 3
+  }
+}

@@ -2,20 +2,43 @@
   "status": {
     "messages": [
       {
-        "message": "SAM server is not configured",
-        "health": 4
-      },
-      {
         "message": "Database is configured.",
         "health": 1
       },
       {
-        "message": "Log communications status unknown",
-        "health": 0
+        "message": "SAM server is configured",
+<<<<<<< Updated upstream
+        "health": 1
+      },
+      {
+        "message": "Cloud software database is connected.",
+        "health": 1
+      },
+      {
+        "message": "RabbitMQ connected.",
+        "health": 1
       }
     ],
-    "version": "1.0.2.277",
-    "health": 3,
-    "master": 1
+    "version": "lxc-2013.08.30.0718",
+=======
+        "health": 1
+      },
+      {
+        "message": "Cloud software database is connected.",
+        "health": 1
+      },
+      {
+        "message": "RabbitMQ connected.",
+        "health": 1
+      },
+      {
+        "message": "Log communications active",
+        "health": 1
+      }
+    ],
+    "version": "1.0.3.48",
+>>>>>>> Stashed changes
+    "health": 1,
+    "master": 0
   }
 }

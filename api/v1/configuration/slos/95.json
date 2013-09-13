@@ -1,0 +1,17 @@
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/95",
+      "slas": "/api/v1/configuration/slas/24"
+    },
+    "class_name": "security",
+    "uri": "/configuration/slos/95",
+    "value": "0",
+    "sla_id": 24,
+    "unit": "",
+    "operator": "equals",
+    "id": 95,
+    "element_name": "infrastructure",
+    "slo_type": "trusted_platform"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "node": {
+    "status": {
+      "locked": false,
+      "agent_version": null,
+      "operational": 2,
+      "trust_details": {
+        "bios": 0,
+        "vmm": 0
+      },
+      "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+      "health": 2,
+      "mode": 0,
+      "trust": 0,
+      "short_message": "Compute service is enabled."
+    },
+    "ids": {
+      "platform_id": null,
+      "mac": null,
+      "ip_address": null,
+      "cloud_id": null
+    },
+    "scheduler_persistent": false,
+    "links": {
+      "uri": "/api/v1/nodes/BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+      "logs": "/api/v1/logs?node=BD4B1595-76DA-59D0-BD1C-7F160FE492E0"
+    },
+    "utilization": {
+      "ipc": null,
+      "uptime": null,
+      "network": null,
+      "cpu_frequency_current": null,
+      "gips_max": null,
+      "io": null,
+      "memory": null,
+      "gips_current": null,
+      "cpu": {
+        "iowait": null,
+        "idle": null,
+        "total": null,
+        "steal": null,
+        "guest": null
+      }
+    },
+    "graphite_url": null,
+    "sam_registered": false,
+    "uri": "/nodes/BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+    "capabilities": {
+      "hyperthreading": null,
+      "cores_per_socket": null,
+      "cpu_frequency": null,
+      "turbo_mode": null,
+      "memory_size": null,
+      "cpu_type": null,
+      "cache_size": null,
+      "sockets": null
+    },
+    "node_name": "novamgmt43",
+    "sam_controlled": 0,
+    "vcpus": {
+      "max": 512,
+      "used": 0
+    },
+    "scheduler_mark": null,
+    "vm_info": {
+      "count": 0,
+      "max": null
+    },
+    "memory": {
+      "max": 32079,
+      "used": 512
+    },
+    "tier": null,
+    "id": "BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+    "vm_ids": [],
+    "contention": {
+      "sockets": null,
+      "system": {
+        "llc": {
+          "value": null,
+          "label": null
+        }
+      }
+    }
+  }
+}

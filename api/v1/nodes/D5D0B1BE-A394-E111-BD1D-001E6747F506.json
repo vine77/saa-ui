@@ -1,1 +1,86 @@
-{"node": {"status": {"locked": false, "trust_message": "bios: -1 vmm: -1", "operational": 2, "long_message": "Health: warning, Operational status: powered on", "health": 4, "trust": false, "short_message": "Health: warning"}, "ids": {"platform_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506", "mac": "00:1e:67:47:f5:06", "ip_address": "172.24.0.41", "cloud_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506"}, "scheduler_persistent": false, "utilization": {"ipc": 0.48, "uptime": null, "network": null, "cpu_frequency_current": null, "gips_max": 140.8, "io": null, "memory": "4579188 KB", "gips_current": 136.4, "cpu": {"iowait": 56.44, "idle": 5901769.04, "total": 0.0, "steal": 0.0, "guest": 0.0}}, "graphite_url": "/render?target=stats.SAM", "memory": {"max": 32768, "used": 0}, "uri": "/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506", "capabilities": {"hyperthreading": true, "cores_per_socket": 8, "cpu_frequency": "4000 MHz", "turbo_mode": true, "memory_size": "32768 MB", "cpu_type": "", "cache_size": "20480 kB", "sockets": 2}, "node_name": "novamgmt41", "sam_controlled": true, "vcpus": {"max": 256, "used": 0}, "scheduler_mark": null, "node_trust_report_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506", "vm_info": {"count": 0, "max": null}, "logs_url": "/logs?node=D5D0B1BE-A394-E111-BD1D-001E6747F506", "tier": "", "id": "D5D0B1BE-A394-E111-BD1D-001E6747F506", "vm_ids": [], "contention": {"sockets": [{"llc": {"value": 0.59, "label": "LOW"}, "id": "s1"}, {"llc": {"value": 2.76, "label": "LOW"}, "id": "s0"}], "system": {"llc": {"value": 3.3499999999999996, "label": "MEDIUM"}}}}}
+{
+  "node": {
+    "status": {
+      "locked": false,
+      "agent_version": null,
+      "operational": 2,
+      "trust_details": {
+        "bios": 0,
+        "vmm": 0
+      },
+      "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+      "health": 2,
+      "mode": 0,
+      "trust": 0,
+      "short_message": "Compute service is enabled."
+    },
+    "ids": {
+      "platform_id": null,
+      "mac": null,
+      "ip_address": null,
+      "cloud_id": null
+    },
+    "scheduler_persistent": false,
+    "links": {
+      "uri": "/api/v1/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "logs": "/api/v1/logs?node=D5D0B1BE-A394-E111-BD1D-001E6747F506"
+    },
+    "utilization": {
+      "ipc": null,
+      "uptime": null,
+      "network": null,
+      "cpu_frequency_current": null,
+      "gips_max": null,
+      "io": null,
+      "memory": null,
+      "gips_current": null,
+      "cpu": {
+        "iowait": null,
+        "idle": null,
+        "total": null,
+        "steal": null,
+        "guest": null
+      }
+    },
+    "graphite_url": null,
+    "sam_registered": false,
+    "uri": "/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506",
+    "capabilities": {
+      "hyperthreading": null,
+      "cores_per_socket": null,
+      "cpu_frequency": null,
+      "turbo_mode": null,
+      "memory_size": null,
+      "cpu_type": null,
+      "cache_size": null,
+      "sockets": null
+    },
+    "node_name": "novamgmt41",
+    "sam_controlled": 0,
+    "vcpus": {
+      "max": 512,
+      "used": 0
+    },
+    "scheduler_mark": null,
+    "vm_info": {
+      "count": 0,
+      "max": null
+    },
+    "memory": {
+      "max": 32079,
+      "used": 512
+    },
+    "tier": null,
+    "id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+    "vm_ids": [],
+    "contention": {
+      "sockets": null,
+      "system": {
+        "llc": {
+          "value": null,
+          "label": null
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {
-    "build": {
-        "date": "2013-07-22T18:01:48+0200",
-        "version": "27"
-    }
+  "hostname": "samappliance",
+  "build": {
+    "date": "2013-09-11T08:00:13+0200",
+    "version": "1.0.3.48"
+  }
 }

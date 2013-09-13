@@ -1,0 +1,279 @@
+{
+  "vms": [
+    {
+      "vm_name": "Victim",
+      "status": {
+        "sla_messages": [
+          "SLA is not violated."
+        ],
+        "locked": false,
+        "trust_message": "Unknown",
+        "sla_status": 0,
+        "operational": 2,
+        "long_message": "Health: unknown, Operational status: powered on",
+        "health": 0,
+        "trust": false,
+        "short_message": "Health: unknown"
+      },
+      "cloud_id": "e389f4a5-f2e3-4054-ba5d-5cbc84e51cf9",
+      "utilization": {
+        "ipc": 1.38,
+        "uptime": 0,
+        "network": null,
+        "io": null,
+        "memory": "524288 KB",
+        "gips_current": 3.51,
+        "cpu": 94.59208264268281
+      },
+      "stack_id": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": "Unsecure Bronze",
+      "uri": "/vms/e389f4a5-f2e3-4054-ba5d-5cbc84e51cf9",
+      "capabilities": {
+        "cores": 1,
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      },
+      "node_name": "novamgmt21",
+      "sla_id": 9,
+      "stack_name": null,
+      "node_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "id": "e389f4a5-f2e3-4054-ba5d-5cbc84e51cf9",
+      "contention": {
+         "threads": [
+          {
+            "llc": {
+              "value": 0.01,
+              "label": "l"
+            },
+            "id": 65296
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.01,
+            "label": "l"
+          }
+        }
+      }
+    },
+    {
+      "vm_name": "shui01_m1_tiny_secure_bronze",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 5,
+        "operational": 1
+      },
+      "cloud_id": "5b4b93da-284c-4010-a8dc-10ed1fb26c60",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/5b4b93da-284c-4010-a8dc-10ed1fb26c60",
+      "node_name": null,
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "5b4b93da-284c-4010-a8dc-10ed1fb26c60",
+      "threads":null,
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "shui02_m1_tiny",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 2,
+        "operational": 2
+      },
+      "cloud_id": "ce6eb4d6-92c5-4499-993c-85ec10d8f4f7",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/ce6eb4d6-92c5-4499-993c-85ec10d8f4f7",
+      "node_name": "novamgmt44",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "ce6eb4d6-92c5-4499-993c-85ec10d8f4f7",
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "shui_test02",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 2,
+        "operational": 2
+      },
+      "cloud_id": "77775d90-88cf-4668-85d5-e5a04f6705b8",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/77775d90-88cf-4668-85d5-e5a04f6705b8",
+      "node_name": "novamgmt46",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "77775d90-88cf-4668-85d5-e5a04f6705b8",
+      "utilization": {
+        "memory": "250880 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "tsdv2",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 2,
+        "operational": 2
+      },
+      "cloud_id": "958b471d-9d90-4c0c-b15b-06dd666a6b0f",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/958b471d-9d90-4c0c-b15b-06dd666a6b0f",
+      "node_name": "novamgmt46",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "958b471d-9d90-4c0c-b15b-06dd666a6b0f",
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "tsdg",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 2,
+        "operational": 2
+      },
+      "cloud_id": "22a7b838-3a95-49ba-9226-47c9a7661f0f",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/22a7b838-3a95-49ba-9226-47c9a7661f0f",
+      "node_name": "novamgmt46",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "22a7b838-3a95-49ba-9226-47c9a7661f0f",
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "250880 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "nv",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 0,
+        "operational": 1
+      },
+      "cloud_id": "538f2aae-0a08-402e-b02f-898c9b285919",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/538f2aae-0a08-402e-b02f-898c9b285919",
+      "node_name": "novamgmt33",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "538f2aae-0a08-402e-b02f-898c9b285919",
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "524288 KB",
+        "gips_allocated": 1.0
+      }
+    },
+    {
+      "vm_name": "pac",
+      "status": {
+        "locked": false,
+        "long_message": "",
+        "short_message": "",
+        "health": 0,
+        "operational": 1
+      },
+      "cloud_id": "a354eca7-f605-421e-aafc-e4ec55388bca",
+      "stack_id": null,
+      "graphite_url": null,
+      "hostname": null,
+      "sla_name": null,
+      "uri": "/vms/a354eca7-f605-421e-aafc-e4ec55388bca",
+      "node_name": "novamgmt33",
+      "sla_id": null,
+      "stack_name": null,
+      "node_id": null,
+      "logs_url": null,
+      "vm_trust_report_id": null,
+      "id": "a354eca7-f605-421e-aafc-e4ec55388bca",
+      "utilization": {
+        "memory": "524288 KB",
+        "gips_current": 3.51
+      },
+      "capabilities": {
+        "memory_size": "250880 KB",
+        "gips_allocated": 1.0
+      }
+    }
+  ]
+}
