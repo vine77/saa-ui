@@ -408,6 +408,84 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
+  /*
+   * Run "grunt scrape --server=127.0.0.1" from the command line
+   */
+  grunt.registerTask('scrape', 'Download JSON files from API', function () {
+    var path = require('path');
+    var fs = require('fs');
+    var http = require('http');
+    var request = require('request');
+    var mkpath = require('mkpath');
+    var done = this.async();
+
+    var server = grunt.option('server') || 'localhost';
+    var jsonFiles = [
+      //'/api/v1/sessions/current_session.json',
+      //'/api/v1/sessions.json',
+
+      '/api/v1/status.json',
+      '/api/v1/connectivity.json',
+      '/api/v1/build.json',
+      
+      '/api/v1/quantumconfig',
+      '/api/v1/openrcconfig',
+      '/api/v1/novaconfig',
+      '/api/v1/netconfig',
+      '/api/v1/users.json',
+      '/api/v1/logsettings',
+      '/api/v1/override',
+      '/api/v1/mailservers/default.json',
+
+      '/api/v1/nodes.json',
+      '/api/v1/vms.json',
+      '/api/v1/configuration/flavors.json',
+      '/api/v1/configuration/slas.json',
+      '/api/v1/configuration/slos.json',
+      //'/api/v1/graphs.json',
+
+      '/api/v1/mtwilson/install',
+      '/api/v1/trust_nodes.json',
+      '/api/v1/trust_mles.json'
+      //'/api/v1/node_trust_reports.json'
+
+    ];
+
+    jsonFiles.forEach(function (jsonFile) {
+      var requestUrl = 'http://' + server + jsonFile;
+      var absolutePath = __dirname + jsonFile.split('/').join(path.sep);
+      request(requestUrl, function (error, response, body) {
+        grunt.log.writeln(((response) ? response.statusCode : 'ERR') + ' GET ' + requestUrl);
+        if (error) {
+          grunt.log.writeln(error);
+        } else if (response.statusCode === 200) {
+          grunt.log.writeln(' Saving to ' + absolutePath);
+          mkpath.sync(absolutePath.split(path.sep).slice(0, -1).join(path.sep));  // create folder
+          var jsonObject = JSON.parse(body);
+          var beautifiedJson = JSON.stringify(jsonObject, null, 2);
+          fs.writeFile(absolutePath, beautifiedJson);
+          // Download get_one child records
+          var ids = [];
+          var records = jsonObject[Object.keys(jsonObject)[0]];
+          if (Array.isArray(records)) records.forEach(function (record) {
+            if (record.id) ids.push(record.id);
+          });
+          ids.forEach(function (id) {
+            var individualUrl = requestUrl.replace('.json', '') + '/' + id + '.json';
+            var individualPath = __dirname + (jsonFile.replace('.json', '') + '/' + id + '.json').split('/').join(path.sep);
+            request(individualUrl, function (error, response, body) {
+              grunt.log.writeln(response.statusCode + ' GET ' + individualUrl);
+              if (!error && response.statusCode === 200) {
+                grunt.log.writeln(' Saving to ' + individualPath);
+                mkpath.sync(individualPath.split(path.sep).slice(0, -1).join(path.sep));  // create folder
+                fs.writeFile(individualPath, JSON.stringify(JSON.parse(body), null, 2));
+              }
+            });
+          });
+        }
+      });
+    });
+  });
 
   grunt.registerTask('default', ['build']);
 };
