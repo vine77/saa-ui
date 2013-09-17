@@ -4,18 +4,23 @@ App.CatalogController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
     return App.Template.find();
   }.property('App.Template.@each'),
   filterProperties: ['name', 'description'],
-  selectAll: function () {
-    var isEverythingSelected = this.get('model').everyProperty('isSelected');
-    this.get('model').setEach('isSelected', !isEverythingSelected);
+  actions {
+    selectAll: function () {
+      var isEverythingSelected = this.get('model').everyProperty('isSelected');
+      this.get('model').setEach('isSelected', !isEverythingSelected);
+    }
   },
   multipleTemplatesAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
-  expand: function (model) {
-    if (!model.get('isActive')) {
-      this.transitionToRoute('template', model);
-    } else {
-      this.transitionToRoute('catalog');
+  actions: {
+    expand: function (model) {
+      if (!model.get('isActive')) {
+        this.transitionToRoute('template', model);
+      } else {
+        this.transitionToRoute('catalog');
+      }
     }
   }
+
 });

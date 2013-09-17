@@ -25,38 +25,22 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       return [this];
     }
   }.property('model.@each', 'sortProperties', 'sortAscending'),
-  selectAll: function () {
-    var isEverythingSelected = this.get('model').everyProperty('isSelected');
-    this.get('model').setEach('isSelected', !isEverythingSelected);
-  },
-  multipleVmsAreSelected: function () {
-    return this.get('model').filterProperty('isSelected').length > 1;
-  }.property('model.@each.isSelected'),
-  expand: function (model) {
-    if (!model.get('isActive')) {
-      this.transitionToRoute('vmsVm', model);
-    } else {
-      this.transitionToRoute('vms');
-    }
-  },
-  trustReportModal: function(model){
-    var controller = this;
-      modal = Ember.View.create({
-        templateName: "vmTrustReport-modal",
-        controller: controller,
-        content: model,
-        modalHide: function() {
-          $('#modal').modal('hide');
-          var context = this;
-          //setTimeout(context.remove, 3000);
-          this.remove(); //destroys the element
-        },
-        didInsertElement: function (){
-          $('#modal').modal('show');
+  actions: {
+    selectAll: function () {
+      var isEverythingSelected = this.get('model').everyProperty('isSelected');
+      this.get('model').setEach('isSelected', !isEverythingSelected);
+    },
+    expand: function (model) {
+      if (!model.get('isActive')) {
+          this.transitionToRoute('vmsVm', model);
+        } else {
+          this.transitionToRoute('vms');
         }
-      }).appendTo('body');
-  },
-  exportTrustReport: function (reportContent){
+    },
+    refresh: function () {
+      App.Vm.find(undefined, true);
+    },
+    exportTrustReport: function (reportContent){
       //reportContent.reload();
       
       //try { alert('test'); } catch(error) { alert('catch'); }
@@ -79,82 +63,101 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         }
       //}, 3000);
       });
-  },
-  refresh: function () {
-    App.Vm.find(undefined, true);
-  },
+    },
+    trustReportModal: function(model){
+      var controller = this;
+        modal = Ember.View.create({
+          templateName: "vmTrustReport-modal",
+          controller: controller,
+          content: model,
+          actions: {
+            modalHide: function() {
+              $('#modal').modal('hide');
+              var context = this;
+              //setTimeout(context.remove, 3000);
+              this.remove(); //destroys the element
+            }
+          },
+          didInsertElement: function (){
+            $('#modal').modal('show');
+          }
+        }).appendTo('body');
+    },
+    renderTreemap: function () {
+      if (this.isTreemapVisible) {
+        $('.treemap').slideUp();
+        this.set('isTreemapVisible', false);
+        return;
+      }
+      $('.treemap').slideDown();
+      this.set('isTreemapVisible', true);
 
-  renderTreemap: function () {
-    if (this.isTreemapVisible) {
-      $('.treemap').slideUp();
-      this.set('isTreemapVisible', false);
-      return;
+      // Generate object for D3 treemap layout
+      var vms = {};
+      var json = [];
+      App.Vm.all().forEach(function (item, index, enumerable) {
+        if (!vms.hasOwnProperty(item.get('nodeName'))) vms[item.get('nodeName')] = [];
+        vms[item.get('nodeName')].push({
+          id: item.get('id'),
+          name: item.get('name'),
+          nodeName: item.get('nodeName'),
+          status: {
+            health: item.get('status.health')
+          },
+          capabilities: {
+            memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
+            gips_allocated: item.get('capabilities.gips_allocated')
+          },
+          utilization: {
+            memory: App.readableSizeToBytes(item.get('utilization.memory')),
+            gips_current: item.get('gips_current.gips_current')
+          }
+        });
+      });
+      for (var nodeName in vms) {
+        if (!vms.hasOwnProperty(nodeName)) continue;
+        var vmsOnHost = vms[nodeName];
+        json.push({
+          name: nodeName,
+          children: vmsOnHost
+        });
+      }
+      json = {
+        name: 'Cluster',
+        children: json
+      };
+      this.treemapData = json;
+
+      // Draw treemap
+      console.log('Drawing treemap...');
+      var treemap = d3.layout.treemap()
+        .sticky(true)
+        .size([$('.treemap').width(), 200])
+        .value(function (d) {
+          if (d.capabilities && d.capabilities.memory_size) {
+            return d.capabilities.memory_size;
+          } else {
+            return null;
+          }
+        });
+      var container = d3.select('.treemap');
+      var color = d3.scale.category20c();
+      var treemapNodes = container.selectAll('.node')
+        .data(treemap(this.treemapData))
+        .enter()
+        .append('div')
+        .attr('class', 'node')
+        .style('left', function (d) { return d.x + 'px'; })
+        .style('top', function (d) { return d.y + 'px'; })
+        .style('width', function (d) { return Math.max(0, d.dx - 1) + 'px'; })
+        .style('height', function (d) { return Math.max(0, d.dy - 1) + 'px'; })
+        .style('background', function (d) { return d.children ? null : color(d.nodeName); })
+        .html(function (d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
     }
-    $('.treemap').slideDown();
-    this.set('isTreemapVisible', true);
-
-    // Generate object for D3 treemap layout
-    var vms = {};
-    var json = [];
-    App.Vm.all().forEach(function (item, index, enumerable) {
-      if (!vms.hasOwnProperty(item.get('nodeName'))) vms[item.get('nodeName')] = [];
-      vms[item.get('nodeName')].push({
-        id: item.get('id'),
-        name: item.get('name'),
-        nodeName: item.get('nodeName'),
-        status: {
-          health: item.get('status.health')
-        },
-        capabilities: {
-          memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
-          gips_allocated: item.get('capabilities.gips_allocated')
-        },
-        utilization: {
-          memory: App.readableSizeToBytes(item.get('utilization.memory')),
-          gips_current: item.get('gips_current.gips_current')
-        }
-      });
-    });
-    for (var nodeName in vms) {
-      if (!vms.hasOwnProperty(nodeName)) continue;
-      var vmsOnHost = vms[nodeName];
-      json.push({
-        name: nodeName,
-        children: vmsOnHost
-      });
-    }
-    json = {
-      name: 'Cluster',
-      children: json
-    };
-    this.treemapData = json;
-
-    // Draw treemap
-    console.log('Drawing treemap...');
-    var treemap = d3.layout.treemap()
-      .sticky(true)
-      .size([$('.treemap').width(), 200])
-      .value(function (d) {
-        if (d.capabilities && d.capabilities.memory_size) {
-          return d.capabilities.memory_size;
-        } else {
-          return null;
-        }
-      });
-    var container = d3.select('.treemap');
-    var color = d3.scale.category20c();
-    var treemapNodes = container.selectAll('.node')
-      .data(treemap(this.treemapData))
-      .enter()
-      .append('div')
-      .attr('class', 'node')
-      .style('left', function (d) { return d.x + 'px'; })
-      .style('top', function (d) { return d.y + 'px'; })
-      .style('width', function (d) { return Math.max(0, d.dx - 1) + 'px'; })
-      .style('height', function (d) { return Math.max(0, d.dy - 1) + 'px'; })
-      .style('background', function (d) { return d.children ? null : color(d.nodeName); })
-      .html(function (d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
   },
+  multipleVmsAreSelected: function () {
+    return this.get('model').filterProperty('isSelected').length > 1;
+  }.property('model.@each.isSelected'),
   isTreemapVisible: false,
   treemapData: {
     'name': 'Cluster',

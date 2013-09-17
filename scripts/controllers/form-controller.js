@@ -3,6 +3,12 @@ App.FormController = Ember.Controller.extend({
     message: '',
     validated_fields: [],
     reset_fields:[],
+    actions: {
+        removeNotification: function() {
+            $(this.id + '-notification').hide();
+            this.set('message', "");
+        }
+    },
     showTooltip: function(field) {
         field_id = this.id + '-' + field;
         $(field_id).tooltip({
@@ -79,9 +85,5 @@ App.FormController = Ember.Controller.extend({
             field = this.reset_fields[i];
             this.set(field, '');
         }
-    },
-    removeNotification: function() {
-        $(this.id + '-notification').hide();
-        this.set('message', "");
     }
 });

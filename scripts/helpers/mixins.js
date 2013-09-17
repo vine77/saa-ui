@@ -10,8 +10,10 @@
 App.Filterable = Ember.Mixin.create({
   filteredModel: [],
   filterQuery: '',
-  clearFilter: function () {
-    this.set('filterQuery', '');
+  actions {
+    clearFilter: function () {
+      this.set('filterQuery', '');
+    }
   },
   filterProperties: [],
   filterModel: function () {
@@ -44,20 +46,23 @@ App.Filterable = Ember.Mixin.create({
 App.Sortable = Ember.Mixin.create({
   columns: [],
   sortIndex: 0,
-  sortModel: function (column) {
-    var controller = this;
-    var sortIndex = 0;
-    this.get('columns').forEach(function (item, index, array) {
-      if (item === column) {
-        controller.set('sortIndex', index);
-      }
-    });
-    var isDifferentColumn = !this.get('sortProperties') || this.get('sortProperties')[0] !== column;
-    this.set('sortProperties', [column]);
-    this.set('sortAscending', (isDifferentColumn) ? true : !this.get('sortAscending'));
-    this.get('columns').forEach(function (item, index, array) {
-      controller.set('isColumn' + (index + 1) + 'Sorted', false);
-    });
-    this.set('isColumn' + (controller.sortIndex + 1) + 'Sorted', true);
+  actions: {
+    sortModel: function (column) {
+      var controller = this;
+      var sortIndex = 0;
+      this.get('columns').forEach(function (item, index, array) {
+        if (item === column) {
+          controller.set('sortIndex', index);
+        }
+      });
+      var isDifferentColumn = !this.get('sortProperties') || this.get('sortProperties')[0] !== column;
+      this.set('sortProperties', [column]);
+      this.set('sortAscending', (isDifferentColumn) ? true : !this.get('sortAscending'));
+      this.get('columns').forEach(function (item, index, array) {
+        controller.set('isColumn' + (index + 1) + 'Sorted', false);
+      });
+      this.set('isColumn' + (controller.sortIndex + 1) + 'Sorted', true);
+    }
   }
+ 
 });

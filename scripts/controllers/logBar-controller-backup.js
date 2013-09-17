@@ -37,6 +37,47 @@ App.LogBarController = Ember.ObjectController.extend({
       return returnArray;
     }
   }.property('useContextSelected','controllers.nodes.model.@each'),
+  actions: {
+    updateLogsFrame: function() {
+      var currentURL = frames['allLogsFrame'].location.href;
+
+      currentURL = currentURL.split("#");
+      currentURL = atob(currentURL[1]);
+      currentURL = jQuery.parseJSON(currentURL);
+      var newURL = currentURL;
+
+      //Time
+      if (this.get('shortCutTimeSelected.label') == 'Custom') {
+        newURL['timeframe'] = 'custom';
+        if (this.get('timeFrom') !== "") { newURL.time.from = moment(this.get('timeFrom')).format(); }
+        if (this.get('timeTo') !== "") { newURL.time.to = moment(this.get('timeTo')).format(); }
+       // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; } 
+      } else {
+         newURL['timeframe'] = App.logTimeToSeconds(this.get('shortCutTimeSelected.label'));
+         //console.log('App.logTimetoSeconds:' + App.logTimeToSeconds(this.get('shortCutTimeSelected.value')));
+         //console.log('shortCutTimeSelected.value:' + this.get('shortCutTimeSelected.value'));
+      }
+      //Search Text Query (node, criticality, and search text)
+      newURL['search'] = this.get('searchTextQuery');
+
+      newURL = JSON.stringify(newURL);
+      newURL = btoa(newURL);
+      frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
+    },
+    reset: function () {
+      //Consider calling this on didInsertElement of the logBarView also. (Might not need to do this since it is being set on logsUrl.)
+      //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ2FtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
+      var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
+      frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
+
+      this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(7));
+      this.set('timeFrom', '');
+      this.set('timeTo', '');
+      this.set('criticalitySelected', null);
+      this.set('nodeSelected', null);
+      this.set('searchText', '');
+    }
+  },
   timeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
       this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
@@ -103,47 +144,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
     return returnVal.join(' AND ');
 
-  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','useContextSelected'),
-  updateLogsFrame: function() {
-    var currentURL = frames['allLogsFrame'].location.href;
-
-    currentURL = currentURL.split("#");
-    currentURL = atob(currentURL[1]);
-    currentURL = jQuery.parseJSON(currentURL);
-    var newURL = currentURL;
-
-    //Time
-    if (this.get('shortCutTimeSelected.label') == 'Custom') {
-      newURL['timeframe'] = 'custom';
-      if (this.get('timeFrom') !== "") { newURL.time.from = moment(this.get('timeFrom')).format(); }
-      if (this.get('timeTo') !== "") { newURL.time.to = moment(this.get('timeTo')).format(); }
-     // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; } 
-    } else {
-       newURL['timeframe'] = App.logTimeToSeconds(this.get('shortCutTimeSelected.label'));
-       //console.log('App.logTimetoSeconds:' + App.logTimeToSeconds(this.get('shortCutTimeSelected.value')));
-       //console.log('shortCutTimeSelected.value:' + this.get('shortCutTimeSelected.value'));
-    }
-    //Search Text Query (node, criticality, and search text)
-    newURL['search'] = this.get('searchTextQuery');
-
-    newURL = JSON.stringify(newURL);
-    newURL = btoa(newURL);
-    frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
-  },
-  reset: function () {
-    //Consider calling this on didInsertElement of the logBarView also. (Might not need to do this since it is being set on logsUrl.)
-    //var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfcHJvZ2FtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
-    var defaultQueryString = 'eyJzZWFyY2giOiIiLCJmaWVsZHMiOlsiQHNvdXJjZV9ob3N0IiwiQG1lc3NhZ2UiLCJAZmllbGRzLnN5c2xvZ19wcm9ncmFtIiwiQGZpZWxkcy5zeXNsb2dfc2V2ZXJpdHkiXSwib2Zmc2V0IjowLCJ0aW1lZnJhbWUiOiJhbGwiLCJncmFwaG1vZGUiOiJjb3VudCIsInRpbWUiOnsidXNlcl9pbnRlcnZhbCI6MH0sInN0YW1wIjoxMzY4ODI4MDQ4NjMxfQ==';
-    frames['allLogsFrame'].location.href = 'kibana/#' + defaultQueryString;
-
-    this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(7));
-    this.set('timeFrom', '');
-    this.set('timeTo', '');
-    this.set('criticalitySelected', null);
-    this.set('nodeSelected', null);
-    this.set('searchText', '');
-  }
-
+  }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','useContextSelected')
 });
 
 App.logBar = App.LogBarController.create();

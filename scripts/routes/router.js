@@ -93,11 +93,11 @@ Ember.Route.reopen({
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
-  events: {
+  actions: {
     logout: function() {
         var cleanup = function() {
                 location.href = '/';
-            };
+        };
         App.session.deleteRecord();
         var handlers = {'didDelete' : {postFun:cleanup, nextRoute:'login'}};
         App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
@@ -135,7 +135,7 @@ App.DashboardRoute = Ember.Route.extend({
 });
 
 App.LoginRoute = Ember.Route.extend({
-    events: {
+    actions: {
         login: function () {
             this.controller.createSession(this);
         }
@@ -146,7 +146,7 @@ App.TempPasswordRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
     },
-    events: {
+    actions: {
         generate_password: function() {
             this.controller.generatePassword(this);
         }        
@@ -180,7 +180,7 @@ App.ProfileRoute = Ember.Route.extend({
         }
         this._super(controller, model);
     },
-    events: {
+    actions: {
         save: function () {
             this.controller.saveProfile(this);
         },
@@ -413,7 +413,7 @@ App.SettingsMailserverRoute = Ember.Route.extend({
         controller.set('standalone', true);
         this._super(controller,model);
     },
-    events: {
+    actions: {
       save: function () {
         this.controller.saveConfig(this, false);
       },

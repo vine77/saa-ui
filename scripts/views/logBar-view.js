@@ -1,5 +1,12 @@
 App.LogBarView = Ember.View.extend({
   templateName: 'logBar-view',
+  actions: {
+    updateLogsFrame: function () {
+      this.styleLogsFrame();
+      //App.logBar.updateLogsFrame();
+      this.get('controller').send('updateLogsFrame');
+    }
+  },
   didInsertElement: function () {
     //set default values for select list
     //App.logBar.set('shortCutTimeSelected', App.logBar.shortCutTimes.objectAt(7));
@@ -10,11 +17,6 @@ App.LogBarView = Ember.View.extend({
     $('.datepicker').datepicker();
     //styleLogsFrame
     this.styleLogsFrame();
-  },
-  updateLogsFrame: function () {
-    this.styleLogsFrame();
-    //App.logBar.updateLogsFrame();
-    this.get('controller').updateLogsFrame();
   },
   styleLogsFrame: function () {
     setTimeout(function () {

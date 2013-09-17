@@ -5,13 +5,17 @@ App.SettingsLogController = Ember.Controller.extend({
   actualSize: function () {
     return App.settingsLog.get('actualSize');
   }.property('App.settingsLog.actualSize'),
-  update: function () {
-    App.settingsLog.update();
+  actions: {
+    deleteLogs: function() {
+      verify = confirm('You are about to delete all log data. Are you sure you want to continue?');
+      if (verify) {
+        App.settingsLog.deleteLogs();
+      } 
+    },
+    update: function () {
+      App.settingsLog.update();
+    }
   },
-  deleteLogs: function() {
-    verify = confirm('You are about to delete all log data. Are you sure you want to continue?');
-    if (verify) {
-      App.settingsLog.deleteLogs();
-    } 
-  }
+
+
 });

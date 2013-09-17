@@ -5,16 +5,18 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   openrcSuccessBinding: 'App.openrc.success',
   quantumExistsBinding: 'App.quantum.exists',
   quantumSuccessBinding: 'App.quantum.success',
-  uploadNova: function () {
-    App.nova.upload();
-  },
-  uploadOpenrc: function () {
-    App.openrc.upload();
-  },
-  uploadQuantum: function () {
-    App.quantum.upload();
-  },
-  updateOverrides: function () {
-    App.overrides.update();
+  actions: {
+    uploadNova: function () {
+      App.nova.upload();
+    },
+    uploadOpenrc: function () {
+      App.openrc.upload();
+    },
+    uploadQuantum: function () {
+      App.quantum.upload();
+    },
+    updateOverrides: function () {
+      App.overrides.update();
+    }
   }
 });

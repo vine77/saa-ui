@@ -20,59 +20,63 @@ App.ApplicationController = Ember.ArrayController.extend({
     return 'http://' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
-  expandDrawer: function (target) {
-    this.set('isDrawerExpanded', true);
-  },
-  hideDrawer: function () {
-    $('#drawer ul.nav-tabs > li').removeClass('active');
-    this.set('isDrawerExpanded', false);
-  },
-  loadFrame: function (target) {
-    var iframe = $('#drawer-' + target + '-all > iframe');
-    if (iframe.attr('src') === undefined) {
-      iframe.attr('src', this.get(target + 'Url'));
-    }
-  },
-  updateCurrentPath: function () {
-    App.set('currentPath', this.get('currentPath'));
-  }.observes('currentPath'),
-  // Debug Toolbar actions
-  refreshNodes: function () {
-    if (App.mtWilson.get('isInstalled') === true) {
-      App.TrustNode.find(undefined, true).then(function() {
+  actions: {
+    expandDrawer: function (target) {
+      this.set('isDrawerExpanded', true);
+    },
+    hideDrawer: function () {
+      $('#drawer ul.nav-tabs > li').removeClass('active');
+      this.set('isDrawerExpanded', false);
+    },
+    loadFrame: function (target) {
+      var iframe = $('#drawer-' + target + '-all > iframe');
+      if (iframe.attr('src') === undefined) {
+        iframe.attr('src', this.get(target + 'Url'));
+      }
+    },
+    updateCurrentPath: function () {
+      App.set('currentPath', this.get('currentPath'));
+    }.observes('currentPath'),
+    // Debug Toolbar actions
+    refreshNodes: function () {
+      if (App.mtWilson.get('isInstalled') === true) {
+        App.TrustNode.find(undefined, true).then(function() {
+          App.Node.find(undefined, true);
+        });
+      } else {
         App.Node.find(undefined, true);
-      });
-    } else {
-      App.Node.find(undefined, true);
+      }
+    },
+    refreshVms: function () {
+      App.Vm.find(undefined, true);
+    },
+    bypassLogin: function () {
+      App.nova.set('exists', true);
+      App.openrc.set('exists', true);
+      App.quantum.set('exists', true);
+      App.state.set('loggedIn', true);
+      App.session.set('bypass', true);
+      this.transitionToRoute('dashboard');
+    },
+    clearConsole: function () {
+      console.clear();
+    },
+    stopTimer: function () {
+      clearInterval(App.application.get('timerId'));
+      App.application.set('timerId', null);
+      console.log('Paused timer');
+    },
+    startTimer: function () {
+      if (!App.application.get('timerId')) {
+        App.application.timer();
+        console.log('Unpaused timer');
+      } else {
+        console.log('Timer is already running.');
+      }
     }
   },
-  refreshVms: function () {
-    App.Vm.find(undefined, true);
-  },
-  bypassLogin: function () {
-    App.nova.set('exists', true);
-    App.openrc.set('exists', true);
-    App.quantum.set('exists', true);
-    App.state.set('loggedIn', true);
-    App.session.set('bypass', true);
-    this.transitionToRoute('dashboard');
-  },
-  clearConsole: function () {
-    console.clear();
-  },
-  stopTimer: function () {
-    clearInterval(App.application.get('timerId'));
-    App.application.set('timerId', null);
-    console.log('Paused timer');
-  },
-  startTimer: function () {
-    if (!App.application.get('timerId')) {
-      App.application.timer();
-      console.log('Unpaused timer');
-    } else {
-      console.log('Timer is already running.');
-    }
-  },
+
+  // TODO: Consider using alternative method, such as ember-auth
   initModels: function() {
     // Load data from APIs
     App.mtWilson.check().then(function() {
