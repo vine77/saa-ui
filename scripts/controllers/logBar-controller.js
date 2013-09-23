@@ -25,12 +25,9 @@ App.LogCategoriesController = Ember.ArrayController.extend({
 
 App.LogCategoryController = Ember.ObjectController.extend({
   isSelectedObserver: function() {
-    console.log('inside of isSelectedObserver');
     if (this.get('isSelected')) {
       App.currentSelections.get('selectedLogCategories').addObject(this);
     } else {
-      console.log('remove block');
-      console.log('this inside of remove block', this);
       App.currentSelections.get('selectedLogCategories').removeObject(this);
     }
     App.currentSelections.propertyDidChange('selectedLogCategories');
@@ -249,9 +246,9 @@ App.LogBarController = Ember.ObjectController.extend({
     }
     //Search Text Query (node, criticality, and search text)
     newURL['search'] = this.get('searchTextQuery');
-    console.log('newURL before stringify:', newURL);
+    //console.log('newURL before stringify:', newURL);
     newURL = JSON.stringify(newURL);
-    console.log('newURL after stringify:', newURL);
+    //console.log('newURL after stringify:', newURL);
     newURL = btoa(newURL);
 
     frames['allLogsFrame'].location.href = 'kibana/#' + newURL;
