@@ -104,6 +104,31 @@ App.Trust = Ember.Object.extend({
     };
     hash = $.extend(hash, App.ajaxSetup);
     $.ajax(hash);
+  },
+  uninstall: function () {
+    $('#uninstall-trust-server i.loading').removeClass('hide');
+    // Start Mt. Wilson install
+    hash = {
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
+      type: 'DELETE',
+      dataType: "json",
+      complete: function (xhr, textStatus) {
+        App.log(xhr.status + ' response from DELETE /api/v1/mtwilson/install: ' + xhr.statusText);
+        switch (xhr.status) {
+          case 200:
+            $('#uninstall-trust-server i.loading').addClass('hide');
+            App.mtWilson.set('isInstalled', false);
+            App.event('Trust Server successfully uninstalled.', App.SUCCESS);
+            break;
+          case 500:
+          default:
+            $('#uninstall-trust-server i.loading').addClass('hide');
+            App.event('Trust Server failed to uninstall.', App.ERROR);
+        }
+      }
+    };
+    hash = $.extend(hash, App.ajaxSetup);
+    $.ajax(hash);
   }
 });
 

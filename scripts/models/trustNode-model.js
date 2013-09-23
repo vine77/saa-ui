@@ -1,3 +1,5 @@
+App.Store.registerAdapter('App.TrustNode', DS.JsonApiAdapter);
+
 DS.RESTAdapter.map('App.TrustNode', {
   pcrLogs:  {embedded: 'always'}
 });

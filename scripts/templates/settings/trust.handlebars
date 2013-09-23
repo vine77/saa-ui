@@ -1,0 +1,18 @@
+<div id="trust">
+  <div class="header">
+    <h3>Trust Settings</h3>
+  </div>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <section id="uninstall-trust-server">
+      <legend> Uninstall Trust Server</legend>
+      <dl class="dl-horizontal">
+        {{#if App.mtWilson.isInstalled}}
+          <input type="button" value="Uninstall Trust Server" class="btn btn-danger" {{action uninstall}}>
+        {{else}}
+          <p class="instructions">Trust Server is not installed. </p>
+        {{/if}}
+        <i class="loading hide"></i>
+      </dl>
+    </section>
+  </form>
+</div>

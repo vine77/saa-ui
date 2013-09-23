@@ -1,4 +1,11 @@
+App.Store.registerAdapter('App.TrustMle', DS.JsonApiAdapter);
+
+//DS.JsonApiAdapter.map('App.TrustMle', {
 DS.RESTAdapter.map('App.TrustMle', {
+  mleManifests:  {embedded: 'always'}
+});
+
+DS.JsonApiAdapter.map('App.TrustMle', {
   mleManifests:  {embedded: 'always'}
 });
 
@@ -20,13 +27,16 @@ App.TrustMle = DS.Model.extend({
   description: DS.attr('string'),
 
   //Embedded Relationships
-  mleManifests: DS.belongsTo('App.TrustMleManifests'),
+  mleManifests: DS.hasMany('App.TrustMleManifest'),
 
   //Full Relationships
-  trustNode: DS.hasMany('App.TrustNode')
+  trustNode: DS.hasMany('App.TrustNode'),
+
+  //Temporary relationship, only used for creation of mles ...
+  node: DS.belongsTo('App.Node')
 });
 
-App.TrustMleManifests = DS.Model.extend({
+App.TrustMleManifest = DS.Model.extend({
   name: DS.attr('string'),
   value: DS.attr('string')
 });

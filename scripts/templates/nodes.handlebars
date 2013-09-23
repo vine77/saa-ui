@@ -171,8 +171,14 @@
                 {{/if}}
               </td>
               <td>
+                {{#if node.trustNode.ipaddress}}
+                  <li><a {{action removeTrust node}}><i class="icon-unlock"></i> Remove Trust</a></li>
+                {{else}}
+                  <li><a {{action addTrust node}}><i class="icon-lock"></i> Add Trust</a></li>
+                {{/if}}
+                <li><a {{action trustFingerprint node}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                 <div class="btn-group">
-                  {{#if node.isAgentInstalled}}
+                  {{#if node.isAgentInstalled}} 
                     {{#if node.isOn}}
                       <a {{action reboot node}} class="btn btn-mini"><i class="icon-refresh"></i> Reboot</a>
                     {{else}}
@@ -180,7 +186,6 @@
                     {{/if}}
                     <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a {{action trustFingerprint node}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                       {{#if App.mtWilson.isInstalled}}
                         {{#if node.trustNode.ipaddress}}
                           <li><a {{action removeTrust node}}><i class="icon-unlock"></i> Remove Trust</a></li>
@@ -226,7 +231,7 @@
                     <li><a onclick="App.selectTab(event)">VMs</a></li>
                     <li><a onclick="App.selectTab(event)">Graphs</a></li>
                     <li><a onclick="App.selectTab(event)">Trust</a></li>
-                    <li><a onclick="App.selectTab(event)">Trust PCR Logs</a></li>
+                    <li><a onclick="App.selectTab(event)">PCR logs</a></li>
                     <li><a onclick="App.selectTab(event)">MLEs</a></li>
                   </ul>
                   <div class="tab-content">
@@ -348,16 +353,15 @@
                         {{/unless}}
                       {{/if}}
                     </div>
-                    <div class="tab-pane trust-pcr-logs">
+                    <div class="tab-pane pcr-logs">
                       {{#if node.trustNode.pcrLogs}}
                         <table class="table table-bordered">
                           <tr>
                             <th class="column-small">Trust Status</th>
                             <th>Name</th>
-                            <th>Value</th>
-                            <th>Whitelist Value</th>
+                            <th>Actual Value</th>
+                            <th>Expected Value</th>
                             <th>Module Logs</th>
-                            <th>Verified On</th>
                           </tr>
                           {{#each log in node.trustNode.pcrLogs}}
                             <tr>
@@ -373,14 +377,13 @@
                                     <ul>
                                       <li>Component Name: {{modulelog.componentname}}</li>
                                       <li>Whitelist Value: {{modulelog.whitelistvalue}}</li>
-                                      <li>Trust Status: {{modulelog.whitelistvalue}}</li>
+                                      <li>Trust Status: {{modulelog.truststatus}}</li>
                                     </ul>
                                   {{/each}}
                                 {{else}}
-                                  {{na log.modulelogs}}
+                                  {{na 'false'}}
                                 {{/if}}
                               </td>
-                              <td>{{na log.verified_on}}</td>
                             </tr>
                           {{/each}}
                         </table>
@@ -402,7 +405,6 @@
                             <th>OS Name</th>
                             <th>Version</th>
                             <th>OS Version</th>
-                            <th>MLE Manifests</th>
                           </tr>
                           {{#each mle in node.trustNode.trustMle}}
                             <tr>
@@ -413,7 +415,6 @@
                               <td>{{na mle.osname}}</td>
                               <td>{{na mle.version}}</td>
                               <td>{{na mle.osversion}}</td>
-                              <td>{{na mle.mleManifests}}</td>
                             </tr>
                           {{/each}}
                         </table>

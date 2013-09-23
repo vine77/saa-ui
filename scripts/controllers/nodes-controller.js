@@ -269,7 +269,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         //controller.set('isFlavorCreating', false);
       });
       trustNode.on('didCreate', function () {
-        App.event('Successfully trusted node "' + trustNode.get('name') + '"', App.SUCCESS);
+        App.event('Successfully trusted node "' + node.get('name') + '"', App.SUCCESS);
       });
       /*
       var jsonData = {
@@ -342,9 +342,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   trustFingerprint: function (node) {
     var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
     if (confirmed) {
+
       trustMle = App.TrustMle.createRecord({
         node: App.Node.find(node.get('id'))
       });
+
       trustMle.get('transaction').commit();
       trustMle.get('store').commit();
 
@@ -363,7 +365,15 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         //controller.set('isFlavorCreating', false);
       });
       trustMle.on('didCreate', function () {
-        App.event('Successfully trusted node "' + trustMle.get('name') + '"', App.SUCCESS);
+        //Work around for zombie record with null id.
+        App.TrustMle.find().forEach( function(item, index, enumerable) {
+          if ((item.get('id') == null)){
+            trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+            item.deleteRecord();
+          }
+        });
+        //App.event('Successfully trusted node "' + trustMle.get('name') + '"', App.SUCCESS);
+        App.event('Successfully fingerprinted node ' + node.get('name') + '.', App.SUCCESS);
       });
 
       /* Old Implementation ...

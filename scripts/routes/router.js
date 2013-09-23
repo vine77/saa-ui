@@ -45,6 +45,7 @@ App.Router.map(function () {
     this.route('users');
     this.route('dev');
     this.route('log');
+    this.route('trust');
   });
 });
 
@@ -345,6 +346,9 @@ App.TrustMlesRoute = Ember.Route.extend({
 });
 
 App.TrustMlesIndexRoute = Ember.Route.extend({
+  model: function () {
+    return App.TrustMle.find(undefined, true);
+  },
   setupController: function (controller, model) {
     this._super(controller, model);
     if (App.mtWilson.get('isInstalled') === true) {

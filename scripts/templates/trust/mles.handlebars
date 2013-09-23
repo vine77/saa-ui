@@ -62,7 +62,7 @@
                   <div class="details">
                     <ul class="nav nav-tabs">
                       <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
-                      <li class="active"><a onclick="App.selectTab(event)">Manifest</a></li>
+                      <li><a onclick="App.selectTab(event)">Manifest</a></li>
                     </ul>
                     <div class="tab-content">
                       <div class="tab-pane active nodes">
@@ -83,7 +83,7 @@
                           {{/unless}}
                         {{/if}}
                       </div>                      
-                      <div class="tab-pane active manifest">
+                      <div class="tab-pane manifest">
                         {{#if mle.mleManifests}}
                           <table class="table table-bordered">
                             <tr>
@@ -99,7 +99,7 @@
                           </table>
                         {{else}}
                           {{#unless content.isUpdating}}
-                            <div class="alert alert-info">No trust nodes found.</div>
+                            <div class="alert alert-info">No manifests found.</div>
                           {{/unless}}
                         {{/if}}
                       </div>
