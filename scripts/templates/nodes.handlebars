@@ -171,12 +171,6 @@
                 {{/if}}
               </td>
               <td>
-                {{#if node.trustNode.ipaddress}}
-                  <li><a {{action removeTrust node}}><i class="icon-unlock"></i> Remove Trust</a></li>
-                {{else}}
-                  <li><a {{action addTrust node}}><i class="icon-lock"></i> Add Trust</a></li>
-                {{/if}}
-                <li><a {{action trustFingerprint node}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                 <div class="btn-group">
                   {{#if node.isAgentInstalled}} 
                     {{#if node.isOn}}
