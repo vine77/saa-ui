@@ -315,6 +315,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.get('store').commit();
     }
 
+    node.on('becameError', function () {
+        var errorMessage = (node.get('error')) ? node.get('error') : 'An error occured while removing trust.';
+        App.event(errorMessage, App.ERROR);
+    });
+
     /**Solution leaves cache still populated. 
     /**Cache needs to be destroyed, and isTrustRegistered computed property needs to be triggered.
 
@@ -367,8 +372,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       trustMle.on('didCreate', function () {
         //Work around for zombie record with null id.
         App.TrustMle.find().forEach( function(item, index, enumerable) {
-          if ((item.get('id') == null)){
-            trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+          if ((item.get('id') == null)) {
+            item.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
             item.deleteRecord();
           }
         });
