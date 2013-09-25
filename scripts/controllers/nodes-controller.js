@@ -370,13 +370,15 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         //controller.set('isFlavorCreating', false);
       });
       trustMle.on('didCreate', function () {
-        //Work around for zombie record with null id.
+        //Work around for zombie record with null id. Only when json-api-serializer extract is: //this.extractMany.apply(this, json, type, records);
+        /*
         App.TrustMle.find().forEach( function(item, index, enumerable) {
           if ((item.get('id') == null)) {
             item.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
             item.deleteRecord();
           }
         });
+      */
         //App.event('Successfully trusted node "' + trustMle.get('name') + '"', App.SUCCESS);
         App.event('Successfully fingerprinted node ' + node.get('name') + '.', App.SUCCESS);
       });

@@ -126,8 +126,6 @@
 
       // Build up the array of serialized records
       manyArray.forEach(function (record) {
-        console.log('inside of JsonApiSerializer, inside of manyArray');
-        console.log('here is record', record);
         serializedHasMany.push(this.serialize(record, { includeId: true, includeType: includeType }));
       }, this);
 
