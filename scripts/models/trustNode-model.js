@@ -1,7 +1,7 @@
 App.TrustNode = DS.Model.extend({
   //Full Relationships
-  node: DS.belongsTo('App.Node'),
-  trustMle: DS.hasMany('App.TrustMle'),
+  node: DS.belongsTo('node'),
+  trustMle: DS.hasMany('trustMle'),
 
   addonConnectionString: DS.attr('string'),
   vmmName: DS.attr('string'),

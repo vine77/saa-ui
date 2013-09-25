@@ -16,6 +16,6 @@ App.TrustMle = DS.Model.extend({
   description: DS.attr('string'),
 
   //Full Relationships
-  trustNode: DS.hasMany('App.TrustNode')
+  trustNode: DS.hasMany('trustNode')
 });
 

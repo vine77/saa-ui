@@ -1,5 +1,7 @@
 // Embedded records
-DS.RESTAdapter.map('App.Vm', {
+
+/* TODO: Update embedded models
+DS.RESTAdapter.map('vm', {
   name: {key: 'vm_name'},
   status: {embedded: 'always'},
   mac: {embedded: 'always'},
@@ -10,22 +12,24 @@ DS.RESTAdapter.map('App.Vm', {
   contention: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.VmStatus', {
+DS.RESTAdapter.map('vmStatus', {
   trust_details: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.VmContention', {
+DS.RESTAdapter.map('vmContention', {
   threads: {embedded: 'always'},
   system: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.VmContentionThread', {
+DS.RESTAdapter.map('vmContentionThread', {
   llc: { embedded: 'always' }
 });
 
-DS.RESTAdapter.map('App.VmContentionSystem', {
+DS.RESTAdapter.map('vmContentionSystem', {
   llc: { embedded: 'always' }
 });
+*/
+
 
 // Embedded models
 App.VmStatus = DS.Model.extend({
@@ -51,7 +55,7 @@ App.VmStatus = DS.Model.extend({
   isTrusted: Ember.computed.equal('trust', 2),
   isNotTrusted: Ember.computed.equal('trust', 1),
   isTrustUnknown: Ember.computed.not('trust'),
-  trust_details: DS.belongsTo('App.VmStatusTrustDetails'),
+  trust_details: DS.belongsTo('vmStatusTrustDetails'),
   trustMessage: function () {
     var message = '';
     if (this.get('trust') === 0) {
@@ -117,12 +121,12 @@ App.VmCapabilities = DS.Model.extend({
 });
 
 App.VmContention = DS.Model.extend({
-  threads: DS.hasMany('App.VmContentionThread'),
-  system: DS.belongsTo('App.VmContentionSystem')
+  threads: DS.hasMany('vmContentionThread'),
+  system: DS.belongsTo('vmContentionSystem')
 });
 
 App.VmContentionSystem = DS.Model.extend({
-  llc: DS.belongsTo('App.VmContentionSystemLlc')
+  llc: DS.belongsTo('vmContentionSystemLlc')
 });
 
 App.VmContentionSystemLlc = DS.Model.extend({
@@ -144,7 +148,9 @@ App.VmContentionSystemLlc = DS.Model.extend({
       return '<strong>Contention Not Available</strong>';
     } else {
       var message = 'Overall Cache Contention: ' + this.get('value');
-      var vCPUs = App.Vm.find(this._reference.parent.parent.parent.id).get('contention.threads');
+      // TODO: Can't use this reference
+      //var vCPUs = App.Vm.find(this._reference.parent.parent.parent.id).get('contention.threads');
+      vCPUs = [];
       vCPUs.forEach(function (item, index, enumerable) {
         vCPU = item.get('llc');
         message += '<br>' + 'vCPU Contention: ' + vCPU.get('value');
@@ -155,7 +161,7 @@ App.VmContentionSystemLlc = DS.Model.extend({
 });
 
 App.VmContentionThread = DS.Model.extend({
-  llc: DS.belongsTo('App.VmContentionThreadLlc')
+  llc: DS.belongsTo('vmContentionThreadLlc')
 });
 
 App.VmContentionThreadLlc = DS.Model.extend({
@@ -202,18 +208,18 @@ App.Vm = DS.Model.extend({
   }.observes('isSelected', 'isExpanded'),
 
   // Embedded Relationships
-  status: DS.belongsTo('App.VmStatus'),
-  capabilities: DS.belongsTo('App.VmCapabilities'),
-  utilization: DS.belongsTo('App.VmUtilization'),
-  contention: DS.belongsTo('App.VmContention'),
+  status: DS.belongsTo('vmStatus'),
+  capabilities: DS.belongsTo('vmCapabilities'),
+  utilization: DS.belongsTo('vmUtilization'),
+  contention: DS.belongsTo('vmContention'),
 
   // Full Relationships
-  node: DS.belongsTo('App.Node'),
-  vmTrustReport: DS.belongsTo('App.VmTrustReport'),
-  vmInstantiationSimple: DS.belongsTo('App.VmInstantiationSimple'),
-  vmInstantiationDetailed: DS.belongsTo('App.VmInstantiationDetailed'),
-  //stack: DS.belongsTo('App.Stack'),
-  sla: DS.belongsTo('App.Sla'),
+  node: DS.belongsTo('node'),
+  vmTrustReport: DS.belongsTo('vmTrustReport'),
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
+  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
+  //stack: DS.belongsTo('stack'),
+  sla: DS.belongsTo('sla'),
 
   didReload: function () {
     if (this.get('vmTrustReport.isLoaded')) {

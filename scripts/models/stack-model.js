@@ -1,7 +1,10 @@
 // Embedded records
-DS.RESTAdapter.map('App.Stack', {
+
+/* TODO: Update embedded models
+DS.RESTAdapter.map('stack', {
   status: {embedded: 'always'}
 });
+*/
 
 // Embedded models
 App.StackStatus = DS.Model.extend({
@@ -36,10 +39,10 @@ App.Stack = DS.Model.extend({
   }.property('isActive'),
 
   // Embedded Relationships
-  status: DS.belongsTo('App.StackStatus'),
+  status: DS.belongsTo('stackStatus'),
 
   // Full Relationships
-  vms: DS.hasMany('App.Vm'),
+  vms: DS.hasMany('vm'),
 
   // Properties from API
   name: DS.attr('string'),

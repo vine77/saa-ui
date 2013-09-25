@@ -1,9 +1,9 @@
 App.TrustWhitelistController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  
+
   columns: ['mleType', 'name', 'oemname', 'attestationType', 'osname', 'version', 'osversion', 'mleManifests'],
   filteredModel: function () {
-    return App.TrustMle.find();
-  }.property('App.TrustMle.@each'),
+    return this.store.find('trustMle');
+  }.property('model.@each'),
   filterProperties: ['name', 'version', 'attestationType', 'mleType', 'osname', 'oemname'],
   actions: {
     expand: function (model) {

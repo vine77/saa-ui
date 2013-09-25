@@ -1,8 +1,8 @@
 App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   columns: ['name', 'numberOfSlos', 'sloTypes', 'actions', 'expand'],
   filteredModel: function () {
-    return App.Sla.find();
-  }.property('App.Sla.@each'),
+    return this.store.find('sla');
+  }.property('model.@each'),
   filterProperties: ['name'],
   multipleSlasAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
@@ -20,7 +20,7 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
       }
     },
     refresh: function () {
-      App.Sla.find(undefined, true);
+      this.store.find('sla', undefined, true);
     }
   }
 });

@@ -1,5 +1,5 @@
 App.LogBarController = Ember.ObjectController.extend({
-  shortCutTimes: [{"id": 1, "label":"Last 15min"}, 
+  shortCutTimes: [{"id": 1, "label":"Last 15min"},
                   {"id":2, "label":"Last 60min"},
                   {"id":3, "label":"Last 4h"},
                   {"id":4, "label":"Last 12h"},
@@ -8,9 +8,9 @@ App.LogBarController = Ember.ObjectController.extend({
                   {"id":7, "label":"Last 7d"},
                   {"id":8, "label":"All Time"},
                   {"id":9, "label":"Custom"}],
-  criticalities: [{"id": 1, "label":"Debug"}, 
-                  {"id": 2, "label":"Notice"}, 
-                  {"id": 3, "label":"Warning"}, 
+  criticalities: [{"id": 1, "label":"Debug"},
+                  {"id": 2, "label":"Notice"},
+                  {"id": 3, "label":"Warning"},
                   {"id": 4, "label":"Error"},
                   {"id": 5, "label":"Critical"}],
   criticalitySelected: null,
@@ -30,7 +30,7 @@ App.LogBarController = Ember.ObjectController.extend({
       return [{value:"context", label:"Using Context"}];
     } else {
       var returnArray = [];
-      App.Node.all().forEach( function (item, index, enumerable) {
+      this.store.all('node').forEach( function (item, index, enumerable) {
         var nodeObj = {"value": item.get('id'), "label": item.get('name')};
         returnArray.pushObject(nodeObj);
       });
@@ -51,7 +51,7 @@ App.LogBarController = Ember.ObjectController.extend({
         newURL['timeframe'] = 'custom';
         if (this.get('timeFrom') !== "") { newURL.time.from = moment(this.get('timeFrom')).format(); }
         if (this.get('timeTo') !== "") { newURL.time.to = moment(this.get('timeTo')).format(); }
-       // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; } 
+       // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; }
       } else {
          newURL['timeframe'] = App.logTimeToSeconds(this.get('shortCutTimeSelected.label'));
          //console.log('App.logTimetoSeconds:' + App.logTimeToSeconds(this.get('shortCutTimeSelected.value')));
@@ -80,7 +80,7 @@ App.LogBarController = Ember.ObjectController.extend({
   },
   timeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
-      this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
+      this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8));
     }
   }.observes('timeTo', 'timeFrom'),
   shortCutTimeSelectionChanged: function()  {
@@ -138,7 +138,7 @@ App.LogBarController = Ember.ObjectController.extend({
         returnVal.push('(' + vmsReturnArray.join(' OR ') + ')');
       }
     }
-    
+
     //var returnValues = returnVal.join(' AND ') + ((nodesReturnArray)?' OR '+nodesReturnArray:'');
     //return returnValues;
 

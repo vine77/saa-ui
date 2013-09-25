@@ -1,26 +1,27 @@
 // Embedded records
-DS.RESTAdapter.map('App.VmInstantiationDetailed', {
+/* TODO: Update embedded models
+DS.RESTAdapter.map('vmInstantiationDetailed', {
   nodesCount: {embedded: 'always'},
   instantiation_nodes: {embedded: 'always'}
 });
-DS.RESTAdapter.map('App.VmInstantiationDetailedInstantiationNode', {
+DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNode', {
   instantiation_slos: {embedded: 'always'},
   contention: {embedded: 'always'}
 });
-DS.RESTAdapter.map('App.VmInstantiationDetailedInstantiationNodeContention', {
+DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNodeContention', {
   system: {embedded: 'always'},
   sockets: {embedded: 'always'}
 });
-DS.RESTAdapter.map('App.VmInstantiationDetailedInstantiationNodeContentionSystem', {
+DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNodeContentionSystem', {
   llc: {embedded:'always'}
 });
-DS.RESTAdapter.map('App.VmInstantiationDetailedInstantiationNodeContentionSocket', {
+DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNodeContentionSocket', {
   llc: {embedded: 'always'}
 });
-
+*/
 
 App.VmInstantiationDetailedInstantiationNodeInstantiationSlo = DS.Model.extend({
-  slo: DS.belongsTo('App.Slo'),
+  slo: DS.belongsTo('slo'),
   description: DS.attr('string'),
   value: DS.attr('string'),
   unit: DS.attr('string'),
@@ -38,17 +39,17 @@ App.VmInstantiationDetailedInstantiationNodeContentionSocketLlc = DS.Model.exten
 });
 
 App.VmInstantiationDetailedInstantiationNodeContentionSocket = DS.Model.extend({
-  llc: DS.belongsTo('App.VmInstantiationDetailedInstantiationNodeContentionSocketLlc'),
+  llc: DS.belongsTo('vmInstantiationDetailedInstantiationNodeContentionSocketLlc'),
   socket_number: DS.attr('number')
 });
 
 App.VmInstantiationDetailedInstantiationNodeContentionSystem = DS.Model.extend({
-  llc: DS.belongsTo('App.VmInstantiationDetailedInstantiationNodeContentionSystemLlc')
+  llc: DS.belongsTo('vmInstantiationDetailedInstantiationNodeContentionSystemLlc')
 });
 
 App.VmInstantiationDetailedInstantiationNodeContention = DS.Model.extend({
-  system: DS.belongsTo('App.VmInstantiationDetailedInstantiationNodeContentionSystem'),
-  sockets: DS.hasMany('App.VmInstantiationDetailedInstantiationNodeContentionSocket'),
+  system: DS.belongsTo('vmInstantiationDetailedInstantiationNodeContentionSystem'),
+  sockets: DS.hasMany('vmInstantiationDetailedInstantiationNodeContentionSocket'),
   socketsValues: function() {
     var returnArray = [];
     this.get('sockets').forEach( function(item, index, enumerable) {
@@ -59,10 +60,10 @@ App.VmInstantiationDetailedInstantiationNodeContention = DS.Model.extend({
 });
 
 App.VmInstantiationDetailedInstantiationNode = DS.Model.extend({
-  node: DS.belongsTo('App.Node'),
+  node: DS.belongsTo('node'),
   selected: DS.attr('string'),
-  instantiation_slos: DS.hasMany('App.VmInstantiationDetailedInstantiationNodeInstantiationSlo'),
-  contention: DS.belongsTo('App.VmInstantiationDetailedInstantiationNodeContention')
+  instantiation_slos: DS.hasMany('vmInstantiationDetailedInstantiationNodeInstantiationSlo'),
+  contention: DS.belongsTo('vmInstantiationDetailedInstantiationNodeContention')
 });
 
 App.VmInstantiationDetailedNodesCount = DS.Model.extend({
@@ -74,11 +75,11 @@ App.VmInstantiationDetailed = DS.Model.extend({
   generation_time: DS.attr('string'),
   schedule_time: DS.attr('string'),
   vmTrustStatus: DS.attr('boolean'),
-  
+
   //Embedded Relationships
-  nodesCount: DS.belongsTo('App.VmInstantiationDetailedNodesCount'),
-  instantiation_nodes: DS.hasMany('App.VmInstantiationDetailedInstantiationNode'),
+  nodesCount: DS.belongsTo('vmInstantiationDetailedNodesCount'),
+  instantiation_nodes: DS.hasMany('vmInstantiationDetailedInstantiationNode'),
 
   //Full Relationships
-  vm: DS.belongsTo('App.Vm')
+  vm: DS.belongsTo('vm')
 });

@@ -1,5 +1,3 @@
-App.Store.registerAdapter('App.User', DS.RESTAdapter);
-
 App.User = DS.Model.extend({
   username: DS.attr('string'),
   oldPassword: DS.attr('string'),

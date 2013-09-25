@@ -62,7 +62,7 @@ App.Nova = Ember.Object.extend({
       contentType: false
     };
     hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);   
+    $.ajax(hash);
   },
   start: function () {
     // Start SAM
@@ -80,15 +80,7 @@ App.Nova = Ember.Object.extend({
             setTimeout(function () {
               // Restart app for full reload and redirect to index
               document.location.href = '/';
-            }, 8000);
-            /*
-            App.openrc.set('exists', true);
-            App.openrc.set('success', true);
-            App.nova.set('exists', true);
-            App.nova.set('success', true);
-            App.Node.find();
-            App.Vm.find();
-            */
+            }, 30000);
             break;
           default:
             // Start sam error

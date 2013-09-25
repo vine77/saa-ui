@@ -1,9 +1,12 @@
 // Embedded records
-DS.RESTAdapter.map('App.VmInstantiationSimple', {
+
+/* TODO: Update embedded models
+DS.RESTAdapter.map('vmInstantiationSimple', {
   nodesCount: {embedded: 'always'},
   sloGates: {embedded: 'always'},
   rankedNodes: {embedded: 'always'}
 });
+*/
 
 // Embedded models
 App.VmInstantiationSimpleNodesCount = DS.Model.extend({
@@ -12,13 +15,13 @@ App.VmInstantiationSimpleNodesCount = DS.Model.extend({
 });
 
 App.VmInstantiationSimpleSloGate = DS.Model.extend({
-  slo: DS.belongsTo('App.Slo'),
+  slo: DS.belongsTo('slo'),
   description: DS.attr('string'),
   nodes_count: DS.attr('string')
 });
 
 App.VmInstantiationSimpleRankedNode = DS.Model.extend({
-  node: DS.belongsTo('App.Node'),
+  node: DS.belongsTo('node'),
   selected: DS.attr('boolean')
 });
 
@@ -30,23 +33,22 @@ App.VmInstantiationSimple = DS.Model.extend({
   vmTrustStatus: DS.attr('boolean'),
 
   //Full Relationships
-  vm: DS.belongsTo('App.Vm'),
-  sla: DS.belongsTo('App.Sla'),
-  //sla: DS.belongsTo('App.Sla')
- 
+  vm: DS.belongsTo('vm'),
+  sla: DS.belongsTo('sla'),
+
   //Embedded Relationships
-  nodesCount: DS.belongsTo('App.VmInstantiationSimpleNodesCount'),
-  sloGates: DS.hasMany('App.VmInstantiationSimpleSloGate'),
-  rankedNodes: DS.hasMany('App.VmInstantiationSimpleRankedNode'),
+  nodesCount: DS.belongsTo('vmInstantiationSimpleNodesCount'),
+  sloGates: DS.hasMany('vmInstantiationSimpleSloGate'),
+  rankedNodes: DS.hasMany('vmInstantiationSimpleRankedNode'),
 
   instantiationTrusted: function () {
     var trustFound = false;
-    
+
     this.get('sloGates').forEach( function(item, index, enumerable) {
       if (item.get('slo.sloType') === "trusted_platform") {
         trustFound = true;
       }
-      
+
       //var match = item.get('description').toString().toLowerCase().indexOf("trust");
       //var match2 = item.get('description').toString().toLowerCase().indexOf("untrusted");
       //if (match !== -1) { //Trust is found as true

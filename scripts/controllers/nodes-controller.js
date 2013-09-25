@@ -2,8 +2,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   columns: ['select', 'health', 'state', 'status.trust', 'isTrustRegistered', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
   //needs: ['logBar'],
   filteredModel: function () {
-    return App.Node.find();
-  }.property('App.Node.@each'),
+    return this.store.find('node');
+  }.property('model.@each'),
   filterProperties: ['name'],
   multipleNodesAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
@@ -75,11 +75,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     refresh: function () {
       if (!this.get('isUpdating')) {
         if (App.mtWilson.get('isInstalled') === true) {
-          App.TrustNode.find(undefined, true).then(function() {
-            App.Node.find(undefined, true);
+          this.store.find('trustNode', undefined, true).then(function() {
+            this.store.find('node', undefined, true);
           });
         } else {
-          App.Node.find(undefined, true);
+          this.store.find('node', undefined, true);
         }
       }
     },
@@ -127,14 +127,14 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
           App.event('Successfully registered node "' + node.get('name') + '" as trusted', App.SUCCESS);
           if (App.TrustNode.find(node.get('id')).get('isLoaded')) {
-            App.TrustNode.find(node.get('id')).get('stateManager').transitionTo('rootState.loaded.saved');
-            App.TrustNode.find(node.get('id')).reload().then(function() {
+            this.store.find('trustNode', node.get('id')).get('stateManager').transitionTo('rootState.loaded.saved');
+            this.store.find('trustNode', node.get('id')).reload().then(function() {
               node.reload();
             }, function (){
               node.reload();
             });
           } else {
-            App.TrustNode.find(node.get('id')).then(function(){
+            this.store.find('trustNode', node.get('id')).then(function(){
               node.reload();
             });
           }
@@ -145,36 +145,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     removeTrust: function (node) {
       var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
-      
       if (confirmed) {
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
         node.get('trustNode').deleteRecord();
         node.get('transaction').commit();
       }
-
-      /**Solution leaves cache still populated. 
-      /**Cache needs to be destroyed, and isTrustRegistered computed property needs to be triggered.
-
-      if (confirmed) {
-        var ajaxOptions = $.extend({
-          type: 'DELETE',
-          url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes/' + node.get('id'),
-          contentType: "application/json",
-          dataType: "json"
-        }, App.ajaxSetup);
-        App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
-
-          App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
-          App.TrustNode.all().clear();
-          App.TrustMle.all().clear();
-          App.TrustNode.find();
-          App.TrustMle.find();
-
-        }, function (qXHR, textStatus, errorThrown) {
-          App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
-        });
-      }
-      **/
     },
     trustFingerprint: function (node) {
       var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
@@ -199,7 +174,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }
     },
     exportTrustReport: function (reportContent) {
-      App.NodeTrustReport.find(reportContent.get('id')).then(function (nodeTrustReport) {
+      this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
           var title = "SAM Node Trust Report";
           var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';
@@ -258,7 +233,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }, App.ajaxSetup);
         $.ajax(ajaxOptions).then(function (data, textStatus, jqXHR) {
           // Unset all other nodes
-          App.Node.all().filterProperty('isScheduled', true).forEach(function (item, index) {
+          this.store.all('node').filterProperty('isScheduled', true).forEach(function (item, index) {
             item.set('schedulerMark', null);
             item.get('stateManager').transitionTo('rootState.loaded.saved');
           });

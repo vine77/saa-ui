@@ -1,6 +1,8 @@
-DS.RESTAdapter.map('App.NodeTrustReport', {
+/* TODO: Update embedded models
+DS.RESTAdapter.map('nodeTrustReport', {
   attestations: {embedded: 'always'}
 });
+*/
 
 App.NodeTrustReportAttestation = DS.Model.extend({
   attestation_time: DS.attr('date'),
@@ -17,5 +19,5 @@ App.NodeTrustReportAttestation = DS.Model.extend({
 
 App.NodeTrustReport = DS.Model.extend({
   generation_time: DS.attr('date'),
-  attestations: DS.hasMany('App.NodeTrustReportAttestation')
+  attestations: DS.hasMany('nodeTrustReportAttestation')
 });

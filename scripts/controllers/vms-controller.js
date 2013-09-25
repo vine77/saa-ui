@@ -1,8 +1,8 @@
 App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   columns: ['select', 'health', 'state', 'trusted', 'sla_status', 'noisy', 'name', 'node', 'cpu', 'utilization.gips', 'utilization.ipc', 'utilization.mp10ki', 'actions'],
   filteredModel: function () {
-    return App.Vm.find();
-  }.property('App.Vm.@each'),
+    return this.store.find('vm');
+  }.property('model.@each'),
   filterProperties: ['name'],
   isGrouped: function () {
     return (!!this.get('sortProperties') && this.get('sortProperties')[0] === 'node');
@@ -38,17 +38,10 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         }
     },
     refresh: function () {
-      App.Vm.find(undefined, true);
+      this.store.find('vm', undefined, true);
     },
-    exportTrustReport: function (reportContent){
-      //reportContent.reload();
-      
-      //try { alert('test'); } catch(error) { alert('catch'); }
-      //if (App.VmTrustReport.find(reportContent.get('id'))) { }
-      App.VmTrustReport.find(reportContent.get('id')).then(function (vmTrustReport) { 
-        
-        //setTimeout(function(){
-        //reportContent = vmTrustReport.get('vmTrustReport');
+    exportTrustReport: function (reportContent) {
+      this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
         reportContent = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('attestations.length') > 0)) {
           var title = "SAM VM Trust Report";
@@ -61,7 +54,6 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         } else {
           App.notify('Trust attestation logs were not found.');
         }
-      //}, 3000);
       });
     },
     trustReportModal: function(model){
@@ -95,7 +87,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       // Generate object for D3 treemap layout
       var vms = {};
       var json = [];
-      App.Vm.all().forEach(function (item, index, enumerable) {
+      this.store.all('vm').forEach(function (item, index, enumerable) {
         if (!vms.hasOwnProperty(item.get('nodeName'))) vms[item.get('nodeName')] = [];
         vms[item.get('nodeName')].push({
           id: item.get('id'),

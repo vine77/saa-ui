@@ -40,15 +40,15 @@ App.ApplicationController = Ember.ArrayController.extend({
     // Debug Toolbar actions
     refreshNodes: function () {
       if (App.mtWilson.get('isInstalled') === true) {
-        App.TrustNode.find(undefined, true).then(function() {
-          App.Node.find(undefined, true);
+        this.store.find('trustNode', undefined, true).then(function() {
+          this.store.find('node', undefined, true);
         });
       } else {
-        App.Node.find(undefined, true);
+        this.store.find('node', undefined, true);
       }
     },
     refreshVms: function () {
-      App.Vm.find(undefined, true);
+      this.store.find('vm', undefined, true);
     },
     bypassLogin: function () {
       App.nova.set('exists', true);
@@ -81,20 +81,20 @@ App.ApplicationController = Ember.ArrayController.extend({
     // Load data from APIs
     App.mtWilson.check().then(function() {
       if (App.mtWilson.get('isInstalled') === true) {
-        App.TrustNode.find().then(function() {
-          App.Node.find();
+        this.store.find('trustNode').then(function() {
+          this.store.find('node');
         });
       } else {
-        App.Node.find();
+        this.store.find('node');
       }
-      App.Vm.find();
+      this.store.find('vm');
     }, function() {
-      App.Node.find();
-      App.Vm.find();
+      this.store.find('node');
+      this.store.find('vm');
     });
-    App.Flavor.find();
-    App.Sla.find();
-    App.users = App.User.find();
+    this.store.find('flavor');
+    this.store.find('sla');
+    App.users = this.store.find('user');
     var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.settingsLog.fetch(), App.users];
     return Ember.RSVP.all(promises);
   },
@@ -102,8 +102,8 @@ App.ApplicationController = Ember.ArrayController.extend({
     if (App.application.get('isEnabled') && App.state.get('loggedIn')) {
       this.refreshNodes();
       this.refreshVms();
-      App.Flavor.find(undefined, true);
-      App.Sla.find(undefined, true);
+      this.store.find('flavor', undefined, true);
+      this.store.find('sla', undefined, true);
     }
     Ember.run.later(this, 'autoRefresh', 30000);
   }

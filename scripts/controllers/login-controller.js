@@ -2,7 +2,7 @@ App.LoginController = App.FormController.extend({
     username: '',
     password: '',
     id: '#login',
-    validated_fields: ['username', 'password'],    
+    validated_fields: ['username', 'password'],
     fieldname: {
         username: 'user name',
         password: 'password'
@@ -38,7 +38,7 @@ App.LoginController = App.FormController.extend({
             };
             var getUserProfile = function(model, controller, route, error_args) {
                 var username = controller.get('username');
-                var user = App.User.find(username);
+                var user = this.store.find('user', username);
                 var error = JSON.parse(error_args[0].error);
                 route.controllerFor('profile').set('redirectOnSave', 'login');
                 if(error.set_profile) {

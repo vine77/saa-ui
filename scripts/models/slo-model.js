@@ -1,8 +1,8 @@
-App.Store.registerAdapter('App.Slo', DS.RESTConfigAdapter);
+App.SloAdapter = DS.RESTConfigAdapter.extend();
 
 App.Slo = DS.Model.extend({
   // Full relationships
-  sla: DS.belongsTo('App.Sla'),
+  sla: DS.belongsTo('sla'),
 
   // Properties from API
   elementName: DS.attr('string'),

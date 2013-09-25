@@ -1,4 +1,4 @@
-App.Store.registerAdapter('App.Sla', DS.RESTConfigAdapter);
+App.SlaAdapter = DS.RESTConfigAdapter.extend();
 
 App.Sla = DS.Model.extend({
   // Common Properties
@@ -9,8 +9,8 @@ App.Sla = DS.Model.extend({
   }.property('isActive'),
 
   // Full Relationships
-  slos: DS.hasMany('App.Slo'),
-  flavor: DS.belongsTo('App.Flavor'),
+  slos: DS.hasMany('slo'),
+  flavor: DS.belongsTo('flavor'),
 
   // Properties from API
   name: DS.attr('string'),

@@ -1,9 +1,8 @@
 App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  
   columns: ['mleType', 'name', 'oemname', 'attestationType', 'osname', 'version', 'osversion'],
   filteredModel: function () {
-    return App.TrustMle.find();
-  }.property('App.TrustMle.@each'),
+    return this.store.find('trustMle');
+  }.property('model.@each'),
   filterProperties: ['name', 'version', 'attestationType', 'mleType', 'osname', 'oemname'],
   actions: {
     expand: function (model) {
@@ -15,7 +14,7 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
       }
     },
     deleteMle: function (mle) {
-      App.TrustNode.find().then(function() { //updating all trust nodes 
+      this.store.find('trustNode').then(function() { //updating all trust nodes
         //check if any nodes are registered anywhere with this mle ...
         if (mle.get('trustNode.length') > 0) {
           App.event('Failed to delete fingerprint, you must first remove trust from all of the fingerprint\'s associated nodes.', App.ERROR);

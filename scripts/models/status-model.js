@@ -1,8 +1,10 @@
-App.Store.registerAdapter('App.Status', DS.RESTSingletonAdapter);
+App.StatusAdapter = DS.RESTSingletonAdapter.extend();
 
-DS.RESTSingletonAdapter.map('App.Status', {
+/* TODO: Update embedded models
+DS.RESTSingletonAdapter.map('status', {
   messages: {embedded: 'always'}
 });
+*/
 
 App.Substatus = DS.Model.extend({
   message: DS.attr('string'),
@@ -11,7 +13,7 @@ App.Substatus = DS.Model.extend({
 
 App.Status = DS.Model.extend({
   health: DS.attr('number'),
-  messages: DS.hasMany('App.Substatus'),
+  messages: DS.hasMany('substatus'),
   becameError: function () {
     console.log('App.Status becameError');
   },

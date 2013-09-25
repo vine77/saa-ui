@@ -1,4 +1,4 @@
-App.Store.registerAdapter('App.Flavor', DS.RESTConfigAdapter);
+App.FlavorAdapter = DS.RESTConfigAdapter.extend();
 
 App.Flavor = DS.Model.extend({
   // Common Properties
@@ -9,9 +9,9 @@ App.Flavor = DS.Model.extend({
   }.property('isActive'),
 
   // Full Relationships
-  vms: DS.hasMany('App.Vm'),
-  sla: DS.belongsTo('App.Sla'),  // Available for get_one details only
-  sourceFlavor: DS.belongsTo('App.Flavor'),
+  vms: DS.hasMany('vm'),
+  sla: DS.belongsTo('sla'),  // Available for get_one details only
+  sourceFlavor: DS.belongsTo('flavor'),
 
   // Properties from API get_all list
   name: DS.attr('string'),

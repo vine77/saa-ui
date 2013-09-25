@@ -1,4 +1,4 @@
-App.Store.registerAdapter('App.Connectivity', DS.RESTSingletonAdapter);
+App.ConnectivityAdapter = DS.RESTSingletonAdapter.extend();
 
 App.Connectivity = DS.Model.extend({
   connected: DS.attr('boolean')

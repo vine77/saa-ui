@@ -1,8 +1,8 @@
 App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   columns: ['name', 'numberOfVms', 'sla', 'actions', 'expand'],
   filteredModel: function () {
-    return App.Flavor.find();
-  }.property('App.Flavor.@each'),
+    return this.store.find('flavor');
+  }.property('model.@each'),
   filterProperties: ['name'],
   actions: {
     selectAll: function () {
@@ -17,7 +17,7 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
       }
     },
     refresh: function () {
-      App.Flavor.find(undefined, true);
+      this.store.find('flavor', undefined, true);
     },
     deleteFlavor: function (flavor) {
       var confirmedDelete = confirm('Are you sure you want to delete flavor "' + flavor.get('name') + '"?');
@@ -31,10 +31,11 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
   slas: function () {
-    return App.Sla.find();
-  }.property('App.Sla.@each'),
+    return this.store.find('sla');
+  }.property('model.@each'),
   flavorsWithoutSlas: function () {
-    return App.Flavor.all().filter(function (item, index, enumerable) {
+    return this.store.all('flavor').filter(function (item, index, enumerable) {
       return item.get('sla') === null;
-    })
+    });
+  }
 });

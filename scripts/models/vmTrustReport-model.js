@@ -1,10 +1,13 @@
-DS.RESTAdapter.map('App.VmTrustReport', {
+/* TODO: Update embedded models
+DS.RESTAdapter.map('vmTrustReport', {
   attestations: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.VmAttestation', {
+DS.RESTAdapter.map('vmAttestation', {
   node: {embedded: 'always'}
 });
+*/
+
 
 App.VmAttestationNode = DS.Model.extend({
   node_id: DS.attr('string'),
@@ -23,13 +26,13 @@ App.VmAttestationNode = DS.Model.extend({
 
 App.VmAttestation = DS.Model.extend({
   vm_start:DS.attr('date'),
-  node: DS.belongsTo('App.VmAttestationNode')
+  node: DS.belongsTo('vmAttestationNode')
 });
 
 App.VmTrustReport = DS.Model.extend({
   generationTime: DS.attr('date'),
   vmName: DS.attr('string'),
-  node: DS.belongsTo('App.Node'),
-  vm: DS.belongsTo('App.Vm'),
-  attestations: DS.hasMany('App.VmAttestation')
+  node: DS.belongsTo('node'),
+  vm: DS.belongsTo('vm'),
+  attestations: DS.hasMany('vmAttestation')
 });

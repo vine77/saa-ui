@@ -1,4 +1,5 @@
-/*App.Store.registerAdapter('App.Build', DS.RESTSingletonAdapter);
+/*
+App.BuildAdapter = DS.RESTSingletonAdapter.extend();
 
 App.Build = DS.Model.extend({
   date: DS.attr('date'),

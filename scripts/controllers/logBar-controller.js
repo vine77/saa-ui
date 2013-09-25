@@ -35,7 +35,7 @@ App.LogCategoryController = Ember.ObjectController.extend({
 });
 
 App.LogBarController = Ember.ObjectController.extend({
-  shortCutTimes: [{"id": 1, "label":"Last 15min"}, 
+  shortCutTimes: [{"id": 1, "label":"Last 15min"},
                   {"id":2,  "label":"Last 60min"},
                   {"id":3,  "label":"Last 4h"},
                   {"id":4,  "label":"Last 12h"},
@@ -77,7 +77,7 @@ App.LogBarController = Ember.ObjectController.extend({
   nodes: function() {
     var returnArray = [];
     returnArray.pushObject({value:"ipm", label:App.build.get('hostname')});
-    App.Node.all().forEach( function (item, index, enumerable) {
+    this.store.all('node').forEach( function (item, index, enumerable) {
       var nodeObj = {"value": item.get('id'), "label": item.get('name')};
       returnArray.pushObject(nodeObj);
     });
@@ -99,7 +99,7 @@ App.LogBarController = Ember.ObjectController.extend({
     if (nodeSelected) {
       if (nodeSelected.value !== "context") {
         this.set('selectedNodes', []);
-        App.Node.all().forEach( function (item, index, enumerable) {
+        this.store.all('node').forEach( function (item, index, enumerable) {
           if (item.get('isSelected')) {
             item.set('isSelected', false);
           }
@@ -121,17 +121,17 @@ App.LogBarController = Ember.ObjectController.extend({
     }
   }.observes('criticalitySelected'),
   nodeObjects: function() {
-    return App.Node.all();
+    return this.store.all('node');
   }.property('controllers.nodes.model.@each'),
   vmObjects: function() {
-    return App.Vm.all();
+    return this.store.all('vm');
   }.property('controllers.vms.model.@each'),
   logCategoryObjects: function () {
     return App.definitions.logs.categories;
   }.property(''),
   timeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
-      this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8)); 
+      this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8));
     }
   }.observes('timeTo', 'timeFrom'),
   shortCutTimeSelectionChanged: function()  {
@@ -225,7 +225,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
     return returnVal.join(' AND ');
   }.property('searchText', 'nodeSelected', 'criticalitySelected', 'selectedNodes.@each','App.Node.@each','selectedCriticalities.@each', 'selectedLogCategories.@each'),
-  
+
   actions: {
     updateLogsFrame: function() {
       var currentURL = frames['allLogsFrame'].location.href;
@@ -239,7 +239,7 @@ App.LogBarController = Ember.ObjectController.extend({
         newURL['timeframe'] = 'custom';
         if (this.get('timeFrom') !== "") { newURL.time.from = moment(this.get('timeFrom')).format(); }
         if (this.get('timeTo') !== "") { newURL.time.to = moment(this.get('timeTo')).format(); }
-       // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; } 
+       // if ((this.get('timeFrom')) == "" && (this.get('timeTo') == "")) { delete newURL.time; }
       } else {
          newURL['timeframe'] = App.logTimeToSeconds(this.get('shortCutTimeSelected.label'));
          //console.log('App.logTimetoSeconds:' + App.logTimeToSeconds(this.get('shortCutTimeSelected.value')));
@@ -274,7 +274,7 @@ App.LogBarController = Ember.ObjectController.extend({
       this.set('timeFrom', '');
       this.set('timeTo', '');
       this.set('searchText', '');
-      
+
       setTimeout(function () {
         frames['allLogsFrame'].sbctl('hide', true);
       }, 3000);
@@ -303,7 +303,7 @@ App.LogBarController = Ember.ObjectController.extend({
         didInsertElement: function () {
           $('#advanced-search-modal').modal('show');
         },
-        
+
         styleLogsFrame: function () {
           setTimeout(function () {
             try {

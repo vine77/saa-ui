@@ -1,7 +1,7 @@
 App.ConnectivityController = Ember.ObjectController.extend({
   model: function () {
-    return App.Connectivity.find('current');
-  }.property('App.Connectivity'),
+    return this.store.find('connectivity', 'current');
+  },
   connected: true,
   check: function () {
     var context = this;
@@ -18,6 +18,6 @@ App.ConnectivityController = Ember.ObjectController.extend({
       }
     };
     hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);    
+    return App.ajaxPromise(hash);
   }
 });

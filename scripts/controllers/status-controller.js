@@ -1,26 +1,21 @@
 App.StatusController = Ember.ObjectController.extend({
   init: function () {
     this._super();
-    this.set('model', App.Status.find('current'));
-    App.Status.find('current').on('becameError', function () {
+    this.set('model', this.store.find('status', 'current'));
+    this.store.find('status', 'current').on('becameError', function () {
       console.log('App.Status.current becameError');
     });
     this.updateCurrentStatus();
   },
-  /*
-  model: function () {
-    return App.Status.find('current');
-  },
-  */
   updateCurrentStatus: function () {
-    if (!App.Status.find('current').get('isLoaded')) {
-      App.Status.find('current').then(function () {
+    if (!this.store.find('status', 'current').get('isLoaded')) {
+      this.store.find('status', 'current').then(function () {
         console.log('PROMISE fulfill 1');
       }, function () {
         console.log('PROMISE reject 1');
       });
-    } else if (!App.Status.find('current').get('isLoading') && !App.Status.find('current').get('isReloading')) {
-      App.Status.find('current').reload().then(function () {
+    } else if (!this.store.find('status', 'current').get('isLoading') && !this.store.find('status', 'current').get('isReloading')) {
+      this.store.find('status', 'current').reload().then(function () {
         console.log('PROMISE fulfill 2');
       }, function () {
         console.log('PROMISE reject 2');
@@ -31,8 +26,8 @@ App.StatusController = Ember.ObjectController.extend({
 
   /*
   model: function () {
-    return App.Connectivity.find('current');
-  }.property('App.Connectivity'),
+    return this.store.find('connectivity', 'current');
+  },
   connected: true,
   check: function () {
     var context = this;
@@ -49,7 +44,7 @@ App.StatusController = Ember.ObjectController.extend({
       }
     };
     hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);    
+    return App.ajaxPromise(hash);
   }
   */
 

@@ -1,3 +1,45 @@
+App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
+  host: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
+  namespace: 'api/v1',
+  buildURL: function(record, suffix) {
+    var url = this._super(record, suffix);
+    return url + '.json';
+  }
+});
+
+// RESTConfigAdapter for nested configuration namespace
+DS.RESTConfigAdapter = App.ApplicationAdapter.extend();
+DS.RESTConfigAdapter.reopen({
+  namespace: 'api/v1/configuration'
+});
+
+// RESTSingletonAdapter for singleton resources in primary namespace
+DS.RESTSingletonAdapter = App.ApplicationAdapter.extend();
+DS.RESTSingletonAdapter.reopen({
+  buildURL: function (record, suffix) {
+    suffix = undefined;  // Remove ID from this singleton resource
+    return this._super(record, suffix);
+  }
+});
+
+// RESTSingletonConfigAdapter for singleton resources in configuration namespace
+DS.RESTSingletonConfigAdapter = App.ApplicationAdapter.extend();
+DS.RESTSingletonConfigAdapter.reopen({
+  namespace: 'api/v1/configuration'
+});
+
+// Add additional Ember Data types
+App.ArrayTransform = DS.Transform.extend({
+  serialize: function(value) {
+    return (Em.typeOf(value) === 'array') ? value : [];
+  },
+  deserialize: function(value) {
+    return value;
+  }
+});
+
+
+// TODO: Move Sunil's header token extension to broader solution
 App.ajaxSetup = {
   beforeSend: function(xhr) {
     if (App.session && App.session.get('csrf_token')) {
@@ -27,6 +69,7 @@ App.ajaxPromise = function(hash) {
   });
 }
 
+/*
 // Configure primary SAM REST adapter
 DS.RESTAdapter.reopen({
   url: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
@@ -59,6 +102,7 @@ DS.RESTAdapter.reopen({
       }
     ).then(function () {
       if (deleteMissing) {
+        // TODO: Can't call type this way
         eval(type).all().toArray().forEach(function (item, index, enumerable) {
           var missing = JSON.stringify(storedJson).indexOf(item.get('id')) === -1;
           if (missing) {
@@ -178,7 +222,6 @@ App.Store = DS.Store.extend({
   fetchAll: function(type, array, deleteMissing, customErrorHandling) {  // findAll customErrorHandling series
     if (deleteMissing || customErrorHandling) {
 
-
       var get = Ember.get, set = Ember.set; //prerequistes
 
       var adapter = this.adapterForType(type),
@@ -196,9 +239,5 @@ App.Store = DS.Store.extend({
       return this._super(type, array);
     }
   }
-});
-
-/*
-DS.Model.reopen({
 });
 */

@@ -1,5 +1,3 @@
-App.Store.registerAdapter('App.Mailserver', DS.RESTAdapter);
-
 App.Mailserver = DS.Model.extend({
   hostname: DS.attr('string'),
   port: DS.attr('string'),
@@ -7,4 +5,4 @@ App.Mailserver = DS.Model.extend({
   password: DS.attr('string'),
   sender_email: DS.attr('string'),
   test_config: DS.attr('boolean')
-  });
+});

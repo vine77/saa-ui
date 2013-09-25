@@ -10,7 +10,7 @@
 App.Filterable = Ember.Mixin.create({
   filteredModel: [],
   filterQuery: '',
-  actions {
+  actions: {
     clearFilter: function () {
       this.set('filterQuery', '');
     }
@@ -64,5 +64,5 @@ App.Sortable = Ember.Mixin.create({
       this.set('isColumn' + (controller.sortIndex + 1) + 'Sorted', true);
     }
   }
- 
+
 });

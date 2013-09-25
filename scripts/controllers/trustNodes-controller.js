@@ -2,8 +2,8 @@ App.TrustNodesController = Ember.ArrayController.extend(App.Filterable, App.Sort
   columns: ['select', 'health', 'state', 'status.trust', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
   //needs: ['logBar'],
   filteredModel: function () {
-    return App.TrustNode.find();
-  }.property('App.TrustNode.@each'),
+    return this.store.find('trustNode');
+  }.property('model.@each'),
   filterProperties: ['name'],
   multipleNodesAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
@@ -22,11 +22,11 @@ App.TrustNodesController = Ember.ArrayController.extend(App.Filterable, App.Sort
       }
     },
     refresh: function () {
-      App.Node.all().clear();
-      App.Node.find();
+      this.store.all('node').clear();
+      this.store.find('node');
     },
     exportTrustReport: function (reportContent) {
-      App.NodeTrustReport.find(reportContent.get('id')).then(function (nodeTrustReport) {
+      this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
           var title = "SAM Node Trust Report";
           var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';

@@ -1,11 +1,11 @@
-App.Store.registerAdapter('App.Event', DS.FixtureAdapter);
+App.EventAdapter = DS.FixtureAdapter.extend();
 
 App.Event = DS.Model.extend({
   message: DS.attr('string'),
   priority: DS.attr('number'),
   timestamp: DS.attr('number'),
-  node: DS.belongsTo('App.Node'),
-  vm: DS.belongsTo('App.Vm')
+  node: DS.belongsTo('node'),
+  vm: DS.belongsTo('vm')
 });
 
 App.Event.FIXTURES = [

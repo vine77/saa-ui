@@ -1,8 +1,8 @@
 App.ServicesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   columns: ['select', 'health', 'state', 'name', 'description', 'numberOfVms', 'created', 'updated', 'actions', 'expand'],
   filteredModel: function () {
-    return App.Service.find();
-  }.property('App.Service.@each'),
+    return this.store.find('service');
+  }.property('model.@each'),
   filterProperties: ['name', 'description'],
   actions: {
     selectAll: function () {

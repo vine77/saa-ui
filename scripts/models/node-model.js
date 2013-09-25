@@ -1,6 +1,7 @@
 // Embedded records
 
-DS.RESTAdapter.map('App.Node', {
+/* TODO: Update embedded models
+DS.RESTAdapter.map('node', {
   vcpus: {embedded: 'always'},
   vmInfo: {embedded: 'always'},
   memory: {embedded: 'always'},
@@ -12,26 +13,27 @@ DS.RESTAdapter.map('App.Node', {
   name: {key: 'node_name'}
 });
 
-DS.RESTAdapter.map('App.NodeStatus', {
+DS.RESTAdapter.map('nodeStatus', {
   trust_details: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.NodeUtilization', {
+DS.RESTAdapter.map('nodeUtilization', {
   cpu: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.ContentionSystem', {
+DS.RESTAdapter.map('contentionSystem', {
   llc: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.Contention', {
+DS.RESTAdapter.map('contention', {
   sockets: {embedded: 'always'},
   system: {embedded: 'always'}
 });
 
-DS.RESTAdapter.map('App.Socket', {
+DS.RESTAdapter.map('socket', {
   llc: {embedded: 'always'}
 });
+*/
 
 
 // Embedded models
@@ -49,7 +51,7 @@ App.NodeStatus = DS.Model.extend({
   isTrusted: Ember.computed.equal('trust', 2),
   isNotTrusted: Ember.computed.equal('trust', 1),
   isTrustUnknown: Ember.computed.not('trust'),
-  trust_details: DS.belongsTo('App.NodeStatusTrustDetails'),
+  trust_details: DS.belongsTo('nodeStatusTrustDetails'),
   trustMessage: function () {
     var message = '';
     if (this.get('trust') === 0) {
@@ -75,7 +77,7 @@ App.ContentionSystemLlc = DS.Model.extend({
   valueExists: function () {
     return typeof this.get('value') !== 'undefined' && this.get('value') !== null;
   }.property('value'),
-  system: DS.belongsTo('App.ContentionSystem'),
+  system: DS.belongsTo('contentionSystem'),
   valueFormatted: function () {
     return Math.round(this.get('value') * 100) / 100;
   }.property('value'),
@@ -85,7 +87,9 @@ App.ContentionSystemLlc = DS.Model.extend({
       return '<strong>System LLC Contention</strong>: N/A';
     } else {
       var message = 'Overall LLC Contention: ' + this.get('value') + ' (' + this.get('label') + ')';
-      var sockets = App.Node.find(this._reference.parent.parent.parent.id).get('contention.sockets');
+      // TODO: Can't use this reference
+      //var sockets = App.Node.find(this._reference.parent.parent.parent.id).get('contention.sockets');
+      var sockets = [];
       sockets.forEach(function (item, index, enumerable) {
         var socket = item.get('llc');
         var socketNumber = item.get('socket_number');
@@ -95,7 +99,9 @@ App.ContentionSystemLlc = DS.Model.extend({
     }
   }.property('value', 'label'),
   width: function() {
-    var numberOfSockets = App.Node.find(this._reference.parent.parent.parent.id).get('capabilities.sockets');
+    // TODO: Can't use this reference
+    //var numberOfSockets = App.Node.find(this._reference.parent.parent.parent.id).get('capabilities.sockets');
+    var numberOfSockets = 0;
     var rangeMaximum = numberOfSockets * 50;
     if (this.get('value') === 0 || App.isEmpty(this.get('value'))) {
       return 'display:none;';
@@ -107,11 +113,11 @@ App.ContentionSystemLlc = DS.Model.extend({
 });
 
 App.ContentionSystem = DS.Model.extend({
-  llc: DS.belongsTo('App.ContentionSystemLlc')
+  llc: DS.belongsTo('contentionSystemLlc')
 });
 
 App.Contention = DS.Model.extend({
-  sockets: DS.hasMany('App.Socket'),
+  sockets: DS.hasMany('socket'),
   socketsSorted: function() {
     var socketsStore = this.get('sockets');
     socketsController = Ember.ArrayController.create({
@@ -121,23 +127,23 @@ App.Contention = DS.Model.extend({
     });
     return socketsController;
   }.property('sockets'),
-  node: DS.belongsTo('App.Node'),
-  system: DS.belongsTo('App.ContentionSystem')
+  node: DS.belongsTo('node'),
+  system: DS.belongsTo('contentionSystem')
 });
 
 App.Socket = DS.Model.extend({
-  llc: DS.belongsTo('App.Llc'),
-  contention: DS.belongsTo('App.Contention'),
+  llc: DS.belongsTo('llc'),
+  contention: DS.belongsTo('contention'),
   socket_number: DS.attr('number')
 });
 
 App.Llc = DS.Model.extend({
-  sockets: DS.belongsTo('App.Socket'),
+  sockets: DS.belongsTo('socket'),
   value: DS.attr('number'),
   label: DS.attr('string'),
   styles: function() {
     return 'background-color: '+ App.rangeToColor(this.get('value'), 0, 50);
-  }.property('App.Llc.value'),
+  }.property('value'),
   barWidth: function() {
     if (App.isEmpty(this.get('value'))) {
       return 'display:none;';
@@ -152,7 +158,7 @@ App.Llc = DS.Model.extend({
     } else {
       return '<strong>Socket LLC Contention</strong><br>' + this.get('label') + '<br> Value: ' + this.get('value');
     }
-  }.property('App.Llc.value', 'App.Llc.label')
+  }.property('value', 'label')
 });
 
 App.Cpu = DS.Model.extend({
@@ -165,7 +171,7 @@ App.Cpu = DS.Model.extend({
 
 App.NodeUtilization = DS.Model.extend({
   // Embedded Relationships
-  cpu: DS.belongsTo('App.Cpu'),
+  cpu: DS.belongsTo('cpu'),
   // Properties
   ipc: DS.attr('number'),
   uptime: DS.attr('number'),                  // in seconds
@@ -236,19 +242,19 @@ App.Node = DS.Model.extend({
   }.observes('isSelected'),
 
   // Embedded Relationships
-  status: DS.belongsTo('App.NodeStatus'),
-  utilization: DS.belongsTo('App.NodeUtilization'),
-  capabilities: DS.belongsTo('App.NodeCapabilities'),
-  vcpus: DS.belongsTo('App.Vcpus'),
-  vmInfo: DS.belongsTo('App.VmInfo'),
-  memory: DS.belongsTo('App.Memory'),
-  contention: DS.belongsTo('App.Contention'),
-  ids: DS.belongsTo('App.Ids'),
+  status: DS.belongsTo('nodeStatus'),
+  utilization: DS.belongsTo('nodeUtilization'),
+  capabilities: DS.belongsTo('nodeCapabilities'),
+  vcpus: DS.belongsTo('vcpus'),
+  vmInfo: DS.belongsTo('vmInfo'),
+  memory: DS.belongsTo('memory'),
+  contention: DS.belongsTo('contention'),
+  ids: DS.belongsTo('ids'),
 
   // Full Relationships
-  vms: DS.hasMany('App.Vm'),
-  nodeTrustReport: DS.belongsTo('App.NodeTrustReport'),
-  trustNode: DS.belongsTo('App.TrustNode'),
+  vms: DS.hasMany('vm'),
+  nodeTrustReport: DS.belongsTo('nodeTrustReport'),
+  trustNode: DS.belongsTo('trustNode'),
 
   didReload: function () {
     if (this.get('nodeTrustReport.isLoaded')) {
@@ -297,7 +303,7 @@ App.Node = DS.Model.extend({
     } else {
       return '';
     }
-  }.property('App.Capabilities.cpu_frequency'),
+  }.property('cpu_frequency'),
   isScheduled: function () {
     return !Ember.isNone(this.get('schedulerMark'));
   }.property('schedulerMark'),
