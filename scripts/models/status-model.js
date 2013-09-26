@@ -11,5 +11,7 @@ App.StatusMessage = DS.Model.extend({
 
 App.Status = DS.Model.extend({
   health: DS.attr('number'),
+  version: DS.attr('string'),
+  master: DS.attr('boolean'),
   messages: DS.hasMany('App.StatusMessage')
 });

@@ -18,7 +18,7 @@ App.Application = Ember.Object.extend({
   timer: function () {
     var self = this;
     var timerInterval = 10000;
-    var timerId = setInterval(function () {
+    var updateStatus = function () {
       if (App.state.get('loggedIn')) {
         // Update contextual graphs
         if (App.contextualGraphs.get('selectedNode')) {
@@ -33,7 +33,7 @@ App.Application = Ember.Object.extend({
         var newStatus = status;
         if (self.get('health') !== newStatus.get('health')) self.set('health', newStatus.get('health'));
         if (status.get('health') !== App.SUCCESS && !Ember.isEmpty(status.get('messages'))) {
-          App.application.set('statusMessages', App.Status.find('current').get('messages'));
+          App.application.set('systemStatus', App.Status.find('current'));
           if (App.priorityToType(status.get('health')) == 'unknown') {
             var statusStyle = 'alert-info';
           } else {
@@ -55,14 +55,24 @@ App.Application = Ember.Object.extend({
           statusCheck(status, self);
         });
       }
-    }, timerInterval);
+    };
+    setTimeout(updateStatus, 1000);
+    var timerId = setInterval(updateStatus, timerInterval);
     this.set('timerId', timerId);
   },
   samStarted: function () {
     return App.nova.get('exists') && App.openrc.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists'),
   status: true,
-  statusMessages:[],
+  systemStatus: undefined,
+  statusMessages: function () {
+    return this.get('systemStatus.messages')
+  }.property('systemStatus'),
+  statusErrorMessages: function () {
+    return this.get('statusMessages').filter(function (item, index, enumerable) {
+      return item.get('health') > App.SUCCESS;
+    });
+  }.property('statusMessages.@each'),
   statusStyle: null
 });
 App.application = App.Application.create();
