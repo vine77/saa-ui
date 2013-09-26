@@ -225,7 +225,7 @@
                     <li><a onclick="App.selectTab(event)">VMs</a></li>
                     <li><a onclick="App.selectTab(event)">Graphs</a></li>
                     <li><a onclick="App.selectTab(event)">Trust</a></li>
-                    <li><a onclick="App.selectTab(event)">PCR logs</a></li>
+                    <li><a onclick="App.selectTab(event)">PCR Logs</a></li>
                     <li><a onclick="App.selectTab(event)">MLEs</a></li>
                   </ul>
                   <div class="tab-content">
@@ -354,8 +354,16 @@
                             <th class="column-small">Trust Status</th>
                             <th>Name</th>
                             <th>Actual Value</th>
-                            <th>Expected Value</th>
-                            <th>Module Logs</th>
+                            <th>
+                              {{#view App.TooltipView title="The PCR-19 value is made up of several modules (initrd and vmlinuz) that are node specific. This is why PCR-19 does not have a value listed in the Expected Value column. The modules that make up PCR-19 do have actual/expected values, which are described in the Module Logs column. PCR-19 is the only module based PCR, and is the only PCR that has data in the Module Logs column." dataPlacement="bottom"}}
+                                Expected Value
+                              {{/view}}
+                            </th>
+                            <th>
+                              {{#view App.TooltipView title="The PCR-19 value is made up of several modules (initrd and vmlinuz) that are node specific. This is why PCR-19 does not have a value listed in the Expected Value column. The modules that make up PCR-19 do have actual/expected values, which are described in the Module Logs column. PCR-19 is the only module based PCR, and is the only PCR that has data in the Module Logs column." dataPlacement="bottom"}}
+                                Module Logs
+                              {{/view}}
+                            </th>
                           </tr>
                           {{#each log in node.trustNode.pcrLogs}}
                             <tr>
@@ -370,7 +378,8 @@
                                   {{#each modulelog in log.modulelogs}}
                                     <ul>
                                       <li>Component Name: {{modulelog.componentname}}</li>
-                                      <li>Whitelist Value: {{modulelog.whitelistvalue}}</li>
+                                      <li>Actual Value: {{modulelog.value}}</li>
+                                      <li>Expected Value: {{modulelog.whitelistvalue}}</li>
                                       <li>Trust Status: {{modulelog.truststatus}}</li>
                                     </ul>
                                   {{/each}}
@@ -383,7 +392,7 @@
                         </table>
                       {{else}}
                         {{#unless content.isUpdating}}
-                          <div class="alert alert-info">No PCR logs found.</div>
+                          <div class="alert alert-info">No PCR Logs found.</div>
                         {{/unless}}
                       {{/if}}
                     </div>

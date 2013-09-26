@@ -7,6 +7,7 @@
       <legend> Uninstall Trust Server</legend>
       <dl class="dl-horizontal">
         {{#if App.mtWilson.isInstalled}}
+          <p class="text-warning">Uninstalling the Trust Server should only be performed for diagnostic purposes.</p>
           <input type="button" value="Uninstall Trust Server" class="btn btn-danger" {{action uninstall}}>
         {{else}}
           <p class="instructions">Trust Server is not installed. </p>
