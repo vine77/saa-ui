@@ -19,5 +19,5 @@ App.NodeTrustReportAttestation = DS.Model.extend({
 
 App.NodeTrustReport = DS.Model.extend({
   generation_time: DS.attr('date'),
-  attestations: DS.hasMany('nodeTrustReportAttestation')
+  attestations: DS.hasMany('nodeTrustReportAttestation', {async: true})
 });

@@ -48,6 +48,8 @@ App.Router.map(function () {
   });
 });
 
+// TODO: Migrate Sunil's authentication code
+/*
 Ember.Route.reopen({
   activate: function () {
     var route = this;
@@ -88,17 +90,21 @@ Ember.Route.reopen({
     this._super();
   }
 });
+*/
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
     logout: function() {
+      // TODO: Migrate Sunil's authentication code
+      /*
       var cleanup = function() {
         location.href = '/';
       };
       App.session.deleteRecord();
       var handlers = {'didDelete' : {postFun:cleanup, nextRoute:'login'}};
       App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
+      */
     },
     showModal: function (modalName, controllerName) {
       App.ModalView.create({
@@ -109,6 +115,8 @@ App.ApplicationRoute = Ember.Route.extend({
   }
 });
 
+// TODO: Migrate Sunil's authentication code
+/*
 // Index
 App.IndexRoute = Ember.Route.extend({
   redirect: function() {
@@ -121,6 +129,7 @@ App.IndexRoute = Ember.Route.extend({
     }
   }
 });
+*/
 
 // Dashboard
 App.DashboardRoute = Ember.Route.extend({
@@ -138,9 +147,6 @@ App.LoginRoute = Ember.Route.extend({
 });
 
 App.TempPasswordRoute = Ember.Route.extend({
-  setupController: function(controller, model) {
-    this._super(controller, model);
-  },
   actions: {
     generate_password: function() {
       this.controller.generatePassword(this);
@@ -154,6 +160,7 @@ App.ProfileRoute = Ember.Route.extend({
   },
   setupController: function(controller, model) {
     if (!model.get('isLoaded')) {
+      // TODO: Migrate Sunil's authentication code. Can't use model.on()
       model.on('didLoad', function() {
         model.off('didLoad');
         controller.initFields(model);
@@ -165,6 +172,7 @@ App.ProfileRoute = Ember.Route.extend({
       var mail_controller = this.controllerFor('settings.mailserver');
       var mail_server = this.store.find('mailserver', 'default');
       mail_controller.set('model', mail_server);
+      // TODO: Migrate Sunil's authentication code. Can't use model.on()
       mail_server.on('didLoad', function() {
         mail_controller.initFields(mail_server);
       });
@@ -187,6 +195,7 @@ App.ProfileRoute = Ember.Route.extend({
 
 // Nodes
 App.NodesRoute = Ember.Route.extend({
+  /*
   setupController: function (controller, model) {
     this._super(controller, model);
     if (App.mtWilson.get('isInstalled') === true) {
@@ -204,6 +213,11 @@ App.NodesRoute = Ember.Route.extend({
         controller.set('model', this.store.all('node'));
       }
     }
+  }
+  */
+  model: function () {
+    // TODO: Move model loading to background
+    return this.store.find('node', undefined, true);
   }
 });
 
@@ -386,6 +400,7 @@ App.SettingsMailserverRoute = Ember.Route.extend({
   },
   setupController: function(controller, model) {
     if (!model.get('isLoaded')) {
+      // TODO: Migrate Sunil's authentication code. Can't use model.on()
       model.on('didLoad', function() {
         controller.initFields(model);
         model.off('didLoad');

@@ -1,3 +1,4 @@
+// TODO: Migrate Sunil's authentication code
 App.LoginController = App.FormController.extend({
     username: '',
     password: '',
@@ -62,7 +63,7 @@ App.LoginController = App.FormController.extend({
                 }
                 route.transitionTo('profile', user);
             };
-            var session = App.Session.createRecord(record);
+            var session = this.store.createRecord('session', record);
             var handlers = {
                 'didCreate' : {postFun:updateUI(''), nextRoute:'index'},
                 'becameError' : {postFun:updateUI('Login Failed.'), resetState:true},

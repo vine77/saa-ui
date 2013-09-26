@@ -1,5 +1,4 @@
 App.TrustWhitelistController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-
   columns: ['mleType', 'name', 'oemname', 'attestationType', 'osname', 'version', 'osversion', 'mleManifests'],
   filteredModel: function () {
     return this.store.find('trustMle');
@@ -21,16 +20,9 @@ App.TrustWhitelistController = Ember.ArrayController.extend(App.Filterable, App.
         var confirmed = confirm('Are you sure you want to delete this fingerprint?');
         if (confirmed) {
           mle.deleteRecord();
-          mle.get('transaction').commit();
+          mle.save();
         }
       }
     }
   }
-
-  /*
-  frameUrl: function () {
-    // Mt. Wilson Whitelist Portal
-    return 'https://' + window.location.hostname + ':8181/WhiteListPortal/';
-  }.property()
-  */
 });

@@ -22,8 +22,7 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
           var confirmed = confirm('Are you sure you want to delete this fingerprint?');
           if (confirmed) {
             mle.deleteRecord();
-            mle.get('transaction').commit();
-            mle.get('store').commit();
+            mle.save();
           }
         }
       });

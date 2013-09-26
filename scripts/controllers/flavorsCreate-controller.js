@@ -15,12 +15,21 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
     createFlavor: function () {
       this.set('isFlavorCreating', true);
       var controller = this;
-      flavor = App.Flavor.createRecord({
+      flavor = this.store.createRecord('flavor', {
         name: controller.get('name'),
         sla: controller.get('sla'),
         sourceFlavor: controller.get('sourceFlavor')
       });
-      flavor.get('transaction').commit();
+      flavor.save().then(function () {
+        // TODO: Move event based messaging to promises
+        App.event('An error occured while creating this flavor.', App.ERROR);
+        this.set('isFlavorCreating', false);
+      }, function () {
+        // TODO: Move event based messaging to promises
+        App.event('Successfully created flavor', App.SUCCESS);
+        this.set('isFlavorCreating', false);
+      });
+      /*
       flavor.on('becameError', function () {
         var errorMessage = (flavor.get('error')) ? flavor.get('error') : 'An error occured while creating this flavor. Please try again.';
         App.event(errorMessage, App.ERROR);
@@ -44,6 +53,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         controller.set('sla', null);
         controller.set('isFlavorCreating', false);
       });
+      */
     }
   }
 });

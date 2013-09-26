@@ -8,23 +8,25 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
 });
 
 // RESTConfigAdapter for nested configuration namespace
-DS.RESTConfigAdapter = App.ApplicationAdapter.extend();
-DS.RESTConfigAdapter.reopen({
+DS.RESTConfigAdapter = App.ApplicationAdapter.extend({
   namespace: 'api/v1/configuration'
 });
 
 // RESTSingletonAdapter for singleton resources in primary namespace
-DS.RESTSingletonAdapter = App.ApplicationAdapter.extend();
-DS.RESTSingletonAdapter.reopen({
+DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
+  // Remove ID from this singleton resource
   buildURL: function (record, suffix) {
-    suffix = undefined;  // Remove ID from this singleton resource
+    suffix = undefined;
     return this._super(record, suffix);
+  },
+  // Override the `pathForType` method with non-pluralized API endpoint
+  pathForType: function(type) {
+    return Ember.String.decamelize(type);
   }
 });
 
 // RESTSingletonConfigAdapter for singleton resources in configuration namespace
-DS.RESTSingletonConfigAdapter = App.ApplicationAdapter.extend();
-DS.RESTSingletonConfigAdapter.reopen({
+DS.RESTSingletonConfigAdapter = App.ApplicationAdapter.extend({
   namespace: 'api/v1/configuration'
 });
 

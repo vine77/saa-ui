@@ -9,7 +9,7 @@ App.Flavor = DS.Model.extend({
   }.property('isActive'),
 
   // Full Relationships
-  vms: DS.hasMany('vm'),
+  vms: DS.hasMany('vm', {async: true}),
   sla: DS.belongsTo('sla'),  // Available for get_one details only
   sourceFlavor: DS.belongsTo('flavor'),
 

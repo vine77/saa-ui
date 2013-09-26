@@ -1,3 +1,4 @@
+// TODO: Migrate Sunil's authentication code
 App.ProfileController = App.FormController.extend({
     getMailServer: false,
     getEmail: true,
@@ -22,7 +23,7 @@ App.ProfileController = App.FormController.extend({
         else {
             return error;
         }
-    },    
+    },
     fieldname: {
         username: 'user name',
         oldPassword: 'current password',
@@ -51,7 +52,7 @@ App.ProfileController = App.FormController.extend({
         if(controller.prepare_commit(record)) {
             if(controller.newPassword1 != controller.newPassword2) {
                 controller.showNotification("Passwords don't match.");
-                controller.reset_form();                
+                controller.reset_form();
             }
             else {
                 var email_configured = false;
@@ -87,7 +88,7 @@ App.ProfileController = App.FormController.extend({
                                 var error = error_args[0].error;
                                 if(typeof(error) != 'undefined') {
                                     message = message + ' ' + controller.errorString(error);
-                                }                        
+                                }
                             }
                             controller.showNotification(message);
                         }
@@ -133,7 +134,7 @@ App.ProfileController = App.FormController.extend({
             if(mail_controller.saveConfig(route, true, updateNotification)) {
                 controller.setDisable(true);
             }
-        }                    
+        }
     },
     resetProfile: function(route) {
         var controller = this;

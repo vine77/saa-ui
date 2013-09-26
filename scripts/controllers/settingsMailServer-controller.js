@@ -1,4 +1,5 @@
-App.SettingsMailserverController = App.FormController.extend({ 
+// TODO: Migrate Sunil's authentication code
+App.SettingsMailserverController = App.FormController.extend({
     standalone: true,
     hostname:'',
     port:'',
@@ -19,7 +20,7 @@ App.SettingsMailserverController = App.FormController.extend({
         else {
             return error;
         }
-    },    
+    },
     fieldname: {
         hostname: 'mail server host name or IP address',
         port: 'mail server port number',
@@ -52,7 +53,7 @@ App.SettingsMailserverController = App.FormController.extend({
                     var error = error_args[0].error;
                     if(typeof(error) != 'undefined') {
                         message = message + ' ' + controller.errorString(error);
-                    }                                        
+                    }
                     if(controller.standalone) {
                         controller.showNotification(message);
                     }

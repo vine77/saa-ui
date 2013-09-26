@@ -148,7 +148,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       if (confirmed) {
         App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
         node.get('trustNode').deleteRecord();
-        node.get('transaction').commit();
+        // TODO: Add error handling
+        node.save();
       }
     },
     trustFingerprint: function (node) {
@@ -252,7 +253,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       if (confirmed) {
         // TODO: add error handling for this delete node action
         node.deleteRecord();
-        node.get('transaction').commit();
+        node.save();
       }
     },
     trustReportModal: function (model){

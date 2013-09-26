@@ -42,11 +42,14 @@ App.event = function (message, type, notify, title) {
     message = prefix + type + ' event occurred';
   }
   // Add event to events model
+  // TODO: Move this to router or controller in order to call this.store.createRecord
+  /*
   App.Event.createRecord({
     message: message,
     priority: App.typeToPriority(type),
     timestamp: moment().valueOf()
   });
+  */
   if (typeof notify === 'undefined' || notify === true) {
     var notifyTitle = (typeof title === 'undefined' || !title) ? null : title;
     App.notify(message, type, notifyTitle);

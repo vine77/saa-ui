@@ -13,11 +13,5 @@ App.Substatus = DS.Model.extend({
 
 App.Status = DS.Model.extend({
   health: DS.attr('number'),
-  messages: DS.hasMany('substatus'),
-  becameError: function () {
-    console.log('App.Status becameError');
-  },
-  becameInvalid: function () {
-    console.log('App.Status becameInvalid');
-  }
+  messages: DS.hasMany('substatus')
 });

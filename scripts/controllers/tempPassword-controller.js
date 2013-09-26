@@ -1,3 +1,4 @@
+// TODO: Migrate Sunil's authentication code
 App.TempPasswordController = App.FormController.extend({
     username: '',
     id: '#tempPassword',

@@ -9,7 +9,7 @@ App.Sla = DS.Model.extend({
   }.property('isActive'),
 
   // Full Relationships
-  slos: DS.hasMany('slo'),
+  slos: DS.hasMany('slo', {async: true}),
   flavor: DS.belongsTo('flavor'),
 
   // Properties from API

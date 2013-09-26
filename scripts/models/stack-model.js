@@ -42,7 +42,7 @@ App.Stack = DS.Model.extend({
   status: DS.belongsTo('stackStatus'),
 
   // Full Relationships
-  vms: DS.hasMany('vm'),
+  vms: DS.hasMany('vm', {async: true}),
 
   // Properties from API
   name: DS.attr('string'),

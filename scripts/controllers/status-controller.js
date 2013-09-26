@@ -2,23 +2,22 @@ App.StatusController = Ember.ObjectController.extend({
   init: function () {
     this._super();
     this.set('model', this.store.find('status', 'current'));
-    this.store.find('status', 'current').on('becameError', function () {
-      console.log('App.Status.current becameError');
-    });
+    this.store.find('status', 'current');
     this.updateCurrentStatus();
   },
   updateCurrentStatus: function () {
     if (!this.store.find('status', 'current').get('isLoaded')) {
+      // TODO: Combine Status and Connectivity checks
       this.store.find('status', 'current').then(function () {
-        console.log('PROMISE fulfill 1');
+        //console.log('PROMISE fulfill 1');
       }, function () {
-        console.log('PROMISE reject 1');
+        //console.log('PROMISE reject 1');
       });
     } else if (!this.store.find('status', 'current').get('isLoading') && !this.store.find('status', 'current').get('isReloading')) {
       this.store.find('status', 'current').reload().then(function () {
-        console.log('PROMISE fulfill 2');
+        //console.log('PROMISE fulfill 2');
       }, function () {
-        console.log('PROMISE reject 2');
+        //console.log('PROMISE reject 2');
       });
     }
     Ember.run.later(this, 'updateCurrentStatus', 10000);

@@ -1,39 +1,49 @@
 // Embedded records
 
-/* TODO: Update embedded models
-DS.RESTAdapter.map('node', {
-  vcpus: {embedded: 'always'},
-  vmInfo: {embedded: 'always'},
-  memory: {embedded: 'always'},
-  capabilities: {embedded: 'always'},
-  utilization: {embedded: 'always'},
-  status: {embedded: 'always'},
-  contention: {embedded: 'always'},
-  ids: {embedded: 'always'},
-  name: {key: 'node_name'}
+App.NodeSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    vcpus: {embedded: 'always'},
+    vmInfo: {embedded: 'always'},
+    memory: {embedded: 'always'},
+    capabilities: {embedded: 'always'},
+    utilization: {embedded: 'always'},
+    status: {embedded: 'always'},
+    contention: {embedded: 'always'},
+    ids: {embedded: 'always'},
+    name: {key: 'node_name'}
+  }
 });
 
-DS.RESTAdapter.map('nodeStatus', {
-  trust_details: {embedded: 'always'}
+App.NodeStatusSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    trust_details: {embedded: 'always'}
+  }
 });
 
-DS.RESTAdapter.map('nodeUtilization', {
-  cpu: {embedded: 'always'}
+App.NodeUtilizationSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    cpu: {embedded: 'always'}
+  }
 });
 
-DS.RESTAdapter.map('contentionSystem', {
-  llc: {embedded: 'always'}
+App.ContentionSystemSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    llc: {embedded: 'always'}
+  }
 });
 
-DS.RESTAdapter.map('contention', {
-  sockets: {embedded: 'always'},
-  system: {embedded: 'always'}
+App.ContentionSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    sockets: {embedded: 'always'},
+    system: {embedded: 'always'}
+  }
 });
 
-DS.RESTAdapter.map('socket', {
-  llc: {embedded: 'always'}
+App.SocketSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    llc: {embedded: 'always'}
+  }
 });
-*/
 
 
 // Embedded models
@@ -252,7 +262,7 @@ App.Node = DS.Model.extend({
   ids: DS.belongsTo('ids'),
 
   // Full Relationships
-  vms: DS.hasMany('vm'),
+  vms: DS.hasMany('vm', {async: true}),
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),
   trustNode: DS.belongsTo('trustNode'),
 

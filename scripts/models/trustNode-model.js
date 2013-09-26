@@ -1,7 +1,7 @@
 App.TrustNode = DS.Model.extend({
   //Full Relationships
   node: DS.belongsTo('node'),
-  trustMle: DS.hasMany('trustMle'),
+  trustMle: DS.hasMany('trustMle', {async: true}),
 
   addonConnectionString: DS.attr('string'),
   vmmName: DS.attr('string'),
@@ -18,6 +18,7 @@ App.TrustNode = DS.Model.extend({
   port: DS.attr('number'),
   email: DS.attr('string'),
   location: DS.attr('string'),
+  // TODO: Reevaluate this hook
   becameError: function() {
     this.get('stateManager').transitionTo('rootState.loaded.saved');
   }
