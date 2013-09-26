@@ -3,7 +3,7 @@
     <div class="notification-top">
       <div {{bindAttr class=":alert App.application.statusStyle"}}>
         <ul>
-          {{#each item in App.application.statusMessages}}
+          {{#each item in App.application.statusErrorMessages}}
             <li>{{item.message}}</li>
           {{/each}}
         </ul>

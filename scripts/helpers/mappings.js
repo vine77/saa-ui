@@ -63,9 +63,9 @@ App.typeToPriority = function (type) {
  * Convert integer code of priority to corresponding string representation
  *
  * @param {number} priority A numerical code for priority level
- * @return {string} The corresponding string representation for that priority level: 'unknown', 'success', 'warning', or 'error'
+ * @return {string} The corresponding string representation for that priority level: 'unknown', 'success', 'info', 'warning', or 'error'
  */
-App.priorityToType = function (priority) {
+App.priorityToType = function (priority, good) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
     // Unknown
@@ -79,7 +79,7 @@ App.priorityToType = function (priority) {
     case 'good':
     case App.SUCCESS:
     case App.SUCCESS.toString():
-      return 'success';
+      return (good) ? 'good' : 'success';
     // Info
     case 'info':
     case App.INFO:
