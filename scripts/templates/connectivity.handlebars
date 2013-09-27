@@ -1,5 +1,5 @@
 {{#if connected}}
-  {{#unless App.application.status}}
+  {{#if App.application.statusErrorMessages}}
     <div class="notification-top">
       <div {{bindAttr class=":alert App.application.statusStyle"}}>
         <ul>
@@ -9,7 +9,7 @@
         </ul>
       </div>
     </div>
-  {{/unless}}
+  {{/if}}
 {{else}}
   <div class="notification-top">
     <div class="alert">
