@@ -108,14 +108,41 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   unregister: function (node) {
     var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + ' and disappear from this list of nodes. ');
     if (confirmed) {
+      action = App.Action.createRecord({
+        node: App.Node.find(node.get('id')),
+        name: "unregister"
+      }).then( function () {
+        App.event('Successfully unregistered node "' + node.get('name') + '"', App.SUCCESS);
+      }, function () {
+        App.event('Failed to unregister node "' + node.get('name') + '"', App.ERROR);
+      });
+      action.get('transaction').commit();
+    }
+    /*
+    var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + ' and disappear from this list of nodes. ');
+    if (confirmed) {
       // TODO: add error handling for this delete node action
       node.deleteRecord();
       node.get('transaction').commit();
     }
+    */
   },
   reboot: function (node) {
     var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
     if (confirmed) {
+      action = App.Action.createRecord({
+        node: App.Node.find(node.get('id')),
+        name: "reboot"
+      }).then( function () {
+        node.set('status.operational', App.REBOOTING);
+        node.get('stateManager').transitionTo('rootState.loaded.saved');
+        App.event('Successfully started rebooting node "' + node.get('name') + '"', App.SUCCESS);
+      }, function () {
+        App.event('Failed to reboot node "' + node.get('name') + '"', App.ERROR);
+      });
+      action.get('transaction').commit();
+
+      /*
       var jsonData = {
         "node": {
           "status": {
@@ -137,6 +164,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, function (jqXHR, textStatus, errorThrown) {
         App.event('Failed to reboot node "' + node.get('name') + '"', App.ERROR);
       });
+      */
+
     }
   },
   control: function (node) {
@@ -191,6 +220,33 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
     var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
     if (confirmed) {
+      action = App.Action.createRecord({
+        node: App.Node.find(node.get('id')),
+        name: "scheduler_mark",
+        options: {
+          scheduler_mark: socketNumber,
+          scheduler_persistent: true
+        }
+      }).then( function () {
+        // Unset all other nodes
+        App.Node.all().filterProperty('isScheduled', true).forEach(function (item, index) {
+          item.set('schedulerMark', null);
+          item.get('stateManager').transitionTo('rootState.loaded.saved');
+        });
+        // Set this node for VM placement
+        node.set('schedulerMark', 0);
+        node.set('schedulerPersistent', true);
+        node.get('stateManager').transitionTo('rootState.loaded.saved');
+        App.event('Successfully set node "' + node.get('name') + '" for VM placement', App.SUCCESS);
+      }, function () {
+        App.event('Failed to set node "' + node.get('name') + '" for VM placement', App.ERROR);
+      });
+      action.get('transaction').commit();
+    }
+
+    /*
+    var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
+    if (confirmed) {
       var jsonData = {
         "node": {
           "scheduler_mark": socketNumber,
@@ -219,8 +275,25 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         App.event('Failed to set node "' + node.get('name') + '" for VM placement', App.ERROR);
       });
     }
+    */
   },
   unschedule: function (node) {
+    
+    var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
+    if (confirmed) {
+      action = App.Action.createRecord({
+        node: App.Node.find(node.get('id')),
+        name: "scheduler_unmark"
+      }).then( function () {
+        node.set('schedulerMark', null);
+        node.get('stateManager').transitionTo('rootState.loaded.saved');
+        App.event('Successfully unset node "' + node.get('name') + '" for VM placement', App.SUCCESS);
+      }, function () {
+        App.event('Failed to unset node "' + node.get('name') + '" for VM placement', App.ERROR);
+      });
+      action.get('transaction').commit();
+    }
+    /*
     var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
     if (confirmed) {
       var jsonData = {
@@ -243,6 +316,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         App.event('Failed to unset node "' + node.get('name') + '" for VM placement', App.ERROR);
       });
     }
+    */
+
   },
   addTrust: function (node) {
     var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
