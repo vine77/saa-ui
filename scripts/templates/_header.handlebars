@@ -11,23 +11,23 @@
       {{#if loggedIn}}
         <nav class="nav-collapse collapse pull-right">
           <ul class="nav">
-            <li>{{#linkTo "dashboard"}}<i class="icon-th"></i>Dashboard{{/linkTo}}</li>
+            <li>{{#link-to "dashboard"}}<i class="icon-th"></i>Dashboard{{/link-to}}</li>
             {{#if App.application.isEnabled}}
-              <li>{{#linkTo "nodes"}}<i class="icon-cloud"></i>Nodes{{/linkTo}}</li>
-              <li>{{#linkTo "vms"}}<i class="icon-desktop"></i>VMs{{/linkTo}}</li>
+              <li>{{#link-to "nodes"}}<i class="icon-cloud"></i>Nodes{{/link-to}}</li>
+              <li>{{#link-to "vms"}}<i class="icon-desktop"></i>VMs{{/link-to}}</li>
               <li class="dropdown">
-                {{#linkTo "services" class="dropdown-toggle"}}<i class="icon-tasks"></i>Services{{/linkTo}}
+                {{#link-to "services" class="dropdown-toggle"}}<i class="icon-tasks"></i>Services{{/link-to}}
                 <ul class="dropdown-menu">
-                  <li>{{#linkTo "flavors"}}Flavors{{/linkTo}}</li>
-                  <li>{{#linkTo "slas"}}SLAs{{/linkTo}}</li>
+                  <li>{{#link-to "flavors"}}Flavors{{/link-to}}</li>
+                  <li>{{#link-to "slas"}}SLAs{{/link-to}}</li>
                 </ul>
               </li>
               {{#if App.mtWilson.isSupported}}
                 <li class="dropdown">
-                  {{#linkTo "trust" class="dropdown-toggle"}}<i class="icon-lock"></i>Trust{{/linkTo}}
+                  {{#link-to "trust" class="dropdown-toggle"}}<i class="icon-lock"></i>Trust{{/link-to}}
                   {{#if isMtWilsonInstalled}}
                     <ul class="dropdown-menu">
-                      <li>{{#linkTo "trust.mles"}}MLEs{{/linkTo}}</li>
+                      <li>{{#link-to "trust.mles"}}MLEs{{/link-to}}</li>
                     </ul>
                   {{/if}}
                 </li>
@@ -38,14 +38,14 @@
               <li><a class="disabled"><i class="icon-tasks"></i>Services</a></li>
             {{/if}}
             <li class="dropdown">
-              {{#linkTo "settings"}}<i class="icon-cog"></i>Settings{{/linkTo}}
+              {{#link-to "settings"}}<i class="icon-cog"></i>Settings{{/link-to}}
               <ul class="dropdown-menu">
-                <li>{{#linkTo "settings.upload"}}Upload{{/linkTo}}</li>
-                <li>{{#linkTo "settings.network"}}Network{{/linkTo}}</li>
-                <li>{{#linkTo "settings.mailserver"}}Mail Server{{/linkTo}}</li>
+                <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
+                <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
+                <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
                 {{#if App.application.isEnabled}}
-                  <li>{{#linkTo "settings.users"}}Users{{/linkTo}}</li>
-                  <li>{{#linkTo "settings.log"}}Logs{{/linkTo}}</li>
+                  <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
+                  <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                 {{/if}}
               </ul>
             </li>

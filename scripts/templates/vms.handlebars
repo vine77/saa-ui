@@ -104,7 +104,7 @@
                 <td><a {{action "expand" vm}}>{{vm.name}}</a></td>
                 <td>
                   {{#if vm.node.samControlled}}
-                    {{#linkTo "nodesNode" vm.node}}{{vm.nodeName}}{{/linkTo}}
+                    {{#link-to "nodesNode" vm.node}}{{vm.nodeName}}{{/link-to}}
                   {{else}}
                     {{vm.nodeName}}
                   {{/if}}
@@ -248,7 +248,7 @@
                                 <td>{{attestation.node.report_message}}</td>
                                 <td>
                                   {{#if vm.node.samControlled}}
-                                      {{#linkTo "nodesNode" vm.node}}{{vm.nodeName}}{{/linkTo}}
+                                      {{#link-to "nodesNode" vm.node}}{{vm.nodeName}}{{/link-to}}
                                     {{else}}
                                       {{vm.nodeName}}
                                   {{/if}}
@@ -337,7 +337,7 @@
                             <tbody>
                               {{#each rankedNode in vm.vmInstantiationSimple.rankedNodes}}
                                 <tr {{bindAttr class="rankedNode.selected:success"}}>
-                                  <td>{{#linkTo "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/linkTo}}</td>
+                                  <td>{{#link-to "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/link-to}}</td>
                                   <td>{{capitalize rankedNode.selected}}</td>
                                 </tr>
                               {{/each}}
@@ -406,7 +406,7 @@
                               <tbody>
                                 {{#each instantiationNode in vm.vmInstantiationDetailed.instantiation_nodes}}
                                   <tr>
-                                    <td>{{#linkTo "nodesNode" instantiationNode.node}}{{instantiationNode.node.name}}{{/linkTo}}</td>
+                                    <td>{{#link-to "nodesNode" instantiationNode.node}}{{instantiationNode.node.name}}{{/link-to}}</td>
                                     <td>{{capitalize instantiationNode.selected}}</td>
                                     <td>
                                       <table class="table nested-slos-table">

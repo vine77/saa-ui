@@ -20,24 +20,24 @@
         {{else}}
           <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Instructions</strong>: Configuration files must be {{#linkTo "settings.upload"}}uploaded{{/linkTo}} before {{App.application.title}} may be started and the application becomes fully enabled.
+            <strong>Instructions</strong>: Configuration files must be {{#link-to "settings.upload"}}uploaded{{/link-to}} before {{App.application.title}} may be started and the application becomes fully enabled.
           </div>
           {{#unless App.nova.exists}}
             <div class="alert alert-warning">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              Upload <code>nova.conf</code> from the {{#linkTo "settings.upload"}}Upload{{/linkTo}} page.
+              Upload <code>nova.conf</code> from the {{#link-to "settings.upload"}}Upload{{/link-to}} page.
             </div>
           {{/unless}}
           {{#unless App.openrc.exists}}
             <div class="alert alert-warning">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              Upload <code>openrc</code> from the {{#linkTo "settings.upload"}}Upload{{/linkTo}} page.
+              Upload <code>openrc</code> from the {{#link-to "settings.upload"}}Upload{{/link-to}} page.
             </div>
           {{/unless}}
           {{#unless App.quantum.exists}}
             <div class="alert alert-warning">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              Upload <code>ovs_quantum_plugin.ini</code> from the {{#linkTo "settings.upload"}}Upload{{/linkTo}} page.
+              Upload <code>ovs_quantum_plugin.ini</code> from the {{#link-to "settings.upload"}}Upload{{/link-to}} page.
             </div>
           {{/unless}}
         {{/if}}

@@ -3,7 +3,7 @@
     <div class="content">
       <div class="header row-fluid">
         <div class="actions">
-          {{#linkTo "flavors.create" class="btn"}}<i class="icon-plus"></i> Create Flavor{{/linkTo}}
+          {{#link-to "flavors.create" class="btn"}}<i class="icon-plus"></i> Create Flavor{{/link-to}}
         </div>
         {{!--
         <form id="filter-form" class="input-prepend clear-input pull-right">
@@ -93,7 +93,7 @@
                     <div class="tab-pane vms">
                       <ul>
                         {{#each vm in flavor.vms}}
-                          <li>{{#linkTo "vmsVm" vm}}{{vm.name}}{{/linkTo}}</li>
+                          <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
                         {{else}}
                           <li>No VMs</li>
                         {{/each}}

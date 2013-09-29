@@ -34,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#if model}} 
+          {{#if model}}
             {{#each mle in controller}}
                <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
                 <td>{{na mle.mleType}}</td>
@@ -68,7 +68,7 @@
                             </tr>
                             {{#each node in mle.trustNode}}
                               <tr>
-                                <td>{{#linkTo "nodesNode" node.node}}{{node.node.name}}{{/linkTo}}</td>
+                                <td>{{#link-to "nodesNode" node.node}}{{node.node.name}}{{/link-to}}</td>
                               </tr>
                             {{/each}}
                           </table>
