@@ -21,8 +21,14 @@
     <!-- build:js scripts/components.js -->
     <script src="components/jquery/jquery.js"></script>
     <script src="components/handlebars/handlebars.js"></script>
-    <script src="components/ember/ember.js"></script>
-    <script src="components/ember-data/ember-data.js"></script>
+    <script src="components/ember/ember.prod.js"></script>
+    <script src="components/ember-data/ember-data.prod.js"></script>
+
+    <script src="components/ember-json-api/inflection.js"></script>
+    <script src="components/ember-json-api/serializer.js"></script>
+    <script src="components/ember-json-api/adapter.js"></script>
+    
+
     <script src="components/bootstrap/js/bootstrap.js"></script>
     <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="components/jquery.cookie/jquery.cookie.js"></script>
@@ -82,6 +88,7 @@
     <script src="scripts/models/status-model.js"></script>
     <script src="scripts/models/trustNode-model.js"></script>
     <script src="scripts/models/overrides-model.js"></script>
+    <script src="scripts/models/logDefinitions-model.js"></script>
 
     <script src="scripts/definitions/definitions.js"></script>
 
@@ -110,6 +117,7 @@
     <script src="scripts/controllers/settingsUsers-controller.js"></script>
     <script src="scripts/controllers/settingsMailServer-controller.js"></script>
     <script src="scripts/controllers/settingsDev-controller.js"></script>
+    <script src="scripts/controllers/settingsTrust-controller.js"></script>
     <script src="scripts/controllers/roles-controller.js"></script>
     <script src="scripts/controllers/logBar-controller.js"></script>
     <script src="scripts/controllers/connectivity-controller.js"></script>

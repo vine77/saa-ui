@@ -18,7 +18,7 @@ App.Application = Ember.Object.extend({
   timer: function () {
     var self = this;
     var timerInterval = 10000;
-    var timerId = setInterval(function () {
+    var updateStatus = function () {
       if (App.state.get('loggedIn')) {
         // Update contextual graphs
         if (App.contextualGraphs.get('selectedNode')) {
@@ -29,43 +29,41 @@ App.Application = Ember.Object.extend({
         }
       }
       // Update SAM status
-      /*
-      var statusCheck = function (status, self) {
-        var newStatus = status;
-        if (self.get('health') !== newStatus.get('health')) self.set('health', newStatus.get('health'));
-        if (status.get('health') !== App.SUCCESS && !Ember.isEmpty(status.get('messages'))) {
-          App.application.set('statusMessages', App.Status.find('current').get('messages'));
-          if (App.priorityToType(status.get('health')) == 'unknown') {
-            var statusStyle = 'alert-info';
-          } else {
-            var statusStyle = 'alert-' + App.priorityToType(status.get('health'));
-          }
-          App.application.set('statusStyle', statusStyle);
-          App.application.set('status', false);
-        } else {
-          App.application.set('status', true);
-        }
-      };
       if (!App.Status.find('current').get('isLoaded')) {
         App.Status.find('current').then(function (status) {
-          statusCheck(status, self);
+          App.application.set('systemStatus', App.Status.find('current'));
         });
       } else {
         if (App.Status.find('current').get('stateManager.currentPath') !== 'rootState.loaded.saved') App.Status.find('current').get('stateManager').transitionTo('rootState.loaded.saved');
         App.Status.find('current').reload().then(function (status) {
-          statusCheck(status, self);
+          App.application.set('systemStatus', App.Status.find('current'));
         });
       }
-      */
-    }, timerInterval);
+    };
+    setTimeout(updateStatus, 1000);
+    var timerId = setInterval(updateStatus, timerInterval);
     this.set('timerId', timerId);
   },
   samStarted: function () {
     return App.nova.get('exists') && App.openrc.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists'),
-  status: true,
-  statusMessages:[],
-  statusStyle: null
+  systemStatus: undefined,
+  statusMessages: function () {
+    return this.get('systemStatus.messages')
+  }.property('systemStatus'),
+  statusErrorMessages: function () {
+    var statusMessages = this.get('statusMessages');
+    return (!statusMessages) ? undefined : statusMessages.filter(function (item, index, enumerable) {
+      return item.get('health') > App.SUCCESS;
+    });
+  }.property('statusMessages.@each'),
+  statusStyle: function () {
+    if (!this.get('systemStatus.health')) {
+      var statusStyle = 'alert-info';
+    } else {
+      var statusStyle = 'alert-' + App.priorityToType(this.get('systemStatus.health'));
+    }
+  }.property('systemStatus.health')
 });
 App.application = App.Application.create();
-//App.application.timer();
+App.application.timer();

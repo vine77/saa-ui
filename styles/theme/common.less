@@ -200,6 +200,13 @@ table .dropdown-menu {
   th {
     .user-select(none);
   }
+  // Margin between tables
+  + .table,
+  + script + .table,
+  + script + script + .table,
+  + script + script + script + .table {
+    margin-top: 1em;
+  }
   // Style elements if children of tables
   select {
     margin-bottom: 0;
@@ -218,7 +225,6 @@ table .dropdown-menu {
     }
   }
   // Add column styles
-
   .column-small {
     width: 24px;
   }
@@ -290,8 +296,12 @@ table .dropdown-menu {
     tbody:last-child > tr:last-of-type > th:first-child,
     tbody:last-child > tr:last-of-type > td:first-child,
     tbody:last-child > tr:last-of-type > td:first-of-type,
-    tfoot:last-child > tr:last-of-type > td:first-child {
+    tfoot:last-child > tr:last-of-type > td:first-child, {
       .border-bottom-left-radius(4px);
+    }
+    tbody:last-child > tr:last-of-type > th + td:first-child,
+    tbody:last-child > tr:last-of-type > th + td:first-of-type, {
+      .border-bottom-left-radius(0);
     }
     thead:last-child > tr:last-of-type > th:last-child,
     tbody:last-child > tr:last-of-type > th:last-child,

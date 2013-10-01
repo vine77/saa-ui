@@ -172,7 +172,7 @@
               </td>
               <td>
                 <div class="btn-group">
-                  {{#if node.isAgentInstalled}}
+                  {{#if node.isAgentInstalled}} 
                     {{#if node.isOn}}
                       <a {{action reboot node}} class="btn btn-mini"><i class="icon-refresh"></i> Reboot</a>
                     {{else}}
@@ -225,6 +225,7 @@
                     <li><a onclick="App.selectTab(event)">VMs</a></li>
                     <li><a onclick="App.selectTab(event)">Graphs</a></li>
                     <li><a onclick="App.selectTab(event)">Trust</a></li>
+                    <li><a onclick="App.selectTab(event)">PCR logs</a></li>
                     <li><a onclick="App.selectTab(event)">MLEs</a></li>
                   </ul>
                   <div class="tab-content">
@@ -346,6 +347,47 @@
                         {{/unless}}
                       {{/if}}
                     </div>
+                    <div class="tab-pane pcr-logs">
+                      {{#if node.trustNode.pcrLogs}}
+                        <table class="table table-bordered">
+                          <tr>
+                            <th class="column-small">Trust Status</th>
+                            <th>Name</th>
+                            <th>Actual Value</th>
+                            <th>Expected Value</th>
+                            <th>Module Logs</th>
+                          </tr>
+                          {{#each log in node.trustNode.pcrLogs}}
+                            <tr>
+                              <td class="column-small">
+                                <i {{bindAttr class=":icon-large log.truststatus:icon-lock:icon-unlock log.truststatus:trusted:untrusted"}}></i>
+                              </td>
+                              <td>{{na log.name}}</td>
+                              <td>{{na log.value}}</td>
+                              <td>{{na log.whitelistvalue}}</td>
+                              <td>
+                                {{#if log.modulelogs}}
+                                  {{#each modulelog in log.modulelogs}}
+                                    <ul>
+                                      <li>Component Name: {{modulelog.componentname}}</li>
+                                      <li>Whitelist Value: {{modulelog.whitelistvalue}}</li>
+                                      <li>Trust Status: {{modulelog.truststatus}}</li>
+                                    </ul>
+                                  {{/each}}
+                                {{else}}
+                                  {{na 'false'}}
+                                {{/if}}
+                              </td>
+                            </tr>
+                          {{/each}}
+                        </table>
+                      {{else}}
+                        {{#unless content.isUpdating}}
+                          <div class="alert alert-info">No PCR logs found.</div>
+                        {{/unless}}
+                      {{/if}}
+                    </div>
+
                     <div class="tab-pane mles">
                       {{#if node.isTrustRegistered}}
                         <table class="table table-bordered">
@@ -357,7 +399,6 @@
                             <th>OS Name</th>
                             <th>Version</th>
                             <th>OS Version</th>
-                            <th>MLE Manifests</th>
                           </tr>
                           {{#each mle in node.trustNode.trustMle}}
                             <tr>
@@ -368,7 +409,6 @@
                               <td>{{na mle.osname}}</td>
                               <td>{{na mle.version}}</td>
                               <td>{{na mle.osversion}}</td>
-                              <td>{{na mle.mleManifests}}</td>
                             </tr>
                           {{/each}}
                         </table>

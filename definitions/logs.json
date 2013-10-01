@@ -1,0 +1,40 @@
+{
+  "logs": {
+    "categories": [
+      {"name":"agent"},
+      {"name":"apache-error"},
+      {"name":"auth"},
+      {"name":"dmesg"},
+      {"name":"dpkg"},
+      {"name":"kern"},
+      {"name":"libvirt"},
+      {"name":"libvirtshutdown"},
+      {"name":"monit"},
+      {"name":"monit_startup"},
+      {"name":"nova-api"},
+      {"name":"nova-api-metadata"},
+      {"name":"nova-api-metadata-upstart"},
+      {"name":"nova-boot-publisher"},
+      {"name":"nova-boot-publisher-upstart"},
+      {"name":"nova-cert"},
+      {"name":"nova-compute"},
+      {"name":"nova-compute-upstart"},
+      {"name":"nova-consoleauth"},
+      {"name":"nova-manage"},
+      {"name":"nova-proc-stats-upstart"},
+      {"name":"nova-scheduler"},
+      {"name":"ovsdb-server"},
+      {"name":"ovs-vswitchd"},
+      {"name":"openvsswitch-agent"},
+      {"name":"redis"},
+      {"name":"rocksteady"},
+      {"name":"sam"},
+      {"name":"scheduler"},
+      {"name":"statsd"},
+      {"name":"startup"},
+      {"name":"syslog"},
+      {"name":"trust-agent"},
+      {"name":"trust-server"}
+    ]
+  }
+}

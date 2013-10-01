@@ -72,17 +72,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.transitionToRoute('nodes');
       }
     },
-    refresh: function () {
-      if (!this.get('isUpdating')) {
-        if (App.mtWilson.get('isInstalled') === true) {
-          this.store.find('trustNode', undefined, true).then(function() {
-            this.store.find('node', undefined, true);
-          });
-        } else {
-          this.store.find('node', undefined, true);
-        }
-      }
-    },
     reboot: function (node) {
       var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
       if (confirmed) {
@@ -276,7 +265,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }).appendTo('body');
     }
   },
-
   control: function (node) {
     var confirmed = confirm('Are you sure you want to put node "' + node.get('name') + '" under the control of ' + App.application.get('title') + '?');
     if (confirmed) {
@@ -323,6 +311,227 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }, function (jqXHR, textStatus, errorThrown) {
         App.event('Failed to removed node "' + node.get('name') + '" from the control of ' + App.application.get('title'), App.ERROR);
       });
+    }
+  },
+  schedule: function (node, socketNumber) {
+    socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
+    var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
+    if (confirmed) {
+      var jsonData = {
+        "node": {
+          "scheduler_mark": socketNumber,
+          "scheduler_persistent": true
+        }
+      };
+      var ajaxOptions = $.extend({
+        type: 'PUT',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/nodes/' + node.get('id'),
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json',
+        dataType: 'json'
+      }, App.ajaxSetup);
+      $.ajax(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        // Unset all other nodes
+        App.Node.all().filterProperty('isScheduled', true).forEach(function (item, index) {
+          item.set('schedulerMark', null);
+          item.get('stateManager').transitionTo('rootState.loaded.saved');
+        });
+        // Set this node for VM placement
+        node.set('schedulerMark', 0);
+        node.set('schedulerPersistent', true);
+        node.get('stateManager').transitionTo('rootState.loaded.saved');
+        App.event('Successfully set node "' + node.get('name') + '" for VM placement', App.SUCCESS);
+      }, function (jqXHR, textStatus, errorThrown) {
+        App.event('Failed to set node "' + node.get('name') + '" for VM placement', App.ERROR);
+      });
+    }
+  },
+  unschedule: function (node) {
+    var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
+    if (confirmed) {
+      var jsonData = {
+        "node": {
+          "scheduler_mark": null
+        }
+      };
+      var ajaxOptions = $.extend({
+        type: 'PUT',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/nodes/' + node.get('id'),
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json',
+        dataType: 'json'
+      }, App.ajaxSetup);
+      $.ajax(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        node.set('schedulerMark', null);
+        node.get('stateManager').transitionTo('rootState.loaded.saved');
+        App.event('Successfully unset node "' + node.get('name') + '" for VM placement', App.SUCCESS);
+      }, function (jqXHR, textStatus, errorThrown) {
+        App.event('Failed to unset node "' + node.get('name') + '" for VM placement', App.ERROR);
+      });
+    }
+  },
+  addTrust: function (node) {
+    var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
+    if (confirmed) {
+
+      trustNode = App.TrustNode.createRecord({
+        node: App.Node.find(node.get('id'))
+      });
+      trustNode.get('transaction').commit();
+      trustNode.get('store').commit();
+
+      trustNode.on('becameError', function () {
+        var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+        App.event(errorMessage, App.ERROR);
+        trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustNode.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustNode.on('becameInvalid', function () {
+        var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+        App.event(errorMessage, App.WARNING);
+        trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustNode.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustNode.on('didCreate', function () {
+        App.event('Successfully trusted node "' + node.get('name') + '"', App.SUCCESS);
+      });
+      /*
+      var jsonData = {
+        "node_ids": [{
+          "node_id": node.get('id')
+        }]
+      };
+      var ajaxOptions = $.extend({
+        type: 'POST',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes',
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json',
+        dataType: 'json'
+      }, App.ajaxSetup);
+      App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        App.event('Successfully registered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+        if (App.TrustNode.find(node.get('id')).get('isLoaded')) {
+          App.TrustNode.find(node.get('id')).get('stateManager').transitionTo('rootState.loaded.saved');
+          App.TrustNode.find(node.get('id')).reload().then(function() {
+            node.reload();
+          }, function (){
+            node.reload();
+          });
+        } else {
+          App.TrustNode.find(node.get('id')).then(function(){
+            node.reload();
+          });
+        }
+      }, function (qXHR, textStatus, errorThrown) {
+        App.event('Failed to register node "' + node.get('name') + '" as trusted', App.ERROR);
+      });
+      */
+
+    }
+  },
+  removeTrust: function (node) {
+    var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
+
+    if (confirmed) {
+      App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+      node.get('trustNode').deleteRecord();
+      node.get('transaction').commit();
+      node.get('store').commit();
+    }
+
+    /**Solution leaves cache still populated.
+    /**Cache needs to be destroyed, and isTrustRegistered computed property needs to be triggered.
+
+    if (confirmed) {
+      var ajaxOptions = $.extend({
+        type: 'DELETE',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_nodes/' + node.get('id'),
+        contentType: "application/json",
+        dataType: "json"
+      }, App.ajaxSetup);
+      App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+
+        App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
+        App.TrustNode.all().clear();
+        App.TrustMle.all().clear();
+        App.TrustNode.find();
+        App.TrustMle.find();
+
+      }, function (qXHR, textStatus, errorThrown) {
+        App.event('Failed to unregister node "' + node.get('name') + '" as trusted', App.ERROR);
+      });
+    }
+    **/
+  },
+  trustFingerprint: function (node) {
+    var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
+    if (confirmed) {
+
+      trustMle = App.TrustMle.createRecord({
+        node: App.Node.find(node.get('id'))
+      });
+
+      trustMle.get('transaction').commit();
+      trustMle.get('store').commit();
+
+      trustMle.on('becameError', function () {
+        var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+        App.event(errorMessage, App.ERROR);
+        trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustMle.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustMle.on('becameInvalid', function () {
+        var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+        App.event(errorMessage, App.WARNING);
+        trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+        trustMle.deleteRecord();
+        //controller.set('isFlavorCreating', false);
+      });
+      trustMle.on('didCreate', function () {
+        //Work around for zombie record with null id.
+        App.TrustMle.find().forEach( function(item, index, enumerable) {
+          if ((item.get('id') == null)){
+            trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
+            item.deleteRecord();
+          }
+        });
+        //App.event('Successfully trusted node "' + trustMle.get('name') + '"', App.SUCCESS);
+        App.event('Successfully fingerprinted node ' + node.get('name') + '.', App.SUCCESS);
+      });
+
+      /* Old Implementation ...
+      var jsonData = {
+        "node_id": node.get('id')
+      };
+      var ajaxOptions = $.extend({
+        type: 'POST',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust_mles',
+        data: JSON.stringify(jsonData),
+        contentType: 'application/json',
+        dataType: 'json'
+      }, App.ajaxSetup);
+      App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        App.event('Successfully fingerprinted node "' + node.get('name') + '"', App.SUCCESS);
+        node.reload();
+        node.get('trustNode').reload();
+      }, function (qXHR, textStatus, errorThrown) {
+        App.event('Failed to fingerprint node "' + node.get('name') + '"', App.ERROR);
+      });
+      */
+    }
+  },
+  refresh: function () {
+    if (!this.get('isUpdating')) {
+      if (App.mtWilson.get('isInstalled') === true) {
+        App.TrustNode.find(undefined, true).then(function() {
+          App.Node.find(undefined, true);
+        });
+      } else {
+        App.Node.find(undefined, true);
+      }
     }
   }
 

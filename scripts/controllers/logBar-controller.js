@@ -56,6 +56,7 @@ App.LogBarController = Ember.ObjectController.extend({
     return returnArray;
   }.property('criticalities'),
   logCategories: App.LogCategoriesController.create(),
+  //logCategories: App.Logs.find(),
   criticalitySelected: null,
   shortCutTimeSelected: null,
   searchText: '',
@@ -134,7 +135,7 @@ App.LogBarController = Ember.ObjectController.extend({
       this.set('shortCutTimeSelected', this.shortCutTimes.objectAt(8));
     }
   }.observes('timeTo', 'timeFrom'),
-  shortCutTimeSelectionChanged: function()  {
+  shortCutTimeSelectionChanged: function() {
     if (this.get('shortCutTimeSelected.label') !== 'Custom' && (this.get('timeTo') || this.get('timeFrom'))) {
       this.set('timeFrom', null);
       this.set('timeTo', null);

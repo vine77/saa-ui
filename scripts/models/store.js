@@ -26,8 +26,13 @@ DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
 });
 
 // RESTSingletonConfigAdapter for singleton resources in configuration namespace
-DS.RESTSingletonConfigAdapter = App.ApplicationAdapter.extend({
+DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend({
   namespace: 'api/v1/configuration'
+});
+
+// RESTDefinitionsAdapter
+DS.RESTDefinitionsAdapter = DS.RESTSingletonAdapter.extend({
+  namespace: 'definitions'
 });
 
 // Add additional Ember Data types
@@ -177,7 +182,8 @@ DS.RESTAdapter.configure('plurals', {
   connectivity: 'connectivity',
   vm_instantiation_simple: 'vm_instantiation_simple',
   vm_instantiation_detailed: 'vm_instantiation_detailed',
-  status: 'status'
+  status: 'status',
+  logs: 'logs'
 });
 
 // RESTConfigAdapter for nested configuration namespace

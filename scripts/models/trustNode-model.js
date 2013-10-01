@@ -1,3 +1,18 @@
+App.TrustNodeAdapter = DS.JsonApiAdapter.extend();
+
+App.TrustNodeSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    pcrLogs: {embedded: 'always'}
+  }
+});
+
+App.TrustNodePcrLogSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    modulelogs: {embedded: 'always'}
+  }
+});
+
+
 App.TrustNode = DS.Model.extend({
   //Full Relationships
   node: DS.belongsTo('node'),
@@ -21,5 +36,27 @@ App.TrustNode = DS.Model.extend({
   // TODO: Reevaluate this hook
   becameError: function() {
     this.get('stateManager').transitionTo('rootState.loaded.saved');
-  }
+  },
+
+  //Embedded relationships ...
+  pcrLogs: DS.hasMany('trustNodePcrLog')
+
+});
+
+App.TrustNodePcrLog = DS.Model.extend({
+  //Embedded
+  modulelogs: DS.hasMany('trustNodePcrLogModuleLog'),
+
+  name: DS.attr('string'),
+  value: DS.attr('string'),
+  truststatus: DS.attr('boolean'),
+  whitelistvalue: DS.attr('string'),
+  verified_on: DS.attr('boolean')
+});
+
+App.TrustNodePcrLogModuleLog = DS.Model.extend({
+  componentname: DS.attr('string'),
+  whitelistvalue: DS.attr('string'),
+  value: DS.attr('string'),
+  truststatus: DS.attr('boolean')
 });

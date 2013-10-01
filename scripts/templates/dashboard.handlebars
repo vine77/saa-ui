@@ -9,6 +9,66 @@
         </figure>
       </div>
     </div>
+    <div class="portlet span4 events">
+      <div class="header">Status</div>
+      <div class="portlet-content">
+        {{#if App.application.systemStatus}}
+          {{#with App.application.systemStatus}}
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th class="column-medium">System Health</th>
+                  <td>{{{healthIcon health}}} {{healthText health}}</td>
+                </tr>
+                <tr>
+                  <th class="column-medium">Version</th>
+                  <td>{{version}}</td>
+                </tr>
+                <tr>
+                  <th class="column-medium">IPM Master</th>
+                  <td>{{capitalize master}}</td>
+                </tr>
+              </tbody>
+            </table>
+          {{/with}}
+        {{/if}}
+        {{#if App.application.statusMessages}}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="column-small">Health</th>
+                <th>Component Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each App.application.statusMessages}}
+                <tr>
+                  <td class="column-small">{{{healthIcon health}}}</td>
+                  <td>
+                    {{message}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="column-small">Health</th>
+                <th>Component Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="column-small"></td>
+                <td>Updating status...</td>
+              </tr>
+            </tbody>
+          </table>
+        {{/if}}
+      </div>
+    </div>
     <div class="portlet span4">
       <div class="header">To Do</div>
       <div class="portlet-contents">
@@ -43,6 +103,8 @@
         {{/if}}
       </div>
     </div>
+  </div>
+  <div class="row-fluid">
     <div class="portlet span4 events">
       <div class="header">Events</div>
       <div class="portlet-content">
