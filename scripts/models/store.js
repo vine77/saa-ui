@@ -1,9 +1,8 @@
 App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
   host: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
   namespace: 'api/v1',
-  buildURL: function(record, suffix) {
-    var url = this._super(record, suffix);
-    return url + '.json';
+  buildURL: function(type, id) {
+    return this._super(type, id) + '.json';
   }
 });
 
@@ -15,13 +14,20 @@ DS.RESTConfigAdapter = App.ApplicationAdapter.extend({
 // RESTSingletonAdapter for singleton resources in primary namespace
 DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
   // Remove ID from this singleton resource
-  buildURL: function (record, suffix) {
-    suffix = undefined;
-    return this._super(record, suffix);
+  buildURL: function (type, id) {
+    return this._super(type);
   },
   // Override the `pathForType` method with non-pluralized API endpoint
   pathForType: function(type) {
     return Ember.String.decamelize(type);
+  }
+});
+// TODO: Use RESTSingletonSerializer for other singleton models
+DS.RESTSingletonSerializer = DS.ActiveModelSerializer.extend({
+  // Manually inject ID with requested ID if it doesn't exist in payload
+  extractSingle: function(store, primaryType, payload, recordId, requestType) {
+    if (!payload[Object.keys(payload)[0]].id) payload[Object.keys(payload)[0]].id = recordId;
+    return this._super(store, primaryType, payload, recordId, requestType);
   }
 });
 

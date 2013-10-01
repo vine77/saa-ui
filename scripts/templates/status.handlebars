@@ -1,3 +1,19 @@
-<div>
-  STATUS TEMPLATE. Health: {{this.health}}
-</div>
+{{#if connected}}
+  {{#if statusErrorMessages}}
+    <div class="notification-top">
+      <div {{bindAttr class=":alert statusClass"}}>
+        <ul>
+          {{#each statusErrorMessages}}
+            <li>{{message}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  {{/if}}
+{{else}}
+  <div class="notification-top">
+    <div class="alert">
+      Error: API connectivity has been lost.
+    </div>
+  </div>
+{{/if}}

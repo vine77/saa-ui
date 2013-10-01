@@ -1,50 +1,42 @@
 App.StatusController = Ember.ObjectController.extend({
+  // Properties
+  connected: false,
+  statusMessages: function () {
+    return this.get('model.messages');
+  }.property('model.messages.@each'),
+  statusErrorMessages: function () {
+    var statusMessages = this.get('model.messages');
+    return (!statusMessages) ? undefined : statusMessages.filter(function (item, index, enumerable) {
+      return item.health > App.SUCCESS;
+    });
+  }.property('model.messages.@each'),
+  statusClass: function () {
+    return (!this.get('model.health')) ? 'alert-info' : 'alert-' + App.priorityToType(this.get('model.health'));
+  }.property('model.health'),
+
+  // Functions
   init: function () {
     this._super();
-    this.set('model', this.store.find('status', 'current'));
-    this.store.find('status', 'current');
     this.updateCurrentStatus();
+    statusController = this;
   },
   updateCurrentStatus: function () {
-    if (!this.store.find('status', 'current').get('isLoaded')) {
-      // TODO: Combine Status and Connectivity checks
-      this.store.find('status', 'current').then(function () {
-        //console.log('PROMISE fulfill 1');
-      }, function () {
-        //console.log('PROMISE reject 1');
+    var controller = this;
+    if (!controller.get('model')) {
+      controller.store.find('status', 'current').then(function (status) {
+        controller.set('model', status);
+        controller.set('connected', true);
+      }, function (error) {
+        controller.set('connected', false);
       });
-    } else if (!this.store.find('status', 'current').get('isLoading') && !this.store.find('status', 'current').get('isReloading')) {
-      this.store.find('status', 'current').reload().then(function () {
-        //console.log('PROMISE fulfill 2');
-      }, function () {
-        //console.log('PROMISE reject 2');
+    } else {
+      controller.get('model').reload().then(function (status) {
+        controller.set('connected', true);
+      }, function (error) {
+        controller.set('connected', false);
       });
     }
-    Ember.run.later(this, 'updateCurrentStatus', 10000);
+    // Update status and check connectivity every 10 seconds
+    Ember.run.later(controller, 'updateCurrentStatus', 10000);
   }
-
-  /*
-  model: function () {
-    return this.store.find('connectivity', 'current');
-  },
-  connected: true,
-  check: function () {
-    var context = this;
-    hash = {
-      url: '/api/v1/connectivity.json',
-      type: 'GET',
-      dataType: "json",
-      complete: function (xhr, textStatus) {
-        if (xhr.status === 200) {
-          context.set('connected', true);
-        } else {
-          context.set('connected', false);
-        }
-      }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
-  }
-  */
-
 });

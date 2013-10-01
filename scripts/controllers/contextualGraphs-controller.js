@@ -38,4 +38,14 @@ App.ContextualGraphsController = Ember.ObjectController.extend({
   }.property('App.currentPath')
 });
 
+// TODO: contextual graphs used to be updated on a timer interval in the App.application model
+/*
+if (App.contextualGraphs.get('selectedNode')) {
+  App.graphs.graph(App.contextualGraphs.get('selectedNode.id'), App.contextualGraphs.get('selectedNode.name'), 'node');
+}
+if (App.contextualGraphs.get('selectedNode')) {
+  App.graphs.graph(App.contextualGraphs.get('selectedVm.id'), App.contextualGraphs.get('selectedVm.name'), 'vm');
+}
+*/
+
 App.contextualGraphs = App.ContextualGraphsController.create();
