@@ -1,0 +1,26 @@
+<div class="portlet span4 events">
+  <div class="header">Events</div>
+  <div class="portlet-content">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="column-small"></th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model}}
+          <tr>
+            <td class="column-small">{{{healthIcon priority}}}</td>
+            <td>{{message}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td class="column-small"></td>
+            <td>No events</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

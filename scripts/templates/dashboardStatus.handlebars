@@ -1,0 +1,54 @@
+<div class="portlet span4">
+  <div class="header">Status</div>
+  <div class="portlet-content">
+    {{#with controllers.status.model}}
+      {{#if this}}
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="column-medium">System Health</th>
+              <td>{{{healthIcon health}}} {{healthText health}}</td>
+            </tr>
+            <tr>
+              <th class="column-medium">Version</th>
+              <td>{{version}}</td>
+            </tr>
+            <tr>
+              <th class="column-medium">IPM Master/Slave</th>
+              <td>
+                {{#if master}}
+                  IPM Master
+                {{else}}
+                  IPM Slave
+                {{/if}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {{/if}}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="column-small">Health</th>
+            <th>Component Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each messages}}
+            <tr>
+              <td class="column-small">{{{healthIcon health}}}</td>
+              <td>
+                {{message}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td class="column-small"></td>
+              <td>No status</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/with}}
+  </div>
+</div>

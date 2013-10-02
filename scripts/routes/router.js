@@ -132,12 +132,6 @@ App.IndexRoute = Ember.Route.extend({
 });
 */
 
-// Dashboard
-App.DashboardRoute = Ember.Route.extend({
-  setupController: function (controller, model) {
-    controller.set('model', this.store.find('event'));
-  }
-});
 
 App.LoginRoute = Ember.Route.extend({
   actions: {

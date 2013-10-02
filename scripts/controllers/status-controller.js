@@ -1,9 +1,6 @@
 App.StatusController = Ember.ObjectController.extend({
   // Properties
   connected: false,
-  statusMessages: function () {
-    return this.get('model.messages');
-  }.property('model.messages.@each'),
   statusErrorMessages: function () {
     var statusMessages = this.get('model.messages');
     return (!statusMessages) ? undefined : statusMessages.filter(function (item, index, enumerable) {

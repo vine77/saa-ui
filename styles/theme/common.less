@@ -22,10 +22,18 @@
 
 //// Overwrite Bootstrap styles ////
 
+// Extend fluid column for Ember compatibility
+.container-fluid {
+  .row-fluid {
+    [class*="span"]:first-of-type {
+      margin-left: 0;
+    }
+  }
+}
+
 .pagination ul {
   background-color: white;
 }
-
 
 // Tabs and tab-content
 .nav-tabs > li > a {
