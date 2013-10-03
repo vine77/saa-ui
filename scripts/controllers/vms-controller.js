@@ -25,6 +25,16 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       return [this];
     }
   }.property('model.@each', 'sortProperties', 'sortAscending'),
+  multipleVmsAreSelected: function () {
+    return this.get('model').filterProperty('isSelected').length > 1;
+  }.property('model.@each.isSelected'),
+  isTreemapVisible: false,
+  treemapData: {
+    'name': 'Cluster',
+    'children': []
+  },
+
+  // Actions
   actions: {
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
@@ -146,14 +156,5 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         .style('background', function (d) { return d.children ? null : color(d.nodeName); })
         .html(function (d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
     }
-  },
-  multipleVmsAreSelected: function () {
-    return this.get('model').filterProperty('isSelected').length > 1;
-  }.property('model.@each.isSelected'),
-  isTreemapVisible: false,
-  treemapData: {
-    'name': 'Cluster',
-    'children': []
   }
-
 });

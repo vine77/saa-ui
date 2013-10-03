@@ -57,24 +57,64 @@ module.exports = function (grunt) {
           middleware: function (connect, options) {
             return [
               function (req, res, next) {
+                // Add CORS
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', '*');
+                res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
+
+                // Log requests to terminal
                 console.log(req.method, req.url);
+
                 if (req.method === 'POST') {
-                //if (req.originalUrl == '/api/v1/nodes.json' && req.method === 'GET') {
                   res.writeHead(404, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'errors': {'name': 'Invalid parameter'}}));
-                } else {
-                  res.setHeader('Access-Control-Allow-Origin', '*');
-                  res.setHeader('Access-Control-Allow-Methods', '*');
-                  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
-                  next();
+                  return;
                 }
+
+                // Serve API requests
+                if (req.url.indexOf('/api/') === 0) {
+                  // Remove trailing slashes
+                  if (req.url.slice(-1) === '/') req.url = req.url.slice(0, -1);
+                  // Add extension (including method for for non-GET requests, e.g. .post.json)
+                  var extension = (req.method === 'GET') ? '.json' : '.' + req.method.toLowerCase() + '.json';
+                  // Add .json extension
+                  if (req.url.indexOf('.json') === -1) {
+                    if (req.url.indexOf('?') === -1) {
+                      req.url = req.url + extension;
+                    } else {
+                      req.url = req.url.split('?')[0] + extension + '?' + req.url.split('?')[1];
+                    }
+                  }
+                  // If ids is specified in URL query string, compose response here programatically
+                  // Otherwise use next() to pass it on to serve with connect.static
+                  if (req.url.indexOf('?') !== -1 && req.url.split('?')[1].indexOf('ids=') === 0) {
+                    var ids = req.url.split('?')[1].slice(4).split(',');
+                    var path = require('path').resolve(pathsConfig.source + req.url.split('?')[0]);
+                    if (!require('fs').existsSync(path)) {
+                      res.writeHead(404, {'Content-Type': 'application/json'});
+                      res.end(JSON.stringify({'errors': ['Could not find JSON file']}));
+                      return;
+                    } else {
+                      // Get the full JSON response to start with all records
+                      var json = JSON.parse(require('fs').readFileSync(path, {encoding: 'utf8'}));
+                      // Remove records that don't match ids from query string
+                      for (var i = 0; i < json[Object.keys(json)[0]].length; i++) {
+                        if (ids.indexOf(json[Object.keys(json)[0]][i].id.toString()) === -1) {
+                          json[Object.keys(json)[0]].splice(i--, 1);
+                        }
+                      }
+                    }
+                    res.end(JSON.stringify(json));
+                    return;
+                  }
+                }
+                next();
               },
               lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, pathsConfig.source),
-              connect.static(options.base),     // Serve static files
-              connect.directory(options.base)   // Make empty directories browsable,
-
+              connect.static(options.base),         // Serve static files
+              connect.directory(options.base)       // Make empty directories browsable
             ];
           }
         }
@@ -427,7 +467,7 @@ module.exports = function (grunt) {
       '/api/v1/status.json',
       '/api/v1/connectivity.json',
       '/api/v1/build.json',
-      
+
       '/api/v1/quantumconfig',
       '/api/v1/openrcconfig',
       '/api/v1/novaconfig',
