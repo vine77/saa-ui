@@ -448,8 +448,9 @@ module.exports = function (grunt) {
     'clean:dist'
   ]);
 
-  /*
-   * Run "grunt scrape --server=127.0.0.1" from the command line
+  /**
+   * API scraper task
+   * To run: call "grunt scrape --server=127.0.0.1" from the command line
    */
   grunt.registerTask('scrape', 'Download JSON files from API', function () {
     var path = require('path');
@@ -524,6 +525,44 @@ module.exports = function (grunt) {
           });
         }
       });
+    });
+  });
+
+  /**
+   * Project report generation
+   * To run: call "grunt report" from the command line
+   */
+  grunt.registerTask('report', 'Generate report from tasks and repository', function () {
+    var path = require('path');
+    var fs = require('fs');
+    var http = require('http');
+    var request = require('request');
+    var mkpath = require('mkpath');
+    var done = this.async();
+
+    var projectId = 513472;
+    var requestUrl = 'https://teambox.com/api/2/activities?project_id=' + projectId;
+    var teamboxUsername = 'intel-report';
+    var teamboxPassword = 'WeAreRockStars1968';
+
+    request.get({
+      uri: requestUrl,
+      auth: {
+        'user': teamboxUsername,
+        'pass': teamboxPassword
+      }
+    }, function (error, response, body) {
+      grunt.log.writeln(((response) ? response.statusCode : 'ERR') + ' GET ' + requestUrl);
+      if (error) {
+        done(error);
+      } else if (response.statusCode !== 200) {
+        grunt.log.writeln(body);
+        done(new Error('Encountered a ' + response.statusCode + ' response code.'));
+      } else {
+        var jsonObject = JSON.parse(body);
+        var beautifiedJson = JSON.stringify(jsonObject, null, 2);
+        grunt.log.writeln(beautifiedJson);
+      }
     });
   });
 
