@@ -1,7 +1,6 @@
-// Embedded records
-
 App.NodeSerializer = DS.ActiveModelSerializer.extend({
   attrs: {
+    name: 'node_name',
     vcpus: {embedded: 'always'},
     vmInfo: {embedded: 'always'},
     memory: {embedded: 'always'},
@@ -9,8 +8,7 @@ App.NodeSerializer = DS.ActiveModelSerializer.extend({
     utilization: {embedded: 'always'},
     status: {embedded: 'always'},
     contention: {embedded: 'always'},
-    ids: {embedded: 'always'},
-    name: {key: 'node_name'}
+    ids: {embedded: 'always'}
   }
 });
 

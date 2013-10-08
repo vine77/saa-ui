@@ -1,5 +1,10 @@
-// Embedded records
+App.VmSerializer = DS.ActiveModelSerializer.extend({
+  attrs: {
+    name: 'vm_name'
+  }
+});
 
+// Embedded records
 /* TODO: Update embedded models
 DS.RESTAdapter.map('vm', {
   name: {key: 'vm_name'},

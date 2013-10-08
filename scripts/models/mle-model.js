@@ -1,5 +1,3 @@
-App.TrustMleAdapter = DS.JsonApiAdapter.extend();
-
 App.TrustMleSerializer = DS.ActiveModelSerializer.extend({
   attrs: {
     mleManifests: {embedded: 'always'}

@@ -104,7 +104,7 @@ module.exports = function (grunt) {
                         }
                       }
                     }
-                    res.end(JSON.stringify(json));
+                    res.end(JSON.stringify(json, null, 2));
                     return;
                   }
                 }

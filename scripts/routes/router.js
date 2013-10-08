@@ -95,6 +95,9 @@ Ember.Route.reopen({
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
+  setupController: function () {
+    this.controllerFor('application').initModels();
+  },
   actions: {
     logout: function() {
       // TODO: Migrate Sunil's authentication code
@@ -132,6 +135,11 @@ App.IndexRoute = Ember.Route.extend({
 });
 */
 
+App.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('dashboard');
+  }
+});
 
 App.LoginRoute = Ember.Route.extend({
   actions: {
@@ -264,11 +272,7 @@ App.ServicesIndexRoute = Ember.Route.extend({
 // Flavors
 App.FlavorsRoute = Ember.Route.extend({
   model: function () {
-    if (this.store.all('flavor').get('length') == 0) {
-      return this.store.find('flavor', undefined, true);
-    } else {
-      return this.store.all('flavor');
-    }
+    return this.store.find('flavor', undefined, true);
   }
 });
 App.FlavorsIndexRoute = Ember.Route.extend({
@@ -299,11 +303,8 @@ App.FlavorsCreateRoute = Ember.Route.extend({
 // SLAs
 App.SlasRoute = Ember.Route.extend({
   model: function () {
-    if (this.store.all('sla').get('length') == 0) {
-      return this.store.find('sla', undefined, true);
-    } else {
-      return this.store.all('sla');
-    }
+    this.store.find('slo', undefined, true);
+    return this.store.find('sla', undefined, true);
   }
 });
 App.SlasIndexRoute = Ember.Route.extend({
@@ -342,7 +343,7 @@ App.TrustMlesRoute = Ember.Route.extend({
 
 App.TrustMlesIndexRoute = Ember.Route.extend({
   model: function () {
-    return App.TrustMle.find(undefined, true);
+    return this.store.find('trustMle', undefined, true);
   },
   setupController: function (controller, model) {
     this._super(controller, model);

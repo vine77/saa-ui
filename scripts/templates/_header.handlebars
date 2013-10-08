@@ -12,7 +12,7 @@
         <nav class="nav-collapse collapse pull-right">
           <ul class="nav">
             <li>{{#link-to "dashboard"}}<i class="icon-th"></i>Dashboard{{/link-to}}</li>
-            {{#if App.application.isEnabled}}
+            {{#if isEnabled}}
               <li>{{#link-to "nodes"}}<i class="icon-cloud"></i>Nodes{{/link-to}}</li>
               <li>{{#link-to "vms"}}<i class="icon-desktop"></i>VMs{{/link-to}}</li>
               <li class="dropdown">
@@ -43,7 +43,7 @@
                 <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                 <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
                 <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
-                {{#if App.application.isEnabled}}
+                {{#if isEnabled}}
                   <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
                   <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                 {{/if}}

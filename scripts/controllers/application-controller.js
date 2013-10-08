@@ -1,14 +1,17 @@
-App.ApplicationController = Ember.ArrayController.extend({
+App.ApplicationController = Ember.Controller.extend({
+  needs: 'status',
+  isAutoRefreshEnabled: true,
   buildVersionBinding: 'App.Build.firstObject.version',
   buildDateBinding: 'App.Build.firstObject.date',
-  //buildVersionBinding: 'App.Build.firstObject.version',
-  //buildDateBinding: 'App.build.date',
-  loggedInBinding: 'App.state.loggedIn',
+  loggedIn: true,  // TODO: Update authentication bindings
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
     this._super();
     this.autoRefresh();
   },
+  isEnabled: function () {
+    return this.get('controllers.status.health') <= App.WARNING && App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
+  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'controllers.status.health'),
   horizonUrl: function() {
     return 'http://' +window.location.hostname + '/horizon';
   }.property(),
@@ -20,6 +23,42 @@ App.ApplicationController = Ember.ArrayController.extend({
     return 'http://' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
+
+  // TODO: Consider using alternative method, such as ember-auth
+  initModels: function() {
+    // Load data from APIs
+    var controller = this;
+    App.mtWilson.check().then(function() {
+      if (App.mtWilson.get('isInstalled') === true) {
+        controller.store.find('trustNode').then(function() {
+          controller.store.find('node');
+        });
+      } else {
+        controller.store.find('node');
+      }
+      controller.store.find('vm');
+    }, function() {
+      controller.store.find('node');
+      controller.store.find('vm');
+    });
+    controller.store.find('flavor');
+    controller.store.find('sla');
+    App.users = controller.store.find('user');
+    var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.settingsLog.fetch(), App.users];
+    return Ember.RSVP.all(promises);
+  },
+  autoRefresh: function () {
+    // TODO: Add authentication check to polling
+    if (this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
+      this.send('refreshNodes');
+      this.send('refreshVms');
+      this.store.find('flavor', undefined, true);
+      this.store.find('sla', undefined, true);
+    }
+    if (this.get('isAutoRefreshEnabled')) Ember.run.later(this, 'autoRefresh', 30000);
+  },
+
+  // Actions
   actions: {
     expandDrawer: function (target) {
       this.set('isDrawerExpanded', true);
@@ -61,50 +100,13 @@ App.ApplicationController = Ember.ArrayController.extend({
     clearConsole: function () {
       console.clear();
     },
-    stopTimer: function () {
-      clearInterval(App.application.get('timerId'));
-      App.application.set('timerId', null);
-      console.log('Paused timer');
+    disableAutoRefresh: function () {
+      this.set('isAutoRefreshEnabled', false);
+      console.log('Disabled auto-refresh');
     },
-    startTimer: function () {
-      if (!App.application.get('timerId')) {
-        App.application.timer();
-        console.log('Unpaused timer');
-      } else {
-        console.log('Timer is already running.');
-      }
+    enableAutoRefresh: function () {
+      this.set('isAutoRefreshEnabled', true);
+      console.log('Enabled auto-refresh');
     }
-  },
-
-  // TODO: Consider using alternative method, such as ember-auth
-  initModels: function() {
-    // Load data from APIs
-    App.mtWilson.check().then(function() {
-      if (App.mtWilson.get('isInstalled') === true) {
-        this.store.find('trustNode').then(function() {
-          this.store.find('node');
-        });
-      } else {
-        this.store.find('node');
-      }
-      this.store.find('vm');
-    }, function() {
-      this.store.find('node');
-      this.store.find('vm');
-    });
-    this.store.find('flavor');
-    this.store.find('sla');
-    App.users = this.store.find('user');
-    var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.settingsLog.fetch(), App.users];
-    return Ember.RSVP.all(promises);
-  },
-  autoRefresh: function () {
-    if (App.application.get('isEnabled') && App.state.get('loggedIn')) {
-      this.refreshNodes();
-      this.refreshVms();
-      this.store.find('flavor', undefined, true);
-      this.store.find('sla', undefined, true);
-    }
-    Ember.run.later(this, 'autoRefresh', 30000);
   }
 });

@@ -7,10 +7,6 @@ App.Application = Ember.Object.extend({
   }.property(),
   apiDomain: function () {
     return localStorage.apiDomain;
-  }.property(),
-  health: App.SUCCESS,
-  isEnabled: function () {
-    return this.get('health') <= App.WARNING && App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
-  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'health')
+  }.property()
 });
 App.application = App.Application.create();
