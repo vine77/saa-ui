@@ -1,4 +1,6 @@
 App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+  itemController: 'node',
+
   columns: ['select', 'health', 'state', 'status.trust', 'isTrustRegistered', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
   filteredModel: function () {
     return this.store.find('node');
@@ -63,13 +65,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
       this.get('model').setEach('isSelected', !isEverythingSelected);
-    },
-    expand: function (model) {
-      if (!model.get('isActive')) {
-        this.transitionToRoute('nodesNode', model);
-      } else {
-        this.transitionToRoute('nodes');
-      }
     },
     refresh: function () {
       if (!this.get('isUpdating')) {

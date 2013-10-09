@@ -227,14 +227,14 @@ App.NodesRoute = Ember.Route.extend({
 App.NodesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('node').setEach('isActive', false);
+    this.controllerFor('nodes').setEach('isExpanded', false);
   }
 });
 App.NodesNodeRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('node').setEach('isActive', false);
-    model.set('isActive', true);
+    this.controllerFor('nodes').setEach('isExpanded', false);
+    this.controllerFor('nodes').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
 
@@ -251,14 +251,14 @@ App.VmsRoute = Ember.Route.extend({
 App.VmsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('vm').setEach('isActive', false);
+    this.controllerFor('nodes').setEach('isExpanded', false);
   }
 });
 App.VmsVmRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('vm').setEach('isActive', false);
-    model.set('isActive', true);
+    this.controllerFor('vms').setEach('isExpanded', false);
+    this.controllerFor('vms').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
 

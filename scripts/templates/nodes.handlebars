@@ -16,7 +16,7 @@
                 <div class="bar" {{bindAttr style="totalRamWidth"}}></div>
               </div>
             </div>
-          </div>
+          </div> f
         </div>
         <div class="span5">
           <div class="global-actions"></div>
@@ -89,82 +89,82 @@
           </tr>
         </thead>
         <tbody>
-          {{#each node in controller}}
-            <tr {{bindAttr class="node.isSelected node.isExpanded node.isAgentInstalled node.isScheduled"}}>
+          {{#each}}
+            <tr {{bindAttr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
               <td class="column-small">
-                {{#if node.isAgentInstalled}}
-                  {{view Ember.Checkbox checkedBinding="node.isSelected"}}
+                {{#if isAgentInstalled}}
+                  {{view Ember.Checkbox checkedBinding="isSelected"}}
                 {{/if}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.healthMessage"}}
-                  {{healthIcon node.status.health}}
+                {{#view App.TooltipView titleBinding="healthMessage"}}
+                  {{healthIcon status.health}}
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.status.operationalMessage"}}
-                  {{operationalIcon node.status.operational}}
+                {{#view App.TooltipView titleBinding="status.operationalMessage"}}
+                  {{operationalIcon status.operational}}
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#if node.isTrustRegistered}}
-                  {{#view App.TooltipView titleBinding="node.status.trustMessage"}}
-                    {{#if node.status.isTrustUnknown}}
+                {{#if isTrustRegistered}}
+                  {{#view App.TooltipView titleBinding="status.trustMessage"}}
+                    {{#if status.isTrustUnknown}}
                       <i class="icon-large icon-question-sign trust-unknown"></i>
                     {{else}}
-                      <i {{bindAttr class=":icon-large node.status.isTrusted:icon-lock:icon-unlock node.status.isTrusted:trusted:untrusted"}}></i>
+                      <i {{bindAttr class=":icon-large status.isTrusted:icon-lock:icon-unlock status.isTrusted:trusted:untrusted"}}></i>
                     {{/if}}
                   {{/view}}
                 {{else}}
-                  {{#view App.TooltipView titleBinding="node.isTrustRegisteredMessage"}}
+                  {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
                     <i class="icon-large icon-unlock trust-unregistered"></i>
                   {{/view}}
                 {{/if}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="node.assuredMessage"}}
-                  <i {{bindAttr class=":icon-large :icon-trophy node.isAssured:assured:unassured"}}></i>
+                {{#view App.TooltipView titleBinding="assuredMessage"}}
+                  <i {{bindAttr class=":icon-large :icon-trophy isAssured:assured:unassured"}}></i>
                 {{/view}}
               </td>
               <td>
-                {{#if node.isAgentInstalled}}
-                  <a {{action "expand" node}}>{{node.name}}</a>
-                  {{#if node.isScheduled}}
-                    {{#view App.TooltipView titleBinding="node.scheduledMessage"}}
+                {{#if isAgentInstalled}}
+                  <a {{action "expand" this}}>{{name}}</a>
+                  {{#if isScheduled}}
+                    {{#view App.TooltipView titleBinding="scheduledMessage"}}
                       <i class="icon-magnet"></i>
                     {{/view}}
                   {{/if}}
                 {{else}}
-                  {{node.name}}
+                  {{name}}
                 {{/if}}
               </td>
-              <td>{{na node.vmInfo.count}}</td>
+              <td>{{na vmInfo.count}}</td>
               <td>
                 <div class="cpu-typography">
                   <div class="sockets-and-cores">
-                    <div class="sockets">{{na node.capabilities.sockets}} CPUs </div>
-                    <div class="cores">&times; {{na node.capabilities.cores_per_socket}} cores </div>
+                    <div class="sockets">{{na capabilities.sockets}} CPUs </div>
+                    <div class="cores">&times; {{na capabilities.cores_per_socket}} cores </div>
                   </div>
                   <div class="cpu-frequency">
                     <span class="at">@</span>
-                    {{na node.cpuFrequency}}
+                    {{na cpuFrequency}}
                   </div>
                 </div>
               </td>
-              <td>{{na node.utilization.gips_current}}</td>
-              <td>{{na node.utilization.ipc}}</td>
-              <td>{{readableSize node.utilization.memory}}</td>
+              <td>{{na utilization.gips_current}}</td>
+              <td>{{na utilization.ipc}}</td>
+              <td>{{readableSize utilization.memory}}</td>
               <td>
-                {{#if node.contention.system.llc.valueExists}}
+                {{#if contention.system.llc.valueExists}}
                   <div class="contention">
                     <div class="contention-bar">
-                      {{#view App.TooltipView titleBinding="node.contention.system.llc.contentionMessage"}}
-                        <div class="contention-bar-width" {{bindAttr style="node.contention.system.llc.width"}}>
+                      {{#view App.TooltipView titleBinding="contention.system.llc.contentionMessage"}}
+                        <div class="contention-bar-width" {{bindAttr style="contention.system.llc.width"}}>
                           <div class="contention-gradient"></div>
                         </div>
                       {{/view}}
                     </div>
-                    {{na node.contention.system.llc.valueFormatted}}
+                    {{na contention.system.llc.valueFormatted}}
                   </div>
                 {{else}}
                   <span class="not-applicable">n/a</span>
@@ -172,8 +172,8 @@
               </td>
               <td>
                 <div class="btn-group">
-                  {{#if node.isAgentInstalled}} 
-                    {{#if node.isOn}}
+                  {{#if isAgentInstalled}}
+                    {{#if isOn}}
                       <a {{action reboot node}} class="btn btn-mini"><i class="icon-refresh"></i> Reboot</a>
                     {{else}}
                       <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
@@ -181,7 +181,7 @@
                     <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       {{#if App.mtWilson.isInstalled}}
-                        {{#if node.trustNode.ipaddress}}
+                        {{#if trustNode.ipaddress}}
                           <li><a {{action removeTrust node}}><i class="icon-unlock"></i> Remove Trust</a></li>
                         {{else}}
                           <li><a {{action addTrust node}}><i class="icon-lock"></i> Add Trust</a></li>
@@ -189,28 +189,28 @@
                         <li><a {{action trustFingerprint node}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                       {{/if}}
                       <li><a {{action exportTrustReport node}}><i class="icon-external-link"></i> Export Trust Report </a></li>
-                      {{#if node.isScheduled}}
+                      {{#if isScheduled}}
                         <li><a {{action unschedule node}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
                       {{else}}
-                        {{#each node.capabilities.socketsEnum}}
+                        {{#each capabilities.socketsEnum}}
                           <li><a {{action schedule node this}}><i class="icon-magnet"></i> Place VMs on Socket {{this}}</a></li>
                         {{/each}}
                       {{/if}}
-                      {{#if node.samRegistered}}
+                      {{#if samRegistered}}
                         <li><a {{action unregister node}}><i class="icon-remove"></i> Unregister</a></li>
                       {{/if}}
                     </ul>
                   {{else}}
-                    {{#if node.samRegistered}}
+                    {{#if samRegistered}}
                       <a {{action unregister node}}><i class="icon-remove"></i> Unregister</a>
                     {{/if}}
                   {{/if}}
                 </div>
               </td>
               <td class="column-small">
-                {{#if node.isAgentInstalled}}
-                  <a class="btn btn-mini toggle-details" {{action "expand" node}}>
-                    <i {{bindAttr class="node.isActive:icon-minus:icon-plus"}}></i>
+                {{#if isAgentInstalled}}
+                  <a class="btn btn-mini toggle-details" {{action "expand" this}}>
+                    <i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i>
                   </a>
                 {{/if}}
               </td>
@@ -238,25 +238,25 @@
                           <th>Trusted</th>
                           <th>Locked</th>
                           <th>vCPUs</th>
-                          {{#if node.isScheduled}}
+                          {{#if isScheduled}}
                             <th>VM Placement</th>
                           {{/if}}
                         </tr>
                         <tr>
-                          <td>{{node.name}}</td>
+                          <td>{{name}}</td>
                           <td>
-                            {{#view App.TooltipView titleBinding="node.healthMessage"}}
-                              {{healthIcon node.status.health}} {{status node.status.health}}
+                            {{#view App.TooltipView titleBinding="healthMessage"}}
+                              {{healthIcon status.health}} {{status status.health}}
                             {{/view}}
                           </td>
                           <td>
-                            {{operationalIcon node.status.operational}} {{operational node.status.operational}}
+                            {{operationalIcon status.operational}} {{operational status.operational}}
                           </td>
-                          <td>{{capitalize node.status.trust}}</td>
-                          <td>{{capitalize node.status.locked}}</td>
-                          <td>{{na node.vcpus.used}} out of {{na node.vcpus.max}}</td>
-                          {{#if node.isScheduled}}
-                            <td>Socket {{node.schedulerMark}}</td>
+                          <td>{{capitalize status.trust}}</td>
+                          <td>{{capitalize status.locked}}</td>
+                          <td>{{na vcpus.used}} out of {{na vcpus.max}}</td>
+                          {{#if isScheduled}}
+                            <td>Socket {{schedulerMark}}</td>
                           {{/if}}
                         </tr>
                       </table>
@@ -271,11 +271,11 @@
                           <th>I/O Wait</th>
                         </tr>
                         <tr>
-                          <td>{{na node.utilization.gips_current}} out of {{na node.utilization.gips_max}}</td>
-                          <td>{{na node.utilization.ipc}}</td>
-                          <td>{{readableSize node.utilization.memory}} out of {{readableSize node.capabilities.memory_size}}</td>
-                          <td>{{na node.utilization.cpu.idle}}</td>
-                          <td>{{na node.utilization.cpu.iowait}}</td>
+                          <td>{{na utilization.gips_current}} out of {{na utilization.gips_max}}</td>
+                          <td>{{na utilization.ipc}}</td>
+                          <td>{{readableSize utilization.memory}} out of {{readableSize capabilities.memory_size}}</td>
+                          <td>{{na utilization.cpu.idle}}</td>
+                          <td>{{na utilization.cpu.iowait}}</td>
                         </tr>
                       </table>
                     </div>
@@ -291,19 +291,19 @@
                           <th>Memory Size</th>
                         </tr>
                         <tr>
-                          <td>{{na node.capabilities.sockets}}</td>
-                          <td>{{na node.capabilities.cores_per_socket}}</td>
-                          <td>{{na node.capabilities.cpu_frequency}}</td>
-                          <td>{{capitalize node.capabilities.hyperthreading}}</td>
-                          <td>{{capitalize node.capabilities.turbo_mode}}</td>
-                          <td>{{readableSize node.capabilities.cache_size}}</td>
-                          <td>{{readableSize node.capabilities.memory_size}}</td>
+                          <td>{{na capabilities.sockets}}</td>
+                          <td>{{na capabilities.cores_per_socket}}</td>
+                          <td>{{na capabilities.cpu_frequency}}</td>
+                          <td>{{capitalize capabilities.hyperthreading}}</td>
+                          <td>{{capitalize capabilities.turbo_mode}}</td>
+                          <td>{{readableSize capabilities.cache_size}}</td>
+                          <td>{{readableSize capabilities.memory_size}}</td>
                         </tr>
                       </table>
                     </div>
                     <div class="tab-pane vms">
                       <ul>
-                        {{#each vm in node.vms}}
+                        {{#each vm in vms}}
                           <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
                         {{else}}
                           <li>No VMs</li>
@@ -311,7 +311,7 @@
                       </ul>
                     </div>
                     <div class="tab-pane graphs">
-                      {{#each graph in node.graphs}}
+                      {{#each graph in graphs}}
                         <figure class="thumbnail">
                           <img {{bindAttr src="graph.url"}}>
                           <figcaption class="caption">{{graph.desc}}</figcaption>
@@ -319,7 +319,7 @@
                       {{/each}}
                     </div>
                     <div class="tab-pane trust">
-                      {{#if node.nodeTrustReport.attestations}}
+                      {{#if nodeTrustReport.attestations}}
                         <div class="align-right">
                           <button class="btn btn-primary" {{action trustReportModal node}}>Generate Trust Report</button>
                         </div>
@@ -329,7 +329,7 @@
                             <th>Message</th>
                             <th>Timestamp</th>
                           </tr>
-                          {{#each attestation in node.nodeTrustReport.attestations}}
+                          {{#each attestation in nodeTrustReport.attestations}}
                             <tr>
                               <td class="column-small">
                                 {{#view App.TooltipView titleBinding="attestation.trust_message" dataContainer="body"}}
@@ -348,7 +348,7 @@
                       {{/if}}
                     </div>
                     <div class="tab-pane pcr-logs">
-                      {{#if node.trustNode.pcrLogs}}
+                      {{#if trustNode.pcrLogs}}
                         <table class="table table-bordered">
                           <tr>
                             <th class="column-small">Trust Status</th>
@@ -365,7 +365,7 @@
                               {{/view}}
                             </th>
                           </tr>
-                          {{#each log in node.trustNode.pcrLogs}}
+                          {{#each log in trustNode.pcrLogs}}
                             <tr>
                               <td class="column-small">
                                 <i {{bindAttr class=":icon-large log.truststatus:icon-lock:icon-unlock log.truststatus:trusted:untrusted"}}></i>
@@ -398,7 +398,7 @@
                     </div>
 
                     <div class="tab-pane mles">
-                      {{#if node.isTrustRegistered}}
+                      {{#if isTrustRegistered}}
                         <table class="table table-bordered">
                           <tr>
                             <th>MLE Type</th>
@@ -409,7 +409,7 @@
                             <th>Version</th>
                             <th>OS Version</th>
                           </tr>
-                          {{#each mle in node.trustNode.trustMle}}
+                          {{#each mle in trustNode.trustMle}}
                             <tr>
                               <td>{{na mle.mleType}}</td>
                               <td>{{#link-to "trust.mle" mle}}{{na mle.name}}{{/link-to}}</td>
