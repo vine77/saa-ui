@@ -9,9 +9,12 @@ App.ApplicationController = Ember.Controller.extend({
     this._super();
     this.autoRefresh();
   },
+  isConfigured: function () {
+    return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
+  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists'),
   isEnabled: function () {
-    return this.get('controllers.status.health') <= App.WARNING && App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
-  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists', 'controllers.status.health'),
+    return this.get('controllers.status.health') <= App.WARNING && this.get('isConfigured');
+  }.property('controllers.status.health', 'isConfigured'),
   horizonUrl: function() {
     return 'http://' +window.location.hostname + '/horizon';
   }.property(),
