@@ -16,7 +16,7 @@
                 <div class="bar" {{bindAttr style="totalRamWidth"}}></div>
               </div>
             </div>
-          </div> f
+          </div>
         </div>
         <div class="span5">
           <div class="global-actions"></div>
@@ -102,17 +102,17 @@
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="status.operationalMessage"}}
+                {{#view App.TooltipView titleBinding="operationalMessage"}}
                   {{operationalIcon status.operational}}
                 {{/view}}
               </td>
               <td class="column-small">
                 {{#if isTrustRegistered}}
-                  {{#view App.TooltipView titleBinding="status.trustMessage"}}
-                    {{#if status.isTrustUnknown}}
+                  {{#view App.TooltipView titleBinding="trustMessage"}}
+                    {{#if isTrustUnknown}}
                       <i class="icon-large icon-question-sign trust-unknown"></i>
                     {{else}}
-                      <i {{bindAttr class=":icon-large status.isTrusted:icon-lock:icon-unlock status.isTrusted:trusted:untrusted"}}></i>
+                      <i {{bindAttr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
                     {{/if}}
                   {{/view}}
                 {{else}}
@@ -155,16 +155,16 @@
               <td>{{na utilization.ipc}}</td>
               <td>{{readableSize utilization.memory}}</td>
               <td>
-                {{#if contention.system.llc.valueExists}}
+                {{#if contention.system.llc.value}}
                   <div class="contention">
                     <div class="contention-bar">
-                      {{#view App.TooltipView titleBinding="contention.system.llc.contentionMessage"}}
-                        <div class="contention-bar-width" {{bindAttr style="contention.system.llc.width"}}>
+                      {{#view App.TooltipView titleBinding="contentionMessage"}}
+                        <div class="contention-bar-width" {{bindAttr style="contentionWidth"}}>
                           <div class="contention-gradient"></div>
                         </div>
                       {{/view}}
                     </div>
-                    {{na contention.system.llc.valueFormatted}}
+                    {{na contentionFormatted}}
                   </div>
                 {{else}}
                   <span class="not-applicable">n/a</span>
@@ -192,7 +192,7 @@
                       {{#if isScheduled}}
                         <li><a {{action unschedule node}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
                       {{else}}
-                        {{#each capabilities.socketsEnum}}
+                        {{#each socketsEnum}}
                           <li><a {{action schedule node this}}><i class="icon-magnet"></i> Place VMs on Socket {{this}}</a></li>
                         {{/each}}
                       {{/if}}
@@ -225,8 +225,8 @@
                     <li><a onclick="App.selectTab(event)">VMs</a></li>
                     <li><a onclick="App.selectTab(event)">Graphs</a></li>
                     <li><a onclick="App.selectTab(event)">Trust</a></li>
-                    <li><a onclick="App.selectTab(event)">PCR Logs</a></li>
                     <li><a onclick="App.selectTab(event)">MLEs</a></li>
+                    <li><a onclick="App.selectTab(event)">PCR Logs</a></li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane active details">
@@ -252,7 +252,7 @@
                           <td>
                             {{operationalIcon status.operational}} {{operational status.operational}}
                           </td>
-                          <td>{{capitalize status.trust}}</td>
+                          <td>{{capitalize isTrusted}}</td>
                           <td>{{capitalize status.locked}}</td>
                           <td>{{na vcpus.used}} out of {{na vcpus.max}}</td>
                           {{#if isScheduled}}
@@ -347,6 +347,36 @@
                         {{/unless}}
                       {{/if}}
                     </div>
+                    <div class="tab-pane mles">
+                      {{#if isTrustRegistered}}
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>MLE Type</th>
+                            <th>Name</th>
+                            <th>OEM Name</th>
+                            <th>Attestation Type</th>
+                            <th>OS Name</th>
+                            <th>Version</th>
+                            <th>OS Version</th>
+                          </tr>
+                          {{#each mle in trustNode.trustMle}}
+                            <tr>
+                              <td>{{na mle.mleType}}</td>
+                              <td>{{#link-to "trust.mle" mle}}{{na mle.name}}{{/link-to}}</td>
+                              <td>{{na mle.oemname}}</td>
+                              <td>{{na mle.attestationType}}</td>
+                              <td>{{na mle.osname}}</td>
+                              <td>{{na mle.version}}</td>
+                              <td>{{na mle.osversion}}</td>
+                            </tr>
+                          {{/each}}
+                        </table>
+                      {{else}}
+                        {{#unless content.isUpdating}}
+                          <div class="alert alert-info">No MLEs found.</div>
+                        {{/unless}}
+                      {{/if}}
+                    </div>
                     <div class="tab-pane pcr-logs">
                       {{#if trustNode.pcrLogs}}
                         <table class="table table-bordered">
@@ -393,37 +423,6 @@
                       {{else}}
                         {{#unless content.isUpdating}}
                           <div class="alert alert-info">No PCR Logs found.</div>
-                        {{/unless}}
-                      {{/if}}
-                    </div>
-
-                    <div class="tab-pane mles">
-                      {{#if isTrustRegistered}}
-                        <table class="table table-bordered">
-                          <tr>
-                            <th>MLE Type</th>
-                            <th>Name</th>
-                            <th>OEM Name</th>
-                            <th>Attestation Type</th>
-                            <th>OS Name</th>
-                            <th>Version</th>
-                            <th>OS Version</th>
-                          </tr>
-                          {{#each mle in trustNode.trustMle}}
-                            <tr>
-                              <td>{{na mle.mleType}}</td>
-                              <td>{{#link-to "trust.mle" mle}}{{na mle.name}}{{/link-to}}</td>
-                              <td>{{na mle.oemname}}</td>
-                              <td>{{na mle.attestationType}}</td>
-                              <td>{{na mle.osname}}</td>
-                              <td>{{na mle.version}}</td>
-                              <td>{{na mle.osversion}}</td>
-                            </tr>
-                          {{/each}}
-                        </table>
-                      {{else}}
-                        {{#unless content.isUpdating}}
-                          <div class="alert alert-info">No MLEs found.</div>
                         {{/unless}}
                       {{/if}}
                     </div>
