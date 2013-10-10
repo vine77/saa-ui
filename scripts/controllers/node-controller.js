@@ -47,20 +47,16 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('schedulerMark', 'isScheduled'),
   healthMessage: function () {
-    var healthMessage = '';
-    if (!this.get('isAgentInstalled') && (this.get('status.health') === App.UNKNOWN) || App.isEmpty(this.get('status.health'))) {
+    if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
       return 'Not under ' + App.application.get('title') + ' control';
     }
-    if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
-      // If both short and long messages are empty, show health as message
-      healthMessage = '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
-    } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
-      healthMessage = this.get('status.short_message').capitalize();
-    } else {  // Default to long message
-      healthMessage = this.get('status.long_message').capitalize();
+    if (App.isEmpty(this.get('status.short_message'))) {
+      // If status message is empty, just show health as a string
+      return '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+    } else {
+      return this.get('status.short_message').capitalize();
     }
-    return healthMessage;
-  }.property('status.health', 'status.long_message', 'status.short_message', 'isAgentInstalled'),
+  }.property('status.short_message', 'status.health', 'isAgentInstalled'),
 
   // Observers
   graphObserver: function () {
