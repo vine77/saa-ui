@@ -5,7 +5,7 @@
     "jquery": "components/jquery#~1.10.2",
     "handlebars": "components/handlebars.js#1.0.0",
     "ember": "components/ember#1.0.0",
-    "ember-data": "components/ember-data#1.0.0-beta.2",
+    "ember-data": "components/ember-data#1.0.0-beta.3",
     "bootstrap": "jasny/bootstrap#2.3.0-p4",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.2.0",
     "font-awesome": "components/font-awesome#~3.2.1",
@@ -18,9 +18,11 @@
     "filesaver": "eligrey/FileSaver.js",
     "mousetrap": "ccampbell/mousetrap#~1.4.4",
     "ember-renderspeed": "eviltrout/ember-renderspeed",
-    "group-helper": "emberjs/group-helper"
+    "group-helper": "emberjs/group-helper",
+    "ember-json-api": "daliwali/ember-json-api"
   },
   "resolutions": {
-    "jquery": "~1.10.2"
+    "jquery": "~1.10.2",
+    "ember": "~1.0.0"
   }
 }

@@ -23,12 +23,7 @@
     <script src="components/handlebars/handlebars.js"></script>
     <script src="components/ember/ember.prod.js"></script>
     <script src="components/ember-data/ember-data.prod.js"></script>
-
-    <script src="components/ember-json-api/inflection.js"></script>
-    <script src="components/ember-json-api/serializer.js"></script>
-    <script src="components/ember-json-api/adapter.js"></script>
-    
-
+    <script src="components/ember-json-api/dist/json_api_adapter.js"></script>
     <script src="components/bootstrap/js/bootstrap.js"></script>
     <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="components/jquery.cookie/jquery.cookie.js"></script>
@@ -36,7 +31,6 @@
     <script src="components/pnotify/jquery.pnotify.js"></script>
     <script src="components/d3/d3.js"></script>
     <script src="components/mousetrap/mousetrap.js"></script>
-
     <script src="components/jspdf/jspdf.js"></script>
     <script src="components/filesaver/FileSaver.js"></script>
     <script src="components/jspdf/libs/Deflate/deflate.js"></script>
@@ -44,11 +38,9 @@
     <script src="components/jspdf/jspdf.plugin.addimage.js"></script>
     <script src="components/jspdf/jspdf.plugin.split_text_to_size.js"></script>
     <script src="components/jspdf/jspdf.plugin.standard_fonts_metrics.js"></script>
-
     <!-- endbuild -->
+
     <!-- build:js scripts/app.js -->
-
-
     <script src="scripts/templates.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/helpers/mappings.js"></script>
@@ -56,7 +48,9 @@
     <script src="scripts/helpers/mixins.js"></script>
     <script src="scripts/helpers/model-helper.js"></script>
     <script src="scripts/routes/router.js"></script>
+
     <script src="scripts/models/store.js"></script>
+    <script src="scripts/definitions/definitions.js"></script>
     <script src="scripts/models/application-state.js"></script>
     <script src="scripts/models/application-model.js"></script>
     <script src="scripts/models/build-model.js"></script>
@@ -89,8 +83,6 @@
     <script src="scripts/models/overrides-model.js"></script>
     <script src="scripts/models/logDefinitions-model.js"></script>
 
-    <script src="scripts/definitions/definitions.js"></script>
-
     <script src="scripts/controllers/application-controller.js"></script>
     <script src="scripts/controllers/status-controller.js"></script>
     <script src="scripts/controllers/form-controller.js"></script>
@@ -101,6 +93,7 @@
     <script src="scripts/controllers/dashboardTodo-controller.js"></script>
     <script src="scripts/controllers/dashboardEvents-controller.js"></script>
     <script src="scripts/controllers/nodes-controller.js"></script>
+    <script src="scripts/controllers/node-controller.js"></script>
     <script src="scripts/controllers/vms-controller.js"></script>
     <script src="scripts/controllers/services-controller.js"></script>
     <script src="scripts/controllers/flavors-controller.js"></script>
@@ -140,7 +133,7 @@
     <script src="scripts/views/flavorsCreate-view.js"></script>
     <script src="scripts/views/contextualGraphs-view.js"></script>
     <script src="scripts/views/settingsLog-view.js"></script>
-
     <!-- endbuild -->
+
   </body>
 </html>
