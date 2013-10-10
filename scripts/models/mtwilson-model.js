@@ -1,4 +1,4 @@
-App.Trust = Ember.Object.extend({
+App.MtWilson = Ember.Object.extend({
   isInstalled: false,
   isInstalling: false,
   isSupported: true,
@@ -128,4 +128,4 @@ App.Trust = Ember.Object.extend({
   }
 });
 
-App.mtWilson = App.Trust.create();
+App.mtWilson = App.MtWilson.create();
