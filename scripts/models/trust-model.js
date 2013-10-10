@@ -4,11 +4,11 @@ App.Trust = Ember.Object.extend({
   isSupported: true,
   ipAddress: '',
   check: function () {
-    return Ember.$.ajax($.extend({
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
       type: 'GET',
       dataType: "json"
-    }, App.ajaxSetup)).then(function (data, textStatus, xhr) {
+    }).then(function (data, textStatus, xhr) {
       App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
       // Mt. Wilson is installed
       App.mtWilson.set('isInstalled', true);
@@ -52,7 +52,7 @@ App.Trust = Ember.Object.extend({
   install: function () {
     // Start Mt. Wilson install
     App.mtWilson.set('isInstalling', true);
-    hash = {
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
       type: 'POST',
       dataType: "json",
@@ -101,14 +101,12 @@ App.Trust = Ember.Object.extend({
             App.mtWilson.set('isInstalling', false);
         }
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);
+    });
   },
   uninstall: function () {
     $('#uninstall-trust-server i.loading').removeClass('hide');
     // Start Mt. Wilson install
-    hash = {
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
       type: 'DELETE',
       dataType: "json",
@@ -126,9 +124,7 @@ App.Trust = Ember.Object.extend({
             App.event('Trust Server failed to uninstall.', App.ERROR);
         }
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);
+    });
   }
 });
 

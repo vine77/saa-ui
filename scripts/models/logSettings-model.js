@@ -6,7 +6,7 @@ App.SettingsLog = Ember.Object.extend({
   actions: {
     deleteLogs: function () {
       $('#reset-log-data i.loading').removeClass('hide');
-      var ajaxOptions = $.extend({
+      return Ember.$.ajax({
         url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logs',
         type: 'DELETE',
         complete: function (jqXHR, textStatus) {
@@ -17,8 +17,7 @@ App.SettingsLog = Ember.Object.extend({
           }
           $('#reset-log-data i.loading').addClass('hide');
         }
-      }, App.ajaxSetup);
-      $.ajax(ajaxOptions);
+      });
     },
     update: function () {
       // # Not settable:
@@ -29,7 +28,7 @@ App.SettingsLog = Ember.Object.extend({
         MaximumDays: App.settingsLog.get('maximumDays'),
         ConfiguredSize: App.settingsLog.get('configuredSize')
       };
-      var ajaxOptions = $.extend({
+      return Ember.$.ajax({
         url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logsettings',
         type: 'POST',
         contentType: 'application/json',
@@ -46,12 +45,11 @@ App.SettingsLog = Ember.Object.extend({
             App.event('Error updating log settings.', App.ERROR);
           }
         }
-      }, App.ajaxSetup);
-      $.ajax(ajaxOptions);
-    } 
+      });
+    }
   },
   fetch: function () {
-    var ajaxOptions = $.extend({
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logsettings',
       type: 'GET',
       dataType: 'json',
@@ -64,8 +62,7 @@ App.SettingsLog = Ember.Object.extend({
           App.settingsLog.set('actualSize', settings.ActualSize);
         }
       }
-    }, App.ajaxSetup);
-    $.ajax(ajaxOptions);
+    });
   }
 });
 

@@ -95,8 +95,28 @@ Ember.Route.reopen({
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
-  setupController: function () {
-    this.controllerFor('application').initModels();
+  model: function () {
+    var self = this;
+    var promises = [];
+    promises.push(App.mtWilson.check().then(function () {
+      if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
+    }, function () {
+      return new Ember.RSVP.Promise(function (resolve, reject) {
+        resolve();
+      });
+    }));
+    promises.push(this.store.find('node'));
+    promises.push(this.store.find('slo'));
+    promises.push(this.store.find('sla'));
+    promises.push(this.store.find('flavor'));
+    promises.push(this.store.find('user'));
+    promises.push(App.nova.check());
+    promises.push(App.openrc.check());
+    promises.push(App.quantum.check());
+    promises.push(App.network.check());
+    promises.push(App.build.find());
+    promises.push(App.settingsLog.fetch());
+    return Ember.RSVP.all(promises);
   },
   actions: {
     logout: function() {
@@ -198,29 +218,8 @@ App.ProfileRoute = Ember.Route.extend({
 
 // Nodes
 App.NodesRoute = Ember.Route.extend({
-  /*
-  setupController: function (controller, model) {
-    this._super(controller, model);
-    if (App.mtWilson.get('isInstalled') === true) {
-      this.store.find('trustNode', undefined, true).then(function() {
-        if (this.store.all('node').get('length') == 0) {
-          controller.set('model', this.store.find('node', undefined, true));
-        } else {
-          controller.set('model', this.store.all('node'));
-        }
-      });
-    } else {
-      if (this.store.all('node').get('length') == 0) {
-        controller.set('model', this.store.find('node', undefined, true));
-      } else {
-        controller.set('model', this.store.all('node'));
-      }
-    }
-  }
-  */
   model: function () {
-    // TODO: Move model loading to background
-    return this.store.find('node', undefined, true);
+    return this.store.all('node', undefined, true);
   }
 });
 
@@ -241,11 +240,7 @@ App.NodesNodeRoute = Ember.Route.extend({
 // VMs
 App.VmsRoute = Ember.Route.extend({
   model: function () {
-    if (this.store.all('vm').get('length') == 0) {
-      return this.store.find('vm', undefined, true);
-    } else {
-      return this.store.all('vm');
-    }
+    return this.store.all('vm');
   }
 });
 App.VmsIndexRoute = Ember.Route.extend({
@@ -272,7 +267,7 @@ App.ServicesIndexRoute = Ember.Route.extend({
 // Flavors
 App.FlavorsRoute = Ember.Route.extend({
   model: function () {
-    return this.store.find('flavor', undefined, true);
+    return this.store.all('flavor', undefined, true);
   }
 });
 App.FlavorsIndexRoute = Ember.Route.extend({
@@ -303,8 +298,7 @@ App.FlavorsCreateRoute = Ember.Route.extend({
 // SLAs
 App.SlasRoute = Ember.Route.extend({
   model: function () {
-    this.store.find('slo', undefined, true);
-    return this.store.find('sla', undefined, true);
+    return this.store.all('sla', undefined, true);
   }
 });
 App.SlasIndexRoute = Ember.Route.extend({
@@ -370,7 +364,7 @@ App.TrustMleRoute = Ember.Route.extend({
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
   model: function() {
-    return App.overrides.fetch();
+    //return App.overrides.fetch();
   },
   redirect: function () {
     this.transitionTo('settings.upload');

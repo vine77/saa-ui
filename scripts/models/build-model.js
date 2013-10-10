@@ -7,14 +7,12 @@ App.Build = DS.Model.extend({
 });
 */
 
-//{"hostname": "ipm-ghouchex", "build": {"date": null, "version": null}}
-
 App.Build = Ember.Object.extend({
   version: '',
   date: '',
   hostname: '',
   find: function () {
-    hash = {
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/build.json',
       type: 'GET',
       dataType: 'json',
@@ -24,11 +22,7 @@ App.Build = Ember.Object.extend({
         App.build.set('date', data.build.date);
         App.build.set('hostname', data.hostname);
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   }
 });
-
 App.build = App.Build.create();
-App.build.find();

@@ -4,9 +4,13 @@
       <ul class="nav nav-list sidenav affix shadow-lifted">
         <li>{{#link-to "settings.upload"}}<i class="icon-chevron-right"></i><i class="icon-upload-alt"></i>Upload{{/link-to}}</li>
         <li>{{#link-to "settings.network"}}<i class="icon-chevron-right"></i><i class="icon-globe"></i>Network{{/link-to}}</li>
+        {{!--
         <li>{{#link-to "settings.mailserver"}}<i class="icon-chevron-right"></i><i class="icon-envelope"></i>Mail Server{{/link-to}}</li>
-        {{#if App.application.isEnabled}}
+        --}}
+        {{#if isEnabled}}
+          {{!--
           <li>{{#link-to "settings.users"}}<i class="icon-chevron-right"></i><i class="icon-group"></i>Users{{/link-to}}</li>
+          --}}
           <li>{{#link-to "settings.log"}}<i class="icon-chevron-right"></i><i class="icon-reorder"></i>Logs{{/link-to}}</li>
           <li>{{#link-to "settings.trust"}}<i class="icon-chevron-right"></i><i class="icon-lock"></i>Trust{{/link-to}}</li>
         {{/if}}

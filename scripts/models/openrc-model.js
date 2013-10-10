@@ -3,7 +3,7 @@ App.Openrc = Ember.Object.extend({
   success: false,
   check: function () {
     // Check if openrc file exists
-    hash = {
+    return Ember.$.ajax({
       url: '/api/v1/openrcconfig',
       type: 'GET',
       dataType: "json",
@@ -17,15 +17,13 @@ App.Openrc = Ember.Object.extend({
             App.openrc.set('exists', false);
         }
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   },
   upload: function () {
     // Upload openrc file
     var formData = new FormData($('#openrcForm')[0]);
     $('#openrcForm i.loading').removeClass('hide');
-    hash = {
+    return Ember.$.ajax({
       type: 'PUT',
       url: '/api/v1/openrcconfig',
       data: formData,
@@ -60,9 +58,7 @@ App.Openrc = Ember.Object.extend({
       },
       processData: false,
       contentType: false
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);
+    });
   }
 });
 

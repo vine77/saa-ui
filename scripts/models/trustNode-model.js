@@ -55,7 +55,7 @@ App.TrustNode = DS.Model.extend({
     this.get('stateManager').transitionTo('rootState.loaded.saved');
   },
 
-  //Embedded relationships ...
-  pcrLogs: DS.hasMany('trustNodePcrLog')
+  // Embedded relationships
+  //pcrLogs: DS.hasMany('trustNodePcrLog')
 
 });

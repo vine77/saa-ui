@@ -3,7 +3,7 @@ App.Nova = Ember.Object.extend({
   success: false,
   check: function () {
     // Check if nova.conf file exists
-    hash = {
+    return Ember.$.ajax({
       url: '/api/v1/novaconfig',
       type: 'GET',
       dataType: "json",
@@ -17,15 +17,13 @@ App.Nova = Ember.Object.extend({
             App.nova.set('exists', false);
         }
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   },
   upload: function () {
     // Upload nova.conf file
     var formData = new FormData($('#novaForm')[0]);
     $('#novaForm i.loading').removeClass('hide');
-    hash = {
+    return Ember.$.ajax({
       type: 'PUT',
       url: '/api/v1/novaconfig',
       data: formData,
@@ -60,14 +58,12 @@ App.Nova = Ember.Object.extend({
       },
       processData: false,
       contentType: false
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);
+    });
   },
   start: function () {
     // Start SAM
     App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
-    jsonOptions = $.extend({
+    return Ember.$.ajax({
       type: 'PUT',
       url: '/api/v1/start',
       complete: function (xhr, textStatus) {
@@ -101,8 +97,7 @@ App.Nova = Ember.Object.extend({
             App.event(errorMessage, App.ERROR, true, title);
         }
       }
-    }, App.ajaxSetup);
-    $.ajax(jsonOptions);
+    });
   }
 });
 

@@ -42,9 +42,13 @@
               <ul class="dropdown-menu">
                 <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                 <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
+                {{!--
                 <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
+                --}}
                 {{#if isEnabled}}
+                  {{!--
                   <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
+                  --}}
                   <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                 {{/if}}
                 <li>{{#linkTo "settings.trust"}}Trust{{/linkTo}}</li>
@@ -58,8 +62,10 @@
               Tenant interface (Horizon) <i class="icon-external-link icon-small"></i>
             </a>
           </li>
-          <li>Logged in as <em>{{App.session.username}}</em></li>
+          <li>Logged in as <em>admin</em></li>
+          {{!--
           <li><a href="#" {{action logout}}><i class="icon-signout"></i>Log Out</a></li>
+          --}}
         </ul>
       {{/if}}
       {{render "status"}}

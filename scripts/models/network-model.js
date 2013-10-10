@@ -17,7 +17,7 @@ App.Network = Ember.Object.extend({
     address: '',
     active: true,
     dhcp: true
-  }, 
+  },
   dns: {
     ns1: '',
     ns2: '',
@@ -36,7 +36,7 @@ App.Network = Ember.Object.extend({
         other: App.network.get('other')
       };
       $('i.loading').removeClass('hide');
-      hash = {
+      return Ember.$.ajax({
         url: '/api/v1/netconfig',
         type: 'POST',
         data: JSON.stringify(networkData),
@@ -58,13 +58,11 @@ App.Network = Ember.Object.extend({
           $('i.loading').addClass('hide');
           App.event('Network configuration was not saved.', App.ERROR);
         }
-      };
-      hash = $.extend(hash, App.ajaxSetup);
-      $.ajax(hash);
+      });
     }
   },
   check: function () {
-    hash = {
+    return Ember.$.ajax({
       url: '/api/v1/netconfig',
       type: 'GET',
       dataType: 'json',
@@ -84,10 +82,8 @@ App.Network = Ember.Object.extend({
         App.event('Network configuration details could not be loaded.', App.ERROR, false);
         App.log('ERROR ' + xhr.status + ' from GET /api/v1/netconfig: ' + xhr.statusText);
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   }
-  
+
 });
 App.network = App.Network.create();

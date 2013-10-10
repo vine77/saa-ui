@@ -45,13 +45,12 @@ App.TrustNodesController = Ember.ArrayController.extend(App.Filterable, App.Sort
     removeTrust: function (node) {
       var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
       if (confirmed) {
-        var ajaxOptions = $.extend({
+        return Ember.$.ajax({
           type: 'DELETE',
           url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust/nodes/' + node.get('id'),
           contentType: "application/json",
           dataType: "json"
-        }, App.ajaxSetup);
-        App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        }).then(function (data, textStatus, jqXHR) {
           node.reload();
           App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
         }, function (qXHR, textStatus, errorThrown) {
@@ -67,14 +66,13 @@ App.TrustNodesController = Ember.ArrayController.extend(App.Filterable, App.Sort
             "node_id": node.get('id')
           }]
         };
-        var ajaxOptions = $.extend({
+        return Ember.$.ajax({
           type: 'POST',
           url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/trust/nodes',
           data: JSON.stringify(jsonData),
           contentType: 'application/json',
           dataType: 'json'
-        }, App.ajaxSetup);
-        App.ajaxPromise(ajaxOptions).then(function (data, textStatus, jqXHR) {
+        }).then(function (data, textStatus, jqXHR) {
           node.reload();
           App.event('Successfully registered node "' + node.get('name') + '" as trusted', App.SUCCESS);
         }, function (qXHR, textStatus, errorThrown) {

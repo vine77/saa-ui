@@ -6,6 +6,14 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
   }
 });
 
+App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
+  normalize: function(type, hash, property) {
+    var json = hash;
+    delete json.links;  // Don't use "links" yet, until JSON-API spec is implemented API-wide
+    return this._super(type, json, property);
+  }
+});
+
 // RESTConfigAdapter for nested configuration namespace
 DS.RESTConfigAdapter = App.ApplicationAdapter.extend({
   namespace: 'api/v1/configuration'
@@ -23,7 +31,7 @@ DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
   }
 });
 // TODO: Use RESTSingletonSerializer for other singleton models
-DS.RESTSingletonSerializer = DS.ActiveModelSerializer.extend({
+DS.RESTSingletonSerializer = App.ApplicationSerializer.extend({
   // Manually inject ID with requested ID if it doesn't exist in payload
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     if (!payload[Object.keys(payload)[0]].id) payload[Object.keys(payload)[0]].id = recordId;
@@ -53,6 +61,7 @@ App.ArrayTransform = DS.Transform.extend({
 
 
 // TODO: Move Sunil's header token extension to broader solution
+/*
 App.ajaxSetup = {
   beforeSend: function(xhr) {
     if (App.session && App.session.get('csrf_token')) {
@@ -60,27 +69,7 @@ App.ajaxSetup = {
     }
   }
 };
-
-App.ajaxPromise = function(hash) {
-  return new Ember.RSVP.Promise(function (resolve, reject) {
-    var success_callback = hash.success;
-    var error_callback = hash.error;
-
-    hash.success = function(json) {
-      Ember.run(null, resolve, json);
-      if (typeof success_callback !== 'undefined') {
-        success_callback(json);
-      }
-    };
-    hash.error = function(jqXHR, textStatus, errorThrown) {
-      Ember.run(null, reject, jqXHR);
-      if (typeof error_callback !== 'undefined') {
-        error_callback(jqXHR, textStatus, errorThrown);
-      }
-    };
-    jQuery.ajax(hash);
-  });
-}
+*/
 
 /*
 // Configure primary SAM REST adapter

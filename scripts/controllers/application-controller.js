@@ -26,37 +26,15 @@ App.ApplicationController = Ember.Controller.extend({
     return 'http://' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
-
-  // TODO: Consider using alternative method, such as ember-auth
-  initModels: function() {
-    // Load data from APIs
-    var controller = this;
-    App.mtWilson.check().then(function() {
-      if (App.mtWilson.get('isInstalled') === true) {
-        controller.store.find('trustNode').then(function() {
-          controller.store.find('node');
-        });
-      } else {
-        controller.store.find('node');
-      }
-      controller.store.find('vm');
-    }, function() {
-      controller.store.find('node');
-      controller.store.find('vm');
-    });
-    controller.store.find('flavor');
-    controller.store.find('sla');
-    App.users = controller.store.find('user');
-    var promises = [App.nova.check(), App.openrc.check(), App.quantum.check(), App.network.check(), App.build.find(), App.settingsLog.fetch(), App.users];
-    return Ember.RSVP.all(promises);
-  },
   autoRefresh: function () {
     // TODO: Add authentication check to polling
     if (this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
-      this.send('refreshNodes');
-      this.send('refreshVms');
-      this.store.find('flavor', undefined, true);
+      this.store.find('slo', undefined, true);
       this.store.find('sla', undefined, true);
+      this.store.find('flavor', undefined, true);
+      this.store.find('vm', undefined, true);
+      if (App.mtWilson.get('isInstalled')) this.store.find('trustNode', undefined, true);
+      this.store.find('node', undefined, true);
     }
     if (this.get('isAutoRefreshEnabled')) Ember.run.later(this, 'autoRefresh', 30000);
   },
@@ -81,9 +59,10 @@ App.ApplicationController = Ember.Controller.extend({
     }.observes('currentPath'),
     // Debug Toolbar actions
     refreshNodes: function () {
-      if (App.mtWilson.get('isInstalled') === true) {
+      var self = this;
+      if (App.mtWilson.get('isInstalled')) {
         this.store.find('trustNode', undefined, true).then(function() {
-          this.store.find('node', undefined, true);
+          self.store.find('node', undefined, true);
         });
       } else {
         this.store.find('node', undefined, true);

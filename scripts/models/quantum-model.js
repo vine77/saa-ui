@@ -3,7 +3,7 @@ App.Quantum = Ember.Object.extend({
   success: false,
   check: function () {
     // Check if quantum file exists
-    hash = {
+    return Ember.$.ajax({
       url: '/api/v1/quantumconfig',
       type: 'GET',
       dataType: "json",
@@ -17,15 +17,13 @@ App.Quantum = Ember.Object.extend({
             App.quantum.set('exists', false);
         }
       }
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   },
   upload: function () {
     // Upload quantum file
     var formData = new FormData($('#quantumForm')[0]);
     $('#quantumForm i.loading').removeClass('hide');
-    hash = {
+    return Ember.$.ajax({
       type: 'PUT',
       url: '/api/v1/quantumconfig',
       data: formData,
@@ -60,9 +58,7 @@ App.Quantum = Ember.Object.extend({
       },
       processData: false,
       contentType: false
-    };
-    hash = $.extend(hash, App.ajaxSetup);
-    $.ajax(hash);
+    });
   }
 });
 

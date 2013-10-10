@@ -1,7 +1,7 @@
 // TODO: This is not a real model or controller
 App.Graphs = Ember.Controller.extend({
   graph: function(emberId, entityName, entityType) {
-    hash = {
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName,
       type: 'GET',
       dataType: 'json',
@@ -13,10 +13,7 @@ App.Graphs = Ember.Controller.extend({
           return this.store.find('vm', emberId).set('graphs', numericArray);
         }
       }
-    }
-    hash = $.extend(hash, App.ajaxSetup);
-    return App.ajaxPromise(hash);
+    });
   }
 });
-
 App.graphs = App.Graphs.create();

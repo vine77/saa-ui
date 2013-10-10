@@ -12,15 +12,14 @@ App.Overrides = Ember.Object.extend({
           horizon_host: App.overrides.get('horizonHostIp')
         }
       };
-
-      var ajaxOptions = $.extend({
+      return Ember.$.ajax({
         url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/override',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(dataJson),
         dataType: 'json',
         complete: function (jqXHR, textStatus) {
-          $('#overridesLoading').addClass('hide'); 
+          $('#overridesLoading').addClass('hide');
           if (jqXHR.status == 200) {
             App.event('Successfully updated configuration overrides.', App.SUCCESS);
           } else if (jqXHR.status == 422) {
@@ -30,12 +29,11 @@ App.Overrides = Ember.Object.extend({
             App.event('Error updating configuration overrides.', App.ERROR);
           }
         }
-      }, App.ajaxSetup);
-      $.ajax(ajaxOptions);
+      });
     }
   },
   fetch: function () {
-    var ajaxOptions = $.extend({
+    return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/override',
       type: 'GET',
       dataType: 'json',
@@ -46,8 +44,7 @@ App.Overrides = Ember.Object.extend({
           App.overrides.set('horizonHostIp', overrides.horizon.horizon_host);
         }
       }
-    }, App.ajaxSetup);
-    $.ajax(ajaxOptions);
+    });
   }
 });
 
