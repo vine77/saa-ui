@@ -96,19 +96,17 @@ Ember.Route.reopen({
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   model: function () {
-    var self = this;
-    var promises = [];
-    promises.push(App.mtWilson.check().then(function () {
-      if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
-    }, function () {
-      return new Ember.RSVP.Promise(function (resolve, reject) {
-        resolve();
-      });
-    }));
-    promises.push(this.store.find('node'));
+    var self = this, promises = [];
     promises.push(this.store.find('slo'));
     promises.push(this.store.find('sla'));
     promises.push(this.store.find('flavor'));
+    promises.push(this.store.find('vm'));
+    promises.push(App.mtWilson.check().then(function () {
+      if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
+    }, function () {
+      return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
+    }));
+    promises.push(this.store.find('node'));
     promises.push(this.store.find('user'));
     promises.push(App.nova.check());
     promises.push(App.openrc.check());
@@ -363,9 +361,6 @@ App.TrustMleRoute = Ember.Route.extend({
 
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
-  model: function() {
-    //return App.overrides.fetch();
-  },
   redirect: function () {
     this.transitionTo('settings.upload');
   }
@@ -382,9 +377,11 @@ App.SettingsLogRoute = Ember.Route.extend({
 });
 
 App.SettingsUploadRoute = Ember.Route.extend({
+  /*
   model: function () {
     return App.overrides.fetch();
   }
+  */
 });
 
 App.SettingsMailserverRoute = Ember.Route.extend({
