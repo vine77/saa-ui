@@ -20,7 +20,7 @@
       },
       "cloud_id": "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
       "links": {
-        "nodes": "/api/v1/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+        "nodes": "/api/v1/nodes/6729E52D-18CC-E111-BDEC-001E6750A700",
         "uri": "/api/v1/vms/797bad09-4e6c-4a25-8f85-d84bd94d2c89",
         "logs": "/api/v1/logs?vm=797bad09-4e6c-4a25-8f85-d84bd94d2c89"
       },
@@ -42,10 +42,10 @@
         "memory_size": null,
         "gips_allocated": null
       },
-      "node_name": "novamgmt26",
+      "node_name": "clientnode6",
       "sla_id": null,
       "stack_name": null,
-      "node_id": "97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+      "node_id": "6729E52D-18CC-E111-BDEC-001E6750A700",
       "vm_trust_report_id": null,
       "id": "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
       "contention": {
@@ -78,7 +78,7 @@
       },
       "cloud_id": "e485d7f6-459f-4a65-88d7-734a4da1452b",
       "links": {
-        "nodes": "/api/v1/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+        "nodes": "/api/v1/nodes/6729E52D-18CC-E111-BDEC-001E6750A700",
         "uri": "/api/v1/vms/e485d7f6-459f-4a65-88d7-734a4da1452b",
         "logs": "/api/v1/logs?vm=e485d7f6-459f-4a65-88d7-734a4da1452b"
       },
@@ -100,10 +100,10 @@
         "memory_size": null,
         "gips_allocated": null
       },
-      "node_name": "novamgmt26",
+      "node_name": "clientnode6",
       "sla_id": null,
       "stack_name": null,
-      "node_id": "97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+      "node_id": "6729E52D-18CC-E111-BDEC-001E6750A700",
       "vm_trust_report_id": null,
       "id": "e485d7f6-459f-4a65-88d7-734a4da1452b",
       "contention": {
