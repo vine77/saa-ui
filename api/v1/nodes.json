@@ -56,7 +56,7 @@
         "max": 24069,
         "used": 512
       },
-      "vm_ids": ["797bad09-4e6c-4a25-8f85-d84bd94d2c89", "e485d7f6-459f-4a65-88d7-734a4da1452b"],
+      "vm_ids": ["01d7d658-a78f-48f0-b2ad-e35e4ea07d05", "297a8f5a-ae65-4bab-9ed4-4efd8209774c"],
       "status": {
         "locked": false,
         "agent_version": "1.0.3.196",

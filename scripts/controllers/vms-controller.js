@@ -1,4 +1,5 @@
 App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+  itemController: 'vm',
   columns: ['select', 'health', 'state', 'trusted', 'sla_status', 'noisy', 'name', 'node', 'cpu', 'utilization.gips', 'utilization.ipc', 'utilization.mp10ki', 'actions'],
   filteredModel: function () {
     return this.store.find('vm');
@@ -39,13 +40,6 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
       this.get('model').setEach('isSelected', !isEverythingSelected);
-    },
-    expand: function (model) {
-      if (!model.get('isActive')) {
-          this.transitionToRoute('vmsVm', model);
-        } else {
-          this.transitionToRoute('vms');
-        }
     },
     refresh: function () {
       this.store.find('vm', undefined, true);

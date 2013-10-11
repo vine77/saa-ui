@@ -244,7 +244,7 @@ App.VmsRoute = Ember.Route.extend({
 App.VmsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.controllerFor('nodes').setEach('isExpanded', false);
+    this.controllerFor('vms').setEach('isExpanded', false);
   }
 });
 App.VmsVmRoute = Ember.Route.extend({

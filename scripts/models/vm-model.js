@@ -4,6 +4,28 @@ App.VmSerializer = DS.ActiveModelSerializer.extend({
   }
 });
 
+App.Vm = DS.Model.extend({
+  capabilities: DS.attr(),
+  contention: DS.attr(),
+  floatingIps: DS.attr('array'),
+  fixedIps: DS.attr('array'),
+  macs: DS.attr('array'),
+  name: DS.attr('string'),
+  nodeName: DS.attr('string'),
+  slaName: DS.attr('string'),
+  status: DS.attr(),
+  utilization: DS.attr(),
+
+  // Full Relationships
+  node: DS.belongsTo('node'),
+  vmTrustReport: DS.belongsTo('vmTrustReport'),
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
+  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
+  sla: DS.belongsTo('sla')
+
+});
+
+
 // Embedded records
 /* TODO: Update embedded models
 DS.RESTAdapter.map('vm', {
@@ -36,7 +58,10 @@ DS.RESTAdapter.map('vmContentionSystem', {
 */
 
 
+
+
 // Embedded models
+/*
 App.VmStatus = DS.Model.extend({
   locked: DS.attr('boolean'),
   health: DS.attr('number'),
@@ -105,6 +130,8 @@ App.VmStatus = DS.Model.extend({
     }
   }.property('sla_status', 'sla_message')
 });
+
+
 App.VmStatusTrustDetails = DS.Model.extend({
   bios: DS.attr('string'),
   vmm: DS.attr('string')
@@ -188,68 +215,5 @@ App.VmContentionThreadLlc = DS.Model.extend({
     }
   }.property('value')
 });
+*/
 
-
-App.Vm = DS.Model.extend({
-  // Common Properties
-  isActive: false,
-  isSelected: false,
-  isExpanded: function () {
-    return this.get('isActive');
-  }.property('isActive'),
-
-  isSelectedObserver: function() {
-    if ((this.get('isSelected'))) {
-      App.currentSelections.get('selectedVms').addObject(this);
-    } else {
-      App.currentSelections.get('selectedVms').removeObject(this);
-    }
-    App.contextualGraphs.propertyDidChange('selectedVms');
-    App.currentSelections.propertyDidChange('selectedVms');
-  }.observes('isSelected'),
-
-  graphObserver: function () {
-     return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
-  }.observes('isSelected', 'isExpanded'),
-
-  // Embedded Relationships
-  status: DS.belongsTo('vmStatus'),
-  capabilities: DS.belongsTo('vmCapabilities'),
-  utilization: DS.belongsTo('vmUtilization'),
-  contention: DS.belongsTo('vmContention'),
-
-  // Full Relationships
-  node: DS.belongsTo('node'),
-  vmTrustReport: DS.belongsTo('vmTrustReport'),
-  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
-  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
-  //stack: DS.belongsTo('stack'),
-  sla: DS.belongsTo('sla'),
-
-  didReload: function () {
-    if (this.get('vmTrustReport.isLoaded')) {
-      this.get('vmTrustReport').reload();
-    }
-    if (this.get('vmInstantiationSimple.isLoaded')) {
-      this.get('vmInstantiationSimple').reload();
-    }
-    if (this.get('vmInstantiationDetailed.isLoaded')) {
-      this.get('vmInstantiationDetailed').reload();
-    }
-  },
-
-
-  // Properties from get_all API
-  name: DS.attr('string'),
-  slaName: DS.attr('string'),
-  nodeName: DS.attr('string'),
-  //stackName: DS.attr('string'),
-  macs: DS.attr('array'),
-  floatingIps: DS.attr('array'),
-  fixedIps: DS.attr('array'),
-
-  // Computed properties
-  isOn: function () {
-    return (this.get('status.operational') === App.ON);
-  }.property('status.operational')
-});

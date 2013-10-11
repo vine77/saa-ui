@@ -1,7 +1,7 @@
 <div id="vms" class="container-fluid">
   <div class="row-fluid">
     <div class="content">
-      <div class="treemap"></div>
+      <div class="treemap"></div> 
       <div class="header">
         <div class="global-actions">
           <a {{action renderTreemap}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
@@ -73,6 +73,7 @@
         {{#each group in groupedModel}}
           <tbody>
             {{#each vm in group}}
+
               <tr {{bindAttr class="vm.isSelected vm.isExpanded"}}>
                 <td class="column-small">
                   {{view Ember.Checkbox checkedBinding="vm.isSelected"}}
@@ -114,10 +115,10 @@
                 <td>{{na vm.utilization.ipc}}</td>
                 <td>
                   <div class="contention">
-                    {{#if vm.contention.system.llc.valueExists}}
+                    {{#if vm.contentionValueExists}}
                       <div class="contention-bar">
-                        {{#view App.TooltipView titleBinding="vm.contention.system.llc.contentionMessage" barBinding="vm.contention.system.llc.barWidth"}}
-                          <div class="contention-bar-width" {{bindAttr style="vm.contention.system.llc.barWidth"}} >
+                        {{#view App.TooltipView titleBinding="vm.contentionMessage" barBinding="vm.contentionWidth"}}
+                          <div class="contention-bar-width" {{bindAttr style="vm.contentionWidth"}} >
                             <div class="contention-gradient"> </div>
                           </div>
                         {{/view}}
@@ -148,7 +149,7 @@
                     </div>
                   {{/if}}
                 </td>
-                <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" vm}}><i {{bindAttr class="vm.isActive:icon-minus:icon-plus"}}></i></a></td>
+                <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" vm}}><i {{bindAttr class="vm.isExpanded:icon-minus:icon-plus"}}></i></a></td>
               </tr>
               <tr class="expandable-row">
                 <td colspan="100%">
