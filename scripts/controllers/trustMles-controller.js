@@ -1,18 +1,11 @@
 App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  columns: ['mleType', 'name', 'oemname', 'attestationType', 'osname', 'version', 'osversion'],
+  itemController: 'trustMle',
+  columns: ['name', 'mleType', 'oemname', 'attestationType', 'osname', 'version', 'osversion'],
   filteredModel: function () {
     return this.store.find('trustMle');
   }.property('model.@each'),
   filterProperties: ['name', 'version', 'attestationType', 'mleType', 'osname', 'oemname'],
   actions: {
-    expand: function (model) {
-      if (!model.get('isActive')) {
-        //model.set('isActive', true);
-        this.transitionToRoute('trust.mle', model);
-      } else {
-        this.transitionToRoute('trust.mles');
-      }
-    },
     deleteMle: function (mle) {
       this.store.find('trustNode').then(function() { //updating all trust nodes
         //check if any nodes are registered anywhere with this mle ...

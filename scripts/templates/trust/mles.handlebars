@@ -1,14 +1,14 @@
-<div id="whitelist" class="container-fluid">
+<div id="mles" class="container-fluid">
   <div class="row-fluid">
     <div class="content">
       <table class="table table-bordered">
         <thead>
           <tr>
             <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "mleType"}}>MLE Type</a>
+              <a {{action "sortModel" "name"}}>Name</a>
             </th>
             <th {{bindAttr class=":sortable isColumn2Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "name"}}>Name</a>
+              <a {{action "sortModel" "mleType"}}>MLE Type</a>
             </th>
             <th {{bindAttr class=":sortable isColumn3Sorted:sorted sortAscending"}}>
               <a {{action "sortModel" "oemname"}}>
@@ -41,8 +41,8 @@
           {{#if model}}
             {{#each mle in controller}}
                <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
+                <td><a {{action "expand" mle}}>{{na mle.name}}</a></td>
                 <td>{{na mle.mleType}}</td>
-                <td>{{na mle.name}}</td>
                 <td>{{na mle.oemname}}</td>
                 <td>{{na mle.attestationType}}</td>
                 <td>{{na mle.osname}}</td>
@@ -53,7 +53,7 @@
                 </td>
                 <td class="column-small">
                   <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
-                    <i {{bindAttr class="mle.isActive:icon-minus:icon-plus"}}></i>
+                    <i {{bindAttr class="mle.isExpanded:icon-minus:icon-plus"}}></i>
                   </a>
                 </td>
               </tr>
@@ -82,7 +82,7 @@
                             <div class="alert alert-info">No trust nodes found.</div>
                           {{/unless}}
                         {{/if}}
-                      </div>                      
+                      </div>
                       <div class="tab-pane manifest">
                         {{#if mle.mleManifests}}
                           <table class="table table-bordered">

@@ -1,37 +1,16 @@
-App.TrustMleSerializer = DS.ActiveModelSerializer.extend({
-  attrs: {
-    mleManifests: {embedded: 'always'}
-  }
-});
-
 App.TrustMle = DS.Model.extend({
-  isActive: false,
-  isSelected: false,
-  isExpanded: function () {
-    return this.get('isActive');
-  }.property('isActive'),
-
+  attestationType: DS.attr('string'),
+  description: DS.attr('string'),
+  mleManifests: DS.attr('string'),
+  mleManifests: DS.attr(),
   mleType: DS.attr('string'),
   name: DS.attr('string'),
   oemname: DS.attr('string'),
-  attestationType: DS.attr('string'),
   osname: DS.attr('string'),
-  version: DS.attr('string'),
   osversion: DS.attr('string'),
-  mleManifests: DS.attr('string'),
-  description: DS.attr('string'),
+  version: DS.attr('string'),
 
-  //Embedded Relationships
-  mleManifests: DS.hasMany('trustMleManifest'),
-
-  //Full Relationships
-  trustNode: DS.hasMany('trustNode'),
-
-  //Temporary relationship, only used for creation of mles ...
-  node: DS.belongsTo('node')
-});
-
-App.TrustMleManifest = DS.Model.extend({
-  name: DS.attr('string'),
-  value: DS.attr('string')
+  // Full Relationships
+  trustNode: DS.hasMany('trustNode', {async: true}),
+  node: DS.belongsTo('node', {async: true})  // Only used in MLE creation
 });

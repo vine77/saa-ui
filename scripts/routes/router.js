@@ -332,30 +332,18 @@ App.TrustMlesRoute = Ember.Route.extend({
     return this.store.find('trustMle', undefined, true);
   }
 });
-
 App.TrustMlesIndexRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('trustMle', undefined, true);
-  },
   setupController: function (controller, model) {
     this._super(controller, model);
-    if (App.mtWilson.get('isInstalled') === true) {
-      this.store.find('trustNode', undefined, true).then(function() {
-        controller.set('model', this.store.all('trustMle'));
-      });
-      this.store.all('trustMle').setEach('isActive', false);
-    }
+    this.controllerFor('trustMles').setEach('isExpanded', false);
   }
 });
-
 App.TrustMleRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    if (App.mtWilson.get('isInstalled') === true) {
-      model.reload();
-      this.store.all('trustMle').setEach('isActive', false);
-      model.set('isActive', true);
-    }
+    model.reload();
+    this.controllerFor('trustMles').setEach('isExpanded', false);
+    this.controllerFor('trustMles').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
 
