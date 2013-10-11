@@ -46,6 +46,12 @@ App.Filterable = Ember.Mixin.create({
 App.Sortable = Ember.Mixin.create({
   columns: [],
   sortIndex: 0,
+  sortProperty: 'name',
+  sortProperties: function () {
+    return [this.get('sortProperty')];
+  }.property('sortProperty'),
+  sortAscending: true,
+  sortFunction: App.naturalSort,
   actions: {
     sortModel: function (column) {
       var controller = this;
@@ -55,9 +61,13 @@ App.Sortable = Ember.Mixin.create({
           controller.set('sortIndex', index);
         }
       });
-      var isDifferentColumn = !this.get('sortProperties') || this.get('sortProperties')[0] !== column;
-      this.set('sortProperties', [column]);
-      this.set('sortAscending', (isDifferentColumn) ? true : !this.get('sortAscending'));
+      var isDifferentColumn = !this.get('sortProperty') || this.get('sortProperty') !== column;
+      if (isDifferentColumn) {
+        this.set('sortProperty', column);
+        this.set('sortAscending', true);
+      } else {
+        this.set('sortAscending', !this.get('sortAscending'));
+      }
       this.get('columns').forEach(function (item, index, array) {
         controller.set('isColumn' + (index + 1) + 'Sorted', false);
       });
