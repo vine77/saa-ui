@@ -116,6 +116,13 @@ App.ApplicationRoute = Ember.Route.extend({
     promises.push(App.settingsLog.fetch());
     return Ember.RSVP.all(promises);
   },
+  setupController: function () {
+    // Set models for controllers on app load (before transitioning to their routes)
+    this.controllerFor('slas').set('model', this.store.all('sla'));
+    this.controllerFor('flavors').set('model', this.store.all('flavor'));
+    this.controllerFor('vms').set('model', this.store.all('vm'));
+    this.controllerFor('nodes').set('model', this.store.all('node'));
+  },
   actions: {
     logout: function() {
       // TODO: Migrate Sunil's authentication code
