@@ -33,56 +33,9 @@
         <thead>
           <tr>
             <th class="column-small"><a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a></th>
-            <th {{bindAttr class=":column-small :sortable isColumn2Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Health"}}
-                <a {{action "sortModel" "health"}}><i class="icon-stethoscope icon-large"></i></a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":column-small :sortable isColumn3Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Operational State"}}
-                <a {{action "sortModel" "state"}}><i class="icon-off icon-large"></i></a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":column-small :sortable isColumn4Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Trust Status"}}
-                <a {{action "sortModel" "status.trust"}}><i class="icon-lock icon-large"></i></a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":column-small :sortable isColumn5Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Assured"}}
-                <a {{action "sortModel" "isAssured"}}><i class="icon-trophy icon-large"></i></a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":sortable isColumn6Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "name"}}>Hostname</a>
-            </th>
-            <th {{bindAttr class=":sortable isColumn7Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "vmInfo.count"}}># of VMs</a>
-            </th>
-            <th {{bindAttr class=":sortable isColumn8Sorted:sorted sortAscending"}}>
-              <a {{action "sortModel" "cpuFrequency"}}>CPU</a>
-            </th>
-            <th {{bindAttr class=":sortable isColumn9Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="The SAM Unit (SU) is a measure of compute consumption of the host server"}}
-                <a {{action "sortModel" "utilization.gips_current"}}>SU</a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":sortable isColumn10Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="CPU instructions per cycle"}}
-                <a {{action "sortModel" "utilization.ipc"}}>Throughput</a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":sortable isColumn11Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="Memory utilization"}}
-                <a {{action "sortModel" "utilization.memory"}}>Memory</a>
-              {{/view}}
-            </th>
-            <th {{bindAttr class=":sortable isColumn12Sorted:sorted sortAscending"}}>
-              {{#view App.TooltipView title="LLC Cache Contention"}}
-                <a {{action "sortModel" "contention.system.llc.value"}}>Contention</a>
-              {{/view}}
-            </th>
-            <th>Actions</th>
+            {{#each columns}}
+              {{partial columnHeader}}
+            {{/each}}
             <th class="column-small">
               <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh content.isUpdating:icon-spin content.isUpdating:disabled"}}></i></a>
             </th>
@@ -97,14 +50,20 @@
                 {{/if}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="healthMessage"}}
-                  {{healthIcon status.health}}
+                {{#view App.TooltipView titleBinding="servicesMessage"}}
+                  <img {{bindAttr src="nodeTypeLink"}}>
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="operationalMessage"}}
-                  {{operationalIcon status.operational}}
-                {{/view}}
+                {{#if isHealthy}}
+                  {{#view App.TooltipView titleBinding="operationalMessage"}}
+                    {{operationalIcon status.operational}}
+                  {{/view}}
+                {{else}}
+                  {{#view App.TooltipView titleBinding="healthMessage"}}
+                    {{healthIcon status.health}}
+                  {{/view}}
+                {{/if}}
               </td>
               <td class="column-small">
                 {{#if isTrustRegistered}}

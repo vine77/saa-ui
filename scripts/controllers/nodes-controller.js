@@ -1,11 +1,53 @@
+App.NodesColumnsController = Ember.ArrayController.extend(App.ColumnsController, {
+  content: [{
+    description: 'Services',
+    sortBy: 'nodeType',
+    icon: 'icon-cloud'
+  }, {
+    description: 'State (Health/Operational State)',
+    sortBy: 'state',
+    icon: 'icon-off'
+  }, {
+    description: 'Trust Status',
+    sortBy: 'isTrusted',
+    icon: 'icon-lock'
+  }, {
+    description: 'Assured',
+    sortBy: 'isAssured',
+    icon: 'icon-trophy'
+  }, {
+    title: 'Hostname',
+    sortBy: 'name'
+  }, {
+    title: '# of VMs',
+    sortBy: 'vmInfo.count'
+  }, {
+    title: 'CPU',
+    sortBy: 'capabilities.cpu_frequency'
+  }, {
+    title: 'SU',
+    description: 'The SAM Unit (SU) is a measure of compute consumption of the host server',
+    sortBy: 'utilization.gips_current'
+  }, {
+    title: 'Throughput',
+    description: 'CPU instructions per cycle',
+    sortBy: 'utilization.ipc'
+  }, {
+    title: 'Memory',
+    description: 'Memory utilization',
+    sortBy: 'utilization.memory'
+  }, {
+    title: 'Contention',
+    description: 'LLC cache contention',
+    sortBy: 'contention.system.llc.value'
+  }, {
+    title: 'Actions'
+  }]
+});
+
 App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   itemController: 'node',
-
-  columns: ['select', 'health', 'state', 'status.trust', 'isTrustRegistered', 'name', 'vmInfo.count', 'cpuFrequency', 'utilization.gips_current','utilization.ipc','utilization.memory'],
-  filteredModel: function () {
-    return this.store.find('node');
-  }.property('model'),
-  filterProperties: ['name'],
+  sortProperty: 'name',
   multipleNodesAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),

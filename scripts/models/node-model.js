@@ -21,6 +21,11 @@ App.Node = DS.Model.extend({
   vcpus: DS.attr(),
   vmInfo: DS.attr(),
 
+  // Computed properties for sorting
+  state: function () {
+    return this.get('status.health') + '.' + this.get('status.operational');
+  }.property('status.health', 'status.operational'),
+
   // Relationships
   vms: DS.hasMany('vm', {async: true}),
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),

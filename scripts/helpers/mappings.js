@@ -273,6 +273,14 @@ App.operationalToIconClass = function (code) {
   }
 };
 
+App.overallHealth = function (health, operational) {
+  if (health === App.SUCCESS) {
+    return App.codeToOperational(operational);
+  } else {
+    return App.priorityToType(health);
+  }
+};
+
 /**
  * Convert logTime labels to corresponding seconds used by Kibana
  *
