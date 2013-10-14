@@ -331,11 +331,22 @@ App.errorMessage = function (response, separator) {
   }
 };
 
-/*
- * Natural Sort algorithm for Javascript - Version 0.7 - Released under MIT license
- * Author: Jim Palmer (based on chunking idea from Dave Koelle)
+/**
+ * Sort two inputs
+ *
+ * @param {string|number|boolean} a
+ * @param {string|number|boolean} b
+ * @returns {number} -1 if a < b, 0 if a == b, or 1 if a > b
  */
  App.naturalSort = function (a, b) {
+  // Sort undefined/null as less than non-undefined/non-null
+  if (a === undefined || a === null) {
+    return (b === undefined || b === null) ? 0 : -1;
+  } else if (b === undefined || b === null) {
+    return 1;
+  }
+  // Natural Sort algorithm for Javascript - Version 0.7 - Released under MIT license
+  // Author: Jim Palmer (based on chunking idea from Dave Koelle)
   var insensitive = true;
   var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
     sre = /(^[ ]*|[ ]*$)/g,
