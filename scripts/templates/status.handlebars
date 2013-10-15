@@ -1,19 +1,21 @@
-{{#if connected}}
-  {{#if statusErrorMessages}}
+{{#if showStatus}}
+  {{#if connected}}
+    {{#if statusErrorMessages}}
+      <div class="notification-top">
+        <div {{bindAttr class=":alert statusClass"}}>
+          <ul>
+            {{#each statusErrorMessages}}
+              <li>{{message}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/if}}
+  {{else}}
     <div class="notification-top">
-      <div {{bindAttr class=":alert statusClass"}}>
-        <ul>
-          {{#each statusErrorMessages}}
-            <li>{{message}}</li>
-          {{/each}}
-        </ul>
+      <div class="alert">
+        Error: API connectivity has been lost.
       </div>
     </div>
   {{/if}}
-{{else}}
-  <div class="notification-top">
-    <div class="alert">
-      Error: API connectivity has been lost.
-    </div>
-  </div>
-{{/if}}
+{{/unless}}

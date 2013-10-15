@@ -1,6 +1,11 @@
 App.StatusController = Ember.ObjectController.extend({
+  needs: ['application'],
   // Properties
   connected: false,
+  isUpdating: true,
+  showStatus: function () {
+    return !this.get('isUpdating') && this.get('controllers.application.loggedIn');
+  }.property('isUpdating', 'controllers.application.loggedIn'),
   statusErrorMessages: function () {
     var statusMessages = this.get('model.messages');
     return (!statusMessages) ? undefined : statusMessages.filter(function (item, index, enumerable) {
@@ -20,6 +25,7 @@ App.StatusController = Ember.ObjectController.extend({
       return this.store.find('status', 'current').then(function (status) {
         self.set('model', status);
         self.set('connected', true);
+        self.set('isUpdating', false);
       }, function (error) {
         self.set('connected', false);
         return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });

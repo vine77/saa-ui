@@ -37,6 +37,9 @@ DS.RESTSingletonDefinitionsAdapter = DS.RESTSingletonAdapter.extend({
   namespace: 'definitions'
 });
 
+Ember.Inflector.inflector.uncountable('vm_instantiation_simple');
+Ember.Inflector.inflector.uncountable('vm_instantiation_detailed');
+
 // Add additional Ember Data types
 App.ArrayTransform = DS.Transform.extend({
   serialize: function(value) {
@@ -157,16 +160,6 @@ DS.RESTAdapter.registerTransform('array', {
   deserialize: function(value) {
     return value;
   }
-});
-
-// Configure pluralizations
-DS.RESTAdapter.configure('plurals', {
-  build: 'build',
-  connectivity: 'connectivity',
-  vm_instantiation_simple: 'vm_instantiation_simple',
-  vm_instantiation_detailed: 'vm_instantiation_detailed',
-  status: 'status',
-  logs: 'logs'
 });
 
 // RESTConfigAdapter for nested configuration namespace

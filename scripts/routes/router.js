@@ -49,50 +49,6 @@ App.Router.map(function () {
   });
 });
 
-// TODO: Migrate Sunil's authentication code
-/*
-Ember.Route.reopen({
-  activate: function () {
-    var route = this;
-    var currentRoute = this.get('routeName');
-    var noauth = ['login', 'profile', 'tempPassword']
-    if ($.inArray(currentRoute, noauth) == -1) {
-      if ((currentRoute != 'application') && (currentRoute != 'index')) {
-        var context = this.get('context');
-        App.state.set('route', currentRoute);
-        App.state.set('context', context);
-      }
-
-      // Not using 'isLoaded'. On error, the state is reset to 'loaded.saved' (from modelhelper).
-      // Hence isLoaded may be misleading.
-      var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) || App.session.get('bypass') : false;
-
-      if (!isLoaded) {
-        // Load current session
-        var initAndLoad = function(model, controller, route) {
-          App.state.set('loggedIn', true);
-          route.controllerFor('application').initModels().then(function () {
-            route.transitionTo('index');
-          }, function () {
-            route.transitionTo('index');
-          });
-        };
-        var unloadModel = function(model, controller, route) {
-          model.unloadRecord();
-        };
-        App.session = this.store.find('session', 'current_session');
-        var handlers = {
-          'didLoad' : {postFun:initAndLoad},
-          'becameError' : {postFun:unloadModel, nextRoute:'login', resetState:true}
-        };
-        App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
-      }
-    }
-    this._super();
-  }
-});
-*/
-
 // Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
 App.EnabledRoute = Ember.Route.extend({
   beforeModel: function () {
@@ -100,45 +56,52 @@ App.EnabledRoute = Ember.Route.extend({
   }
 });
 
+// Loading route (when ajax requests are out)
+App.LoadingRoute = Ember.Route.extend();
+
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   model: function () {
     var self = this;
     return this.controllerFor('status').updateCurrentStatus().then(function () {
       // Status API has responded
+      console.log('Status API has responded');
       return App.nova.check().then(function () {
         // SAM is configured
-        return Ember.RSVP.all([
-          self.store.find('slo'),
-          self.store.find('sla'),
-          self.store.find('flavor'),
-          self.store.find('vm'),
-          App.mtWilson.check().then(function () {
-            if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
-          }, function () {
-            return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
-          }),
-          self.store.find('node'),
-          self.store.find('user'),
-          App.openrc.check(),
-          App.quantum.check(),
-          App.network.check(),
-          App.build.find(),
-          App.settingsLog.fetch()
-        ]);
+        console.log('SAM is configured');
+        self.store.find('slo');
+        self.store.find('sla');
+        self.store.find('flavor');
+        self.store.find('vm');
+        App.mtWilson.check().then(function () {
+          if (App.mtWilson.get('isInstalled')) {
+            self.store.find('trustNode');
+            self.store.find('node');
+          } else {
+            self.store.find('node');
+          }
+        }, function () {
+          self.store.find('node');
+        }),
+        self.store.find('user');
+        App.openrc.check();
+        App.quantum.check();
+        App.network.check();
+        App.build.find();
+        App.settingsLog.fetch();
       }, function () {
         // SAM is not configured
-        return Ember.RSVP.all([
-          self.store.find('user'),
-          App.openrc.check(),
-          App.quantum.check(),
-          App.network.check(),
-          App.build.find(),
-          App.settingsLog.fetch()
-        ]);
+        console.log('SAM is not configured');
+        self.store.find('user');
+        App.openrc.check();
+        App.quantum.check();
+        App.network.check();
+        App.build.find();
+        App.settingsLog.fetch();
       });
     }, function () {
       // Status API is not responding
+      console.log('Status API is not responding');
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
       if (confirmed) {
         location.reload();
@@ -422,3 +385,47 @@ App.SettingsMailserverRoute = Ember.Route.extend({
     }
   }
 });
+
+// TODO: Migrate Sunil's authentication code
+/*
+Ember.Route.reopen({
+  activate: function () {
+    var route = this;
+    var currentRoute = this.get('routeName');
+    var noauth = ['login', 'profile', 'tempPassword']
+    if ($.inArray(currentRoute, noauth) == -1) {
+      if ((currentRoute != 'application') && (currentRoute != 'index')) {
+        var context = this.get('context');
+        App.state.set('route', currentRoute);
+        App.state.set('context', context);
+      }
+
+      // Not using 'isLoaded'. On error, the state is reset to 'loaded.saved' (from modelhelper).
+      // Hence isLoaded may be misleading.
+      var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) || App.session.get('bypass') : false;
+
+      if (!isLoaded) {
+        // Load current session
+        var initAndLoad = function(model, controller, route) {
+          App.state.set('loggedIn', true);
+          route.controllerFor('application').initModels().then(function () {
+            route.transitionTo('index');
+          }, function () {
+            route.transitionTo('index');
+          });
+        };
+        var unloadModel = function(model, controller, route) {
+          model.unloadRecord();
+        };
+        App.session = this.store.find('session', 'current_session');
+        var handlers = {
+          'didLoad' : {postFun:initAndLoad},
+          'becameError' : {postFun:unloadModel, nextRoute:'login', resetState:true}
+        };
+        App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
+      }
+    }
+    this._super();
+  }
+});
+*/
