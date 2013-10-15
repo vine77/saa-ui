@@ -24,10 +24,6 @@ DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
   // Remove ID from this singleton resource
   buildURL: function (type, id) {
     return this._super(type);
-  },
-  // Override the `pathForType` method with non-pluralized API endpoint
-  pathForType: function(type) {
-    return Ember.String.decamelize(type);
   }
 });
 // TODO: Use RESTSingletonSerializer for other singleton models
@@ -45,7 +41,7 @@ DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend({
 });
 
 // RESTDefinitionsAdapter
-DS.RESTDefinitionsAdapter = DS.RESTSingletonAdapter.extend({
+DS.RESTSingletonDefinitionsAdapter = DS.RESTSingletonAdapter.extend({
   namespace: 'definitions'
 });
 
