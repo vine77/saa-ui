@@ -147,7 +147,6 @@ App.ApplicationRoute = Ember.Route.extend({
     });
   },
   setupController: function (controller, model) {
-    store = this.store;
     if (controller.get('isEnabled')) {
       // Set models for these controllers on app load (instead of waiting for route transitions)
       this.controllerFor('slas').set('model', this.store.all('sla'));

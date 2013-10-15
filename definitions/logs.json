@@ -1,5 +1,6 @@
 {
-  "logs": {
+  "logs": [{
+    "id": "current",
     "categories": [
       {"name":"agent"},
       {"name":"apache-error"},
@@ -36,5 +37,5 @@
       {"name":"trust-agent"},
       {"name":"trust-server"}
     ]
-  }
+  }]
 }

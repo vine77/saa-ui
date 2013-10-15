@@ -1,6 +1,4 @@
 App.StatusAdapter = DS.RESTSingletonAdapter.extend();
-App.StatusSerializer = DS.RESTSingletonSerializer.extend();
-
 
 App.Status = DS.Model.extend({
   health: DS.attr('number'),

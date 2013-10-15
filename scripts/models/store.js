@@ -26,14 +26,6 @@ DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
     return this._super(type);
   }
 });
-// TODO: Use RESTSingletonSerializer for other singleton models
-DS.RESTSingletonSerializer = App.ApplicationSerializer.extend({
-  // Manually inject ID with requested ID if it doesn't exist in payload
-  extractSingle: function(store, primaryType, payload, recordId, requestType) {
-    if (!payload[Object.keys(payload)[0]].id) payload[Object.keys(payload)[0]].id = recordId;
-    return this._super(store, primaryType, payload, recordId, requestType);
-  }
-});
 
 // RESTSingletonConfigAdapter for singleton resources in configuration namespace
 DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend({

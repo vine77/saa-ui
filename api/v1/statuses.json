@@ -1,5 +1,6 @@
 {
-  "status": {
+  "statuses": [{
+    "id": "current",
     "messages": [
       {
         "message": "Database is configured.",
@@ -25,5 +26,5 @@
     "version": "1.0.3.48",
     "health": 3,
     "master": 0
-  }
+  }]
 }
