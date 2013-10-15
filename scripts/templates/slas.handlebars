@@ -18,27 +18,26 @@
       <table class="table table-bordered expandable">
         <thead>
           <tr>
-            <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}><a {{action sortModel "name"}}>SLA Name</a></th>
-            <th {{bindAttr class=":column-medium :sortable isColumn2Sorted:sorted sortAscending"}}><a {{action sortModel "numberOfSlos"}}># of SLOs</a></th>
-            <th {{bindAttr class=":column-large :sortable isColumn3Sorted:sorted sortAscending"}}><a {{action sortModel "sloTypes"}}>SLO Types</a></th>
-            <th class="column-medium">Actions</th>
+            {{#each columns}}
+              {{partial columnHeader}}
+            {{/each}}
             <th class="column-small">
-              <a {{action refresh}} class="btn btn-mini"><i class="icon-refresh"></i></a>
+              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
         <tbody>
-          {{#each sla in controller}}
-            <tr {{bindAttr class="sla.isSelected sla.isExpanded"}}>
-              <td><a {{action expand sla}}>{{sla.name}}</a></td>
-              <td class="column-medium">{{sla.numberOfSlos}}</td>
-              <td class="column-large">{{sla.sloTypes}}</td>
+          {{#each}}
+            <tr {{bindAttr class="isSelected isExpanded"}}>
+              <td><a {{action expand this}}>{{name}}</a></td>
+              <td class="column-medium">{{slos.length}}</td>
+              <td class="column-large">{{sloTypes}}</td>
               <td class="column-medium">
                 {{#view App.TooltipView title="Not available in Beta API" class="inline-block"}}
                   <a class="btn btn-mini disabled"><i class="icon-pencil"></i> Edit</a>
                 {{/view}}
               </td>
-              <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand sla}}><i {{bindAttr class="sla.isActive:icon-minus:icon-plus"}}></i></a></td>
+              <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
             </tr>
             <tr class="expandable-row">
               <td colspan="100%">
@@ -49,7 +48,7 @@
                   <div class="tab-content">
                     <div class="tab-pane details active">
                       <ul>
-                        {{#each slo in sla.slos}}
+                        {{#each slo in slos}}
                           <li>{{slo.description}}</li>
                         {{else}}
                           <li>No SLOs</li>
@@ -58,6 +57,14 @@
                     </div>
                   </div>
                 </div>
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="100%">
+                {{#unless model.isUpdating}}
+                  <div class="alert alert-info">No SLAs found.</div>
+                {{/unless}}
               </td>
             </tr>
           {{/each}}

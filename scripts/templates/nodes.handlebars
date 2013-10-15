@@ -37,7 +37,7 @@
               {{partial columnHeader}}
             {{/each}}
             <th class="column-small">
-              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh content.isUpdating:icon-spin content.isUpdating:disabled"}}></i></a>
+              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
@@ -301,7 +301,7 @@
                           {{/each}}
                         </table>
                       {{else}}
-                        {{#unless content.isUpdating}}
+                        {{#unless model.isUpdating}}
                           <div class="alert alert-info">No attestations found.</div>
                         {{/unless}}
                       {{/if}}
@@ -331,7 +331,7 @@
                           {{/each}}
                         </table>
                       {{else}}
-                        {{#unless content.isUpdating}}
+                        {{#unless model.isUpdating}}
                           <div class="alert alert-info">No MLEs found.</div>
                         {{/unless}}
                       {{/if}}
@@ -380,7 +380,7 @@
                           {{/each}}
                         </table>
                       {{else}}
-                        {{#unless content.isUpdating}}
+                        {{#unless model.isUpdating}}
                           <div class="alert alert-info">No PCR Logs found.</div>
                         {{/unless}}
                       {{/if}}
@@ -392,7 +392,7 @@
           {{else}}
             <tr>
               <td colspan="100%">
-                {{#unless content.isUpdating}}
+                {{#unless model.isUpdating}}
                   <div class="alert alert-info">No nodes found.</div>
                 {{/unless}}
               </td>

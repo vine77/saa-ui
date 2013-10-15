@@ -47,14 +47,16 @@ App.Sortable = Ember.Mixin.create({
   self: function () {
     var name = this.constructor.toString().split('.')[1];
     if (name.indexOf('Controller') === -1) throw new Error('Name of controller extended by Mixin must end with "Controller"');
-    return name.slice(0, name.indexOf('Controller')).toLowerCase();
+    return name.slice(0, name.indexOf('Controller')).camelize();
   }.property(),
   needs: function () {
     var needs = this._super() || [];
     needs.push(this.get('self') + 'Columns');
     return needs;
-  }.property(),
-  columns: Ember.computed.alias('controllers.nodesColumns'),
+  }.property('self'),
+  columns: function () {
+    return this.get('controllers.' + this.get('self') + 'Columns');
+  }.property('self'),
   sortProperty: null,
   sortProperties: function () {
     return (!this.get('sortProperty')) ? null : [this.get('sortProperty')];
@@ -82,13 +84,13 @@ App.Sortable = Ember.Mixin.create({
  * Note: Must be conventionally named with "ColumnsController" appended to the "parent" controller name,
  * e.g. NodesColumnsController if "parent" is NodesColumnsController
  */
-App.ColumnsController = Ember.Mixin.create({
+App.ColumnsController = Ember.ArrayController.extend({
   init: function () {
     this._super();
     var self = this;
     // Generate an itemController for this ArrayController using conventional naming
     App[self.get('parent').capitalize() + 'ColumnController'] = Ember.ObjectController.extend({
-      needs: self.get('parent'),
+      needs: [self.get('parent')],
       isSorted: function () {
         return this.get('sortBy') === this.get('controllers.' + self.get('parent') + '.sortProperty');
       }.property('sortBy', 'controllers.' + self.get('parent') + '.sortProperty')
@@ -97,16 +99,19 @@ App.ColumnsController = Ember.Mixin.create({
   parent: function () {
     var name = this.constructor.toString().split('.')[1];
     if (name.indexOf('ColumnsController') === -1) throw new Error('Name of controller extended by Mixin must end with "ColumnsController"');
-    return name.slice(0, name.indexOf('ColumnsController')).toLowerCase();
+    return name.slice(0, name.indexOf('ColumnsController')).camelize();
   }.property(),
   needs: function () {
     var needs = this._super() || [];
     needs.push(this.get('parent'));
     return needs;
-  }.property(),
+  }.property('parent'),
   itemController: function () {
     return this.get('parent') + 'Column';
-  }.property(),
+  }.property('parent'),
+  tableController: function () {
+    return this.get('controllers.' + this.get('parent'));
+  }.property('parent'),
   actions: {
     sort: function (column) {
       var parent = this.get('controllers.' + this.get('parent'));

@@ -278,14 +278,14 @@ App.FlavorsRoute = Ember.Route.extend({
 App.FlavorsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('flavor').setEach('isActive', false);
+    this.controllerFor('flavors').setEach('isExpanded', false);
   }
 });
 App.FlavorRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('flavor').setEach('isActive', false);
-    model.set('isActive', true);
+    this.controllerFor('flavors').setEach('isExpanded', false);
+    this.controllerFor('flavors').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
 App.FlavorsCreateRoute = Ember.Route.extend({
@@ -309,14 +309,14 @@ App.SlasRoute = Ember.Route.extend({
 App.SlasIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('sla').setEach('isActive', false);
+    this.controllerFor('slas').setEach('isExpanded', false);
   }
 });
 App.SlaRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
-    this.store.all('sla').setEach('isActive', false);
-    model.set('isActive', true);
+    this.controllerFor('slas').setEach('isExpanded', false);
+    this.controllerFor('slas').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
 

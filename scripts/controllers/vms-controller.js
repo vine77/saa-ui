@@ -1,6 +1,51 @@
+App.VmsColumnsController = App.ColumnsController.extend({
+  content: [{
+    description: 'State (Health/Operational State)',
+    sortBy: 'state',
+    icon: 'icon-off'
+  }, {
+    description: 'Trust Status',
+    sortBy: 'isTrusted',
+    icon: 'icon-lock'
+  }, {
+    description: 'SLA Status',
+    sortBy: 'status.sla_status',
+    icon: 'icon-trophy'
+  }, {
+    title: 'VM Name',
+    sortBy: 'name'
+  }, {
+    title: 'Hostname',
+    sortBy: 'nodeName'
+  }, {
+    title: 'vCPUs',
+    sortBy: 'capabilities.cores'
+  }, {
+    title: 'SU',
+    description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
+    sortBy: 'utilization.gips_current'
+  }, {
+    title: 'Throughput',
+    description: 'CPU instructions per cycle',
+    sortBy: 'utilization.ipc'
+  }, {
+    title: 'Memory',
+    description: 'Memory utilization',
+    sortBy: 'utilization.memory'
+  }, {
+    title: 'Contention',
+    description: 'LLC cache contention',
+    sortBy: 'contention.system.llc.value'
+  }, {
+    title: 'Actions'
+  }]
+});
+
+
 App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   itemController: 'vm',
-  columns: ['select', 'health', 'state', 'trusted', 'sla_status', 'noisy', 'name', 'node', 'cpu', 'utilization.gips', 'utilization.ipc', 'utilization.mp10ki', 'actions'],
+  sortProperty: 'name',
+  /*
   filteredModel: function () {
     return this.store.find('vm');
   }.property('model.@each'),
@@ -26,6 +71,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       return [this];
     }
   }.property('model.@each', 'sortProperties', 'sortAscending'),
+  */
   multipleVmsAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
@@ -125,7 +171,6 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       this.treemapData = json;
 
       // Draw treemap
-      console.log('Drawing treemap...');
       var treemap = d3.layout.treemap()
         .sticky(true)
         .size([$('.treemap').width(), 200])

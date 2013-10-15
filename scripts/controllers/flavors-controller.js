@@ -1,16 +1,27 @@
+App.FlavorsColumnsController = App.ColumnsController.extend({
+  content: [{
+    title: 'Flavor Name',
+    sortBy: 'name'
+  }, {
+    title: '# of VMs',
+    sortBy: 'vms.length'
+  }, {
+    title: 'SLA',
+    sortBy: 'sla.name'
+  }, {
+    title: 'Actions'
+  }]
+});
+
 App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  columns: ['name', 'numberOfVms', 'sla', 'actions', 'expand'],
-  filteredModel: function () {
-    return this.store.find('flavor');
-  }.property('model.@each'),
-  filterProperties: ['name'],
+  sortProperty: 'name',
   actions: {
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
       this.get('model').setEach('isSelected', !isEverythingSelected);
     },
     expand: function (model) {
-      if (!model.get('isActive')) {
+      if (!model.get('isExpanded')) {
         this.transitionToRoute('flavor', model);
       } else {
         this.transitionToRoute('flavors');

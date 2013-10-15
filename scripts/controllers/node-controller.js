@@ -56,6 +56,7 @@ App.NodeController = Ember.ObjectController.extend({
     return '/images/nodes/' + this.get('nodeType') + '.svg';
   }.property('nodeType'),
   servicesMessage: function () {
+    if (!this.get('cloudServices')) return null;
     return '<strong>Services:</strong><br>' + this.get('cloudServices').map(function (item, index, enumerable) {
       return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
     }).join('<br>');

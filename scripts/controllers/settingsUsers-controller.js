@@ -1,7 +1,7 @@
-App.SettingsUsersController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+App.SettingsUsersController = Ember.ArrayController.extend({
  // sortProperties: ['name'],
   columns: ['username'],
-  
+
   editProfile: function(user) {
     this.transitionToRoute('profile');
   },
@@ -9,5 +9,5 @@ App.SettingsUsersController = Ember.ArrayController.extend(App.Filterable, App.S
   count: function() {
     return this.get('length');
   }.property('model.@each'),
-       
+
 });

@@ -16,34 +16,33 @@
       <table class="table table-bordered expandable">
         <thead>
           <tr>
-            <th {{bindAttr class=":sortable isColumn1Sorted:sorted sortAscending"}}><a {{action sortModel "name"}}>Flavor Name</a></th>
-            <th {{bindAttr class=":column-medium :sortable isColumn2Sorted:sorted sortAscending"}}><a {{action sortModel "numberOfVms"}}># of VMs</a></th>
-            <th {{bindAttr class=":column-large :sortable isColumn3Sorted:sorted sortAscending"}}><a {{action sortModel "sla"}}>SLA</a></th>
-            <th class="column-medium">Actions</th>
+            {{#each columns}}
+              {{partial columnHeader}}
+            {{/each}}
             <th class="column-small">
-              <a {{action refresh}} class="btn btn-mini"><i class="icon-refresh"></i></a>
+              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
         <tbody>
-          {{#each flavor in controller}}
-            <tr {{bindAttr class="flavor.isSelected flavor.isExpanded"}}>
-              <td><a {{action expand flavor}}> {{flavor.name}} </a></td>
-              <td class="column-medium">{{flavor.numberOfVms}}</td>
+          {{#each}}
+            <tr {{bindAttr class="isSelected isExpanded"}}>
+              <td><a {{action expand this}}> {{name}} </a></td>
+              <td class="column-medium">{{vms.length}}</td>
               <td class="column-large">
-                {{#if flavor.sla}}
+                {{#if sla}}
                   {{! {{view Ember.Select viewName="select"
                     contentBinding="slas"
                     optionValuePath="content.id"
                     optionLabelPath="content.name"
-                    valueBinding="flavor.sla.id"
-                    selectionBinding="flavor.sla"
+                    valueBinding="sla.id"
+                    selectionBinding="sla"
                   }}
-                  {{flavor.sla.name}}
+                  {{sla.name}}
                 {{/if}}
               </td>
               <td class="column-medium">
-                {{#if flavor.sla}}
+                {{#if sla}}
                   <a class="btn btn-mini" {{action deleteFlavor flavor}}><i class="icon-remove"></i> Delete</a>
                 {{else}}
                   {{#view App.TooltipView title="Not available in Beta API" class="inline-block"}}
@@ -51,17 +50,17 @@
                   {{/view}}
                 {{/if}}
               </td>
-              <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand flavor}}><i {{bindAttr class="flavor.isActive:icon-minus:icon-plus"}}></i></a></td>
+              <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
             </tr>
             <tr class="expandable-row">
               <td colspan="100%">
                 <div class="details">
                   <ul class="nav nav-tabs">
                     <li class="active"><a onclick="App.selectTab(event)">Details</a></li>
-                    {{#if flavor.vms}}
+                    {{#if vms}}
                       <li><a onclick="App.selectTab(event)">VMs</a></li>
                     {{/if}}
-                    {{#if flavor.sla}}
+                    {{#if sla}}
                       <li><a onclick="App.selectTab(event)">SLA</a></li>
                     {{/if}}
                   </ul>
@@ -79,20 +78,20 @@
                           <th>Root</th>
                         </tr>
                         <tr>
-                          <td>{{na flavor.name}}</td>
-                          <td>{{capitalize flavor.public}}</td>
-                          <td>{{na flavor.vcpus}}</td>
-                          <td>{{readableMegabytes flavor.memory}}</td>
-                          <td>{{na flavor.swap}}</td>
-                          <td>{{na flavor.rxtxFactor}}</td>
-                          <td>{{na flavor.ephemeral}}</td>
-                          <td>{{na flavor.root}}</td>
+                          <td>{{na name}}</td>
+                          <td>{{capitalize public}}</td>
+                          <td>{{na vcpus}}</td>
+                          <td>{{readableMegabytes memory}}</td>
+                          <td>{{na swap}}</td>
+                          <td>{{na rxtxFactor}}</td>
+                          <td>{{na ephemeral}}</td>
+                          <td>{{na root}}</td>
                         </tr>
                       </table>
                     </div>
                     <div class="tab-pane vms">
                       <ul>
-                        {{#each vm in flavor.vms}}
+                        {{#each vm in vms}}
                           <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
                         {{else}}
                           <li>No VMs</li>
@@ -100,9 +99,9 @@
                       </ul>
                     </div>
                     <div class="tab-pane sla">
-                      <strong>{{flavor.sla.name}}</strong>
+                      <strong>{{sla.name}}</strong>
                       <ul>
-                        {{#each slo in flavor.sla.slos}}
+                        {{#each slo in sla.slos}}
                           <li>{{slo.description}}</li>
                         {{else}}
                           <li>No SLOs</li>
@@ -111,6 +110,14 @@
                     </div>
                   </div>
                 </div>
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="100%">
+                {{#unless model.isUpdating}}
+                  <div class="alert alert-info">No Flavors found.</div>
+                {{/unless}}
               </td>
             </tr>
           {{/each}}

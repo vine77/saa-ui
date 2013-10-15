@@ -1,4 +1,4 @@
-App.NodesColumnsController = Ember.ArrayController.extend(App.ColumnsController, {
+App.NodesColumnsController = App.ColumnsController.extend({
   content: [{
     description: 'Services',
     sortBy: 'nodeType',
@@ -26,7 +26,7 @@ App.NodesColumnsController = Ember.ArrayController.extend(App.ColumnsController,
     sortBy: 'capabilities.cpu_frequency'
   }, {
     title: 'SU',
-    description: 'The SAM Unit (SU) is a measure of compute consumption of the host server',
+    description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.gips_current'
   }, {
     title: 'Throughput',
@@ -111,9 +111,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     refresh: function () {
       if (!this.get('isUpdating')) {
         if (App.mtWilson.get('isInstalled') === true) {
-          this.store.find('trustNode', undefined, true).then(function() {
-            this.store.find('node', undefined, true);
-          });
+          this.store.find('trustNode', undefined, true);
+          this.store.find('node', undefined, true);
         } else {
           this.store.find('node', undefined, true);
         }

@@ -1,24 +1,10 @@
 App.VmController = Ember.ObjectController.extend({
-  //isExpanded: function () {
-  //  return this.get('isActive');
-  //}.property('isActive'),
   isExpanded: false,
   isSelected: false,
 
-  kibanaId: null,
-  updateKibana: function() {
-    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
-    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
-    if (this.get('isSelected')) {
-      this.set('kibanaId', filterSrv.set({type:'querystring',mandate:'must',query:"vm_id"+":"+this.get('id')}));
-      dashboard.refresh();
-    } else {
-      filterSrv.remove(this.get('kibanaId'));
-      dashboard.refresh();
-    }
-  }.observes('isSelected'),
   status: function() {
     return Ember.$.extend({
+      isHealthy: Ember.computed.equal('model.status.health', App.SUCCESS),
       healthMessage: (function(self) {
         if (App.isEmpty(self.get('model.status.short_message')) && App.isEmpty(self.get('model.status.long_message'))) {
           // If both short and long messages are empty, show health as message
@@ -50,7 +36,7 @@ App.VmController = Ember.ObjectController.extend({
       })(this),
       slaViolated: (function(self) {
         return self.get('model.status.sla_status') === 1;
-      })(this),      
+      })(this),
       slaNotViolated: (function(self) {
         return self.get('model.status.sla_status') === 0;
       })(this),
@@ -118,9 +104,24 @@ App.VmController = Ember.ObjectController.extend({
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),
+
+  // Observers
   graphObserver: function () {
      return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isSelected', 'isExpanded'),
+  kibanaId: null,
+  updateKibana: function() {
+    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
+    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+    if (this.get('isSelected')) {
+      this.set('kibanaId', filterSrv.set({type:'querystring',mandate:'must',query:"vm_id"+":"+this.get('id')}));
+      dashboard.refresh();
+    } else {
+      filterSrv.remove(this.get('kibanaId'));
+      dashboard.refresh();
+    }
+  }.observes('isSelected'),
+
   /* TODO: Does this need to be added to polling?
   didReload: function () {
     if (this.get('vmTrustReport.isLoaded')) {
@@ -134,6 +135,8 @@ App.VmController = Ember.ObjectController.extend({
     }
   }
   */
+
+  // Actions
   actions: {
     expand: function (model) {
       if (!this.get('isExpanded')) {

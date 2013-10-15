@@ -1,4 +1,4 @@
-<th {{bindAttr class="sortBy:sortable isSorted:sorted controllers.nodes.sortAscending"}}>
+<th {{bindAttr class="sortBy:sortable isSorted:sorted parentController.tableController.sortAscending"}}>
   {{#if description}}
     {{#view App.TooltipView titleBinding="description"}}
       {{#if sortBy}}
