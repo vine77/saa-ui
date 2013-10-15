@@ -12,28 +12,25 @@ App.StatusController = Ember.ObjectController.extend({
   }.property('model.health'),
 
   // Functions
-  init: function () {
-    this._super();
-    this.updateCurrentStatus();
-    statusController = this;
-  },
   updateCurrentStatus: function () {
-    var controller = this;
-    if (!this.get('model')) {
-      this.store.find('status', 'current').then(function (status) {
-        controller.set('model', status);
-        controller.set('connected', true);
-      }, function (error) {
-        controller.set('connected', false);
-      });
-    } else {
-      this.get('model').reload().then(function (status) {
-        controller.set('connected', true);
-      }, function (error) {
-        controller.set('connected', false);
-      });
-    }
+    var self = this;
     // Update status and check connectivity every 10 seconds
     Ember.run.later(this, 'updateCurrentStatus', 10000);
+    if (!this.get('model')) {
+      return this.store.find('status', 'current').then(function (status) {
+        self.set('model', status);
+        self.set('connected', true);
+      }, function (error) {
+        self.set('connected', false);
+        return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+      });
+    } else {
+      return this.get('model').reload().then(function (status) {
+        self.set('connected', true);
+      }, function (error) {
+        self.set('connected', false);
+        return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+      });
+    }
   }
 });

@@ -93,35 +93,68 @@ Ember.Route.reopen({
 });
 */
 
+// Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
+App.EnabledRoute = Ember.Route.extend({
+  beforeModel: function () {
+    if (!this.controllerFor('application').get('isEnabled')) this.transitionTo('index');
+  }
+});
+
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   model: function () {
-    var self = this, promises = [];
-    promises.push(this.store.find('slo'));
-    promises.push(this.store.find('sla'));
-    promises.push(this.store.find('flavor'));
-    promises.push(this.store.find('vm'));
-    promises.push(App.mtWilson.check().then(function () {
-      if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
+    var self = this;
+    return this.controllerFor('status').updateCurrentStatus().then(function () {
+      // Status API has responded
+      return App.nova.check().then(function () {
+        // SAM is configured
+        return Ember.RSVP.all([
+          self.store.find('slo'),
+          self.store.find('sla'),
+          self.store.find('flavor'),
+          self.store.find('vm'),
+          App.mtWilson.check().then(function () {
+            if (App.mtWilson.get('isInstalled')) return self.store.find('trustNode');
+          }, function () {
+            return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
+          }),
+          self.store.find('node'),
+          self.store.find('user'),
+          App.openrc.check(),
+          App.quantum.check(),
+          App.network.check(),
+          App.build.find(),
+          App.settingsLog.fetch()
+        ]);
+      }, function () {
+        // SAM is not configured
+        return Ember.RSVP.all([
+          self.store.find('user'),
+          App.openrc.check(),
+          App.quantum.check(),
+          App.network.check(),
+          App.build.find(),
+          App.settingsLog.fetch()
+        ]);
+      });
     }, function () {
-      return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
-    }));
-    promises.push(this.store.find('node'));
-    promises.push(this.store.find('user'));
-    promises.push(App.nova.check());
-    promises.push(App.openrc.check());
-    promises.push(App.quantum.check());
-    promises.push(App.network.check());
-    promises.push(App.build.find());
-    promises.push(App.settingsLog.fetch());
-    return Ember.RSVP.all(promises);
+      // Status API is not responding
+      var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
+      if (confirmed) {
+        location.reload();
+      }
+      return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+    });
   },
-  setupController: function () {
-    // Set models for controllers on app load (before transitioning to their routes)
-    this.controllerFor('slas').set('model', this.store.all('sla'));
-    this.controllerFor('flavors').set('model', this.store.all('flavor'));
-    this.controllerFor('vms').set('model', this.store.all('vm'));
-    this.controllerFor('nodes').set('model', this.store.all('node'));
+  setupController: function (controller, model) {
+    store = this.store;
+    if (controller.get('isEnabled')) {
+      // Set models for these controllers on app load (instead of waiting for route transitions)
+      this.controllerFor('slas').set('model', this.store.all('sla'));
+      this.controllerFor('flavors').set('model', this.store.all('flavor'));
+      this.controllerFor('vms').set('model', this.store.all('vm'));
+      this.controllerFor('nodes').set('model', this.store.all('node'));
+    }
   },
   actions: {
     logout: function() {
@@ -161,7 +194,7 @@ App.IndexRoute = Ember.Route.extend({
 */
 
 App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
+  beforeModel: function() {
     this.transitionTo('dashboard');
   }
 });
@@ -222,19 +255,13 @@ App.ProfileRoute = Ember.Route.extend({
 });
 
 // Nodes
-App.NodesRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.all('node', undefined, true);
-  }
-});
-
-App.NodesIndexRoute = Ember.Route.extend({
+App.NodesIndexRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
   }
 });
-App.NodesNodeRoute = Ember.Route.extend({
+App.NodesNodeRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
@@ -243,18 +270,13 @@ App.NodesNodeRoute = Ember.Route.extend({
 });
 
 // VMs
-App.VmsRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.all('vm');
-  }
-});
-App.VmsIndexRoute = Ember.Route.extend({
+App.VmsIndexRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('vms').setEach('isExpanded', false);
   }
 });
-App.VmsVmRoute = Ember.Route.extend({
+App.VmsVmRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('vms').setEach('isExpanded', false);
@@ -263,32 +285,28 @@ App.VmsVmRoute = Ember.Route.extend({
 });
 
 // Services
-App.ServicesIndexRoute = Ember.Route.extend({
-  redirect: function () {
+App.ServicesIndexRoute = App.EnabledRoute.extend({
+  beforeModel: function () {
+    this._super();
     this.transitionTo('flavors');
   }
 });
 
 // Flavors
-App.FlavorsRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.all('flavor', undefined, true);
-  }
-});
-App.FlavorsIndexRoute = Ember.Route.extend({
+App.FlavorsIndexRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('flavors').setEach('isExpanded', false);
   }
 });
-App.FlavorRoute = Ember.Route.extend({
+App.FlavorRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('flavors').setEach('isExpanded', false);
     this.controllerFor('flavors').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
-App.FlavorsCreateRoute = Ember.Route.extend({
+App.FlavorsCreateRoute = App.EnabledRoute.extend({
   model: function () {
     return null;
   },
@@ -301,18 +319,13 @@ App.FlavorsCreateRoute = Ember.Route.extend({
 });
 
 // SLAs
-App.SlasRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.all('sla', undefined, true);
-  }
-});
-App.SlasIndexRoute = Ember.Route.extend({
+App.SlasIndexRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('slas').setEach('isExpanded', false);
   }
 });
-App.SlaRoute = Ember.Route.extend({
+App.SlaRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('slas').setEach('isExpanded', false);
@@ -321,9 +334,10 @@ App.SlaRoute = Ember.Route.extend({
 });
 
 // Trust
-App.TrustIndexRoute = Ember.Route.extend({
-  redirect: function () {
-    // If Mt. Wilson is installed, go to Trust Dashboard
+App.TrustIndexRoute = App.EnabledRoute.extend({
+  beforeModel: function () {
+    this._super();
+    // If Mt. Wilson is installed, go to MLEs
     if (App.mtWilson.get('isInstalled')) {
       this.transitionTo('trust.mles.index');
     } else {
@@ -334,18 +348,18 @@ App.TrustIndexRoute = Ember.Route.extend({
 });
 
 // Whitelist/Fingerprint Manager
-App.TrustMlesRoute = Ember.Route.extend({
+App.TrustMlesRoute = App.EnabledRoute.extend({
   model: function () {
     return this.store.find('trustMle', undefined, true);
   }
 });
-App.TrustMlesIndexRoute = Ember.Route.extend({
+App.TrustMlesIndexRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('trustMles').setEach('isExpanded', false);
   }
 });
-App.TrustMleRoute = Ember.Route.extend({
+App.TrustMleRoute = App.EnabledRoute.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     model.reload();
@@ -356,7 +370,7 @@ App.TrustMleRoute = Ember.Route.extend({
 
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
-  redirect: function () {
+  beforeModel: function () {
     this.transitionTo('settings.upload');
   }
 });
