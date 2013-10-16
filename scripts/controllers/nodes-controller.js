@@ -125,40 +125,40 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           name: 'reboot',
           node: this.store.getById('node', node.get('id'))
         }).save().then(function () {
-          node.set('status.operational', App.REBOOTING);
-          node.get('stateManager').transitionTo('rootState.loaded.saved');
-          App.event('Successfully started rebooting node "' + node.get('name') + '"', App.SUCCESS);
+          App.event('Successfully rebooted node "' + node.get('name') + '".', App.SUCCESS);
+          //node.set('status.operational', App.REBOOTING);
+          //node.get('stateManager').transitionTo('rootState.loaded.saved');
         }, function () {
-          App.event('Failed to reboot node "' + node.get('name') + '"', App.ERROR);
+          App.event('Failed to reboot node "' + node.get('name') + '".', App.ERROR);
         });
       }
     },
     unregister: function (node) {
       var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + ' and disappear from this list of nodes. ');
       if (confirmed) {
-        action = this.store.createRecord('action', {
-          node: this.store.find('node', node.get('id')),
+        this.store.createRecord('action', {
+          node: this.store.getById('node', node.get('id')),
           name: "unregister"
-        }).then( function () {
-          App.event('Successfully unregistered node "' + node.get('name') + '"', App.SUCCESS);
+        }).save().then( function () {
+          App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
         }, function () {
-          App.event('Failed to unregister node "' + node.get('name') + '"', App.ERROR);
+          App.event('Failed to unregister node "' + node.get('name') + '".', App.ERROR);
         });
-        action.save();
       }
     },
     schedule: function (node, socketNumber) {
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
       var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
       if (confirmed) {
-        action = this.store.createRecord('action', {
-          node: this.store.find('node', node.get('id')),
+        this.store.createRecord('action', {
+          node: this.store.getById('node', node.get('id')),
           name: "scheduler_mark",
           options: {
             scheduler_mark: socketNumber,
             scheduler_persistent: true
           }
-        }).then( function () {
+        }).save().then( function () {
+          App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           // Unset all other nodes
           this.store.all('node').filterProperty('isScheduled', true).forEach(function (item, index) {
             item.set('schedulerMark', null);
@@ -168,102 +168,77 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node.set('schedulerMark', 0);
           node.set('schedulerPersistent', true);
           node.get('stateManager').transitionTo('rootState.loaded.saved');
-          App.event('Successfully set node "' + node.get('name') + '" for VM placement', App.SUCCESS);
         }, function () {
-          App.event('Failed to set node "' + node.get('name') + '" for VM placement', App.ERROR);
+          App.event('Failed to set node "' + node.get('name') + '" for VM placement.', App.ERROR);
         });
-        action.save();
       }
     },
     unschedule: function (node) {
       var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
       if (confirmed) {
-        action = this.store.createRecord('action', {
-          node: this.store.find('node', node.get('id')),
+        console.log('confiremd');
+        this.store.createRecord('action', {
+          node: this.store.getById('node', node.get('id')),
           name: "scheduler_unmark"
-        }).then( function () {
+        }).save().then(function () {
+          App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
+          console.log('save resolve');
           node.set('schedulerMark', null);
           node.get('stateManager').transitionTo('rootState.loaded.saved');
-          App.event('Successfully unset node "' + node.get('name') + '" for VM placement', App.SUCCESS);
         }, function () {
-          App.event('Failed to unset node "' + node.get('name') + '" for VM placement', App.ERROR);
+          console.log('save reject');
+          App.event('Failed to unset node "' + node.get('name') + '" for VM placement.', App.ERROR);
         });
-        action.save();
       }
     },
     trustFingerprint: function (node) {
       var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
       if (confirmed) {
-        trustMle = this.store.createRecord('trustMle', {
-          node: this.store.find('node', node.get('id'))
-        });
-        trustMle.get('transaction').commit();
-        trustMle.get('store').commit();
-        trustMle.on('becameError', function () {
-          var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+        this.store.createRecord('trustMle', {
+          node: this.store.getById('node', node.get('id'))
+        }).save().then(function (model) {
+          App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
+          // TODO: Check for zombie records with null id
+          // if ((item.get('id') == null)) item.deleteRecord();
+        }, function (error) {
+          // TODO: Bubble up error message and check reevaulate deleteRecord
+          //trustMle.deleteRecord();
+          //var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
+          var errorMessage = 'An error occured while fingerprinting node "' + node.get('name') + '".';
           App.event(errorMessage, App.ERROR);
-          trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
-          trustMle.deleteRecord();
-        });
-        trustMle.on('becameInvalid', function () {
-          var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
-          App.event(errorMessage, App.WARNING);
-          trustMle.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
-          trustMle.deleteRecord();
-        });
-        trustMle.on('didCreate', function () {
-          // TODO: Work around for zombie record with null id. Only when json-api-serializer extract is: //this.extractMany.apply(this, json, type, records);
-          /*
-          App.TrustMle.find().forEach( function(item, index, enumerable) {
-            if ((item.get('id') == null)) {
-              item.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
-              item.deleteRecord();
-            }
-          });
-          */
-          App.event('Successfully fingerprinted node ' + node.get('name') + '.', App.SUCCESS);
         });
       }
     },
     addTrust: function (node) {
       var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
       if (confirmed) {
-        trustNode = this.store.createRecord('trustNode', {
-          node: this.store.find('node', node.get('id'))
-        });
-        trustNode.get('transaction').commit();
-        trustNode.get('store').commit();
-        trustNode.on('becameError', function () {
-          var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+        this.store.createRecord('trustNode', {
+          node: this.store.getById('node', node.get('id'))
+        }).save().then(function () {
+          App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
+        }, function () {
+          var errorMessage = 'An error occured while trusting node"' + node.get('name') + '".';
           App.event(errorMessage, App.ERROR);
-          trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
-          trustNode.deleteRecord();
-        });
-        trustNode.on('becameInvalid', function () {
-          var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
-          App.event(errorMessage, App.WARNING);
-          trustNode.get('stateManager').transitionTo('rootState.loaded.created.uncommitted');
-          trustNode.deleteRecord();
-        });
-        trustNode.on('didCreate', function () {
-          App.event('Successfully trusted node "' + node.get('name') + '"', App.SUCCESS);
+          // TODO: Bubble up error message and check reevaulate deleteRecord
+          //trustNode.deleteRecord();
+          //var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
         });
       }
     },
     removeTrust: function (node) {
       var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
       if (confirmed) {
-        App.event('Successfully unregistered node "' + node.get('name') + '" as trusted', App.SUCCESS);
         node.get('trustNode').deleteRecord();
-        node.get('transaction').commit();
-        node.get('store').commit();
-      }
-      node.on('becameError', function () {
-          var errorMessage = (node.get('error')) ? node.get('error') : 'An error occured while removing trust.';
+        node.get('trustNode').save().then(function () {
+          App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
+        }, function () {
+          // TODO: Bubble up error message
+          var errorMessage = 'An error occured while unregistering node "' + node.get('name') + '" as trusted.';
           App.event(errorMessage, App.ERROR);
-      });
+        });
+      }
     },
-    exportTrustReport: function (reportContent){
+    exportTrustReport: function (reportContent) {
       this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
           var title = "SAM Node Trust Report";
@@ -277,7 +252,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           App.event('No trust attestation logs were found for this node.', App.WARNING);
         }
       }, function () {
-        App.event('Failed to load node trust report', App.ERROR);
+        App.event('Failed to load node trust report.', App.ERROR);
       });
     },
     trustReportModal: function (model) {

@@ -3,6 +3,41 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
   namespace: 'api/v1',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
+  },
+
+  /**
+   * Fix query URL.
+   */
+  findMany: function(store, type, ids, owner) {
+    return this.ajax(this.buildURL(type.typeKey), 'GET', {data: {ids: ids.join(',')}});
+  },
+
+  /**
+   * Cast individual record to array,
+   * and match the root key to the route
+   */
+  createRecord: function(store, type, record) {
+    var data = {};
+    data[this.pathForType(type.typeKey)] = [
+      store.serializerFor(type.typeKey).serialize(record, {includeId: true})
+    ];
+
+    return this.ajax(this.buildURL(type.typeKey), "POST", {data: data});
+  },
+
+  /**
+   * Cast individual record to array,
+   * and match the root key to the route
+   */
+  updateRecord: function(store, type, record) {
+    var data = {};
+    data[this.pathForType(type.typeKey)] = [
+      store.serializerFor(type.typeKey).serialize(record)
+    ];
+
+    var id = get(record, 'id');
+
+    return this.ajax(this.buildURL(type.typeKey, id), "PUT", {data: data});
   }
 });
 
@@ -11,6 +46,23 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
     var json = hash;
     delete json.links;  // Don't use "links" yet, until JSON-API spec is implemented API-wide
     return this._super(type, json, property);
+  },
+
+  /**
+   * Patch the extractSingle method, since there are no singular records
+   */
+  extractSingle: function(store, primaryType, payload, recordId, requestType) {
+    var primaryTypeName = primaryType.typeKey;
+    var json = {};
+    for(var key in payload) {
+      var typeName = Ember.String.singularize(key);
+      if(typeName === primaryTypeName && Ember.isArray(payload[key])) {
+        json[typeName] = payload[key][0];
+      } else {
+        json[key] = payload[key];
+      }
+    }
+    return this._super(store, primaryType, json, recordId, requestType);
   }
 });
 
