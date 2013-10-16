@@ -121,17 +121,16 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     reboot: function (node) {
       var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
       if (confirmed) {
-        action = this.store.createRecord('action', {
-          node: this.store.find('node', node.get('id')),
-          name: "reboot"
-        }).then( function () {
+        this.store.createRecord('action', {
+          name: 'reboot',
+          node: this.store.getById('node', node.get('id'))
+        }).save().then(function () {
           node.set('status.operational', App.REBOOTING);
           node.get('stateManager').transitionTo('rootState.loaded.saved');
           App.event('Successfully started rebooting node "' + node.get('name') + '"', App.SUCCESS);
         }, function () {
           App.event('Failed to reboot node "' + node.get('name') + '"', App.ERROR);
         });
-        action.get('transaction').commit();
       }
     },
     unregister: function (node) {
@@ -145,7 +144,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }, function () {
           App.event('Failed to unregister node "' + node.get('name') + '"', App.ERROR);
         });
-        action.get('transaction').commit();
+        action.save();
       }
     },
     schedule: function (node, socketNumber) {
@@ -173,7 +172,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }, function () {
           App.event('Failed to set node "' + node.get('name') + '" for VM placement', App.ERROR);
         });
-        action.get('transaction').commit();
+        action.save();
       }
     },
     unschedule: function (node) {
@@ -189,7 +188,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }, function () {
           App.event('Failed to unset node "' + node.get('name') + '" for VM placement', App.ERROR);
         });
-        action.get('transaction').commit();
+        action.save();
       }
     },
     trustFingerprint: function (node) {

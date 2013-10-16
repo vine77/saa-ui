@@ -62,13 +62,13 @@ App.LoadingRoute = Ember.Route.extend();
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   model: function () {
+    store = this.store;  // TODO: Remove line
+
     var self = this;
     return this.controllerFor('status').updateCurrentStatus().then(function () {
       // Status API has responded
-      console.log('Status API has responded');
       return App.nova.check().then(function () {
         // SAM is configured
-        console.log('SAM is configured');
         self.store.find('slo');
         self.store.find('sla');
         self.store.find('flavor');
@@ -91,7 +91,6 @@ App.ApplicationRoute = Ember.Route.extend({
         App.settingsLog.fetch();
       }, function () {
         // SAM is not configured
-        console.log('SAM is not configured');
         self.store.find('user');
         App.openrc.check();
         App.quantum.check();
@@ -101,7 +100,6 @@ App.ApplicationRoute = Ember.Route.extend({
       });
     }, function () {
       // Status API is not responding
-      console.log('Status API is not responding');
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
       if (confirmed) {
         location.reload();

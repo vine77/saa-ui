@@ -4,7 +4,7 @@
       <div class="treemap"></div>
       <div class="header">
         <div class="global-actions">
-          <a {{action renderTreemap}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
+          <a {{action "renderTreemap"}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
         </div>
         {{!--
         <form id="filter-form" class="input-prepend pull-right clear-input">
@@ -22,7 +22,7 @@
               {{partial columnHeader}}
             {{/each}}
             <th class="column-small">
-              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+              <a {{action "refresh"}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
@@ -92,7 +92,7 @@
                     <button data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></button>
                     <ul class="dropdown-menu">
                       <li><a class="disabled"><i class="icon-refresh"></i> Restart</a></li>
-                      <li><a {{action exportTrustReport vm}}><i class="icon-external-link"></i> Export Trust Report </a></li>
+                      <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report </a></li>
                     </ul>
                   </div>
                 {{else}}
@@ -100,7 +100,7 @@
                     <button class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</button>
                     <button data-toggle="dropdown" class="btn dropdown-toggle  btn-mini"><span class="caret"></span></button>
                       <ul class="dropdown-menu">
-                        <li><a {{action exportTrustReport vm}}><i class="icon-external-link"></i> Export Trust Report </a></li>
+                        <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report </a></li>
                       </ul>
                   </div>
                 {{/if}}
@@ -187,7 +187,7 @@
                     <div class="tab-pane trust">
                       {{#if vmTrustReport.attestations}}
                         <div class="pull-right">
-                          <button class="btn btn-primary" {{action trustReportModal vm}}>Generate Trust Report</button>
+                          <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
                         </div>
                         <br><br>
                         <table class="table table-bordered">
