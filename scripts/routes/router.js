@@ -63,8 +63,6 @@ App.LoadingRoute = Ember.Route.extend();
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   setupController: function () {
-    //this.controllerFor('criticalities').set('model', this.store.find('criticality'));
-    
     this.controllerFor('vms').set('model', this.store.find('vm'));
   },
   model: function () {

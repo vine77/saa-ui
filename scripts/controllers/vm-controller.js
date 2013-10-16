@@ -4,7 +4,9 @@ App.VmController = Ember.ObjectController.extend({
 
   status: function() {
     return Ember.$.extend({
-      isHealthy: Ember.computed.equal('model.status.health', App.SUCCESS),
+      isHealthy: (function (self) {
+        return self.get('model.status.health') === App.SUCCESS;
+      })(this),
       healthMessage: (function(self) {
         if (App.isEmpty(self.get('model.status.short_message')) && App.isEmpty(self.get('model.status.long_message'))) {
           // If both short and long messages are empty, show health as message
@@ -18,9 +20,15 @@ App.VmController = Ember.ObjectController.extend({
       operationalMessage: (function(self) {
         return '<strong>State</strong>: ' + App.codeToOperational(self.get('model.status.operational')).capitalize();
       })(this),
-      isTrusted: Ember.computed.equal('model.status.trust', 2),
-      isNotTrusted: Ember.computed.equal('model.status.trust', 1),
-      isTrustUnknown: Ember.computed.not('model.status.trust'),
+      isTrusted: (function (self) {
+        return self.get('model.status.trust') === 2;
+      })(this),
+      isNotTrusted: (function (self) {
+        return self.get('model.status.trust') === 1;
+      })(this),
+      isTrustUnknown: (function (self) {
+        return !self.get('model.status.trust');
+      })(this),
       trustMessage:(function(self) {
         var message = '';
         if (self.get('model.status.trust') === 0) {
@@ -35,20 +43,20 @@ App.VmController = Ember.ObjectController.extend({
         return message;
       })(this),
       slaViolated: (function(self) {
-        return self.get('model.status.sla_status') === 1;
+        return self.get('model.status.sla_status') === 2;
       })(this),
       slaNotViolated: (function(self) {
-        return self.get('model.status.sla_status') === 0;
+        return self.get('model.status.sla_status') === 1;
       })(this),
       slaUnknown: (function(self) {
-        return Ember.isEmpty(self.get('model.status.sla_status'));
+        return self.get('model.status.sla_status') === 0;
       })(this),
       slaMessage: (function(self) {
         if (App.isEmpty(self.get('model.status.sla_messages'))) {
           var slaStatus = '';
-          if (self.get('model.status.sla_status') === 0) {
+          if (self.get('model.status.sla_status') === 1) {
             slaStatus = 'Not violated';
-          } else if (self.get('model.status.sla_status') === 1) {
+          } else if (self.get('model.status.sla_status') === 2) {
             slaStatus = 'Violated';
           } else {
             slaStatus = 'Unknown';

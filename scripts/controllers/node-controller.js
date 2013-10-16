@@ -83,7 +83,6 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('isTrustRegistered'),
   isTrusted: Ember.computed.equal('status.trust', 2),
-  isNotTrusted: Ember.computed.equal('status.trust', 1),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function () {
     var message = '';

@@ -125,22 +125,21 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           name: 'reboot',
           node: this.store.getById('node', node.get('id'))
         }).save().then(function () {
-          App.event('Successfully rebooted node "' + node.get('name') + '".', App.SUCCESS);
-          //node.set('status.operational', App.REBOOTING);
-          //node.get('stateManager').transitionTo('rootState.loaded.saved');
+          App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
         }, function () {
           App.event('Failed to reboot node "' + node.get('name') + '".', App.ERROR);
         });
       }
     },
     unregister: function (node) {
-      var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + ' and disappear from this list of nodes. ');
+      var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "unregister"
         }).save().then( function () {
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
+          node.set('samControlled', 0);
         }, function () {
           App.event('Failed to unregister node "' + node.get('name') + '".', App.ERROR);
         });
