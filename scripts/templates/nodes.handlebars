@@ -140,14 +140,14 @@
                     <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       {{#if App.mtWilson.isInstalled}}
-                        {{#if trustNode.ipaddress}}
+                        {{#if isTrustRegistered}}
                           <li><a {{action "removeTrust" this}}><i class="icon-unlock"></i> Remove Trust</a></li>
+                          <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
                         {{else}}
                           <li><a {{action "addTrust" this}}><i class="icon-lock"></i> Add Trust</a></li>
                         {{/if}}
                         <li><a {{action "trustFingerprint" this}}><i class="icon-hand-up"></i> Fingerprint</a></li>
                       {{/if}}
-                      <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report </a></li>
                       {{#if isScheduled}}
                         <li><a {{action "unschedule" this}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
                       {{else}}

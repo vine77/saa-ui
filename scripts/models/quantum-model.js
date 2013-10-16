@@ -4,7 +4,7 @@ App.Quantum = Ember.Object.extend({
   check: function () {
     // Check if quantum file exists
     return Ember.$.ajax({
-      url: '/api/v1/quantumconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/quantumconfig',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -25,7 +25,7 @@ App.Quantum = Ember.Object.extend({
     $('#quantumForm i.loading').removeClass('hide');
     return Ember.$.ajax({
       type: 'PUT',
-      url: '/api/v1/quantumconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/quantumconfig',
       data: formData,
       complete: function (xhr) {
         App.log(xhr.status + ' response from PUT /api/v1/quantumconfig: ' + xhr.statusText);

@@ -4,7 +4,7 @@ App.Openrc = Ember.Object.extend({
   check: function () {
     // Check if openrc file exists
     return Ember.$.ajax({
-      url: '/api/v1/openrcconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/openrcconfig',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -25,7 +25,7 @@ App.Openrc = Ember.Object.extend({
     $('#openrcForm i.loading').removeClass('hide');
     return Ember.$.ajax({
       type: 'PUT',
-      url: '/api/v1/openrcconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/openrcconfig',
       data: formData,
       complete: function (xhr) {
         App.log(xhr.status + ' response from PUT /api/v1/openrcconfig: ' + xhr.statusText);

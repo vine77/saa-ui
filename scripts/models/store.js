@@ -35,7 +35,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
       store.serializerFor(type.typeKey).serialize(record)
     ];
 
-    var id = get(record, 'id');
+    var id = Ember.get(record, 'id');
 
     return this.ajax(this.buildURL(type.typeKey, id), "PUT", {data: data});
   }

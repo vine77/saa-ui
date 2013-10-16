@@ -147,6 +147,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       }
     },
     schedule: function (node, socketNumber) {
+      var self = this;
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
       var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
       if (confirmed) {
@@ -160,14 +161,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then( function () {
           App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           // Unset all other nodes
-          this.store.all('node').filterProperty('isScheduled', true).forEach(function (item, index) {
-            item.set('schedulerMark', null);
-            item.get('stateManager').transitionTo('rootState.loaded.saved');
-          });
+          self.filterBy('isScheduled').setEach('schedulerMark', null);
           // Set this node for VM placement
-          node.set('schedulerMark', 0);
+          node.set('schedulerMark', socketNumber);
           node.set('schedulerPersistent', true);
-          node.get('stateManager').transitionTo('rootState.loaded.saved');
         }, function () {
           App.event('Failed to set node "' + node.get('name') + '" for VM placement.', App.ERROR);
         });
@@ -176,15 +173,12 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     unschedule: function (node) {
       var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
       if (confirmed) {
-        console.log('confiremd');
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "scheduler_unmark"
         }).save().then(function () {
           App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
-          console.log('save resolve');
           node.set('schedulerMark', null);
-          node.get('stateManager').transitionTo('rootState.loaded.saved');
         }, function () {
           console.log('save reject');
           App.event('Failed to unset node "' + node.get('name') + '" for VM placement.', App.ERROR);

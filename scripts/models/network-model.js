@@ -37,7 +37,7 @@ App.Network = Ember.Object.extend({
       };
       $('i.loading').removeClass('hide');
       return Ember.$.ajax({
-        url: '/api/v1/netconfig',
+        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/netconfig',
         type: 'POST',
         data: JSON.stringify(networkData),
         dataType: 'json',
@@ -63,7 +63,7 @@ App.Network = Ember.Object.extend({
   },
   check: function () {
     return Ember.$.ajax({
-      url: '/api/v1/netconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/netconfig',
       type: 'GET',
       dataType: 'json',
       complete: function (xhr) {

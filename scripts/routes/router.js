@@ -52,7 +52,8 @@ App.Router.map(function () {
 // Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
 App.EnabledRoute = Ember.Route.extend({
   beforeModel: function () {
-    if (!this.controllerFor('application').get('isEnabled')) this.transitionTo('index');
+    // TODO: Make this check async-capable
+    //if (!this.controllerFor('application').get('isEnabled')) this.transitionTo('index');
   }
 });
 
@@ -67,8 +68,6 @@ App.ApplicationRoute = Ember.Route.extend({
     this.controllerFor('vms').set('model', this.store.find('vm'));
   },
   model: function () {
-    store = this.store;  // TODO: Remove line
-
     var self = this;
     return this.controllerFor('status').updateCurrentStatus().then(function () {
       // Status API has responded
@@ -102,6 +101,8 @@ App.ApplicationRoute = Ember.Route.extend({
         App.network.check();
         App.build.find();
         App.settingsLog.fetch();
+        // Don't block loading if SAM is not configured
+        return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
       });
 
     }, function () {
@@ -110,6 +111,7 @@ App.ApplicationRoute = Ember.Route.extend({
       if (confirmed) {
         location.reload();
       }
+      // Block loading if Status API fails
       return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
     });
   },
@@ -217,6 +219,7 @@ App.ProfileRoute = Ember.Route.extend({
     }
   }
 });
+
 
 // Nodes
 App.NodesIndexRoute = App.EnabledRoute.extend({

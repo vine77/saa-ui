@@ -4,7 +4,7 @@ App.Nova = Ember.Object.extend({
   check: function () {
     // Check if nova.conf file exists
     return Ember.$.ajax({
-      url: '/api/v1/novaconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/novaconfig',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -25,7 +25,7 @@ App.Nova = Ember.Object.extend({
     $('#novaForm i.loading').removeClass('hide');
     return Ember.$.ajax({
       type: 'PUT',
-      url: '/api/v1/novaconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/novaconfig',
       data: formData,
       complete: function (xhr) {
         App.log(xhr.status + ' response from PUT /api/v1/novaconfig: ' + xhr.statusText);
@@ -65,7 +65,7 @@ App.Nova = Ember.Object.extend({
     App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',
-      url: '/api/v1/start',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/start',
       complete: function (xhr, textStatus) {
         App.log(xhr.status + ' response from PUT /api/v1/sam: ' + xhr.statusText);
         $('i.loading').addClass('hide');
