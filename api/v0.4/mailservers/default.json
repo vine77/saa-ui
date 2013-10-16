@@ -1,0 +1,9 @@
+{
+  "mailserver": {
+    "username": "",
+    "password": "",
+    "hostname": "",
+    "port": "",
+    "sender_email": ""
+  }
+}

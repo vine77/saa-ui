@@ -1,0 +1,29 @@
+{
+    "trust_mles": [{
+        "name": "Intel_Corp.",
+        "attestation_type": "PCR",
+        "osname": null,
+        "oemname": "Intel Corp.",
+        "trust_node_ids": [],
+        "mle_type": "BIOS",
+        "mle_manifests": null,
+        "version": "0002",
+        "osversion": null,
+        "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDInKV0p",
+        "node_id": null,
+        "description": ""
+    }, {
+        "name": "Intel_QEMU",
+        "attestation_type": "MODULE",
+        "osname": "Ubuntu",
+        "oemname": null,
+        "trust_node_ids": [],
+        "mle_type": "VMM",
+        "mle_manifests": null,
+        "version": "12.04-1.0.0",
+        "osversion": "12.04",
+        "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUUVNVScpLCAoJ09lbU5hbWUnLCBOb25lKSwgKCdPc05hbWUnLCB1J1VidW50dScpLCAoJ09zVmVyc2lvbicsIHUnMTIuMDQnKSwgKCdWZXJzaW9uJywgdScxMi4wNC0xLjAuMCcpXSk=",
+        "node_id": null,
+        "description": ""
+    }]
+}

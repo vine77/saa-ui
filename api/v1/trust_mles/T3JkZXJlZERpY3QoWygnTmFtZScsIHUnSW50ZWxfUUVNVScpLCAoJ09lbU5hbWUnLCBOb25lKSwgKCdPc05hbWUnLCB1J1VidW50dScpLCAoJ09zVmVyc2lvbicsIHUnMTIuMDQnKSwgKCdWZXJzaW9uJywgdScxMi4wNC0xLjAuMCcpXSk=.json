@@ -3,15 +3,15 @@
     {
       "name": "Intel_QEMU",
       "attestation_type": "MODULE",
+      "description": "",
       "osname": "Ubuntu",
-      "oemname": null,
       "trust_node_ids": [
-        "9198BE50-8695-E111-BD1D-001E6747F6C6",
-        "A5A47894-E698-E111-BD1D-001E6747F512",
         "41101BF9-C295-E111-BD1D-001E6747F112",
-        "33B2F58C-8C94-E111-BD1D-001E6747F3DE"
+        "9198BE50-8695-E111-BD1D-001E6747F6C6",
+        "64EC022B-7294-E111-BD1D-001E6747F342",
+        "D5D0B1BE-A394-E111-BD1D-001E6747F506"
       ],
-      "mle_type": "VMM",
+      "oemname": null,
       "mle_manifests": [
         {
           "name": "19",
@@ -23,14 +23,14 @@
         },
         {
           "name": "18",
-          "value": "550048FFD6F5AC5DDF919BD2376EE5BB458FD811"
+          "value": "9B80A4822D06CA703345014ED2B8979E9E57EE8C"
         }
       ],
       "version": "12.04-1.0.0",
       "osversion": "12.04",
       "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUUVNVScpLCAoJ09lbU5hbWUnLCBOb25lKSwgKCdPc05hbWUnLCB1J1VidW50dScpLCAoJ09zVmVyc2lvbicsIHUnMTIuMDQnKSwgKCdWZXJzaW9uJywgdScxMi4wNC0xLjAuMCcpXSk=",
       "node_id": null,
-      "description": ""
+      "mle_type": "VMM"
     }
   ]
 }

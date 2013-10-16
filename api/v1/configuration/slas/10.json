@@ -1,17 +1,28 @@
 {
-  "sla": {
-    "links": {
-      "uri": "/api/v1/configuration/slas/10",
-      "slos": "/api/v1/configuration/slos?ids=37,38,39,40"
-    },
-    "slo_ids": [
-      37,
-      38,
-      39,
-      40
-    ],
-    "uri": "/configuration/slas/10",
-    "name": "Secure Bronze",
-    "id": 10
-  }
+  "slas": [
+    {
+      "name": "Secure Bronze",
+      "links": {
+        "uri": "/api/v1/configuration/slas/10",
+        "slos": "/api/v1/configuration/slos?ids=28,29,30"
+      },
+      "slo_ids": [
+        28,
+        29,
+        30
+      ],
+      "uri": "/configuration/slas/10",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 10
+    }
+  ]
 }

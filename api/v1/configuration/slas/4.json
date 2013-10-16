@@ -1,17 +1,28 @@
 {
-  "sla": {
-    "links": {
-      "uri": "/api/v1/configuration/slas/4",
-      "slos": "/api/v1/configuration/slos?ids=13,14,15,16"
-    },
-    "slo_ids": [
-      13,
-      14,
-      15,
-      16
-    ],
-    "uri": "/configuration/slas/4",
-    "name": "Secure Platinum",
-    "id": 4
-  }
+  "slas": [
+    {
+      "name": "Secure Platinum",
+      "links": {
+        "uri": "/api/v1/configuration/slas/4",
+        "slos": "/api/v1/configuration/slos?ids=10,11,12"
+      },
+      "slo_ids": [
+        10,
+        11,
+        12
+      ],
+      "uri": "/configuration/slas/4",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 4
+    }
+  ]
 }

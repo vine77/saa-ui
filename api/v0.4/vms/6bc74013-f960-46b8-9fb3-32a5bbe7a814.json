@@ -1,0 +1,65 @@
+{
+  "vm": {
+    "status": {
+      "sla_messages": [
+        "SLA status for VM: unknown"
+      ],
+      "locked": false,
+      "sla_status": null,
+      "operational": 0,
+      "trust_details": {
+        "bios": 0,
+        "vmm": 0
+      },
+      "long_message": "VM is building. VM's state is unknown.",
+      "health": 2,
+      "trust": 0,
+      "short_message": "VM is building."
+    },
+    "links": {
+      "uri": "/api/v1/vms/6bc74013-f960-46b8-9fb3-32a5bbe7a814",
+      "logs": "/api/v1/logs?vm=6bc74013-f960-46b8-9fb3-32a5bbe7a814"
+    },
+    "stack_name": null,
+    "vm_instantiation_detailed_id": null,
+    "vm_instantiation_simple_id": null,
+    "id": "6bc74013-f960-46b8-9fb3-32a5bbe7a814",
+    "cloud_id": "6bc74013-f960-46b8-9fb3-32a5bbe7a814",
+    "utilization": {
+      "ipc": null,
+      "uptime": null,
+      "network": null,
+      "io": null,
+      "memory": null,
+      "gips_current": null,
+      "cpu": null
+    },
+    "fixed_ips": [],
+    "graphite_url": null,
+    "floating_ips": [],
+    "capabilities": {
+      "cores": null,
+      "memory_size": null,
+      "gips_allocated": null
+    },
+    "sla_id": null,
+    "vm_name": "rrt4",
+    "macs": [],
+    "contention": {
+      "threads": null,
+      "system": {
+        "llc": {
+          "value": null,
+          "label": null
+        }
+      }
+    },
+    "sla_name": null,
+    "vm_trust_report_id": null,
+    "node_id": null,
+    "logs_url": null,
+    "stack_id": null,
+    "uri": "/vms/6bc74013-f960-46b8-9fb3-32a5bbe7a814",
+    "node_name": null
+  }
+}

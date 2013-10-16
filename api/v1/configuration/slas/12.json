@@ -1,17 +1,28 @@
 {
-  "sla": {
-    "links": {
-      "uri": "/api/v1/configuration/slas/12",
-      "slos": "/api/v1/configuration/slos?ids=45,46,47,48"
-    },
-    "slo_ids": [
-      45,
-      46,
-      47,
-      48
-    ],
-    "uri": "/configuration/slas/12",
-    "name": "GIPS violation unsecure",
-    "id": 12
-  }
+  "slas": [
+    {
+      "name": "GIPS violation unsecure",
+      "links": {
+        "uri": "/api/v1/configuration/slas/12",
+        "slos": "/api/v1/configuration/slos?ids=34,35,36"
+      },
+      "slo_ids": [
+        34,
+        35,
+        36
+      ],
+      "uri": "/configuration/slas/12",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 12
+    }
+  ]
 }

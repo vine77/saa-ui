@@ -1,0 +1,5289 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "node_trust_reports": "/api/v1/node_trust_reports/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "uri": "/api/v1/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "trust_nodes": "/api/v1/trust_nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "uri": "/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.19,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "6164916 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 535.84,
+          "idle": 38882758.93,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.241",
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 2
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.241",
+        "health": 3,
+        "mode": 0,
+        "trust": 2,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.87,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.87,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "tier": null,
+      "ids": {
+        "platform_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "mac": "00:1e:67:47:f6:82",
+        "ip_address": "172.24.0.21",
+        "cloud_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "node_name": "novamgmt21",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/6396CA86-4A94-E111-BD1D-001E6747F26A",
+        "logs": "/api/v1/logs?node=6396CA86-4A94-E111-BD1D-001E6747F26A"
+      },
+      "uri": "/nodes/6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.22,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 79.04,
+        "io": null,
+        "memory": "6075216 KB",
+        "gips_current": 76.57,
+        "cpu": {
+          "iowait": 528.41,
+          "idle": 38052580.19,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2600 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11979,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.241",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.241",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.71,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.71,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=6396CA86-4A94-E111-BD1D-001E6747F26A",
+      "tier": null,
+      "ids": {
+        "platform_id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+        "mac": "00:1e:67:47:f2:6a",
+        "ip_address": "172.24.0.22",
+        "cloud_id": "6396CA86-4A94-E111-BD1D-001E6747F26A"
+      },
+      "node_name": "novamgmt22",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=41101BF9-C295-E111-BD1D-001E6747F112",
+        "node_trust_reports": "/api/v1/node_trust_reports/41101BF9-C295-E111-BD1D-001E6747F112",
+        "uri": "/api/v1/nodes/41101BF9-C295-E111-BD1D-001E6747F112",
+        "trust_nodes": "/api/v1/trust_nodes/41101BF9-C295-E111-BD1D-001E6747F112"
+      },
+      "uri": "/nodes/41101BF9-C295-E111-BD1D-001E6747F112",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.2,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "3196424 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 158.79,
+          "idle": 11112681.72,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11919,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.241",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.241",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.84,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.84,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=41101BF9-C295-E111-BD1D-001E6747F112",
+      "tier": null,
+      "ids": {
+        "platform_id": "41101BF9-C295-E111-BD1D-001E6747F112",
+        "mac": "00:1e:67:47:f1:12",
+        "ip_address": "172.24.0.23",
+        "cloud_id": "41101BF9-C295-E111-BD1D-001E6747F112"
+      },
+      "node_name": "novamgmt23",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=9198BE50-8695-E111-BD1D-001E6747F6C6",
+        "node_trust_reports": "/api/v1/node_trust_reports/9198BE50-8695-E111-BD1D-001E6747F6C6",
+        "uri": "/api/v1/nodes/9198BE50-8695-E111-BD1D-001E6747F6C6",
+        "trust_nodes": "/api/v1/trust_nodes/9198BE50-8695-E111-BD1D-001E6747F6C6"
+      },
+      "uri": "/nodes/9198BE50-8695-E111-BD1D-001E6747F6C6",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": "9198BE50-8695-E111-BD1D-001E6747F6C6",
+      "id": "9198BE50-8695-E111-BD1D-001E6747F6C6",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.19,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7382416 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 497.37,
+          "idle": 38880927.64,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11919,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.241",
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 1
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.241",
+        "health": 3,
+        "mode": 0,
+        "trust": 1,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": "9198BE50-8695-E111-BD1D-001E6747F6C6",
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.72,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.72,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=9198BE50-8695-E111-BD1D-001E6747F6C6",
+      "tier": null,
+      "ids": {
+        "platform_id": "9198BE50-8695-E111-BD1D-001E6747F6C6",
+        "mac": "00:1e:67:47:f6:c6",
+        "ip_address": "172.24.0.24",
+        "cloud_id": "9198BE50-8695-E111-BD1D-001E6747F6C6"
+      },
+      "node_name": "novamgmt24",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=A5A47894-E698-E111-BD1D-001E6747F512",
+        "node_trust_reports": "/api/v1/node_trust_reports/A5A47894-E698-E111-BD1D-001E6747F512",
+        "uri": "/api/v1/nodes/A5A47894-E698-E111-BD1D-001E6747F512",
+        "trust_nodes": "/api/v1/trust_nodes/A5A47894-E698-E111-BD1D-001E6747F512"
+      },
+      "uri": "/nodes/A5A47894-E698-E111-BD1D-001E6747F512",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": "A5A47894-E698-E111-BD1D-001E6747F512",
+      "id": "A5A47894-E698-E111-BD1D-001E6747F512",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.22,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "9009828 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 500.3,
+          "idle": 38873052.74,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 16011,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.241",
+        "operational": 2,
+        "trust_details": {
+          "bios": 1,
+          "vmm": 1
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.241",
+        "health": 3,
+        "mode": 0,
+        "trust": 1,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": "A5A47894-E698-E111-BD1D-001E6747F512",
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.86,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.86,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=A5A47894-E698-E111-BD1D-001E6747F512",
+      "tier": null,
+      "ids": {
+        "platform_id": "A5A47894-E698-E111-BD1D-001E6747F512",
+        "mac": "00:1e:67:47:f5:12",
+        "ip_address": "172.24.0.25",
+        "cloud_id": "A5A47894-E698-E111-BD1D-001E6747F512"
+      },
+      "node_name": "novamgmt25",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+        "vms": "/api/v1/vms?ids=13ad2bec-f545-486d-a84c-2d488f36668f,6ff531dd-3e52-4e2d-a6aa-203b35a53fce,797bad09-4e6c-4a25-8f85-d84bd94d2c89,c3953d1d-4878-4034-8562-8436ec7dccc4,e485d7f6-459f-4a65-88d7-734a4da1452b",
+        "uri": "/api/v1/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt26",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 5
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 5,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 3072
+      },
+      "tier": null,
+      "id": "97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
+      "vm_ids": [
+        "13ad2bec-f545-486d-a84c-2d488f36668f",
+        "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
+        "c3953d1d-4878-4034-8562-8436ec7dccc4",
+        "e485d7f6-459f-4a65-88d7-734a4da1452b"
+      ],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/6FE9BB2E-51D8-575C-836D-E972039C712D",
+        "logs": "/api/v1/logs?node=6FE9BB2E-51D8-575C-836D-E972039C712D"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/6FE9BB2E-51D8-575C-836D-E972039C712D",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt32",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "6FE9BB2E-51D8-575C-836D-E972039C712D",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/6C82724A-8152-51FC-B80F-44FB616F2B64",
+        "logs": "/api/v1/logs?node=6C82724A-8152-51FC-B80F-44FB616F2B64"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/6C82724A-8152-51FC-B80F-44FB616F2B64",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt71",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "tier": null,
+      "id": "6C82724A-8152-51FC-B80F-44FB616F2B64",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+        "logs": "/api/v1/logs?node=BC65E5C4-E034-11DF-B8BA-001517FB46A8"
+      },
+      "uri": "/nodes/BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 1.09,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 47.99,
+        "io": null,
+        "memory": "11238136 KB",
+        "gips_current": 45.99,
+        "cpu": {
+          "iowait": 541.8,
+          "idle": 43534854.77,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2666 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 1.06,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 1.06,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+      "tier": null,
+      "ids": {
+        "platform_id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8",
+        "mac": "00:15:17:fb:46:a8",
+        "ip_address": "172.24.0.72",
+        "cloud_id": "BC65E5C4-E034-11DF-B8BA-001517FB46A8"
+      },
+      "node_name": "novamgmt72",
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/27CEF401-E03F-11DF-ABB3-001517FB47DC",
+        "logs": "/api/v1/logs?node=27CEF401-E03F-11DF-ABB3-001517FB47DC"
+      },
+      "uri": "/nodes/27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 1.11,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 50.4,
+        "io": null,
+        "memory": "11212668 KB",
+        "gips_current": 48.3,
+        "cpu": {
+          "iowait": 538,
+          "idle": 43545019.7,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2800 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.98,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.98,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "tier": null,
+      "ids": {
+        "platform_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+        "mac": "00:15:17:fb:47:dc",
+        "ip_address": "172.24.0.73",
+        "cloud_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC"
+      },
+      "node_name": "novamgmt73",
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/C419C1B6-3770-5BCE-8C16-26EB83919F96",
+        "logs": "/api/v1/logs?node=C419C1B6-3770-5BCE-8C16-26EB83919F96"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/C419C1B6-3770-5BCE-8C16-26EB83919F96",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt74",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "tier": null,
+      "id": "C419C1B6-3770-5BCE-8C16-26EB83919F96",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/F52B7523-9163-11DF-A6E2-001517F238DC",
+        "logs": "/api/v1/logs?node=F52B7523-9163-11DF-A6E2-001517F238DC"
+      },
+      "uri": "/nodes/F52B7523-9163-11DF-A6E2-001517F238DC",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "F52B7523-9163-11DF-A6E2-001517F238DC",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.17,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 13.6,
+        "io": null,
+        "memory": "6642584 KB",
+        "gips_current": 11.89,
+        "cpu": {
+          "iowait": 580.36,
+          "idle": 14189516.51,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 4,
+        "cpu_frequency": "2266 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "8192 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 1.24,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 1.24,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=F52B7523-9163-11DF-A6E2-001517F238DC",
+      "tier": null,
+      "ids": {
+        "platform_id": "F52B7523-9163-11DF-A6E2-001517F238DC",
+        "mac": "00:15:17:f2:38:dc",
+        "ip_address": "172.24.0.75",
+        "cloud_id": "F52B7523-9163-11DF-A6E2-001517F238DC"
+      },
+      "node_name": "novamgmt75",
+      "vcpus": {
+        "max": 128,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/395E28C3-9144-11DF-B949-001517F23968",
+        "logs": "/api/v1/logs?node=395E28C3-9144-11DF-B949-001517F23968"
+      },
+      "uri": "/nodes/395E28C3-9144-11DF-B949-001517F23968",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "395E28C3-9144-11DF-B949-001517F23968",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 1.09,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 47.99,
+        "io": null,
+        "memory": "11233088 KB",
+        "gips_current": 45.99,
+        "cpu": {
+          "iowait": 586.14,
+          "idle": 43527581.99,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2666 MHz",
+        "turbo_mode": true,
+        "memory_size": "12288 MB",
+        "cpu_type": "",
+        "cache_size": "12288 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 11951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.87,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.87,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=395E28C3-9144-11DF-B949-001517F23968",
+      "tier": null,
+      "ids": {
+        "platform_id": "395E28C3-9144-11DF-B949-001517F23968",
+        "mac": "00:15:17:f2:39:68",
+        "ip_address": "172.24.0.76",
+        "cloud_id": "395E28C3-9144-11DF-B949-001517F23968"
+      },
+      "node_name": "novamgmt76",
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/A8B8050E-F644-5B3C-A45C-72057685A709",
+        "logs": "/api/v1/logs?node=A8B8050E-F644-5B3C-A45C-72057685A709"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/A8B8050E-F644-5B3C-A45C-72057685A709",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt34",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "A8B8050E-F644-5B3C-A45C-72057685A709",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/8E163A41-79DE-57BD-8B63-E48A5412B69C",
+        "logs": "/api/v1/logs?node=8E163A41-79DE-57BD-8B63-E48A5412B69C"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/8E163A41-79DE-57BD-8B63-E48A5412B69C",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt35",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32139,
+        "used": 512
+      },
+      "tier": null,
+      "id": "8E163A41-79DE-57BD-8B63-E48A5412B69C",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is not reporting! No Agent installed!",
+        "health": 4,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/CD8AF12F-C41B-5C57-8211-1C60FACDF02B",
+        "logs": "/api/v1/logs?node=CD8AF12F-C41B-5C57-8211-1C60FACDF02B"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/CD8AF12F-C41B-5C57-8211-1C60FACDF02B",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt36",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32119,
+        "used": 512
+      },
+      "tier": null,
+      "id": "CD8AF12F-C41B-5C57-8211-1C60FACDF02B",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "node_trust_reports": "/api/v1/node_trust_reports/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "uri": "/api/v1/nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "trust_nodes": "/api/v1/trust_nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE"
+      },
+      "uri": "/nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.22,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 45.6,
+        "io": null,
+        "memory": "12035208 KB",
+        "gips_current": 43.7,
+        "cpu": {
+          "iowait": 534.22,
+          "idle": 43460409.33,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 2
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 2,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.76,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.76,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "tier": null,
+      "ids": {
+        "platform_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "mac": "00:1e:67:47:f3:de",
+        "ip_address": "172.24.0.33",
+        "cloud_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE"
+      },
+      "node_name": "novamgmt33",
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=B275FD0E-83EE-5BB0-A505-9C7C70B3DAE8",
+        "vms": "/api/v1/vms?ids=1c16e354-102a-4356-8006-c455927e8a73,68a20f9a-ece5-4fe5-a7e2-45afa4a36110,6edce1e2-681b-47b4-a5c6-a942407fbe6d",
+        "uri": "/api/v1/nodes/B275FD0E-83EE-5BB0-A505-9C7C70B3DAE8"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/B275FD0E-83EE-5BB0-A505-9C7C70B3DAE8",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt51",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 3
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 3,
+        "max": null
+      },
+      "memory": {
+        "max": 7931,
+        "used": 3584
+      },
+      "tier": null,
+      "id": "B275FD0E-83EE-5BB0-A505-9C7C70B3DAE8",
+      "vm_ids": [
+        "1c16e354-102a-4356-8006-c455927e8a73",
+        "68a20f9a-ece5-4fe5-a7e2-45afa4a36110",
+        "6edce1e2-681b-47b4-a5c6-a942407fbe6d"
+      ],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D0769876-ED98-E111-BD1D-001E6747F74E",
+        "logs": "/api/v1/logs?node=D0769876-ED98-E111-BD1D-001E6747F74E"
+      },
+      "uri": "/nodes/D0769876-ED98-E111-BD1D-001E6747F74E",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "D0769876-ED98-E111-BD1D-001E6747F74E",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.21,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "5894192 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 6538.57,
+          "idle": 58024647.02,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "6144 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 5871,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.14,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.14,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=D0769876-ED98-E111-BD1D-001E6747F74E",
+      "tier": null,
+      "ids": {
+        "platform_id": "D0769876-ED98-E111-BD1D-001E6747F74E",
+        "mac": "00:1e:67:47:f7:4e",
+        "ip_address": "172.24.0.52",
+        "cloud_id": "D0769876-ED98-E111-BD1D-001E6747F74E"
+      },
+      "node_name": "novamgmt52",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/71815A85-9394-E111-BD1D-001E6747F3C6",
+        "logs": "/api/v1/logs?node=71815A85-9394-E111-BD1D-001E6747F3C6"
+      },
+      "uri": "/nodes/71815A85-9394-E111-BD1D-001E6747F3C6",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "71815A85-9394-E111-BD1D-001E6747F3C6",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7918460 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 1086.15,
+          "idle": 58125827.12,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.58,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.58,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=71815A85-9394-E111-BD1D-001E6747F3C6",
+      "tier": null,
+      "ids": {
+        "platform_id": "71815A85-9394-E111-BD1D-001E6747F3C6",
+        "mac": "00:1e:67:47:f3:c6",
+        "ip_address": "172.24.0.53",
+        "cloud_id": "71815A85-9394-E111-BD1D-001E6747F3C6"
+      },
+      "node_name": "novamgmt53",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/2BFD7E74-61CA-5CE6-9CF3-B1A1521FC398",
+        "logs": "/api/v1/logs?node=2BFD7E74-61CA-5CE6-9CF3-B1A1521FC398"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/2BFD7E74-61CA-5CE6-9CF3-B1A1521FC398",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt54",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "tier": null,
+      "id": "2BFD7E74-61CA-5CE6-9CF3-B1A1521FC398",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/B440527D-8F95-E111-BD1D-001E6747F0DA",
+        "logs": "/api/v1/logs?node=B440527D-8F95-E111-BD1D-001E6747F0DA"
+      },
+      "uri": "/nodes/B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.32,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7922908 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 955.58,
+          "idle": 58409542,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.13,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.13,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B440527D-8F95-E111-BD1D-001E6747F0DA",
+      "tier": null,
+      "ids": {
+        "platform_id": "B440527D-8F95-E111-BD1D-001E6747F0DA",
+        "mac": "00:1e:67:47:f0:da",
+        "ip_address": "172.24.0.55",
+        "cloud_id": "B440527D-8F95-E111-BD1D-001E6747F0DA"
+      },
+      "node_name": "novamgmt55",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/63156675-C894-E111-BD1D-001E6747F346",
+        "logs": "/api/v1/logs?node=63156675-C894-E111-BD1D-001E6747F346"
+      },
+      "uri": "/nodes/63156675-C894-E111-BD1D-001E6747F346",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "63156675-C894-E111-BD1D-001E6747F346",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.24,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7908900 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1272.24,
+          "idle": 58082501.33,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.57,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.57,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=63156675-C894-E111-BD1D-001E6747F346",
+      "tier": null,
+      "ids": {
+        "platform_id": "63156675-C894-E111-BD1D-001E6747F346",
+        "mac": "00:1e:67:47:f3:46",
+        "ip_address": "172.24.0.56",
+        "cloud_id": "63156675-C894-E111-BD1D-001E6747F346"
+      },
+      "node_name": "novamgmt56",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/41BB29A2-DE94-E111-BD1D-001E6747F55E",
+        "logs": "/api/v1/logs?node=41BB29A2-DE94-E111-BD1D-001E6747F55E"
+      },
+      "uri": "/nodes/41BB29A2-DE94-E111-BD1D-001E6747F55E",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "41BB29A2-DE94-E111-BD1D-001E6747F55E",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.33,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13654508 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 853.62,
+          "idle": 58096839.25,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.68,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.68,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=41BB29A2-DE94-E111-BD1D-001E6747F55E",
+      "tier": null,
+      "ids": {
+        "platform_id": "41BB29A2-DE94-E111-BD1D-001E6747F55E",
+        "mac": "00:1e:67:47:f5:5e",
+        "ip_address": "172.24.0.61",
+        "cloud_id": "41BB29A2-DE94-E111-BD1D-001E6747F55E"
+      },
+      "node_name": "novamgmt61",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/B340527D-8F95-E111-BD1D-001E6747F0DE",
+        "logs": "/api/v1/logs?node=B340527D-8F95-E111-BD1D-001E6747F0DE"
+      },
+      "uri": "/nodes/B340527D-8F95-E111-BD1D-001E6747F0DE",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "B340527D-8F95-E111-BD1D-001E6747F0DE",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.24,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7922488 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 1485.36,
+          "idle": 58090451.95,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.55,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.55,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B340527D-8F95-E111-BD1D-001E6747F0DE",
+      "tier": null,
+      "ids": {
+        "platform_id": "B340527D-8F95-E111-BD1D-001E6747F0DE",
+        "mac": "00:1e:67:47:f0:de",
+        "ip_address": "172.24.0.62",
+        "cloud_id": "B340527D-8F95-E111-BD1D-001E6747F0DE"
+      },
+      "node_name": "novamgmt62",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "logs": "/api/v1/logs?node=61AF1458-9295-E111-BD1D-001E6747F0BA"
+      },
+      "uri": "/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.26,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7992804 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 1031.57,
+          "idle": 58109859.67,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7953,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.49,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.49,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "tier": null,
+      "ids": {
+        "platform_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "mac": "00:1e:67:47:f0:ba",
+        "ip_address": "172.24.0.64",
+        "cloud_id": "61AF1458-9295-E111-BD1D-001E6747F0BA"
+      },
+      "node_name": "novamgmt64",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E1471B69-0499-E111-BD1D-001E6747F632",
+        "logs": "/api/v1/logs?node=E1471B69-0499-E111-BD1D-001E6747F632"
+      },
+      "uri": "/nodes/E1471B69-0499-E111-BD1D-001E6747F632",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "E1471B69-0499-E111-BD1D-001E6747F632",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.28,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "5867592 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 7953.16,
+          "idle": 58080111.8,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "6144 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 5871,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.33,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.33,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E1471B69-0499-E111-BD1D-001E6747F632",
+      "tier": null,
+      "ids": {
+        "platform_id": "E1471B69-0499-E111-BD1D-001E6747F632",
+        "mac": "00:1e:67:47:f6:32",
+        "ip_address": "172.24.0.65",
+        "cloud_id": "E1471B69-0499-E111-BD1D-001E6747F632"
+      },
+      "node_name": "novamgmt65",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/61156675-C894-E111-BD1D-001E6747F6BA",
+        "logs": "/api/v1/logs?node=61156675-C894-E111-BD1D-001E6747F6BA"
+      },
+      "uri": "/nodes/61156675-C894-E111-BD1D-001E6747F6BA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "61156675-C894-E111-BD1D-001E6747F6BA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.29,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7985412 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 1129.9,
+          "idle": 51382900.93,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7953,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.199",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.199",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.92,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.92,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=61156675-C894-E111-BD1D-001E6747F6BA",
+      "tier": null,
+      "ids": {
+        "platform_id": "61156675-C894-E111-BD1D-001E6747F6BA",
+        "mac": "00:1e:67:47:f6:ba",
+        "ip_address": "172.24.0.66",
+        "cloud_id": "61156675-C894-E111-BD1D-001E6747F6BA"
+      },
+      "node_name": "novamgmt66",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506",
+        "logs": "/api/v1/logs?node=D5D0B1BE-A394-E111-BD1D-001E6747F506"
+      },
+      "uri": "/nodes/D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.25,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "3180628 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 58.33,
+          "idle": 8560998.16,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.63,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.63,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=D5D0B1BE-A394-E111-BD1D-001E6747F506",
+      "tier": null,
+      "ids": {
+        "platform_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506",
+        "mac": "00:1e:67:47:f5:06",
+        "ip_address": "172.24.0.41",
+        "cloud_id": "D5D0B1BE-A394-E111-BD1D-001E6747F506"
+      },
+      "node_name": "novamgmt41",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+        "logs": "/api/v1/logs?node=BD4B1595-76DA-59D0-BD1C-7F160FE492E0"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt43",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "BD4B1595-76DA-59D0-BD1C-7F160FE492E0",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/A571941E-04FA-5826-A310-698060FB487A",
+        "logs": "/api/v1/logs?node=A571941E-04FA-5826-A310-698060FB487A"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/A571941E-04FA-5826-A310-698060FB487A",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt44",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32139,
+        "used": 512
+      },
+      "tier": null,
+      "id": "A571941E-04FA-5826-A310-698060FB487A",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/91BA1241-549F-5AF1-816C-ABB78258D059",
+        "logs": "/api/v1/logs?node=91BA1241-549F-5AF1-816C-ABB78258D059"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/91BA1241-549F-5AF1-816C-ABB78258D059",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt45",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "91BA1241-549F-5AF1-816C-ABB78258D059",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E92335ED-3F9D-5347-B494-6D2C0E4F45EE",
+        "logs": "/api/v1/logs?node=E92335ED-3F9D-5347-B494-6D2C0E4F45EE"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/E92335ED-3F9D-5347-B494-6D2C0E4F45EE",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt46",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "E92335ED-3F9D-5347-B494-6D2C0E4F45EE",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
+        "health": 2,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/84EC3C1F-E938-5E2D-BF69-B4095642BB1F",
+        "logs": "/api/v1/logs?node=84EC3C1F-E938-5E2D-BF69-B4095642BB1F"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/84EC3C1F-E938-5E2D-BF69-B4095642BB1F",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt42",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "tier": null,
+      "id": "84EC3C1F-E938-5E2D-BF69-B4095642BB1F",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/00891562-1547-E211-A90E-001E673931D8",
+        "logs": "/api/v1/logs?node=00891562-1547-E211-A90E-001E673931D8"
+      },
+      "uri": "/nodes/00891562-1547-E211-A90E-001E673931D8",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "00891562-1547-E211-A90E-001E673931D8",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13880884 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 782.61,
+          "idle": 58083009.12,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.52,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.46,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=00891562-1547-E211-A90E-001E673931D8",
+      "tier": null,
+      "ids": {
+        "platform_id": "00891562-1547-E211-A90E-001E673931D8",
+        "mac": "00:1e:67:39:31:d8",
+        "ip_address": "172.24.0.63",
+        "cloud_id": "00891562-1547-E211-A90E-001E673931D8"
+      },
+      "node_name": "novamgmt63",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/95A3C620-7C94-E111-BD1D-001E6747F3BA",
+        "logs": "/api/v1/logs?node=95A3C620-7C94-E111-BD1D-001E6747F3BA"
+      },
+      "uri": "/nodes/95A3C620-7C94-E111-BD1D-001E6747F3BA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "95A3C620-7C94-E111-BD1D-001E6747F3BA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.23,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13733076 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 635.05,
+          "idle": 58081449.97,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 16011,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.66,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.66,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=95A3C620-7C94-E111-BD1D-001E6747F3BA",
+      "tier": null,
+      "ids": {
+        "platform_id": "95A3C620-7C94-E111-BD1D-001E6747F3BA",
+        "mac": "00:1e:67:47:f3:ba",
+        "ip_address": "172.24.0.111",
+        "cloud_id": "95A3C620-7C94-E111-BD1D-001E6747F3BA"
+      },
+      "node_name": "novamgmt111",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/9298C3DA-8499-E111-BD1D-001E6747F3B6",
+        "logs": "/api/v1/logs?node=9298C3DA-8499-E111-BD1D-001E6747F3B6"
+      },
+      "uri": "/nodes/9298C3DA-8499-E111-BD1D-001E6747F3B6",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "9298C3DA-8499-E111-BD1D-001E6747F3B6",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.17,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 33.44,
+        "io": null,
+        "memory": "3891964 KB",
+        "gips_current": 31.35,
+        "cpu": {
+          "iowait": 964.54,
+          "idle": 28874530.55,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "4096 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 1
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 3915,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0.67,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.67,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=9298C3DA-8499-E111-BD1D-001E6747F3B6",
+      "tier": null,
+      "ids": {
+        "platform_id": "9298C3DA-8499-E111-BD1D-001E6747F3B6",
+        "mac": "00:1e:67:47:f3:b6",
+        "ip_address": "172.24.0.81",
+        "cloud_id": "9298C3DA-8499-E111-BD1D-001E6747F3B6"
+      },
+      "node_name": "novamgmt81",
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E5F5D9AB-C294-E111-BD1D-001E6747F6CA",
+        "logs": "/api/v1/logs?node=E5F5D9AB-C294-E111-BD1D-001E6747F6CA"
+      },
+      "uri": "/nodes/E5F5D9AB-C294-E111-BD1D-001E6747F6CA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "E5F5D9AB-C294-E111-BD1D-001E6747F6CA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7919564 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1117.68,
+          "idle": 58397840.84,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.14,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.14,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E5F5D9AB-C294-E111-BD1D-001E6747F6CA",
+      "tier": null,
+      "ids": {
+        "platform_id": "E5F5D9AB-C294-E111-BD1D-001E6747F6CA",
+        "mac": "00:1e:67:47:f6:ca",
+        "ip_address": "172.24.0.82",
+        "cloud_id": "E5F5D9AB-C294-E111-BD1D-001E6747F6CA"
+      },
+      "node_name": "novamgmt82",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E5471B69-0499-E111-BD1D-001E6747F0D2",
+        "logs": "/api/v1/logs?node=E5471B69-0499-E111-BD1D-001E6747F0D2"
+      },
+      "uri": "/nodes/E5471B69-0499-E111-BD1D-001E6747F0D2",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "E5471B69-0499-E111-BD1D-001E6747F0D2",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.24,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7926456 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1056.59,
+          "idle": 58088703.86,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.61,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.61,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E5471B69-0499-E111-BD1D-001E6747F0D2",
+      "tier": null,
+      "ids": {
+        "platform_id": "E5471B69-0499-E111-BD1D-001E6747F0D2",
+        "mac": "00:1e:67:47:f0:d2",
+        "ip_address": "172.24.0.83",
+        "cloud_id": "E5471B69-0499-E111-BD1D-001E6747F0D2"
+      },
+      "node_name": "novamgmt83",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D1769876-ED98-E111-BD1D-001E6747F5F6",
+        "logs": "/api/v1/logs?node=D1769876-ED98-E111-BD1D-001E6747F5F6"
+      },
+      "uri": "/nodes/D1769876-ED98-E111-BD1D-001E6747F5F6",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "D1769876-ED98-E111-BD1D-001E6747F5F6",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.33,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7914656 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1125.1,
+          "idle": 58083800.66,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.56,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.56,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=D1769876-ED98-E111-BD1D-001E6747F5F6",
+      "tier": null,
+      "ids": {
+        "platform_id": "D1769876-ED98-E111-BD1D-001E6747F5F6",
+        "mac": "00:1e:67:47:f5:f6",
+        "ip_address": "172.24.0.84",
+        "cloud_id": "D1769876-ED98-E111-BD1D-001E6747F5F6"
+      },
+      "node_name": "novamgmt84",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/21AA40B2-BF95-E111-BD1D-001E6747F13E",
+        "logs": "/api/v1/logs?node=21AA40B2-BF95-E111-BD1D-001E6747F13E"
+      },
+      "uri": "/nodes/21AA40B2-BF95-E111-BD1D-001E6747F13E",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "21AA40B2-BF95-E111-BD1D-001E6747F13E",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.16,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 79.04,
+        "io": null,
+        "memory": "7919684 KB",
+        "gips_current": 76.57,
+        "cpu": {
+          "iowait": 983.47,
+          "idle": 58150817.12,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2600 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.7,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.7,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=21AA40B2-BF95-E111-BD1D-001E6747F13E",
+      "tier": null,
+      "ids": {
+        "platform_id": "21AA40B2-BF95-E111-BD1D-001E6747F13E",
+        "mac": "00:1e:67:47:f1:3e",
+        "ip_address": "172.24.0.85",
+        "cloud_id": "21AA40B2-BF95-E111-BD1D-001E6747F13E"
+      },
+      "node_name": "novamgmt85",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/B2D1C20A-CA94-E111-BD1D-001E6747F5BA",
+        "logs": "/api/v1/logs?node=B2D1C20A-CA94-E111-BD1D-001E6747F5BA"
+      },
+      "uri": "/nodes/B2D1C20A-CA94-E111-BD1D-001E6747F5BA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "B2D1C20A-CA94-E111-BD1D-001E6747F5BA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.29,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "7915380 KB",
+        "gips_current": 64.79,
+        "cpu": {
+          "iowait": 1226.84,
+          "idle": 58109737.93,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.71,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.71,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B2D1C20A-CA94-E111-BD1D-001E6747F5BA",
+      "tier": null,
+      "ids": {
+        "platform_id": "B2D1C20A-CA94-E111-BD1D-001E6747F5BA",
+        "mac": "00:1e:67:47:f5:ba",
+        "ip_address": "172.24.0.86",
+        "cloud_id": "B2D1C20A-CA94-E111-BD1D-001E6747F5BA"
+      },
+      "node_name": "novamgmt86",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/8043119F-DC1B-E211-9C2E-001E6738E0F0",
+        "logs": "/api/v1/logs?node=8043119F-DC1B-E211-9C2E-001E6738E0F0"
+      },
+      "uri": "/nodes/8043119F-DC1B-E211-9C2E-001E6738E0F0",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "8043119F-DC1B-E211-9C2E-001E6738E0F0",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 30.4,
+        "io": null,
+        "memory": "7992668 KB",
+        "gips_current": 28.5,
+        "cpu": {
+          "iowait": 779.07,
+          "idle": 28847911.64,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 1
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7947,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0.55,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.55,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=8043119F-DC1B-E211-9C2E-001E6738E0F0",
+      "tier": null,
+      "ids": {
+        "platform_id": "8043119F-DC1B-E211-9C2E-001E6738E0F0",
+        "mac": "00:1e:67:38:e0:f0",
+        "ip_address": "172.24.0.91",
+        "cloud_id": "8043119F-DC1B-E211-9C2E-001E6738E0F0"
+      },
+      "node_name": "novamgmt91",
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/80DB6910-751B-E211-AA4C-001E6738DDE4",
+        "logs": "/api/v1/logs?node=80DB6910-751B-E211-AA4C-001E6738DDE4"
+      },
+      "uri": "/nodes/80DB6910-751B-E211-AA4C-001E6738DDE4",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "80DB6910-751B-E211-AA4C-001E6738DDE4",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.34,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7928784 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 554.92,
+          "idle": 38475608.06,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.56,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.56,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=80DB6910-751B-E211-AA4C-001E6738DDE4",
+      "tier": null,
+      "ids": {
+        "platform_id": "80DB6910-751B-E211-AA4C-001E6738DDE4",
+        "mac": "00:1e:67:38:dd:e4",
+        "ip_address": "172.24.0.92",
+        "cloud_id": "80DB6910-751B-E211-AA4C-001E6738DDE4"
+      },
+      "node_name": "novamgmt92",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
+        "logs": "/api/v1/logs?node=80C8A8A2-E41B-E211-8816-001E6738E260"
+      },
+      "uri": "/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "80C8A8A2-E41B-E211-8816-001E6738E260",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.21,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13696388 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 668.47,
+          "idle": 58077262.32,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.44,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.44,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=80C8A8A2-E41B-E211-8816-001E6738E260",
+      "tier": null,
+      "ids": {
+        "platform_id": "80C8A8A2-E41B-E211-8816-001E6738E260",
+        "mac": "00:1e:67:38:e2:60",
+        "ip_address": "172.24.0.93",
+        "cloud_id": "80C8A8A2-E41B-E211-8816-001E6738E260"
+      },
+      "node_name": "novamgmt93",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/80B93529-951B-E211-94AB-001E6738DF9C",
+        "logs": "/api/v1/logs?node=80B93529-951B-E211-94AB-001E6738DF9C"
+      },
+      "uri": "/nodes/80B93529-951B-E211-94AB-001E6738DF9C",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "80B93529-951B-E211-94AB-001E6738DF9C",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.26,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13704000 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 648.5,
+          "idle": 58082058.66,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.56,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.56,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=80B93529-951B-E211-94AB-001E6738DF9C",
+      "tier": null,
+      "ids": {
+        "platform_id": "80B93529-951B-E211-94AB-001E6738DF9C",
+        "mac": "00:1e:67:38:df:9c",
+        "ip_address": "172.24.0.94",
+        "cloud_id": "80B93529-951B-E211-94AB-001E6738DF9C"
+      },
+      "node_name": "novamgmt94",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/8077AAA4-BB46-E211-BD64-001E673931BC",
+        "logs": "/api/v1/logs?node=8077AAA4-BB46-E211-BD64-001E673931BC"
+      },
+      "uri": "/nodes/8077AAA4-BB46-E211-BD64-001E673931BC",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "8077AAA4-BB46-E211-BD64-001E673931BC",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13818460 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 626,
+          "idle": 58071825.77,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.46,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.46,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=8077AAA4-BB46-E211-BD64-001E673931BC",
+      "tier": null,
+      "ids": {
+        "platform_id": "8077AAA4-BB46-E211-BD64-001E673931BC",
+        "mac": "00:1e:67:39:31:bc",
+        "ip_address": "172.24.0.95",
+        "cloud_id": "8077AAA4-BB46-E211-BD64-001E673931BC"
+      },
+      "node_name": "novamgmt95",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D1D0B1BE-A394-E111-BD1D-001E6747F502",
+        "logs": "/api/v1/logs?node=D1D0B1BE-A394-E111-BD1D-001E6747F502"
+      },
+      "uri": "/nodes/D1D0B1BE-A394-E111-BD1D-001E6747F502",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "D1D0B1BE-A394-E111-BD1D-001E6747F502",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.21,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7905856 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1092.34,
+          "idle": 58066480.36,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.68,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.68,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=D1D0B1BE-A394-E111-BD1D-001E6747F502",
+      "tier": null,
+      "ids": {
+        "platform_id": "D1D0B1BE-A394-E111-BD1D-001E6747F502",
+        "mac": "00:1e:67:47:f5:02",
+        "ip_address": "172.24.0.96",
+        "cloud_id": "D1D0B1BE-A394-E111-BD1D-001E6747F502"
+      },
+      "node_name": "novamgmt96",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E2F5D9AB-C294-E111-BD1D-001E6747F316",
+        "logs": "/api/v1/logs?node=E2F5D9AB-C294-E111-BD1D-001E6747F316"
+      },
+      "uri": "/nodes/E2F5D9AB-C294-E111-BD1D-001E6747F316",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "E2F5D9AB-C294-E111-BD1D-001E6747F316",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.28,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "13745704 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 609.42,
+          "idle": 58081899.11,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.67,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.67,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E2F5D9AB-C294-E111-BD1D-001E6747F316",
+      "tier": null,
+      "ids": {
+        "platform_id": "E2F5D9AB-C294-E111-BD1D-001E6747F316",
+        "mac": "00:1e:67:47:f3:16",
+        "ip_address": "172.24.0.116",
+        "cloud_id": "E2F5D9AB-C294-E111-BD1D-001E6747F316"
+      },
+      "node_name": "novamgmt116",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E4CD2671-A095-E111-BD1D-001E6747F4B2",
+        "logs": "/api/v1/logs?node=E4CD2671-A095-E111-BD1D-001E6747F4B2"
+      },
+      "uri": "/nodes/E4CD2671-A095-E111-BD1D-001E6747F4B2",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "E4CD2671-A095-E111-BD1D-001E6747F4B2",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.31,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7904804 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1125.89,
+          "idle": 58065880.72,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.54,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.54,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=E4CD2671-A095-E111-BD1D-001E6747F4B2",
+      "tier": null,
+      "ids": {
+        "platform_id": "E4CD2671-A095-E111-BD1D-001E6747F4B2",
+        "mac": "00:1e:67:47:f4:b2",
+        "ip_address": "172.24.0.114",
+        "cloud_id": "E4CD2671-A095-E111-BD1D-001E6747F4B2"
+      },
+      "node_name": "novamgmt114",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/B1182D6D-DA98-E111-BD1D-001E6747F5FA",
+        "logs": "/api/v1/logs?node=B1182D6D-DA98-E111-BD1D-001E6747F5FA"
+      },
+      "uri": "/nodes/B1182D6D-DA98-E111-BD1D-001E6747F5FA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "B1182D6D-DA98-E111-BD1D-001E6747F5FA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.28,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7921212 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 1030.02,
+          "idle": 58078043.85,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.59,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.59,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B1182D6D-DA98-E111-BD1D-001E6747F5FA",
+      "tier": null,
+      "ids": {
+        "platform_id": "B1182D6D-DA98-E111-BD1D-001E6747F5FA",
+        "mac": "00:1e:67:47:f5:fa",
+        "ip_address": "172.24.0.112",
+        "cloud_id": "B1182D6D-DA98-E111-BD1D-001E6747F5FA"
+      },
+      "node_name": "novamgmt112",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/91928E1D-4694-E111-BD1D-001E6747F1BA",
+        "logs": "/api/v1/logs?node=91928E1D-4694-E111-BD1D-001E6747F1BA"
+      },
+      "uri": "/nodes/91928E1D-4694-E111-BD1D-001E6747F1BA",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "91928E1D-4694-E111-BD1D-001E6747F1BA",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.19,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "7909960 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 412.26,
+          "idle": 38480665.1,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "8192 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7887,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.2.183",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is enabled. Compute service is working.  Agent version: 1.0.2.183",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.48,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.48,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=91928E1D-4694-E111-BD1D-001E6747F1BA",
+      "tier": null,
+      "ids": {
+        "platform_id": "91928E1D-4694-E111-BD1D-001E6747F1BA",
+        "mac": "00:1e:67:47:f1:ba",
+        "ip_address": "172.24.0.113",
+        "cloud_id": "91928E1D-4694-E111-BD1D-001E6747F1BA"
+      },
+      "node_name": "novamgmt113",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Compute service is enabled. Compute service is not reporting! No Agent installed!",
+        "health": 4,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Compute service is enabled."
+      },
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/55CD56D5-D78B-5129-995A-DFEAD65EBEB0",
+        "logs": "/api/v1/logs?node=55CD56D5-D78B-5129-995A-DFEAD65EBEB0"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": null,
+      "sam_registered": false,
+      "uri": "/nodes/55CD56D5-D78B-5129-995A-DFEAD65EBEB0",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "node_name": "novamgmt115",
+      "sam_controlled": 0,
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      },
+      "scheduler_mark": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 7947,
+        "used": 512
+      },
+      "tier": null,
+      "id": "55CD56D5-D78B-5129-995A-DFEAD65EBEB0",
+      "vm_ids": [],
+      "contention": {
+        "sockets": null,
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/3184A832-DB98-E111-BD1D-001E6747F64A",
+        "logs": "/api/v1/logs?node=3184A832-DB98-E111-BD1D-001E6747F64A"
+      },
+      "uri": "/nodes/3184A832-DB98-E111-BD1D-001E6747F64A",
+      "sam_controlled": 0,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+      "sam_registered": false,
+      "utilization": {
+        "ipc": 0.41,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "6217784 KB",
+        "gips_current": 58.9,
+        "cpu": {
+          "iowait": 241.17,
+          "idle": 19775259.6,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 32079,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.3.23",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Node is powered on. Compute service is disabled! Compute service is working.  Agent version: 1.0.3.23",
+        "health": 3,
+        "mode": 0,
+        "trust": 0,
+        "short_message": "Mismatched versions of SAM agent and SAM server. Upgrade Agent version to the same as Server: 1.0.3.48! Compute service is disabled!"
+      },
+      "trust_node_id": null,
+      "scheduling_mode": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.65,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.65,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=3184A832-DB98-E111-BD1D-001E6747F64A",
+      "tier": null,
+      "ids": {
+        "platform_id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+        "mac": "00:1e:67:47:f6:4a",
+        "ip_address": "172.24.0.31",
+        "cloud_id": "3184A832-DB98-E111-BD1D-001E6747F64A"
+      },
+      "node_name": "novamgmt31",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sla": {
+    "links": {
+      "uri": "/api/v1/configuration/slas/4",
+      "slos": "/api/v1/configuration/slos?ids=13,14,15,16"
+    },
+    "slo_ids": [
+      13,
+      14,
+      15,
+      16
+    ],
+    "uri": "/configuration/slas/4",
+    "name": "Secure Platinum",
+    "id": 4
+  }
+}

@@ -1,0 +1,1444 @@
+{
+  "slos": [
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/1",
+        "slas": "/api/v1/configuration/slas/1"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/1",
+      "value": "0;4",
+      "sla_id": 1,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 1,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/2",
+        "slas": "/api/v1/configuration/slas/1"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/2",
+      "value": "4",
+      "sla_id": 1,
+      "unit": "",
+      "operator": "equals",
+      "id": 2,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/3",
+        "slas": "/api/v1/configuration/slas/1"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/3",
+      "value": "0",
+      "sla_id": 1,
+      "unit": "",
+      "operator": "equals",
+      "id": 3,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/4",
+        "slas": "/api/v1/configuration/slas/1"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/4",
+      "value": "False",
+      "sla_id": 1,
+      "unit": "",
+      "operator": "equals",
+      "id": 4,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/5",
+        "slas": "/api/v1/configuration/slas/2"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/5",
+      "value": "0;4",
+      "sla_id": 2,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 5,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/6",
+        "slas": "/api/v1/configuration/slas/2"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/6",
+      "value": "4",
+      "sla_id": 2,
+      "unit": "",
+      "operator": "equals",
+      "id": 6,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/7",
+        "slas": "/api/v1/configuration/slas/2"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/7",
+      "value": "1",
+      "sla_id": 2,
+      "unit": "",
+      "operator": "equals",
+      "id": 7,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/8",
+        "slas": "/api/v1/configuration/slas/2"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/8",
+      "value": "False",
+      "sla_id": 2,
+      "unit": "",
+      "operator": "equals",
+      "id": 8,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/9",
+        "slas": "/api/v1/configuration/slas/3"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/9",
+      "value": "0;3",
+      "sla_id": 3,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 9,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/10",
+        "slas": "/api/v1/configuration/slas/3"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/10",
+      "value": "4",
+      "sla_id": 3,
+      "unit": "",
+      "operator": "equals",
+      "id": 10,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/11",
+        "slas": "/api/v1/configuration/slas/3"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/11",
+      "value": "0",
+      "sla_id": 3,
+      "unit": "",
+      "operator": "equals",
+      "id": 11,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/12",
+        "slas": "/api/v1/configuration/slas/3"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/12",
+      "value": "False",
+      "sla_id": 3,
+      "unit": "",
+      "operator": "equals",
+      "id": 12,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/13",
+        "slas": "/api/v1/configuration/slas/4"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/13",
+      "value": "0;3",
+      "sla_id": 4,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 13,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/14",
+        "slas": "/api/v1/configuration/slas/4"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/14",
+      "value": "4",
+      "sla_id": 4,
+      "unit": "",
+      "operator": "equals",
+      "id": 14,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/15",
+        "slas": "/api/v1/configuration/slas/4"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/15",
+      "value": "1",
+      "sla_id": 4,
+      "unit": "",
+      "operator": "equals",
+      "id": 15,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/16",
+        "slas": "/api/v1/configuration/slas/4"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/16",
+      "value": "False",
+      "sla_id": 4,
+      "unit": "",
+      "operator": "equals",
+      "id": 16,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/17",
+        "slas": "/api/v1/configuration/slas/5"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/17",
+      "value": "0;2",
+      "sla_id": 5,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 17,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/18",
+        "slas": "/api/v1/configuration/slas/5"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/18",
+      "value": "2",
+      "sla_id": 5,
+      "unit": "",
+      "operator": "equals",
+      "id": 18,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/19",
+        "slas": "/api/v1/configuration/slas/5"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/19",
+      "value": "0",
+      "sla_id": 5,
+      "unit": "",
+      "operator": "equals",
+      "id": 19,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/20",
+        "slas": "/api/v1/configuration/slas/5"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/20",
+      "value": "False",
+      "sla_id": 5,
+      "unit": "",
+      "operator": "equals",
+      "id": 20,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/21",
+        "slas": "/api/v1/configuration/slas/6"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/21",
+      "value": "0;2",
+      "sla_id": 6,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 21,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/22",
+        "slas": "/api/v1/configuration/slas/6"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/22",
+      "value": "2",
+      "sla_id": 6,
+      "unit": "",
+      "operator": "equals",
+      "id": 22,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/23",
+        "slas": "/api/v1/configuration/slas/6"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/23",
+      "value": "1",
+      "sla_id": 6,
+      "unit": "",
+      "operator": "equals",
+      "id": 23,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/24",
+        "slas": "/api/v1/configuration/slas/6"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/24",
+      "value": "False",
+      "sla_id": 6,
+      "unit": "",
+      "operator": "equals",
+      "id": 24,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/25",
+        "slas": "/api/v1/configuration/slas/7"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/25",
+      "value": "0;1",
+      "sla_id": 7,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 25,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/26",
+        "slas": "/api/v1/configuration/slas/7"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/26",
+      "value": "1",
+      "sla_id": 7,
+      "unit": "",
+      "operator": "equals",
+      "id": 26,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/27",
+        "slas": "/api/v1/configuration/slas/7"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/27",
+      "value": "0",
+      "sla_id": 7,
+      "unit": "",
+      "operator": "equals",
+      "id": 27,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/28",
+        "slas": "/api/v1/configuration/slas/7"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/28",
+      "value": "False",
+      "sla_id": 7,
+      "unit": "",
+      "operator": "equals",
+      "id": 28,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/29",
+        "slas": "/api/v1/configuration/slas/8"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/29",
+      "value": "0;1",
+      "sla_id": 8,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 29,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/30",
+        "slas": "/api/v1/configuration/slas/8"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/30",
+      "value": "1",
+      "sla_id": 8,
+      "unit": "",
+      "operator": "equals",
+      "id": 30,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/31",
+        "slas": "/api/v1/configuration/slas/8"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/31",
+      "value": "1",
+      "sla_id": 8,
+      "unit": "",
+      "operator": "equals",
+      "id": 31,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/32",
+        "slas": "/api/v1/configuration/slas/8"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/32",
+      "value": "False",
+      "sla_id": 8,
+      "unit": "",
+      "operator": "equals",
+      "id": 32,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/33",
+        "slas": "/api/v1/configuration/slas/9"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/33",
+      "value": "0;1",
+      "sla_id": 9,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 33,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/34",
+        "slas": "/api/v1/configuration/slas/9"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/34",
+      "value": "1",
+      "sla_id": 9,
+      "unit": "",
+      "operator": "equals",
+      "id": 34,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/35",
+        "slas": "/api/v1/configuration/slas/9"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/35",
+      "value": "0",
+      "sla_id": 9,
+      "unit": "",
+      "operator": "equals",
+      "id": 35,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/36",
+        "slas": "/api/v1/configuration/slas/9"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/36",
+      "value": "False",
+      "sla_id": 9,
+      "unit": "",
+      "operator": "equals",
+      "id": 36,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/37",
+        "slas": "/api/v1/configuration/slas/10"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/37",
+      "value": "0;1",
+      "sla_id": 10,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 37,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/38",
+        "slas": "/api/v1/configuration/slas/10"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/38",
+      "value": "1",
+      "sla_id": 10,
+      "unit": "",
+      "operator": "equals",
+      "id": 38,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/39",
+        "slas": "/api/v1/configuration/slas/10"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/39",
+      "value": "1",
+      "sla_id": 10,
+      "unit": "",
+      "operator": "equals",
+      "id": 39,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/40",
+        "slas": "/api/v1/configuration/slas/10"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/40",
+      "value": "False",
+      "sla_id": 10,
+      "unit": "",
+      "operator": "equals",
+      "id": 40,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/41",
+        "slas": "/api/v1/configuration/slas/11"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/41",
+      "value": "0;0.5",
+      "sla_id": 11,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 41,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/42",
+        "slas": "/api/v1/configuration/slas/11"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/42",
+      "value": "1",
+      "sla_id": 11,
+      "unit": "",
+      "operator": "equals",
+      "id": 42,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/43",
+        "slas": "/api/v1/configuration/slas/11"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/43",
+      "value": "1",
+      "sla_id": 11,
+      "unit": "",
+      "operator": "equals",
+      "id": 43,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/44",
+        "slas": "/api/v1/configuration/slas/11"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/44",
+      "value": "False",
+      "sla_id": 11,
+      "unit": "",
+      "operator": "equals",
+      "id": 44,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/45",
+        "slas": "/api/v1/configuration/slas/12"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/45",
+      "value": "0;0.5",
+      "sla_id": 12,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 45,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/46",
+        "slas": "/api/v1/configuration/slas/12"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/46",
+      "value": "1",
+      "sla_id": 12,
+      "unit": "",
+      "operator": "equals",
+      "id": 46,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/47",
+        "slas": "/api/v1/configuration/slas/12"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/47",
+      "value": "0",
+      "sla_id": 12,
+      "unit": "",
+      "operator": "equals",
+      "id": 47,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/48",
+        "slas": "/api/v1/configuration/slas/12"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/48",
+      "value": "False",
+      "sla_id": 12,
+      "unit": "",
+      "operator": "equals",
+      "id": 48,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/49",
+        "slas": "/api/v1/configuration/slas/13"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/49",
+      "value": "0;4",
+      "sla_id": 13,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 49,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/50",
+        "slas": "/api/v1/configuration/slas/13"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/50",
+      "value": "4",
+      "sla_id": 13,
+      "unit": "",
+      "operator": "equals",
+      "id": 50,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/51",
+        "slas": "/api/v1/configuration/slas/13"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/51",
+      "value": "0",
+      "sla_id": 13,
+      "unit": "",
+      "operator": "equals",
+      "id": 51,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/52",
+        "slas": "/api/v1/configuration/slas/13"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/52",
+      "value": "True",
+      "sla_id": 13,
+      "unit": "",
+      "operator": "equals",
+      "id": 52,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/53",
+        "slas": "/api/v1/configuration/slas/14"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/53",
+      "value": "0;4",
+      "sla_id": 14,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 53,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/54",
+        "slas": "/api/v1/configuration/slas/14"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/54",
+      "value": "4",
+      "sla_id": 14,
+      "unit": "",
+      "operator": "equals",
+      "id": 54,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/55",
+        "slas": "/api/v1/configuration/slas/14"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/55",
+      "value": "1",
+      "sla_id": 14,
+      "unit": "",
+      "operator": "equals",
+      "id": 55,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/56",
+        "slas": "/api/v1/configuration/slas/14"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/56",
+      "value": "True",
+      "sla_id": 14,
+      "unit": "",
+      "operator": "equals",
+      "id": 56,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/57",
+        "slas": "/api/v1/configuration/slas/15"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/57",
+      "value": "0;3",
+      "sla_id": 15,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 57,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/58",
+        "slas": "/api/v1/configuration/slas/15"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/58",
+      "value": "4",
+      "sla_id": 15,
+      "unit": "",
+      "operator": "equals",
+      "id": 58,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/59",
+        "slas": "/api/v1/configuration/slas/15"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/59",
+      "value": "0",
+      "sla_id": 15,
+      "unit": "",
+      "operator": "equals",
+      "id": 59,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/60",
+        "slas": "/api/v1/configuration/slas/15"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/60",
+      "value": "True",
+      "sla_id": 15,
+      "unit": "",
+      "operator": "equals",
+      "id": 60,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/61",
+        "slas": "/api/v1/configuration/slas/16"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/61",
+      "value": "0;3",
+      "sla_id": 16,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 61,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/62",
+        "slas": "/api/v1/configuration/slas/16"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/62",
+      "value": "4",
+      "sla_id": 16,
+      "unit": "",
+      "operator": "equals",
+      "id": 62,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/63",
+        "slas": "/api/v1/configuration/slas/16"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/63",
+      "value": "1",
+      "sla_id": 16,
+      "unit": "",
+      "operator": "equals",
+      "id": 63,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/64",
+        "slas": "/api/v1/configuration/slas/16"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/64",
+      "value": "True",
+      "sla_id": 16,
+      "unit": "",
+      "operator": "equals",
+      "id": 64,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/65",
+        "slas": "/api/v1/configuration/slas/17"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/65",
+      "value": "0;2",
+      "sla_id": 17,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 65,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/66",
+        "slas": "/api/v1/configuration/slas/17"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/66",
+      "value": "2",
+      "sla_id": 17,
+      "unit": "",
+      "operator": "equals",
+      "id": 66,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/67",
+        "slas": "/api/v1/configuration/slas/17"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/67",
+      "value": "0",
+      "sla_id": 17,
+      "unit": "",
+      "operator": "equals",
+      "id": 67,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/68",
+        "slas": "/api/v1/configuration/slas/17"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/68",
+      "value": "True",
+      "sla_id": 17,
+      "unit": "",
+      "operator": "equals",
+      "id": 68,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/69",
+        "slas": "/api/v1/configuration/slas/18"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/69",
+      "value": "0;2",
+      "sla_id": 18,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 69,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/70",
+        "slas": "/api/v1/configuration/slas/18"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/70",
+      "value": "2",
+      "sla_id": 18,
+      "unit": "",
+      "operator": "equals",
+      "id": 70,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/71",
+        "slas": "/api/v1/configuration/slas/18"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/71",
+      "value": "1",
+      "sla_id": 18,
+      "unit": "",
+      "operator": "equals",
+      "id": 71,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/72",
+        "slas": "/api/v1/configuration/slas/18"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/72",
+      "value": "True",
+      "sla_id": 18,
+      "unit": "",
+      "operator": "equals",
+      "id": 72,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/73",
+        "slas": "/api/v1/configuration/slas/19"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/73",
+      "value": "0;1",
+      "sla_id": 19,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 73,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/74",
+        "slas": "/api/v1/configuration/slas/19"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/74",
+      "value": "1",
+      "sla_id": 19,
+      "unit": "",
+      "operator": "equals",
+      "id": 74,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/75",
+        "slas": "/api/v1/configuration/slas/19"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/75",
+      "value": "0",
+      "sla_id": 19,
+      "unit": "",
+      "operator": "equals",
+      "id": 75,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/76",
+        "slas": "/api/v1/configuration/slas/19"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/76",
+      "value": "True",
+      "sla_id": 19,
+      "unit": "",
+      "operator": "equals",
+      "id": 76,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/77",
+        "slas": "/api/v1/configuration/slas/20"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/77",
+      "value": "0;1",
+      "sla_id": 20,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 77,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/78",
+        "slas": "/api/v1/configuration/slas/20"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/78",
+      "value": "1",
+      "sla_id": 20,
+      "unit": "",
+      "operator": "equals",
+      "id": 78,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/79",
+        "slas": "/api/v1/configuration/slas/20"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/79",
+      "value": "1",
+      "sla_id": 20,
+      "unit": "",
+      "operator": "equals",
+      "id": 79,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/80",
+        "slas": "/api/v1/configuration/slas/20"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/80",
+      "value": "True",
+      "sla_id": 20,
+      "unit": "",
+      "operator": "equals",
+      "id": 80,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/81",
+        "slas": "/api/v1/configuration/slas/21"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/81",
+      "value": "0;1",
+      "sla_id": 21,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 81,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/82",
+        "slas": "/api/v1/configuration/slas/21"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/82",
+      "value": "1",
+      "sla_id": 21,
+      "unit": "",
+      "operator": "equals",
+      "id": 82,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/83",
+        "slas": "/api/v1/configuration/slas/21"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/83",
+      "value": "0",
+      "sla_id": 21,
+      "unit": "",
+      "operator": "equals",
+      "id": 83,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/84",
+        "slas": "/api/v1/configuration/slas/21"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/84",
+      "value": "True",
+      "sla_id": 21,
+      "unit": "",
+      "operator": "equals",
+      "id": 84,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/85",
+        "slas": "/api/v1/configuration/slas/22"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/85",
+      "value": "0;1",
+      "sla_id": 22,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 85,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/86",
+        "slas": "/api/v1/configuration/slas/22"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/86",
+      "value": "1",
+      "sla_id": 22,
+      "unit": "",
+      "operator": "equals",
+      "id": 86,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/87",
+        "slas": "/api/v1/configuration/slas/22"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/87",
+      "value": "1",
+      "sla_id": 22,
+      "unit": "",
+      "operator": "equals",
+      "id": 87,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/88",
+        "slas": "/api/v1/configuration/slas/22"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/88",
+      "value": "True",
+      "sla_id": 22,
+      "unit": "",
+      "operator": "equals",
+      "id": 88,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/89",
+        "slas": "/api/v1/configuration/slas/23"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/89",
+      "value": "0;0.5",
+      "sla_id": 23,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 89,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/90",
+        "slas": "/api/v1/configuration/slas/23"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/90",
+      "value": "1",
+      "sla_id": 23,
+      "unit": "",
+      "operator": "equals",
+      "id": 90,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/91",
+        "slas": "/api/v1/configuration/slas/23"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/91",
+      "value": "1",
+      "sla_id": 23,
+      "unit": "",
+      "operator": "equals",
+      "id": 91,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/92",
+        "slas": "/api/v1/configuration/slas/23"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/92",
+      "value": "True",
+      "sla_id": 23,
+      "unit": "",
+      "operator": "equals",
+      "id": 92,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/93",
+        "slas": "/api/v1/configuration/slas/24"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/93",
+      "value": "0;0.5",
+      "sla_id": 24,
+      "unit": "SU",
+      "operator": "in_range",
+      "id": 93,
+      "element_name": "infrastructure",
+      "slo_type": "compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/94",
+        "slas": "/api/v1/configuration/slas/24"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/94",
+      "value": "1",
+      "sla_id": 24,
+      "unit": "",
+      "operator": "equals",
+      "id": 94,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/95",
+        "slas": "/api/v1/configuration/slas/24"
+      },
+      "class_name": "security",
+      "uri": "/configuration/slos/95",
+      "value": "0",
+      "sla_id": 24,
+      "unit": "",
+      "operator": "equals",
+      "id": 95,
+      "element_name": "infrastructure",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slos/96",
+        "slas": "/api/v1/configuration/slas/24"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/96",
+      "value": "True",
+      "sla_id": 24,
+      "unit": "",
+      "operator": "equals",
+      "id": 96,
+      "element_name": "infrastructure",
+      "slo_type": "guaranteed"
+    }
+  ]
+}

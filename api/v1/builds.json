@@ -1,10 +1,9 @@
 {
   "builds": [{
-    "id": "current",
-    "hostname": "samappliance",
+    "hostname": "shui103-232",
     "build": {
-      "date": "2013-09-11T08:00:13+0200",
-      "version": "1.0.3.48"
+      "date": "2013-10-14T07:59:17+0200",
+      "version": "1.0.3.232"
     }
   }]
 }

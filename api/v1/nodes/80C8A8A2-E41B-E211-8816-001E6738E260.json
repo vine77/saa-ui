@@ -1,86 +1,170 @@
 {
-  "node": {
-    "status": {
-      "locked": false,
-      "agent_version": null,
-      "operational": 2,
-      "trust_details": {
-        "bios": 0,
-        "vmm": 0
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
+        "logs": "/api/v1/logs?node=80C8A8A2-E41B-E211-8816-001E6738E260"
       },
-      "long_message": "Compute service is enabled. Compute service is working. No Agent installed!",
-      "health": 2,
-      "mode": 0,
-      "trust": 0,
-      "short_message": "Compute service is enabled."
-    },
-    "ids": {
-      "platform_id": null,
-      "mac": null,
-      "ip_address": null,
-      "cloud_id": null
-    },
-    "scheduler_persistent": false,
-    "links": {
-      "uri": "/api/v1/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
-      "logs": "/api/v1/logs?node=80C8A8A2-E41B-E211-8816-001E6738E260"
-    },
-    "utilization": {
-      "ipc": null,
-      "uptime": null,
-      "network": null,
-      "cpu_frequency_current": null,
-      "gips_max": null,
-      "io": null,
-      "memory": null,
-      "gips_current": null,
-      "cpu": {
-        "iowait": null,
-        "idle": null,
-        "total": null,
-        "steal": null,
-        "guest": null
-      }
-    },
-    "graphite_url": null,
-    "sam_registered": false,
-    "uri": "/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
-    "capabilities": {
-      "hyperthreading": null,
-      "cores_per_socket": null,
-      "cpu_frequency": null,
-      "turbo_mode": null,
-      "memory_size": null,
-      "cpu_type": null,
-      "cache_size": null,
-      "sockets": null
-    },
-    "node_name": "novamgmt93",
-    "sam_controlled": 0,
-    "vcpus": {
-      "max": 512,
-      "used": 0
-    },
-    "scheduler_mark": null,
-    "vm_info": {
-      "count": 0,
-      "max": null
-    },
-    "memory": {
-      "max": 15951,
-      "used": 512
-    },
-    "tier": null,
-    "id": "80C8A8A2-E41B-E211-8816-001E6738E260",
-    "vm_ids": [],
-    "contention": {
-      "sockets": null,
-      "system": {
-        "llc": {
-          "value": null,
-          "label": null
+      "uri": "/nodes/80C8A8A2-E41B-E211-8816-001E6738E260",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2013-10-16T17:40:39+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
         }
+      ],
+      "id": "80C8A8A2-E41B-E211-8816-001E6738E260",
+      "sam_registered": true,
+      "utilization": {
+        "ipc": 0.34,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 60.8,
+        "io": null,
+        "memory": "2911144 KB",
+        "gips_current": 51.02,
+        "cpu": {
+          "iowait": 97.55,
+          "idle": 5162848.3,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "filterable_columns": [
+        "ids.ip_address",
+        "utilization.gips_max",
+        "sam_controlled",
+        "utilization.memory",
+        "id",
+        "sam_registered",
+        "utilization.cpu.guest",
+        "ids.platform_id",
+        "status.health",
+        "contention.system.llc.value",
+        "vcpus.used",
+        "memory.used",
+        "ids.mac",
+        "status.mode",
+        "status.trust_details.bios",
+        "utilization.gips_current",
+        "status.operational",
+        "contention.system.llc.label",
+        "status.trust_details.vmm",
+        "vm_info.count",
+        "utilization.cpu.idle",
+        "utilization.cpu.steal",
+        "utilization.cpu.iowait",
+        "node_name",
+        "status.trust",
+        "utilization.cpu.total",
+        "status.agent_version",
+        "capabilities.memory_size",
+        "vcpus.max",
+        "memory.max"
+      ],
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 16011,
+        "used": 512
+      },
+      "sortable_columns": [
+        "sam_controlled",
+        "utilization.memory",
+        "id",
+        "utilization.cpu.guest",
+        "ids.platform_id",
+        "status.health",
+        "contention.system.llc.value",
+        "vcpus.used",
+        "memory.used",
+        "utilization.gips_max",
+        "utilization.gips_current",
+        "status.operational",
+        "vm_info.count",
+        "utilization.cpu.idle",
+        "utilization.cpu.steal",
+        "utilization.cpu.iowait",
+        "node_name",
+        "status.trust",
+        "utilization.cpu.total",
+        "capabilities.memory_size",
+        "vcpus.max",
+        "memory.max"
+      ],
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.3.232",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
+        "health": 1,
+        "mode": 2,
+        "trust": 0,
+        "short_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.64,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.64,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=80C8A8A2-E41B-E211-8816-001E6738E260",
+      "tier": null,
+      "ids": {
+        "platform_id": "80C8A8A2-E41B-E211-8816-001E6738E260",
+        "mac": "00:1e:67:38:e2:60",
+        "ip_address": "172.24.0.93",
+        "cloud_id": "80C8A8A2-E41B-E211-8816-001E6738E260"
+      },
+      "node_name": "novamgmt93",
+      "vcpus": {
+        "max": 512,
+        "used": 0
       }
     }
-  }
+  ]
 }

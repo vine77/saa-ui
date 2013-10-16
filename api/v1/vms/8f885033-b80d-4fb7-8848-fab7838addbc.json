@@ -1,0 +1,103 @@
+{
+  "vms": [
+    {
+      "vm_name": "test-mswynnex-112",
+      "status": {
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "sla_status": null,
+        "health": 0,
+        "sla_messages": [
+          "SLA status for VM: unknown"
+        ],
+        "operational": 1
+      },
+      "macs": null,
+      "cloud_id": "8f885033-b80d-4fb7-8848-fab7838addbc",
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": null
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": null,
+      "floating_ips": null,
+      "capabilities": {
+        "cores": null,
+        "memory_size": "None",
+        "gips_allocated": null
+      },
+      "node_name": "novamgmt112",
+      "sla_id": null,
+      "node_id": "19E7CA07-4D92-5EB5-A6B4-5CA72412A9A5",
+      "filterable_columns": [
+        "vm_name",
+        "capabilities.gips_allocated",
+        "status.health",
+        "cloud_id",
+        "utilization.ipc",
+        "trust_details.bios",
+        "contention.label",
+        "sla_name",
+        "contention.value",
+        "node_name",
+        "sla_id",
+        "utilization.memory",
+        "trust_details.vmm",
+        "utilization.gips_current",
+        "status.trust",
+        "id",
+        "status.operational",
+        "utilization.cpu",
+        "capabilities.cores",
+        "node_id",
+        "capabilities.memory_size"
+      ],
+      "sortable_columns": [
+        "vm_name",
+        "capabilities.gips_allocated",
+        "cloud_id",
+        "utilization.ipc",
+        "status.health",
+        "sla_name",
+        "contention.value",
+        "node_name",
+        "sla_id",
+        "utilization.memory",
+        "utilization.gips_current",
+        "status.trust",
+        "id",
+        "status.operational",
+        "utilization.cpu",
+        "capabilities.cores",
+        "node_id",
+        "capabilities.memory_size"
+      ],
+      "fixed_ips": null,
+      "id": "8f885033-b80d-4fb7-8848-fab7838addbc",
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
+        }
+      }
+    }
+  ]
+}

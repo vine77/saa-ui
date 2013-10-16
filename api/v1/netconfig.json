@@ -1,22 +1,22 @@
 {
   "other": {
-    "hostname": "samappliance"
+    "hostname": "shui103-232"
   },
   "route": {
     "gateway": "10.23.39.1"
   },
   "management": {
     "netmask": "255.255.0.0",
-    "mac": "52:54:00:5E:B7:6D",
-    "address": "172.24.1.44",
+    "mac": "52:54:00:32:6F:EE",
+    "address": "172.24.1.20",
     "active": true,
     "dhcp": true,
     "gateway": "0.0.0.0"
   },
   "external": {
     "netmask": "255.255.255.224",
-    "mac": "52:54:00:16:3E:0B",
-    "address": "10.23.39.18",
+    "mac": "52:54:00:35:7A:F5",
+    "address": "10.23.39.22",
     "active": true,
     "dhcp": true,
     "gateway": "0.0.0.0"

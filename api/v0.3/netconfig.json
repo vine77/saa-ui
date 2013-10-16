@@ -1,0 +1,29 @@
+{
+  "other": {
+    "hostname": "samappliance"
+  },
+  "route": {
+    "gateway": "10.23.39.1"
+  },
+  "management": {
+    "netmask": "255.255.0.0",
+    "mac": "52:54:00:5E:B7:6D",
+    "address": "172.24.1.44",
+    "active": true,
+    "dhcp": true,
+    "gateway": "0.0.0.0"
+  },
+  "external": {
+    "netmask": "255.255.255.224",
+    "mac": "52:54:00:16:3E:0B",
+    "address": "10.23.39.18",
+    "active": true,
+    "dhcp": true,
+    "gateway": "0.0.0.0"
+  },
+  "dns": {
+    "ns1": "172.24.0.16",
+    "ns2": "10.248.2.1",
+    "ns3": "10.22.224.196"
+  }
+}

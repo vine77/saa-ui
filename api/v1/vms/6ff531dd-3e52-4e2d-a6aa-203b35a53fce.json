@@ -1,68 +1,125 @@
 {
-  "vm": {
-    "status": {
-      "sla_messages": [
-        "SLA status for VM: unknown"
-      ],
-      "locked": false,
-      "sla_status": null,
-      "operational": 1,
-      "trust_details": {
-        "bios": 0,
-        "vmm": 0
+  "vms": [
+    {
+      "vm_name": "sample_36-6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "status": {
+        "sla_messages": [
+          "SLA status for VM: unknown"
+        ],
+        "locked": false,
+        "sla_status": null,
+        "aggressor": 3,
+        "operational": 1,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "VM's health is unknown. VM is powered off. ",
+        "health": 0,
+        "victim": 1,
+        "trust": 0,
+        "short_message": "VM's health is unknown."
       },
-      "long_message": "VM data is not available because VM was placed on a non-SAM node. VM's health is unknown. VM is powered off.",
-      "health": 0,
-      "trust": 0,
-      "short_message": "VM's health is unknown."
-    },
-    "links": {
-      "nodes": "/api/v1/nodes/97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
-      "uri": "/api/v1/vms/6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-      "logs": "/api/v1/logs?vm=6ff531dd-3e52-4e2d-a6aa-203b35a53fce"
-    },
-    "stack_name": null,
-    "vm_instantiation_detailed_id": null,
-    "vm_instantiation_simple_id": null,
-    "id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-    "cloud_id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-    "utilization": {
-      "ipc": null,
-      "uptime": null,
-      "network": null,
-      "io": null,
-      "memory": null,
-      "gips_current": null,
-      "cpu": null
-    },
-    "fixed_ips": [],
-    "graphite_url": null,
-    "floating_ips": [],
-    "capabilities": {
-      "cores": null,
-      "memory_size": null,
-      "gips_allocated": null
-    },
-    "sla_id": null,
-    "vm_name": "sample_36-6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-    "macs": [
-      "fa:16:3e:15:f2:5a"
-    ],
-    "contention": {
-      "threads": null,
-      "system": {
-        "llc": {
-          "value": null,
-          "label": null
+      "macs": [
+        "fa:16:3e:15:f2:5a"
+      ],
+      "cloud_id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "links": {
+        "victims": null,
+        "logs": "/api/v1/logs?vm=6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "slas": "/api/v1/configuration/slas/9",
+        "uri": "/api/v1/vms/6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "aggressors": "/api/v1/vms?ids=6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "nodes": "/api/v1/nodes/A155FF49-9D95-E111-BD1D-001E6747F54E",
+        "vm_trust_reports": "/api/v1/vm_trust_reports/6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/6ff531dd-3e52-4e2d-a6aa-203b35a53fce"
+      },
+      "utilization": {
+        "ipc": null,
+        "uptime": null,
+        "network": null,
+        "io": null,
+        "memory": null,
+        "gips_current": null,
+        "cpu": null
+      },
+      "vm_instantiation_simple_id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": "Unsecure Bronze",
+      "floating_ips": null,
+      "capabilities": {
+        "cores": 1,
+        "memory_size": "None",
+        "gips_allocated": 1
+      },
+      "node_name": "novamgmt26",
+      "sla_id": 9,
+      "node_id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "filterable_columns": [
+        "vm_name",
+        "capabilities.gips_allocated",
+        "status.health",
+        "cloud_id",
+        "utilization.ipc",
+        "trust_details.bios",
+        "contention.label",
+        "sla_name",
+        "contention.value",
+        "node_name",
+        "sla_id",
+        "utilization.memory",
+        "trust_details.vmm",
+        "utilization.gips_current",
+        "status.trust",
+        "id",
+        "status.operational",
+        "utilization.cpu",
+        "capabilities.cores",
+        "node_id",
+        "capabilities.memory_size"
+      ],
+      "sortable_columns": [
+        "vm_name",
+        "capabilities.gips_allocated",
+        "cloud_id",
+        "utilization.ipc",
+        "status.health",
+        "sla_name",
+        "contention.value",
+        "node_name",
+        "sla_id",
+        "utilization.memory",
+        "utilization.gips_current",
+        "status.trust",
+        "id",
+        "status.operational",
+        "utilization.cpu",
+        "capabilities.cores",
+        "node_id",
+        "capabilities.memory_size"
+      ],
+      "vm_instantiation_detailed_id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "vm_trust_report_id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "fixed_ips": null,
+      "id": "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": null
+          }
         }
       }
-    },
-    "sla_name": null,
-    "vm_trust_report_id": null,
-    "node_id": "97CD6E79-9D62-5B73-A6E8-45F36868B4C9",
-    "logs_url": null,
-    "stack_id": null,
-    "uri": "/vms/6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-    "node_name": "novamgmt26"
-  }
+    }
+  ]
 }

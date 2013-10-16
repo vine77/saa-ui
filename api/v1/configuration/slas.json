@@ -1,364 +1,292 @@
 {
   "slas": [
     {
+      "name": "Unsecure Diamond",
       "links": {
         "uri": "/api/v1/configuration/slas/1",
-        "slos": "/api/v1/configuration/slos?ids=1,2,3,4"
+        "slos": "/api/v1/configuration/slos?ids=1,2,3"
       },
       "slo_ids": [
         1,
         2,
-        3,
-        4
+        3
       ],
       "uri": "/configuration/slas/1",
-      "name": "Unsecure Diamond",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
       "id": 1
     },
     {
+      "name": "Secure Diamond",
       "links": {
         "uri": "/api/v1/configuration/slas/2",
-        "slos": "/api/v1/configuration/slos?ids=5,6,7,8"
+        "slos": "/api/v1/configuration/slos?ids=4,5,6"
       },
       "slo_ids": [
+        4,
         5,
-        6,
-        7,
-        8
+        6
       ],
       "uri": "/configuration/slas/2",
-      "name": "Secure Diamond",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
       "id": 2
     },
     {
+      "name": "Unsecure Platinum",
       "links": {
         "uri": "/api/v1/configuration/slas/3",
-        "slos": "/api/v1/configuration/slos?ids=9,10,11,12"
+        "slos": "/api/v1/configuration/slos?ids=7,8,9"
       },
       "slo_ids": [
-        9,
+        7,
+        8,
+        9
+      ],
+      "uri": "/configuration/slas/3",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 3
+    },
+    {
+      "name": "Secure Platinum",
+      "links": {
+        "uri": "/api/v1/configuration/slas/4",
+        "slos": "/api/v1/configuration/slos?ids=10,11,12"
+      },
+      "slo_ids": [
         10,
         11,
         12
       ],
-      "uri": "/configuration/slas/3",
-      "name": "Unsecure Platinum",
-      "id": 3
+      "uri": "/configuration/slas/4",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 4
     },
     {
+      "name": "Unsecure Gold",
       "links": {
-        "uri": "/api/v1/configuration/slas/4",
-        "slos": "/api/v1/configuration/slos?ids=13,14,15,16"
+        "uri": "/api/v1/configuration/slas/5",
+        "slos": "/api/v1/configuration/slos?ids=13,14,15"
       },
       "slo_ids": [
         13,
         14,
-        15,
-        16
-      ],
-      "uri": "/configuration/slas/4",
-      "name": "Secure Platinum",
-      "id": 4
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/5",
-        "slos": "/api/v1/configuration/slos?ids=17,18,19,20"
-      },
-      "slo_ids": [
-        17,
-        18,
-        19,
-        20
+        15
       ],
       "uri": "/configuration/slas/5",
-      "name": "Unsecure Gold",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
       "id": 5
     },
     {
+      "name": "Secure Gold",
       "links": {
         "uri": "/api/v1/configuration/slas/6",
-        "slos": "/api/v1/configuration/slos?ids=21,22,23,24"
+        "slos": "/api/v1/configuration/slos?ids=16,17,18"
       },
       "slo_ids": [
-        21,
+        16,
+        17,
+        18
+      ],
+      "uri": "/configuration/slas/6",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 6
+    },
+    {
+      "name": "Unsecure Silver",
+      "links": {
+        "uri": "/api/v1/configuration/slas/7",
+        "slos": "/api/v1/configuration/slos?ids=19,20,21"
+      },
+      "slo_ids": [
+        19,
+        20,
+        21
+      ],
+      "uri": "/configuration/slas/7",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 7
+    },
+    {
+      "name": "Secure Silver",
+      "links": {
+        "uri": "/api/v1/configuration/slas/8",
+        "slos": "/api/v1/configuration/slos?ids=22,23,24"
+      },
+      "slo_ids": [
         22,
         23,
         24
       ],
-      "uri": "/configuration/slas/6",
-      "name": "Secure Gold",
-      "id": 6
+      "uri": "/configuration/slas/8",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 8
     },
     {
+      "name": "Unsecure Bronze",
       "links": {
-        "uri": "/api/v1/configuration/slas/7",
-        "slos": "/api/v1/configuration/slos?ids=25,26,27,28"
+        "uri": "/api/v1/configuration/slas/9",
+        "slos": "/api/v1/configuration/slos?ids=25,26,27"
       },
       "slo_ids": [
         25,
         26,
-        27,
-        28
+        27
       ],
-      "uri": "/configuration/slas/7",
-      "name": "Unsecure Silver",
-      "id": 7
+      "uri": "/configuration/slas/9",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 9
     },
     {
+      "name": "Secure Bronze",
       "links": {
-        "uri": "/api/v1/configuration/slas/8",
-        "slos": "/api/v1/configuration/slos?ids=29,30,31,32"
+        "uri": "/api/v1/configuration/slas/10",
+        "slos": "/api/v1/configuration/slos?ids=28,29,30"
       },
       "slo_ids": [
+        28,
         29,
-        30,
-        31,
-        32
+        30
       ],
-      "uri": "/configuration/slas/8",
-      "name": "Secure Silver",
-      "id": 8
+      "uri": "/configuration/slas/10",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 10
     },
     {
+      "name": "GIPS violation secure",
       "links": {
-        "uri": "/api/v1/configuration/slas/9",
-        "slos": "/api/v1/configuration/slos?ids=33,34,35,36"
+        "uri": "/api/v1/configuration/slas/11",
+        "slos": "/api/v1/configuration/slos?ids=31,32,33"
       },
       "slo_ids": [
-        33,
+        31,
+        32,
+        33
+      ],
+      "uri": "/configuration/slas/11",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "id": 11
+    },
+    {
+      "name": "GIPS violation unsecure",
+      "links": {
+        "uri": "/api/v1/configuration/slas/12",
+        "slos": "/api/v1/configuration/slos?ids=34,35,36"
+      },
+      "slo_ids": [
         34,
         35,
         36
       ],
-      "uri": "/configuration/slas/9",
-      "name": "Unsecure Bronze",
-      "id": 9
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/10",
-        "slos": "/api/v1/configuration/slos?ids=37,38,39,40"
-      },
-      "slo_ids": [
-        37,
-        38,
-        39,
-        40
-      ],
-      "uri": "/configuration/slas/10",
-      "name": "Secure Bronze",
-      "id": 10
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/11",
-        "slos": "/api/v1/configuration/slos?ids=41,42,43,44"
-      },
-      "slo_ids": [
-        41,
-        42,
-        43,
-        44
-      ],
-      "uri": "/configuration/slas/11",
-      "name": "GIPS violation secure",
-      "id": 11
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/12",
-        "slos": "/api/v1/configuration/slos?ids=45,46,47,48"
-      },
-      "slo_ids": [
-        45,
-        46,
-        47,
-        48
-      ],
       "uri": "/configuration/slas/12",
-      "name": "GIPS violation unsecure",
+      "filterable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
+      "sortable_columns": [
+        "slo_ids",
+        "id",
+        "name"
+      ],
       "id": 12
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/13",
-        "slos": "/api/v1/configuration/slos?ids=49,50,51,52"
-      },
-      "slo_ids": [
-        49,
-        50,
-        51,
-        52
-      ],
-      "uri": "/configuration/slas/13",
-      "name": "Unsecure Diamond guaranteed",
-      "id": 13
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/14",
-        "slos": "/api/v1/configuration/slos?ids=53,54,55,56"
-      },
-      "slo_ids": [
-        53,
-        54,
-        55,
-        56
-      ],
-      "uri": "/configuration/slas/14",
-      "name": "Secure Diamond guaranteed",
-      "id": 14
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/15",
-        "slos": "/api/v1/configuration/slos?ids=57,58,59,60"
-      },
-      "slo_ids": [
-        57,
-        58,
-        59,
-        60
-      ],
-      "uri": "/configuration/slas/15",
-      "name": "Unsecure Platinum guaranteed",
-      "id": 15
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/16",
-        "slos": "/api/v1/configuration/slos?ids=61,62,63,64"
-      },
-      "slo_ids": [
-        61,
-        62,
-        63,
-        64
-      ],
-      "uri": "/configuration/slas/16",
-      "name": "Secure Platinum guaranteed",
-      "id": 16
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/17",
-        "slos": "/api/v1/configuration/slos?ids=65,66,67,68"
-      },
-      "slo_ids": [
-        65,
-        66,
-        67,
-        68
-      ],
-      "uri": "/configuration/slas/17",
-      "name": "Unsecure Gold guaranteed",
-      "id": 17
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/18",
-        "slos": "/api/v1/configuration/slos?ids=69,70,71,72"
-      },
-      "slo_ids": [
-        69,
-        70,
-        71,
-        72
-      ],
-      "uri": "/configuration/slas/18",
-      "name": "Secure Gold guaranteed",
-      "id": 18
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/19",
-        "slos": "/api/v1/configuration/slos?ids=73,74,75,76"
-      },
-      "slo_ids": [
-        73,
-        74,
-        75,
-        76
-      ],
-      "uri": "/configuration/slas/19",
-      "name": "Unsecure Silver guaranteed",
-      "id": 19
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/20",
-        "slos": "/api/v1/configuration/slos?ids=77,78,79,80"
-      },
-      "slo_ids": [
-        77,
-        78,
-        79,
-        80
-      ],
-      "uri": "/configuration/slas/20",
-      "name": "Secure Silver guaranteed",
-      "id": 20
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/21",
-        "slos": "/api/v1/configuration/slos?ids=81,82,83,84"
-      },
-      "slo_ids": [
-        81,
-        82,
-        83,
-        84
-      ],
-      "uri": "/configuration/slas/21",
-      "name": "Unsecure Bronze guaranteed",
-      "id": 21
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/22",
-        "slos": "/api/v1/configuration/slos?ids=85,86,87,88"
-      },
-      "slo_ids": [
-        85,
-        86,
-        87,
-        88
-      ],
-      "uri": "/configuration/slas/22",
-      "name": "Secure Bronze guaranteed",
-      "id": 22
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/23",
-        "slos": "/api/v1/configuration/slos?ids=89,90,91,92"
-      },
-      "slo_ids": [
-        89,
-        90,
-        91,
-        92
-      ],
-      "uri": "/configuration/slas/23",
-      "name": "GIPS violation secure guaranteed",
-      "id": 23
-    },
-    {
-      "links": {
-        "uri": "/api/v1/configuration/slas/24",
-        "slos": "/api/v1/configuration/slos?ids=93,94,95,96"
-      },
-      "slo_ids": [
-        93,
-        94,
-        95,
-        96
-      ],
-      "uri": "/configuration/slas/24",
-      "name": "GIPS violation unsecure guaranteed",
-      "id": 24
     }
   ]
 }

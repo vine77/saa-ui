@@ -1,0 +1,8 @@
+{
+  "amqp_general": {
+    "rabbit_host": "172.24.0.12"
+  },
+  "horizon": {
+    "horizon_host": "172.24.0.12"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": {
+    "messages": [
+      {
+        "message": "Database is configured.",
+        "health": 1
+      },
+      {
+        "message": "SAM server is configured",
+        "health": 1
+      },
+      {
+        "message": "Cloud software database is connected.",
+        "health": 1
+      },
+      {
+        "message": "RabbitMQ connected.",
+        "health": 1
+      },
+      {
+        "message": "Log communications error",
+        "health": 3
+      }
+    ],
+    "version": "1.0.3.48",
+    "health": 3,
+    "master": 0
+  }
+}

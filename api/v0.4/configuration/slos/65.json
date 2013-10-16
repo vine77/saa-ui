@@ -1,0 +1,17 @@
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/65",
+      "slas": "/api/v1/configuration/slas/17"
+    },
+    "class_name": "performance",
+    "uri": "/configuration/slos/65",
+    "value": "0;2",
+    "sla_id": 17,
+    "unit": "SU",
+    "operator": "in_range",
+    "id": 65,
+    "element_name": "infrastructure",
+    "slo_type": "compute"
+  }
+}

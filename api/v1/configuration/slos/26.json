@@ -1,17 +1,39 @@
 {
-  "slo": {
-    "links": {
-      "uri": "/api/v1/configuration/slos/26",
-      "slas": "/api/v1/configuration/slas/7"
-    },
-    "class_name": "performance",
-    "uri": "/configuration/slos/26",
-    "value": "1",
-    "sla_id": 7,
-    "unit": "",
-    "operator": "equals",
-    "id": 26,
-    "element_name": "infrastructure",
-    "slo_type": "vcpu_cores"
-  }
+  "slos": [
+    {
+      "filterable_columns": [
+        "class_name",
+        "value",
+        "sla_id",
+        "element_name",
+        "operator",
+        "id",
+        "unit",
+        "slo_type"
+      ],
+      "links": {
+        "uri": "/api/v1/configuration/slos/26",
+        "slas": "/api/v1/configuration/slas/9"
+      },
+      "class_name": "performance",
+      "uri": "/configuration/slos/26",
+      "value": "1",
+      "sla_id": 9,
+      "sortable_columns": [
+        "class_name",
+        "value",
+        "sla_id",
+        "element_name",
+        "operator",
+        "id",
+        "unit",
+        "slo_type"
+      ],
+      "unit": "",
+      "operator": "equals",
+      "id": 26,
+      "element_name": "infrastructure",
+      "slo_type": "vcpu_cores"
+    }
+  ]
 }

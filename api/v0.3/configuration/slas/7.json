@@ -1,0 +1,17 @@
+{
+  "sla": {
+    "links": {
+      "uri": "/api/v1/configuration/slas/7",
+      "slos": "/api/v1/configuration/slos?ids=25,26,27,28"
+    },
+    "slo_ids": [
+      25,
+      26,
+      27,
+      28
+    ],
+    "uri": "/configuration/slas/7",
+    "name": "Unsecure Silver",
+    "id": 7
+  }
+}

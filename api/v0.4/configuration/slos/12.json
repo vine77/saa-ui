@@ -1,0 +1,17 @@
+{
+  "slo": {
+    "links": {
+      "uri": "/api/v1/configuration/slos/12",
+      "slas": "/api/v1/configuration/slas/3"
+    },
+    "class_name": "performance",
+    "uri": "/configuration/slos/12",
+    "value": "False",
+    "sla_id": 3,
+    "unit": "",
+    "operator": "equals",
+    "id": 12,
+    "element_name": "infrastructure",
+    "slo_type": "guaranteed"
+  }
+}

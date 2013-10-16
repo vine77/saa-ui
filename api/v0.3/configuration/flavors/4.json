@@ -1,0 +1,20 @@
+{
+  "flavor": {
+    "name": "m1.large",
+    "links": {
+      "uri": "/api/v1/configuration/flavors/4"
+    },
+    "guaranteed": false,
+    "rxtx_factor": 1,
+    "ephemeral": 0,
+    "uri": "/configuration/flavors/4",
+    "public": 1,
+    "sla_id": null,
+    "vcpus": 4,
+    "swap": 0,
+    "memory": 8192,
+    "root": 80,
+    "id": "4",
+    "vm_ids": []
+  }
+}

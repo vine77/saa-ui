@@ -1,0 +1,141 @@
+{
+    "vms": [{
+        "vm_name": "unsb_small_197",
+        "status": {
+            "sla_messages": ["SLA status for VM: unknown"],
+            "locked": false,
+            "sla_status": null,
+            "operational": 2,
+            "trust_details": {
+                "bios": 3,
+                "vmm": 3
+            },
+            "long_message": "VM is healthy. VM is powered on. ",
+            "health": 1,
+            "trust": 3,
+            "short_message": "VM is healthy."
+        },
+        "macs": ["fa:16:3e:8b:ab:db"],
+        "cloud_id": "01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+        "links": {
+            "logs": "/api/v1/logs?vm=01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+            "slas": "/api/v1/configuration/slas/9",
+            "uri": "/api/v1/vms/01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+            "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+            "nodes": "/api/v1/nodes/F1DABAE3-7FC4-E111-A271-001E67507447",
+            "vm_trust_reports": "/api/v1/vm_trust_reports/01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+            "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/01d7d658-a78f-48f0-b2ad-e35e4ea07d05"
+        },
+        "utilization": {
+            "ipc": 0.81,
+            "uptime": null,
+            "network": null,
+            "io": null,
+            "memory": "2097152 KB",
+            "gips_current": 0.85,
+            "cpu": 45.76775136237396
+        },
+        "vm_instantiation_simple_id": "01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+        "graphite_url": "/render?target=stats.SAM",
+        "sla_name": "Unsecure Bronze",
+        "floating_ips": null,
+        "capabilities": {
+            "cores": 1,
+            "memory_size": "2097152 KB",
+            "gips_allocated": 1.0
+        },
+        "node_name": "clientnode3",
+        "sla_id": 9,
+        "node_id": "F1DABAE3-7FC4-E111-A271-001E67507447",
+        "filterable_columns": ["vm_name", "capabilities.gips_allocated", "status.health", "cloud_id", "utilization.ipc", "trust_details.bios", "contention.label", "sla_name", "contention.value", "node_name", "sla_id", "utilization.memory", "trust_details.vmm", "utilization.gips_current", "status.trust", "id", "status.operational", "utilization.cpu", "capabilities.cores", "node_id", "capabilities.memory_size"],
+        "sortable_columns": ["vm_name", "capabilities.gips_allocated", "cloud_id", "utilization.ipc", "status.health", "sla_name", "contention.value", "node_name", "sla_id", "utilization.memory", "utilization.gips_current", "status.trust", "id", "status.operational", "utilization.cpu", "capabilities.cores", "node_id", "capabilities.memory_size"],
+        "vm_instantiation_detailed_id": "01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+        "vm_trust_report_id": "01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+        "fixed_ips": ["192.168.90.14"],
+        "id": "01d7d658-a78f-48f0-b2ad-e35e4ea07d05",
+        "contention": {
+            "threads": [{
+                "llc": {
+                    "value": 0.5,
+                    "label": "l"
+                },
+                "id": 81924
+            }],
+            "system": {
+                "llc": {
+                    "value": 0.5,
+                    "label": "l"
+                }
+            }
+        }
+    }, {
+        "vm_name": "gips_unsB",
+        "status": {
+            "sla_messages": ["SLA status for VM: unknown"],
+            "locked": false,
+            "sla_status": null,
+            "operational": 2,
+            "trust_details": {
+                "bios": 3,
+                "vmm": 3
+            },
+            "long_message": "VM is healthy. VM is powered on. ",
+            "health": 1,
+            "trust": 3,
+            "short_message": "VM is healthy."
+        },
+        "macs": ["fa:16:3e:eb:aa:47"],
+        "cloud_id": "297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+        "links": {
+            "logs": "/api/v1/logs?vm=297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+            "slas": "/api/v1/configuration/slas/9",
+            "uri": "/api/v1/vms/297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+            "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+            "nodes": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7",
+            "vm_trust_reports": "/api/v1/vm_trust_reports/297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+            "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/297a8f5a-ae65-4bab-9ed4-4efd8209774c"
+        },
+        "utilization": {
+            "ipc": 2.07,
+            "uptime": null,
+            "network": null,
+            "io": null,
+            "memory": "2097152 KB",
+            "gips_current": 2.18,
+            "cpu": 38.96843350033487
+        },
+        "vm_instantiation_simple_id": "297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+        "graphite_url": "/render?target=stats.SAM",
+        "sla_name": "Unsecure Bronze",
+        "floating_ips": null,
+        "capabilities": {
+            "cores": 1,
+            "memory_size": "2097152 KB",
+            "gips_allocated": 1.0
+        },
+        "node_name": "clientnode4",
+        "sla_id": 9,
+        "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+        "filterable_columns": ["vm_name", "capabilities.gips_allocated", "status.health", "cloud_id", "utilization.ipc", "trust_details.bios", "contention.label", "sla_name", "contention.value", "node_name", "sla_id", "utilization.memory", "trust_details.vmm", "utilization.gips_current", "status.trust", "id", "status.operational", "utilization.cpu", "capabilities.cores", "node_id", "capabilities.memory_size"],
+        "sortable_columns": ["vm_name", "capabilities.gips_allocated", "cloud_id", "utilization.ipc", "status.health", "sla_name", "contention.value", "node_name", "sla_id", "utilization.memory", "utilization.gips_current", "status.trust", "id", "status.operational", "utilization.cpu", "capabilities.cores", "node_id", "capabilities.memory_size"],
+        "vm_instantiation_detailed_id": "297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+        "vm_trust_report_id": "297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+        "fixed_ips": ["192.168.90.17"],
+        "id": "297a8f5a-ae65-4bab-9ed4-4efd8209774c",
+        "contention": {
+            "threads": [{
+                "llc": {
+                    "value": 0.04,
+                    "label": "l"
+                },
+                "id": 25140
+            }],
+            "system": {
+                "llc": {
+                    "value": 0.04,
+                    "label": "l"
+                }
+            }
+        }
+    }]
+}

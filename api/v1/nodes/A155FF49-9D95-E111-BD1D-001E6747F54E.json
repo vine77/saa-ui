@@ -1,0 +1,177 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=A155FF49-9D95-E111-BD1D-001E6747F54E",
+        "vms": "/api/v1/vms?ids=797bad09-4e6c-4a25-8f85-d84bd94d2c89,6ff531dd-3e52-4e2d-a6aa-203b35a53fce,c3953d1d-4878-4034-8562-8436ec7dccc4,13ad2bec-f545-486d-a84c-2d488f36668f,e485d7f6-459f-4a65-88d7-734a4da1452b",
+        "uri": "/api/v1/nodes/A155FF49-9D95-E111-BD1D-001E6747F54E"
+      },
+      "uri": "/nodes/A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2013-10-16T17:40:38+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "sam_registered": true,
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 66.88,
+        "io": null,
+        "memory": "2818280 KB",
+        "gips_current": 51.02,
+        "cpu": {
+          "iowait": 77.74,
+          "idle": 5121935.4,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2200 MHz",
+        "turbo_mode": true,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "filterable_columns": [
+        "ids.ip_address",
+        "utilization.gips_max",
+        "sam_controlled",
+        "utilization.memory",
+        "id",
+        "sam_registered",
+        "utilization.cpu.guest",
+        "ids.platform_id",
+        "status.health",
+        "contention.system.llc.value",
+        "vcpus.used",
+        "memory.used",
+        "ids.mac",
+        "status.mode",
+        "status.trust_details.bios",
+        "utilization.gips_current",
+        "status.operational",
+        "contention.system.llc.label",
+        "status.trust_details.vmm",
+        "vm_info.count",
+        "utilization.cpu.idle",
+        "utilization.cpu.steal",
+        "utilization.cpu.iowait",
+        "node_name",
+        "status.trust",
+        "utilization.cpu.total",
+        "status.agent_version",
+        "capabilities.memory_size",
+        "vcpus.max",
+        "memory.max"
+      ],
+      "vm_info": {
+        "count": 5,
+        "max": null
+      },
+      "memory": {
+        "max": 15951,
+        "used": 3072
+      },
+      "sortable_columns": [
+        "sam_controlled",
+        "utilization.memory",
+        "id",
+        "utilization.cpu.guest",
+        "ids.platform_id",
+        "status.health",
+        "contention.system.llc.value",
+        "vcpus.used",
+        "memory.used",
+        "utilization.gips_max",
+        "utilization.gips_current",
+        "status.operational",
+        "vm_info.count",
+        "utilization.cpu.idle",
+        "utilization.cpu.steal",
+        "utilization.cpu.iowait",
+        "node_name",
+        "status.trust",
+        "utilization.cpu.total",
+        "capabilities.memory_size",
+        "vcpus.max",
+        "memory.max"
+      ],
+      "vm_ids": [
+        "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
+        "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "c3953d1d-4878-4034-8562-8436ec7dccc4",
+        "13ad2bec-f545-486d-a84c-2d488f36668f",
+        "e485d7f6-459f-4a65-88d7-734a4da1452b"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.3.232",
+        "operational": 2,
+        "trust_details": {
+          "bios": 0,
+          "vmm": 0
+        },
+        "long_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
+        "health": 1,
+        "mode": 2,
+        "trust": 0,
+        "short_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.82,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.82,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=A155FF49-9D95-E111-BD1D-001E6747F54E",
+      "tier": null,
+      "ids": {
+        "platform_id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+        "mac": "00:1e:67:47:f5:4e",
+        "ip_address": "172.24.0.26",
+        "cloud_id": "A155FF49-9D95-E111-BD1D-001E6747F54E"
+      },
+      "node_name": "novamgmt26",
+      "vcpus": {
+        "max": 512,
+        "used": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "flavor": {
+    "name": "m1.small",
+    "links": {
+      "uri": "/api/v1/configuration/flavors/2"
+    },
+    "guaranteed": false,
+    "rxtx_factor": 1,
+    "ephemeral": 0,
+    "uri": "/configuration/flavors/2",
+    "public": 1,
+    "sla_id": null,
+    "vcpus": 1,
+    "swap": 0,
+    "memory": 2048,
+    "root": 20,
+    "id": "2",
+    "vm_ids": []
+  }
+}

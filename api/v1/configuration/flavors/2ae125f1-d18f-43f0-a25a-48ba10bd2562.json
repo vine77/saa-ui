@@ -1,21 +1,53 @@
 {
-  "flavor": {
-    "name": "tiny-unsecure-bronze",
-    "links": {
-      "slas": "/api/v1/configuration/slas/9",
-      "uri": "/api/v1/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562"
-    },
-    "guaranteed": true,
-    "rxtx_factor": 1,
-    "ephemeral": 0,
-    "uri": "/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562",
-    "public": 1,
-    "sla_id": 9,
-    "vcpus": 1,
-    "swap": 0,
-    "memory": 512,
-    "root": 0,
-    "id": "2ae125f1-d18f-43f0-a25a-48ba10bd2562",
-    "vm_ids": []
-  }
+  "flavors": [
+    {
+      "filterable_columns": [
+        "name",
+        "rxtx_factor",
+        "ephemeral",
+        "id",
+        "sla_id",
+        "vcpus",
+        "swap",
+        "memory",
+        "root",
+        "public"
+      ],
+      "name": "tiny-unsecure-bronze",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562",
+        "slas": "/api/v1/configuration/slas/9",
+        "vms": "/api/v1/vms?ids=797bad09-4e6c-4a25-8f85-d84bd94d2c89,6ff531dd-3e52-4e2d-a6aa-203b35a53fce,c3953d1d-4878-4034-8562-8436ec7dccc4,13ad2bec-f545-486d-a84c-2d488f36668f,e485d7f6-459f-4a65-88d7-734a4da1452b"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562",
+      "public": 1,
+      "sla_id": 9,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "sortable_columns": [
+        "name",
+        "rxtx_factor",
+        "ephemeral",
+        "id",
+        "sla_id",
+        "vcpus",
+        "swap",
+        "memory",
+        "root",
+        "public"
+      ],
+      "root": 0,
+      "id": "2ae125f1-d18f-43f0-a25a-48ba10bd2562",
+      "vm_ids": [
+        "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
+        "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
+        "c3953d1d-4878-4034-8562-8436ec7dccc4",
+        "13ad2bec-f545-486d-a84c-2d488f36668f",
+        "e485d7f6-459f-4a65-88d7-734a4da1452b"
+      ]
+    }
+  ]
 }

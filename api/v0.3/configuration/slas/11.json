@@ -1,0 +1,17 @@
+{
+  "sla": {
+    "links": {
+      "uri": "/api/v1/configuration/slas/11",
+      "slos": "/api/v1/configuration/slos?ids=41,42,43,44"
+    },
+    "slo_ids": [
+      41,
+      42,
+      43,
+      44
+    ],
+    "uri": "/configuration/slas/11",
+    "name": "GIPS violation secure",
+    "id": 11
+  }
+}
