@@ -275,6 +275,8 @@
                           <img {{bindAttr src="graph.url"}}>
                           <figcaption class="caption">{{graph.desc}}</figcaption>
                         </figure>
+                      {{else}}
+                        <div class="alert alert-info">No graphs found.</div>
                       {{/each}}
                     </div>
                     <div class="tab-pane trust">

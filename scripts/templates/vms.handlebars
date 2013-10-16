@@ -57,7 +57,7 @@
                   <i {{bindAttr class=":icon-large status.slaViolated:icon-remove:icon-trophy status.slaViolated:error status.slaNotViolated:success status.slaUnknown:inset"}}></i>
                 {{/view}}
               </td>
-              <td><a {{action "expand" vm}}>{{name}}</a></td>
+              <td><a {{action "expand" this}}>{{name}}</a></td>
               <td>
                 {{#if node.samControlled}}
                   {{#link-to "nodesNode" node}}{{nodeName}}{{/link-to}}
@@ -105,7 +105,7 @@
                   </div>
                 {{/if}}
               </td>
-              <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" vm}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
+              <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
             </tr>
             <tr class="expandable-row">
               <td colspan="100%">
@@ -180,6 +180,8 @@
                           <img {{bindAttr src="graph.url"}}>
                           <figcaption class="caption">{{graph.desc}}</figcaption>
                         </figure>
+                      {{else}}
+                        <div class="alert alert-info">No graphs found.</div>
                       {{/each}}
                     </div>
                     <div class="tab-pane trust">

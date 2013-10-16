@@ -110,13 +110,11 @@ App.ApplicationRoute = Ember.Route.extend({
     });
   },
   setupController: function (controller, model) {
-    if (controller.get('isEnabled')) {
-      // Set models for these controllers on app load (instead of waiting for route transitions)
-      this.controllerFor('slas').set('model', this.store.all('sla'));
-      this.controllerFor('flavors').set('model', this.store.all('flavor'));
-      this.controllerFor('vms').set('model', this.store.all('vm'));
-      this.controllerFor('nodes').set('model', this.store.all('node'));
-    }
+    // Set models for these controllers on app load (instead of waiting for route transitions)
+    this.controllerFor('slas').set('model', this.store.all('sla'));
+    this.controllerFor('flavors').set('model', this.store.all('flavor'));
+    this.controllerFor('vms').set('model', this.store.all('vm'));
+    this.controllerFor('nodes').set('model', this.store.all('node'));
   },
   actions: {
     logout: function() {
