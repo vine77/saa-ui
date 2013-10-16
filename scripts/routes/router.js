@@ -61,6 +61,11 @@ App.LoadingRoute = Ember.Route.extend();
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
+  setupController: function () {
+    //this.controllerFor('criticalities').set('model', this.store.find('criticality'));
+    
+    this.controllerFor('vms').set('model', this.store.find('vm'));
+  },
   model: function () {
     store = this.store;  // TODO: Remove line
 
@@ -98,6 +103,7 @@ App.ApplicationRoute = Ember.Route.extend({
         App.build.find();
         App.settingsLog.fetch();
       });
+
     }, function () {
       // Status API is not responding
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
@@ -423,5 +429,6 @@ Ember.Route.reopen({
     }
     this._super();
   }
+  
 });
 */

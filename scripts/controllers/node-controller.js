@@ -3,6 +3,19 @@ App.NodeController = Ember.ObjectController.extend({
   isSelected: false,
   isExpanded: false,
 
+  kibanaId: null,
+  updateKibana: function() {
+    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
+    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+    if (this.get('isSelected')) {
+      this.set('kibanaId', filterSrv.set({type:'field',mandate:'either', field: "host_id", query:JSON.stringify(this.get('id')) }) );
+      dashboard.refresh();
+    } else {
+      filterSrv.remove(this.get('kibanaId'));
+      dashboard.refresh();
+    }
+  }.observes('isSelected'),
+
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isAssured: Ember.computed.equal('samControlled', 2),

@@ -150,7 +150,7 @@ module.exports = function (grunt) {
         options: {
           force: true
         },
-        src: ['../<%= paths.destination %>']  // This clean path should match the last copy path (one dir up)
+        src: ['../<%= paths.destination %>/**', '!../<%= paths.destination %>', '!../<%= paths.destination %>/kibana3/**']  // This clean path should match the last copy path (one dir up)
       },
       dist: ['.tmp', '<%= paths.destination %>', '<%= paths.source %>/styles/theme.css', '<%= paths.source %>/scripts/templates.js'],
     },

@@ -14,14 +14,14 @@
     <div class="tab-content">
       <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-disc-list">
-          {{#each node in nodeObjects}}
+          {{#each node in controllers.nodes}}
             <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
       <div class="tab-pane modal-overflow vms">
         <ul class="three-columns no-disc-list">
-          {{#each vm in vmObjects}}
+          {{#each vm in controllers.vms}}
             <li>
               <label {{bindAttr title="vm.name"}}>
                 {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}}
@@ -32,7 +32,7 @@
       </div>
       <div class="tab-pane modal-overflow severities">
         <ul class="no-disc-list">
-          {{#each criticality in criticalitiesFiltered itemController="criticality"}}
+          {{#each criticality in criticalitiesFiltered}}
             <li>
               <label>
                 {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}}
@@ -43,17 +43,16 @@
       </div>
       <div class="tab-pane modal-overflow categories">
         <ul class="three-columns no-disc-list">
-          {{#each logCategory in logCategories itemController="logCategory"}}
+          {{#each logCategory in controllers.logcategories}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="logCategory.isSelected"}} {{logCategory.label}}
+                {{view Ember.Checkbox checkedBinding="logCategory.isSelected"}} {{logCategory.name}}
               </label>
             </li>
           {{/each}}
         </ul>
       </div>
     </div>
-
   </div>
   <div class="modal-footer">
     <button class="btn" {{action modalHide target="view"}}> Close </button>
