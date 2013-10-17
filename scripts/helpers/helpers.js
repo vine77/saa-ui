@@ -350,10 +350,11 @@ App.errorMessage = function (response, separator) {
  */
 App.xhrError = function (xhr, defaultMessage) {
   var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
+  var severity = (xhr.status == 422) ? App.WARNING : App.ERROR;
   try {
     var errorMessage = App.errorMessage(JSON.parse(xhr.responseText)) || errorMessage;
   } catch(error) {}
-  App.event(errorMessage, App.ERROR);
+  App.event(errorMessage, severity);
   return errorMessage;
 }
 

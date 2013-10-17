@@ -34,8 +34,12 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
       var confirmedDelete = confirm('Are you sure you want to delete flavor "' + flavor.get('name') + '"?');
       if (confirmedDelete) {
         flavor.deleteRecord();
-        // TODO: Add error handling
-        flavor.save();
+        flavor.save().then(function () {
+          App.event('Successfully deleted flavor "' + flavor.get('name') + '".', App.SUCCESS);
+        }, function (xhr) {
+          flavor.rollback();
+          App.xhrError(xhr, 'Failed to delete flavor "' + flavor.get('name') + '".');
+        });
       }
     }
   },
