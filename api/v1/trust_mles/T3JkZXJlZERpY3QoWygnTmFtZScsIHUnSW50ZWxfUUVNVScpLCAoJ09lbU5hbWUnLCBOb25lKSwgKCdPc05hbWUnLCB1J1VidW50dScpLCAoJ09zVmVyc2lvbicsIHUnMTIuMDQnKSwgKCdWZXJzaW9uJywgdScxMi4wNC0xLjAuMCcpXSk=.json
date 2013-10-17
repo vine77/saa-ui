@@ -5,7 +5,9 @@
       "attestation_type": "MODULE",
       "description": "",
       "osname": "Ubuntu",
-      "trust_node_ids": [],
+      "trust_node_ids": [
+        "41101BF9-C295-E111-BD1D-001E6747F112"
+      ],
       "oemname": null,
       "mle_manifests": [
         {

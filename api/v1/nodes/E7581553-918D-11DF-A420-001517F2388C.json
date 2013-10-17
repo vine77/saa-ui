@@ -12,7 +12,7 @@
       "node_trust_report_id": null,
       "cloud_services": [
         {
-          "last_update": "2013-10-17T20:42:59+0000",
+          "last_update": "2013-10-17T21:23:02+0000",
           "health": 1,
           "name": "compute",
           "operational": 2
@@ -21,17 +21,17 @@
       "id": "E7581553-918D-11DF-A420-001517F2388C",
       "sam_registered": true,
       "utilization": {
-        "ipc": 0.47,
+        "ipc": 0.46,
         "uptime": null,
         "network": null,
         "cpu_frequency_current": null,
         "gips_max": 47.99,
         "io": null,
-        "memory": "3149972 KB",
+        "memory": "3170940 KB",
         "gips_current": 51.02,
         "cpu": {
-          "iowait": 100.05,
-          "idle": 6155386.97,
+          "iowait": 101.11,
+          "idle": 6213324.69,
           "total": 0,
           "steal": 0,
           "guest": 0

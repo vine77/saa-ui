@@ -12,7 +12,7 @@
       "node_trust_report_id": null,
       "cloud_services": [
         {
-          "last_update": "2013-10-17T20:42:58+0000",
+          "last_update": "2013-10-17T21:23:02+0000",
           "health": 1,
           "name": "compute",
           "operational": 2
@@ -27,11 +27,11 @@
         "cpu_frequency_current": null,
         "gips_max": 66.88,
         "io": null,
-        "memory": "3657760 KB",
+        "memory": "3679056 KB",
         "gips_current": 51.02,
         "cpu": {
-          "iowait": 61.1,
-          "idle": 8215922.53,
+          "iowait": 61.56,
+          "idle": 8292300.58,
           "total": 0,
           "steal": 0,
           "guest": 0
