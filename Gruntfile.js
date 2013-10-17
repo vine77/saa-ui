@@ -86,6 +86,8 @@ module.exports = function (grunt) {
                     } else {
                       req.url = req.url.split('?')[0] + extension + '?' + req.url.split('?')[1];
                     }
+                  } else {
+                    req.url = req.url.replace('.json', extension);
                   }
                   // If ids is specified in URL query string, compose response here programatically
                   // Otherwise use next() to pass it on to serve with connect.static
@@ -98,7 +100,7 @@ module.exports = function (grunt) {
                       return;
                     } else {
                       // Get the full JSON response to start with all records
-                      var json = JSON.parse(require('fs').readFileSync(path, {encoding: 'utf8'}));
+                      var json = JSON.parse(require('fs').readFileSync(path));
                       // Remove records that don't match ids from query string
                       for (var i = 0; i < json[Object.keys(json)[0]].length; i++) {
                         if (ids.indexOf(json[Object.keys(json)[0]][i].id.toString()) === -1) {
