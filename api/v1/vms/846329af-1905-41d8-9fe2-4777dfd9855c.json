@@ -1,7 +1,7 @@
 {
   "vms": [
     {
-      "vm_name": "test123",
+      "vm_name": "nwtest",
       "status": {
         "sla_messages": [
           "SLA status for VM: unknown"
@@ -9,30 +9,28 @@
         "locked": false,
         "sla_status": 0,
         "aggressor": 3,
-        "operational": 1,
+        "operational": 0,
         "trust_details": {
           "bios": 0,
           "vmm": 0
         },
-        "long_message": "VM's health is unknown. VM is powered off. ",
-        "health": 0,
+        "long_message": "VM is in error state. VM's task state is unknown. ",
+        "health": 4,
         "victim": 1,
         "trust": 0,
-        "short_message": "VM's health is unknown."
+        "short_message": "VM is in error state."
       },
-      "macs": [
-        "fa:16:3e:e5:e1:52"
-      ],
-      "cloud_id": "1c16e354-102a-4356-8006-c455927e8a73",
+      "macs": null,
+      "cloud_id": "846329af-1905-41d8-9fe2-4777dfd9855c",
       "links": {
         "victims": null,
-        "logs": "/api/v1/logs?vm=1c16e354-102a-4356-8006-c455927e8a73",
-        "uri": "/api/v1/vms/1c16e354-102a-4356-8006-c455927e8a73",
-        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/1c16e354-102a-4356-8006-c455927e8a73",
-        "aggressors": "/api/v1/vms?ids=1c16e354-102a-4356-8006-c455927e8a73",
-        "nodes": "/api/v1/nodes/A7A47894-E698-E111-BD1D-001E6747F6A2",
-        "vm_trust_reports": "/api/v1/vm_trust_reports/1c16e354-102a-4356-8006-c455927e8a73",
-        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/1c16e354-102a-4356-8006-c455927e8a73"
+        "logs": "/api/v1/logs?vm=846329af-1905-41d8-9fe2-4777dfd9855c",
+        "slas": "/api/v1/configuration/slas/5",
+        "uri": "/api/v1/vms/846329af-1905-41d8-9fe2-4777dfd9855c",
+        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/846329af-1905-41d8-9fe2-4777dfd9855c",
+        "aggressors": "/api/v1/vms?ids=846329af-1905-41d8-9fe2-4777dfd9855c",
+        "vm_trust_reports": "/api/v1/vm_trust_reports/846329af-1905-41d8-9fe2-4777dfd9855c",
+        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/846329af-1905-41d8-9fe2-4777dfd9855c"
       },
       "utilization": {
         "ipc": null,
@@ -43,18 +41,18 @@
         "gips_current": null,
         "cpu": null
       },
-      "vm_instantiation_simple_id": "1c16e354-102a-4356-8006-c455927e8a73",
+      "vm_instantiation_simple_id": "846329af-1905-41d8-9fe2-4777dfd9855c",
       "graphite_url": "/render?target=stats.SAM",
-      "sla_name": null,
+      "sla_name": "Unsecure Gold",
       "floating_ips": null,
       "capabilities": {
-        "cores": null,
+        "cores": 2,
         "memory_size": "None",
-        "gips_allocated": null
+        "gips_allocated": 0
       },
-      "node_name": "novamgmt51",
-      "sla_id": null,
-      "node_id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "node_name": null,
+      "sla_id": 5,
+      "node_id": null,
       "filterable_columns": [
         "utilization.cpu",
         "utilization.memory",
@@ -100,10 +98,10 @@
         "node_id",
         "capabilities.memory_size"
       ],
-      "vm_instantiation_detailed_id": "1c16e354-102a-4356-8006-c455927e8a73",
-      "vm_trust_report_id": "1c16e354-102a-4356-8006-c455927e8a73",
+      "vm_instantiation_detailed_id": "846329af-1905-41d8-9fe2-4777dfd9855c",
+      "vm_trust_report_id": "846329af-1905-41d8-9fe2-4777dfd9855c",
       "fixed_ips": null,
-      "id": "1c16e354-102a-4356-8006-c455927e8a73",
+      "id": "846329af-1905-41d8-9fe2-4777dfd9855c",
       "contention": {
         "threads": [
           {

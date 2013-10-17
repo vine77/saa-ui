@@ -5,12 +5,7 @@
       "attestation_type": "PCR",
       "description": "",
       "osname": null,
-      "trust_node_ids": [
-        "41101BF9-C295-E111-BD1D-001E6747F112",
-        "9198BE50-8695-E111-BD1D-001E6747F6C6",
-        "64EC022B-7294-E111-BD1D-001E6747F342",
-        "D5D0B1BE-A394-E111-BD1D-001E6747F506"
-      ],
+      "trust_node_ids": [],
       "oemname": "Intel Corp.",
       "mle_manifests": [],
       "version": "0002",
@@ -24,12 +19,7 @@
       "attestation_type": "MODULE",
       "description": "",
       "osname": "Ubuntu",
-      "trust_node_ids": [
-        "41101BF9-C295-E111-BD1D-001E6747F112",
-        "9198BE50-8695-E111-BD1D-001E6747F6C6",
-        "64EC022B-7294-E111-BD1D-001E6747F342",
-        "D5D0B1BE-A394-E111-BD1D-001E6747F506"
-      ],
+      "trust_node_ids": [],
       "oemname": null,
       "mle_manifests": [],
       "version": "12.04-1.0.0",

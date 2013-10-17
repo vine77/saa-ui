@@ -233,8 +233,9 @@
       ],
       "name": "medium-unsecure-gold",
       "links": {
+        "uri": "/api/v1/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
         "slas": "/api/v1/configuration/slas/5",
-        "uri": "/api/v1/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b"
+        "vms": "/api/v1/vms?ids=846329af-1905-41d8-9fe2-4777dfd9855c"
       },
       "rxtx_factor": 1,
       "ephemeral": 0,
@@ -258,7 +259,9 @@
       ],
       "root": 40,
       "id": "d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
-      "vm_ids": []
+      "vm_ids": [
+        "846329af-1905-41d8-9fe2-4777dfd9855c"
+      ]
     },
     {
       "filterable_columns": [

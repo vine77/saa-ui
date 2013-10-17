@@ -12,7 +12,7 @@
       "node_trust_report_id": null,
       "cloud_services": [
         {
-          "last_update": "2013-10-16T17:40:39+0000",
+          "last_update": "2013-10-17T20:42:58+0000",
           "health": 1,
           "name": "compute",
           "operational": 2
@@ -27,11 +27,11 @@
         "cpu_frequency_current": null,
         "gips_max": 60.8,
         "io": null,
-        "memory": "2769464 KB",
+        "memory": "3484672 KB",
         "gips_current": 51.02,
         "cpu": {
-          "iowait": 91.73,
-          "idle": 5119782.3,
+          "iowait": 130.41,
+          "idle": 8212389.29,
           "total": 0,
           "steal": 0,
           "guest": 0
@@ -121,11 +121,11 @@
           "bios": 0,
           "vmm": 0
         },
-        "long_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
-        "health": 1,
+        "long_message": "Mismatched versions of SAM Agent (1.0.3.232) and SAM Server (1.0.3.253). Upgrade Agent version to the same as Server. SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
+        "health": 4,
         "mode": 2,
         "trust": 0,
-        "short_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled."
+        "short_message": "Mismatched versions of SAM Agent (1.0.3.232) and SAM Server (1.0.3.253). Upgrade Agent version to the same as Server. "
       },
       "trust_node_id": null,
       "contention": {

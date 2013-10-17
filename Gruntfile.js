@@ -469,9 +469,9 @@ module.exports = function (grunt) {
       //'/api/v1/sessions/current_session.json',
       //'/api/v1/sessions.json',
 
-      '/api/v1/status.json',
+      '/api/v1/statuses.json',
       '/api/v1/connectivity.json',
-      '/api/v1/build.json',
+      '/api/v1/builds.json',
 
       '/api/v1/quantumconfig',
       '/api/v1/openrcconfig',

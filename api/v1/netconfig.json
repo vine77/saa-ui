@@ -1,22 +1,22 @@
 {
   "other": {
-    "hostname": "shui103-232"
+    "hostname": "(none)"
   },
   "route": {
     "gateway": "10.23.39.1"
   },
   "management": {
     "netmask": "255.255.0.0",
-    "mac": "52:54:00:32:6F:EE",
-    "address": "172.24.1.20",
+    "mac": "52:54:00:0A:93:8F",
+    "address": "172.24.1.225",
     "active": true,
     "dhcp": true,
     "gateway": "0.0.0.0"
   },
   "external": {
     "netmask": "255.255.255.224",
-    "mac": "52:54:00:35:7A:F5",
-    "address": "10.23.39.22",
+    "mac": "52:54:00:71:6B:BE",
+    "address": "10.23.39.17",
     "active": true,
     "dhcp": true,
     "gateway": "0.0.0.0"
