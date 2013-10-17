@@ -104,6 +104,8 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         } else {
           App.notify('Trust attestation logs were not found.');
         }
+      }, function (xhr) {
+        App.xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
     trustReportModal: function(model){

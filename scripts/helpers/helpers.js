@@ -307,6 +307,13 @@ App.associativeToNumericArray = function (associativeArray) {
   return numericArray;
 };
 
+/**
+ * Extract an error message from a JSON object
+ *
+ * @param {object} response - The JSON object returned from the API (already JSON.parse'd)
+ * @param {string} [separator=<br>]
+ * @returns {string} Error message if found, otherwise the empty string
+ */
 App.errorMessage = function (response, separator) {
   if (typeof separator === 'undefined') separator = '<br>';
   if (response.meta && response.meta.registration_status) {
@@ -333,6 +340,22 @@ App.errorMessage = function (response, separator) {
     return '';
   }
 };
+
+/**
+ * Display an error notification given the XHR object
+ *
+ * @param {object} xhr - the XHR object (e.g. an XMLHTTPRequest object, jqXHR object, or the XHR parameter passed to the Promises/A+ error handler)
+ * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
+ * @returns {string} The error message, which is also displayed in the UI
+ */
+App.xhrError = function (xhr, defaultMessage) {
+  var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
+  try {
+    var errorMessage = App.errorMessage(JSON.parse(xhr.responseText)) || errorMessage;
+  } catch(error) {}
+  App.event(errorMessage, App.ERROR);
+  return errorMessage;
+}
 
 /**
  * Sort two inputs

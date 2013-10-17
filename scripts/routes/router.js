@@ -63,7 +63,7 @@ App.LoadingRoute = Ember.Route.extend();
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   init: function () {
-    store = this.store;
+    App.store = this.store;
   },
   setupController: function () {
     this.controllerFor('vms').set('model', this.store.find('vm'));

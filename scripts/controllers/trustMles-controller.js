@@ -40,12 +40,8 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
           mle.save().then(function () {
             App.event('Successfully deleted MLE.', App.SUCCESS);
           }, function (xhr) {
-            globalMle = mle;
             mle.rollback();
-            // TODO: Validate error messaging here
-            var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
-            errorMessage = (errorMessage) ? errorMessage : 'An error occured while attempting to delete the MLE.';
-            App.event(errorMessage, App.ERROR);
+            App.xhrError(xhr, 'An error occured while attempting to delete the MLE.');
           });
         }
       }

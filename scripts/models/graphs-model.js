@@ -7,9 +7,9 @@ App.Graphs = Ember.Controller.extend({
       dataType: 'json'
     }).then(function (data) {
       if (entityType == 'node') {
-        store.getById('node', emberId).set('graphs', App.associativeToNumericArray(data));
+        App.store.getById('node', emberId).set('graphs', App.associativeToNumericArray(data));
       } else if (entityType == 'vm') {
-        store.getById('vm', emberId).set('graphs', App.associativeToNumericArray(data));
+        App.store.getById('vm', emberId).set('graphs', App.associativeToNumericArray(data));
       }
     });
   }

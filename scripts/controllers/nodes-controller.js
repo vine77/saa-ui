@@ -126,8 +126,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node: this.store.getById('node', node.get('id'))
         }).save().then(function () {
           App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
-        }, function () {
-          App.event('Failed to reboot node "' + node.get('name') + '".', App.ERROR);
+        }, function (xhr) {
+          App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
         });
       }
     },
@@ -140,8 +140,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then( function () {
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
           node.set('samControlled', 0);
-        }, function () {
-          App.event('Failed to unregister node "' + node.get('name') + '".', App.ERROR);
+        }, function (xhr) {
+          App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
         });
       }
     },
@@ -164,8 +164,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           // Set this node for VM placement
           node.set('schedulerMark', socketNumber);
           node.set('schedulerPersistent', true);
-        }, function () {
-          App.event('Failed to set node "' + node.get('name') + '" for VM placement.', App.ERROR);
+        }, function (xhr) {
+          App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
         });
       }
     },
@@ -178,8 +178,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then(function () {
           App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           node.set('schedulerMark', null);
-        }, function () {
-          App.event('Failed to unset node "' + node.get('name') + '" for VM placement.', App.ERROR);
+        }, function (xhr) {
+          App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
         });
       }
     },
@@ -191,13 +191,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         });
         newTrustMle.save().then(function (model) {
           App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
-          // TODO: Check for zombie records with null id
-          // if ((item.get('id') == null)) item.deleteRecord();
         }, function (xhr) {
-          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
-          errorMessage = (errorMessage) ? errorMessage : 'An error occured while fingerprinting node "' + node.get('name') + '".';
-          App.event(errorMessage, App.ERROR);
           newTrustMle.deleteRecord();
+          App.xhrError(xhr, 'An error occured while fingerprinting node "' + node.get('name') + '".');
         });
       }
     },
@@ -211,10 +207,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
           node.reload();
         }, function (xhr) {
-          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
-          errorMessage = (errorMessage) ? errorMessage : 'An error occured while registering node"' + node.get('name') + '" as trusted.';
-          App.event(errorMessage, App.ERROR);
           newTrustNode.deleteRecord();
+          App.xhrError(xhr, 'An error occured while registering node"' + node.get('name') + '" as trusted.');
         });
       }
     },
@@ -227,10 +221,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node.reload();
         }, function (xhr) {
           node.rollback();
-          // TODO: Validate error messaging here
-          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
-          errorMessage = (errorMessage) ? errorMessage : 'An error occured while unregistering node "' + node.get('name') + '" as trusted.';
-          App.event(errorMessage, App.ERROR);
+          App.xhrError(xhr, 'An error occured while unregistering node "' + node.get('name') + '" as trusted.');
         });
       }
     },
@@ -247,8 +238,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         } else {
           App.event('No trust attestation logs were found for this node.', App.WARNING);
         }
-      }, function () {
-        App.event('Failed to load node trust report.', App.ERROR);
+      }, function (xhr) {
+        App.xhrError(xhr, 'Failed to load node trust report.');
       });
     },
     trustReportModal: function (model) {
