@@ -6,7 +6,7 @@ App.TrustController = Ember.Controller.extend({
   actions: {
     install: function () {
       // Start Mt. Wilson install
-      App.mtWilson.send('install');
+      App.mtWilson.install();
       App.mtWilson.checkPeriodically();
     }
   },

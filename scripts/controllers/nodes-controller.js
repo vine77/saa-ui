@@ -179,7 +179,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           node.set('schedulerMark', null);
         }, function () {
-          console.log('save reject');
           App.event('Failed to unset node "' + node.get('name') + '" for VM placement.', App.ERROR);
         });
       }
@@ -187,34 +186,35 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     trustFingerprint: function (node) {
       var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
       if (confirmed) {
-        this.store.createRecord('trustMle', {
+        var newTrustMle = this.store.createRecord('trustMle', {
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function (model) {
+        });
+        newTrustMle.save().then(function (model) {
           App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
           // TODO: Check for zombie records with null id
           // if ((item.get('id') == null)) item.deleteRecord();
-        }, function (error) {
-          // TODO: Bubble up error message and check reevaulate deleteRecord
-          //trustMle.deleteRecord();
-          //var errorMessage = (trustMle.get('error')) ? trustMle.get('error') : 'An error occured while fingerprinting node. Please try again.';
-          var errorMessage = 'An error occured while fingerprinting node "' + node.get('name') + '".';
+        }, function (xhr) {
+          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
+          errorMessage = (errorMessage) ? errorMessage : 'An error occured while fingerprinting node "' + node.get('name') + '".';
           App.event(errorMessage, App.ERROR);
+          newTrustMle.deleteRecord();
         });
       }
     },
     addTrust: function (node) {
       var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
       if (confirmed) {
-        this.store.createRecord('trustNode', {
+        var newTrustNode = this.store.createRecord('trustNode', {
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
+        });
+        newTrustNode.save().then(function () {
           App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
-        }, function () {
-          var errorMessage = 'An error occured while trusting node"' + node.get('name') + '".';
+          node.reload();
+        }, function (xhr) {
+          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
+          errorMessage = (errorMessage) ? errorMessage : 'An error occured while registering node"' + node.get('name') + '" as trusted.';
           App.event(errorMessage, App.ERROR);
-          // TODO: Bubble up error message and check reevaulate deleteRecord
-          //trustNode.deleteRecord();
-          //var errorMessage = (trustNode.get('error')) ? trustNode.get('error') : 'An error occured while trusting node. Please try again.';
+          newTrustNode.deleteRecord();
         });
       }
     },
@@ -224,9 +224,12 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.get('trustNode').deleteRecord();
         node.get('trustNode').save().then(function () {
           App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
-        }, function () {
-          // TODO: Bubble up error message
-          var errorMessage = 'An error occured while unregistering node "' + node.get('name') + '" as trusted.';
+          node.reload();
+        }, function (xhr) {
+          node.rollback();
+          // TODO: Validate error messaging here
+          var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
+          errorMessage = (errorMessage) ? errorMessage : 'An error occured while unregistering node "' + node.get('name') + '" as trusted.';
           App.event(errorMessage, App.ERROR);
         });
       }

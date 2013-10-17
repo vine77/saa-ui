@@ -30,18 +30,25 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
   sortProperty: 'name',
   actions: {
     deleteMle: function (mle) {
-      this.store.find('trustNode').then(function() { //updating all trust nodes
-        //check if any nodes are registered anywhere with this mle ...
-        if (mle.get('trustNode.length') > 0) {
-          App.event('Failed to delete fingerprint, you must first remove trust from all of the fingerprint\'s associated nodes.', App.ERROR);
-        } else {
-          var confirmed = confirm('Are you sure you want to delete this fingerprint?');
-          if (confirmed) {
-            mle.deleteRecord();
-            mle.save();
-          }
+      // Prevent action if any nodes are registered with this MLE
+      if (mle.get('trustNode.length') > 0) {
+        App.event('Failed to delete MLE. You must first remove trust from all of the MLE\'s associated nodes.', App.ERROR);
+      } else {
+        var confirmed = confirm('Are you sure you want to delete this MLE?');
+        if (confirmed) {
+          mle.deleteRecord();
+          mle.save().then(function () {
+            App.event('Successfully deleted MLE.', App.SUCCESS);
+          }, function (xhr) {
+            globalMle = mle;
+            mle.rollback();
+            // TODO: Validate error messaging here
+            var errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
+            errorMessage = (errorMessage) ? errorMessage : 'An error occured while attempting to delete the MLE.';
+            App.event(errorMessage, App.ERROR);
+          });
         }
-      });
+      }
     }
   }
 });

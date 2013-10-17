@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "status": 0,
+      "name": "unregister",
+      "links": {
+        "nodes": "/api/v1/nodes/b2d1c20a-ca94-e111-bd1d-001e6747f5ba"
+      },
+      "started": "2013-10-16 22:11:27",
+      "id": 42,
+      "filterable_columns": [
+        "status",
+        "name",
+        "blocking",
+        "node_id",
+        "done",
+        "vm_id",
+        "id"
+      ],
+      "node_id": "b2d1c20a-ca94-e111-bd1d-001e6747f5ba",
+      "done": null,
+      "user": null,
+      "blocking": null,
+      "sortable_columns": [
+        "status",
+        "name",
+        "started",
+        "last_update",
+        "node_id",
+        "done",
+        "blocking",
+        "vm_id",
+        "id"
+      ],
+      "message": "Node successfully unregistered",
+      "last_update": "2013-10-16 22:11:27",
+      "vm_id": null,
+      "options": {}
+    }
+  ]
+}

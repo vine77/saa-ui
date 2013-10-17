@@ -21,21 +21,21 @@ App.VmController = Ember.ObjectController.extend({
         return '<strong>State</strong>: ' + App.codeToOperational(self.get('model.status.operational')).capitalize();
       })(this),
       isTrusted: (function (self) {
-        return self.get('model.status.trust') === 2;
+        return self.get('model.status.trust') === App.TRUSTED;
       })(this),
       isNotTrusted: (function (self) {
-        return self.get('model.status.trust') === 1;
+        return self.get('model.status.trust') === App.UNTRUSTED;
       })(this),
       isTrustUnknown: (function (self) {
         return !self.get('model.status.trust');
       })(this),
       trustMessage:(function(self) {
         var message = '';
-        if (self.get('model.status.trust') === 0) {
+        if (self.get('model.status.trust') === App.UNKNOWN) {
           message = 'Trust Status: Unknown';
-        } else if (self.get('model.status.trust') === 1) {
+        } else if (self.get('model.status.trust') === App.UNTRUSTED) {
           message = 'Trust Status: Not Trusted';
-        } else if (self.get('model.status.trust') === 2) {
+        } else if (self.get('model.status.trust') === App.TRUSTED) {
           message = 'Trust Status: Trusted';
         }
         message += '<br>' + 'BIOS: ' + App.trustDetailsToString(self.get('model.status.trust_details.bios'));

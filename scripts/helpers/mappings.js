@@ -14,6 +14,11 @@ App.REBOOTING = 4;
 App.UPDATING = 5;
 App.BUSY = 6;
 
+// Constants for trust
+App.UNTRUSTED = 1;
+App.TRUSTED = 2;
+App.UNREGISTERED = 3;
+
 /**
  * Convert string representation of priority to corresponding integer codes
  *

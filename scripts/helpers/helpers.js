@@ -309,6 +309,9 @@ App.associativeToNumericArray = function (associativeArray) {
 
 App.errorMessage = function (response, separator) {
   if (typeof separator === 'undefined') separator = '<br>';
+  if (response.meta && response.meta.registration_status) {
+    return response.meta.registration_status.mapBy('error_message').join(separator);
+  }
   if (Ember.isArray(response)) {
     return response.join(separator);
   } else if (response.hasOwnProperty('error_message')) {

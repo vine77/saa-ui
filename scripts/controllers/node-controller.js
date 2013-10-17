@@ -82,19 +82,22 @@ App.NodeController = Ember.ObjectController.extend({
       return 'Not registered with Trust Server';
     }
   }.property('isTrustRegistered'),
-  isTrusted: Ember.computed.equal('status.trust', 2),
+  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function () {
     var message = '';
-    if (this.get('status.trust') === 0) {
-      message = 'Trust Status: Unknown.';
-    } else if (this.get('status.trust') === 1) {
+    if (this.get('status.trust') === App.UNKNOWN) {
+      message = 'Trust Status: Unknown';
+    } else if (this.get('status.trust') === App.UNTRUSTED) {
       message = 'Trust Status: Not Trusted';
-    } else if (this.get('status.trust') === 2) {
+    } else if (this.get('status.trust') === App.TRUSTED) {
       message = 'Trust Status: Trusted';
+    } else if (this.get('status.trust') === App.UNREGISTERED) {
+      message = 'Trust Status: Not Registered';
     }
     message += '<br>' + 'BIOS: ' + App.trustDetailsToString(this.get('status.trust_details.bios'));
     message += '<br>' + 'VMM: ' + App.trustDetailsToString(this.get('status.trust_details.vmm'));
+    if (this.get('status.trust') === App.UNTRUSTED) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     return message;
   }.property('status.trust'),
   contentionFormatted: function () {

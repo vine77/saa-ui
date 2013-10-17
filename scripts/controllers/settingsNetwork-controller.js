@@ -6,17 +6,15 @@ App.SettingsNetworkController = Ember.Controller.extend({
         hostnameMatches = true;
       }
       if (hostnameMatches) {
-        App.network.send('save');
+        App.network.save();
       } else {
-        var verify = confirm("You have specified a different external IPv4 address than your current GUI location. Are you sure you want to save and redirect?");
+        var verify = confirm('You have specified a different external IPv4 address than the current location. Are you sure you want to save and redirect?');
         if (verify == true) {
           var redirectIP = 'http://' + App.network.get('external.address');
-          App.network.send('save').then( function(redirectIP){
+          App.network.save().then(function (redirectIP) {
             window.location = redirectIP;
           });
-        } //else {
-          //App.network.save();
-        //}
+        }
       }
     },
     cancel: function () {

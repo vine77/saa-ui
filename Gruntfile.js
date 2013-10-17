@@ -65,11 +65,13 @@ module.exports = function (grunt) {
                 // Log requests to terminal
                 console.log(req.method, req.url);
 
+                /*
                 if (req.method === 'POST') {
                   res.writeHead(404, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'errors': {'name': 'Invalid parameter'}}));
                   return;
                 }
+                */
 
                 // Serve API requests
                 if (req.url.indexOf('/api/') === 0) {
