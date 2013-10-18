@@ -1,0 +1,4 @@
+{
+  "error_message": "Creating flavor failed.\nInvalid flavor: number of vcpus is not compatible with given sla",
+  "error_code": 422
+}

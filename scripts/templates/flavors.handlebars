@@ -43,7 +43,7 @@
               </td>
               <td class="column-medium">
                 {{#if sla}}
-                  <a class="btn btn-mini" {{action deleteFlavor flavor}}><i class="icon-remove"></i> Delete</a>
+                  <a class="btn btn-mini" {{action "deleteFlavor" this}}><i class="icon-remove"></i> Delete</a>
                 {{else}}
                   {{#view App.TooltipView title="Not available in Beta API" class="inline-block"}}
                     <a class="btn btn-mini disabled"><i class="icon-copy"></i> Edit</a>

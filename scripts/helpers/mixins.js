@@ -102,9 +102,7 @@ App.ColumnsController = Ember.ArrayController.extend({
     return name.slice(0, name.indexOf('ColumnsController')).camelize();
   }.property(),
   needs: function () {
-    var needs = this._super() || [];
-    needs.push(this.get('parent'));
-    return needs;
+    return [this.get('parent')];
   }.property('parent'),
   itemController: function () {
     return this.get('parent') + 'Column';

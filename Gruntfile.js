@@ -79,6 +79,7 @@ module.exports = function (grunt) {
                   if (req.url.slice(-1) === '/') req.url = req.url.slice(0, -1);
                   // Add extension (including method for for non-GET requests, e.g. .post.json)
                   var extension = (req.method === 'GET') ? '.json' : '.' + req.method.toLowerCase() + '.json';
+                  req.method = 'GET';
                   // Add .json extension
                   if (req.url.indexOf('.json') === -1) {
                     if (req.url.indexOf('?') === -1) {

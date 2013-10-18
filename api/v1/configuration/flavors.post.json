@@ -1,0 +1,21 @@
+{
+  "flavors": [
+    {
+      "name": "newly-created-flavor",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
+        "slas": "/api/v1/configuration/slas/5"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
+      "public": 1,
+      "sla_id": 5,
+      "vcpus": 2,
+      "swap": 0,
+      "memory": 4096,
+      "root": 40,
+      "id": "d41d8cd9-8f00-b204-e980-0998ecf8427e"
+    }
+  ]
+}

@@ -13,26 +13,25 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
   }.property('model.@each'),
   actions: {
     createFlavor: function () {
+      var self = this;
       this.set('isFlavorCreating', true);
-      var controller = this;
       flavor = this.store.createRecord('flavor', {
-        name: controller.get('name'),
-        sla: controller.get('sla'),
-        sourceFlavor: controller.get('sourceFlavor')
+        name: self.get('name'),
+        sla: self.get('sla'),
+        sourceFlavor: self.get('sourceFlavor')
       });
       flavor.save().then(function () {
         App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
-        this.set('isFlavorCreating', false);
         // Clear form
         $('.modal:visible').modal('hide');
-        controller.set('name', '');
-        controller.set('sourceFlavor', null);
-        controller.set('sla', null);
-        controller.set('isFlavorCreating', false);
+        self.set('name', '');
+        self.set('sourceFlavor', null);
+        self.set('sla', null);
+        self.set('isFlavorCreating', false);
       }, function (xhr) {
         App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
         flavor.deleteRecord();
-        this.set('isFlavorCreating', false);
+        self.set('isFlavorCreating', false);
       });
     }
   }
