@@ -8,7 +8,7 @@ App.VmInstantiationSimple = DS.Model.extend({
       }
     });
     return trustFound;
-  }.property('sloGates.@each')
+  }.property('sloGates.@each'),
   nodesCount: DS.attr(),
   rankedNodes: DS.attr(),
   scheduleTime: DS.attr('string'),
