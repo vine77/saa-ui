@@ -395,8 +395,10 @@
                                   </td>
                                   <td>
                                     System LLC: {{instantiationNode.contention.system.llc.label}} ({{instantiationNode.contention.system.llc.value}}) <br>
-                                    Sockets:<br>
-                                    {{instantiationNode.contention.socketsValues}}
+                                    <em>Sockets</em> <br />
+                                    {{#each socket in instantiationNode.contention.sockets}}
+                                      Socket #: {{socket.id}} Contention: {{socket.llc.label}} ({{socket.llc.value}}) <br />
+                                    {{/each}}
                                   </td>
                                 </tr>
                               {{/each}}

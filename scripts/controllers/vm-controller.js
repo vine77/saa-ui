@@ -1,7 +1,6 @@
 App.VmController = Ember.ObjectController.extend({
   isExpanded: false,
   isSelected: false,
-
   status: function() {
     return Ember.$.extend({
       isHealthy: (function (self) {

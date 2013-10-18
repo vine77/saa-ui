@@ -15,8 +15,8 @@ App.LogBarController = Ember.ObjectController.extend({
     return returnArray;
   }.property('controllers.criticalities'),
   selectedCriticalities: function() {
-    return this.get('criticalities').filterProperty('isSelected', true);
-  }.property('criticalities'),
+    return this.get('controllers.criticalities').filterProperty('isSelected', true);
+  }.property('controllers.criticalities.model.@each'),
 
   nodeSelected: null,
   selectListNodes: function() {

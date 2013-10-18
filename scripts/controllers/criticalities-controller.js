@@ -3,7 +3,7 @@ App.CriticalitiesController = Ember.ArrayController.extend({
   init: function() {
     self = this;
     this.store.find('criticality').then( function(criticalities) {
-      self.set('model', this.store.find('criticality'));
+      self.set('model', self.store.find('criticality'));
     });
   }
 });

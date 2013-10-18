@@ -1,9 +1,16 @@
-// Embedded records
-/* TODO: Update embedded models
-DS.RESTAdapter.map('vmInstantiationDetailed', {
-  nodesCount: {embedded: 'always'},
-  instantiation_nodes: {embedded: 'always'}
+App.VmInstantiationDetailed = DS.Model.extend({
+  generation_time: DS.attr('string'),
+  instantiation_nodes: DS.attr(),
+  nodesCount: DS.attr(),
+  schedule_time: DS.attr('string'),
+  vmTrustStatus: DS.attr('boolean'),
+
+  //Full Relationships
+  vm: DS.belongsTo('vm')
 });
+
+
+/* 
 DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNode', {
   instantiation_slos: {embedded: 'always'},
   contention: {embedded: 'always'}
@@ -19,7 +26,7 @@ DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNodeContentionSocket', {
   llc: {embedded: 'always'}
 });
 */
-
+/*
 App.VmInstantiationDetailedInstantiationNodeInstantiationSlo = DS.Model.extend({
   slo: DS.belongsTo('slo'),
   description: DS.attr('string'),
@@ -70,16 +77,6 @@ App.VmInstantiationDetailedNodesCount = DS.Model.extend({
   total: DS.attr('string'),
   under_sam_control: DS.attr('string')
 });
+*/
 
-App.VmInstantiationDetailed = DS.Model.extend({
-  generation_time: DS.attr('string'),
-  schedule_time: DS.attr('string'),
-  vmTrustStatus: DS.attr('boolean'),
 
-  //Embedded Relationships
-  nodesCount: DS.belongsTo('vmInstantiationDetailedNodesCount'),
-  instantiation_nodes: DS.hasMany('vmInstantiationDetailedInstantiationNode'),
-
-  //Full Relationships
-  vm: DS.belongsTo('vm')
-});
