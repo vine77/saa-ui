@@ -114,7 +114,7 @@
               <td>{{na utilization.ipc}}</td>
               <td>{{readableSize utilization.memory}}</td>
               <td>
-                {{#if contention.system.llc.value}}
+                {{#if hasContention}}
                   <div class="contention">
                     <div class="contention-bar">
                       {{#view App.TooltipView titleBinding="contentionMessage"}}

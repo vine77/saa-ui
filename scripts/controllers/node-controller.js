@@ -100,6 +100,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('status.trust') === App.UNTRUSTED) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     return message;
   }.property('status.trust'),
+  hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
   contentionFormatted: function () {
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
