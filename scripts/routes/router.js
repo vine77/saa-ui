@@ -64,6 +64,7 @@ App.LoadingRoute = Ember.Route.extend();
 App.ApplicationRoute = Ember.Route.extend({
   init: function () {
     App.store = this.store;
+    App.route = this;
   },
   setupController: function () {
     this.controllerFor('vms').set('model', this.store.find('vm'));
@@ -276,7 +277,7 @@ App.FlavorRoute = App.EnabledRoute.extend({
 });
 App.FlavorsCreateRoute = App.EnabledRoute.extend({
   model: function () {
-    return null;
+    return this.store.all('flavor');
   },
   renderTemplate: function () {
     this.render({
@@ -433,6 +434,6 @@ Ember.Route.reopen({
     }
     this._super();
   }
-  
+
 });
 */

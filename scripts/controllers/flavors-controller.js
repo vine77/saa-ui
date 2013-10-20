@@ -14,7 +14,14 @@ App.FlavorsColumnsController = App.ColumnsController.extend({
 });
 
 App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+  needs: ['flavorsColumns', 'slas'],
   sortProperty: 'name',
+  multipleFlavorsAreSelected: function () {
+    return this.get('model').filterProperty('isSelected').length > 1;
+  }.property('model.@each.isSelected'),
+  slas: function () {
+    return this.get('controllers.slas.model');
+  }.property('controllers.slas.model.@each'),
   actions: {
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
@@ -42,16 +49,5 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
         });
       }
     }
-  },
-  multipleFlavorsAreSelected: function () {
-    return this.get('model').filterProperty('isSelected').length > 1;
-  }.property('model.@each.isSelected'),
-  slas: function () {
-    return this.store.find('sla');
-  }.property('model.@each'),
-  flavorsWithoutSlas: function () {
-    return this.store.all('flavor').filter(function (item, index, enumerable) {
-      return item.get('sla') === null;
-    });
   }
 });

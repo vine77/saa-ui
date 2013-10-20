@@ -1,16 +1,15 @@
 App.FlavorsCreateController = Ember.ObjectController.extend({
+  needs: ['slas'],
   name: '',
   sourceFlavor: null,
   sla: null,
   isFlavorCreating: false,
   flavorsWithoutSlas: function () {
-    return this.store.all('flavor').filter(function (item, index, enumerable) {
-      return item.get('sla') === null;
-    })
-  }.property('model.@each'),
+    return this.get('model').filterBy('sla', null);
+  }.property('model.@each.sla'),
   slas: function () {
-    return this.store.find('sla');
-  }.property('model.@each'),
+    return this.get('controllers.slas.model');
+  }.property('controllers.slas.model.@each'),
   actions: {
     createFlavor: function () {
       var self = this;
