@@ -1,0 +1,239 @@
+<div class="details">
+  <a class="close" {{action "closeDetails"}}>&times;</a>
+  <ul class="nav nav-tabs">
+    <li class="active"><a onclick="App.selectTab(event)">Details</a></li>
+    <li><a onclick="App.selectTab(event)">Utilization</a></li>
+    <li><a onclick="App.selectTab(event)">Capabilities</a></li>
+    <li><a onclick="App.selectTab(event)">VMs</a></li>
+    <li><a onclick="App.selectTab(event)">Graphs</a></li>
+    <li><a onclick="App.selectTab(event)">Trust</a></li>
+    <li><a onclick="App.selectTab(event)">MLEs</a></li>
+    <li><a onclick="App.selectTab(event)">PCR Logs</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active details">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">Hostname</th>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Health</th>
+          <td>
+            {{#view App.TooltipView titleBinding="healthMessage"}}
+              {{healthIcon status.health}} {{status status.health}}
+            {{/view}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Operational State</th>
+          <td>
+            {{operationalIcon status.operational}} {{operational status.operational}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Trust</th>
+          <td>{{trust status.trust}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Locked</th>
+          <td>{{capitalize status.locked}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">vCPUs</th>
+          <td>{{na vcpus.used}} out of {{na vcpus.max}}</td>
+        </tr>
+        {{#if isScheduled}}
+          <tr>
+            <th class="column-medium">VM Placement</th>
+            <td>Socket {{schedulerMark}}</td>
+          </tr>
+        {{/if}}
+      </table>
+    </div>
+    <div class="tab-pane utilization">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">SAM Units</th>
+          <td>{{na utilization.gips_current}} out of {{na utilization.gips_max}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">CPU Throughput</th>
+          <td>{{na utilization.ipc}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Memory</th>
+          <td>{{readableSize utilization.memory}} out of {{readableSize capabilities.memory_size}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">CPU Idle</th>
+          <td>{{na utilization.cpu.idle}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">I/O Wait</th>
+          <td>{{na utilization.cpu.iowait}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="tab-pane capabilities">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">Sockets</th>
+          <td>{{na capabilities.sockets}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cores per Socket</th>
+          <td>{{na capabilities.cores_per_socket}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">CPU Frequency</th>
+          <td>{{na capabilities.cpu_frequency}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Hyperthreading</th>
+          <td>{{capitalize capabilities.hyperthreading}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Turbo Mode</th>
+          <td>{{capitalize capabilities.turbo_mode}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cache Size</th>
+          <td>{{readableSize capabilities.cache_size}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Memory Size</th>
+          <td>{{readableSize capabilities.memory_size}}</td>
+        </tr>
+        <tr>
+      </table>
+    </div>
+    <div class="tab-pane vms">
+      <ul>
+        {{#each vm in vms}}
+          <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
+        {{else}}
+          <li>No VMs</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="tab-pane graphs">
+      {{#each graph in graphs}}
+        <figure class="thumbnail">
+          <img {{bind-attr src="graph.url"}}>
+          <figcaption class="caption">{{graph.desc}}</figcaption>
+        </figure>
+      {{else}}
+        <div class="alert alert-info">No graphs found.</div>
+      {{/each}}
+    </div>
+    <div class="tab-pane trust">
+      {{#if nodeTrustReport.attestations}}
+        <div class="align-right">
+          <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
+        </div>
+        <table class="table table-bordered">
+          <tr>
+            <th class="column-small">Trust Status</th>
+            <th>Message</th>
+            <th>Timestamp</th>
+          </tr>
+          {{#each attestation in nodeTrustReport.attestations}}
+            <tr>
+              <td class="column-small">
+                {{#view App.TooltipView titleBinding="attestation.trust_message" dataContainer="body"}}
+                  <i {{bind-attr class=":icon-large attestation.trust_status:icon-lock:icon-unlock attestation.trust_status:trusted:untrusted"}}></i>
+                {{/view}}
+              </td>
+              <td>{{attestation.report_message}}</td>
+              <td>{{attestation.attestation_time_formatted}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        {{#unless model.isUpdating}}
+          <div class="alert alert-info">No attestations found.</div>
+        {{/unless}}
+      {{/if}}
+    </div>
+    <div class="tab-pane mles">
+      {{#if isTrustRegistered}}
+        <table class="table table-bordered">
+          <tr>
+            <th>MLE Type</th>
+            <th>Name</th>
+            <th>OEM Name</th>
+            <th>Attestation Type</th>
+            <th>OS Name</th>
+            <th>Version</th>
+            <th>OS Version</th>
+          </tr>
+          {{#each mle in trustNode.trustMle}}
+            <tr>
+              <td>{{na mle.mleType}}</td>
+              <td>{{#link-to "trust.mle" mle}}{{na mle.name}}{{/link-to}}</td>
+              <td>{{na mle.oemname}}</td>
+              <td>{{na mle.attestationType}}</td>
+              <td>{{na mle.osname}}</td>
+              <td>{{na mle.version}}</td>
+              <td>{{na mle.osversion}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        {{#unless model.isUpdating}}
+          <div class="alert alert-info">No MLEs found.</div>
+        {{/unless}}
+      {{/if}}
+    </div>
+    <div class="tab-pane pcr-logs">
+      {{#if trustNode.pcrLogs}}
+        <table class="table table-bordered">
+          <tr>
+            <th class="column-small">Trust Status</th>
+            <th>Name</th>
+            <th>Actual Value</th>
+            <th>
+              {{#view App.TooltipView title="The PCR-19 value is made up of several modules (initrd and vmlinuz) that are node specific. This is why PCR-19 does not have a value listed in the Expected Value column. The modules that make up PCR-19 do have actual/expected values, which are described in the Module Logs column. PCR-19 is the only module based PCR, and is the only PCR that has data in the Module Logs column." dataPlacement="bottom"}}
+                Expected Value
+              {{/view}}
+            </th>
+            <th>
+              {{#view App.TooltipView title="The PCR-19 value is made up of several modules (initrd and vmlinuz) that are node specific. This is why PCR-19 does not have a value listed in the Expected Value column. The modules that make up PCR-19 do have actual/expected values, which are described in the Module Logs column. PCR-19 is the only module based PCR, and is the only PCR that has data in the Module Logs column." dataPlacement="bottom"}}
+                Module Logs
+              {{/view}}
+            </th>
+          </tr>
+          {{#each log in trustNode.pcrLogs}}
+            <tr>
+              <td class="column-small">
+                <i {{bind-attr class=":icon-large log.truststatus:icon-lock:icon-unlock log.truststatus:trusted:untrusted"}}></i>
+              </td>
+              <td>{{na log.name}}</td>
+              <td>{{na log.value}}</td>
+              <td>{{na log.whitelistvalue}}</td>
+              <td>
+                {{#if log.modulelogs}}
+                  {{#each modulelog in log.modulelogs}}
+                    <ul>
+                      <li>Component Name: {{modulelog.componentname}}</li>
+                      <li>Actual Value: {{modulelog.value}}</li>
+                      <li>Expected Value: {{modulelog.whitelistvalue}}</li>
+                      <li>Trust Status: {{modulelog.truststatus}}</li>
+                    </ul>
+                  {{/each}}
+                {{else}}
+                  {{na 'false'}}
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        {{#unless model.isUpdating}}
+          <div class="alert alert-info">No PCR Logs found.</div>
+        {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,71 +1,134 @@
 #vms {
+  height: 100%;
+  > .row-fluid {
+    height: 100%;
+  }
   .sidebar {
     .btn-group {
       width: 100%;
     }
   }
+  @headerHeight: 45px;
   .header {
     width: 100%;
+    height: @headerHeight;
     overflow: auto;
-    margin-bottom: 15px;
   }
-  .content > table {
-    > thead,
-    > tbody {
-      > tr {
-        > th:not(.sortable),
-        td.column-small,
-        > td.column-small {
-          text-align: center;
+  .content {
+    position: relative;
+    height: 100%;
+    > table {
+      > thead,
+      > tbody {
+        > tr {
+          > th:not(.sortable),
+          td.column-small,
+          > td.column-small {
+            text-align: center;
+          }
+        }
+        > tr:not(.is-expanded):not(.is-selected) {
+          > th:first-of-type,
+          > td:first-of-type,
+          > th:nth-last-of-type(2),
+          > td:nth-last-of-type(2),
+          > th:last-of-type,
+          > td:last-of-type {
+            background-color: #f9f9f9;
+          }
+        }
+        > tr:hover:not(.is-expanded):not(.is-selected) {
+          > td {
+            background-color: transparent;
+          }
         }
       }
-      > tr:not(.is-expanded):not(.is-selected) {
-        > th:first-of-type,
-        > td:first-of-type,
-        > th:nth-last-of-type(2),
-        > td:nth-last-of-type(2),
-        > th:last-of-type,
-        > td:last-of-type {
-          background-color: #f9f9f9;
-        }
-      }
-      > tr:hover:not(.is-expanded):not(.is-selected) {
-        > td {
-          background-color: transparent;
+      .sparkline {
+        display: inline-block;
+        width: 150px;
+        height: 20px;
+        vertical-align: middle;
+        path {
+          stroke: steelblue;
+          stroke-width: 1;
+          fill: none;
         }
       }
     }
-    .sparkline {
-      display: inline-block;
-      width: 150px;
-      height: 20px;
-      vertical-align: middle;
-      path {
-        stroke: steelblue;
-        stroke-width: 1;
-        fill: none;
+    > .details {
+      position: absolute;
+      top: @headerHeight;
+      bottom: 20px;
+      right: 0;
+      width: 700px;
+      overflow: auto;
+      border: 1px solid #dddddd;
+      background-color: white;
+      .border-radius(5px);
+      .box-shadow(-1px 1px 2px -1px rgba(0, 0, 0, 0.2));
+      .close {
+        position: absolute;
+        float: none;
+        width: 12px;
+        right: 8px;
+        top: 2px;
+        z-index: 10;
       }
-    }
-    .label-left {
-      text-align:right;
-      width:50%;
-    }
-    .slo-gates-table {
-      width:50%;
-      display:inline-table;
-      vertical-align:top;
-    }
-    .ranked-nodes-table {
-      width:49.5%;
-      display:inline-table;
-      vertical-align:top;
-    }
-    .nested-slos-table th{
-      font-style:italic;
-      border-left:0;
-    }
-    .nested-slos-table td {
-      border-left:0;
+      .nav-tabs {
+        background-color: #f9f9f9;
+        padding-top: 2px;
+        padding-right: 2px;
+        padding-left: 2px;
+        .border-top-left-radius(4px);
+        .border-top-right-radius(4px);
+        > li > a {
+          padding-bottom: 3px;
+          &:hover {
+            border-top: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            border-left: 1px solid #dddddd;
+          }
+        }
+      }
+      .tab-content {
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+        .instantiation,
+        .instantiation-detailed {
+          .slo-gates-table {
+            width: 50%;
+            display: inline-table;
+            vertical-align: top;
+          }
+          .ranked-nodes-table {
+            width: 49.5%;
+            display: inline-table;
+            vertical-align: top;
+          }
+          .nested-slos-cell {
+            padding: 0;
+            vertical-align: top;
+            .nested-slos-table {
+              margin: 0;
+              border: none;
+              background-color: transparent;
+              th {
+                font-style: italic;
+                border-left: 0;
+                background-color: transparent;
+              }
+              td {
+                border-left: 0;
+              }
+              td:first-of-type,
+              th:first-of-type {
+                border-left: none;
+              }
+            }
+          }
+        }
+      }
     }
   }
   .treemap {

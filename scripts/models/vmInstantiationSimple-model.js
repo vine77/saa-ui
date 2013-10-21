@@ -24,7 +24,7 @@ App.VmInstantiationSimpleSerializer = DS.ActiveModelSerializer.extend({
 
     return this._super(store, primaryType, payload, recordId, requestType);
   }
-}); 
+});
 
 App.SloGate = DS.Model.extend({
   slo: DS.belongsTo('slo'),
@@ -40,7 +40,8 @@ App.RankedNode = DS.Model.extend({
 });
 
 App.VmInstantiationSimple = DS.Model.extend({
-  generationTime: DS.attr('date'),
+  scheduleTime: DS.attr('string'),
+  generationTime: DS.attr('string'),
   instantiationTrusted: function () {
     var trustFound = false;
     this.get('sloGates').forEach( function(item, index, enumerable) {

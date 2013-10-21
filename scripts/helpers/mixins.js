@@ -11,7 +11,6 @@ App.Filterable = Ember.Mixin.create({
   filterProperties: [],
   filteredModel: [],
   filterModel: function () {
-    console.log('compute filteredModel');
     var searchText = this.get('filterQuery');
     if (!searchText) {
       this.set('filteredModel', this);

@@ -235,6 +235,11 @@ App.NodesNodeRoute = App.EnabledRoute.extend({
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
     this.controllerFor('nodes').findBy('id', model.get('id')).set('isExpanded', true);
+  },
+  actions: {
+    closeDetails: function() {
+      this.transitionTo('nodes');
+    }
   }
 });
 
@@ -250,6 +255,11 @@ App.VmsVmRoute = App.EnabledRoute.extend({
     this._super(controller, model);
     this.controllerFor('vms').setEach('isExpanded', false);
     this.controllerFor('vms').findBy('id', model.get('id')).set('isExpanded', true);
+  },
+  actions: {
+    closeDetails: function() {
+      this.transitionTo('vms');
+    }
   }
 });
 

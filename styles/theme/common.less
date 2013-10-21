@@ -375,7 +375,7 @@ html {
 body {
   .box-sizing(border-box);
   height: 100%;
-  padding: (@navbarHeight + 20px) 0 20px;
+  padding: (@navbarHeight + 20px) 0 0;
   overflow-x: hidden;
   background-image: url(/images/texture.png);
 }
@@ -408,6 +408,9 @@ input[type="checkbox"] {
 }
 
 // Icons
+img.icon {
+  max-width: 27px;
+}
 a:hover > i[class^="icon-"],
 a:focus > i[class^="icon-"] {
   text-decoration: none;
