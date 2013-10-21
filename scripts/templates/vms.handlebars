@@ -230,7 +230,7 @@
                       {{#if vmInstantiationSimple.generationTime}}
                         <table class="table table-bordered">
                           <tbody>
-                            <tr>
+                             <tr>
                               <td class="label-left">VM Name</td>
                               <td>{{vmInstantiationSimple.vmName}}</td>
                             </tr>
@@ -284,7 +284,7 @@
                                 <td>{{gate.slo.id}}</td>
                                 <td>{{na gate.slo.unit}}</td>
                                 <td>{{gate.description}}</td>
-                                <td>{{gate.nodes_count}}</td>
+                                <td>{{gate.nodesCount}}</td>
                               </tr>
                             {{/each}}
                           </tbody>
@@ -299,7 +299,7 @@
                           </thead>
                           <tbody>
                             {{#each rankedNode in vmInstantiationSimple.rankedNodes}}
-                              <tr {{bindAttr class="rankedNode.selected:success"}}>
+                              <tr {{bind-attr class="rankedNode.selected:success"}}>
                                 <td>{{#link-to "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/link-to}}</td>
                                 <td>{{capitalize rankedNode.selected}}</td>
                               </tr>
@@ -367,7 +367,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                              {{#each instantiationNode in vmInstantiationDetailed.instantiation_nodes}}
+                              {{#each instantiationNode in vmInstantiationDetailed.instantiationNodes}}
                                 <tr>
                                   <td>{{#link-to "nodesNode" instantiationNode.node}}{{instantiationNode.node.name}}{{/link-to}}</td>
                                   <td>{{capitalize instantiationNode.selected}}</td>
@@ -382,7 +382,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        {{#each slo in instantiationNode.instantiation_slos}}
+                                        {{#each slo in instantiationNode.instantiationSlos}}
                                           <tr>
                                             <td>{{slo.description}}</td>
                                             <td>{{capitalize slo.value}}</td>

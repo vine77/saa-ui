@@ -14,7 +14,7 @@
     },
     "instantiation_nodes": [
       {
-        "node_id": "62314648-79A1-E111-BB49-001E6749BE75",
+        "node_id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
         "selected": true,
         "instantiation_slos": [
             {
@@ -58,7 +58,7 @@
           }
       },
       {
-          "node_id": "BB4FDBCC-F79A-E111-BD1D-001E67497037",
+          "node_id": "41101BF9-C295-E111-BD1D-001E6747F112",
           "selected": false,
           "instantiation_slos": [
             {
