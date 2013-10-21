@@ -6,13 +6,11 @@
         <div class="global-actions">
           <a {{action "renderTreemap"}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
         </div>
-        {{!--
-        <form id="filter-form" class="input-prepend pull-right clear-input">
+        <div id="filter-form" class="input-prepend pull-right clear-input">
           <span class="add-on"><i class="icon-search"></i></span>
           {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter VMs"}}
           <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
-        </form>
-        --}}
+        </div>
       </div>
       <table class="table table-bordered">
         <thead>
@@ -27,7 +25,7 @@
           </tr>
         </thead>
           <tbody>
-          {{#each}}
+          {{#each filteredModel}}
             <tr {{bindAttr class="isSelected isExpanded"}}>
               <td class="column-small">
                 {{view Ember.Checkbox checkedBinding="isSelected"}}

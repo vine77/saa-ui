@@ -20,13 +20,11 @@
         </div>
         <div class="span5">
           <div class="global-actions"></div>
-          {{!--
-          <form id="filter-form" class="input-prepend clear-input pull-right">
+          <div id="filter-form" class="input-prepend clear-input pull-right">
             <span class="add-on"><i class="icon-search"></i></span>
             {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter nodes"}}
             <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
-          </form>
-          --}}
+          </div>
         </div>
       </div>
       <table class="table table-bordered expandable">
@@ -42,7 +40,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each}}
+          {{#each filteredModel}}
             <tr {{bindAttr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
               <td class="column-small">
                 {{#if isAgentInstalled}}

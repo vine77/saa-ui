@@ -421,3 +421,10 @@ App.xhrError = function (xhr, defaultMessage) {
 Mousetrap.bind('shift+ctrl+alt+i', function (e) {
   $('footer').toggle();
 });
+
+// Debounced observers that will only fire once at end of interval if no additional calls have been made
+Ember.debouncedObserver = function (debounceFunction, property, interval) {
+  return Ember.observer(function () {
+    Em.run.debounce(this, debounceFunction, interval);
+  }, property);
+};

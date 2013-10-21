@@ -1,40 +1,44 @@
 /**
  * Creates a filterable table
  *
- * filteredModel: Populate with underlying model data
  * filterQuery: Bind to input filter/search text
  * clearFilter: Call this action to clear filterQuery
  * filterProperties: Populate this with an array containing the strings referencing the model properties that you want to search through
  * filterModel: This is the filtered model that should be exposed to the user
  */
 App.Filterable = Ember.Mixin.create({
-  filteredModel: [],
   filterQuery: '',
-  actions: {
-    clearFilter: function () {
-      this.set('filterQuery', '');
-    }
-  },
   filterProperties: [],
+  filteredModel: [],
   filterModel: function () {
-    var controller = this;
+    console.log('compute filteredModel');
     var searchText = this.get('filterQuery');
     if (!searchText) {
-      this.set('model', this.get('filteredModel'));
+      this.set('filteredModel', this);
+      return this;
     } else {
-      this.set('model', this.get('filteredModel').filter(function (item, index, enumerable) {
-        var thisModel = enumerable;
+      var results = this.filter(function (item, index, enumerable) {
         var isMatched = false;
-        controller.get('filterProperties').forEach(function (property, index, array) {
+        this.get('filterProperties').forEach(function (property, index, array) {
           var haystack = item.get(property);
-          if (haystack.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
+          if (haystack && haystack.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
             isMatched = true;
           }
         });
         return isMatched;
-      }));
+      }, this);
+      this.set('filteredModel', results);
+      return results;
     }
-  }.observes('filterQuery')
+  }.observes('this.@each'),
+  debouncedFilterQueryObserver: Ember.debouncedObserver(function () {
+    this.filterModel();
+  }, 'filterQuery', 500),
+  actions: {
+    clearFilter: function () {
+      this.set('filterQuery', '');
+    }
+  }
 });
 
 /**

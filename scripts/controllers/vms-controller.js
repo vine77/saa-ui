@@ -45,10 +45,8 @@ App.VmsColumnsController = App.ColumnsController.extend({
 App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   itemController: 'vm',
   sortProperty: 'name',
+  filterProperties: ['name', 'nodeName'],
   /*
-  filteredModel: function () {
-    return this.store.find('vm');
-  }.property('model.@each'),
   filterProperties: ['name'],
   isGrouped: function () {
     return (!!this.get('sortProperties') && this.get('sortProperties')[0] === 'node');
