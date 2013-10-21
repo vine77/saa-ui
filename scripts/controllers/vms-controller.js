@@ -12,6 +12,10 @@ App.VmsColumnsController = App.ColumnsController.extend({
     sortBy: 'status.sla_status',
     icon: 'icon-trophy'
   }, {
+    description: 'Noisy Neighbor',
+    sortBy: 'noisy',
+    icon: 'icon-bullhorn'
+  }, {
     title: 'VM Name',
     sortBy: 'name'
   }, {

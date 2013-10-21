@@ -33,13 +33,13 @@
                 {{view Ember.Checkbox checkedBinding="isSelected"}}
               </td>
               <td class="column-small">
-                {{#if status.isHealthy}}
-                  {{#view App.TooltipView titleBinding="status.operationalMessage"}}
-                    {{operationalIcon status.operational}}
-                  {{/view}}
-                {{else}}
+                {{#if status.isUnhealthy}}
                   {{#view App.TooltipView titleBinding="status.healthMessage"}}
                     {{healthIcon status.health}}
+                  {{/view}}
+                {{else}}
+                  {{#view App.TooltipView titleBinding="status.operationalMessage"}}
+                    {{operationalIcon status.operational}}
                   {{/view}}
                 {{/if}}
               </td>
@@ -55,6 +55,16 @@
               <td class="column-small">
                 {{#view App.TooltipView titleBinding="status.slaMessage"}}
                   <i {{bindAttr class=":icon-large status.slaViolated:icon-remove:icon-trophy status.slaViolated:error status.slaNotViolated:success status.slaUnknown:inset"}}></i>
+                {{/view}}
+              </td>
+              <td class="column-small">
+                {{#view App.TooltipView titleBinding="noisyMessage"}}
+                  {{#if isAggressor}}
+                    <i {{bindAttr class=":icon-bullhorn :error"}}></i>
+                  {{/if}}
+                  {{#if isVictim}}
+                    <i {{bindAttr class=":icon-headphones :warning"}}></i>
+                  {{/if}}
                 {{/view}}
               </td>
               <td><a {{action "expand" this}}>{{name}}</a></td>

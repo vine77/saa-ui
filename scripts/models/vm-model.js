@@ -20,12 +20,17 @@ App.Vm = DS.Model.extend({
   state: function () {
     return this.get('status.health') + '.' + this.get('status.operational');
   }.property('status.health', 'status.operational'),
+  noisy: function () {
+    return this.get('status.victim') + '.' + this.get('status.aggressor');
+  }.property('status.victim', 'status.aggressor'),
 
   // Relationships
   node: DS.belongsTo('node'),
   vmTrustReport: DS.belongsTo('vmTrustReport'),
   vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
   vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
-  sla: DS.belongsTo('sla')
+  sla: DS.belongsTo('sla'),
+  aggressors: DS.hasMany('vm'),
+  victims: DS.hasMany('vm')
 
 });

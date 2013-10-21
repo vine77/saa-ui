@@ -6,6 +6,9 @@ App.VmController = Ember.ObjectController.extend({
       isHealthy: (function (self) {
         return self.get('model.status.health') === App.SUCCESS;
       })(this),
+      isUnhealthy: (function (self) {
+        return self.get('model.status.health') >= App.INFO;
+      })(this),
       healthMessage: (function(self) {
         if (App.isEmpty(self.get('model.status.short_message')) && App.isEmpty(self.get('model.status.long_message'))) {
           // If both short and long messages are empty, show health as message
@@ -104,6 +107,27 @@ App.VmController = Ember.ObjectController.extend({
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),
+  isVictim: Ember.computed.gte('status.victim', App.INFO),
+  isAggressor: Ember.computed.gte('status.aggressor', App.INFO),
+  noisyMessage: function () {
+    var messages = [];
+    if (!this.get('isAggressor') && !this.get('isVictim')) {
+      return 'This VM is not an aggressor or a victim.';
+    }
+    if (this.get('isAggressor')) {
+      messages.push('This VM is an aggressor.');
+      if (!Ember.isEmpty(this.get('victims'))) {
+        messages.push('Its victim(s) are: ' + this.get('victims').mapBy('name').join(', '));
+      }
+    }
+    if (this.get('isVictim')) {
+      messages.push('This VM is a victim.');
+      if (!Ember.isEmpty(this.get('aggressors'))) {
+        messages.push('Its aggressor(s) are: ' + this.get('aggressors').mapBy('name').join(', '));
+      }
+    }
+    return messages.join('<br>');
+  }.property('isVictim', 'isAggressor', 'victims', 'aggressors'),
 
   // Observers
   graphObserver: function () {

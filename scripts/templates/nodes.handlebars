@@ -53,13 +53,13 @@
                 {{/view}}
               </td>
               <td class="column-small">
-                {{#if isHealthy}}
-                  {{#view App.TooltipView titleBinding="operationalMessage"}}
-                    {{operationalIcon status.operational}}
-                  {{/view}}
-                {{else}}
+                {{#if isUnhealthy}}
                   {{#view App.TooltipView titleBinding="healthMessage"}}
                     {{healthIcon status.health}}
+                  {{/view}}
+                {{else}}
+                  {{#view App.TooltipView titleBinding="operationalMessage"}}
+                    {{operationalIcon status.operational}}
                   {{/view}}
                 {{/if}}
               </td>
