@@ -22,39 +22,14 @@ App.Quantum = Ember.Object.extend({
   upload: function () {
     // Upload quantum file
     var formData = new FormData($('#quantumForm')[0]);
-    $('#quantumForm i.loading').removeClass('hide');
     return Ember.$.ajax({
       type: 'PUT',
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/quantumconfig',
       data: formData,
       complete: function (xhr) {
         App.log(xhr.status + ' response from PUT /api/v1/quantumconfig: ' + xhr.statusText);
-        switch (xhr.status) {
-          case 200:
-            // File uploaded successfully
-            $('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
-            // Start SAM
-            if (App.nova.get('exists') && App.openrc.get('exists')) {
-              App.nova.start();
-            } else {
-              App.quantum.set('exists', true);
-              $('i.loading').addClass('hide');
-              App.event('File uploaded successfully', App.SUCCESS);
-            }
-            break;
-          case 400:
-            // No file found
-            $('i.loading').addClass('hide');
-            App.event('Please select a file to upload.', App.WARNING);
-            break;
-          case 500:
-          $('i.loading').addClass('hide');
-            // Error uploading file
-          default:
-            // Other errors
-            $('i.loading').addClass('hide');
-            App.event('Error uploading file.', App.ERROR);
-        }
+        if (xhr.status === 200) $('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
+
       },
       processData: false,
       contentType: false

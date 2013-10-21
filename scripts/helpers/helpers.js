@@ -16,7 +16,7 @@ App.log = function () {
 
 
 // Messaging/events
-App.notify = function (message, type, notifyTitle) {
+App.notify = function (message, type, notifyTitle, sticky) {
   if (typeof type === 'undefined') {
     type = 'warning';
   } else {
@@ -31,10 +31,11 @@ App.notify = function (message, type, notifyTitle) {
     text: message,
     type: type,
     sticker: false,
-    animate_speed: 200
+    animate_speed: 200,
+    hide: (sticky) ? false : true
   });
 };
-App.event = function (message, type, notify, title) {
+App.event = function (message, type, notify, title, sticky) {
   if (typeof type === 'undefined') type = App.WARNING;
   type = App.priorityToType(type);
   if (typeof message === 'undefined') {
@@ -52,7 +53,7 @@ App.event = function (message, type, notify, title) {
   */
   if (typeof notify === 'undefined' || notify === true) {
     var notifyTitle = (typeof title === 'undefined' || !title) ? null : title;
-    App.notify(message, type, notifyTitle);
+    App.notify(message, type, notifyTitle, sticky);
   }
 };
 // Hide message history pull-down

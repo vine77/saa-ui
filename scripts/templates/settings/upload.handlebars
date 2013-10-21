@@ -14,14 +14,7 @@
           </div>
         </div>
       </div>
-      <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAM will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>.</p>
-      <p class="alert"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</p>
-      <div class="control-group">
-        <div class="controls">
-          <a class="btn btn-primary" {{action uploadNova}}>Upload File</a>
-          <i class="loading hide"></i>
-        </div>
-      </div>
+      <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAM will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>. <span class="text-warning"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</span></p>
     </form>
     <form id="openrcForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
@@ -37,12 +30,6 @@
         </div>
       </div>
       <p class="instructions">Please retrieve your Cloud Controller node's OpenStack Credentials file (<code>openrc</code>) and upload it here. This file contains the credentials used by SAM to access the OpenStack APIs. (This file is usually kept in <code>/root/openrc</code>, <code>/root/stackrc</code>, or the home directory of the admin user.)</p>
-      <div class="control-group">
-        <div class="controls">
-          <a class="btn btn-primary" {{action uploadOpenrc}}>Upload File</a>
-          <i class="loading hide"></i>
-        </div>
-      </div>
     </form>
 
     <form id="quantumForm" {{bindAttr class="exists :form-horizontal"}} enctype="multipart/form-data">
@@ -61,7 +48,7 @@
       <p class="instructions">Please upload your OpenStack Quantum network configuration file (<code>ovs_quantum_plugin.ini</code>). This file can be found at the file path <code>/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini</code>.</p>
       <div class="control-group">
         <div class="controls">
-          <a class="btn btn-primary" {{action uploadQuantum}}>Upload File</a>
+          <a class="btn btn-primary" {{action "uploadFiles"}}>Upload Configuration Files</a>
           <i class="loading hide"></i>
         </div>
       </div>

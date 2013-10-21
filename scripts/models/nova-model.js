@@ -22,39 +22,13 @@ App.Nova = Ember.Object.extend({
   upload: function () {
     // Upload nova.conf file
     var formData = new FormData($('#novaForm')[0]);
-    $('#novaForm i.loading').removeClass('hide');
     return Ember.$.ajax({
       type: 'PUT',
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/novaconfig',
       data: formData,
       complete: function (xhr) {
         App.log(xhr.status + ' response from PUT /api/v1/novaconfig: ' + xhr.statusText);
-        switch (xhr.status) {
-          case 200:
-            // File uploaded successfully
-            $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
-            // Start SAM
-            if (App.openrc.get('exists') && App.quantum.get('exists')) {
-              App.nova.start();
-            } else {
-              App.nova.set('exists', true);
-              $('i.loading').addClass('hide');
-              App.event('File uploaded successfully', App.SUCCESS);
-            }
-            break;
-          case 400:
-            // No file found
-            $('i.loading').addClass('hide');
-            App.event('Please select a file to upload.', App.WARNING);
-            break;
-          case 500:
-            // Error uploading file
-            $('i.loading').addClass('hide');
-          default:
-            // Other errors
-            $('i.loading').addClass('hide');
-            App.event('Error uploading file.', App.ERROR);
-        }
+        if (xhr.status === 200) $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,
       contentType: false
@@ -71,12 +45,14 @@ App.Nova = Ember.Object.extend({
         $('i.loading').addClass('hide');
         switch (xhr.status) {
           case 200:
+          /*
             // Started successfully
             App.event(App.application.get('title') + ' is starting...', App.SUCCESS);
             setTimeout(function () {
               // Restart app for full reload and redirect to index
               document.location.href = '/';
             }, 30000);
+          */
             break;
           default:
             // Start sam error
@@ -86,6 +62,7 @@ App.Nova = Ember.Object.extend({
             App.nova.set('success', false);
             $('#novaForm .fileupload').fileupload('clear');
             $('#openrcForm .fileupload').fileupload('clear');
+            /*
             var errorMessage = '';
             try {
               errorMessage = App.errorMessage(JSON.parse(xhr.responseText));
@@ -95,6 +72,7 @@ App.Nova = Ember.Object.extend({
             if (xhr.status == 500 || !errorMessage) errorMessage = 'Error starting application.';
             var title = (xhr.status != 500) ? 'Validation Error' : 'Error';
             App.event(errorMessage, App.ERROR, true, title);
+            */
         }
       }
     });
