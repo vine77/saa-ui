@@ -195,7 +195,7 @@
                           <th>Hostname</th>
                           <th>Health</th>
                           <th>Operational State</th>
-                          <th>Trusted</th>
+                          <th>Trust</th>
                           <th>Locked</th>
                           <th>vCPUs</th>
                           {{#if isScheduled}}
@@ -212,7 +212,7 @@
                           <td>
                             {{operationalIcon status.operational}} {{operational status.operational}}
                           </td>
-                          <td>{{capitalize isTrusted}}</td>
+                          <td>{{trust status.trust}}</td>
                           <td>{{capitalize status.locked}}</td>
                           <td>{{na vcpus.used}} out of {{na vcpus.max}}</td>
                           {{#if isScheduled}}

@@ -95,8 +95,8 @@ App.NodeController = Ember.ObjectController.extend({
     } else if (this.get('status.trust') === App.UNREGISTERED) {
       message = 'Trust Status: Not Registered';
     }
-    message += '<br>' + 'BIOS: ' + App.trustDetailsToString(this.get('status.trust_details.bios'));
-    message += '<br>' + 'VMM: ' + App.trustDetailsToString(this.get('status.trust_details.vmm'));
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
     if (this.get('status.trust') === App.UNTRUSTED) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     return message;
   }.property('status.trust'),

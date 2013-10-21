@@ -130,7 +130,7 @@
                           <th>VM Name</th>
                           <th>Health</th>
                           <th>State</th>
-                          <th>Trusted</th>
+                          <th>Trust</th>
                           <th>Locked</th>
                           <th>vCPU Cores</th>
                           <th>Memory Size</th>
@@ -139,7 +139,7 @@
                           <td>{{name}}</td>
                           <td>{{status status.health}}</td>
                           <td>{{operational status.operational}}</td>
-                          <td>{{capitalize status.trust}}</td>
+                          <td>{{trust status.trust}}</td>
                           <td>{{capitalize status.locked}}</td>
                           <td>{{capitalize capabilities.cores}}</td>
                           <td>{{readableSize capabilities.memory_size}}</td>

@@ -29,16 +29,9 @@ App.VmController = Ember.ObjectController.extend({
         return !self.get('model.status.trust');
       })(this),
       trustMessage:(function(self) {
-        var message = '';
-        if (self.get('model.status.trust') === App.UNKNOWN) {
-          message = 'Trust Status: Unknown';
-        } else if (self.get('model.status.trust') === App.UNTRUSTED) {
-          message = 'Trust Status: Not Trusted';
-        } else if (self.get('model.status.trust') === App.TRUSTED) {
-          message = 'Trust Status: Trusted';
-        }
-        message += '<br>' + 'BIOS: ' + App.trustDetailsToString(self.get('model.status.trust_details.bios'));
-        message += '<br>' + 'VMM: ' + App.trustDetailsToString(self.get('model.status.trust_details.vmm'));
+        var message = 'Trust Status: ' + App.trustToString(self.get('model.status.trust')).capitalize();
+        message += '<br>' + 'BIOS: ' + App.trustToString(self.get('model.status.trust_details.bios')).capitalize();
+        message += '<br>' + 'VMM: ' + App.trustToString(self.get('model.status.trust_details.vmm')).capitalize();
         return message;
       })(this),
       slaViolated: (function(self) {

@@ -361,30 +361,21 @@ App.rangeToPercentage = function(value, minimum, maximum) {
   return percentage;
 }
 
-App.trustDetailsToString = function (value) {
+App.trustToString = function (value) {
   switch (value) {
-    case 0:
+    case App.UNKNOWN:
     case '0':
-      return 'Unknown';
-    case 1:
+      return 'unknown';
+    case App.UNTRUSTED:
     case '1':
-      return 'Not Trusted';
-    case 2:
+      return 'not trusted';
+    case App.TRUSTED:
     case '2':
-      return 'Trusted';
+      return 'trusted';
+    case App.UNREGISTERED:
+    case '3':
+      return 'not registered';
+    default:
+      return 'n/a';
   }
-
-  /** Old
-  switch (value) {
-    case '0':
-    case 0:
-      return 'Not Trusted';
-    case '1':
-    case 1:
-      return 'Trusted';
-    case 'unknown':
-    case null:
-      return 'Unknown';
-  }
-  **/
 }

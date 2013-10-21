@@ -209,6 +209,10 @@ Ember.Handlebars.registerBoundHelper('healthText', function (code) {
   return App.priorityToType(code, true).capitalize();
 });
 
+Ember.Handlebars.registerBoundHelper('trust', function (code) {
+  return (App.isEmpty(code)) ? App.NOT_APPLICABLE : App.trustToString(code).capitalize();
+});
+
 Ember.Handlebars.registerBoundHelper('operationalIcon', function (code) {
   return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>');
 });
