@@ -18,11 +18,15 @@
         </tr>
         <tr>
           <th class="column-medium">Health</th>
-          <td>{{status status.health}}</td>
+          <td>
+            {{#view App.TooltipView titleBinding="healthMessage"}}
+              {{healthIcon status.health}} {{status status.health}}
+            {{/view}}
+          </td>
         </tr>
         <tr>
-          <th class="column-medium">State</th>
-          <td>{{operational status.operational}}</td>
+          <th class="column-medium">Operational State</th>
+          <td>{{operationalIcon status.operational}} {{operational status.operational}}</td>
         </tr>
         <tr>
           <th class="column-medium">Trust</th>
@@ -52,6 +56,45 @@
           <th class="column-medium">Floating IP Addresses</th>
           <td>{{concatenate floatingIps}}</td>
         </tr>
+        <tr>
+          <th class="column-medium">Noisy Neighbor</th>
+          <td>
+            {{#if notNoisy}}
+              Not an aggressor or victim
+            {{else}}
+              {{#if isAggressor}}
+                <i {{bindAttr class=":icon-bullhorn :error"}}></i> Aggressor
+              {{/if}}
+              {{#if isVictim}}
+                <i {{bindAttr class=":icon-headphones :warning"}}></i> Victim
+              {{/if}}
+            {{/if}}
+          </td>
+        </tr>
+        {{#if aggressors}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor Aggressor(s)</th>
+            <td>
+              <ul>
+                {{#each vm in aggressors}}
+                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                {{/each}}
+              </ul>
+            </td>
+          </tr>
+        {{/if}}
+        {{#if victims}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor Victim(s)</th>
+            <td>
+              <ul>
+                {{#each vm in victims}}
+                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                {{/each}}
+              </ul>
+            </td>
+          </tr>
+        {{/if}}
       </table>
     </div>
     <div class="tab-pane utilization">

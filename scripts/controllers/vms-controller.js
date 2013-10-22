@@ -47,33 +47,10 @@ App.VmsColumnsController = App.ColumnsController.extend({
 
 
 App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+  needs: ['vmsColumns', 'application'],
   itemController: 'vm',
   sortProperty: 'name',
   filterProperties: ['name', 'nodeName'],
-  /*
-  filterProperties: ['name'],
-  isGrouped: function () {
-    return (!!this.get('sortProperties') && this.get('sortProperties')[0] === 'node');
-  }.property('sortProperties'),
-  groupedModel: function () {
-    if (this.get('isGrouped')) {
-      var groupBy = 'node.name';
-      var groups = {};
-      this.forEach(function (item, index, enumerable) {
-        var groupName = item.get(groupBy);
-        if (typeof groups[groupName] === 'undefined') groups[groupName] = [];
-        groups[groupName].push(item);
-      });
-      indexedGroups = [];
-      $.each(groups, function (index, item) {
-        indexedGroups.push(item);
-      });
-      return indexedGroups;
-    } else {
-      return [this];
-    }
-  }.property('model.@each', 'sortProperties', 'sortAscending'),
-  */
   multipleVmsAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
@@ -201,3 +178,27 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
     }
   }
 });
+
+  /*
+  isGrouped: function () {
+    return (!!this.get('sortProperties') && this.get('sortProperties')[0] === 'node');
+  }.property('sortProperties'),
+  groupedModel: function () {
+    if (this.get('isGrouped')) {
+      var groupBy = 'node.name';
+      var groups = {};
+      this.forEach(function (item, index, enumerable) {
+        var groupName = item.get(groupBy);
+        if (typeof groups[groupName] === 'undefined') groups[groupName] = [];
+        groups[groupName].push(item);
+      });
+      indexedGroups = [];
+      $.each(groups, function (index, item) {
+        indexedGroups.push(item);
+      });
+      return indexedGroups;
+    } else {
+      return [this];
+    }
+  }.property('model.@each', 'sortProperties', 'sortAscending'),
+  */

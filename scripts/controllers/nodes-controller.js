@@ -19,7 +19,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'Hostname',
     sortBy: 'name'
   }, {
-    title: '# of VMs',
+    title: 'VMs',
     sortBy: 'vmInfo.count'
   }, {
     title: 'CPU',
@@ -46,6 +46,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
 });
 
 App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+  needs: ['nodesColumns', 'application'],
   itemController: 'node',
   sortProperty: 'name',
   filterProperties: ['name'],

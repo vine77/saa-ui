@@ -28,12 +28,39 @@
         <tr>
           <th class="column-medium">Operational State</th>
           <td>
-            {{operationalIcon status.operational}} {{operational status.operational}}
+            {{#view App.TooltipView titleBinding="operationalMessage"}}
+              {{operationalIcon status.operational}}
+            {{/view}}
+            {{operational status.operational}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Services</th>
+          <td>
+            {{#view App.TooltipView titleBinding="servicesMessage"}}
+              <i {{bind-attr class="servicesClass"}}></i>
+            {{/view}}
+            {{capitalize nodeType}} node
           </td>
         </tr>
         <tr>
           <th class="column-medium">Trust</th>
-          <td>{{trust status.trust}}</td>
+          <td>
+            {{#if isTrustRegistered}}
+              {{#view App.TooltipView titleBinding="trustMessage"}}
+                {{#if isTrustUnknown}}
+                  <i class="icon-large icon-question-sign trust-unknown"></i>
+                {{else}}
+                  <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
+                {{/if}}
+              {{/view}}
+            {{else}}
+              {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
+                <i class="icon-large icon-unlock trust-unregistered"></i>
+              {{/view}}
+            {{/if}}
+            {{trust status.trust}}
+          </td>
         </tr>
         <tr>
           <th class="column-medium">Locked</th>
@@ -168,8 +195,8 @@
       {{#if isTrustRegistered}}
         <table class="table table-bordered">
           <tr>
-            <th>MLE Type</th>
             <th>Name</th>
+            <th>MLE Type</th>
             <th>OEM Name</th>
             <th>Attestation Type</th>
             <th>OS Name</th>
@@ -178,8 +205,8 @@
           </tr>
           {{#each mle in trustNode.trustMles}}
             <tr>
-              <td>{{na mle.mleType}}</td>
               <td>{{#link-to "trust.mle" mle}}{{na mle.name}}{{/link-to}}</td>
+              <td>{{na mle.mleType}}</td>
               <td>{{na mle.oemname}}</td>
               <td>{{na mle.attestationType}}</td>
               <td>{{na mle.osname}}</td>

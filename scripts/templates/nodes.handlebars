@@ -27,163 +27,26 @@
           </div>
         </div>
       </div>
-      <table class="table table-bordered expandable">
-        <thead>
-          <tr>
-            <th class="column-small"><a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a></th>
-            {{#each columns}}
-              {{partial columnHeader}}
-            {{/each}}
-            <th class="column-small">
-              <a {{action "refresh"}} class="btn btn-mini"><i {{bind-attr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each filteredModel}}
-            <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
-              <td class="column-small">
-                {{#if isAgentInstalled}}
-                  {{view Ember.Checkbox checkedBinding="isSelected"}}
-                {{/if}}
-              </td>
-              <td class="column-small">
-                {{#view App.TooltipView titleBinding="servicesMessage"}}
-                  <img {{bind-attr src="nodeTypeLink"}} class="icon">
-                {{/view}}
-              </td>
-              <td class="column-small">
-                {{#if isUnhealthy}}
-                  {{#view App.TooltipView titleBinding="healthMessage"}}
-                    {{healthIcon status.health}}
-                  {{/view}}
-                {{else}}
-                  {{#view App.TooltipView titleBinding="operationalMessage"}}
-                    {{operationalIcon status.operational}}
-                  {{/view}}
-                {{/if}}
-              </td>
-              <td class="column-small">
-                {{#if isTrustRegistered}}
-                  {{#view App.TooltipView titleBinding="trustMessage"}}
-                    {{#if isTrustUnknown}}
-                      <i class="icon-large icon-question-sign trust-unknown"></i>
-                    {{else}}
-                      <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
-                    {{/if}}
-                  {{/view}}
-                {{else}}
-                  {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
-                    <i class="icon-large icon-unlock trust-unregistered"></i>
-                  {{/view}}
-                {{/if}}
-              </td>
-              <td class="column-small">
-                {{#view App.TooltipView titleBinding="assuredMessage"}}
-                  <i {{bind-attr class=":icon-large :icon-trophy isAssured:assured:unassured"}}></i>
-                {{/view}}
-              </td>
-              <td>
-                {{#if isAgentInstalled}}
-                  <a {{action "expand" this}}>{{name}}</a>
-                  {{#if isScheduled}}
-                    {{#view App.TooltipView titleBinding="scheduledMessage"}}
-                      <i class="icon-magnet"></i>
-                    {{/view}}
-                  {{/if}}
-                {{else}}
-                  {{name}}
-                {{/if}}
-              </td>
-              <td>{{na vmInfo.count}}</td>
-              <td>
-                <div class="cpu-typography">
-                  <div class="sockets-and-cores">
-                    <div class="sockets">{{na capabilities.sockets}} CPUs </div>
-                    <div class="cores">&times; {{na capabilities.cores_per_socket}} cores </div>
-                  </div>
-                  <div class="cpu-frequency">
-                    <span class="at">@</span>
-                    {{na cpuFrequency}}
-                  </div>
-                </div>
-              </td>
-              <td>{{na utilization.gips_current}}</td>
-              <td>{{na utilization.ipc}}</td>
-              <td>{{readableSize utilization.memory}}</td>
-              <td>
-                {{#if hasContention}}
-                  <div class="contention">
-                    <div class="contention-bar">
-                      {{#view App.TooltipView titleBinding="contentionMessage"}}
-                        <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
-                          <div class="contention-gradient"></div>
-                        </div>
-                      {{/view}}
-                    </div>
-                    {{na contentionFormatted}}
-                  </div>
-                {{else}}
-                  <span class="not-applicable">n/a</span>
-                {{/if}}
-              </td>
-              <td>
-                <div class="btn-group">
-                  {{#if isAgentInstalled}}
-                    {{#if isOn}}
-                      <a {{action "reboot" this}} class="btn btn-mini"><i class="icon-refresh"></i> Reboot</a>
-                    {{else}}
-                      <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
-                    {{/if}}
-                    <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      {{#if App.mtWilson.isInstalled}}
-                        {{#if isTrustRegistered}}
-                          <li><a {{action "removeTrust" this}}><i class="icon-unlock"></i> Remove Trust</a></li>
-                          <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
-                        {{else}}
-                          <li><a {{action "addTrust" this}}><i class="icon-lock"></i> Add Trust</a></li>
-                          <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
-                        {{/if}}
-                        <li><a {{action "trustFingerprint" this}}><i class="icon-hand-up"></i> Fingerprint</a></li>
-                      {{/if}}
-                      {{#if isScheduled}}
-                        <li><a {{action "unschedule" this}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
-                      {{else}}
-                        {{#each socketNumber in socketsEnum}}
-                          <li><a {{action "schedule" this socketNumber}}><i class="icon-magnet"></i> Place VMs on Socket {{socketNumber}}</a></li>
-                        {{/each}}
-                      {{/if}}
-                      {{#if samRegistered}}
-                        <li><a {{action "unregister" this}}><i class="icon-remove"></i> Unregister</a></li>
-                      {{/if}}
-                    </ul>
-                  {{else}}
-                    {{#if samRegistered}}
-                      <a {{action "unregister" this}}><i class="icon-remove"></i> Unregister</a>
-                    {{/if}}
-                  {{/if}}
-                </div>
-              </td>
-              <td class="column-small">
-                {{#if isAgentInstalled}}
-                  <a class="btn btn-mini toggle-details" {{action "expand" this}}>
-                    <i {{bind-attr class="isExpanded:icon-minus:icon-plus"}}></i>
-                  </a>
-                {{/if}}
-              </td>
-            </tr>
-          {{else}}
-            <tr>
-              <td colspan="100%">
-                {{#unless model.isUpdating}}
-                  <div class="alert alert-info">No nodes found.</div>
-                {{/unless}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+      <div class="table table-bordered expandable">
+        <div class="thead">
+          <table>
+            <thead>
+              <tr>
+                <th class="column-small"><a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a></th>
+                {{#each columns}}
+                  {{partial columnHeader}}
+                {{/each}}
+                <th class="column-small">
+                  <a {{action "refresh"}} class="btn btn-mini"><i {{bind-attr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        {{#group}}
+          {{view App.ListView contentBinding="filteredModel"}}
+        {{/group}}
+      </div>
       {{outlet}}
     </div>
   </div>

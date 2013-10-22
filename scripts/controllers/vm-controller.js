@@ -109,25 +109,19 @@ App.VmController = Ember.ObjectController.extend({
   }.property('status.operational'),
   isVictim: Ember.computed.gte('status.victim', App.INFO),
   isAggressor: Ember.computed.gte('status.aggressor', App.INFO),
+  notNoisy: function () {
+    return (!this.get('isVictim') && !this.get('isAggressor'));
+  }.property('isVictim', 'isAggressor'),
   noisyMessage: function () {
     var messages = [];
     if (!this.get('isAggressor') && !this.get('isVictim')) {
       return 'This VM is not an aggressor or a victim.';
     }
-    if (this.get('isAggressor')) {
-      messages.push('This VM is an aggressor.');
-      if (!Ember.isEmpty(this.get('victims'))) {
-        messages.push('Its victim(s) are: ' + this.get('victims').mapBy('name').join(', '));
-      }
-    }
-    if (this.get('isVictim')) {
-      messages.push('This VM is a victim.');
-      if (!Ember.isEmpty(this.get('aggressors'))) {
-        messages.push('Its aggressor(s) are: ' + this.get('aggressors').mapBy('name').join(', '));
-      }
-    }
+    if (this.get('isAggressor')) messages.push('This VM is an aggressor.');
+    if (this.get('isVictim')) messages.push('This VM is a victim.');
+    messages.push('Note: See details for affected VMs.');
     return messages.join('<br>');
-  }.property('isVictim', 'isAggressor', 'victims', 'aggressors'),
+  }.property('isVictim', 'isAggressor'),
 
   // Observers
   graphObserver: function () {
@@ -209,4 +203,4 @@ App.VmController = Ember.ObjectController.extend({
   }
 });
 
-App.VmsVmController = App.VmController.extend({});
+App.VmsVmController = App.VmController.extend();

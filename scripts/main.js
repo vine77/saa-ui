@@ -1,3 +1,5 @@
+//Ember.FEATURES['htmlbars'] = true;
+
 App = Ember.Application.create({
   LOG_TRANSITIONS: true,
   currentPath: '',

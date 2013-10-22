@@ -24,13 +24,14 @@ App.Vm = DS.Model.extend({
     return this.get('status.victim') + '.' + this.get('status.aggressor');
   }.property('status.victim', 'status.aggressor'),
 
-  // Relationships
-  node: DS.belongsTo('node'),
-  vmTrustReport: DS.belongsTo('vmTrustReport'),
-  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
-  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
-  sla: DS.belongsTo('sla'),
-  aggressors: DS.hasMany('vm'),
-  victims: DS.hasMany('vm')
+  // Self-referential relationships
+  aggressors: DS.hasMany('vm', {async: true, inverse: null}),
+  victims: DS.hasMany('vm', {async: true, inverse: null}),
 
+  // Relationships
+  node: DS.belongsTo('node', {async: true}),
+  sla: DS.belongsTo('sla', {async: true}),
+  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed', {async: true}),
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple', {async: true}),
+  vmTrustReport: DS.belongsTo('vmTrustReport', {async: true})
 });

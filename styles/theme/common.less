@@ -202,7 +202,7 @@ table .dropdown-menu {
   }
   th,
   td {
-    padding: 4px 8px;
+    padding: 3px 5px;
     vertical-align: middle;
   }
   th {
@@ -269,6 +269,9 @@ table .dropdown-menu {
   }
   // Add background gradients for row hover and selection
   tbody {
+    tr {
+      background-color: white;
+    }
     tr:not(.is-active),
     tr:not(.is-expanded),
     tr:not(.is-selected),
@@ -375,7 +378,7 @@ html {
 body {
   .box-sizing(border-box);
   height: 100%;
-  padding: (@navbarHeight + 20px) 0 0;
+  padding: (@navbarHeight + 20px) 0 20px;
   overflow-x: hidden;
   background-image: url(/images/texture.png);
 }
@@ -405,9 +408,6 @@ input[type="checkbox"] {
 }
 
 // Icons
-img.icon {
-  max-width: 27px;
-}
 a:hover > i[class^="icon-"],
 a:focus > i[class^="icon-"] {
   text-decoration: none;
@@ -481,6 +481,26 @@ i.unassured {
 i.noisy {
   color: @red;
   .icon-shadow();
+}
+.icon-svg() {
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+i.icon-compute {
+  .icon-svg();
+  background-image: url(/images/nodes/compute.svg);
+}
+i.icon-networking {
+  .icon-svg();
+  background-image: url(/images/nodes/networking.svg);
+}
+i.icon-storage {
+  .icon-svg();
+  background-image: url(/images/nodes/storage.svg);
 }
 
 // Headers
@@ -668,7 +688,7 @@ i.loading {
     a:after {
       // icon-sort
       position: absolute;
-      right: -4px;
+      right: -3px;
       font-family: 'FontAwesome';
       content: '\f0dc';
     }
@@ -1089,6 +1109,7 @@ table {
 }
 
 .tooltip {
+  z-index: 900;
   white-space: normal;
 }
 
@@ -1117,4 +1138,15 @@ table {
 
 .no-disc-list {
   list-style-type:none;
+}
+
+// Ember.ListView required CSS
+.ember-list-view {
+  overflow: auto;
+  overflow-x: hidden !important;
+  position: relative;
+  background-color: #f9f9f9;
+}
+.ember-list-item-view {
+  position: absolute;
 }

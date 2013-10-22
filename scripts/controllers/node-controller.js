@@ -65,10 +65,9 @@ App.NodeController = Ember.ObjectController.extend({
     if (services.indexOf('networking') !== -1) return 'networking';
     if (services.indexOf('storage') !== -1) return 'storage';
     return 'generic';
-    //return services.objectAt(0);
   }.property('cloudServices'),
-  nodeTypeLink: function () {
-    return '/images/nodes/' + this.get('nodeType') + '.svg';
+  servicesClass: function () {
+    return 'icon-' + this.get('nodeType');
   }.property('nodeType'),
   servicesMessage: function () {
     if (!this.get('cloudServices')) return null;
@@ -140,6 +139,54 @@ App.NodeController = Ember.ObjectController.extend({
     return socketsEnum;
   }.property('capabilities.sockets'),
 
+  // Icons for list view table
+  servicesIcon: function () {
+    return '<i class="icon-' + this.get('nodeType') + '" title="' + this.get('servicesMessage') + '"></i>';
+  }.property('nodeType', 'servicesMessage'),
+  stateIcon: function () {
+    if (this.get('isUnhealthy')) {
+      // TODO: healthMessage
+      var code = this.get('status.health');
+      return '<i class="' + App.priorityToType(code) + ' ' + App.priorityToIconClass(code) + ' icon-large"></i>';
+    } else {
+      // TODO: operationalMessage
+      var code = this.get('status.operational');
+      return '<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>';
+    }
+  }.property('isUnhealthy', 'status.health', 'status.operational'),
+  trustIcon: function () {
+    // TODO: trustMessage and isTrustRegisteredMessage
+    if (this.get('isTrustRegistered')) {
+      if (this.get('isTrustUnknown')) {
+        return '<i class="icon-large icon-question-sign trust-unknown"></i>';
+      } else {
+        if (this.get('isTrusted')) {
+          return '<i class="icon-large icon-lock trusted"}}></i>';
+        } else {
+          return '<i class="icon-large icon-unlock untrusted"}}></i>';
+        }
+      }
+    } else {
+      return '<i class="icon-large icon-unlock trust-unregistered"></i>';
+    }
+  }.property('isTrustRegistered', 'isTrustUnknown', 'isTrusted'),
+  assuredIcon: function () {
+    // TODO: assuredMessage
+    if (this.get('isAssured')) {
+      return '<i class="icon-large icon-trophy assured"></i>';
+    } else {
+      return '<i class="icon-large icon-trophy unassured"></i>';
+    }
+  }.property('isAssured'),
+  scheduledIcon: function () {
+    // TODO: scheduledMessage
+    if (this.get('isScheduled')) {
+      return '<i class="icon-magnet"></i>';
+    } else {
+      return '';
+    }
+  }.property('isScheduled'),
+
   // Observers
   graphObserver: function () {
     return App.graphs.graph(this.get('id'), this.get('name'), 'node');
@@ -189,7 +236,6 @@ App.NodeController = Ember.ObjectController.extend({
     }
 
   }
-
 });
 
-App.NodesNodeController = App.NodeController.extend({});
+App.NodesNodeController = App.NodeController.extend();
