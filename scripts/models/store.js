@@ -6,6 +6,29 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
   },
 
   /**
+    Override the `ajaxError` method, using the App.errorMessage() helper
+    to return a DS.InvalidError for all 422 Unprocessable Entity
+    responses.
+
+    @method ajaxError
+    @param jqXHR
+    @returns error
+  */
+  ajaxError: function(jqXHR) {
+    if (jqXHR && jqXHR.status === 422) {
+      var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];
+      if (!jsonErrors) jsonErrors = [App.errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
+      var errors = {};
+      Ember.EnumerableUtils.forEach(Ember.keys(jsonErrors), function(key) {
+        errors[Ember.String.camelize(key)] = jsonErrors[key];
+      });
+      return new DS.InvalidError(errors);
+    } else {
+      return this._super(jqXHR);
+    }
+  },
+
+  /**
    * Fix query URL.
    */
   findMany: function(store, type, ids, owner) {

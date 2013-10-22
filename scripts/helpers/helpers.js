@@ -330,11 +330,7 @@ App.errorMessage = function (response, separator) {
   }
   if (Ember.isArray(response)) {
     return response.join(separator);
-  } else if (response.hasOwnProperty('error_message')) {
-    return response.error_message;
-  } else if (response.hasOwnProperty('message')) {
-    return response.message;
-  } else if (response.hasOwnProperty('errors')) {
+  } else if (response.hasOwnProperty('errors')) {  // Check errors first in case response is actually a DS.InvalidError
     if (Ember.isArray(response.errors)) {
       return response.errors.join(separator);
     } else if (typeof response.errors === 'string') {
@@ -345,6 +341,10 @@ App.errorMessage = function (response, separator) {
     } else {
       return '';
     }
+  } else if (response.hasOwnProperty('error_message')) {
+    return response.error_message;
+  } else if (response.hasOwnProperty('message')) {
+    return response.message;
   } else {
     return '';
   }
@@ -361,7 +361,8 @@ App.xhrError = function (xhr, defaultMessage) {
   var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
   var severity = (xhr.status == 422) ? App.WARNING : App.ERROR;
   try {
-    var errorMessage = App.errorMessage(JSON.parse(xhr.responseText)) || errorMessage;
+    var json = (xhr.hasOwnProperty('responseText')) ? Ember.$.parseJSON(xhr.responseText) : xhr;
+    errorMessage = App.errorMessage(json) || errorMessage;
   } catch(error) {}
   App.event(errorMessage, severity);
   return errorMessage;
