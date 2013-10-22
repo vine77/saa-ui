@@ -58,9 +58,11 @@
         </nav>
         <ul class="account">
           <li>
-            <a {{bindAttr href="horizonUrl"}} target="_blank">
-              Tenant interface (Horizon) <i class="icon-external-link icon-small"></i>
-            </a>
+            {{#if isEnabled}}
+              <a {{bindAttr href="horizonUrl"}} target="_blank">
+                Tenant interface (Horizon) <i class="icon-external-link icon-small"></i>
+              </a>
+            {{/if}}
           </li>
           <li>Logged in as <em>admin</em></li>
           {{!--
