@@ -164,6 +164,11 @@ Ember.Handlebars.registerBoundHelper('numberOf', function (items) {
   return items.get('length');
 }, '@each');
 
+Ember.Handlebars.registerBoundHelper('concatenate', function (items) {
+  if (Ember.isEmpty(items) || Ember.typeOf(items) !== 'array') return '';
+  return items.join(', ');
+}, '@each');
+
 Ember.Handlebars.registerBoundHelper('timeago', function (time) {
   return (App.isEmpty(time)) ? App.NOT_APPLICABLE : new Handlebars.SafeString('<time class="timeago" datetime="' + moment(time).format() + '" title="' + moment(time).format('YYYY-MM-DD hh:mm:ss') + '"' + '>' + moment(time).fromNow() + '</time>');
 });

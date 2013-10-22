@@ -40,6 +40,18 @@
           <th class="column-medium">Memory Size</th>
           <td>{{readableSize capabilities.memory_size}}</td>
         </tr>
+        <tr>
+          <th class="column-medium">MAC Addresses</th>
+          <td>{{concatenate macs}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Fixed IP Addresses</th>
+          <td>{{concatenate fixedIps}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Floating IP Addresses</th>
+          <td>{{concatenate floatingIps}}</td>
+        </tr>
       </table>
     </div>
     <div class="tab-pane utilization">
