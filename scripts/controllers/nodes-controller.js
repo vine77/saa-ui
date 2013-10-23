@@ -225,39 +225,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           App.xhrError(xhr, 'An error occured while unregistering node "' + node.get('name') + '" as trusted.');
         });
       }
-    },
-    exportTrustReport: function (reportContent) {
-      this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
-        if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
-          var title = "SAM Node Trust Report";
-          var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';
-          var rowContent = [];
-          rowContent.push("item.get('attestation_time_formatted')");
-          rowContent.push("((item.get('trust_status'))?'The node was booted and was found attested as trusted.':'The node was booted and failed to be found attested as trusted.')");
-          rowContent.push("item.get('trust_message')");
-          App.pdfReport(nodeTrustReport, rowContent, title, subtitle, 'attestations');
-        } else {
-          App.event('No trust attestation logs were found for this node.', App.WARNING);
-        }
-      }, function (xhr) {
-        App.xhrError(xhr, 'Failed to load node trust report.');
-      });
-    },
-    trustReportModal: function (model) {
-      var controller = this;
-      modal = Ember.View.create({
-        templateName: "nodeTrustReport-modal",
-        controller: controller,
-        content: model,
-        modalHide: function() {
-          $('#modal').modal('hide');
-          var context = this;
-          this.remove(); //destroys the element
-        },
-        didInsertElement: function (){
-          $('#modal').modal('show');
-        }
-      }).appendTo('body');
     }
   }
 });

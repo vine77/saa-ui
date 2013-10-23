@@ -11,20 +11,20 @@
         <th>Node</th>
         <th>Timestamp</th>
       </tr>
-      {{#each attestation in view.content.vmTrustReport.attestations}}
+      {{#each attestation in view.content.vmTrustReport.vmAttestations}}
         <tr>
           <td class="column-small">
               <i {{bindAttr class=":icon-large attestation.node.trust_status:icon-lock:icon-unlock attestation.node.trust_status:trusted:untrusted"}}></i>
           </td>
-          <td>{{attestation.node.report_message}}</td>
-          <td>{{attestation.node.node_name}} </td>
-          <td>{{timestamp attestation.node.attestation_time}}</td>
+          <td>{{attestation.vmAttestationNode.reportMessage}}</td>
+          <td>{{attestation.vmAttestationNode.nodeName}} </td>
+          <td>{{timestamp attestation.vmAttestationNode.attestationTime}}</td>
         </tr>
       {{/each}}
     </table>
   </div>
   <div class="modal-footer">
-    <button class="btn" {{action modalHide target="view"}}> Close </button>
-    <button class="btn btn-primary" {{action exportTrustReport view.content target="controller"}}> Export as PDF </button>
+    <button class="btn" {{action "modalHide" target="view"}}> Close </button>
+    <button class="btn btn-primary" {{action "exportTrustReport" view.content target="controller"}}> Export as PDF </button>
   </div>
 </div>

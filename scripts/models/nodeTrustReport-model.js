@@ -4,7 +4,27 @@ DS.RESTAdapter.map('nodeTrustReport', {
 });
 */
 
-App.NodeTrustReportAttestation = DS.Model.extend({
+App.NodeTrustReportSerializer = DS.ActiveModelSerializer.extend({
+  extractSingle: function(store, primaryType, payload, recordId, requestType) {
+    var json = JSON.parse(JSON.stringify(payload)),
+        attestations = json.node_trust_report.attestations,
+        attestation_ids = attestations.mapProperty('attestation_time');
+
+    json.attestations = attestations;
+    json.node_trust_report.attestation_ids = attestation_ids;
+
+    json.attestations.map ( function (item, index, enumerable) {
+      item.id = item.attestation_time;
+      item.node_trust_report_id = this.id.toString();
+    }, json.node_trust_report);
+
+    return this._super(store, primaryType, json, recordId, requestType);
+
+  }
+});
+
+App.Attestation = DS.Model.extend({
+  nodeTrustReport: DS.belongsTo('nodeTrustReport'),
   attestation_time: DS.attr('date'),
   attestation_time_formatted: function () {
     return moment(this.get('attestation_time')).format('LLL');
@@ -18,6 +38,6 @@ App.NodeTrustReportAttestation = DS.Model.extend({
 });
 
 App.NodeTrustReport = DS.Model.extend({
-  generation_time: DS.attr('date'),
-  attestations: DS.hasMany('nodeTrustReportAttestation', {async: true})
+  generationaTime: DS.attr('date'),
+  attestations: DS.hasMany('attestation')
 });

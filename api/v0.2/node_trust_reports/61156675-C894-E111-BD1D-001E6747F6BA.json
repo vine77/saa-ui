@@ -1,1 +1,8 @@
-{"node_trust_report": {"generation_time": "2013-06-01T02:46:53+0000", "node_id": "61156675-C894-E111-BD1D-001E6747F6BA", "id": "61156675-C894-E111-BD1D-001E6747F6BA", "attestations": []}}
+{
+  "node_trust_report": {
+    "generation_time": "2013-06-01T02:46:53+0000",
+    "node_id": "61156675-C894-E111-BD1D-001E6747F6BA",
+    "id": "61156675-C894-E111-BD1D-001E6747F6BA",
+    "attestations": []
+  }
+}

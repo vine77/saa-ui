@@ -1,0 +1,25 @@
+{
+  "vm_trust_report": {
+    "vm_name": "instance-000001a3",
+    "template_id": "",
+    "attestations": [
+      {
+        "node": {
+          "trust_status": 2,
+          "trust_details": {
+            "bios": 2,
+            "vmm": 2
+          },
+          "node_id": "A155FF49-9D95-E111-BD1D-001E6747F54E",
+          "node_name": "clientnode4",
+          "ip_address": "192.168.3.104",
+          "attestation_time": "2013-10-22T01:19:01+0000"
+        },
+        "vm_start": "2013-10-22T01:19:01+0000"
+      }
+    ],
+    "generation_time": "2013-10-22T01:29:51+0000",
+    "vm_id": "6edce1e2-681b-47b4-a5c6-a942407fbe6d",
+    "id": "6edce1e2-681b-47b4-a5c6-a942407fbe6d"
+  }
+}

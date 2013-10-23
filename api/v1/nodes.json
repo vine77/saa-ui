@@ -2003,7 +2003,7 @@
       "uri": "/nodes/6396CA86-4A94-E111-BD1D-001E6747F26A",
       "sam_controlled": 2,
       "scheduler_mark": null,
-      "node_trust_report_id": null,
+      "node_trust_report_id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
       "cloud_services": [
         {
           "last_update": "2013-10-17T21:23:01+0000",

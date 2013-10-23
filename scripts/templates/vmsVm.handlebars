@@ -105,7 +105,7 @@
       {{/each}}
     </div>
     <div class="tab-pane trust">
-      {{#if vmTrustReport.attestations}}
+      {{#if vmTrustReport.vmAttestations}}
         <div class="pull-right">
           <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
         </div>
@@ -117,22 +117,22 @@
             <th>Node</th>
             <th>Timestamp</th>
           </tr>
-          {{#each attestation in vmTrustReport.attestations}}
+          {{#each vmAttestation in vmTrustReport.vmAttestations}}
             <tr>
               <td class="column-small">
-                {{#view App.TooltipView titleBinding="attestation.node.trust_message" dataContainer="body"}}
-                  <i {{bindAttr class=":icon-large attestation.node.trust_status:icon-lock:icon-unlock attestation.node.trust_status:trusted:untrusted"}}></i>
+                {{#view App.TooltipView titleBinding="vmAttestation.node.trustMessage" dataContainer="body"}}
+                  <i {{bindAttr class=":icon-large vmAttestation.vmAttestationNode.trustStatus:icon-lock:icon-unlock vmAttestation.vmAttestationNode.trustStatus:trusted:untrusted"}}></i>
                 {{/view}}
               </td>
-              <td>{{attestation.node.report_message}}</td>
+              <td>{{vmAttestation.vmAttestationNode.reportMessage}}</td>
               <td>
-                {{#if node.samControlled}}
+                {{#if vmAttestation.vmAttestationNode.node.samControlled}}
                     {{#link-to "nodesNode" node}}{{nodeName}}{{/link-to}}
                   {{else}}
-                    {{nodeName}}
+                    {{vmAttestation.vmAttestationNode.nodeName}}
                 {{/if}}
               </td>
-              <td>{{timestamp attestation.node.attestation_time}}</td>
+              <td>{{timestamp vmAttestation.vmAttestationNode.attestationTime}}</td>
             </tr>
           {{/each}}
         </table>

@@ -1,0 +1,57 @@
+{
+  "node_trust_report": {
+    "generation_time": "2013-10-17T21:19:43+0000",
+    "node_id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+    "id": "6396CA86-4A94-E111-BD1D-001E6747F26A",
+    "links": {
+      "nodes": "/api/v1/nodes/065247DC-4AC0-E111-A920-001E67506F0E"
+    },
+    "attestations": [
+        {
+          "attestation_time": "2013-05-12T12:00:00-07:00",
+          "trust_status": true,
+          "trust_message": "{\"bios\": \"None\", \"vmm\": \"None\", \"timestamp\": \"2013-05-30T04:54:11.285098\"}"
+        },
+        {
+          "attestation_time": "2013-05-11T12:00:00-08:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-09:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-10:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-11:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-12:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-13:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-14:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        },      
+        {
+          "attestation_time": "2013-05-11T12:00:00-15:00",
+          "trust_status": true,
+          "trust_message": "vmm: true, bios: false"
+        }
+    ]
+  }
+}
