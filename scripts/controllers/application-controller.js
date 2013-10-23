@@ -38,7 +38,10 @@ App.ApplicationController = Ember.Controller.extend({
       this.store.find('sla', undefined, true);
       this.store.find('flavor', undefined, true);
       this.store.find('vm', undefined, true);
-      if (App.mtWilson.get('isInstalled')) this.store.find('trustNode', undefined, true);
+      if (App.mtWilson.get('isInstalled')) {
+        self.store.find('trustMle', undefined, true);
+        this.store.find('trustNode', undefined, true);
+      }
       this.store.find('node', undefined, true);
     }
     if (this.get('isAutoRefreshEnabled')) Ember.run.later(this, 'autoRefresh', 30000);

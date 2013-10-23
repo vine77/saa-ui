@@ -125,7 +125,10 @@
         top: 2px;
         z-index: 10;
       }
+      @nav-tabs-height: 31px;
       .nav-tabs {
+        height: @nav-tabs-height;
+        .box-sizing(border-box);
         background-color: #f9f9f9;
         padding-top: 2px;
         padding-right: 2px;
@@ -142,6 +145,14 @@
         }
       }
       .tab-content {
+        position: absolute;
+        top: @nav-tabs-height;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        .box-sizing(border-box);
+        overflow: auto;
         border-right: none;
         border-bottom: none;
         border-left: none;

@@ -40,12 +40,12 @@
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane active nodes">
-                      {{#if mle.trustNode}}
+                      {{#if mle.trustNodes}}
                         <table class="table table-bordered">
                           <tr>
                             <th>Hostname</th>
                           </tr>
-                          {{#each node in mle.trustNode}}
+                          {{#each node in mle.trustNodes}}
                             <tr>
                               <td>{{#link-to "nodesNode" node.node}}{{node.node.name}}{{/link-to}}</td>
                             </tr>

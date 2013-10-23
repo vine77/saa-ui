@@ -81,6 +81,7 @@ App.ApplicationRoute = Ember.Route.extend({
         self.store.find('vm');
         App.mtWilson.check().then(function () {
           if (App.mtWilson.get('isInstalled')) {
+            self.store.find('trustMle');
             self.store.find('trustNode');
             self.store.find('node');
           } else {

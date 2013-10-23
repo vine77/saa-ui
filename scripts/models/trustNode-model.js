@@ -18,5 +18,5 @@ App.TrustNode = DS.Model.extend({
 
   // Full Relationships
   node: DS.belongsTo('node', {async: true}),
-  trustMle: DS.hasMany('trustMle', {async: true})
+  trustMles: DS.hasMany('trustMle', {async: true})
 });
