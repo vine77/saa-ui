@@ -60,8 +60,11 @@ App.Nova = Ember.Object.extend({
             App.openrc.set('success', false);
             App.nova.set('exists', false);
             App.nova.set('success', false);
+            App.quantum.set('exists', false);
+            App.quantum.set('success', false);
             $('#novaForm .fileupload').fileupload('clear');
             $('#openrcForm .fileupload').fileupload('clear');
+            $('#quantumForm .fileupload').fileupload('clear');
             /*
             var errorMessage = '';
             try {
