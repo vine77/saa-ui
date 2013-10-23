@@ -4,6 +4,7 @@ App.NodeController = Ember.ObjectController.extend({
   isExpanded: false,
 
   kibanaId: null,
+  
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;

@@ -1,41 +1,33 @@
 App.ContextualGraphsController = Ember.ObjectController.extend({
-  //selectedNodes: [],
-  //selectedVms: [],
-  //selectedNodesBinding: 'App.currentSelections.selectedNodes',
-  //selectedVmsBinding: 'App.currentSelections.selectedVms',
-  selectedNodes: function(){
-    return App.currentSelections.get('selectedNodes');
-  }.property('App.currentSelections.selectedNodes'),
-  selectedVms: function() {
-    return App.currentSelections.get('selectedVms');
-  }.property('App.currentSelections.selectedVms'),
-  selectedNode: function () {
-    return this.get('selectedNodes.firstObject');
-  }.property('selectedNodes'),
-  selectedVm: function () {
-    return this.get('selectedVms.firstObject');
-  }.property('selectedVms'),
+  needs: ['application', 'nodes', 'vms'],
+  currentRouteNameBinding: 'controllers.application.currentRouteName',
+  selectedNodes: function () {
+    return this.get('controllers.nodes').filterProperty('isSelected', true);
+  }.property('controllers.nodes.@each.isSelected'),  
+  selectedVms: function () {
+    return this.get('controllers.vms').filterProperty('isSelected', true);
+  }.property('controllers.vms.@each.isSelected'),
   nodePath: function() {
-    if (App.get('currentPath') == 'nodes.index') {
+    if (this.get('currentRouteName').indexOf("node") != -1) {
       return true;
     } else {
       return false;
     }
-  }.property('App.currentPath'),
+  }.property('currentRouteName'),
   vmPath: function() {
-    if (App.get('currentPath') == 'vms.index') {
+    if (this.get('currentRouteName').indexOf("vm") != -1) {
       return true;
     } else {
       return false;
     }
-  }.property('App.currentPath'),
+  }.property('currentRouteName'),
   contextualPath: function () {
-    if (App.get('currentPath') == 'vms.index' || App.get('currentPath') == 'nodes.index') {
+    if ((this.get('currentRouteName').indexOf("vm") != -1) || (this.get('currentRouteName').indexOf("node") != -1)) {
       return true;
     } else {
       return false;
     }
-  }.property('App.currentPath')
+  }.property('currentRouteName')
 });
 
 // TODO: contextual graphs used to be updated on a timer interval in the App.application model
@@ -47,5 +39,3 @@ if (App.contextualGraphs.get('selectedNode')) {
   App.graphs.graph(App.contextualGraphs.get('selectedVm.id'), App.contextualGraphs.get('selectedVm.name'), 'vm');
 }
 */
-
-App.contextualGraphs = App.ContextualGraphsController.create();
