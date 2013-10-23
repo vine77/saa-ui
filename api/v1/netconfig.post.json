@@ -16,9 +16,9 @@
   "external": {
     "netmask": "255.255.255.224",
     "mac": "52:54:00:71:6B:BE",
-    "address": "10.23.39.17",
+    "address": "10.23.35.66",
     "active": true,
-    "dhcp": false,
+    "dhcp": true,
     "gateway": "0.0.0.0"
   },
   "dns": {

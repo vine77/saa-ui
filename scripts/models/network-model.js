@@ -26,6 +26,7 @@ App.Network = Ember.Object.extend({
   other: {
     hostname: ''
   },
+  serverExternal: {},
   save: function () {
     var networkData = {
       route: App.network.get('route'),
@@ -74,6 +75,7 @@ App.Network = Ember.Object.extend({
         App.network.set('external', data.external);
         App.network.set('dns', data.dns);
         App.network.set('other', data.other);
+        App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
         App.event('Successfully loaded network configuration details.', App.SUCCESS, false);
       },
       error: function (xhr) {
