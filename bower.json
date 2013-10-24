@@ -4,7 +4,7 @@
   "dependencies": {
     "jquery": "components/jquery#~1.10.2",
     "handlebars": "components/handlebars.js#1.0.0",
-    "ember": "components/ember#1.1.0",
+    "ember": "components/ember#1.1.1",
     "ember-data": "components/ember-data#1.0.0-beta.3",
     "bootstrap": "jasny/bootstrap#2.3.0-p4",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.2.0",
@@ -23,6 +23,6 @@
   },
   "resolutions": {
     "jquery": "~1.10.2",
-    "ember": "1.1.0"
+    "ember": "1.1.1"
   }
 }

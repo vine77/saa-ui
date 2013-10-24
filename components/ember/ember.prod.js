@@ -61,7 +61,7 @@ var define, requireModule;
 
   @class Ember
   @static
-  @version 1.1.0
+  @version 1.1.1
 */
 
 if ('undefined' === typeof Ember) {
@@ -88,10 +88,10 @@ Ember.toString = function() { return "Ember"; };
 /**
   @property VERSION
   @type String
-  @default '1.1.0'
+  @default '1.1.1'
   @final
 */
-Ember.VERSION = '1.1.0';
+Ember.VERSION = '1.1.1';
 
 /**
   Standard environmental variables. You can define these in a global `ENV`
@@ -15290,7 +15290,10 @@ function makeCtor() {
         var properties = props[i];
 
 
-        if (Ember.typeOf(properties) !== 'object') { continue; }
+        if (properties === null || typeof properties !== 'object') {
+
+          continue;
+        }
 
         var keyNames = Ember.keys(properties);
         for (var j = 0, ll = keyNames.length; j < ll; j++) {
@@ -15481,7 +15484,7 @@ CoreObject.PrototypeMixin = Mixin.create({
     This feature is available for you to use throughout the Ember object model,
     although typical app developers are likely to use it infrequently. Since
     it changes expectations about behavior of properties, you should properly
-    document its usage in each individual concatenated property (to not 
+    document its usage in each individual concatenated property (to not
     mislead your users to think they can override the property in a subclass).
 
     @property concatenatedProperties
@@ -15782,10 +15785,10 @@ var ClassMixin = Mixin.create({
   },
 
   /**
-    
+
     Augments a constructor's prototype with additional
     properties and functions:
-    
+
     ```javascript
     MyObject = Ember.Object.extend({
       name: 'an object'
@@ -15805,7 +15808,7 @@ var ClassMixin = Mixin.create({
 
     o.say("goodbye"); // logs "goodbye"
     ```
-    
+
     To add functions and properties to the constructor itself,
     see `reopenClass`
 
@@ -15819,7 +15822,7 @@ var ClassMixin = Mixin.create({
 
   /**
     Augments a constructor's own properties and functions:
-    
+
     ```javascript
     MyObject = Ember.Object.extend({
       name: 'an object'
@@ -15829,12 +15832,12 @@ var ClassMixin = Mixin.create({
     MyObject.reopenClass({
       canBuild: false
     });
-    
+
     MyObject.canBuild; // false
     o = MyObject.create();
     ```
 
-    In other words, this creates static properties and functions for the class. These are only available on the class 
+    In other words, this creates static properties and functions for the class. These are only available on the class
     and not on any instance of that class.
 
     ```javascript
@@ -15864,15 +15867,15 @@ var ClassMixin = Mixin.create({
     alert(App.Person.species); // "Homo sapiens"
     ```
 
-    Note that `species` and `createPerson` are *not* valid on the `tom` and `yehuda` 
+    Note that `species` and `createPerson` are *not* valid on the `tom` and `yehuda`
     variables. They are only valid on `App.Person`.
-    
+
     To add functions and properties to instances of
     a constructor by extending the constructor's prototype
     see `reopen`
-    
+
     @method reopenClass
-  */  
+  */
   reopenClass: function() {
     reopen.apply(this.ClassMixin, arguments);
     applyMixin(this, arguments, false);
