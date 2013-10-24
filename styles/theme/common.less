@@ -1150,3 +1150,11 @@ table {
 .ember-list-item-view {
   position: absolute;
 }
+// Reverse z-index ordering of ListView rows
+.ember-list-item-view-z-index(@index) when (@index >= 0) {
+  .ember-list-item-view:nth-child(@{index}) {
+    z-index: 200 - @index;
+  }
+  .ember-list-item-view-z-index(@index - 1);
+}
+.ember-list-item-view-z-index(100);
