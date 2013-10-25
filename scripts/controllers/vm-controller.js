@@ -1,4 +1,5 @@
 App.VmController = Ember.ObjectController.extend({
+  needs: ["logBar"],
   isExpanded: false,
   isSelected: false,
   status: function() {
@@ -127,17 +128,44 @@ App.VmController = Ember.ObjectController.extend({
   graphObserver: function () {
      return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isSelected', 'isExpanded'),
-  kibanaId: null,
+
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+
     if (this.get('isSelected')) {
-      this.set('kibanaId', filterSrv.set({type:'field',mandate:'either', field: "vm_id", query:JSON.stringify(this.get('id')) }) );
+      this.get('controllers.logBar.kibanaVmsQuery').push('vm_id: \"'+this.get('id').toString()+'\"');
+      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+      var newFieldId = filterSrv.set({
+        type:'querystring',
+        mandate:'must',
+        query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
+      }, fieldId);
+
+      this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
       dashboard.refresh();
+
     } else {
-      filterSrv.remove(this.get('kibanaId'));
-      dashboard.refresh();
+      var inArray = $.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
+      if (inArray !== -1) {
+        this.get('controllers.logBar.kibanaVmsQuery').removeAt(inArray);
+
+        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+        var newFieldId = filterSrv.set({
+          type:'querystring',
+          mandate:'must',
+          query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
+        }, fieldId);
+        this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
+
+        if (this.get('controllers.logBar.kibanaVmsQuery').length < 1) {
+          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.vms'));
+          this.set('controllers.logBar.kibanaFieldIds.vms', null);
+        }
+        dashboard.refresh();
+      }
     }
+
   }.observes('isSelected'),
 
   /* TODO: Does this need to be added to polling?

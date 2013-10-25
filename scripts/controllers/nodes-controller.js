@@ -50,9 +50,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   itemController: 'node',
   sortProperty: 'name',
   filterProperties: ['name'],
-  multipleNodesAreSelected: function () {
-    return this.get('model').filterProperty('isSelected').length > 1;
-  }.property('model.@each.isSelected'),
   totalVms: function () {
     if (this.get('model') === undefined) return null;
     return this.get('model').reduce(function (previousValue, item, index, enumerable) {

@@ -1,16 +1,43 @@
 App.CriticalityController = Ember.ObjectController.extend({
   isSelected: false,
-  kibanaId: null,
+  needs: ["logBar"],
+
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
-    
-    if (this.get('isSelected') && !App.isCriticalityPlus(this) && (this.get('id') !== 'context') ) {
-      this.set('kibanaId', filterSrv.set({type:'field',mandate:'either', field: "severity", query:JSON.stringify(this.get('label'))}));
+
+    if (this.get('isSelected') && !App.isCriticalityPlus(this) && (this.get('id') !== 'context')) {
+      this.get('controllers.logBar.kibanaCriticalitiesQuery').push('severity: \"'+this.get('label').toString()+'\"');
+      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
+      var newFieldId = filterSrv.set({
+        type:'querystring',
+        mandate:'must',
+        query:"(" + this.get('controllers.logBar.kibanaCriticalitiesQuery').join(' OR ') + ")"
+      }, fieldId);
+
+      this.set('controllers.logBar.kibanaFieldIds.criticalities', newFieldId);
       dashboard.refresh();
+
     } else {
-      filterSrv.remove(this.get('kibanaId'));
-      dashboard.refresh();
+      var inArray = $.inArray('severity: \"'+this.get('label').toString()+'\"', this.get('controllers.logBar.kibanaCriticalitiesQuery'));
+      if (inArray !== -1) {
+        this.get('controllers.logBar.kibanaCriticalitiesQuery').removeAt(inArray);
+
+        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
+        var newFieldId = filterSrv.set({
+          type:'querystring',
+          mandate:'must',
+          query:"(" + this.get('controllers.logBar.kibanaCriticalitiesQuery').join(' OR ') + ")"
+        }, fieldId);
+        this.set('controllers.logBar.kibanaFieldIds.criticalities', newFieldId);
+
+        if (this.get('controllers.logBar.kibanaCriticalitiesQuery').length < 1) {
+          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.criticalities'));
+          this.set('controllers.logBar.kibanaFieldIds.criticalities', null);
+        }
+        dashboard.refresh();
+      }
     }
+
   }.observes('isSelected')
 });

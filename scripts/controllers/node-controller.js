@@ -1,20 +1,46 @@
 App.NodeController = Ember.ObjectController.extend({
+  needs: ["logBar"],
   // Controller Properties
   isSelected: false,
   isExpanded: false,
 
-  kibanaId: null,
-  
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+
     if (this.get('isSelected')) {
-      this.set('kibanaId', filterSrv.set({type:'field',mandate:'either', field: "host_id", query:JSON.stringify(this.get('id')) }) );
+      this.get('controllers.logBar.kibanaNodesQuery').push('host_id: \"'+this.get('id').toString()+'\"');
+      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
+      var newFieldId = filterSrv.set({
+        type:'querystring',
+        mandate:'must',
+        query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
+      }, fieldId);
+
+      this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
       dashboard.refresh();
+
     } else {
-      filterSrv.remove(this.get('kibanaId'));
-      dashboard.refresh();
+      var inArray = $.inArray('host_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
+      if (inArray !== -1) {
+        this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
+
+        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
+        var newFieldId = filterSrv.set({
+          type:'querystring',
+          mandate:'must',
+          query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
+        }, fieldId);
+        this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
+
+        if (this.get('controllers.logBar.kibanaNodesQuery').length < 1) {
+          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.nodes'));
+          this.set('controllers.logBar.kibanaFieldIds.nodes', null);
+        }
+        dashboard.refresh();
+      }
     }
+
   }.observes('isSelected'),
 
   // Computed properties
