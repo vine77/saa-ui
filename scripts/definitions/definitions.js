@@ -27,7 +27,7 @@ App.definitions = {
       {"id": 23, "label":"ovs-vswitchd"},
       {"id": 24, "label":"openvsswitch-agent"},
       {"id": 25, "label":"redis"},
-      {"id": 26, "label":"rocksteady"},
+      {"id": 26, "label":"rtae"},
       {"id": 27, "label":"sam"},
       {"id": 28, "label":"scheduler"},
       {"id": 29, "label":"statsd"},
