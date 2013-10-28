@@ -3,22 +3,20 @@ App.SettingsLog = Ember.Object.extend({
   maximumDays: null,
   configuredSize: null,
   actualSize: null,
+  deleteLogs: function () {
+    $('#reset-log-data i.loading').removeClass('hide');
+    return Ember.$.ajax({
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logs',
+      type: 'DELETE'
+    }).then(function () {
+      App.event('Successfully deleted all log data.', App.SUCCESS);
+      $('#reset-log-data i.loading').addClass('hide');
+    }, function () {
+      App.event('Error updating log settings.', App.ERROR);
+      $('#reset-log-data i.loading').addClass('hide');
+    });
+  },
   actions: {
-    deleteLogs: function () {
-      $('#reset-log-data i.loading').removeClass('hide');
-      return Ember.$.ajax({
-        url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logs',
-        type: 'DELETE',
-        complete: function (jqXHR, textStatus) {
-          if (jqXHR.status == 200) {
-            App.event('Successfully deleted all log data.', App.SUCCESS);
-          } else {
-            App.event('Error updating log settings.', App.ERROR);
-          }
-          $('#reset-log-data i.loading').addClass('hide');
-        }
-      });
-    },
     update: function () {
       // # Not settable:
       // * ThresholdSize: App.settingsLog.get('thresholdSize')
