@@ -233,11 +233,9 @@
           </tbody>
         </table>
         <table class="table table-bordered slo-gates-table">
-          <caption> <h4>SLO Gates</h4> </caption>
+          <caption><h4>SLO Gates</h4></caption>
           <thead>
             <tr>
-              <th>SLO</th>
-              <th>Units</th>
               <th>Description</th>
               <th># of Nodes</th>
             </tr>
@@ -245,8 +243,6 @@
           <tbody>
             {{#each gate in vmInstantiationSimple.sloGates}}
               <tr>
-                <td>{{gate.slo.id}}</td>
-                <td>{{na gate.slo.unit}}</td>
                 <td>{{gate.description}}</td>
                 <td>{{gate.nodesCount}}</td>
               </tr>
@@ -361,8 +357,8 @@
                         {{#each slo in instantiationNode.instantiationSlos}}
                           <tr>
                             <td>{{slo.description}}</td>
-                            <td><span class="nowrap">{{capitalize slo.value}}</span></td>
-                            <td><span class="nowrap">{{capitalize slo.unit}}</span></td>
+                            <td><span class="nowrap">{{slo.readableValue}}</span></td>
+                            <td><span class="nowrap">{{slo.unit}}</span></td>
                             <td>{{capitalize slo.passed}}</td>
                           </tr>
                         {{/each}}

@@ -22,7 +22,7 @@ App.VmInstantiationDetailedSerializer = DS.ActiveModelSerializer.extend({
     json.vm_instantiation_detailed.instantiation_node_ids = instantiation_node_ids;
     json.instantiation_nodes = instantiation_nodes;
     json.instantiation_slos = instantiation_slos;
-    
+
     var payload = json;
 
     return this._super(store, primaryType, payload, recordId, requestType);
@@ -53,13 +53,20 @@ App.InstantiationSlo = DS.Model.extend({
   slo: DS.belongsTo('slo'),
   instantiationNode: DS.belongsTo('instantiationNode'),
   description: DS.attr('string'),
-  value: DS.attr('boolean'),
+  value: DS.attr('string'),
+  readableValue: function () {
+    if (this.get('slo.sloType') === 'trusted_platform') {
+      return App.trustToString(this.get('value')).capitalize();
+    } else {
+      return this.get('value');
+    }
+  }.property('value', 'slo.sloType'),
   unit: DS.attr('string'),
   passed: DS.attr('boolean')
 });
 
 
-/* 
+/*
 DS.RESTAdapter.map('vmInstantiationDetailedInstantiationNode', {
   instantiation_slos: {embedded: 'always'},
   contention: {embedded: 'always'}
