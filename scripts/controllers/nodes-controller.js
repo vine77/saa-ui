@@ -214,8 +214,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     removeTrust: function (node) {
       var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
       if (confirmed) {
-        node.get('trustNode').deleteRecord();
-        node.get('trustNode').save().then(function () {
+        var trustNode = node.get('trustNode');
+        trustNode.deleteRecord();
+        trustNode.save().then(function () {
           App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
           node.reload();
         }, function (xhr) {

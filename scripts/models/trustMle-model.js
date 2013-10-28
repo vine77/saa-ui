@@ -12,5 +12,5 @@ App.TrustMle = DS.Model.extend({
 
   // Relationships
   trustNodes: DS.hasMany('trustNode', {async: true}),
-  node: DS.belongsTo('node', {async: true})  // Only used in MLE creation
+  node: DS.belongsTo('node')  // Only used in MLE creation
 });

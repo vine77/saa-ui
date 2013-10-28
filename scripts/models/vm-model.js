@@ -29,9 +29,9 @@ App.Vm = DS.Model.extend({
   victims: DS.hasMany('vm', {async: true, inverse: null}),
 
   // Relationships
-  node: DS.belongsTo('node', {async: true}),
-  sla: DS.belongsTo('sla', {async: true}),
-  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed', {async: true}),
-  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple', {async: true}),
-  vmTrustReport: DS.belongsTo('vmTrustReport', {async: true})
+  node: DS.belongsTo('node'),
+  sla: DS.belongsTo('sla'),
+  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
+  vmTrustReport: DS.belongsTo('vmTrustReport')
 });
