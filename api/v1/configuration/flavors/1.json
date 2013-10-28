@@ -1,21 +1,8 @@
 {
   "flavors": [
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "name": "m1.tiny",
       "links": {
-        "vms": "/api/v1/vms?ids=68a20f9a-ece5-4fe5-a7e2-45afa4a36110,6edce1e2-681b-47b4-a5c6-a942407fbe6d",
         "uri": "/api/v1/configuration/flavors/1"
       },
       "rxtx_factor": 1,
@@ -26,24 +13,9 @@
       "vcpus": 1,
       "swap": 0,
       "memory": 512,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 0,
       "id": "1",
-      "vm_ids": [
-        "68a20f9a-ece5-4fe5-a7e2-45afa4a36110",
-        "6edce1e2-681b-47b4-a5c6-a942407fbe6d"
-      ]
+      "vm_ids": []
     }
   ]
 }

@@ -1,104 +1,104 @@
 {
   "flavors": [
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "name": "m1.medium",
+      "name": "m1.cputop",
       "links": {
-        "uri": "/api/v1/configuration/flavors/3"
+        "slas": "/api/v1/configuration/slas/9",
+        "uri": "/api/v1/configuration/flavors/99"
       },
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/3",
+      "uri": "/configuration/flavors/99",
       "public": 1,
-      "sla_id": null,
-      "vcpus": 2,
+      "sla_id": 9,
+      "vcpus": 10,
       "swap": 0,
-      "memory": 4096,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "root": 40,
-      "id": "3",
+      "memory": 128,
+      "root": 10,
+      "id": "99",
       "vm_ids": []
     },
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "name": "m1.tiny",
+      "name": "unsecure-small-silver",
       "links": {
-        "vms": "/api/v1/vms?ids=68a20f9a-ece5-4fe5-a7e2-45afa4a36110,6edce1e2-681b-47b4-a5c6-a942407fbe6d",
-        "uri": "/api/v1/configuration/flavors/1"
+        "slas": "/api/v1/configuration/slas/9",
+        "uri": "/api/v1/configuration/flavors/04d55a22-74b5-435d-aa44-538a1b68a502"
       },
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/1",
+      "uri": "/configuration/flavors/04d55a22-74b5-435d-aa44-538a1b68a502",
       "public": 1,
-      "sla_id": null,
+      "sla_id": 9,
       "vcpus": 1,
       "swap": 0,
-      "memory": 512,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "root": 0,
-      "id": "1",
+      "memory": 2048,
+      "root": 20,
+      "id": "04d55a22-74b5-435d-aa44-538a1b68a502",
+      "vm_ids": []
+    },
+    {
+      "name": "secure-small-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+        "slas": "/api/v1/configuration/slas/10",
+        "vms": "/api/v1/vms?ids=4046a8e7-aabb-48bf-8487-99febc8da7a7,50216e3f-5fe3-43f3-b050-d8b7924ee64b,dab4784f-d5f9-4e80-954c-c21cb1a86772,bb4a30e3-32a5-433f-9523-020bee0aee7c,99ff14a8-1f3a-4b27-a981-e7879a48547b,6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+      "public": 1,
+      "sla_id": 10,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "a28f93bd-87f5-4379-b706-3aa6d25a3f51",
       "vm_ids": [
-        "68a20f9a-ece5-4fe5-a7e2-45afa4a36110",
-        "6edce1e2-681b-47b4-a5c6-a942407fbe6d"
+        "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+        "dab4784f-d5f9-4e80-954c-c21cb1a86772",
+        "bb4a30e3-32a5-433f-9523-020bee0aee7c",
+        "99ff14a8-1f3a-4b27-a981-e7879a48547b",
+        "6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
       ]
     },
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
+      "name": "tiny-unsecure-broze",
+      "links": {
+        "slas": "/api/v1/configuration/slas/11",
+        "uri": "/api/v1/configuration/flavors/dc460620-0be9-425a-9ff5-00fa06df3007"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/dc460620-0be9-425a-9ff5-00fa06df3007",
+      "public": 1,
+      "sla_id": 11,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "dc460620-0be9-425a-9ff5-00fa06df3007",
+      "vm_ids": []
+    },
+    {
+      "name": "secure-tiny-bronze",
+      "links": {
+        "slas": "/api/v1/configuration/slas/12",
+        "uri": "/api/v1/configuration/flavors/822c43ff-14d9-49ed-93b3-40f158c046cb"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/822c43ff-14d9-49ed-93b3-40f158c046cb",
+      "public": 1,
+      "sla_id": 12,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "822c43ff-14d9-49ed-93b3-40f158c046cb",
+      "vm_ids": []
+    },
+    {
       "name": "m1.large",
       "links": {
         "uri": "/api/v1/configuration/flavors/4"
@@ -111,35 +111,28 @@
       "vcpus": 4,
       "swap": 0,
       "memory": 8192,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 80,
       "id": "4",
       "vm_ids": []
     },
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
+      "name": "m1.medium",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/3"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/3",
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 2,
+      "swap": 0,
+      "memory": 4096,
+      "root": 40,
+      "id": "3",
+      "vm_ids": []
+    },
+    {
       "name": "m1.xlarge",
       "links": {
         "uri": "/api/v1/configuration/flavors/5"
@@ -152,38 +145,13 @@
       "vcpus": 8,
       "swap": 0,
       "memory": 16384,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 160,
       "id": "5",
       "vm_ids": []
     },
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "name": "m1.small",
       "links": {
-        "vms": "/api/v1/vms?ids=1c16e354-102a-4356-8006-c455927e8a73,b82c493c-23f4-44e2-80d2-11450d966c73,8f885033-b80d-4fb7-8848-fab7838addbc,2b163461-78a6-4338-bfc8-0bcbf3eef084,cee1bf8a-eef4-4500-a985-3e437a4fd5ce,7ef7a56a-e40f-4811-b862-bc3975f24aca,2ea2ffcb-50be-4358-9bff-b119b28d6e4b",
         "uri": "/api/v1/configuration/flavors/2"
       },
       "rxtx_factor": 1,
@@ -194,123 +162,26 @@
       "vcpus": 1,
       "swap": 0,
       "memory": 2048,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 20,
       "id": "2",
-      "vm_ids": [
-        "1c16e354-102a-4356-8006-c455927e8a73",
-        "b82c493c-23f4-44e2-80d2-11450d966c73",
-        "8f885033-b80d-4fb7-8848-fab7838addbc",
-        "2b163461-78a6-4338-bfc8-0bcbf3eef084",
-        "cee1bf8a-eef4-4500-a985-3e437a4fd5ce",
-        "7ef7a56a-e40f-4811-b862-bc3975f24aca",
-        "2ea2ffcb-50be-4358-9bff-b119b28d6e4b"
-      ]
+      "vm_ids": []
     },
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "name": "medium-unsecure-gold",
+      "name": "m1.tiny",
       "links": {
-        "uri": "/api/v1/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
-        "slas": "/api/v1/configuration/slas/5",
-        "vms": "/api/v1/vms?ids=846329af-1905-41d8-9fe2-4777dfd9855c"
+        "uri": "/api/v1/configuration/flavors/1"
       },
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
+      "uri": "/configuration/flavors/1",
       "public": 1,
-      "sla_id": 5,
-      "vcpus": 2,
-      "swap": 0,
-      "memory": 4096,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "root": 40,
-      "id": "d0e8f6b9-3a43-44b9-8ce8-88aec8f10e8b",
-      "vm_ids": [
-        "846329af-1905-41d8-9fe2-4777dfd9855c"
-      ]
-    },
-    {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
-      "name": "tiny-unsecure-bronze",
-      "links": {
-        "uri": "/api/v1/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562",
-        "slas": "/api/v1/configuration/slas/9",
-        "vms": "/api/v1/vms?ids=797bad09-4e6c-4a25-8f85-d84bd94d2c89,6ff531dd-3e52-4e2d-a6aa-203b35a53fce,c3953d1d-4878-4034-8562-8436ec7dccc4,13ad2bec-f545-486d-a84c-2d488f36668f,e485d7f6-459f-4a65-88d7-734a4da1452b"
-      },
-      "rxtx_factor": 1,
-      "ephemeral": 0,
-      "uri": "/configuration/flavors/2ae125f1-d18f-43f0-a25a-48ba10bd2562",
-      "public": 1,
-      "sla_id": 9,
+      "sla_id": null,
       "vcpus": 1,
       "swap": 0,
       "memory": 512,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 0,
-      "id": "2ae125f1-d18f-43f0-a25a-48ba10bd2562",
-      "vm_ids": [
-        "797bad09-4e6c-4a25-8f85-d84bd94d2c89",
-        "6ff531dd-3e52-4e2d-a6aa-203b35a53fce",
-        "c3953d1d-4878-4034-8562-8436ec7dccc4",
-        "13ad2bec-f545-486d-a84c-2d488f36668f",
-        "e485d7f6-459f-4a65-88d7-734a4da1452b"
-      ]
+      "id": "1",
+      "vm_ids": []
     }
   ]
 }

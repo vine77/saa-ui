@@ -1,0 +1,18 @@
+{
+  "slas": [
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slas/7",
+        "slos": "/api/v1/configuration/slos?ids=19,20,21"
+      },
+      "slo_ids": [
+        19,
+        20,
+        21
+      ],
+      "uri": "/configuration/slas/7",
+      "name": "Unsecure Gold",
+      "id": 7
+    }
+  ]
+}

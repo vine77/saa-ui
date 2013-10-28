@@ -3,58 +3,132 @@
     {
       "processor_info": null,
       "vmm_osname": "Ubuntu",
-      "id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
       "port": 0,
-      "hostname": "172.24.0.23",
+      "hostname": "192.168.3.104",
       "aik_sha1": null,
       "location": null,
-      "bios_version": "0002",
+      "bios_version": "0003",
       "pcr_logs": [
         {
           "modulelogs": [],
           "name": 17,
-          "value": "fb4227549435087056225af81218db55ca439cd8",
+          "value": "7caa23c1ea83aa07fa0e767ec894a8e27670dd76",
           "truststatus": 1,
-          "whitelistvalue": "FB4227549435087056225AF81218DB55CA439CD8",
-          "verified_on": 1382044974254
+          "whitelistvalue": "7CAA23C1EA83AA07FA0E767EC894A8E27670DD76",
+          "verified_on": 1382943103462
         },
         {
           "modulelogs": [],
           "name": 0,
-          "value": "941b9f4415b34023b2ce485a6ca7d86fa0a7ff3f",
+          "value": "96de0a6254c21eb91af18b06637f12bee046c471",
           "truststatus": 1,
-          "whitelistvalue": "941B9F4415B34023B2CE485A6CA7D86FA0A7FF3F",
-          "verified_on": 1382044974254
+          "whitelistvalue": "96DE0A6254C21EB91AF18B06637F12BEE046C471",
+          "verified_on": 1382943103462
         },
         {
-          "modulelogs": [],
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "27569b1882c3255583fe24505cd56863eaa11aa2",
+              "value": "27569b1882c3255583fe24505cd56863eaa11aa2",
+              "truststatus": 1
+            }
+          ],
           "name": 19,
-          "value": "c9d9791b26e54ddfce469a3ee7ed7504882fedf4",
+          "value": "352bcf61c555d5e5e18898a06e0b45daeeb4a1ba",
           "truststatus": 1,
           "whitelistvalue": "",
-          "verified_on": 1382044974254
+          "verified_on": 1382943103462
         },
         {
           "modulelogs": [],
           "name": 18,
-          "value": "9b80a4822d06ca703345014ed2b8979e9e57ee8c",
+          "value": "0c689e0dc7c329dc0a67f847c892fc94c4cd7218",
           "truststatus": 1,
-          "whitelistvalue": "9B80A4822D06CA703345014ED2B8979E9E57EE8C",
-          "verified_on": 1382044974254
+          "whitelistvalue": "0C689E0DC7C329DC0A67F847C892FC94C4CD7218",
+          "verified_on": 1382943103462
         }
       ],
       "email": null,
-      "addon_connection_string": "intel:https://172.24.0.23:9999",
+      "addon_connection_string": "intel:https://192.168.3.104:9999",
       "description": null,
       "aik_certificate": null,
-      "node_id": "41101BF9-C295-E111-BD1D-001E6747F112",
+      "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
       "trust_mle_ids": [
-        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDInKV0p",
-        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUUVNVScpLCAoJ09lbU5hbWUnLCBOb25lKSwgKCdPc05hbWUnLCB1J1VidW50dScpLCAoJ09zVmVyc2lvbicsIHUnMTIuMDQnKSwgKCdWZXJzaW9uJywgdScxMi4wNC0xLjAuMCcpXSk="
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDMnKV0p",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMS4wLjAnKV0p"
       ],
-      "ipaddress": "172.24.0.23",
+      "ipaddress": "192.168.3.104",
       "bios_oem": "Intel Corp.",
-      "vmm_name": "Intel_QEMU",
+      "vmm_name": "Intel_Romley_QEMU",
+      "bios_name": "Intel_Corp.",
+      "vmm_version": "12.04-1.0.0",
+      "aik_publickey": null,
+      "vmm_osversion": "12.04"
+    },
+    {
+      "processor_info": null,
+      "vmm_osname": "Ubuntu",
+      "id": "6729E52D-18CC-E111-BDEC-001E6750A700",
+      "port": 0,
+      "hostname": "192.168.3.106",
+      "aik_sha1": null,
+      "location": null,
+      "bios_version": "0003",
+      "pcr_logs": [
+        {
+          "modulelogs": [],
+          "name": 17,
+          "value": "7caa23c1ea83aa07fa0e767ec894a8e27670dd76",
+          "truststatus": 1,
+          "whitelistvalue": "7CAA23C1EA83AA07FA0E767EC894A8E27670DD76",
+          "verified_on": 1382943091590
+        },
+        {
+          "modulelogs": [],
+          "name": 0,
+          "value": "96de0a6254c21eb91af18b06637f12bee046c471",
+          "truststatus": 1,
+          "whitelistvalue": "96DE0A6254C21EB91AF18B06637F12BEE046C471",
+          "verified_on": 1382943091590
+        },
+        {
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "967b7a2bff27fcf7064ad07f758a39f0771281f0",
+              "value": "967b7a2bff27fcf7064ad07f758a39f0771281f0",
+              "truststatus": 1
+            }
+          ],
+          "name": 19,
+          "value": "07805a68a89467de25ba3dc2afeceb63748c2885",
+          "truststatus": 1,
+          "whitelistvalue": "",
+          "verified_on": 1382943091590
+        },
+        {
+          "modulelogs": [],
+          "name": 18,
+          "value": "0c689e0dc7c329dc0a67f847c892fc94c4cd7218",
+          "truststatus": 1,
+          "whitelistvalue": "0C689E0DC7C329DC0A67F847C892FC94C4CD7218",
+          "verified_on": 1382943091590
+        }
+      ],
+      "email": null,
+      "addon_connection_string": "intel:https://192.168.3.106:9999",
+      "description": null,
+      "aik_certificate": null,
+      "node_id": "6729E52D-18CC-E111-BDEC-001E6750A700",
+      "trust_mle_ids": [
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDMnKV0p",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMS4wLjAnKV0p"
+      ],
+      "ipaddress": "192.168.3.106",
+      "bios_oem": "Intel Corp.",
+      "vmm_name": "Intel_Romley_QEMU",
       "bios_name": "Intel_Corp.",
       "vmm_version": "12.04-1.0.0",
       "aik_publickey": null,

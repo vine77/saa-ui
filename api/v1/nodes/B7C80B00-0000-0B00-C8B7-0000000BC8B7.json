@@ -1,0 +1,124 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "node_trust_reports": "/api/v1/node_trust_reports/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "uri": "/api/v1/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "vms": "/api/v1/vms?ids=4046a8e7-aabb-48bf-8487-99febc8da7a7,50216e3f-5fe3-43f3-b050-d8b7924ee64b,dab4784f-d5f9-4e80-954c-c21cb1a86772,bb4a30e3-32a5-433f-9523-020bee0aee7c,99ff14a8-1f3a-4b27-a981-e7879a48547b,6bf1cdb0-d177-465c-a0c4-7bde49e3a71a",
+        "trust_nodes": "/api/v1/trust_nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7"
+      },
+      "uri": "/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "cloud_services": [
+        {
+          "last_update": "2013-10-28T07:17:02+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "sam_registered": true,
+      "utilization": {
+        "ipc": 0.42,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 67.73,
+        "io": null,
+        "memory": "6050032 KB",
+        "gips_current": 64.73,
+        "cpu": {
+          "iowait": 842.67,
+          "idle": 6332870.21,
+          "total": 0,
+          "steal": 0,
+          "guest": 91268.64
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "memory_size": "49152 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 6,
+        "max": null
+      },
+      "memory": {
+        "max": 72388,
+        "used": 12800
+      },
+      "vm_ids": [
+        "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+        "dab4784f-d5f9-4e80-954c-c21cb1a86772",
+        "bb4a30e3-32a5-433f-9523-020bee0aee7c",
+        "99ff14a8-1f3a-4b27-a981-e7879a48547b",
+        "6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.3.303",
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 2
+        },
+        "long_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
+        "health": 1,
+        "mode": 2,
+        "trust": 2,
+        "short_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled."
+      },
+      "trust_node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0.04,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.04,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "tier": null,
+      "ids": {
+        "platform_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "mac": "00:1e:67:34:3a:b7",
+        "ip_address": "192.168.3.104",
+        "cloud_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7"
+      },
+      "node_name": "clientnode4.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 6
+      }
+    }
+  ]
+}

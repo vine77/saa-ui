@@ -1,0 +1,22 @@
+{
+  "flavors": [
+    {
+      "name": "m1.cputop",
+      "links": {
+        "slas": "/api/v1/configuration/slas/9",
+        "uri": "/api/v1/configuration/flavors/99"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/99",
+      "public": 1,
+      "sla_id": 9,
+      "vcpus": 10,
+      "swap": 0,
+      "memory": 128,
+      "root": 10,
+      "id": "99",
+      "vm_ids": []
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "vms": [
+    {
+      "vm_name": "secure-gips-nathan",
+      "status": {
+        "sla_messages": [
+          "SAM Units value available for each VM core shall be within range of <0.5; 1.0>. Observed value: 1.11"
+        ],
+        "locked": false,
+        "sla_status": 2,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 2
+        },
+        "long_message": "VM is healthy. VM is powered on. ",
+        "health": 1,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "VM is healthy."
+      },
+      "macs": [
+        "fa:16:3e:d8:7f:1c"
+      ],
+      "cloud_id": "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+      "links": {
+        "logs": "/api/v1/logs?vm=4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "slas": "/api/v1/configuration/slas/10",
+        "uri": "/api/v1/vms/4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "nodes": "/api/v1/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "vm_trust_reports": "/api/v1/vm_trust_reports/4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/4046a8e7-aabb-48bf-8487-99febc8da7a7"
+      },
+      "utilization": {
+        "ipc": 2.14,
+        "uptime": null,
+        "network": null,
+        "io": null,
+        "memory": "2097152 KB",
+        "gips_current": 1.12,
+        "cpu": 45.53243386513906
+      },
+      "vm_instantiation_simple_id": "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": "Secure Silver",
+      "floating_ips": null,
+      "capabilities": {
+        "cores": 1,
+        "memory_size": "2097152 KB",
+        "gips_allocated": 0.5
+      },
+      "node_name": "clientnode4.hpr.com",
+      "sla_id": 10,
+      "victim_ids": [],
+      "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "aggressor_ids": [],
+      "vm_instantiation_detailed_id": "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+      "vm_trust_report_id": "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+      "fixed_ips": [
+        "192.168.9.23"
+      ],
+      "id": "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 0.04,
+              "label": "l"
+            },
+            "id": 46079
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.04,
+            "label": "l"
+          }
+        }
+      }
+    }
+  ]
+}

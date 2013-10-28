@@ -1,0 +1,30 @@
+{
+  "flavors": [
+    {
+      "name": "secure-small-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+        "slas": "/api/v1/configuration/slas/10",
+        "vms": "/api/v1/vms?ids=4046a8e7-aabb-48bf-8487-99febc8da7a7,50216e3f-5fe3-43f3-b050-d8b7924ee64b,dab4784f-d5f9-4e80-954c-c21cb1a86772,bb4a30e3-32a5-433f-9523-020bee0aee7c,99ff14a8-1f3a-4b27-a981-e7879a48547b,6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+      },
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "uri": "/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+      "public": 1,
+      "sla_id": 10,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+      "vm_ids": [
+        "4046a8e7-aabb-48bf-8487-99febc8da7a7",
+        "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+        "dab4784f-d5f9-4e80-954c-c21cb1a86772",
+        "bb4a30e3-32a5-433f-9523-020bee0aee7c",
+        "99ff14a8-1f3a-4b27-a981-e7879a48547b",
+        "6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+      ]
+    }
+  ]
+}

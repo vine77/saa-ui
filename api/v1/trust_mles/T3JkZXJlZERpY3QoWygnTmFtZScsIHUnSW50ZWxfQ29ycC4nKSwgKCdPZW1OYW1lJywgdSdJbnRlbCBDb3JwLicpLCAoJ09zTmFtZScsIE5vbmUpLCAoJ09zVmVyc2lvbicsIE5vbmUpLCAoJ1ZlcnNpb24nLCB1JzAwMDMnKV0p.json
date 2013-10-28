@@ -1,0 +1,26 @@
+{
+  "trust_mles": [
+    {
+      "name": "Intel_Corp.",
+      "attestation_type": "PCR",
+      "description": "",
+      "osname": null,
+      "trust_node_ids": [
+        "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "6729E52D-18CC-E111-BDEC-001E6750A700"
+      ],
+      "oemname": "Intel Corp.",
+      "mle_manifests": [
+        {
+          "name": "0",
+          "value": "96DE0A6254C21EB91AF18B06637F12BEE046C471"
+        }
+      ],
+      "version": "0003",
+      "osversion": null,
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDMnKV0p",
+      "node_id": null,
+      "mle_type": "BIOS"
+    }
+  ]
+}

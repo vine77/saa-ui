@@ -1,1 +1,12 @@
-{"builds": [{"hostname": "(none)", "id": "current", "build": {"date": "2013-10-16T09:42:58+0200", "version": "1.0.3.253"}}]}
+{
+  "builds": [
+    {
+      "hostname": "samappliance",
+      "id": "current",
+      "build": {
+        "date": "2013-10-25T09:23:40+0200",
+        "version": "1.0.3.303"
+      }
+    }
+  ]
+}

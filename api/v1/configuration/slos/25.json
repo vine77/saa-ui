@@ -1,34 +1,14 @@
 {
   "slos": [
     {
-      "filterable_columns": [
-        "class_name",
-        "value",
-        "sla_id",
-        "element_name",
-        "operator",
-        "id",
-        "unit",
-        "slo_type"
-      ],
       "links": {
         "uri": "/api/v1/configuration/slos/25",
         "slas": "/api/v1/configuration/slas/9"
       },
       "class_name": "performance",
       "uri": "/configuration/slos/25",
-      "value": "0;1",
+      "value": "0.5;1.0",
       "sla_id": 9,
-      "sortable_columns": [
-        "class_name",
-        "value",
-        "sla_id",
-        "element_name",
-        "operator",
-        "id",
-        "unit",
-        "slo_type"
-      ],
       "unit": "SU",
       "operator": "in_range",
       "id": 25,

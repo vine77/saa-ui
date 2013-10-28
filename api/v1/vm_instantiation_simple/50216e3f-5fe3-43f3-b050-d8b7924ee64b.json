@@ -1,0 +1,100 @@
+{
+  "vm_instantiation_simple": {
+    "vm_name": "5secured-cirros-bv-50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+    "slo_gates": [
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/30"
+        },
+        "nodes_count": 1,
+        "description": "Node is registered in Trust Server.",
+        "slo_id": 30
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/28"
+        },
+        "nodes_count": 1,
+        "description": "SAM Units capacity of node's core must be greater or equal to 0.5",
+        "slo_id": 28
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/28"
+        },
+        "nodes_count": 1,
+        "description": "SAM Units capacity of node's sockets must be greater or equal to 0.5",
+        "slo_id": 28
+      }
+    ],
+    "links": {
+      "flavors": "/api/v1/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+      "vms": "/api/v1/vms/50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+      "slas": "/api/v1/configuration/slas/10"
+    },
+    "schedule_time": "2013-10-26T23:27:31+0000",
+    "nodes_count": {
+      "under_sam_control": 6,
+      "total": 7
+    },
+    "sla_name": "Secure Silver",
+    "vm_trust_status": true,
+    "sla_id": 10,
+    "ranked_nodes": [
+      {
+        "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "selected": true,
+        "links": {
+          "nodes": "/api/v1/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7"
+        }
+      },
+      {
+        "node_id": "065247DC-4AC0-E111-A920-001E67506F0E",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/065247DC-4AC0-E111-A920-001E67506F0E"
+        }
+      },
+      {
+        "node_id": "6729E52D-18CC-E111-BDEC-001E6750A700",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/6729E52D-18CC-E111-BDEC-001E6750A700"
+        }
+      },
+      {
+        "node_id": "D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
+        }
+      },
+      {
+        "node_id": "8F3D1534-B403-E211-BBFA-001E673B94D0",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/8F3D1534-B403-E211-BBFA-001E673B94D0"
+        }
+      },
+      {
+        "node_id": "EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1"
+        }
+      },
+      {
+        "node_id": "803D1534-B403-E211-BBFA-001E673B9730",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/803D1534-B403-E211-BBFA-001E673B9730"
+        }
+      }
+    ],
+    "flavor_id": "a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+    "generation_time": "2013-10-28T07:17:05+0000",
+    "scheduled_by_sam": true,
+    "vm_id": "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
+    "id": "50216e3f-5fe3-43f3-b050-d8b7924ee64b"
+  }
+}

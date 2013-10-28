@@ -1,0 +1,107 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/803D1534-B403-E211-BBFA-001E673B9730",
+        "logs": "/api/v1/logs?node=803D1534-B403-E211-BBFA-001E673B9730"
+      },
+      "uri": "/nodes/803D1534-B403-E211-BBFA-001E673B9730",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2013-10-28T07:17:02+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "803D1534-B403-E211-BBFA-001E673B9730",
+      "sam_registered": true,
+      "utilization": {
+        "ipc": 0.27,
+        "uptime": null,
+        "network": null,
+        "cpu_frequency_current": null,
+        "gips_max": 32.77,
+        "io": null,
+        "memory": "2166512 KB",
+        "gips_current": 32.77,
+        "cpu": {
+          "iowait": 1747.17,
+          "idle": 3231369.84,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "memory_size": "24576 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 1
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 36123,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.3.303",
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled.",
+        "health": 1,
+        "mode": 2,
+        "trust": 3,
+        "short_message": "SAM agent is installed. Node is powered on. SAM Agent reports success. Compute service is working. Compute service is enabled."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=803D1534-B403-E211-BBFA-001E673B9730",
+      "tier": null,
+      "ids": {
+        "platform_id": "803D1534-B403-E211-BBFA-001E673B9730",
+        "mac": "00:1e:67:3b:97:30",
+        "ip_address": "192.168.3.109",
+        "cloud_id": "803D1534-B403-E211-BBFA-001E673B9730"
+      },
+      "node_name": "clientnode9.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      }
+    }
+  ]
+}

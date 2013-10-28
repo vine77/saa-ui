@@ -1,0 +1,29 @@
+{
+  "other": {
+    "hostname": "(none)"
+  },
+  "route": {
+    "gateway": "10.23.39.1"
+  },
+  "management": {
+    "netmask": "255.255.0.0",
+    "mac": "52:54:00:0A:93:8F",
+    "address": "172.24.1.225",
+    "active": true,
+    "dhcp": true,
+    "gateway": "0.0.0.0"
+  },
+  "external": {
+    "netmask": "255.255.255.224",
+    "mac": "52:54:00:71:6B:BE",
+    "address": "10.23.39.17",
+    "active": true,
+    "dhcp": true,
+    "gateway": "0.0.0.0"
+  },
+  "dns": {
+    "ns1": "172.24.0.16",
+    "ns2": "10.248.2.1",
+    "ns3": "10.22.224.196"
+  }
+}

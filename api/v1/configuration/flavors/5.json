@@ -1,18 +1,6 @@
 {
   "flavors": [
     {
-      "filterable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "name": "m1.xlarge",
       "links": {
         "uri": "/api/v1/configuration/flavors/5"
@@ -25,18 +13,6 @@
       "vcpus": 8,
       "swap": 0,
       "memory": 16384,
-      "sortable_columns": [
-        "name",
-        "rxtx_factor",
-        "ephemeral",
-        "id",
-        "sla_id",
-        "vcpus",
-        "swap",
-        "memory",
-        "root",
-        "public"
-      ],
       "root": 160,
       "id": "5",
       "vm_ids": []
