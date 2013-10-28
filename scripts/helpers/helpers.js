@@ -160,6 +160,10 @@ Ember.Handlebars.registerBoundHelper('capitalize', function (string) {
   return (App.isEmpty(string)) ? App.NOT_APPLICABLE : string.toString().capitalize();
 });
 
+Ember.Handlebars.registerBoundHelper('uppercase', function (string) {
+  return (App.isEmpty(string)) ? App.NOT_APPLICABLE : string.toString().toUpperCase();
+});
+
 Ember.Handlebars.registerBoundHelper('numberOf', function (items) {
   return items.get('length');
 }, '@each');

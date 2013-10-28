@@ -46,7 +46,13 @@
         </tr>
         <tr>
           <th class="column-medium">MAC Addresses</th>
-          <td>{{concatenate macs}}</td>
+          <td>
+            <ul class="comma-delimited">
+              {{#each mac in macs}}
+                <li>{{uppercase mac}}</li>
+              {{/each}}
+            </ul>
+          </td>
         </tr>
         <tr>
           <th class="column-medium">Fixed IP Addresses</th>

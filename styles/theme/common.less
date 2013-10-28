@@ -1136,8 +1136,19 @@ table {
   }
 }
 
-.no-disc-list {
-  list-style-type:none;
+// List ul styles
+ul.no-list-style {
+  list-style-type: none;
+}
+ul.comma-delimited {
+  display: inline;
+  margin: 0;
+  li {
+    display: inline;
+    &:not(:last-of-type):after {
+      content: ', '
+    }
+  }
 }
 
 // Ember.ListView required CSS

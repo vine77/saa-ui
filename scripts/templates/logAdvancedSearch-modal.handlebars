@@ -13,14 +13,14 @@
 
     <div class="tab-content">
       <div class="tab-pane active modal-overflow nodes">
-        <ul class="three-columns no-disc-list">
+        <ul class="three-columns no-list-style">
           {{#each node in controllers.nodes}}
             <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
       <div class="tab-pane modal-overflow vms">
-        <ul class="three-columns no-disc-list">
+        <ul class="three-columns no-list-style">
           {{#each vm in controllers.vms}}
             <li>
               <label {{bindAttr title="vm.name"}}>
@@ -31,7 +31,7 @@
         </ul>
       </div>
       <div class="tab-pane modal-overflow severities">
-        <ul class="no-disc-list">
+        <ul class="no-list-style">
           {{#each criticality in criticalitiesFiltered}}
             <li>
               <label>
@@ -42,7 +42,7 @@
         </ul>
       </div>
       <div class="tab-pane modal-overflow categories">
-        <ul class="three-columns no-disc-list">
+        <ul class="three-columns no-list-style">
           {{#each logCategory in controllers.logcategories}}
             <li>
               <label>
