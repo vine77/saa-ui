@@ -63,7 +63,7 @@ module.exports = function (grunt) {
                 res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
 
                 // Log requests to terminal
-                console.log(req.method, req.url);
+                grunt.log.writeln(req.method, req.url);
 
                 /*
                 if (req.method === 'POST') {
@@ -466,65 +466,106 @@ module.exports = function (grunt) {
     var done = this.async();
 
     var server = grunt.option('server') || 'localhost';
-    var jsonFiles = [
-      //'/api/v1/sessions/current_session.json',
-      //'/api/v1/sessions.json',
-
-      '/api/v1/statuses.json',
-      '/api/v1/connectivity.json',
-      '/api/v1/builds.json',
-
-      '/api/v1/quantumconfig',
-      '/api/v1/openrcconfig',
-      '/api/v1/novaconfig',
-      '/api/v1/netconfig',
-      '/api/v1/users.json',
-      '/api/v1/logsettings',
-      '/api/v1/override',
-      '/api/v1/mailservers/default.json',
-
-      '/api/v1/nodes.json',
-      '/api/v1/vms.json',
-      '/api/v1/configuration/flavors.json',
-      '/api/v1/configuration/slas.json',
-      '/api/v1/configuration/slos.json',
-      //'/api/v1/graphs.json',
-
-      '/api/v1/mtwilson/install',
-      '/api/v1/trust_nodes.json',
-      '/api/v1/trust_mles.json'
-      //'/api/v1/node_trust_reports.json'
-
+    var apiEndpoints = [{
+      url: '/api/v1/statuses.json'
+    }, {
+      url: '/api/v1/builds.json'
+    }, {
+      url: '/api/v1/quantumconfig'
+    }, {
+      url: '/api/v1/openrcconfig'
+    }, {
+      url: '/api/v1/novaconfig'
+    }, {
+      url: '/api/v1/netconfig'
+    }, {
+      url: '/api/v1/logsettings'
+    }, {
+      url: '/api/v1/nodes.json',
+      links: ['node_trust_report']
+    }, {
+      url: '/api/v1/vms.json',
+      links: ['vm_trust_report', 'vm_instantiation_simple', 'vm_instantiation_detailed']
+    }, {
+      url: '/api/v1/configuration/flavors.json'
+    }, {
+      url: '/api/v1/configuration/slas.json'
+    }, {
+      url: '/api/v1/configuration/slos.json'
+    }, {
+      url: '/api/v1/mtwilson/install'
+    }, {
+      url: '/api/v1/trust_nodes.json'
+    }, {
+      url: '/api/v1/trust_mles.json'
+    }
+    //'/api/v1/graphs.json'
+    //'/api/v1/override'
+    //'/api/v1/sessions/current_session.json'
+    //'/api/v1/sessions.json'
+    //'/api/v1/users.json'
+    //'/api/v1/mailservers/default.json'
     ];
+    var uncountable = ['vm_instantiation_simple', 'vm_instantiation_detailed'];
 
-    jsonFiles.forEach(function (jsonFile) {
+    apiEndpoints.forEach(function (apiEndpoint) {
+      grunt.log.writeln('ENDPOINT URL:', apiEndpoint.url);
+      var jsonFile = apiEndpoint.url;
       var requestUrl = 'http://' + server + jsonFile;
-      var absolutePath = __dirname + jsonFile.split('/').join(path.sep);
-      request(requestUrl, function (error, response, body) {
+      var absolutePath = __dirname + jsonFile.split('/').join(path.sep) + ((jsonFile.indexOf('.json') === -1) ? '.json' : '');
+      var requestOptions = {
+        uri: requestUrl,
+        json: true,
+        headers: {
+          'Accept-Language': 'en-US,en;q=0.8'
+        }
+      };
+      request(requestOptions, function (error, response, body) {
         grunt.log.writeln(((response) ? response.statusCode : 'ERR') + ' GET ' + requestUrl);
-        if (error) {
-          grunt.log.writeln(error);
-        } else if (response.statusCode === 200) {
+        if (error || response.statusCode !== 200) {
+          grunt.log.writeln('===== FAILURE RESPONSE =====>', JSON.stringify(body));
+        } else {
           grunt.log.writeln(' Saving to ' + absolutePath);
           mkpath.sync(absolutePath.split(path.sep).slice(0, -1).join(path.sep));  // create folder
-          var jsonObject = JSON.parse(body);
+          var jsonObject = body;
           var beautifiedJson = JSON.stringify(jsonObject, null, 2);
           fs.writeFile(absolutePath, beautifiedJson);
           // Download get_one child records
-          var ids = [];
+          var individualRecords = [];
           var records = jsonObject[Object.keys(jsonObject)[0]];
           if (Array.isArray(records)) records.forEach(function (record) {
-            if (record.id) ids.push(record.id);
+            if (record.id) individualRecords.push({
+              url: requestUrl.replace('.json', '') + '/' + record.id + '.json',
+              path: __dirname + (jsonFile.replace('.json', '') + '/' + record.id + '.json').split('/').join(path.sep)
+            });
+            if (apiEndpoint.links) apiEndpoint.links.forEach(function (link) {
+              if (record[link + '_id']) {
+                var linkId = record[link + '_id'];
+                var pluralized = link + ((uncountable.indexOf(link) === -1) ? 's' : '');
+                individualRecords.push({
+                  url: 'http://' + server + '/api/v1/' + pluralized + '/' + linkId + '.json',
+                  path: __dirname + ('/api/v1/' + pluralized + '/' + linkId + '.json').split('/').join(path.sep)
+                });
+              }
+            });
           });
-          ids.forEach(function (id) {
-            var individualUrl = requestUrl.replace('.json', '') + '/' + id + '.json';
-            var individualPath = __dirname + (jsonFile.replace('.json', '') + '/' + id + '.json').split('/').join(path.sep);
-            request(individualUrl, function (error, response, body) {
-              grunt.log.writeln(response.statusCode + ' GET ' + individualUrl);
-              if (!error && response.statusCode === 200) {
-                grunt.log.writeln(' Saving to ' + individualPath);
-                mkpath.sync(individualPath.split(path.sep).slice(0, -1).join(path.sep));  // create folder
-                fs.writeFile(individualPath, JSON.stringify(JSON.parse(body), null, 2));
+          individualRecords.forEach(function (individualRecord) {
+            grunt.log.writeln('INDIVIDUAL URL: ', individualRecord.url);
+            var requestOptions = {
+              uri: individualRecord.url,
+              json: true,
+              headers: {
+                'Accept-Language': 'en-US,en;q=0.8'
+              }
+            };
+            request(requestOptions, function (error, response, body) {
+              grunt.log.writeln(((response) ? response.statusCode : 'ERR') + ' GET ' + individualRecord.url);
+              if (error || response.statusCode !== 200) {
+                grunt.log.writeln('===== FAILURE RESPONSE =====>', JSON.stringify(body));
+              } else {
+                grunt.log.writeln(' Saving to ' + individualRecord.path);
+                mkpath.sync(individualRecord.path.split(path.sep).slice(0, -1).join(path.sep));  // create folder
+                fs.writeFile(individualRecord.path, JSON.stringify(body, null, 2));
               }
             });
           });

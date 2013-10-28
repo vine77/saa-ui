@@ -90,7 +90,7 @@ App.ApplicationRoute = Ember.Route.extend({
         }, function () {
           self.store.find('node');
         }),
-        self.store.find('user');
+        //self.store.find('user');
         App.openrc.check();
         App.quantum.check();
         App.network.check();

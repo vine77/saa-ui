@@ -3,7 +3,6 @@ App.ListView = Ember.ListView.extend({
   rowHeight: 34,
   controllerName: function () {
     var name = this.get('controller').constructor.toString().split('.')[1];
-    console.log('Name:', name);
     if (name.indexOf('Controller') === -1) throw new Error('Name of controller must end with "Controller"');
     return name.slice(0, name.indexOf('Controller')).toLowerCase();
   }.property(),
