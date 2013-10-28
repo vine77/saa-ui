@@ -1,13 +1,3 @@
-/* TODO: Update embedded models
-DS.RESTAdapter.map('vmTrustReport', {
-  attestations: {embedded: 'always'}
-});
-
-DS.RESTAdapter.map('vmAttestation', {
-  node: {embedded: 'always'}
-});
-*/
-
 App.VmTrustReportSerializer = DS.ActiveModelSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var json = JSON.parse(JSON.stringify(payload)),
@@ -17,7 +7,7 @@ App.VmTrustReportSerializer = DS.ActiveModelSerializer.extend({
     json.vm_attestations = vm_attestations;
     json.vm_trust_report.vm_attestation_ids = vm_attestation_ids;
 
-    json.vm_attestations.map( function (item, index, enumerable) {
+    json.vm_attestations.map(function (item, index, enumerable) {
       item.id = item.vm_start;
       item.vm_trust_report_id = this.id.toString();
       item.vm_attestation_node_id = item.node.node_id;
@@ -26,7 +16,7 @@ App.VmTrustReportSerializer = DS.ActiveModelSerializer.extend({
     }, json.vm_trust_report);
 
     json.vm_attestation_nodes = vm_attestations.mapProperty('node');
-    
+
     return this._super(store, primaryType, json, recordId, requestType);
   }
 });
@@ -40,13 +30,13 @@ App.VmAttestationNode = DS.Model.extend({
   attestationTimeFormatted: function () {
     return moment(this.get('attestationTime')).format('LLL');
   }.property('attestationTime'),
-  trustStatus: DS.attr('boolean'),
+  trustStatus: DS.attr('number'),
   trustDetails: DS.attr(),
   trustMessage: function () {
-    return 'BIOS: '+this.get('trustDetails.bios')+' VMM: '+this.get('trustDetails.vmm');
+    return 'BIOS: ' + App.trustToString(this.get('trustDetails.bios')).capitalize() + ', VMM: ' + App.trustToString(this.get('trustDetails.vmm')).capitalize();
   }.property('trustDetails'),
   reportMessage: function() {
-    return ((this.get('trustStatus'))?'VM was started on node '+this.get('nodeName')+' ('+this.get('ipAddress')+') that was attested as trusted. ':'VM was started on node that failed to be found attested as trusted.');
+    return 'Node attestation: ' + App.trustToString(this.get('trustStatus')).capitalize() + ' (' + this.get('trustMessage') + ')';
   }.property('trustMessage', 'trustStatus')
 });
 

@@ -223,6 +223,10 @@ Ember.Handlebars.registerBoundHelper('trust', function (code) {
   return (App.isEmpty(code)) ? App.NOT_APPLICABLE : App.trustToString(code).capitalize();
 });
 
+Ember.Handlebars.registerBoundHelper('trustIcon', function (code) {
+  return new Handlebars.SafeString('<i class="' + App.trustToString(code) + ' ' + App.trustToIconClass(code) + ' icon-large"></i>');
+});
+
 Ember.Handlebars.registerBoundHelper('operationalIcon', function (code) {
   return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>');
 });
@@ -303,7 +307,7 @@ App.selectTab = function (event) {
   } else {
     doc.text(leftPosition, verticalRowPosition, 'No attestations found.');
   }
-  doc.save(title + '-report.pdf');
+  doc.save(title + '.pdf');
 };
 
 App.percentageToRange = function (value, minimum, maximum) {

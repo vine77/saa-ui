@@ -26,14 +26,14 @@
         {{#if isTrustRegistered}}
           {{#view App.TooltipView titleBinding="trustMessage"}}
             {{#if isTrustUnknown}}
-              <i class="icon-large icon-question-sign trust-unknown"></i>
+              <i class="icon-large icon-question-sign unknown"></i>
             {{else}}
               <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
             {{/if}}
           {{/view}}
         {{else}}
           {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
-            <i class="icon-large icon-unlock trust-unregistered"></i>
+            <i class="icon-large icon-unlock unregistered"></i>
           {{/view}}
         {{/if}}
       </td>

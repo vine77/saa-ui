@@ -195,12 +195,11 @@ App.VmController = Ember.ObjectController.extend({
       this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
         reportContent = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
-          var title = "SAM VM Trust Report";
+          var title = 'vm-trust-report-' + reportContent.get('vmName');
           var subtitle = reportContent.get('vmName');
           var rowContent = [];
           rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
-          rowContent.push("((item.get('vmAttestationNode.trustStatus'))?'VM was started on node '+item.get('vmAttestationNode.nodeName')+' ('+item.get('vmAttestationNode.ipAddress')+') that was attested as trusted. ':'VM was started on node that failed to be found attested as trusted.')");
-          rowContent.push("item.get('vmAttestationNode.trustMessage')");
+          rowContent.push("item.get('vmAttestationNode.reportMessage')");
           App.pdfReport(reportContent, rowContent, title, subtitle, 'vmAttestations');
         } else {
           App.notify('Trust attestation logs were not found.');

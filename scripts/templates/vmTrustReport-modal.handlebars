@@ -7,17 +7,15 @@
     <table class="table table-bordered">
       <tr>
         <th class="column-small">Trust Status</th>
-        <th>Message</th>
+        <th>Trust Details</th>
         <th>Node</th>
         <th>Timestamp</th>
       </tr>
       {{#each attestation in view.content.vmTrustReport.vmAttestations}}
         <tr>
-          <td class="column-small">
-              <i {{bindAttr class=":icon-large attestation.node.trust_status:icon-lock:icon-unlock attestation.node.trust_status:trusted:untrusted"}}></i>
-          </td>
+          <td class="column-small">{{trustIcon attestation.vmAttestationNode.trustStatus}} {{trust attestation.vmAttestationNode.trustStatus}}</td>
           <td>{{attestation.vmAttestationNode.reportMessage}}</td>
-          <td>{{attestation.vmAttestationNode.nodeName}} </td>
+          <td>{{attestation.vmAttestationNode.nodeName}}</td>
           <td>{{timestamp attestation.vmAttestationNode.attestationTime}}</td>
         </tr>
       {{/each}}

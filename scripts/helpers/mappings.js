@@ -286,6 +286,52 @@ App.overallHealth = function (health, operational) {
   }
 };
 
+App.trustToString = function (value) {
+  switch (value) {
+    case App.UNKNOWN:
+    case '0':
+      return 'unknown';
+    case App.UNTRUSTED:
+    case '1':
+      return 'untrusted';
+    case App.TRUSTED:
+    case '2':
+      return 'trusted';
+    case App.UNREGISTERED:
+    case '3':
+      return 'unregistered';
+    default:
+      return 'n/a';
+  }
+}
+
+/**
+ * Convert trust status to corresponding icon class
+ *
+ * @param {number} code A numerical code for trust status
+ * @return {string} The corresponding icon class (to be applied to an <i> tag)
+ */
+App.trustToIconClass = function (code) {
+  if (typeof code === 'string') code = code.toLowerCase();
+  switch (code) {
+    case App.UNKNOWN:
+    case App.UNKNOWN.toString():
+      return 'icon-question-sign unknown';
+    case App.UNTRUSTED:
+    case App.UNTRUSTED.toString():
+      return 'icon-unlock untrusted';
+    case App.TRUSTED:
+    case App.TRUSTED.toString():
+      return 'icon-lock trusted';
+    case App.UNREGISTERED:
+    case App.UNREGISTERED.toString():
+      return 'icon-unlock unregistered';
+    default:
+      return 'icon-question-sign';
+  }
+}
+
+
 /**
  * Convert logTime labels to corresponding seconds used by Kibana
  *
@@ -359,23 +405,4 @@ App.rangeToPercentage = function(value, minimum, maximum) {
   var percentage = value/maximum;
   percentage = Math.round(percentage * 100);
   return percentage;
-}
-
-App.trustToString = function (value) {
-  switch (value) {
-    case App.UNKNOWN:
-    case '0':
-      return 'unknown';
-    case App.UNTRUSTED:
-    case '1':
-      return 'not trusted';
-    case App.TRUSTED:
-    case '2':
-      return 'trusted';
-    case App.UNREGISTERED:
-    case '3':
-      return 'not registered';
-    default:
-      return 'n/a';
-  }
 }

@@ -1,9 +1,3 @@
-/* TODO: Update embedded models
-DS.RESTAdapter.map('nodeTrustReport', {
-  attestations: {embedded: 'always'}
-});
-*/
-
 App.NodeTrustReportSerializer = DS.ActiveModelSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var json = JSON.parse(JSON.stringify(payload)),
@@ -13,13 +7,12 @@ App.NodeTrustReportSerializer = DS.ActiveModelSerializer.extend({
     json.attestations = attestations;
     json.node_trust_report.attestation_ids = attestation_ids;
 
-    json.attestations.map ( function (item, index, enumerable) {
+    json.attestations.map(function (item, index, enumerable) {
       item.id = item.attestation_time;
       item.node_trust_report_id = this.id.toString();
     }, json.node_trust_report);
 
     return this._super(store, primaryType, json, recordId, requestType);
-
   }
 });
 
@@ -29,11 +22,13 @@ App.Attestation = DS.Model.extend({
   attestation_time_formatted: function () {
     return moment(this.get('attestation_time')).format('LLL');
   }.property('attestation_time'),
-  trust_status: DS.attr('boolean'),
-  trust_message: DS.attr('string'),
+  trust_status: DS.attr('number'),
+  trust_details: DS.attr(),
+  trust_message: function () {
+    return 'BIOS: ' + App.trustToString(this.get('trust_details.bios')).capitalize() + ', VMM: ' + App.trustToString(this.get('trust_details.vmm')).capitalize();
+  }.property('trust_details'),
   report_message: function() {
-    return ((this.get('trust_status'))?'The node was booted and was found attested as trusted.':'The node was booted and failed to be found attested as trusted.') +
-           '('+this.get('trust_message')+')';
+    return 'Node attestation: ' + App.trustToString(this.get('trust_status')).capitalize() + ' (' + this.get('trust_message') + ')';
   }.property('trust_message', 'trust_status')
 });
 

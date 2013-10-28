@@ -184,7 +184,7 @@ App.NodeController = Ember.ObjectController.extend({
     // TODO: trustMessage and isTrustRegisteredMessage
     if (this.get('isTrustRegistered')) {
       if (this.get('isTrustUnknown')) {
-        return '<i class="icon-large icon-question-sign trust-unknown"></i>';
+        return '<i class="icon-large icon-question-sign unknown"></i>';
       } else {
         if (this.get('isTrusted')) {
           return '<i class="icon-large icon-lock trusted"}}></i>';
@@ -193,7 +193,7 @@ App.NodeController = Ember.ObjectController.extend({
         }
       }
     } else {
-      return '<i class="icon-large icon-unlock trust-unregistered"></i>';
+      return '<i class="icon-large icon-unlock unregistered"></i>';
     }
   }.property('isTrustRegistered', 'isTrustUnknown', 'isTrusted'),
   assuredIcon: function () {
@@ -230,12 +230,11 @@ App.NodeController = Ember.ObjectController.extend({
     exportTrustReport: function (reportContent) {
       this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
-          var title = "SAM Node Trust Report";
+          var title = 'node-trust-report-' + reportContent.get('name');
           var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';
           var rowContent = [];
           rowContent.push("item.get('attestation_time_formatted')");
-          rowContent.push("((item.get('trust_status'))?'The node was booted and was found attested as trusted.':'The node was booted and failed to be found attested as trusted.')");
-          rowContent.push("item.get('trust_message')");
+          rowContent.push("item.get('report_message')");
           App.pdfReport(nodeTrustReport, rowContent, title, subtitle, 'attestations');
         } else {
           App.event('No trust attestation logs were found for this node.', App.WARNING);

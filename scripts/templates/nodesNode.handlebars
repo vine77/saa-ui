@@ -49,14 +49,14 @@
             {{#if isTrustRegistered}}
               {{#view App.TooltipView titleBinding="trustMessage"}}
                 {{#if isTrustUnknown}}
-                  <i class="icon-large icon-question-sign trust-unknown"></i>
+                  <i class="icon-large icon-question-sign unknown"></i>
                 {{else}}
                   <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
                 {{/if}}
               {{/view}}
             {{else}}
               {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
-                <i class="icon-large icon-unlock trust-unregistered"></i>
+                <i class="icon-large icon-unlock unregistered"></i>
               {{/view}}
             {{/if}}
             {{trust status.trust}}
@@ -164,24 +164,20 @@
     </div>
     <div class="tab-pane trust">
       {{#if nodeTrustReport.attestations}}
-        <div class="align-right">
+        <p class="pull-right">
           <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
-        </div>
+        </p>
         <table class="table table-bordered">
           <tr>
             <th class="column-small">Trust Status</th>
-            <th>Message</th>
+            <th>Trust Details</th>
             <th>Timestamp</th>
           </tr>
           {{#each attestation in nodeTrustReport.attestations}}
             <tr>
-              <td class="column-small">
-                {{#view App.TooltipView titleBinding="attestation.trust_message" dataContainer="body"}}
-                  <i {{bind-attr class=":icon-large attestation.trust_status:icon-lock:icon-unlock attestation.trust_status:trusted:untrusted"}}></i>
-                {{/view}}
-              </td>
+              <td class="column-small">{{trustIcon attestation.trust_status}} {{trust attestation.trust_status}}</td>
               <td>{{attestation.report_message}}</td>
-              <td>{{attestation.attestation_time_formatted}}</td>
+              <td>{{timestamp attestation.attestation_time}}</td>
             </tr>
           {{/each}}
         </table>
