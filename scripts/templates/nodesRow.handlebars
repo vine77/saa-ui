@@ -105,9 +105,11 @@
               {{#if isScheduled}}
                 <li><a {{action "unschedule" this}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
               {{else}}
-                {{#each socketNumber in socketsEnum}}
-                  <li><a {{action "schedule" this socketNumber}}><i class="icon-magnet"></i> Place VMs on Socket {{socketNumber}}</a></li>
-                {{/each}}
+                {{#with this as node}}
+                  {{#each socketsEnum}}
+                    <li><a {{action "schedule" node this}}><i class="icon-magnet"></i> Place VMs on Socket {{this}}</a></li>
+                  {{/each}}
+                {{/with}}
               {{/if}}
               {{#if samRegistered}}
                 <li><a {{action "unregister" this}}><i class="icon-remove"></i> Unregister</a></li>

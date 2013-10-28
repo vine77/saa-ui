@@ -147,7 +147,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     schedule: function (node, socketNumber) {
       var self = this;
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
-      var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '"?');
+      var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '" (socket ' + socketNumber + ')?');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
