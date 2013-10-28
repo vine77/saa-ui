@@ -1,6 +1,7 @@
 // TODO: This is not a real model or controller
 App.Graphs = Ember.Controller.extend({
   graph: function(emberId, entityName, entityType) {
+    entityName = entityName.replace(/\./g, '-');
     return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName,
       type: 'GET',
