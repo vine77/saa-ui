@@ -215,7 +215,7 @@ App.NodeController = Ember.ObjectController.extend({
 
   // Observers
   graphObserver: function () {
-    return App.graphs.graph(this.get('id'), this.get('name'), 'node');
+    return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isSelected', 'isExpanded'),
 
   // Actions

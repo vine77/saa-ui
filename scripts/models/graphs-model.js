@@ -1,9 +1,11 @@
 // TODO: This is not a real model or controller
 App.Graphs = Ember.Controller.extend({
-  graph: function(emberId, entityName, entityType) {
+  graph: function(emberId, entityName, entityType, numSeries) {
     entityName = entityName.replace(/\./g, '-');
+    var url = ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName;
+    if (numSeries) url += '&numSeries=' + numSeries;
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName,
+      url: url,
       type: 'GET',
       dataType: 'json'
     }).then(function (data) {
