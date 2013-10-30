@@ -1,5 +1,5 @@
 App.StatusController = Ember.ObjectController.extend({
-  needs: ['application'],
+  needs: 'application',
   // Properties
   connected: false,
   isUpdating: false,
@@ -34,12 +34,14 @@ App.StatusController = Ember.ObjectController.extend({
         });
       }
     } else {
-      return this.get('model').reload().then(function (status) {
-        self.set('connected', true);
-      }, function (error) {
-        self.set('connected', false);
-        return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
-      });
+      if (this.get('controllers.application.isAutoRefreshEnabled')) {
+        return this.get('model').reload().then(function (status) {
+          self.set('connected', true);
+        }, function (error) {
+          self.set('connected', false);
+          return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+        });
+      }
     }
   }
 });

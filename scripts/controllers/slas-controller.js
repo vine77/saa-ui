@@ -28,7 +28,7 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
       }
     },
     refresh: function () {
-      this.store.find('sla', undefined, true);
+      this.store.find('sla');
     }
   }
 });

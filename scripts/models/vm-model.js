@@ -1,4 +1,4 @@
-App.VmSerializer = DS.ActiveModelSerializer.extend({
+App.VmSerializer = App.ApplicationSerializer.extend({
   attrs: {
     name: 'vm_name'
   }

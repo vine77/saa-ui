@@ -67,7 +67,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       this.get('model').setEach('isSelected', !isEverythingSelected);
     },
     refresh: function () {
-      this.store.find('vm', undefined, true);
+      this.store.find('vm');
     },
     exportTrustReport: function (reportContent) {
       this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {

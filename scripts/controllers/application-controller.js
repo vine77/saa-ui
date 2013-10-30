@@ -41,17 +41,17 @@ App.ApplicationController = Ember.Controller.extend({
   autoRefresh: function () {
     // TODO: Add authentication check to polling
     if (this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
-      this.store.find('slo', undefined, true);
-      this.store.find('sla', undefined, true);
-      this.store.find('flavor', undefined, true);
-      this.store.find('vm', undefined, true);
+      this.store.find('slo');
+      this.store.find('sla');
+      this.store.find('flavor');
+      this.store.find('vm');
       if (App.mtWilson.get('isInstalled')) {
-        self.store.find('trustMle', undefined, true);
-        this.store.find('trustNode', undefined, true);
+        self.store.find('trustMle');
+        this.store.find('trustNode');
       }
-      this.store.find('node', undefined, true);
+      this.store.find('node');
     }
-    if (this.get('isAutoRefreshEnabled')) Ember.run.later(this, 'autoRefresh', 20000);
+    Ember.run.later(this, 'autoRefresh', 20000);
   },
 
   // Actions
@@ -76,15 +76,15 @@ App.ApplicationController = Ember.Controller.extend({
     refreshNodes: function () {
       var self = this;
       if (App.mtWilson.get('isInstalled')) {
-        this.store.find('trustNode', undefined, true).then(function() {
-          self.store.find('node', undefined, true);
+        this.store.find('trustNode').then(function() {
+          self.store.find('node');
         });
       } else {
-        this.store.find('node', undefined, true);
+        this.store.find('node');
       }
     },
     refreshVms: function () {
-      this.store.find('vm', undefined, true);
+      this.store.find('vm');
     },
     bypassLogin: function () {
       App.nova.set('exists', true);
@@ -99,11 +99,9 @@ App.ApplicationController = Ember.Controller.extend({
     },
     disableAutoRefresh: function () {
       this.set('isAutoRefreshEnabled', false);
-      console.log('Disabled auto-refresh');
     },
     enableAutoRefresh: function () {
       this.set('isAutoRefreshEnabled', true);
-      console.log('Enabled auto-refresh');
     }
   }
 });

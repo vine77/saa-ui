@@ -330,7 +330,7 @@ App.TrustIndexRoute = App.EnabledRoute.extend({
 // Whitelist/Fingerprint Manager
 App.TrustMlesRoute = App.EnabledRoute.extend({
   model: function () {
-    return this.store.find('trustMle', undefined, true);
+    return this.store.find('trustMle');
   }
 });
 App.TrustMlesIndexRoute = App.EnabledRoute.extend({

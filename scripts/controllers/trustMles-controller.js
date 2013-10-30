@@ -45,6 +45,10 @@ App.TrustMlesController = Ember.ArrayController.extend(App.Filterable, App.Sorta
           });
         }
       }
+    },
+    refresh: function () {
+      this.store.find('trustMle');
+      this.store.find('trustNode');
     }
   }
 });

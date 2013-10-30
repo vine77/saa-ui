@@ -35,7 +35,7 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
       }
     },
     refresh: function () {
-      this.store.find('flavor', undefined, true);
+      this.store.find('flavor');
     },
     deleteFlavor: function (flavor) {
       var confirmedDelete = confirm('Are you sure you want to delete flavor "' + flavor.get('name') + '"?');

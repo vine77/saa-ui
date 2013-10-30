@@ -1,6 +1,6 @@
 App.LogAdapter = DS.RESTDefinitionsAdapter.extend();
 
-App.LogSerializer = DS.ActiveModelSerializer.extend({
+App.LogSerializer = App.ApplicationSerializer.extend({
   attrs: {
     categories: {embedded: 'always'}
   }

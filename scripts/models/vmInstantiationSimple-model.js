@@ -1,4 +1,4 @@
-App.VmInstantiationSimpleSerializer = DS.ActiveModelSerializer.extend({
+App.VmInstantiationSimpleSerializer = App.ApplicationSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var payload = JSON.parse(JSON.stringify(payload)),
         slo_gates = payload.vm_instantiation_simple.slo_gates,

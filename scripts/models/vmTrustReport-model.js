@@ -1,4 +1,4 @@
-App.VmTrustReportSerializer = DS.ActiveModelSerializer.extend({
+App.VmTrustReportSerializer = App.ApplicationSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var json = JSON.parse(JSON.stringify(payload)),
         vm_attestations = json.vm_trust_report.attestations,

@@ -110,10 +110,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     refresh: function () {
       if (!this.get('isUpdating')) {
         if (App.mtWilson.get('isInstalled') === true) {
-          this.store.find('trustNode', undefined, true);
-          this.store.find('node', undefined, true);
+          this.store.find('trustNode');
+          this.store.find('node');
         } else {
-          this.store.find('node', undefined, true);
+          this.store.find('node');
         }
       }
     },

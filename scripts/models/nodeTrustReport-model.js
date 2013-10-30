@@ -1,4 +1,4 @@
-App.NodeTrustReportSerializer = DS.ActiveModelSerializer.extend({
+App.NodeTrustReportSerializer = App.ApplicationSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var json = JSON.parse(JSON.stringify(payload)),
         attestations = json.node_trust_report.attestations,
