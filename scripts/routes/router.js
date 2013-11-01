@@ -73,7 +73,12 @@ App.ApplicationRoute = Ember.Route.extend({
     var self = this;
     return this.controllerFor('status').updateCurrentStatus().then(function () {
       // Status API has responded
-      return App.nova.check().then(function () {
+      var configurationPromise = Ember.RSVP.hash({
+        nova: App.nova.check(),
+        openrc: App.openrc.check(),
+        quantum: App.quantum.check()
+      });
+      return configurationPromise.then(function () {
         // SAM is configured
         self.store.find('slo');
         self.store.find('sla');
@@ -99,8 +104,6 @@ App.ApplicationRoute = Ember.Route.extend({
       }, function () {
         // SAM is not configured
         self.store.find('user');
-        App.openrc.check();
-        App.quantum.check();
         App.network.check();
         App.build.find();
         App.settingsLog.fetch();

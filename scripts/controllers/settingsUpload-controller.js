@@ -1,6 +1,7 @@
 App.SettingsUploadController = Ember.ArrayController.extend({
   needs: ['application'],
   isEnabledBinding: 'controllers.application.isEnabled',
+  isConfiguredBinding: 'controllers.application.isConfigured',
   novaExistsBinding: 'App.nova.exists',
   novaSuccessBinding: 'App.nova.success',
   openrcExistsBinding: 'App.openrc.exists',
