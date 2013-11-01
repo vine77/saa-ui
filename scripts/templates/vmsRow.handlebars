@@ -54,14 +54,14 @@
       <td>
         <div class="contention">
           {{#if contentionValueExists}}
-            <div class="contention-bar">
-              {{#view App.TooltipView titleBinding="contentionMessage" barBinding="contentionWidth"}}
+            {{#view App.TooltipView titleBinding="contentionMessage" barBinding="contentionWidth"}}
+              <div class="contention-bar">
                 <div class="contention-bar-width" {{bindAttr style="contentionWidth"}} >
                   <div class="contention-gradient"> </div>
                 </div>
-              {{/view}}
-            </div>
-            {{na contention.system.llc.value}}
+              </div>
+              {{na contention.system.llc.value}}
+            {{/view}}
           {{else}}
             <span class="not-applicable">n/a</span>
           {{/if}}
