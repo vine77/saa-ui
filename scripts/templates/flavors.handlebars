@@ -31,13 +31,6 @@
               <td class="column-medium">{{vms.length}}</td>
               <td class="column-large">
                 {{#if sla}}
-                  {{! {{view Ember.Select viewName="select"
-                    contentBinding="slas"
-                    optionValuePath="content.id"
-                    optionLabelPath="content.name"
-                    valueBinding="sla.id"
-                    selectionBinding="sla"
-                  }}
                   {{sla.name}}
                 {{/if}}
               </td>
@@ -54,32 +47,45 @@
                     {{#if vms}}
                       <li><a onclick="App.selectTab(event)">VMs</a></li>
                     {{/if}}
+                    {{!--
                     {{#if sla}}
                       <li><a onclick="App.selectTab(event)">SLA</a></li>
                     {{/if}}
+                    --}}
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane details active">
                       <table class="table table-bordered">
                         <tr>
                           <th>Name</th>
-                          <th>Public</th>
                           <th>vCPUs</th>
                           <th>Memory</th>
-                          <th>Swap</th>
-                          <th>RX/TX factor</th>
-                          <th>Ephemeral</th>
                           <th>Root</th>
+                          <th>Swap</th>
+                          <th>Ephemeral</th>
+                          <th>RX/TX factor</th>
+                          <th>SLA</th>
                         </tr>
                         <tr>
                           <td>{{na name}}</td>
-                          <td>{{capitalize public}}</td>
                           <td>{{na vcpus}}</td>
                           <td>{{readableMegabytes memory}}</td>
-                          <td>{{na swap}} GiB</td>
-                          <td>{{na rxtxFactor}}</td>
-                          <td>{{na ephemeral}}</td>
                           <td>{{na root}} GiB</td>
+                          <td>{{na swap}} GiB</td>
+                          <td>{{na ephemeral}} GiB</td>
+                          <td>{{na rxtxFactor}}</td>
+                          <td>
+                            {{#if sla}}
+                              {{sla.name}}
+                              {{#each slo in sla.slos}}
+                                <li>{{slo.description}}</li>
+                              {{else}}
+                                <li>No SLOs</li>
+                              {{/each}}
+                            {{else}}
+                              No SLA
+                            {{/if}}
+                          </td>
                         </tr>
                       </table>
                     </div>
@@ -92,6 +98,7 @@
                         {{/each}}
                       </ul>
                     </div>
+                    {{!--
                     <div class="tab-pane sla">
                       <strong>{{sla.name}}</strong>
                       <ul>
@@ -102,6 +109,7 @@
                         {{/each}}
                       </ul>
                     </div>
+                    --}}
                   </div>
                 </div>
               </td>

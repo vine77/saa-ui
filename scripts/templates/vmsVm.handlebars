@@ -131,7 +131,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="column-medium">SLA Name</th>
-          <td>{{capitalize slaName}}</td>
+          <td>{{#link-to "sla" sla}}{{capitalize slaName}}{{/link-to}}</td>
         </tr>
         <tr>
           <th class="column-medium">SLA Violated</th>
@@ -140,6 +140,16 @@
         <tr>
           <th class="column-medium">SLA Message</th>
           <td>{{status.slaMessage}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">SLOs</th>
+          <td>
+            {{#each slo in sla.slos}}
+              <li>{{slo.description}}</li>
+            {{else}}
+              <li>No SLOs</li>
+            {{/each}}
+          </td>
         </tr>
       </table>
     </div>
