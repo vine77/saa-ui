@@ -32,10 +32,12 @@
           <th class="column-medium">Trust</th>
           <td>{{trust status.trust}}</td>
         </tr>
+        {{!--
         <tr>
           <th class="column-medium">Locked</th>
           <td>{{capitalize status.locked}}</td>
         </tr>
+        --}}
         <tr>
           <th class="column-medium">vCPU Cores</th>
           <td>{{capitalize capabilities.cores}}</td>
@@ -62,21 +64,19 @@
           <th class="column-medium">Floating IP Addresses</th>
           <td>{{concatenate floatingIps}}</td>
         </tr>
-        <tr>
-          <th class="column-medium">Noisy Neighbor</th>
-          <td>
-            {{#if notNoisy}}
-              Not an aggressor or victim
-            {{else}}
+        {{#unless notNoisy}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor</th>
+            <td>
               {{#if isAggressor}}
                 <i {{bindAttr class=":icon-bullhorn :error"}}></i> Aggressor
               {{/if}}
               {{#if isVictim}}
                 <i {{bindAttr class=":icon-headphones :warning"}}></i> Victim
               {{/if}}
-            {{/if}}
-          </td>
-        </tr>
+            </td>
+          </tr>
+        {{/unless}}
         {{#if aggressors}}
           <tr>
             <th class="column-medium">Noisy Neighbor Aggressor(s)</th>

@@ -8,8 +8,13 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   openrcSuccessBinding: 'App.openrc.success',
   quantumExistsBinding: 'App.quantum.exists',
   quantumSuccessBinding: 'App.quantum.success',
+  isChangingFiles: false,
+  showButtons: function () {
+    return !this.get('isConfigured') || this.get('isChangingFiles');
+  }.property('isConfigured', 'isChangingFiles'),
   actions: {
     uploadFiles: function () {
+      var self = this;
       // Require all 3 files to be specified
       var allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val() && !!$('#quantumForm').find('input[type=file]').val();
       if (!allFilesSpecified) {
@@ -36,10 +41,25 @@ App.SettingsUploadController = Ember.ArrayController.extend({
             // TODO: Add Status API polling to determine when to reload app
           }, 30000);
         }, function () {
-          $('i.loading').addClass('hide');
           App.event('Error uploading config files.', App.ERROR);
+          $('i.loading').addClass('hide');
+          $('.fileupload i').removeClass().addClass('icon-file');
+          $('.fileupload').fileupload('reset');
+          self.set('isChangingFiles', false);
+          // Reset isConfigured state by re-checking file existence
+          App.nova.check();
+          App.openrc.check();
+          App.quantum.check();
         });
       }
+    },
+    changeFiles: function () {
+      $('.fileupload').fileupload('clear');
+      this.set('isChangingFiles', true);
+    },
+    cancel: function () {
+      $('.fileupload').fileupload('reset');
+      this.set('isChangingFiles', false);
     },
     uploadNova: function () {
       App.nova.upload();

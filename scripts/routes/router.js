@@ -369,11 +369,9 @@ App.SettingsLogRoute = Ember.Route.extend({
 });
 
 App.SettingsUploadRoute = Ember.Route.extend({
-  /*
-  model: function () {
-    return App.overrides.fetch();
+  deactivate: function () {
+    this.controllerFor('settingsUpload').send('cancel');
   }
-  */
 });
 
 App.SettingsMailserverRoute = Ember.Route.extend({
