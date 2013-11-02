@@ -1,4 +1,6 @@
-App.FlavorAdapter = DS.RESTConfigAdapter.extend();
+App.FlavorAdapter = App.ApplicationAdapter.extend({
+  namespace: 'api/v1/configuration'
+});
 
 App.Flavor = DS.Model.extend({
   ephemeral: DS.attr('number'),

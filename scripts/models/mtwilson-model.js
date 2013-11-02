@@ -7,33 +7,33 @@ App.MtWilson = Ember.Object.extend({
     return Ember.$.ajax({
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
       type: 'GET',
-      dataType: "json"
-    }).then(function (data, textStatus, xhr) {
-      App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
-      // Mt. Wilson is installed
-      App.mtWilson.set('isInstalled', true);
-      App.mtWilson.set('isInstalling', false);
-    }, function (xhr, textStatus, errorThrown) {
-      App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
-      switch (xhr.status) {
-        case 404:
-          // Mt. Wilson is not installed
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', false);
-          break;
-        case 410:
-           // Mt. Wilson is not installed
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', false);
-          App.mtWilson.set('isSupported', false);
-          break;
-        case 503:
-          // Mt. Wilson install is in progress
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', true);
-          break;
-        default:
-          // Unhandled response code
+      dataType: "json",
+      complete: function (xhr, textStatus) {
+        App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
+        switch (xhr.status) {
+          case 200:
+            // Mt. Wilson is installed
+            App.mtWilson.set('isInstalled', true);
+            App.mtWilson.set('isInstalling', false);
+          case 404:
+            // Mt. Wilson is not installed
+            App.mtWilson.set('isInstalled', false);
+            App.mtWilson.set('isInstalling', false);
+            break;
+          case 410:
+             // Mt. Wilson is not installed
+            App.mtWilson.set('isInstalled', false);
+            App.mtWilson.set('isInstalling', false);
+            App.mtWilson.set('isSupported', false);
+            break;
+          case 503:
+            // Mt. Wilson install is in progress
+            App.mtWilson.set('isInstalled', false);
+            App.mtWilson.set('isInstalling', true);
+            break;
+          default:
+            // Unhandled response code
+        }
       }
     });
   },

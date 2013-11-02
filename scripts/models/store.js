@@ -94,8 +94,10 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
   extractFindAll: function (store, type, payload, id, requestType) {
     var missingRecords = [];
     store.all(type).forEach(function (item, index, enumerable) {
-      var payloadIds = payload[Object.keys(payload)[0]].getEach('id');
-      var isMissing = (payloadIds.indexOf(item.get('id')) === -1);
+      var payloadIds = payload[Object.keys(payload)[0]].getEach('id').map(function (item, index, enumerable) {
+        return item.toString();
+      });
+      var isMissing = (payloadIds.indexOf(item.get('id').toString()) === -1);
       if (isMissing) missingRecords.push(item);
     });
     var extracted = this._super(store, type, payload, id, requestType);
@@ -106,22 +108,12 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
   }
 });
 
-// RESTConfigAdapter for nested configuration namespace
-DS.RESTConfigAdapter = App.ApplicationAdapter.extend({
-  namespace: 'api/v1/configuration'
-});
-
 // RESTSingletonAdapter for singleton resources in primary namespace
 DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
   // Remove ID from this singleton resource
   buildURL: function (type, id) {
     return this._super(type);
   }
-});
-
-// RESTSingletonConfigAdapter for singleton resources in configuration namespace
-DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend({
-  namespace: 'api/v1/configuration'
 });
 
 // RESTDefinitionsAdapter
