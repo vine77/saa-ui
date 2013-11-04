@@ -10,7 +10,7 @@ App.VmInstantiationDetailedSerializer = App.ApplicationSerializer.extend({
       var instantiation_slo_ids = [];
 
       instantiation_node.instantiation_slos.forEach(function (instantiation_slo, index, enumerable) {
-        instantiation_slo.id = btoa(instantiation_slo.description);
+        instantiation_slo.id = btoa(JSON.stringify(instantiation_slo));
         instantiation_slo.instantiation_node_id = instantiation_node.id;
         instantiation_slo_ids.push(instantiation_slo.id);
         if (instantiation_slo.id) instantiation_slos.push(instantiation_slo);
