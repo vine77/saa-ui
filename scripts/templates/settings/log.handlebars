@@ -3,24 +3,27 @@
     <h3> Log Settings</h3>
   </div>
   <form class="form-horizontal well-clean shadow-lifted">
-    <section id="reset-log-data">
-      <legend> Reset Log Data</legend>
+    <section id="log-informational-values">
+      <legend>Log Details</legend>
       <dl class="dl-horizontal">
-        <input type="button" value="Delete All Log Data" class="btn btn-danger" {{action deleteLogs}}>
-        <i class="loading hide"></i>
+        <dt>Actual Size:</dt>
+        <dd>{{readableMegabytes actualSize}}</dd>
+        <dt>Threshold:</dt>
+        <dd>{{readableMegabytes thresholdSize}}</dd>
       </dl>
     </section>
-    <section id="log-informational-values">
-      <legend>Log Informational Values</legend>
-      <dl class="dl-horizontal">
-        <dt>Actual Size</dt>
-        <dd>{{numberWithCommas actualSize}} MiB</dd>
-        <dt>Threshold Size</dt>
-        <dd>{{numberWithCommas thresholdSize}} MiB</dd>
-      </dl>
+    <section id="reset-log-data">
+      <legend>Reset Log Data</legend>
+      <div class="control-group">
+        <label class="control-label">Delete all log data:</label>
+        <div class="controls">
+          <input type="button" value="Delete Log Data" class="btn btn-danger" {{action deleteLogs}}>
+          <i class="loading hide"></i>
+        </div>
+      </div>
     </section>
     <section id="settable-values">
-      <legend>Settable Values</legend> 
+      <legend>Log Settings</legend>
       <div class="control-group">
         <label class="control-label">Maximum Days:</label>
         <div class="controls">

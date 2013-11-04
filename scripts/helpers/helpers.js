@@ -135,9 +135,9 @@ App.readableSize = function (size) {
 };
 
 App.numberWithCommas = function (number) {
-    if (number){
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+  if (number){
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 }
 
 App.isOdd = function (number) {
