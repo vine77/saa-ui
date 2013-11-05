@@ -15,7 +15,6 @@ App.SlasColumnsController = App.ColumnsController.extend({
 
 App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   sortProperty: 'name',
-  itemController: 'sla',
   actions: {
     selectAll: function () {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');

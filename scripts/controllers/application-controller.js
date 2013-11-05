@@ -7,7 +7,7 @@ App.ApplicationController = Ember.Controller.extend({
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
     this._super();
-    Ember.run.later(this, 'autoRefresh', 20000);
+    this.autoRefresh();
     this.resizeHandler();
     $(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
   },
