@@ -52,6 +52,8 @@ App.Network = Ember.Object.extend({
         App.network.set('management', data.management);
         App.network.set('external', data.external);
         App.network.set('dns', data.dns);
+        App.network.set('other', data.other);
+        App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
         App.event('Network configuration saved successfully.', App.SUCCESS);
       },
       error: function (xhr) {
