@@ -7,5 +7,8 @@ App.TooltipView = Ember.View.extend({
   },
   mouseLeave: function (event) {
     $('#' + this.get('elementId')).tooltip('hide');
+  },
+  willDestroyElement: function () {
+    $('#' + this.get('elementId')).tooltip('hide');
   }
 });
