@@ -1,0 +1,11 @@
+{
+  "log_settings": [
+    {
+      "id": "current",
+      "threshold_size": 826,
+      "maximum_days": 0,
+      "configured_size": 12000,
+      "actual_size": 828
+    }
+  ]
+}

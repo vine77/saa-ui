@@ -6,11 +6,42 @@
     <section id="log-informational-values">
       <legend>Log Details</legend>
       <dl class="dl-horizontal">
-        <dt>Actual Size:</dt>
-        <dd>{{readableMegabytes actualSize}}</dd>
+        <dt>
+          {{#view App.TooltipView title="Amount of data locally stored in the database"}}
+            Actual Size:
+          {{/view}}
+        </dt>
+        <dd>{{readableMegabytes model.actualSize}}</dd>
         <dt>Threshold:</dt>
-        <dd>{{readableMegabytes thresholdSize}}</dd>
+        <dd>{{readableMegabytes model.thresholdSize}}</dd>
       </dl>
+      <div class="control-group">
+        <label class="control-label">Configured Size:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="model.configuredSize" class="input-small"}} MiB
+        </div>
+      </div>
+      <p class="alert"><strong>Please Note:</strong>
+      When "Actual Size" exceeds "Threshold Size": once an hour, day(s) of data will be deleted until "Actual Size" is less than "Threshold Size". Threshold is a calculated value - the maximum value is a little less than the configured size, and dependent on the amount of free space you have left.
+      </p>
+    </section>
+    <section id="settable-values">
+      <legend>Log Settings</legend>
+      <div class="control-group">
+        <label class="control-label">Maximum Days:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="model.maximumDays" class="input-small"}} days
+        </div> 
+        <br />
+        <p class="alert"><strong>Please Note:</strong>
+        "Maximum Days" are applied to every IPM.
+        </p>
+      </div>
+      <div class="form-actions">
+        <input type="button" value="Save" class="btn btn-primary" {{action "update" model.id}}>
+        <i class="loading hide"></i>
+        <input type="button" value="Cancel" class="btn btn-primary" {{action "cancel" model}}>
+      </div>
     </section>
     <section id="reset-log-data">
       <legend>Reset Log Data</legend>
@@ -20,25 +51,6 @@
           <input type="button" value="Delete Log Data" class="btn btn-danger" {{action deleteLogs}}>
           <i class="loading hide"></i>
         </div>
-      </div>
-    </section>
-    <section id="settable-values">
-      <legend>Log Settings</legend>
-      <div class="control-group">
-        <label class="control-label">Maximum Days:</label>
-        <div class="controls">
-          {{view Ember.TextField valueBinding="App.settingsLog.maximumDays" class="input-small"}} days
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label">Configured Size:</label>
-        <div class="controls">
-          {{view Ember.TextField valueBinding="App.settingsLog.configuredSize" class="input-small"}} MiB
-        </div>
-      </div>
-      <div class="form-actions">
-        <input type="button" value="Save" class="btn btn-primary" {{action update}}>
-        <i class="loading hide"></i>
       </div>
     </section>
   </form>

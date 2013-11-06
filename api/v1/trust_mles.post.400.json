@@ -1,0 +1,3 @@
+{
+  "error_message": "Mt. Wilson Whitelist error status code: 400, content: {\"error_code\":\"MS_HOST_COMMUNICATION_ERROR\",\"error_message\":\"Error during communication with the host. Please verify the host parameters. 'Trust Agent failed with code '1007' and message 'TrustAgent:  Error while creating identity.'. See the Trust Agent log located at /var/log/tagent.log for more details.'.\"}"
+}

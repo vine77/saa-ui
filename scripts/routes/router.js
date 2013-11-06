@@ -100,13 +100,12 @@ App.ApplicationRoute = Ember.Route.extend({
         App.quantum.check();
         App.network.check();
         App.build.find();
-        App.settingsLog.fetch();
+        //App.settingsLog.fetch();
       }, function () {
         // SAM is not configured
         self.store.find('user');
         App.network.check();
         App.build.find();
-        App.settingsLog.fetch();
         // Don't block loading if SAM is not configured
         return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
       });
@@ -364,7 +363,7 @@ App.SettingsUsersRoute = Ember.Route.extend({
 });
 App.SettingsLogRoute = Ember.Route.extend({
   model: function() {
-    return App.settingsLog.fetch();
+    return this.store.find('logSetting', 'current');
   }
 });
 
