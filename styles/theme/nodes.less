@@ -35,15 +35,10 @@
       table-layout: fixed;
       width: 100%;
       @rowHeight: 34px;
-      > thead,
-      > tbody {
-        > tr {
-          > th,
-          > td:not(:nth-last-child(2)):not(:nth-last-child(1)) {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
+      // Text-overflow with ellipsis
+      > tbody > tr > {
+        td:nth-of-type(6) {  // Hostname
+          .text-overflow();
         }
       }
       > tbody {
