@@ -59,14 +59,14 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   }.property('model.@each.vmInfo.count'),
   totalVcpus: function () {
     if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').rejectBy('samControlled', 0).reduce(function (previousValue, item, index, enumerable) {
       var count = (item.get('vcpus.used') > 0) ? item.get('vcpus.used') : 0;
       return previousValue + count;
     }, 0);
   }.property('model.@each.vcpus.used'),
   maxVcpus: function () {
     if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').rejectBy('samControlled', 0).reduce(function (previousValue, item, index, enumerable) {
       var max = (item.get('vcpus.max') > 0) ? item.get('vcpus.max') : 0;
       return previousValue + max;
     }, 0);
@@ -138,7 +138,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           name: "unregister"
         }).save().then( function () {
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
-          node.set('samControlled', 0);
+          node.reload();
         }, function (xhr) {
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
         });
