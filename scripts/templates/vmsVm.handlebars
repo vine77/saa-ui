@@ -337,24 +337,24 @@
             <thead>
               <tr>
                 <th>Node</th>
-                <th>Selected</th>
-                <th>Instantiation SLOs</th>
+                <th></th>
                 <th>Contention</th>
               </tr>
             </thead>
             <tbody>
               {{#each instantiationNode in vmInstantiationDetailed.instantiationNodes}}
                 <tr {{bind-attr class="instantiationNode.selected:success"}}>
-                  <td>{{#link-to "nodesNode" instantiationNode.node}}{{instantiationNode.node.name}}{{/link-to}}</td>
-                  <td>
-                    {{#if instantiationNode.selected}}
-                      <strong>Selected</strong>
-                    {{else}}
-                      Not selected
-                    {{/if}}
+                  <td class="column-medium">
+                    <p class="break-word">
+                      {{#link-to "nodesNode" instantiationNode.node}}
+                        {{instantiationNode.node.name}}
+                      {{/link-to}}
+                    </p>
+                    {{#if instantiationNode.selected}} (Selected) {{/if}}
                   </td>
                   <td class="table nested-slos-cell">
                     <table class="table nested-slos-table">
+                      <caption>Instantiation SLOs</caption>
                       <thead>
                         <tr>
                           <th>Description</th>
@@ -370,6 +370,30 @@
                             <td><span class="nowrap">{{slo.readableValue}}</span></td>
                             <td><span class="nowrap">{{slo.unit}}</span></td>
                             <td>{{capitalize slo.passed}}</td>
+                          </tr>
+                        {{else}}
+                          <tr>
+                            <td colspan="4"><span class="not-applicable">n/a</span></td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                    <br />
+                    <table class="table nested-slos-table">
+                      <caption>Internal Filters</caption>
+                      <thead>
+                        <tr>
+                          <th>Description</th>
+                          <th>Value</th>
+                          <th>Passed</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each internalFilter in instantiationNode.internalFilters}}
+                          <tr>
+                            <td>{{internalFilter.description}}</td>
+                            <td><span class="nowrap">{{capitalize internalFilter.value}}</span></td>
+                            <td>{{capitalize internalFilter.passed}}</td>
                           </tr>
                         {{else}}
                           <tr>

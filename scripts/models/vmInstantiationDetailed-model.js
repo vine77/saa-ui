@@ -45,7 +45,8 @@ App.InstantiationNode = DS.Model.extend({
   contention: DS.attr(),
   vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
   node: DS.belongsTo('node'),
-  instantiationSlos: DS.hasMany('instantiationSlo')
+  instantiationSlos: DS.hasMany('instantiationSlo'),
+  internalFilters: DS.attr()
 });
 
 App.InstantiationSlo = DS.Model.extend({
