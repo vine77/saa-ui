@@ -5,14 +5,16 @@ App.Slo = DS.Model.extend({
   sla: DS.belongsTo('sla'),
 
   // Properties from API
-  elementName: DS.attr('string'),
   className: DS.attr('string'),
-  sloType: DS.attr('string'),
+  description: DS.attr('string'),
+  elementName: DS.attr('string'),
   operator: DS.attr('string'),
-  value: DS.attr('string'),
+  sloType: DS.attr('string'),
   unit: DS.attr('string'),
+  value: DS.attr('string'),
 
   // Computed properties
+  /*
   description: function () {
     var description = [];
     if (this.get('sloType')) description.push(this.get('sloType').replace('_', ' ') + ': ');
@@ -21,4 +23,5 @@ App.Slo = DS.Model.extend({
     if (this.get('unit')) description.push(this.get('unit'));
     return description.join(' ');
   }.property('sloType', 'operator', 'value', 'unit')
+  */
 });
