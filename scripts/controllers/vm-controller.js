@@ -189,6 +189,10 @@ App.VmController = Ember.ObjectController.extend({
       return suRange.split(';')[1];
     }
   }.property('sla.slos.@each'),
+  isRange: function () {
+    if (Ember.isEmpty(this.get('suFloor'))) return false;
+    return this.get('suFloor') !== this.get('suCeiling');
+  }.property('suFloor', 'suCeiling'),
   suRange: function () {
     if (Ember.isEmpty(this.get('suFloor'))) {
       return null
@@ -207,6 +211,33 @@ App.VmController = Ember.ObjectController.extend({
       return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1) + '-' + (parseFloat(this.get('suCeiling')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
     }
   }.property('suFloor', 'suCeiling', 'capabilities.cores'),
+  allocationMin: function () {
+    if (Ember.isEmpty(this.get('suFloor'))) return 0;
+    return 100 * parseFloat(this.get('suFloor')) / parseFloat(this.get('suCeiling'));
+  }.property('suFloor', 'suCeiling'),
+  allocationMinWidth: function () {
+    return 'width:' + this.get('allocationMin') + 'px;';
+  }.property('allocationMin'),
+  allocationCurrent: function () {
+    if (Ember.isEmpty(this.get('utilization.gips_current'))) return 0;
+    return 100 * parseFloat(this.get('utilization.gips_current')) / parseFloat(this.get('suCeiling'));
+  }.property('utilization.gips_current', 'suCeiling'),
+  allocationCurrentWidth: function () {
+    return 'width:' + this.get('allocationCurrent') + 'px;';
+  }.property('allocationCurrent'),
+  allocationSuccess: function () {
+    return Math.min(this.get('allocationMin'), this.get('allocationCurrent'));
+  }.property('allocationMin', 'allocationCurrent'),
+  allocationSuccessWidth: function () {
+    return 'width:' + this.get('allocationSuccess') + 'px;';
+  }.property('allocationSuccess'),
+  allocationMessage: function () {
+    if (this.get('isRange')) {
+    return '<strong>Current: ' + this.get('utilization.gips_current') + '</strong><br>' + 'Min: ' + this.get('suFloor') + '<br>' + 'Burst: ' + this.get('suCeiling');
+    } else {
+    return '<strong>Current: ' + this.get('utilization.gips_current') + '</strong><br>' + 'Allocated: ' + this.get('suFloor');
+    }
+  }.property('suFloor', 'suCeiling', 'utilization.gips_current', 'isRange'),
 
   /* TODO: Does this need to be added to polling?
   didReload: function () {

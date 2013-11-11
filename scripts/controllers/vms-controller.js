@@ -25,11 +25,11 @@ App.VmsColumnsController = App.ColumnsController.extend({
     title: 'vCPUs × SU',
     sortBy: 'capabilities.cores'
   }, {
-    title: 'SU',
+    title: 'SAM Units (SU)',
     description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.gips_current'
   }, {
-    title: 'Throughput',
+    title: 'IPC',
     description: 'CPU instructions per cycle',
     sortBy: 'utilization.ipc'
   }, {

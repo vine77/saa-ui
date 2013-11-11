@@ -109,23 +109,23 @@
           }
           > th:nth-of-type(6),  // VM Name
           > td:nth-of-type(6) {
-            width: 13%;
+            width: 12%;
           }
           > th:nth-of-type(7),  // Hostname
           > td:nth-of-type(7) {
-            width: 12%;
+            width: 10%;
           }
           > th:nth-of-type(8),  // vCPUs x SU
           > td:nth-of-type(8) {
+            width: 13%;
+          }
+          > th:nth-of-type(9),  // SU widget
+          > td:nth-of-type(9) {
             width: 12%;
           }
-          > th:nth-of-type(9),  // SU
-          > td:nth-of-type(9) {
-            width: 6%;
-          }
-          > th:nth-of-type(10),  // Throughput
+          > th:nth-of-type(10),  // Throughput/IPC
           > td:nth-of-type(10) {
-            width: 8%;
+            width: 5%;
           }
           > th:nth-of-type(11),  // Memory
           > td:nth-of-type(11) {
@@ -180,6 +180,212 @@
           font-size: 15px;
           .operator {
             font-size: 14px;
+          }
+        }
+      }
+      .allocation {
+        font-size: 0.7em;
+        color: #333;
+        .allocation-bar {
+          display: inline-block;
+          position: relative;
+          vertical-align: text-top;
+          @maxWidth: 100px;
+          width: @maxWidth;
+          .allocation-range {  // light orange dashed border
+            position: absolute;
+            width: @maxWidth;
+            height: 10px;
+            border: 1px dashed grey;
+            .box-shadow(~"inset 0 1px 4px rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .02)");
+            .border-radius(5px);
+            background: linear-gradient(to right,
+              #fff7e6 0,
+              #fff7e6 9px,
+              #fff 9px,
+              #fff 11px,
+              #fff7e6 11px,
+              #fff7e6 19px,
+              #fff 19px,
+              #fff 21px,
+              #fff7e6 21px,
+              #fff7e6 29px,
+              #fff 29px,
+              #fff 31px,
+              #fff7e6 31px,
+              #fff7e6 39px,
+              #fff 39px,
+              #fff 41px,
+              #fff7e6 41px,
+              #fff7e6 49px,
+              #fff 49px,
+              #fff 51px,
+              #fff7e6 51px,
+              #fff7e6 59px,
+              #fff 59px,
+              #fff 61px,
+              #fff7e6 61px,
+              #fff7e6 69px,
+              #fff 69px,
+              #fff 71px,
+              #fff7e6 71px,
+              #fff7e6 79px,
+              #fff 79px,
+              #fff 81px,
+              #fff7e6 81px,
+              #fff7e6 89px,
+              #fff 89px,
+              #fff 91px,
+              #fff7e6 91px,
+              #fff7e6 100px);
+          }
+          .allocation-min {  // light green solid border
+            position: absolute;
+            width: 50%;
+            height: 10px;
+            border: 1px solid grey;
+            .box-shadow(~"inset 0 1px 4px rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .02)");
+            .border-radius(5px);
+            background: linear-gradient(to right,
+              #e9f7e9 0px,
+              #e9f7e9 9px,
+              #fff 9px,
+              #fff 11px,
+              #e9f7e9 11px,
+              #e9f7e9 19px,
+              #fff 19px,
+              #fff 21px,
+              #e9f7e9 21px,
+              #e9f7e9 29px,
+              #fff 29px,
+              #fff 31px,
+              #e9f7e9 31px,
+              #e9f7e9 39px,
+              #fff 39px,
+              #fff 41px,
+              #e9f7e9 41px,
+              #e9f7e9 49px,
+              #fff 49px,
+              #fff 51px,
+              #e9f7e9 51px,
+              #e9f7e9 59px,
+              #fff 59px,
+              #fff 61px,
+              #e9f7e9 61px,
+              #e9f7e9 69px,
+              #fff 69px,
+              #fff 71px,
+              #e9f7e9 71px,
+              #e9f7e9 79px,
+              #fff 79px,
+              #fff 81px,
+              #e9f7e9 81px,
+              #e9f7e9 89px,
+              #fff 89px,
+              #fff 91px,
+              #e9f7e9 91px,
+              #e9f7e9 100px);
+          }
+          &.is-range .allocation-min {
+            .border-top-right-radius(0);
+            .border-bottom-right-radius(0)
+          }
+          .allocation-current {
+            position: absolute;
+            width: @maxWidth;
+            height: 10px;
+            margin: 1px;
+            overflow: hidden;
+            .border-radius(4px);
+            .allocation-current-warning {  // dark orange
+              position: absolute;
+              width: 75%;
+              height: 10px;
+              background: linear-gradient(to right,
+                #ffaa00 0,
+                #ffaa00 9px,
+                #fff 9px,
+                #fff 11px,
+                #ffaa00 11px,
+                #ffaa00 19px,
+                #fff 19px,
+                #fff 21px,
+                #ffaa00 21px,
+                #ffaa00 29px,
+                #fff 29px,
+                #fff 31px,
+                #ffaa00 31px,
+                #ffaa00 39px,
+                #fff 39px,
+                #fff 41px,
+                #ffaa00 41px,
+                #ffaa00 49px,
+                #fff 49px,
+                #fff 51px,
+                #ffaa00 51px,
+                #ffaa00 59px,
+                #fff 59px,
+                #fff 61px,
+                #ffaa00 61px,
+                #ffaa00 69px,
+                #fff 69px,
+                #fff 71px,
+                #ffaa00 71px,
+                #ffaa00 79px,
+                #fff 79px,
+                #fff 81px,
+                #ffaa00 81px,
+                #ffaa00 89px,
+                #fff 89px,
+                #fff 91px,
+                #ffaa00 91px,
+                #ffaa00 100px);
+            }
+            .allocation-current-success {  // dark green
+              position: absolute;
+              width: 50%;
+              height: 10px;
+              border-right: 1px solid grey;
+              background: linear-gradient(to right,
+                #1fad1f 0,
+                #1fad1f 9px,
+                #fff 9px,
+                #fff 11px,
+                #1fad1f 11px,
+                #1fad1f 19px,
+                #fff 19px,
+                #fff 21px,
+                #1fad1f 21px,
+                #1fad1f 29px,
+                #fff 29px,
+                #fff 31px,
+                #1fad1f 31px,
+                #1fad1f 39px,
+                #fff 39px,
+                #fff 41px,
+                #1fad1f 41px,
+                #1fad1f 49px,
+                #fff 49px,
+                #fff 51px,
+                #1fad1f 51px,
+                #1fad1f 59px,
+                #fff 59px,
+                #fff 61px,
+                #1fad1f 61px,
+                #1fad1f 69px,
+                #fff 69px,
+                #fff 71px,
+                #1fad1f 71px,
+                #1fad1f 79px,
+                #fff 79px,
+                #fff 81px,
+                #1fad1f 81px,
+                #1fad1f 89px,
+                #fff 89px,
+                #fff 91px,
+                #1fad1f 91px,
+                #1fad1f 100px);
+            }
           }
         }
       }

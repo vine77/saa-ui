@@ -59,7 +59,25 @@
           </div>
         </div>
       </td>
-      <td>{{na utilization.gips_current}}</td>
+      <td>
+        <div class="allocation">
+          {{#if suFloor}}
+            {{#view App.TooltipView titleBinding="allocationMessage"}}
+              <div {{bindAttr class=":allocation-bar isRange"}}>
+                <div class="allocation-range"></div> {{! light orange dashed }}
+                <div class="allocation-min" {{bindAttr style="allocationMinWidth"}}></div> {{! light green solid }}
+                <div class="allocation-current">
+                  <div class="allocation-current-warning" {{bindAttr style="allocationCurrentWidth"}}></div> {{! orange }}
+                  <div class="allocation-current-success" {{bindAttr style="allocationSuccessWidth"}}></div> {{! green }}
+                </div>
+              </div>
+              {{na utilization.gips_current}}
+            {{/view}}
+          {{else}}
+            {{na utilization.gips_current}}
+          {{/if}}
+        </div>
+      </td>
       <td>{{na utilization.ipc}}</td>
       <td>{{readableSize utilization.memory}}</td>
       <td>
@@ -68,7 +86,7 @@
             {{#view App.TooltipView titleBinding="contentionMessage" barBinding="contentionWidth"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bindAttr style="contentionWidth"}} >
-                  <div class="contention-gradient"> </div>
+                  <div class="contention-gradient"></div>
                 </div>
               </div>
               {{na contention.system.llc.value}}
