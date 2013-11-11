@@ -115,9 +115,9 @@
           > td:nth-of-type(7) {
             width: 12%;
           }
-          > th:nth-of-type(8),  // vCPUs
+          > th:nth-of-type(8),  // vCPUs x SU
           > td:nth-of-type(8) {
-            width: 5%;
+            width: 12%;
           }
           > th:nth-of-type(9),  // SU
           > td:nth-of-type(9) {
@@ -154,6 +154,33 @@
           stroke: steelblue;
           stroke-width: 1;
           fill: none;
+        }
+      }
+      .cpu-typography {
+        margin: -4px 0;
+        white-space: nowrap;
+        .cores-and-allocation {
+          display: inline-block;
+          margin-right: 4px;
+          vertical-align: top;
+          font-size: 0.9em;
+          .cores {
+            margin-bottom: -5px;
+          }
+          .allocation {
+            font-size: 0.9em;
+            margin-bottom: 0px;
+          }
+        }
+        .total-allocation {
+          display: inline-block;
+          height: @rowHeight;
+          line-height: @rowHeight;
+          vertical-align: top;
+          font-size: 15px;
+          .operator {
+            font-size: 14px;
+          }
         }
       }
     }

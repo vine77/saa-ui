@@ -167,6 +167,46 @@ App.VmController = Ember.ObjectController.extend({
     }
 
   }.observes('isSelected'),
+  suFloor: function () {
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var suRange = computeSlo && computeSlo.get('value');
+    if (Ember.isEmpty(suRange)) {
+      return null;
+    } else if (suRange.indexOf(';') === -1) {
+      return suRange;
+    } else {
+      return suRange.split(';')[0];
+    }
+  }.property('sla.slos.@each'),
+  suCeiling: function () {
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var suRange = computeSlo && computeSlo.get('value');
+    if (Ember.isEmpty(suRange)) {
+      return null;
+    } else if (suRange.indexOf(';') === -1) {
+      return suRange;
+    } else {
+      return suRange.split(';')[1];
+    }
+  }.property('sla.slos.@each'),
+  suRange: function () {
+    if (Ember.isEmpty(this.get('suFloor'))) {
+      return null
+    } else if (this.get('suFloor') === this.get('suCeiling')) {
+      return parseFloat(this.get('suFloor')).toFixed(1);
+    } else {
+      return parseFloat(this.get('suFloor')).toFixed(1) + '-' + parseFloat(this.get('suCeiling')).toFixed(1);
+    }
+  }.property('suFloor', 'suCeiling'),
+  suTotalRange: function () {
+    if (Ember.isEmpty(this.get('suFloor'))) {
+      return null
+    } else if (this.get('suFloor') === this.get('suCeiling')) {
+      return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
+    } else {
+      return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1) + '-' + (parseFloat(this.get('suCeiling')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
+    }
+  }.property('suFloor', 'suCeiling', 'capabilities.cores'),
 
   /* TODO: Does this need to be added to polling?
   didReload: function () {

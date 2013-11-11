@@ -22,7 +22,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
     title: 'Hostname',
     sortBy: 'nodeName'
   }, {
-    title: 'vCPUs',
+    title: 'vCPUs × SU',
     sortBy: 'capabilities.cores'
   }, {
     title: 'SU',

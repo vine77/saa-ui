@@ -47,7 +47,18 @@
           {{nodeName}}
         {{/if}}
       </td>
-      <td>{{na capabilities.cores}}</td>
+      <td>
+        <div class="cpu-typography">
+          <div class="cores-and-allocation">
+            <div class="cores">{{na capabilities.cores}} vCPUs</div>
+            <div class="allocation">&times; {{na suRange}} SU</div>
+          </div>
+          <div class="total-allocation">
+            <span class="operator">=</span>
+            {{suTotalRange}} SU
+          </div>
+        </div>
+      </td>
       <td>{{na utilization.gips_current}}</td>
       <td>{{na utilization.ipc}}</td>
       <td>{{readableSize utilization.memory}}</td>

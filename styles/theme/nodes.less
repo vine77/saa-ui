@@ -176,17 +176,17 @@
       .cpu-typography {
         margin: -4px 0;
         white-space: nowrap;
-        .sockets-and-cores{
+        .sockets-and-cores {
           display: inline-block;
           margin-right: 4px;
           vertical-align: top;
           font-size: 0.9em;
+          .sockets {
+            margin-bottom: -5px;
+          }
           .cores {
             font-size: 0.9em;
             margin-bottom: 0px;
-          }
-          .sockets {
-            margin-bottom: -5px;
           }
         }
         .cpu-frequency {
@@ -195,7 +195,7 @@
           line-height: @rowHeight;
           vertical-align: top;
           font-size: 15px;
-          .at {
+          .operator {
             font-size: 14px;
           }
         }
