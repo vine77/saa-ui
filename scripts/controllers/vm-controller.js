@@ -168,7 +168,9 @@ App.VmController = Ember.ObjectController.extend({
 
   }.observes('isSelected'),
   suFloor: function () {
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    //this.get('sla.slos').findBy('sloType', 'compute');
+    console.log('this.get node.samControlled', this.get('node'));
+    var computeSlo = ((this.get('node.samControlled'))?this.get('sla.slos').findBy('sloType', 'compute'):''); 
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       return null;
