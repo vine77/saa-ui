@@ -242,6 +242,9 @@
           </tbody>
         </table>
 
+        <div class="alert alert-info">
+          The nodes on which VMs were considered to be placed are listed below along with placement criteria used by the SAM scheduler to make the VM placement decision.
+        </div>
         <ul class="nav nav-tabs">
           <li class="active"><a onclick="App.selectTab(event)">Simple VM Instantiation Report</a></li>
           <li><a onclick="App.selectTab(event)">Detailed VM Instantiation Report</a></li>
@@ -249,22 +252,6 @@
 
         <div class="tab-content">
           <div class="tab-pane active simple-vm-instantiation-report">
-            <table class="table table-bordered slo-gates-table">
-              <thead>
-                <tr>
-                  <th>SLO Gates</th>
-                  <th># of Nodes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each gate in vmInstantiationSimple.sloGates}}
-                  <tr>
-                    <td>{{gate.description}}</td>
-                    <td>{{gate.nodesCount}}</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
             <table class="table table-bordered ranked-nodes-table">
               <thead>
                 <tr>
@@ -283,6 +270,22 @@
                         Not selected
                       {{/if}}
                     </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <table class="table table-bordered slo-gates-table">
+              <thead>
+                <tr>
+                  <th>SLO Gates</th>
+                  <th># of Nodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each gate in vmInstantiationSimple.sloGates}}
+                  <tr>
+                    <td>{{gate.description}}</td>
+                    <td>{{gate.nodesCount}}</td>
                   </tr>
                 {{/each}}
               </tbody>
