@@ -124,53 +124,10 @@ App.VmController = Ember.ObjectController.extend({
     return messages.join('<br>');
   }.property('isVictim', 'isAggressor'),
 
-  // Observers
-  graphObserver: function () {
-     return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
-  }.observes('isSelected', 'isExpanded'),
-
-  updateKibana: function() {
-    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
-    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
-
-    if (this.get('isSelected')) {
-      this.get('controllers.logBar.kibanaVmsQuery').push('vm_id: \"'+this.get('id').toString()+'\"');
-      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
-      var newFieldId = filterSrv.set({
-        type:'querystring',
-        mandate:'must',
-        query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
-      }, fieldId);
-
-      this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
-      dashboard.refresh();
-
-    } else {
-      var inArray = $.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
-      if (inArray !== -1) {
-        this.get('controllers.logBar.kibanaVmsQuery').removeAt(inArray);
-
-        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
-        var newFieldId = filterSrv.set({
-          type:'querystring',
-          mandate:'must',
-          query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
-        }, fieldId);
-        this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
-
-        if (this.get('controllers.logBar.kibanaVmsQuery').length < 1) {
-          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.vms'));
-          this.set('controllers.logBar.kibanaFieldIds.vms', null);
-        }
-        dashboard.refresh();
-      }
-    }
-
-  }.observes('isSelected'),
+  // Compute SU allocation floor/ceiling computed properties
   suFloor: function () {
-    //this.get('sla.slos').findBy('sloType', 'compute');
-    console.log('this.get node.samControlled', this.get('node'));
-    var computeSlo = ((this.get('node.samControlled'))?this.get('sla.slos').findBy('sloType', 'compute'):''); 
+    if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       return null;
@@ -181,6 +138,7 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('sla.slos.@each'),
   suCeiling: function () {
+    if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
@@ -240,6 +198,50 @@ App.VmController = Ember.ObjectController.extend({
     return '<strong>Current: ' + this.get('utilization.gips_current') + '</strong><br>' + 'Allocated: ' + this.get('suFloor');
     }
   }.property('suFloor', 'suCeiling', 'utilization.gips_current', 'isRange'),
+
+  // Observers
+  graphObserver: function () {
+     return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
+  }.observes('isSelected', 'isExpanded'),
+
+  updateKibana: function() {
+    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
+    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+
+    if (this.get('isSelected')) {
+      this.get('controllers.logBar.kibanaVmsQuery').push('vm_id: \"'+this.get('id').toString()+'\"');
+      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+      var newFieldId = filterSrv.set({
+        type:'querystring',
+        mandate:'must',
+        query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
+      }, fieldId);
+
+      this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
+      dashboard.refresh();
+
+    } else {
+      var inArray = $.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
+      if (inArray !== -1) {
+        this.get('controllers.logBar.kibanaVmsQuery').removeAt(inArray);
+
+        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+        var newFieldId = filterSrv.set({
+          type:'querystring',
+          mandate:'must',
+          query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
+        }, fieldId);
+        this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
+
+        if (this.get('controllers.logBar.kibanaVmsQuery').length < 1) {
+          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.vms'));
+          this.set('controllers.logBar.kibanaFieldIds.vms', null);
+        }
+        dashboard.refresh();
+      }
+    }
+
+  }.observes('isSelected'),
 
   /* TODO: Does this need to be added to polling?
   didReload: function () {

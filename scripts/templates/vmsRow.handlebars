@@ -61,22 +61,18 @@
       </td>
       <td>
         <div class="allocation">
-          {{#if node.samControlled}}
-            {{#if suFloor}}
-              {{#view App.TooltipView titleBinding="allocationMessage"}}
-                <div {{bindAttr class=":allocation-bar isRange"}}>
-                  <div class="allocation-range"></div> {{! light orange dashed }}
-                  <div class="allocation-min" {{bindAttr style="allocationMinWidth"}}></div> {{! light green solid }}
-                  <div class="allocation-current">
-                    <div class="allocation-current-warning" {{bindAttr style="allocationCurrentWidth"}}></div> {{! orange }}
-                    <div class="allocation-current-success" {{bindAttr style="allocationSuccessWidth"}}></div> {{! green }}
-                  </div>
+          {{#if suFloor}}
+            {{#view App.TooltipView titleBinding="allocationMessage"}}
+              <div {{bindAttr class=":allocation-bar isRange"}}>
+                <div class="allocation-range"></div> {{! light orange dashed }}
+                <div class="allocation-min" {{bindAttr style="allocationMinWidth"}}></div> {{! light green solid }}
+                <div class="allocation-current">
+                  <div class="allocation-current-warning" {{bindAttr style="allocationCurrentWidth"}}></div> {{! orange }}
+                  <div class="allocation-current-success" {{bindAttr style="allocationSuccessWidth"}}></div> {{! green }}
                 </div>
-                {{na utilization.gips_current}}
-              {{/view}}
-            {{else}}
+              </div>
               {{na utilization.gips_current}}
-            {{/if}}
+            {{/view}}
           {{else}}
             {{na utilization.gips_current}}
           {{/if}}
