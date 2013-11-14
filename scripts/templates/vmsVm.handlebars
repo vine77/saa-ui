@@ -7,7 +7,6 @@
     <li><a onclick="App.selectTab(event)">Graphs</a></li>
     <li><a onclick="App.selectTab(event)">Trust</a></li>
     <li><a onclick="App.selectTab(event)">Instantiation</a></li>
-    <li><a onclick="App.selectTab(event)">Instantiation Detailed</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active details">
@@ -242,185 +241,160 @@
             </tr>
           </tbody>
         </table>
-        <table class="table table-bordered slo-gates-table">
-          <caption><h4>SLO Gates</h4></caption>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th># of Nodes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each gate in vmInstantiationSimple.sloGates}}
-              <tr>
-                <td>{{gate.description}}</td>
-                <td>{{gate.nodesCount}}</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <table class="table table-bordered ranked-nodes-table">
-          <caption><h4>Ranked Nodes</h4></caption>
-          <thead>
-            <tr>
-              <th>Node</th>
-              <th>Selected</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each rankedNode in vmInstantiationSimple.rankedNodes}}
-              <tr {{bind-attr class="rankedNode.selected:success"}}>
-                <td>{{#link-to "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/link-to}}</td>
-                <td>
-                  {{#if rankedNode.selected}}
-                    <strong>Selected</strong>
-                  {{else}}
-                    Not selected
-                  {{/if}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      {{else}}
-        <div class="alert alert-info">The simple instantiation report is not available.</div>
-      {{/if}}
-    </div>
-    <div class="tab-pane instantiation-detailed">
-      {{#if vmInstantiationDetailed.generation_time}}
-        <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td>VM Name</td>
-                <td>{{vmInstantiationSimple.vmName}}</td>
-              </tr>
-              <tr>
-                <td>VM ID</td>
-                <td>{{vmInstantiationSimple.id}}</td>
-              </tr>
-              <tr>
-                <td>VM Instantiation Trust</td>
-                <td>
-                  <strong>
-                    {{#if vmInstantiationSimple.vmTrustStatus}}
-                      <i class="icon-lock"></i> Trusted
-                    {{else}}
-                      <i class="icon-unlock"></i> Untrusted
-                    {{/if}}
-                  </strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Schedule Time</td>
-                <td>{{timestamp vmInstantiationDetailed.schedule_time}}</td>
-              </tr>
-              <tr>
-                <td>Generation Time</td>
-                <td>{{timestamp vmInstantiationDetailed.generation_time}}</td>
-              </tr>
-              <tr>
-                <td>SLA</td>
-                <td>{{vmInstantiationSimple.slaName}}</td>
-              </tr>
-              <tr>
-                <td>Total # of nodes</td>
-                <td>{{vmInstantiationDetailed.nodesCount.total}}</td>
-              </tr>
-              <tr>
-                <td># of SAM-controlled nodes</td>
-                <td>{{vmInstantiationDetailed.nodesCount.under_sam_control}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table table-bordered">
-            <caption> <h4>Instantiation Nodes</h4> </caption>
-            <thead>
-              <tr>
-                <th>Node</th>
-                <th></th>
-                <th>Contention</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each instantiationNode in vmInstantiationDetailed.instantiationNodes}}
-                <tr {{bind-attr class="instantiationNode.selected:success"}}>
-                  <td class="column-medium">
-                    <p class="break-word">
-                      {{#link-to "nodesNode" instantiationNode.node}}
-                        {{instantiationNode.node.name}}
-                      {{/link-to}}
-                    </p>
-                    {{#if instantiationNode.selected}} (Selected) {{/if}}
-                  </td>
-                  <td class="table nested-slos-cell">
-                    <table class="table nested-slos-table">
-                      <caption>Instantiation SLOs</caption>
-                      <thead>
-                        <tr>
-                          <th>Description</th>
-                          <th>Value</th>
-                          <th>Unit</th>
-                          <th>Passed</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {{#each slo in instantiationNode.instantiationSlos}}
-                          <tr>
-                            <td>{{slo.description}}</td>
-                            <td><span class="nowrap">{{slo.readableValue}}</span></td>
-                            <td><span class="nowrap">{{slo.unit}}</span></td>
-                            <td>{{capitalize slo.passed}}</td>
-                          </tr>
-                        {{else}}
-                          <tr>
-                            <td colspan="4"><span class="not-applicable">n/a</span></td>
-                          </tr>
-                        {{/each}}
-                      </tbody>
-                    </table>
-                    <br />
-                    <table class="table nested-slos-table">
-                      <caption>Internal Filters</caption>
-                      <thead>
-                        <tr>
-                          <th>Description</th>
-                          <th>Value</th>
-                          <th>Passed</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {{#each internalFilter in instantiationNode.internalFilters}}
-                          <tr>
-                            <td>{{internalFilter.description}}</td>
-                            <td><span class="nowrap">{{capitalize internalFilter.value}}</span></td>
-                            <td>{{capitalize internalFilter.passed}}</td>
-                          </tr>
-                        {{else}}
-                          <tr>
-                            <td colspan="4"><span class="not-applicable">n/a</span></td>
-                          </tr>
-                        {{/each}}
-                      </tbody>
-                    </table>
-                  </td>
-                  <td>
-                    <strong class="nowrap">System LLC:</strong>
-                    {{#if instantiationNode.contention.system.llc.value}}
-                      {{instantiationNode.contention.system.llc.label}} ({{instantiationNode.contention.system.llc.value}})<br>
-                    {{else}}
-                      <span class="not-applicable">n/a</span>
-                    {{/if}}
-                    {{#each socket in instantiationNode.contention.sockets}}
-                      <strong class="nowrap">Socket #{{socket.id}}:</strong> {{socket.llc.label}} ({{socket.llc.value}})<br>
-                    {{/each}}
-                  </td>
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a onclick="App.selectTab(event)">Simple VM Instantiation Report</a></li>
+          <li><a onclick="App.selectTab(event)">Detailed VM Instantiation Report</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active simple-vm-instantiation-report">
+            <table class="table table-bordered slo-gates-table">
+              <thead>
+                <tr>
+                  <th>SLO Gates</th>
+                  <th># of Nodes</th>
                 </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        {{else}}
-          <div class="alert alert-info">The detailed instantiation report is not available.</div>
-        {{/if}}
+              </thead>
+              <tbody>
+                {{#each gate in vmInstantiationSimple.sloGates}}
+                  <tr>
+                    <td>{{gate.description}}</td>
+                    <td>{{gate.nodesCount}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <table class="table table-bordered ranked-nodes-table">
+              <thead>
+                <tr>
+                  <th>Ranked Nodes</th>
+                  <th>Selected</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each rankedNode in vmInstantiationSimple.rankedNodes}}
+                  <tr {{bind-attr class="rankedNode.selected:success"}}>
+                    <td>{{#link-to "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/link-to}}</td>
+                    <td>
+                      {{#if rankedNode.selected}}
+                        <strong>Selected</strong>
+                      {{else}}
+                        Not selected
+                      {{/if}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane detailed-vm-instantiation-report">
+            {{#if vmInstantiationDetailed.generation_time}}
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Ranked Nodes</th>
+                    <th>Scheduler Placement Criteria</th>
+                    <th>Contention</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each instantiationNode in vmInstantiationDetailed.instantiationNodes}}
+                    <tr {{bind-attr class="instantiationNode.selected:success"}}>
+                      <td class="column-medium">
+                        <p class="break-word">
+                          {{#link-to "nodesNode" instantiationNode.node}}
+                            {{instantiationNode.node.name}}
+                          {{/link-to}}
+                        </p>
+                        {{#if instantiationNode.selected}} (Selected) {{/if}}
+                      </td>
+                      <td class="table nested-slos-cell">
+                        <table class="table nested-slos-table">
+                          <thead>
+                            <tr>
+                              <th>Instantiation SLOs</th>
+                              <th>Value</th>
+                              <th>Unit</th>
+                              <th>Passed</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each slo in instantiationNode.instantiationSlos}}
+                              <tr>
+                                <td>{{slo.description}}</td>
+                                <td><span class="nowrap">{{slo.readableValue}}</span></td>
+                                <td><span class="nowrap">{{slo.unit}}</span></td>
+                                <td>
+                                  {{#if slo.passed}}
+                                    <span class="text-success">Passed</span>
+                                  {{else}}
+                                    <span class="text-error">Failed</span>
+                                  {{/if}}
+                                </td>
+                              </tr>
+                            {{else}}
+                              <tr>
+                                <td colspan="4"><span class="not-applicable">n/a</span></td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                        <br>
+                        <table class="table nested-slos-table">
+                          <thead>
+                            <tr>
+                              <th>Internal Filters</th>
+                              <th>Value</th>
+                              <th>Passed</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each internalFilter in instantiationNode.internalFilters}}
+                              <tr>
+                                <td>{{internalFilter.description}}</td>
+                                <td><span class="nowrap">{{capitalize internalFilter.value}}</span></td>
+                                <td>
+                                  {{#if internalFilter.passed}}
+                                    <span class="text-success">Passed</span>
+                                  {{else}}
+                                    <span class="text-error">Failed</span>
+                                  {{/if}}
+                                </td>
+                              </tr>
+                            {{else}}
+                              <tr>
+                                <td colspan="4"><span class="not-applicable">n/a</span></td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <strong class="nowrap">System LLC:</strong>
+                        {{#if instantiationNode.contention.system.llc.value}}
+                          {{instantiationNode.contention.system.llc.value}} ({{instantiationNode.contention.system.llc.label}})<br><br>
+                        {{else}}
+                          <span class="not-applicable">n/a</span>
+                        {{/if}}
+                        {{#each socket in instantiationNode.contention.sockets}}
+                          <strong class="nowrap">Socket #{{socket.socket_number}}:</strong><br>
+                          {{socket.llc.value}} ({{socket.llc.label}})<br>
+                        {{/each}}
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            {{else}}
+              <div class="alert alert-info">The detailed instantiation report is not available.</div>
+            {{/if}}
+          </div>
+        </div>
+
+      {{else}}
+        <div class="alert alert-info">The VM instantiation report is not available.</div>
+      {{/if}}
     </div>
   </div>
 </div>

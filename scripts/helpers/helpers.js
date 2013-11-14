@@ -261,8 +261,10 @@ Ember.Handlebars.registerBoundHelper('numberWithCommas', function (value) {
 
 // Miscellaneous helpers
 App.selectTab = function (event) {
+  var tabClassName = $(event.target).text().toLowerCase().replace(/ /g,'-');
+  console.log('tabClassName:', tabClassName);
   $(event.target).parent('li').addClass('active').siblings().removeClass('active');
-  var tab = $(event.target).closest('.nav-tabs').next('.tab-content').find('.' + $(event.target).text().toLowerCase().replace(' ','-'));
+  var tab = $(event.target).closest('.nav-tabs').next('.tab-content').find('.' + tabClassName);
   tab.addClass('active').siblings().removeClass('active');
 };
 

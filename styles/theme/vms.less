@@ -411,7 +411,7 @@
         z-index: 10;
       }
       @nav-tabs-height: 31px;
-      .nav-tabs {
+      > .nav-tabs {
         height: @nav-tabs-height;
         .box-sizing(border-box);
         background-color: #f9f9f9;
@@ -429,7 +429,7 @@
           }
         }
       }
-      .tab-content {
+      > .tab-content {
         position: absolute;
         top: @nav-tabs-height;
         right: 0;
@@ -441,8 +441,10 @@
         border-right: none;
         border-bottom: none;
         border-left: none;
-        .instantiation,
-        .instantiation-detailed {
+        .instantiation {
+          table {
+            margin-top: 0;
+          }
           .slo-gates-table {
             width: 50%;
             display: inline-table;
