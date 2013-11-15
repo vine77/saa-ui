@@ -445,34 +445,25 @@
           table {
             margin-top: 0;
           }
-          .slo-gates-table {
+          .ranked-nodes-table {
             width: 50%;
             display: inline-table;
             vertical-align: top;
           }
-          .ranked-nodes-table {
+          .slo-gates-table {
             width: 49.5%;
             display: inline-table;
             vertical-align: top;
           }
-          .nested-slos-cell {
-            padding: 0;
+          .nested-cell {
+            padding: 0.5em 0.5em 0;
             vertical-align: top;
-            .nested-slos-table {
-              margin: 0;
-              border: none;
-              background-color: transparent;
-              th {
-                font-style: italic;
-                border-left: 0;
-                background-color: transparent;
-              }
-              td {
-                border-left: 0;
-              }
-              td:first-of-type,
-              th:first-of-type {
-                border-left: none;
+            .nested-table {
+              margin: 0 0 0.5em;
+              tr {
+                th {
+                  font-style: italic;
+                }
               }
             }
           }

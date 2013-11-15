@@ -242,9 +242,11 @@
           </tbody>
         </table>
 
-        <div class="alert alert-info">
-          The nodes on which VMs were considered to be placed are listed below along with placement criteria used by the SAM scheduler to make the VM placement decision.
-        </div>
+        {{#if vmInstantiationSimple.nodesCount.total}}
+          <div class="alert alert-info">
+            The {{vmInstantiationSimple.nodesCount.total}} node{{#if vmInstantiationSimple.multipleNodes}}s{{/if}} on which this VM was considered to be placed {{#if vmInstantiationSimple.multipleNodes}}are{{else}}is{{/if}} listed below along with criteria used by the SAM scheduler to make the {{#if vmInstantiationSimple.selectedNode}}decision to place the VM on node "{{vmInstantiationSimple.selectedNode.name}}"{{else}}VM placement decision{{/if}}.
+          </div>
+        {{/if}}
         <ul class="nav nav-tabs">
           <li class="active"><a onclick="App.selectTab(event)">Simple VM Instantiation Report</a></li>
           <li><a onclick="App.selectTab(event)">Detailed VM Instantiation Report</a></li>
@@ -312,8 +314,8 @@
                         </p>
                         {{#if instantiationNode.selected}} (Selected) {{/if}}
                       </td>
-                      <td class="table nested-slos-cell">
-                        <table class="table nested-slos-table">
+                      <td class="nested-cell">
+                        <table class="table table-bordered nested-table">
                           <thead>
                             <tr>
                               <th>Instantiation SLOs</th>
@@ -343,8 +345,7 @@
                             {{/each}}
                           </tbody>
                         </table>
-                        <br>
-                        <table class="table nested-slos-table">
+                        <table class="table table-bordered nested-table">
                           <thead>
                             <tr>
                               <th>Internal Filters</th>

@@ -42,15 +42,6 @@ App.RankedNode = DS.Model.extend({
 App.VmInstantiationSimple = DS.Model.extend({
   scheduleTime: DS.attr('string'),
   generationTime: DS.attr('string'),
-  instantiationTrusted: function () {
-    var trustFound = false;
-    this.get('sloGates').forEach( function(item, index, enumerable) {
-      if (item.get('slo.sloType') === "trusted_platform") {
-        trustFound = true;
-      }
-    });
-    return trustFound;
-  }.property('sloGates.@each'),
   nodesCount: DS.attr(),
   rankedNodes: DS.hasMany('rankedNode'),
   scheduleTime: DS.attr('string'),
@@ -59,7 +50,14 @@ App.VmInstantiationSimple = DS.Model.extend({
   vmName: DS.attr('string'),
   vmTrustStatus: DS.attr('boolean'),
 
-  //Full Relationships
+  // Computed properties
+  multipleNodes: Ember.computed.gt('nodesCount.total', 1),
+  selectedNode: function () {
+    if (Ember.isEmpty('rankedNodes')) return null;
+    return this.get('rankedNodes').findBy('selected').get('node');
+  }.property('rankedNodes'),
+
+  // Full Relationships
   vm: DS.belongsTo('vm'),
   sla: DS.belongsTo('sla')
 });
