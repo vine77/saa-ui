@@ -57,6 +57,25 @@ App.EnabledRoute = Ember.Route.extend({
   }
 });
 
+App.AuthenticatedRoute = Ember.Route.extend({
+  beforeModel: function (transition) {
+    if (!this.controllerFor('login').get('token')) {
+      this.redirectToLogin(transition);
+    }
+  },
+  redirectToLogin: function (transition) {
+    this.controllerFor('login').set('attemptedTransition', transition);
+    this.transitionTo('login');
+  },
+  events: {
+    error: function (reason, transition) {
+      if (reason.status === 401) {
+        this.redirectToLogin(transition);
+      }
+    }
+  }
+});
+
 // Loading route (when ajax requests are out)
 App.LoadingRoute = Ember.Route.extend();
 
