@@ -2,11 +2,11 @@
   "builds": [
     {
       "hostname": "samappliance",
-      "id": "current",
-      "build": {
-        "date": "2013-10-25T09:23:40+0200",
-        "version": "1.0.3.303"
-      }
+      "is_master": false,
+      "is_readycloud": false,
+      "version": "1.0.3.303",
+      "date": "2013-10-25T09:23:40+0200",
+      "id": "current"
     }
   ]
 }

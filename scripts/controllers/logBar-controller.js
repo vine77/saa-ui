@@ -1,5 +1,5 @@
 App.LogBarController = Ember.ObjectController.extend({
-  needs: ["nodes", "application", "vms", "criticalities", "logcategories"],
+  needs: ['nodes', 'application', 'vms', 'criticalities', 'logcategories', 'build'],
   isSettingEach: false,
   kibanaFieldIds: {nodes: null, vms: null, criticalities: null, logcategories: null},
   kibanaNodesQuery: [],
@@ -27,7 +27,7 @@ App.LogBarController = Ember.ObjectController.extend({
   nodeSelected: null,
   selectListNodes: function() {
     var returnArray = [];
-    returnArray.pushObject({value:"ipm", label:App.build.get('hostname')});
+    returnArray.pushObject({value:"ipm", label:this.get('controllers.build.hostname')});
     this.get('controllers.nodes').forEach( function (item, index, enumerable) {
       var nodeObj = {"value": item.get('id'), "label": item.get('name')};
       returnArray.pushObject(nodeObj);
@@ -41,7 +41,8 @@ App.LogBarController = Ember.ObjectController.extend({
       if (nodeSelected.value !== "context") {
         this.set('isSettingEach', true);
         this.get('controllers.nodes').setEach('isSelected', false);
-        this.get('controllers.nodes').findBy('id', nodeSelected.value).set('isSelected', true);
+        var selectedNode = this.get('controllers.nodes').findBy('id', nodeSelected.value);
+        if (selectedNode) selectedNode.set('isSelected', true);
         this.set('isSettingEach', false);
       }
     }

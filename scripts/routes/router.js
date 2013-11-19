@@ -114,17 +114,15 @@ App.ApplicationRoute = Ember.Route.extend({
         }, function () {
           self.store.find('node');
         }),
-        //self.store.find('user');
         App.openrc.check();
         App.quantum.check();
         App.network.check();
-        App.build.find();
+        //self.store.find('user');
         //App.settingsLog.fetch();
       }, function () {
         // SAM is not configured
-        self.store.find('user');
         App.network.check();
-        App.build.find();
+        //self.store.find('user');
         // Don't block loading if SAM is not configured
         return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
       });
