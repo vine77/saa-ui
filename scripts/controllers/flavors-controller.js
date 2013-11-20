@@ -48,6 +48,9 @@ App.FlavorsController = Ember.ArrayController.extend(App.Filterable, App.Sortabl
           App.xhrError(xhr, 'Failed to delete flavor "' + flavor.get('name') + '".');
         });
       }
+    },
+    editFlavor: function (flavor) {
+      alert('TODO: Flavor editing is not fully implemented in this version of SAM.');
     }
   }
 });

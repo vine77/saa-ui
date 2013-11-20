@@ -35,7 +35,13 @@
                 {{/if}}
               </td>
               <td class="column-medium">
-                <a class="btn btn-mini" {{action "deleteFlavor" this}}><i class="icon-remove"></i> Delete</a>
+                <div class="btn-group">
+                  <a class="btn btn-mini" {{action "editFlavor" this}}><i class="icon-pencil"></i> Edit</a>
+                  <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a {{action "deleteFlavor" this}}><i class="icon-remove"></i> Delete</a></li>
+                  </ul>
+                </div>
               </td>
               <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
             </tr>
