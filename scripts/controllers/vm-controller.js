@@ -179,9 +179,9 @@ App.VmController = Ember.ObjectController.extend({
     return 'width:' + this.get('allocationMin') + 'px;';
   }.property('allocationMin'),
   allocationCurrent: function () {
-    if (Ember.isEmpty(this.get('utilization.gips_current'))) return 0;
-    return 100 * parseFloat(this.get('utilization.gips_current')) / parseFloat(this.get('suCeiling'));
-  }.property('utilization.gips_current', 'suCeiling'),
+    if (Ember.isEmpty(this.get('utilization.su_current'))) return 0;
+    return 100 * parseFloat(this.get('utilization.su_current')) / parseFloat(this.get('suCeiling'));
+  }.property('utilization.su_current', 'suCeiling'),
   allocationCurrentWidth: function () {
     return 'width:' + this.get('allocationCurrent') + 'px;';
   }.property('allocationCurrent'),
@@ -193,11 +193,11 @@ App.VmController = Ember.ObjectController.extend({
   }.property('allocationSuccess'),
   allocationMessage: function () {
     if (this.get('isRange')) {
-    return '<strong>Current: ' + this.get('utilization.gips_current') + '</strong><br>' + 'Min: ' + this.get('suFloor') + '<br>' + 'Burst: ' + this.get('suCeiling');
+    return '<strong>Current: ' + this.get('utilization.su_current') + '</strong><br>' + 'Min: ' + this.get('suFloor') + '<br>' + 'Burst: ' + this.get('suCeiling');
     } else {
-    return '<strong>Current: ' + this.get('utilization.gips_current') + '</strong><br>' + 'Allocated: ' + this.get('suFloor');
+    return '<strong>Current: ' + this.get('utilization.su_current') + '</strong><br>' + 'Allocated: ' + this.get('suFloor');
     }
-  }.property('suFloor', 'suCeiling', 'utilization.gips_current', 'isRange'),
+  }.property('suFloor', 'suCeiling', 'utilization.su_current', 'isRange'),
 
   // Observers
   graphObserver: function () {

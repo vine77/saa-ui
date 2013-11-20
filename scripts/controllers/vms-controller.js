@@ -27,7 +27,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
   }, {
     title: 'SAM Units (SU)',
     description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
-    sortBy: 'utilization.gips_current'
+    sortBy: 'utilization.su_current'
   }, {
     title: 'IPC',
     description: 'CPU instructions per cycle',
@@ -129,11 +129,11 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           },
           capabilities: {
             memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
-            gips_allocated: item.get('capabilities.gips_allocated')
+            su_allocated: item.get('capabilities.su_allocated')
           },
           utilization: {
             memory: App.readableSizeToBytes(item.get('utilization.memory')),
-            gips_current: item.get('gips_current.gips_current')
+            su_current: item.get('su_current.su_current')
           }
         });
       });
