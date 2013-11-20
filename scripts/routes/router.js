@@ -99,6 +99,7 @@ App.ApplicationRoute = Ember.Route.extend({
       });
       return configurationPromise.then(function () {
         // SAM is configured
+        self.store.find('sloTemplate');
         self.store.find('slo');
         self.store.find('sla');
         self.store.find('flavor');
