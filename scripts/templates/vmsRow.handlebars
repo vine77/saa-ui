@@ -49,14 +49,22 @@
       </td>
       <td>
         <div class="cpu-typography">
-          <div class="cores-and-allocation">
-            <div class="cores">{{na capabilities.cores}} vCPUs</div>
-            <div class="allocation">&times; {{na suRange}} SU</div>
-          </div>
-          <div class="total-allocation">
-            <span class="operator">=</span>
-            {{suTotalRange}} SU
-          </div>
+          {{#if capabilities.cores}}
+            {{#if suRange}}
+              <div class="cores-and-allocation">
+                <div class="cores">{{na capabilities.cores}} vCPUs</div>
+                <div class="allocation">&times; {{na suRange}} SU</div>
+              </div>
+              <div class="total-allocation">
+                <span class="operator">=</span>
+                {{suTotalRange}} SU
+              </div>
+            {{else}}
+              {{na capabilities.cores}} vCPUs
+            {{/if}}
+          {{else}}
+            <span class="not-applicable">n/a</span>
+          {{/if}}
         </div>
       </td>
       <td>
