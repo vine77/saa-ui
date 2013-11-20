@@ -212,7 +212,7 @@ Ember.Handlebars.registerBoundHelper('operational', function (code) {
 });
 
 Ember.Handlebars.registerBoundHelper('healthIcon', function (code) {
-  return new Handlebars.SafeString('<i class="' + App.priorityToType(code) + ' ' + App.priorityToIconClass(code) + ' icon-large"></i>');
+  return new Handlebars.SafeString('<i class="' + App.priorityToType(code) + ' ' + App.priorityToIconClass(code) + ' icon-large fixed-width"></i>');
 });
 
 Ember.Handlebars.registerBoundHelper('healthText', function (code) {
@@ -224,15 +224,15 @@ Ember.Handlebars.registerBoundHelper('trust', function (code) {
 });
 
 Ember.Handlebars.registerBoundHelper('trustIcon', function (code) {
-  return new Handlebars.SafeString('<i class="' + App.trustToString(code) + ' ' + App.trustToIconClass(code) + ' icon-large"></i>');
+  return new Handlebars.SafeString('<i class="' + App.trustToString(code) + ' ' + App.trustToIconClass(code) + ' icon-large fixed-width"></i>');
 });
 
 Ember.Handlebars.registerBoundHelper('operationalIcon', function (code) {
-  return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>');
+  return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large fixed-width"></i>');
 });
 
 Ember.Handlebars.registerBoundHelper('slaIcon', function (code) {
-  return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>');
+  return new Handlebars.SafeString('<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large fixed-width"></i>');
 });
 
 Ember.Handlebars.registerBoundHelper('readableSize', function (size) {

@@ -28,9 +28,7 @@
         <tr>
           <th class="column-medium">Operational State</th>
           <td>
-            {{#view App.TooltipView titleBinding="operationalMessage"}}
-              {{operationalIcon status.operational}}
-            {{/view}}
+            {{operationalIcon status.operational}}
             {{operational status.operational}}
           </td>
         </tr>
@@ -39,27 +37,17 @@
           <td>
             {{#view App.TooltipView titleBinding="servicesMessage"}}
               <i {{bind-attr class="servicesClass"}}></i>
+              {{capitalize nodeType}} node
             {{/view}}
-            {{capitalize nodeType}} node
           </td>
         </tr>
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#if isTrustRegistered}}
-              {{#view App.TooltipView titleBinding="trustMessage"}}
-                {{#if isTrustUnknown}}
-                  <i class="icon-large icon-question-sign unknown"></i>
-                {{else}}
-                  <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
-                {{/if}}
-              {{/view}}
-            {{else}}
-              {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
-                <i class="icon-large icon-unlock unregistered"></i>
-              {{/view}}
-            {{/if}}
-            {{trust status.trust}}
+            {{#view App.TooltipView titleBinding="trustMessage"}}
+              {{trustIcon status.trust}}
+              {{trust status.trust}}
+            {{/view}}
           </td>
         </tr>
         <tr>

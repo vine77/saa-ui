@@ -18,7 +18,7 @@
         <tr>
           <th class="column-medium">Health</th>
           <td>
-            {{#view App.TooltipView titleBinding="healthMessage"}}
+            {{#view App.TooltipView titleBinding="status.healthMessage"}}
               {{healthIcon status.health}} {{status status.health}}
             {{/view}}
           </td>
@@ -29,7 +29,12 @@
         </tr>
         <tr>
           <th class="column-medium">Trust</th>
-          <td>{{trust status.trust}}</td>
+          <td>
+            {{#view App.TooltipView titleBinding="status.trustMessage"}}
+              {{trustIcon status.trust}}
+              {{trust status.trust}}
+            {{/view}}
+          </td>
         </tr>
         {{!--
         <tr>
