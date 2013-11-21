@@ -493,6 +493,8 @@ module.exports = function (grunt) {
     }, {
       url: '/api/v1/configuration/slos.json'
     }, {
+      url: '/api/v1/configuration/slo_templates.json'
+    }, {
       url: '/api/v1/mtwilson/install'
     }, {
       url: '/api/v1/trust_nodes.json'
