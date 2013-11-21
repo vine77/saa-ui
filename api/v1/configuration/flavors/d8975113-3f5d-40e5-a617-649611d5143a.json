@@ -1,0 +1,26 @@
+{
+  "flavors": [
+    {
+      "name": "bv-secure-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/d8975113-3f5d-40e5-a617-649611d5143a",
+        "slas": "/api/v1/configuration/slas/c4528524-3a3f-4980-9643-45d19ce4905f",
+        "vms": "/api/v1/vms?ids=81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1,75375bd3-d528-436c-8298-f48221ff63da"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": "c4528524-3a3f-4980-9643-45d19ce4905f",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "d8975113-3f5d-40e5-a617-649611d5143a",
+      "vm_ids": [
+        "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "75375bd3-d528-436c-8298-f48221ff63da"
+      ]
+    }
+  ]
+}

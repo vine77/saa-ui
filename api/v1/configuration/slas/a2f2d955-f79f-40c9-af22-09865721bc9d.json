@@ -1,0 +1,67 @@
+{
+  "slas": [
+    {
+      "name": "Secure Gold",
+      "links": {
+        "uri": "/api/v1/configuration/slas/a2f2d955-f79f-40c9-af22-09865721bc9d",
+        "slos": "/api/v1/configuration/slos?ids=545075be-7ca8-4100-aecb-fd77d1a1e683,912f6cd1-e316-4713-9d72-a80d69c408fe,5e2826a0-43fa-4029-93a2-6adb7db5f8ad"
+      },
+      "deleted": false,
+      "slo_ids": [
+        "545075be-7ca8-4100-aecb-fd77d1a1e683",
+        "912f6cd1-e316-4713-9d72-a80d69c408fe",
+        "5e2826a0-43fa-4029-93a2-6adb7db5f8ad"
+      ],
+      "class_id": "d38fc2e5-2e8f-4e7d-8d24-388699471a1f",
+      "version": 1,
+      "id": "a2f2d955-f79f-40c9-af22-09865721bc9d"
+    }
+  ],
+  "slos": [
+    {
+      "description": "SAM Units value available for each VM core shall be within <1.0;2.0> range.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+        "uri": "/api/v1/configuration/slos/545075be-7ca8-4100-aecb-fd77d1a1e683",
+        "slas": "/api/v1/configuration/slas/a2f2d955-f79f-40c9-af22-09865721bc9d"
+      },
+      "deleted": false,
+      "value": "1.0;2.0",
+      "sla_id": "a2f2d955-f79f-40c9-af22-09865721bc9d",
+      "version": 1,
+      "operator": "in_range",
+      "slo_template_id": "c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+      "id": "545075be-7ca8-4100-aecb-fd77d1a1e683"
+    },
+    {
+      "description": "Virtual cores available for VM shall be equal to 2.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/536d6ae2-78c8-4635-af27-5115221d2cb9",
+        "uri": "/api/v1/configuration/slos/912f6cd1-e316-4713-9d72-a80d69c408fe",
+        "slas": "/api/v1/configuration/slas/a2f2d955-f79f-40c9-af22-09865721bc9d"
+      },
+      "deleted": false,
+      "value": "2",
+      "sla_id": "a2f2d955-f79f-40c9-af22-09865721bc9d",
+      "version": 1,
+      "operator": "equals",
+      "slo_template_id": "536d6ae2-78c8-4635-af27-5115221d2cb9",
+      "id": "912f6cd1-e316-4713-9d72-a80d69c408fe"
+    },
+    {
+      "description": "Node is not registered in Trust Server.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+        "uri": "/api/v1/configuration/slos/5e2826a0-43fa-4029-93a2-6adb7db5f8ad",
+        "slas": "/api/v1/configuration/slas/a2f2d955-f79f-40c9-af22-09865721bc9d"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "a2f2d955-f79f-40c9-af22-09865721bc9d",
+      "version": 1,
+      "operator": "equals",
+      "slo_template_id": "7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+      "id": "5e2826a0-43fa-4029-93a2-6adb7db5f8ad"
+    }
+  ]
+}

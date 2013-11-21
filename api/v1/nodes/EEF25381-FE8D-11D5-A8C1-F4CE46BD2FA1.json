@@ -3,8 +3,9 @@
     {
       "scheduler_persistent": false,
       "links": {
-        "uri": "/api/v1/nodes/EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
-        "logs": "/api/v1/logs?node=EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1"
+        "logs": "/api/v1/logs?node=EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
+        "vms": "/api/v1/vms?ids=b7a19e94-3f45-411b-8cfa-b9f31e49fea4",
+        "uri": "/api/v1/nodes/EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1"
       },
       "uri": "/nodes/EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
       "sam_controlled": 2,
@@ -12,7 +13,7 @@
       "node_trust_report_id": null,
       "cloud_services": [
         {
-          "last_update": "2013-10-28T07:17:02+0000",
+          "last_update": "2013-11-21T00:29:03+0000",
           "health": 1,
           "name": "compute",
           "operational": 2
@@ -21,20 +22,20 @@
       "id": "EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
       "sam_registered": true,
       "utilization": {
-        "ipc": 0.25,
+        "su_current": 2,
+        "su_max": 12,
         "uptime": null,
         "network": null,
+        "ipc": 0.56,
         "cpu_frequency_current": null,
-        "gips_max": 10.5,
         "io": null,
-        "memory": "2118324 KB",
-        "gips_current": 10.5,
+        "memory": "2812960 KB",
         "cpu": {
-          "iowait": 1872.39,
-          "idle": 1614370.38,
+          "iowait": 244.92,
+          "idle": 102079.98,
           "total": 0,
           "steal": 0,
-          "guest": 0
+          "guest": 4180.65
         }
       },
       "graphite_url": "/render?target=stats.SAM",
@@ -49,17 +50,19 @@
         "sockets": 2
       },
       "vm_info": {
-        "count": 0,
+        "count": 1,
         "max": null
       },
       "memory": {
         "max": 72444,
-        "used": 512
+        "used": 2560
       },
-      "vm_ids": [],
+      "vm_ids": [
+        "b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
+      ],
       "status": {
         "locked": false,
-        "agent_version": "1.0.3.303",
+        "agent_version": "1.0.4.166",
         "operational": 2,
         "trust_details": {
           "bios": 3,
@@ -77,8 +80,8 @@
           {
             "socket_number": 1,
             "llc": {
-              "value": 0,
-              "label": "LOW"
+              "value": 14.04,
+              "label": "MEDIUM"
             }
           },
           {
@@ -91,8 +94,8 @@
         ],
         "system": {
           "llc": {
-            "value": 0,
-            "label": "LOW"
+            "value": 14.04,
+            "label": "MEDIUM"
           }
         }
       },
@@ -107,7 +110,7 @@
       "node_name": "clientnode8.hpr.com",
       "vcpus": {
         "max": 128,
-        "used": 0
+        "used": 1
       }
     }
   ]

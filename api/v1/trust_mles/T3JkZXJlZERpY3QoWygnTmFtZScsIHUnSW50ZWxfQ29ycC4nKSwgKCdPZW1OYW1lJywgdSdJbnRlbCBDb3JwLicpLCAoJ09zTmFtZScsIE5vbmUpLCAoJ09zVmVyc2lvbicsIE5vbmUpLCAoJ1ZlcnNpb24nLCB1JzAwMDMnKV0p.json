@@ -6,8 +6,7 @@
       "description": "",
       "osname": null,
       "trust_node_ids": [
-        "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
-        "6729E52D-18CC-E111-BDEC-001E6750A700"
+        "B7C80B00-0000-0B00-C8B7-0000000BC8B7"
       ],
       "oemname": "Intel Corp.",
       "mle_manifests": [

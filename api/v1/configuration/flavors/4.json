@@ -5,10 +5,10 @@
       "links": {
         "uri": "/api/v1/configuration/flavors/4"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/4",
-      "public": 1,
+      "public": true,
       "sla_id": null,
       "vcpus": 4,
       "swap": 0,

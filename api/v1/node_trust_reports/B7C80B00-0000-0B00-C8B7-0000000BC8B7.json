@@ -1,6 +1,6 @@
 {
   "node_trust_report": {
-    "generation_time": "2013-10-28T07:17:12+0000",
+    "generation_time": "2013-11-21T00:29:12+0000",
     "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
     "id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
     "links": {
@@ -12,7 +12,7 @@
           "bios": 2,
           "vmm": 2
         },
-        "attestation_time": "2013-10-25T23:43:01+0000",
+        "attestation_time": "2013-11-20T21:26:11+0000",
         "trust_status": 2
       }
     ]

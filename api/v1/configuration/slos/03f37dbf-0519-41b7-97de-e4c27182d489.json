@@ -1,0 +1,19 @@
+{
+  "slos": [
+    {
+      "description": "SAM Units value available for each VM core shall be within <0.5;1.0> range.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+        "uri": "/api/v1/configuration/slos/03f37dbf-0519-41b7-97de-e4c27182d489",
+        "slas": "/api/v1/configuration/slas/4fac282c-ce74-4f35-a72b-b773419ca26f"
+      },
+      "deleted": false,
+      "value": "0.5;1.0",
+      "sla_id": "4fac282c-ce74-4f35-a72b-b773419ca26f",
+      "version": 1,
+      "operator": "in_range",
+      "slo_template_id": "c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+      "id": "03f37dbf-0519-41b7-97de-e4c27182d489"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "vms": [
+    {
+      "vm_name": "secure-gips-81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "status": {
+        "sla_messages": [
+          "SLA status for VM: unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 2,
+          "vmm": 2
+        },
+        "long_message": "VM is healthy. VM is powered on. ",
+        "health": 1,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "VM is healthy."
+      },
+      "macs": [
+        "fa:16:3e:a4:b3:4c"
+      ],
+      "cloud_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "links": {
+        "logs": "/api/v1/logs?vm=81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "slas": "/api/v1/configuration/slas/c4528524-3a3f-4980-9643-45d19ce4905f",
+        "uri": "/api/v1/vms/81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "nodes": "/api/v1/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+        "vm_trust_reports": "/api/v1/vm_trust_reports/81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1"
+      },
+      "utilization": {
+        "su_current": 0.73,
+        "ipc": 1.39,
+        "uptime": null,
+        "network": null,
+        "su_burst": 0.23,
+        "su_total": 0.73,
+        "threads": [
+          {
+            "su_current": 0.73,
+            "id": 21307
+          }
+        ],
+        "io": null,
+        "memory": "2097152 KB",
+        "cpu": 45.652224223717106
+      },
+      "vm_instantiation_simple_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": "Secure Silver",
+      "floating_ips": null,
+      "capabilities": {
+        "cores": 1,
+        "memory_size": "2097152 KB",
+        "su_allocated_max": 1,
+        "su_allocated": 0.5,
+        "su_allocated_min": 0.5
+      },
+      "node_name": "clientnode4.hpr.com",
+      "sla_id": "c4528524-3a3f-4980-9643-45d19ce4905f",
+      "victim_ids": [],
+      "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "aggressor_ids": [],
+      "vm_instantiation_detailed_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "vm_trust_report_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "fixed_ips": [
+        "192.168.9.65"
+      ],
+      "id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 0.05,
+              "label": "LOW"
+            },
+            "id": 21307
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.05,
+            "label": "LOW"
+          }
+        }
+      }
+    }
+  ]
+}

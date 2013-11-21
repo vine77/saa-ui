@@ -1,0 +1,21 @@
+{
+  "flavors": [
+    {
+      "name": "m1.20vcpu",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/55"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 20,
+      "swap": 0,
+      "memory": 128,
+      "root": 20,
+      "id": "55",
+      "vm_ids": []
+    }
+  ]
+}

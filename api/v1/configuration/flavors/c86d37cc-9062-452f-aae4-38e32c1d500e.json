@@ -1,0 +1,29 @@
+{
+  "flavors": [
+    {
+      "name": "bv-uns-smll-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/c86d37cc-9062-452f-aae4-38e32c1d500e",
+        "slas": "/api/v1/configuration/slas/4fac282c-ce74-4f35-a72b-b773419ca26f",
+        "vms": "/api/v1/vms?ids=3920e770-b981-4e7d-96a5-f509ff5a3523,609099a7-f2b6-4ca9-a31d-2902c6f2d404,5d737204-3a11-422d-bde6-d379189bcb7d,15caddc2-c8b7-46ad-8cab-84cef887b19e,b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": "4fac282c-ce74-4f35-a72b-b773419ca26f",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "c86d37cc-9062-452f-aae4-38e32c1d500e",
+      "vm_ids": [
+        "3920e770-b981-4e7d-96a5-f509ff5a3523",
+        "609099a7-f2b6-4ca9-a31d-2902c6f2d404",
+        "5d737204-3a11-422d-bde6-d379189bcb7d",
+        "15caddc2-c8b7-46ad-8cab-84cef887b19e",
+        "b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
+      ]
+    }
+  ]
+}

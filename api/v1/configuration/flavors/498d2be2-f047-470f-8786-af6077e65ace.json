@@ -1,0 +1,21 @@
+{
+  "flavors": [
+    {
+      "name": "test-arek-uns-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/498d2be2-f047-470f-8786-af6077e65ace"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 15,
+      "swap": 0,
+      "memory": 128,
+      "root": 0,
+      "id": "498d2be2-f047-470f-8786-af6077e65ace",
+      "vm_ids": []
+    }
+  ]
+}

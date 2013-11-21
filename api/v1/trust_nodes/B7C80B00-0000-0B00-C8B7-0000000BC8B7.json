@@ -16,7 +16,7 @@
           "value": "7caa23c1ea83aa07fa0e767ec894a8e27670dd76",
           "truststatus": 1,
           "whitelistvalue": "7CAA23C1EA83AA07FA0E767EC894A8E27670DD76",
-          "verified_on": 1382943103462
+          "verified_on": 1384982771268
         },
         {
           "modulelogs": [],
@@ -24,7 +24,7 @@
           "value": "96de0a6254c21eb91af18b06637f12bee046c471",
           "truststatus": 1,
           "whitelistvalue": "96DE0A6254C21EB91AF18B06637F12BEE046C471",
-          "verified_on": 1382943103462
+          "verified_on": 1384982771268
         },
         {
           "modulelogs": [
@@ -39,7 +39,7 @@
           "value": "352bcf61c555d5e5e18898a06e0b45daeeb4a1ba",
           "truststatus": 1,
           "whitelistvalue": "",
-          "verified_on": 1382943103462
+          "verified_on": 1384982771268
         },
         {
           "modulelogs": [],
@@ -47,7 +47,7 @@
           "value": "0c689e0dc7c329dc0a67f847c892fc94c4cd7218",
           "truststatus": 1,
           "whitelistvalue": "0C689E0DC7C329DC0A67F847C892FC94C4CD7218",
-          "verified_on": 1382943103462
+          "verified_on": 1384982771268
         }
       ],
       "email": null,

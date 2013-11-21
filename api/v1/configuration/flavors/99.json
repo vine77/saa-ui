@@ -3,14 +3,13 @@
     {
       "name": "m1.cputop",
       "links": {
-        "slas": "/api/v1/configuration/slas/9",
         "uri": "/api/v1/configuration/flavors/99"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/99",
-      "public": 1,
-      "sla_id": 9,
+      "public": true,
+      "sla_id": null,
       "vcpus": 10,
       "swap": 0,
       "memory": 128,

@@ -1,0 +1,79 @@
+{
+  "vm_instantiation_simple": {
+    "vm_name": "2unsecu-NNBVictims-noburst-b7a19e94-3f45-411b-8cfa-b9f31e49fea4",
+    "slo_gates": [
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/6cde3549-f476-4f95-aa0c-60261f14db37"
+        },
+        "nodes_count": 4,
+        "description": "Node is not registered in Trust Server.",
+        "slo_id": "6cde3549-f476-4f95-aa0c-60261f14db37"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/03f37dbf-0519-41b7-97de-e4c27182d489"
+        },
+        "nodes_count": 4,
+        "description": "SAM Units capacity of node's core must be greater or equal to 0.5.",
+        "slo_id": "03f37dbf-0519-41b7-97de-e4c27182d489"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/03f37dbf-0519-41b7-97de-e4c27182d489"
+        },
+        "nodes_count": 4,
+        "description": "SAM Units capacity of node's sockets must be greater or equal to 0.5.",
+        "slo_id": "03f37dbf-0519-41b7-97de-e4c27182d489"
+      }
+    ],
+    "links": {
+      "flavors": "/api/v1/configuration/flavors/c86d37cc-9062-452f-aae4-38e32c1d500e",
+      "vms": "/api/v1/vms/b7a19e94-3f45-411b-8cfa-b9f31e49fea4",
+      "slas": "/api/v1/configuration/slas/4fac282c-ce74-4f35-a72b-b773419ca26f"
+    },
+    "schedule_time": "2013-11-20T22:42:47+0000",
+    "nodes_count": {
+      "under_sam_control": 4,
+      "total": 4
+    },
+    "sla_name": "Unsecure Silver",
+    "vm_trust_status": false,
+    "sla_id": "4fac282c-ce74-4f35-a72b-b773419ca26f",
+    "ranked_nodes": [
+      {
+        "node_id": "EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1",
+        "selected": true,
+        "links": {
+          "nodes": "/api/v1/nodes/EEF25381-FE8D-11D5-A8C1-F4CE46BD2FA1"
+        }
+      },
+      {
+        "node_id": "803D1534-B403-E211-BBFA-001E673B9730",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/803D1534-B403-E211-BBFA-001E673B9730"
+        }
+      },
+      {
+        "node_id": "065247DC-4AC0-E111-A920-001E67506F0E",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/065247DC-4AC0-E111-A920-001E67506F0E"
+        }
+      },
+      {
+        "node_id": "8F3D1534-B403-E211-BBFA-001E673B94D0",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/8F3D1534-B403-E211-BBFA-001E673B94D0"
+        }
+      }
+    ],
+    "flavor_id": "c86d37cc-9062-452f-aae4-38e32c1d500e",
+    "generation_time": "2013-11-21T00:29:09+0000",
+    "scheduled_by_sam": true,
+    "vm_id": "b7a19e94-3f45-411b-8cfa-b9f31e49fea4",
+    "id": "b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
+  }
+}

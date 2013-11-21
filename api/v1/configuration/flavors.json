@@ -3,14 +3,13 @@
     {
       "name": "m1.cputop",
       "links": {
-        "slas": "/api/v1/configuration/slas/9",
         "uri": "/api/v1/configuration/flavors/99"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/99",
-      "public": 1,
-      "sla_id": 9,
+      "public": true,
+      "sla_id": null,
       "vcpus": 10,
       "swap": 0,
       "memory": 128,
@@ -19,111 +18,130 @@
       "vm_ids": []
     },
     {
-      "name": "unsecure-small-silver",
+      "name": "m1.10vcpu",
       "links": {
-        "slas": "/api/v1/configuration/slas/9",
-        "uri": "/api/v1/configuration/flavors/04d55a22-74b5-435d-aa44-538a1b68a502"
+        "uri": "/api/v1/configuration/flavors/77"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/04d55a22-74b5-435d-aa44-538a1b68a502",
-      "public": 1,
-      "sla_id": 9,
-      "vcpus": 1,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 10,
       "swap": 0,
-      "memory": 2048,
-      "root": 20,
-      "id": "04d55a22-74b5-435d-aa44-538a1b68a502",
+      "memory": 128,
+      "root": 10,
+      "id": "77",
       "vm_ids": []
     },
     {
-      "name": "secure-small-silver",
+      "name": "m1.20vcpu",
       "links": {
-        "uri": "/api/v1/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
-        "slas": "/api/v1/configuration/slas/10",
-        "vms": "/api/v1/vms?ids=4046a8e7-aabb-48bf-8487-99febc8da7a7,50216e3f-5fe3-43f3-b050-d8b7924ee64b,dab4784f-d5f9-4e80-954c-c21cb1a86772,bb4a30e3-32a5-433f-9523-020bee0aee7c,99ff14a8-1f3a-4b27-a981-e7879a48547b,6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+        "uri": "/api/v1/configuration/flavors/55"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/a28f93bd-87f5-4379-b706-3aa6d25a3f51",
-      "public": 1,
-      "sla_id": 10,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 20,
+      "swap": 0,
+      "memory": 128,
+      "root": 20,
+      "id": "55",
+      "vm_ids": []
+    },
+    {
+      "name": "test-arek-uns-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/498d2be2-f047-470f-8786-af6077e65ace"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 15,
+      "swap": 0,
+      "memory": 128,
+      "root": 0,
+      "id": "498d2be2-f047-470f-8786-af6077e65ace",
+      "vm_ids": []
+    },
+    {
+      "name": "test-sunil",
+      "links": {
+        "slas": "/api/v1/configuration/slas/4fac282c-ce74-4f35-a72b-b773419ca26f",
+        "uri": "/api/v1/configuration/flavors/8055823d-5b1c-4807-8610-1473321f4520"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": "4fac282c-ce74-4f35-a72b-b773419ca26f",
       "vcpus": 1,
       "swap": 0,
       "memory": 2048,
       "root": 20,
-      "id": "a28f93bd-87f5-4379-b706-3aa6d25a3f51",
+      "id": "8055823d-5b1c-4807-8610-1473321f4520",
+      "vm_ids": []
+    },
+    {
+      "name": "bv-uns-smll-silver",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/c86d37cc-9062-452f-aae4-38e32c1d500e",
+        "slas": "/api/v1/configuration/slas/4fac282c-ce74-4f35-a72b-b773419ca26f",
+        "vms": "/api/v1/vms?ids=3920e770-b981-4e7d-96a5-f509ff5a3523,609099a7-f2b6-4ca9-a31d-2902c6f2d404,5d737204-3a11-422d-bde6-d379189bcb7d,15caddc2-c8b7-46ad-8cab-84cef887b19e,b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": "4fac282c-ce74-4f35-a72b-b773419ca26f",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "c86d37cc-9062-452f-aae4-38e32c1d500e",
       "vm_ids": [
-        "4046a8e7-aabb-48bf-8487-99febc8da7a7",
-        "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
-        "dab4784f-d5f9-4e80-954c-c21cb1a86772",
-        "bb4a30e3-32a5-433f-9523-020bee0aee7c",
-        "99ff14a8-1f3a-4b27-a981-e7879a48547b",
-        "6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+        "3920e770-b981-4e7d-96a5-f509ff5a3523",
+        "609099a7-f2b6-4ca9-a31d-2902c6f2d404",
+        "5d737204-3a11-422d-bde6-d379189bcb7d",
+        "15caddc2-c8b7-46ad-8cab-84cef887b19e",
+        "b7a19e94-3f45-411b-8cfa-b9f31e49fea4"
       ]
     },
     {
-      "name": "tiny-unsecure-broze",
+      "name": "bv-secure-silver",
       "links": {
-        "slas": "/api/v1/configuration/slas/11",
-        "uri": "/api/v1/configuration/flavors/dc460620-0be9-425a-9ff5-00fa06df3007"
+        "uri": "/api/v1/configuration/flavors/d8975113-3f5d-40e5-a617-649611d5143a",
+        "slas": "/api/v1/configuration/slas/c4528524-3a3f-4980-9643-45d19ce4905f",
+        "vms": "/api/v1/vms?ids=81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1,75375bd3-d528-436c-8298-f48221ff63da"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/dc460620-0be9-425a-9ff5-00fa06df3007",
-      "public": 1,
-      "sla_id": 11,
+      "public": true,
+      "sla_id": "c4528524-3a3f-4980-9643-45d19ce4905f",
       "vcpus": 1,
       "swap": 0,
-      "memory": 512,
-      "root": 0,
-      "id": "dc460620-0be9-425a-9ff5-00fa06df3007",
-      "vm_ids": []
-    },
-    {
-      "name": "secure-tiny-bronze",
-      "links": {
-        "slas": "/api/v1/configuration/slas/12",
-        "uri": "/api/v1/configuration/flavors/822c43ff-14d9-49ed-93b3-40f158c046cb"
-      },
-      "rxtx_factor": 1,
-      "ephemeral": 0,
-      "uri": "/configuration/flavors/822c43ff-14d9-49ed-93b3-40f158c046cb",
-      "public": 1,
-      "sla_id": 12,
-      "vcpus": 1,
-      "swap": 0,
-      "memory": 512,
-      "root": 0,
-      "id": "822c43ff-14d9-49ed-93b3-40f158c046cb",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.large",
-      "links": {
-        "uri": "/api/v1/configuration/flavors/4"
-      },
-      "rxtx_factor": 1,
-      "ephemeral": 0,
-      "uri": "/configuration/flavors/4",
-      "public": 1,
-      "sla_id": null,
-      "vcpus": 4,
-      "swap": 0,
-      "memory": 8192,
-      "root": 80,
-      "id": "4",
-      "vm_ids": []
+      "memory": 2048,
+      "root": 20,
+      "id": "d8975113-3f5d-40e5-a617-649611d5143a",
+      "vm_ids": [
+        "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "75375bd3-d528-436c-8298-f48221ff63da"
+      ]
     },
     {
       "name": "m1.medium",
       "links": {
         "uri": "/api/v1/configuration/flavors/3"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/3",
-      "public": 1,
+      "public": true,
       "sla_id": null,
       "vcpus": 2,
       "swap": 0,
@@ -133,14 +151,48 @@
       "vm_ids": []
     },
     {
+      "name": "m1.tiny",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/1"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "1",
+      "vm_ids": []
+    },
+    {
+      "name": "m1.large",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/4"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 4,
+      "swap": 0,
+      "memory": 8192,
+      "root": 80,
+      "id": "4",
+      "vm_ids": []
+    },
+    {
       "name": "m1.xlarge",
       "links": {
         "uri": "/api/v1/configuration/flavors/5"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/5",
-      "public": 1,
+      "public": true,
       "sla_id": null,
       "vcpus": 8,
       "swap": 0,
@@ -154,33 +206,16 @@
       "links": {
         "uri": "/api/v1/configuration/flavors/2"
       },
+      "deleted": false,
       "rxtx_factor": 1,
       "ephemeral": 0,
-      "uri": "/configuration/flavors/2",
-      "public": 1,
+      "public": true,
       "sla_id": null,
       "vcpus": 1,
       "swap": 0,
       "memory": 2048,
       "root": 20,
       "id": "2",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.tiny",
-      "links": {
-        "uri": "/api/v1/configuration/flavors/1"
-      },
-      "rxtx_factor": 1,
-      "ephemeral": 0,
-      "uri": "/configuration/flavors/1",
-      "public": 1,
-      "sla_id": null,
-      "vcpus": 1,
-      "swap": 0,
-      "memory": 512,
-      "root": 0,
-      "id": "1",
       "vm_ids": []
     }
   ]

@@ -1,0 +1,19 @@
+{
+  "slos": [
+    {
+      "description": "Virtual cores available for VM shall be equal to 4.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/536d6ae2-78c8-4635-af27-5115221d2cb9",
+        "uri": "/api/v1/configuration/slos/e655d4db-cdb8-47a2-b084-3b02405fa46c",
+        "slas": "/api/v1/configuration/slas/6ac2403d-4e34-4789-abf3-af9a090fd91c"
+      },
+      "deleted": false,
+      "value": "4",
+      "sla_id": "6ac2403d-4e34-4789-abf3-af9a090fd91c",
+      "version": 1,
+      "operator": "equals",
+      "slo_template_id": "536d6ae2-78c8-4635-af27-5115221d2cb9",
+      "id": "e655d4db-cdb8-47a2-b084-3b02405fa46c"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slos": [
+    {
+      "description": "Node is not registered in Trust Server.",
+      "links": {
+        "slo_template": "/api/v1/configuration/slo_templates/7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+        "uri": "/api/v1/configuration/slos/23d9fac7-5600-4057-b5bf-57de24fbc42a",
+        "slas": "/api/v1/configuration/slas/08a18b26-7790-457a-9579-13b0d848190d"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "08a18b26-7790-457a-9579-13b0d848190d",
+      "version": 1,
+      "operator": "equals",
+      "slo_template_id": "7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+      "id": "23d9fac7-5600-4057-b5bf-57de24fbc42a"
+    }
+  ]
+}

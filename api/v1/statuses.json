@@ -27,11 +27,11 @@
           "health": 1
         },
         {
-          "message": "Disk usage: 9%",
+          "message": "Disk usage: 5%",
           "health": 1
         }
       ],
-      "version": "1.0.3.303",
+      "version": "1.0.4.166",
       "health": 3,
       "id": "current",
       "master": 1

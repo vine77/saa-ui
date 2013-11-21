@@ -6,7 +6,7 @@
         "logs": "/api/v1/logs?node=B7C80B00-0000-0B00-C8B7-0000000BC8B7",
         "node_trust_reports": "/api/v1/node_trust_reports/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
         "uri": "/api/v1/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
-        "vms": "/api/v1/vms?ids=4046a8e7-aabb-48bf-8487-99febc8da7a7,50216e3f-5fe3-43f3-b050-d8b7924ee64b,dab4784f-d5f9-4e80-954c-c21cb1a86772,bb4a30e3-32a5-433f-9523-020bee0aee7c,99ff14a8-1f3a-4b27-a981-e7879a48547b,6bf1cdb0-d177-465c-a0c4-7bde49e3a71a",
+        "vms": "/api/v1/vms?ids=81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1,75375bd3-d528-436c-8298-f48221ff63da",
         "trust_nodes": "/api/v1/trust_nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7"
       },
       "uri": "/nodes/B7C80B00-0000-0B00-C8B7-0000000BC8B7",
@@ -15,7 +15,7 @@
       "node_trust_report_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
       "cloud_services": [
         {
-          "last_update": "2013-10-28T07:17:02+0000",
+          "last_update": "2013-11-21T00:29:03+0000",
           "health": 1,
           "name": "compute",
           "operational": 2
@@ -24,20 +24,20 @@
       "id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
       "sam_registered": true,
       "utilization": {
-        "ipc": 0.42,
+        "su_current": 3.19,
+        "su_max": 69.92,
         "uptime": null,
         "network": null,
+        "ipc": 0.61,
         "cpu_frequency_current": null,
-        "gips_max": 67.73,
         "io": null,
-        "memory": "6050032 KB",
-        "gips_current": 64.73,
+        "memory": "3113236 KB",
         "cpu": {
-          "iowait": 842.67,
-          "idle": 6332870.21,
+          "iowait": 114.53,
+          "idle": 418966.88,
           "total": 0,
           "steal": 0,
-          "guest": 91268.64
+          "guest": 9743.91
         }
       },
       "graphite_url": "/render?target=stats.SAM",
@@ -52,24 +52,20 @@
         "sockets": 2
       },
       "vm_info": {
-        "count": 6,
+        "count": 2,
         "max": null
       },
       "memory": {
         "max": 72388,
-        "used": 12800
+        "used": 4608
       },
       "vm_ids": [
-        "4046a8e7-aabb-48bf-8487-99febc8da7a7",
-        "50216e3f-5fe3-43f3-b050-d8b7924ee64b",
-        "dab4784f-d5f9-4e80-954c-c21cb1a86772",
-        "bb4a30e3-32a5-433f-9523-020bee0aee7c",
-        "99ff14a8-1f3a-4b27-a981-e7879a48547b",
-        "6bf1cdb0-d177-465c-a0c4-7bde49e3a71a"
+        "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
+        "75375bd3-d528-436c-8298-f48221ff63da"
       ],
       "status": {
         "locked": false,
-        "agent_version": "1.0.3.303",
+        "agent_version": "1.0.4.166",
         "operational": 2,
         "trust_details": {
           "bios": 2,
@@ -87,21 +83,21 @@
           {
             "socket_number": 1,
             "llc": {
-              "value": 0.04,
+              "value": 0.05,
               "label": "LOW"
             }
           },
           {
             "socket_number": 0,
             "llc": {
-              "value": 0,
+              "value": 0.04,
               "label": "LOW"
             }
           }
         ],
         "system": {
           "llc": {
-            "value": 0.04,
+            "value": 0.09,
             "label": "LOW"
           }
         }
@@ -117,7 +113,7 @@
       "node_name": "clientnode4.hpr.com",
       "vcpus": {
         "max": 512,
-        "used": 6
+        "used": 2
       }
     }
   ]

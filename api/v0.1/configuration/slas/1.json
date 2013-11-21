@@ -1,8 +1,0 @@
-{
-  "sla": {
-    "uri": "/configuration/slas/1",
-    "name": "Unsecure Diamond",
-    "id": 1,
-    "slo_ids": [1, 2]
-  }
-}
