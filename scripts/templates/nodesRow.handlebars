@@ -1,17 +1,17 @@
 <table>
   <tbody>
     <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
-      <td class="column-small">
+      <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}
           {{view Ember.Checkbox checkedBinding="isSelected"}}
         {{/if}}
-      </td>
-      <td class="column-small">
+      </div></td>
+      <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="servicesMessage"}}
           <i {{bind-attr class="servicesClass"}}></i>
         {{/view}}
-      </td>
-      <td class="column-small">
+      </div></td>
+      <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
           {{#view App.TooltipView titleBinding="healthMessage"}}
             {{healthIcon status.health}}
@@ -21,8 +21,8 @@
             {{operationalIcon status.operational}}
           {{/view}}
         {{/if}}
-      </td>
-      <td class="column-small">
+      </div></td>
+      <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
           {{#view App.TooltipView titleBinding="trustMessage"}}
             {{#if isTrustUnknown}}
@@ -36,22 +36,22 @@
             <i class="icon-large icon-unlock unregistered"></i>
           {{/view}}
         {{/if}}
-      </td>
-      <td class="column-small">
+      </div></td>
+      <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="assuredMessage"}}
           <i {{bind-attr class=":icon-large :icon-trophy isAssured:assured:unassured"}}></i>
         {{/view}}
-      </td>
-      <td>
+      </div></td>
+      <td><div class="cell-container">
         {{#if isAgentInstalled}}
           <a {{action "expand" this}}>{{name}}</a>
           {{scheduledIcon}}
         {{else}}
           {{name}}
         {{/if}}
-      </td>
-      <td>{{na vmInfo.count}}</td>
-      <td>
+      </div></td>
+      <td><div class="cell-container">{{na vmInfo.count}}</div></td>
+      <td><div class="cell-container">
         <div class="cpu-typography">
           <div class="sockets-and-cores">
             <div class="sockets">{{na capabilities.sockets}} CPUs </div>
@@ -62,11 +62,11 @@
             {{na cpuFrequency}}
           </div>
         </div>
-      </td>
-      <td>{{na utilization.su_current}}</td>
-      <td>{{na utilization.ipc}}</td>
-      <td>{{readableSize utilization.memory}}</td>
-      <td>
+      </div></td>
+      <td><div class="cell-container">{{na utilization.su_current}}</div></td>
+      <td><div class="cell-container">{{na utilization.ipc}}</div></td>
+      <td><div class="cell-container">{{readableSize utilization.memory}}</div></td>
+      <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
             {{#view App.TooltipView titleBinding="contentionMessage"}}
@@ -81,8 +81,8 @@
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}
-      </td>
-      <td>
+      </div></td>
+      <td><div class="cell-container">
         <div class="btn-group">
           {{#if isAgentInstalled}}
             {{#if isOn}}
@@ -121,14 +121,14 @@
             {{/if}}
           {{/if}}
         </div>
-      </td>
-      <td class="column-small">
+      </div></td>
+      <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}
           <a class="btn btn-mini toggle-details" {{action "expand" this}}>
             <i {{bind-attr class="isExpanded:icon-minus:icon-plus"}}></i>
           </a>
         {{/if}}
-      </td>
+      </div></td>
     </tr>
   </tbody>
 </table>
