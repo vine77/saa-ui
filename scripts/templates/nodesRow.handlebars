@@ -64,7 +64,20 @@
         </div>
       </div></td>
       <td><div class="cell-container">
-        {{na utilization.su_current}} out of {{na utilization.su_max}} SU
+        <div class="contention">
+          {{#if computeExists}}
+            {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
+              <div class="contention-bar">
+                <div class="contention-bar-width" {{bindAttr style="computeWidth"}} >
+                  <div class="contention-gradient"></div>
+                </div>
+              </div>
+              {{na utilization.su_current}}
+            {{/view}}
+          {{else}}
+            <span class="not-applicable">n/a</span>
+          {{/if}}
+        </div>
       </div></td>
       <td><div class="cell-container">{{na utilization.ipc}}</div></td>
       <td><div class="cell-container">{{readableSize utilization.memory}}</div></td>

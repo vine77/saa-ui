@@ -127,6 +127,24 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('status.trust') === App.UNTRUSTED) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     return message;
   }.property('status.trust'),
+
+  computeMessage: function() {
+    if (App.isEmpty(this.get('utilization.su_current'))) {
+      return '<strong>SAM Units</strong>: N/A';
+    } else {
+      return 'SAM Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SU';
+    }
+  }.property('utilization.su_current', 'utilization.su_max'),
+  computeWidth: function () {
+    if (this.get('utilization.su_current') === 0 || App.isEmpty(this.get('utilization.su_current'))) {
+      return 'display:none;';
+    } else {
+      percent = App.rangeToPercentage(this.get('utilization.su_current'), 0, this.get('utilization.su_max'));
+      return 'width:' + percent + '%;';
+    }
+  }.property('utilization.su_current', 'utilization.su_max'),
+  computeExists: Ember.computed.notEmpty('utilization.su_current'),
+
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
   contentionFormatted: function () {
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;

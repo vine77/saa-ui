@@ -25,7 +25,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'CPU',
     sortBy: 'capabilities.cpu_frequency'
   }, {
-    title: 'SU',
+    title: 'SAM Units',
     description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.su_current'
   }, {
