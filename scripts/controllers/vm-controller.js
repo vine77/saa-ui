@@ -205,6 +205,7 @@ App.VmController = Ember.ObjectController.extend({
   }.observes('isSelected', 'isExpanded'),
 
   updateKibana: function() {
+    if (!frames['allLogsFrame'].angular) return;
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
 
