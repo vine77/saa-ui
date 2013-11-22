@@ -125,6 +125,9 @@ App.VmController = Ember.ObjectController.extend({
   }.property('isVictim', 'isAggressor'),
 
   // Compute SU allocation floor/ceiling computed properties
+  hasCompute: function () {
+    return !Ember.isEmpty(this.get('utilization.su_current')) && !Ember.isEmpty(this.get('suFloor'));
+  }.property('utilization.su_current', 'suFloor'),
   suFloor: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');

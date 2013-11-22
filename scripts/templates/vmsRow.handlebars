@@ -69,7 +69,7 @@
       </div></td>
       <td><div class="cell-container">
         <div class="allocation">
-          {{#if suFloor}}
+          {{#if hasCompute}}
             {{#view App.TooltipView titleBinding="allocationMessage"}}
               <div {{bindAttr class=":allocation-bar isRange"}}>
                 <div class="allocation-range"></div> {{! light orange dashed }}
