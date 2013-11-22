@@ -104,8 +104,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   // Actions
   actions: {
     selectAll: function () {
-      var isEverythingSelected = this.get('model').everyProperty('isSelected');
-      this.get('model').setEach('isSelected', !isEverythingSelected);
+      var isEverythingSelected = this.everyProperty('isSelected');
+      this.setEach('isSelected', !isEverythingSelected);
     },
     refresh: function () {
       if (!this.get('isUpdating')) {
