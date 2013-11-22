@@ -1,0 +1,37 @@
+<div class="portlet span12">
+  <div class="header">New Status</div>
+  <div class="breadcrumbs">
+    {{#each breadcrumb in breadcrumbsSorted}}
+      <div class="breadcrumb-item">
+        <a {{action "toggleChildren" breadcrumb.id breadcrumb.name true}}>
+          {{breadcrumb.name}}
+        </a>
+      </div>
+    {{/each}}
+  </div>
+  <div class="portlet-content">
+
+    <div class="panel">
+      {{#each status in this.controllers.newStatus.model itemViewClass="App.DashboardNewStatusView"}}
+        {{#if status.component}}
+          <a {{action "toggleChildren" view.elementId view.content.name}} {{bind-attr id=view.selectorId}}> 
+            {{status.name}}
+          </a>
+        {{else}}
+          {{status.name}}
+        {{/if}}
+
+        {{#if status.component}}
+          <div class="panel" {{bind-attr id=view.childrenId}} style="left:300px; top: 70px; position: absolute; display:none">
+            {{#each component in status.component}}
+              {{view App.StatusPanelView content=component level=2}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <br /><br />
+      {{/each}}
+    </div>
+
+  </div>
+</div>

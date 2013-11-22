@@ -4,6 +4,7 @@ App.Router.map(function () {
   this.resource('profile', {path: 'profiles/:user_id'});
   this.resource('modal');
   this.resource('dashboard');
+  this.resource('status');
   this.resource('help');
   this.resource('roles');
   this.resource('nodes', function () {
@@ -195,6 +196,7 @@ App.LoginRoute = Ember.Route.extend({
     }
   }
 });
+
 
 App.TempPasswordRoute = Ember.Route.extend({
   actions: {

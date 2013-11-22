@@ -1,10 +1,5 @@
-App.StatusController = Ember.ArrayController.extend({
-  
-  init: function () {
-    this.set('model', this.store.all('status'));
-  },
-  needs: ['application'],
-  // Properties
+App.DashboardNewStatusController = Ember.ArrayController.extend({
+  needs: 'newStatus',
   currentSelections: [],
   breadcrumbsSorted: function() {
     return this.get('currentSelections').sort(function(a, b) {
@@ -15,78 +10,39 @@ App.StatusController = Ember.ArrayController.extend({
       return 0;
     });
   }.property('currentSelections'),
-  connected: false,
-  isUpdating: false,
-  health: function() {
-    return this.store.getById('status', 'system').get('health');
-  }.property('model.@each'),
-  parentStatuses: function () {
-    return this.store.all('status').filter(function(item, index, enumerable) {
-      var isMatched = false;
-      if (item.get('parent')) {
-        item.get('parent').forEach(function(item, index, enumerable) {
-          if (item.get('id') == 'system') {
-            isMatched = true;
-          }
-        });
-      }
-      return isMatched;
-    });
-  }.property('model.@each'),
-
-  showStatus: function () {
-    return !this.get('isUpdating') && this.get('controllers.application.loggedIn');
-  }.property('isUpdating', 'controllers.application.loggedIn'),
-  statusErrorMessages: function () {
-    return this.store.all('status').filterBy('isNotification');
-  }.property('model.@each'),
-  statusClass: function () {
-    return (!this.get('health')) ? 'alert-info' : 'alert-' + App.priorityToType(this.get('health'));
-  }.property('health'),
-
-  // Functions
-  updateCurrentStatus: function () {
-    var self = this;
-    // Update status and check connectivity every 10 seconds
-    //Ember.run.later(this, 'updateCurrentStatus', 10000);
-    if (!this.get('isUpdating')) {
-      this.set('isUpdating', true);
-      return this.store.findAll('status').then(function (status) {
-        self.set('connected', true);
-        self.set('isUpdating', false);
-      }, function (error) {
-        self.set('isUpdating', false);
-        self.set('connected', false);
-        return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
-      });
-    }
-  },
-
   actions: {
     toggleChildren: function (elementId, name, breadcrumbSelect) {
       
       var children = "#children-"+elementId,
           selector = "#selector-"+elementId;
 
-      if (Ember.View.views[elementId].get('isSelected')) {
+      if ($(children).is(":visible")) {
         if (breadcrumbSelect !== true) { $(children).hide(); }
         var descendants = $('#'+elementId).find('div');
         for (var i = 0; i < descendants.length; i++) {
+          $('#children-'+descendants[i].id).hide();
+          $('#selector-'+descendants[i].id).removeClass('panel-selector');
           var obj = this.get('currentSelections').findProperty('id', descendants[i].id);
           if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
         }
         if (breadcrumbSelect !== true) {
+          $(selector).removeClass('panel-selector');
           var obj = this.get('currentSelections').findProperty('id', elementId);
           this.get('currentSelections').removeObject(obj);
         }
       } else {
+        $(children).show();
+        $(selector).addClass('panel-selector');
         var obj = this.get('currentSelections').findProperty('id', elementId);
         if (obj == undefined) { this.get('currentSelections').pushObject({id: elementId, name: name}); }
       }
 
       var siblings = $('#'+elementId).siblings('div');
-
+   
       for (var i = 0; i < siblings.length; i++) {
+
+        $('#children-'+siblings[i].id).hide();
+        $('#selector-'+siblings[i].id).removeClass('panel-selector');
 
         var obj = this.get('currentSelections').findProperty('id', siblings[i].id);
         if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
@@ -94,7 +50,11 @@ App.StatusController = Ember.ArrayController.extend({
         var siblingDescendants = $('#'+siblings[i].id).find('*');
 
         for (var i2 = 0; i2 < siblingDescendants.length; i2++) {
+          if (siblingDescendants[i2].id.indexOf('children') !== -1) {
+            $('#'+siblingDescendants[i2].id).hide();
+          }
           if (siblingDescendants[i2].id.indexOf('selector') !== -1) {
+            $('#'+siblingDescendants[i2].id).removeClass('panel-selector');
             var obj = this.get('currentSelections').findProperty('id', siblingDescendants[i2].id.replace('selector-', ''));
             if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
           }

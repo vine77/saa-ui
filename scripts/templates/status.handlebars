@@ -1,21 +1,52 @@
-{{#if showStatus}}
-  {{#if connected}}
-    {{#if statusErrorMessages}}
-      <div class="notification-top">
-        <div {{bindAttr class=":alert statusClass"}}>
-          <ul>
-            {{#each statusErrorMessages}}
-              <li>{{message}}</li>
-            {{/each}}
-          </ul>
-        </div>
+<div class="container-fluid" id="status">
+
+  <div class="portlet">
+    <div class="header">Status</div>
+    
+    <div class="status-viewport" >
+
+      <div class="breadcrumbs">
+        {{#each breadcrumb in breadcrumbsSorted}}
+          <div class="breadcrumb-item">
+            <a {{action "toggleChildren" breadcrumb.id breadcrumb.name true}}>
+              {{breadcrumb.name}}
+            </a>
+          </div>
+        {{/each}}
       </div>
-    {{/if}}
-  {{else}}
-    <div class="notification-top">
-      <div class="alert alert-error">
-        Error: API connectivity has been lost.
+
+      <div class="panel">
+        <ul>
+        {{#each status in parentStatuses itemViewClass="App.StatusPanelView"}}
+          <li {{bind-attr class="view.isSelected:panel-selector"}}>
+            {{#if status.offspring}}
+              <a {{action "toggleChildren" view.id view.content.name false}} 
+              {{bind-attr id=view.selectorId class="view.isSelected:panel-selector" title=status.message}}>
+                <span class="title"> {{healthIcon status.health}} {{status.name}} </span>
+                <div class="description">{{#if status.message}} {{status.message}} {{else}} &ensp; {{/if}}</div>
+                <i class="icon-chevron-right"></i>
+              </a>
+            {{else}}
+              {{healthIcon status.health}} {{status.name}}
+              <div class="description">{{#if status.message}} {{status.message}} {{else}} &ensp; {{/if}}</div>
+            {{/if}}
+          </li>
+
+          {{#if view.isSelected}}
+            {{#if status.offspring}}
+              <div {{bind-attr id=view.childrenId class="view.isSelected:child-border :panel :panel-parent"}} >
+                {{#each status in status.offspring}}
+                    {{view App.StatusPanelView content=status level=2}}
+                {{/each}}
+              </div>
+            {{/if}}
+          {{/if}}
+
+        {{/each}}
+        </ul>
       </div>
+
     </div>
-  {{/if}}
-{{/if}}
+
+  </div>
+</div>
