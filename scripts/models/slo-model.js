@@ -16,6 +16,6 @@ App.Slo = DS.Model.extend({
   valueType: Ember.computed.alias('sloTemplate.valueType'),
 
   // Relationships
-  sla: DS.belongsTo('sla', {async: true}),
-  sloTemplate: DS.belongsTo('sloTemplate', {async: true})
+  sla: DS.belongsTo('sla'),
+  sloTemplate: DS.belongsTo('sloTemplate')
 });
