@@ -24,10 +24,8 @@
       {{#if view.content.offspring}}
           <div class="panel">
             {{#each status in view.content.offspring}}
-            <ul>
               {{view App.StatusPanelView content=status level=view.childrenLevel}}
             {{/each}}
-          </ul>
           </div>
           <br />
       {{/if}}

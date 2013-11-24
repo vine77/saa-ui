@@ -27,8 +27,12 @@
                 <i class="icon-chevron-right"></i>
               </a>
             {{else}}
-              {{healthIcon status.health}} {{status.name}}
-              <div class="description">{{#if status.message}} {{status.message}} {{else}} &ensp; {{/if}}</div>
+              <span class="no-offspring">
+                {{healthIcon status.health}} {{status.name}}
+                <div class="description">
+                  {{#if status.message}} {{status.message}} {{else}} &ensp; {{/if}}
+                </div>
+              </span>
             {{/if}}
           </li>
 
