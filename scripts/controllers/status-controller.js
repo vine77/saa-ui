@@ -1,9 +1,8 @@
 App.StatusController = Ember.ArrayController.extend({
-  
+  needs: ['application'],
   init: function () {
     this.set('model', this.store.all('status'));
   },
-  needs: ['application'],
   // Properties
   currentSelections: [],
   breadcrumbsSorted: function() {
@@ -18,7 +17,8 @@ App.StatusController = Ember.ArrayController.extend({
   connected: false,
   isUpdating: false,
   health: function() {
-    return this.store.getById('status', 'system').get('health');
+    var systemStatus = this.store.getById('status', 'system');
+    return (systemStatus) ? systemStatus.get('health') : null;
   }.property('model.@each'),
   parentStatuses: function () {
     return this.store.all('status').filter(function(item, index, enumerable) {
@@ -64,7 +64,7 @@ App.StatusController = Ember.ArrayController.extend({
 
   actions: {
     toggleChildren: function (elementId, name, breadcrumbSelect) {
-      
+
       var children = "#children-"+elementId,
           selector = "#selector-"+elementId;
 

@@ -29,17 +29,16 @@
       <thead>
         <tr>
           <th class="column-small">Health</th>
-          <th>Component</th>
-          <th>Message</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each status in controllers.status.parentStatuses}}
           <tr>
             <td class="column-small">{{{healthIcon status.health}}}</td>
-            <td>{{status.name}}</td>
             <td>
-               {{na status.message}}
+              <div>{{status.name}}</div>
+              <small>{{na status.message}}</small>
             </td>
           </tr>
         {{else}}
