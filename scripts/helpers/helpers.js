@@ -2,6 +2,17 @@
 
 App.NOT_APPLICABLE = '<span class="not-applicable">n/a</span>'.htmlSafe();
 
+App.humanize = function (str) {
+  var newString = str.replace(/_id$/, '').replace(/_/g, ' ').replace(/^\w/g, function (s) {
+    return s.toUpperCase();
+  });
+  Object.keys(App.caseMapping).forEach(function (searchString) {
+    var replacementString = App.caseMapping[searchString];
+    newString = newString.replace(new RegExp(searchString, 'ig'), replacementString);
+  });
+  return newString;
+};
+
 // Console.log wrapper
 App.log = function () {
   App.log.history = App.log.history || [];   // store logs to an array for reference
@@ -68,7 +79,7 @@ Ember.TextSupport.reopen({
 
 // View helpers
 App.isEmpty = function (value) {
-  return (value == -1 || value === undefined || value === null || value === '' || value === []);
+  return (Ember.isEmpty(value) || value === -1);
 };
 App.readableSizeToBytes = function (stringSize, decimalPrefix) {
   if (!stringSize) return null;

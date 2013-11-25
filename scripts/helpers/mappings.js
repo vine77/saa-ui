@@ -19,6 +19,17 @@ App.UNTRUSTED = 1;
 App.TRUSTED = 2;
 App.UNREGISTERED = 3;
 
+App.caseMapping = {
+  'cpu': 'CPU',
+  'cpus': 'CPUs',
+  'vcpu': 'vCPU',
+  'vcpus': 'vCPUs',
+  'sla': 'SLA',
+  'slas': 'SLAs',
+  'slo': 'SLO',
+  'slos': 'SLOs'
+};
+
 /**
  * Convert string representation of priority to corresponding integer codes
  *
