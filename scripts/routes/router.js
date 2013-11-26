@@ -317,6 +317,17 @@ App.FlavorsCreateRoute = App.EnabledRoute.extend({
       into: 'application',
       outlet: 'modal'
     });
+  },
+  deactivate: function () {
+    var flavor = this.modelFor('flavorsCreate');
+    var sla = flavor.get('sla');
+    var slos = sla.get('slos');
+    slos.forEach(function (slo) {
+      if (slo.get('isDirty')) slo.deleteRecord();
+    });
+    if (sla.get('isDirty')) sla.deleteRecord();
+    if (flavor.get('isDirty')) flavor.deleteRecord();
+    this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
 
