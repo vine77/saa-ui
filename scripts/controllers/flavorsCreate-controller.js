@@ -54,30 +54,40 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       slo.deleteRecord();
     },
     createFlavor: function () {
-      alert('Create Flavor...');
-      return;
       var self = this;
       if (this.get('isFlavorCreating')) return;
       this.set('isFlavorCreating', true);
-      var flavor = this.store.createRecord('flavor', {
-        name: self.get('name'),
-        sla: self.get('sla'),
-        sourceFlavor: self.get('sourceFlavor')
-      });
-      flavor.save().then(function () {
-        App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
-        // Clear form
-        $('.modal:visible').modal('hide');
-        self.set('name', '');
-        self.set('sourceFlavor', null);
-        self.set('sla', null);
-        self.set('isFlavorCreating', false);
-        self.transitionToRoute('flavor', flavor);
-      }, function (xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
-        flavor.deleteRecord();
-        self.set('isFlavorCreating', false);
-      });
+      var flavor = this.get('model');
+      var sla = flavor.get('sla');
+      var slos = (sla) ? sla.get('slos') : [];
+      if (sla && sla.get('isDirty')) {
+        sloPromises = [];
+        slos.forEach(function (slo) {
+          sloPromises.push(slo.save());
+        });
+        Ember.RSVP.all(sloPromises).then(function () {
+          sla.get('slos').addObjects(slos);
+          sla.save();
+        }).then(function () {
+          flavor.save();
+        }).then(function () {
+          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          $('.modal:visible').modal('hide');
+          self.set('isFlavorCreating', false);
+        }, function (xhr) {
+          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+          self.set('isFlavorCreating', false);
+        });
+      } else {
+        flavor.save().then(function () {
+          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          $('.modal:visible').modal('hide');
+          self.set('isFlavorCreating', false);
+        }, function (xhr) {
+          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+          self.set('isFlavorCreating', false);
+        });
+      }
     }
   }
 });
