@@ -23,5 +23,13 @@ App.SloTemplate = DS.Model.extend({
   valueType: DS.attr('string'),
   elementName: DS.attr('string'),
   unit: DS.attr('string'),
-  sloType: DS.attr('string')
+  sloType: DS.attr('string'),
+
+  // Computed properties
+  readableSloType: function () {
+    return App.humanize(this.get('sloType'));
+  }.property('sloType'),
+  doesNotHaveMultipleOperators: function () {
+    return this.get('allowedOperators.length') < 2;
+  }.property('allowedOperators')
 });

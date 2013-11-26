@@ -2,6 +2,8 @@ App.SlaAdapter = DS.RESTConfigAdapter.extend();
 
 App.Sla = DS.Model.extend({
   name: DS.attr('string'),
+  deleted: DS.attr('boolean'),
+  version: DS.attr('number'),
 
   // Relationships
   slos: DS.hasMany('slo', {async: true}),

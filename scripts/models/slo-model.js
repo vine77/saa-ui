@@ -1,12 +1,14 @@
 App.SloAdapter = DS.RESTConfigAdapter.extend();
 
 App.Slo = DS.Model.extend({
-  // Properties
-  description: DS.attr('string'),
-  deleted: DS.attr('boolean'),
-  value: DS.attr('string'),
-  version: DS.attr('number'),
+  // Editable properties
   operator: DS.attr('string'),
+  value: DS.attr('string'),
+
+  // Uneditable properties
+  deleted: DS.attr('boolean'),
+  description: DS.attr('string'),
+  version: DS.attr('number'),
 
   // Alias properties inherited from associated sloTemplate
   className: Ember.computed.alias('sloTemplate.className'),

@@ -350,6 +350,9 @@ form {
   .controls + .controls {
     margin-top: 0.5em;
   }
+  > .container-fluid {
+    padding: 0;
+  }
 }
 
 .well-transparent {
@@ -414,6 +417,28 @@ input[type="checkbox"] {
 }
 .inline-block {
   display: inline-block;
+}
+.block {
+  display: block;
+}
+
+
+// Div styles
+.separator-left {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  .box-shadow(-1px 0 0 rgba(255, 255, 255, 0.9));
+}
+.separator-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  .box-shadow(1px 0 0 rgba(255, 255, 255, 0.9));
+}
+.separator-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  .box-shadow(0 -1px 0 rgba(0, 0, 0, 0.1));
+}
+.separator-bottom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  .box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
 }
 
 // Icons
@@ -1104,12 +1129,13 @@ table {
 
 // Custom modal context styles //
 .modal .column-small {
-  text-align:center;
+  text-align: center;
 }
 
+.modal.large,
 #modal {
-  width:900px;
-  margin-left:-450px;
+  width: 900px;
+  margin-left: -450px;
 }
 
 .thumbnail {
@@ -1126,7 +1152,7 @@ table {
 }
 
 .tooltip {
-  z-index: 900;
+  z-index: 1050;
   white-space: normal;
 }
 
@@ -1186,6 +1212,3 @@ ul.comma-delimited {
   .ember-list-item-view-z-index(@index - 1);
 }
 .ember-list-item-view-z-index(100);
-
-
-

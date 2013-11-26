@@ -310,7 +310,7 @@ App.FlavorRoute = App.EnabledRoute.extend({
 });
 App.FlavorsCreateRoute = App.EnabledRoute.extend({
   model: function () {
-    return this.store.all('flavor');
+    return this.store.createRecord('flavor');
   },
   renderTemplate: function () {
     this.render({
