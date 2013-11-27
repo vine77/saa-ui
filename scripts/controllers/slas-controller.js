@@ -29,6 +29,18 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
     },
     refresh: function () {
       this.store.find('sla');
-    }
+    },
+    deleteSla: function (sla) {
+      var confirmedDelete = confirm('Are you sure you want to delete SLA "' + sla.get('name') + '"?');
+      if (confirmedDelete) {
+        sla.deleteRecord();
+        sla.save().then(function () {
+          App.event('Successfully deleted SLA "' + sla.get('name') + '".', App.SUCCESS);
+        }, function (xhr) {
+          sla.rollback();
+          App.xhrError(xhr, 'Failed to delete SLA "' + sla.get('name') + '".');
+        });
+      }
+    },
   }
 });
