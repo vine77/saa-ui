@@ -1,6 +1,6 @@
-App.FlavorsCreateController = Ember.ObjectController.extend({
+App.FlavorEditController = Ember.ObjectController.extend({
   needs: ['flavors', 'slas'],
-  isFlavorCreating: false,
+  isFlavorEditing: false,
   flavorsWithoutSlas: function () {
     return this.get('controllers.flavors').filterBy('sla', null);
   }.property('controllers.flavors.@each.sla'),
@@ -53,10 +53,10 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       });
       slo.deleteRecord();
     },
-    createFlavor: function () {
+    editFlavor: function () {
       var self = this;
-      if (this.get('isFlavorCreating')) return;
-      this.set('isFlavorCreating', true);
+      if (this.get('isFlavorEditing')) return;
+      this.set('isFlavorEditing', true);
       var flavor = this.get('model');
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
@@ -72,19 +72,19 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         }).then(function () {
           App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
-          self.set('isFlavorCreating', false);
+          self.set('isFlavorEditing', false);
         }, function (xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
-          self.set('isFlavorCreating', false);
+          self.set('isFlavorEditing', false);
         });
       } else {
         flavor.save().then(function () {
           App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
-          self.set('isFlavorCreating', false);
+          self.set('isFlavorEditing', false);
         }, function (xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
-          self.set('isFlavorCreating', false);
+          self.set('isFlavorEditing', false);
         });
       }
     }

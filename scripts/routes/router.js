@@ -26,7 +26,7 @@ App.Router.map(function () {
     });
     this.resource('flavors', function () {
       this.resource('flavor', {path: '/:flavor_id'}, function () {
-        this.route('vms');
+        this.route('edit');
       });
       this.route('create');
     });
@@ -312,7 +312,7 @@ App.FlavorsCreateRoute = App.EnabledRoute.extend({
   model: function () {
     return this.store.createRecord('flavor');
   },
-  renderTemplate: function () {
+  renderTemplate: function (controller, model) {
     this.render({
       into: 'application',
       outlet: 'modal'
@@ -320,13 +320,35 @@ App.FlavorsCreateRoute = App.EnabledRoute.extend({
   },
   deactivate: function () {
     var flavor = this.modelFor('flavorsCreate');
-    var sla = flavor.get('sla');
-    var slos = sla.get('slos');
+    var sla = this.store.all('sla').findBy('isDirty');
+    var slos = (sla) ? sla.get('slos') : [];
     slos.forEach(function (slo) {
       if (slo.get('isDirty')) slo.deleteRecord();
     });
-    if (sla.get('isDirty')) sla.deleteRecord();
+    if (sla && sla.get('isDirty')) sla.deleteRecord();
     if (flavor.get('isDirty')) flavor.deleteRecord();
+    this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
+  }
+});
+App.FlavorEditRoute = App.EnabledRoute.extend({
+  model: function () {
+    return this.modelFor('flavor');
+  },
+  renderTemplate: function (controller, model) {
+    this.render({
+      into: 'application',
+      outlet: 'modal'
+    });
+  },
+  deactivate: function () {
+    var flavor = this.get('currentModel');
+    var sla = this.store.all('sla').findBy('isDirty');
+    var slos = (sla) ? sla.get('slos') : [];
+    slos.forEach(function (slo) {
+      if (slo.get('isDirty')) slo.deleteRecord();
+    });
+    if (sla && sla.get('isDirty')) sla.deleteRecord();
+    if (flavor.get('isDirty')) flavor.rollback();
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });

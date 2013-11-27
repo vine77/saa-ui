@@ -36,7 +36,7 @@
               </td>
               <td class="column-medium">
                 <div class="btn-group">
-                  <a class="btn btn-mini" {{action "editFlavor" this}}><i class="icon-pencil"></i> Edit</a>
+                  {{#link-to "flavor.edit" this class="btn btn-mini"}}<i class="icon-pencil"></i> Edit{{/link-to}}
                   <a data-toggle="dropdown" class="btn dropdown-toggle btn-mini"><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a {{action "deleteFlavor" this}}><i class="icon-remove"></i> Delete</a></li>
