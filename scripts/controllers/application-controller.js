@@ -1,7 +1,7 @@
 App.ApplicationController = Ember.Controller.extend({
-  needs: ['status', 'build'],
+  needs: ['status', 'build', 'login'],
   isAutoRefreshEnabled: true,
-  loggedIn: true,  // TODO: Update authentication bindings
+  loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
     this._super();
