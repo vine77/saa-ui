@@ -46,7 +46,7 @@
       </div>
       <p class="instructions">Please upload your OpenStack Quantum network configuration file (<code>ovs_quantum_plugin.ini</code>). This file can be found at the file path <code>/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini</code>.</p>
       <div class="align-right">
-        {{#if isEnabled}}
+        {{#if isConfigured}}
           {{#unless isChangingFiles}}
             <a class="btn btn-primary" {{action "changeFiles"}}>Change Files</a>
           {{else}}
