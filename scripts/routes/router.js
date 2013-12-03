@@ -198,7 +198,12 @@ App.LoginRoute = Ember.Route.extend({
   actions: {
     login: function () {
       this.controllerFor('application').set('loggedIn', true);
-      this.transitionTo('dashboard');
+      if (this.controllerFor('login').get('attemptedTransition')) {
+        this.controllerFor('login').get('attemptedTransition').retry();
+        this.set('attemptedTransition', null);
+      } else {
+        this.transitionTo('index');
+      }
       //this.controller.createSession(this);
     }
   }

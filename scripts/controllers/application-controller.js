@@ -44,7 +44,7 @@ App.ApplicationController = Ember.Controller.extend({
       this.store.find('flavor');
       this.store.find('vm');
       if (App.mtWilson.get('isInstalled')) {
-        self.store.find('trustMle');
+        this.store.find('trustMle');
         this.store.find('trustNode');
       }
       this.store.find('node');
