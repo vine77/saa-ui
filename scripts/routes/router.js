@@ -50,6 +50,8 @@ App.Router.map(function () {
   });
 });
 
+// TODO: if attemptedTransition is login, redirect to index
+
 // Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
 App.EnabledRoute = Ember.Route.extend({
   beforeModel: function () {
@@ -58,10 +60,14 @@ App.EnabledRoute = Ember.Route.extend({
   }
 });
 
-App.AuthenticatedRoute = Ember.Route.extend({
+// Add authentication to all routes (unless isAuthenticated flag is false)
+Ember.Route.reopen({
+  isAuthenticated: true,
   beforeModel: function (transition) {
     //if (!this.controllerFor('login').get('token')) {
-    if (!this.controllerFor('application').get('loggedIn')) {
+    if (localStorage.loggedIn) this.controllerFor('application').set('loggedIn', true);
+    var loggedIn = this.controllerFor('application').get('loggedIn');
+    if (this.get('isAuthenticated') && !loggedIn) {
       this.redirectToLogin(transition);
     }
   },
@@ -83,6 +89,7 @@ App.LoadingRoute = Ember.Route.extend();
 
 // Application
 App.ApplicationRoute = Ember.Route.extend({
+  isAuthenticated: false,
   init: function () {
     App.store = this.store;
     App.route = this;
@@ -149,6 +156,7 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   actions: {
     logout: function() {
+      localStorage.removeItem('loggedIn');
       this.controllerFor('application').set('loggedIn', false);
       this.controllerFor('login').set('username', null);
       this.controllerFor('login').set('password', null);
@@ -188,19 +196,21 @@ App.IndexRoute = Ember.Route.extend({
 });
 */
 
-App.IndexRoute = App.AuthenticatedRoute.extend({
-  beforeModel: function() {
-    this.transitionTo('login');
+App.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('dashboard');
   }
 });
 
 App.LoginRoute = Ember.Route.extend({
+  isAuthenticated: false,
   actions: {
     login: function () {
+      localStorage.loggedIn = true;
       this.controllerFor('application').set('loggedIn', true);
       if (this.controllerFor('login').get('attemptedTransition')) {
         this.controllerFor('login').get('attemptedTransition').retry();
-        this.set('attemptedTransition', null);
+        this.controllerFor('login').set('attemptedTransition', null);
       } else {
         this.transitionTo('index');
       }
@@ -209,7 +219,7 @@ App.LoginRoute = Ember.Route.extend({
   }
 });
 
-App.DashboardRoute = App.AuthenticatedRoute.extend();
+App.DashboardRoute = Ember.Route.extend();
 
 
 App.TempPasswordRoute = Ember.Route.extend({
@@ -261,13 +271,13 @@ App.ProfileRoute = Ember.Route.extend({
 
 
 // Nodes
-App.NodesIndexRoute = App.AuthenticatedRoute.extend({
+App.NodesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
   }
 });
-App.NodesNodeRoute = App.AuthenticatedRoute.extend({
+App.NodesNodeRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
@@ -281,13 +291,13 @@ App.NodesNodeRoute = App.AuthenticatedRoute.extend({
 });
 
 // VMs
-App.VmsIndexRoute = App.AuthenticatedRoute.extend({
+App.VmsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('vms').setEach('isExpanded', false);
   }
 });
-App.VmsVmRoute = App.AuthenticatedRoute.extend({
+App.VmsVmRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('vms').setEach('isExpanded', false);
@@ -301,7 +311,7 @@ App.VmsVmRoute = App.AuthenticatedRoute.extend({
 });
 
 // Services
-App.ServicesIndexRoute = App.AuthenticatedRoute.extend({
+App.ServicesIndexRoute = Ember.Route.extend({
   beforeModel: function () {
     this._super();
     this.transitionTo('flavors');
@@ -309,20 +319,20 @@ App.ServicesIndexRoute = App.AuthenticatedRoute.extend({
 });
 
 // Flavors
-App.FlavorsIndexRoute = App.AuthenticatedRoute.extend({
+App.FlavorsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('flavors').setEach('isExpanded', false);
   }
 });
-App.FlavorRoute = App.AuthenticatedRoute.extend({
+App.FlavorRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('flavors').setEach('isExpanded', false);
     this.controllerFor('flavors').findBy('id', model.get('id')).set('isExpanded', true);
   }
 });
-App.FlavorsCreateRoute = App.AuthenticatedRoute.extend({
+App.FlavorsCreateRoute = Ember.Route.extend({
   model: function () {
     return this.store.createRecord('flavor');
   },
@@ -344,7 +354,7 @@ App.FlavorsCreateRoute = App.AuthenticatedRoute.extend({
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
-App.FlavorEditRoute = App.AuthenticatedRoute.extend({
+App.FlavorEditRoute = Ember.Route.extend({
   model: function () {
     return this.modelFor('flavor');
   },
@@ -368,13 +378,13 @@ App.FlavorEditRoute = App.AuthenticatedRoute.extend({
 });
 
 // SLAs
-App.SlasIndexRoute = App.AuthenticatedRoute.extend({
+App.SlasIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('slas').setEach('isExpanded', false);
   }
 });
-App.SlaRoute = App.AuthenticatedRoute.extend({
+App.SlaRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('slas').setEach('isExpanded', false);
@@ -383,7 +393,7 @@ App.SlaRoute = App.AuthenticatedRoute.extend({
 });
 
 // Trust
-App.TrustIndexRoute = App.AuthenticatedRoute.extend({
+App.TrustIndexRoute = Ember.Route.extend({
   beforeModel: function () {
     this._super();
     // If Mt. Wilson is installed, go to MLEs
@@ -397,18 +407,18 @@ App.TrustIndexRoute = App.AuthenticatedRoute.extend({
 });
 
 // Whitelist/Fingerprint Manager
-App.TrustMlesRoute = App.AuthenticatedRoute.extend({
+App.TrustMlesRoute = Ember.Route.extend({
   model: function () {
     return this.store.find('trustMle');
   }
 });
-App.TrustMlesIndexRoute = App.AuthenticatedRoute.extend({
+App.TrustMlesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     this.controllerFor('trustMles').setEach('isExpanded', false);
   }
 });
-App.TrustMleRoute = App.AuthenticatedRoute.extend({
+App.TrustMleRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
     model.reload();
@@ -418,29 +428,29 @@ App.TrustMleRoute = App.AuthenticatedRoute.extend({
 });
 
 // Settings
-App.SettingsIndexRoute = App.AuthenticatedRoute.extend({
+App.SettingsIndexRoute = Ember.Route.extend({
   beforeModel: function () {
     this.transitionTo('settings.upload');
   }
 });
-App.SettingsUsersRoute = App.AuthenticatedRoute.extend({
+App.SettingsUsersRoute = Ember.Route.extend({
   model: function() {
     return App.users;
   }
 });
-App.SettingsLogRoute = App.AuthenticatedRoute.extend({
+App.SettingsLogRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('logSetting', 'current');
   }
 });
 
-App.SettingsUploadRoute = App.AuthenticatedRoute.extend({
+App.SettingsUploadRoute = Ember.Route.extend({
   deactivate: function () {
     this.controllerFor('settingsUpload').send('cancel');
   }
 });
 
-App.SettingsMailserverRoute = App.AuthenticatedRoute.extend({
+App.SettingsMailserverRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('mailserver', 'default');
   },
