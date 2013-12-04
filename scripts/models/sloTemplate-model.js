@@ -15,7 +15,7 @@ App.SloTemplateSerializer = App.ApplicationSerializer.extend({
 });
 
 App.SloTemplate = DS.Model.extend({
-  allowedOperators: DS.attr(),  // Array of strings
+  //allowedOperators: DS.attr(),  // Array of strings
   className: DS.attr('string'),
   description: DS.attr('string'),
   deleted: DS.attr('boolean'),
@@ -31,5 +31,8 @@ App.SloTemplate = DS.Model.extend({
   }.property('sloType'),
   doesNotHaveMultipleOperators: function () {
     return this.get('allowedOperators.length') < 2;
-  }.property('allowedOperators')
+  }.property('allowedOperators'),
+  allowedOperators: function () {
+    return this.get('operators').mapBy('operator');
+  }.property('operators.@each')
 });

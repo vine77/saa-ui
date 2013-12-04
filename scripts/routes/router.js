@@ -418,6 +418,25 @@ App.SlasCreateRoute = Ember.Route.extend({
     if (sla.get('isDirty')) sla.deleteRecord();
   }
 });
+App.SlaEditRoute = Ember.Route.extend({
+  model: function () {
+    return this.modelFor('sla');
+  },
+  renderTemplate: function (controller, model) {
+    this.render({
+      into: 'application',
+      outlet: 'modal'
+    });
+  },
+  deactivate: function () {
+    var sla = this.get('currentModel');
+    var slos = sla.get('slos');
+    slos.forEach(function (slo) {
+      slo.rollback();
+    });
+    if (sla.get('isDirty')) sla.rollback();
+  }
+});
 
 // Trust
 App.TrustIndexRoute = Ember.Route.extend({

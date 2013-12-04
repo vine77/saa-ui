@@ -1,5 +1,5 @@
-App.SlasCreateController = Ember.ObjectController.extend({
-  isSlaCreating: false,
+App.SlaEditController = Ember.ObjectController.extend({
+  isSlaEditing: false,
   sloTemplates: function () {
     return this.store.all('sloTemplate');
   }.property(),
@@ -17,10 +17,10 @@ App.SlasCreateController = Ember.ObjectController.extend({
       });
       slo.deleteRecord();
     },
-    createSla: function () {
+    editSla: function () {
       var self = this;
-      if (this.get('isSlaCreating')) return;
-      this.set('isSlaCreating', true);
+      if (this.get('isSlaEditing')) return;
+      this.set('isSlaEditing', true);
       var sla = this.get('model');
       var slos = this.get('slos');
       sloPromises = [];
@@ -30,12 +30,12 @@ App.SlasCreateController = Ember.ObjectController.extend({
       Ember.RSVP.all(sloPromises).then(function () {
         return sla.save();
       }).then(function () {
-        App.event('Successfully created SLA "' + sla.get('name') + '".', App.SUCCESS);
+        App.event('Successfully modified SLA "' + sla.get('name') + '".', App.SUCCESS);
         $('.modal:visible').modal('hide');
-        self.set('isSlaCreating', false);
+        self.set('isSlaEditing', false);
       }, function (xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to create SLA "' + sla.get('name') + '".');
-        self.set('isSlaCreating', false);
+        App.xhrError(xhr, 'An error occurred while attempting to modify SLA "' + sla.get('name') + '".');
+        self.set('isSlaEditing', false);
       });
     }
   }
