@@ -1,3 +1,3 @@
 App.DashboardStatusController = Ember.ArrayController.extend({
-  needs: 'status'
+  needs: ['status', 'build']
 });

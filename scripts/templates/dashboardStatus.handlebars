@@ -10,12 +10,12 @@
         </tr>
         <tr>
           <th class="column-medium">IPM Version</th>
-          <td>{{App.build.version}}</td>
+          <td>{{controllers.build.version}}</td>
         </tr>
         <tr>
           <th class="column-medium">IPM Master/Slave</th>
           <td>
-            {{#if App.build.master}}
+            {{#if controllers.build.isMaster}}
               IPM Master
             {{else}}
               IPM Slave
