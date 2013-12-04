@@ -6,13 +6,12 @@ App.WARNING = 3;
 App.ERROR = 4;
 
 // Constants for operational status codes
+App.UNKNOWN = 0;
 App.OFF = 1;
 App.ON = 2;
-App.PAUSED = 3;
-App.BOOTING = 4;
 App.REBOOTING = 4;
-App.UPDATING = 5;
-App.BUSY = 6;
+App.PAUSED = 10;
+App.SUSPENDED = 12;
 
 // Constants for trust
 App.UNTRUSTED = 1;
@@ -182,22 +181,18 @@ App.codeToOperational = function (code) {
     case App.OFF.toString():
     case 'off':
       return 'off';
+    case App.REBOOTING:
+    case App.REBOOTING.toString():
+    case 'rebooting':
+      return 'rebooting';
     case App.PAUSED:
     case App.PAUSED.toString():
     case 'paused':
       return 'paused';
-    case App.REBOOTING:
-    case App.REBOOTING.toString():
-    case 'booting':
-      return 'booting';
-    case App.UPDATING:
-    case App.UPDATING.toString():
-    case 'updating':
-      return 'updating';
-    case App.BUSY:
-    case App.BUSY.toString():
-    case 'busy':
-      return 'busy';
+    case App.SUSPENDED:
+    case App.SUSPENDED.toString():
+    case 'suspended':
+      return 'suspended';
     default:
       return 'unknown';
   }
@@ -216,33 +211,29 @@ App.operationalToCode = function (operational) {
     case App.UNKNOWN.toString():
     case 'unknown':
     case 'n/a':
-      return 0;
+      return App.UNKNOWN;
     case App.ON:
     case App.ON.toString():
     case 'on':
-      return 1;
+      return App.ON;
     case App.OFF:
     case App.OFF.toString():
     case 'off':
-      return 2;
+      return App.OFF;
+    case App.REBOOTING:
+    case App.REBOOTING.toString():
+    case 'rebooting':
+      return App.REBOOTING;
     case App.PAUSED:
     case App.PAUSED.toString():
     case 'paused':
-      return 3;
-    case App.REBOOTING:
-    case App.REBOOTING.toString():
-    case 'booting':
-      return 4;
-    case App.UPDATING:
-    case App.UPDATING.toString():
-    case 'updating':
-      return 5;
-    case App.BUSY:
-    case App.BUSY.toString():
-    case 'busy':
-      return 6;
+      return App.PAUSED;
+    case App.SUSPENDED:
+    case App.SUSPENDED.toString():
+    case 'suspended':
+      return App.SUSPENDED;
     default:
-      return 0;
+      return App.UNKNOWN;
   }
 };
 
@@ -268,22 +259,18 @@ App.operationalToIconClass = function (code) {
     case App.OFF.toString():
     case 'off':
       return 'icon-off';
+    case App.REBOOTING:
+    case App.REBOOTING.toString():
+    case 'rebooting':
+      return 'icon-spinner icon-spin';
     case App.PAUSED:
     case App.PAUSED.toString():
     case 'paused':
       return 'icon-pause';
-    case App.REBOOTING:
-    case App.REBOOTING.toString():
-    case 'booting':
-      return 'icon-spinner icon-spin';
-    case App.UPDATING:
-    case App.UPDATING.toString():
-    case 'updating':
-      return 'icon-spinner icon-spin';
-    case App.BUSY:
-    case App.BUSY.toString():
-    case 'busy':
-      return 'icon-spinner icon-spin';
+    case App.SUSPENDED:
+    case App.SUSPENDED.toString():
+    case 'suspended':
+      return 'icon-pause';
     default:
       return 'icon-question-sign';
   }
