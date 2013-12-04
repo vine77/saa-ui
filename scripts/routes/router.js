@@ -22,13 +22,16 @@ App.Router.map(function () {
   this.resource('logs');
   this.resource('services', function () {
     this.resource('slas', function () {
-      this.resource('sla', {path: '/:sla_id'});
+      this.route('create');
+      this.resource('sla', {path: '/:sla_id'}, function () {
+        this.route('edit');
+      });
     });
     this.resource('flavors', function () {
+      this.route('create');
       this.resource('flavor', {path: '/:flavor_id'}, function () {
         this.route('edit');
       });
-      this.route('create');
     });
   });
   this.resource('trust', function () {
@@ -36,8 +39,6 @@ App.Router.map(function () {
      this.resource('trust.mle', {path: '/:trustMle_id'});
     });
     this.route('dashboard');
-    //this.route('whitelistPortal');
-    //this.route('management');
   });
   this.resource('settings', function () {
     this.route('upload');
@@ -389,6 +390,25 @@ App.SlaRoute = Ember.Route.extend({
     this._super(controller, model);
     this.controllerFor('slas').setEach('isExpanded', false);
     this.controllerFor('slas').findBy('id', model.get('id')).set('isExpanded', true);
+  }
+});
+App.SlasCreateRoute = Ember.Route.extend({
+  model: function () {
+    return this.store.createRecord('sla');
+  },
+  renderTemplate: function (controller, model) {
+    this.render({
+      into: 'application',
+      outlet: 'modal'
+    });
+  },
+  deactivate: function () {
+    var sla = this.modelFor('slasCreate');
+    var slos = sla.get('slos');
+    slos.forEach(function (slo) {
+      if (slo.get('isDirty')) slo.deleteRecord();
+    });
+    if (sla.get('isDirty')) sla.deleteRecord();
   }
 });
 

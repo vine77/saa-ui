@@ -70,7 +70,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         }).then(function () {
           return flavor.save();
         }).then(function () {
-          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }, function (xhr) {
@@ -79,7 +79,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         });
       } else {
         flavor.save().then(function () {
-          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }, function (xhr) {
