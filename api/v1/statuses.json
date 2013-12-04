@@ -9,12 +9,12 @@
         "trust",
         "configuration"
       ],
-      "exposed_health": 4,
+      "exposed_health": 3,
       "name": "System",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [],
-      "health": 4,
+      "health": 3,
       "message": "Component health: error",
       "id": "system"
     },

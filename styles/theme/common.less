@@ -25,8 +25,11 @@
 // Extend fluid column for Ember compatibility
 .container-fluid {
   .row-fluid {
-    [class*="span"]:first-of-type {
-      margin-left: 0;
+    [class*="span"] {
+      min-height: 1em;
+      &:first-of-type {
+        margin-left: 0;
+      }
     }
   }
 }
@@ -1122,9 +1125,10 @@ table {
 }
 
 
-.not-applicable {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.9em;
+.not-applicable,
+small {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 85%;
 }
 
 // Custom modal context styles //

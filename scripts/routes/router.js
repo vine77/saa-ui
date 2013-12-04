@@ -133,6 +133,7 @@ App.ApplicationRoute = Ember.Route.extend({
           self.store.find('node');
         }),
         App.network.check();
+        self.store.find('action');
         //self.store.find('user');
         //App.settingsLog.fetch();
       }, function () {
