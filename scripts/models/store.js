@@ -15,7 +15,10 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     @returns error
   */
   ajaxError: function(jqXHR) {
-    if (jqXHR && jqXHR.status === 422) {
+    if (jqXHR && jqXHR.status === 401) {
+      var currentPath = App.route.controllerFor('application').get('currentPath');
+      if (currentPath !== 'login') App.route.redirectToLogin(currentPath);
+    } else if (jqXHR && jqXHR.status === 422) {
       var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];
       if (!jsonErrors) jsonErrors = [App.errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
       var errors = {};

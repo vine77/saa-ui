@@ -66,9 +66,9 @@ module.exports = function (grunt) {
                 grunt.log.writeln(req.method, req.url);
 
                 /*
-                if (req.method === 'POST') {
-                  res.writeHead(404, {'Content-Type': 'application/json'});
-                  res.end(JSON.stringify({'errors': {'name': 'Invalid parameter'}}));
+                if (req.url === '/api/v1/nodes.json') {
+                  res.writeHead(401, {'Content-Type': 'application/json'});
+                  res.end(JSON.stringify({'errors': {'401': 'Unauthorized'}}));
                   return;
                 }
                 */

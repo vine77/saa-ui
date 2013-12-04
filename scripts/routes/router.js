@@ -73,7 +73,14 @@ Ember.Route.reopen({
     }
   },
   redirectToLogin: function (transition) {
-    this.controllerFor('login').set('attemptedTransition', transition);
+    // Log out user
+    localStorage.removeItem('loggedIn');
+    this.controllerFor('login').set('loggedIn', false);
+    this.controllerFor('login').set('username', null);
+    this.controllerFor('login').set('password', null);
+    // Save attempted route transition
+    if (transition) this.controllerFor('login').set('attemptedTransition', transition);
+    // Redirect to login route
     this.transitionTo('login');
   },
   events: {
@@ -125,8 +132,6 @@ App.ApplicationRoute = Ember.Route.extend({
         }, function () {
           self.store.find('node');
         }),
-        App.openrc.check();
-        App.quantum.check();
         App.network.check();
         //self.store.find('user');
         //App.settingsLog.fetch();
@@ -157,11 +162,8 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   actions: {
     logout: function() {
-      localStorage.removeItem('loggedIn');
-      this.controllerFor('application').set('loggedIn', false);
-      this.controllerFor('login').set('username', null);
-      this.controllerFor('login').set('password', null);
-      this.transitionTo('login');
+      this.redirectToLogin();
+
       // TODO: Migrate Sunil's authentication code
       /*
       var cleanup = function() {
@@ -209,8 +211,13 @@ App.LoginRoute = Ember.Route.extend({
     login: function () {
       localStorage.loggedIn = true;
       this.controllerFor('application').set('loggedIn', true);
-      if (this.controllerFor('login').get('attemptedTransition')) {
-        this.controllerFor('login').get('attemptedTransition').retry();
+      var attemptedTransition = this.controllerFor('login').get('attemptedTransition');
+      if (attemptedTransition) {
+        if (typeof attemptedTransition === 'string') {
+          this.transitionTo(attemptedTransition);
+        } else {
+          this.controllerFor('login').get('attemptedTransition').retry();
+        }
         this.controllerFor('login').set('attemptedTransition', null);
       } else {
         this.transitionTo('index');
