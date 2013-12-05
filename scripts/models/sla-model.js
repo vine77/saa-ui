@@ -1,5 +1,11 @@
 App.SlaAdapter = DS.RESTConfigAdapter.extend();
 
+App.SlaSerializer = App.ApplicationSerializer.extend({
+  attrs: {
+    slos: {sideload: 'always'}
+  }
+});
+
 App.Sla = DS.Model.extend({
   name: DS.attr('string'),
   deleted: DS.attr('boolean'),

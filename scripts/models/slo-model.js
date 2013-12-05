@@ -17,6 +17,11 @@ App.Slo = DS.Model.extend({
   unit: Ember.computed.alias('sloTemplate.unit'),
   valueType: Ember.computed.alias('sloTemplate.valueType'),
 
+  // Observers
+  sloTemplateObserver: function () {
+    this.set('operator', this.get('sloTemplate.allowedOperators.firstObject'));
+  }.observes('sloTemplate'),
+
   // Relationships
   sla: DS.belongsTo('sla'),
   sloTemplate: DS.belongsTo('sloTemplate')

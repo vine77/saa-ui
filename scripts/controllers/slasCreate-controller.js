@@ -5,7 +5,7 @@ App.SlasCreateController = Ember.ObjectController.extend({
   }.property(),
   actions: {
     addSlo: function () {
-      this.get('model.slos').addObject(this.store.createRecord('slo'));
+      this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.eachRelationship(function(name, relationship){
@@ -23,6 +23,7 @@ App.SlasCreateController = Ember.ObjectController.extend({
       this.set('isSlaCreating', true);
       var sla = this.get('model');
       var slos = this.get('slos');
+      /*
       sloPromises = [];
       slos.forEach(function (slo) {
         sloPromises.push(slo.save());
@@ -30,6 +31,8 @@ App.SlasCreateController = Ember.ObjectController.extend({
       Ember.RSVP.all(sloPromises).then(function () {
         return sla.save();
       }).then(function () {
+      */
+      sla.save().then(function () {
         App.event('Successfully created SLA "' + sla.get('name') + '".', App.SUCCESS);
         $('.modal:visible').modal('hide');
         self.set('isSlaCreating', false);

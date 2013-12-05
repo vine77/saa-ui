@@ -5,7 +5,7 @@ App.SlaEditController = Ember.ObjectController.extend({
   }.property(),
   actions: {
     addSlo: function () {
-      this.get('model.slos').addObject(this.store.createRecord('slo'));
+      this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.eachRelationship(function(name, relationship){
@@ -23,6 +23,7 @@ App.SlaEditController = Ember.ObjectController.extend({
       this.set('isSlaEditing', true);
       var sla = this.get('model');
       var slos = this.get('slos');
+      /*
       sloPromises = [];
       slos.forEach(function (slo) {
         sloPromises.push(slo.save());
@@ -30,6 +31,8 @@ App.SlaEditController = Ember.ObjectController.extend({
       Ember.RSVP.all(sloPromises).then(function () {
         return sla.save();
       }).then(function () {
+      */
+      sla.save().then(function () {
         App.event('Successfully modified SLA "' + sla.get('name') + '".', App.SUCCESS);
         $('.modal:visible').modal('hide');
         self.set('isSlaEditing', false);
@@ -37,6 +40,7 @@ App.SlaEditController = Ember.ObjectController.extend({
         App.xhrError(xhr, 'An error occurred while attempting to modify SLA "' + sla.get('name') + '".');
         self.set('isSlaEditing', false);
       });
+      // TODO: Manually set SLO records to saved to clear isDirty
     }
   }
 });

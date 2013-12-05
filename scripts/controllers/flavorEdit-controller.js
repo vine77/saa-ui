@@ -41,7 +41,7 @@ App.FlavorEditController = Ember.ObjectController.extend({
       }
     },
     addSlo: function () {
-      this.get('model.sla.slos').addObject(this.store.createRecord('slo'));
+      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.eachRelationship(function(name, relationship){
@@ -61,6 +61,7 @@ App.FlavorEditController = Ember.ObjectController.extend({
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
+        /*
         sloPromises = [];
         slos.forEach(function (slo) {
           sloPromises.push(slo.save());
@@ -70,6 +71,8 @@ App.FlavorEditController = Ember.ObjectController.extend({
         }).then(function () {
           return flavor.save();
         }).then(function () {
+        */
+        sla.save().then(function () {
           App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);

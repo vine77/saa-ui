@@ -402,7 +402,7 @@ App.SlaRoute = Ember.Route.extend({
 });
 App.SlasCreateRoute = Ember.Route.extend({
   model: function () {
-    return this.store.createRecord('sla');
+    return this.store.createRecord('sla', {id: App.uuid()});
   },
   renderTemplate: function (controller, model) {
     this.render({

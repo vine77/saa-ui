@@ -47,7 +47,13 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     data[this.pathForType(type.typeKey)] = [
       store.serializerFor(type.typeKey).serialize(record, {includeId: true})
     ];
-
+    // Serialize sideloaded objects to compose compound document
+    record.eachRelationship(function(key, relationship) {
+      if (relationship.kind === 'hasMany') {
+        var sideloadedData = this.serializeSideload(record, relationship);
+        if (sideloadedData) data[this.keyForAttribute(relationship.key)] = sideloadedData;
+      }
+    }, store.serializerFor(type.typeKey));
     return this.ajax(this.buildURL(type.typeKey), "POST", {data: data});
   },
 
@@ -60,14 +66,77 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     data[this.pathForType(type.typeKey)] = [
       store.serializerFor(type.typeKey).serialize(record)
     ];
-
     var id = Ember.get(record, 'id');
-
+    // Serialize sideloaded objects to compose compound document
+    record.eachRelationship(function(key, relationship) {
+      if (relationship.kind === 'hasMany') {
+        var sideloadedData = this.serializeSideload(record, relationship);
+        if (sideloadedData) data[this.keyForAttribute(relationship.key)] = sideloadedData;
+      }
+    }, store.serializerFor(type.typeKey));
     return this.ajax(this.buildURL(type.typeKey, id), "PUT", {data: data});
   }
 });
 
 App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
+  serializeSideload: function(record, relationship) {
+    var key = relationship.key;
+    var attrs = get(this, 'attrs');
+    var sideload = attrs && attrs[key] && attrs[key].sideload === 'always';
+
+    if (sideload) {
+      return get(record, key).map(function(relation) {
+        var data = relation.serialize();
+        var primaryKey = get(this, 'primaryKey');
+        data[primaryKey] = get(relation, primaryKey);
+        return data;
+      }, this);
+    }
+  },
+
+  /**
+    Serialize has-may relationships
+
+    @method serializeHasMany
+  */
+  serializeHasMany: function(record, json, relationship) {
+    var key   = relationship.key,
+        attrs = get(this, 'attrs'),
+        embed = attrs && attrs[key] && attrs[key].embedded === 'always';
+    if (embed) {
+      json[this.keyForAttribute(key)] = get(record, key).map(function(relation) {
+        var data = relation.serialize(),
+            primaryKey = get(this, 'primaryKey');
+        data[primaryKey] = get(relation, primaryKey);
+        return data;
+      }, this);
+    } else {
+      var relationshipType = DS.RelationshipChange.determineRelationshipType(record.constructor, relationship);
+      var keyName = (this.keyForRelationship) ? this.keyForRelationship(key, relationshipType) : key;
+      json[keyName] = get(record, key).mapBy('id');
+    }
+  },
+
+  /**
+    Underscores relationship names and appends "_id" or "_ids" when serializing
+    relationship keys.
+
+    @method keyForRelationship
+    @param {String} key
+    @param {String} kind
+    @returns String
+  */
+  keyForRelationship: function(key, kind) {
+    key = Ember.String.decamelize(key);
+    if (kind === "belongsTo") {
+      return key + "_id";
+    } else if (kind === "hasMany" || kind === "manyToOne") {
+      return Ember.String.singularize(key) + "_ids";
+    } else {
+      return key;
+    }
+  },
+
   normalize: function(type, hash, property) {
     var json = hash;
     delete json.links;  // Don't use "links" yet, until JSON-API spec is implemented API-wide

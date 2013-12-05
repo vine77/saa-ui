@@ -41,7 +41,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       }
     },
     addSlo: function () {
-      this.get('model.sla.slos').addObject(this.store.createRecord('slo'));
+      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.eachRelationship(function(name, relationship){
@@ -61,6 +61,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
+        /*
         sloPromises = [];
         slos.forEach(function (slo) {
           sloPromises.push(slo.save());
@@ -68,8 +69,11 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         Ember.RSVP.all(sloPromises).then(function () {
           return sla.save();
         }).then(function () {
+
           return flavor.save();
         }).then(function () {
+        */
+        sla.save().then(function () {
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);

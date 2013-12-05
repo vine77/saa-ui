@@ -21,10 +21,7 @@
           }}
           {{view Ember.Select viewName="select" class="input-small"
             contentBinding="slo.sloTemplate.allowedOperators"
-            optionValuePath="content"
-            optionLabelPath="content"
-            selectionBinding="slo.operator"
-            disabledBinding="slo.sloTemplate.doesNotHaveMultipleOperators"
+            valueBinding="slo.operator"
           }}
           {{view Ember.TextField class="input-small" valueBinding="slo.value"}}
           {{slo.sloTemplate.unit}}
