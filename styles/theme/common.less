@@ -26,7 +26,9 @@
 .container-fluid {
   .row-fluid {
     [class*="span"] {
-      min-height: 1em;
+      &:not(.uneditable-input) {
+        min-height: 1em;
+      }
       &:first-of-type {
         margin-left: 0;
       }

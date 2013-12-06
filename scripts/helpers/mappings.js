@@ -4,6 +4,7 @@ App.SUCCESS = 1;
 App.INFO = 2;
 App.WARNING = 3;
 App.ERROR = 4;
+App.CRITICAL = 5;
 
 // Constants for operational status codes
 App.UNKNOWN = 0;
@@ -68,6 +69,8 @@ App.typeToPriority = function (type) {
     case 'critical':
     case App.ERROR:
     case App.ERROR.toString():
+    case App.CRITICAL:
+    case App.CRITICAL.toString():
       return App.ERROR;
     default:
       return null;
@@ -113,6 +116,8 @@ App.priorityToType = function (priority, good) {
     case 'critical':
     case App.ERROR:
     case App.ERROR.toString():
+    case App.CRITICAL:
+    case App.CRITICAL.toString():
       return 'error';
     default:
       return 'unknown';
@@ -148,6 +153,8 @@ App.priorityToIconClass = function (priority) {
       return 'icon-warning-sign';
     case App.ERROR:
     case App.ERROR.toString():
+    case App.CRITICAL:
+    case App.CRITICAL.toString():
     case 'error':
     case 'danger':
     case 'important':
