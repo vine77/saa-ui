@@ -156,8 +156,12 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   setupController: function (controller, model) {
     // Set models for these controllers on app load (instead of waiting for route transitions)
-    this.controllerFor('slas').set('model', this.store.all('sla'));
-    this.controllerFor('flavors').set('model', this.store.all('flavor'));
+    this.controllerFor('slas').set('model', this.store.filter('sla', function (sla) {
+      return !sla.get('deleted');
+    }));
+    this.controllerFor('flavors').set('model', this.store.all('flavor'), function (flavor) {
+      return !flavor.get('deleted');
+    });
     this.controllerFor('vms').set('model', this.store.all('vm'));
     this.controllerFor('nodes').set('model', this.store.all('node'));
   },
