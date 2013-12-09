@@ -144,7 +144,7 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
   },
 
   /**
-   * Patch the extractSingle method, since there are no singular records
+   * Patch the extractSingle method, since there are no singular records, allowing additional sideloaded records of primary type
    */
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var primaryTypeName = primaryType.typeKey;
@@ -153,6 +153,9 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
       var typeName = Ember.String.singularize(key);
       if(typeName === primaryTypeName && Ember.isArray(payload[key])) {
         json[typeName] = payload[key][0];
+        if (payload[key].length > 1) {
+          json['_' + key] = payload[key].slice(1);
+        }
       } else {
         json[key] = payload[key];
       }
