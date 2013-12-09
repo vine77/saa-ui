@@ -20,6 +20,10 @@ App.StatusController = Ember.ArrayController.extend({
     var systemStatus = this.store.getById('status', 'system');
     return (systemStatus) ? systemStatus.get('health') : null;
   }.property('model.@each'),
+  isConfigPresent: function () {
+    var samConfigFiles = this.get('model').findBy('id', 'sam_config_files');
+    return (samConfigFiles) ? samConfigFiles.get('health') !== App.UNKNOWN : false;
+  }.property('model.@each.health'),
   parentStatuses: function () {
     return this.store.all('status').filter(function(item, index, enumerable) {
       var isMatched = false;

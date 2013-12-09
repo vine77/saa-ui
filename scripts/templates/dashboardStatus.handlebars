@@ -25,34 +25,37 @@
       </tbody>
     </table>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="column-small">Health</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each status in controllers.status.parentStatuses}}
+    {{#unless controllers.status.isConfigPresent}}
+      <div class="alert alert-info">Statuses will appear here after uploading configuration files and starting {{App.application.title}}.</div>
+    {{else}}
+      <table class="table table-bordered">
+        <thead>
           <tr>
-            <td class="column-small">{{{healthIcon status.health}}}</td>
-            <td>
-              <div>{{status.name}}</div>
-              <small>{{na status.message}}</small>
-            </td>
+            <th class="column-small">Health</th>
+            <th>Status</th>
           </tr>
-        {{else}}
-          <tr>
-            <td class="column-small"></td>
-            <td>No status</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-
-    <div class="pull-right">
-      {{#link-to 'status'}}See Details {{/link-to}}
-    </div>
+        </thead>
+        <tbody>
+          {{#each status in controllers.status.parentStatuses}}
+            <tr>
+              <td class="column-small">{{{healthIcon status.health}}}</td>
+              <td>
+                <div>{{status.name}}</div>
+                <small>{{na status.message}}</small>
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td class="column-small"></td>
+              <td>No status</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div class="pull-right">
+        {{#link-to "status"}}See Details{{/link-to}}
+      </div>
+    {{/unless}}
 
   </div>
 </div>
