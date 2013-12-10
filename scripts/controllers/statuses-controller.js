@@ -24,7 +24,8 @@ App.StatusesController = Ember.Controller.extend({
     return (!this.get('health')) ? 'alert-warning' : 'alert-' + App.priorityToType(this.get('health'));
   }.property('health'),
 
-  breadcrumbs: function () {
+  breacdcrumbs: function () {
+    if (this.get('controllers.application.currentPath').indexOf('statuses') !== -1) return [];
     var paths = this.get('controllers.application.currentPath').split('.').slice(1, -1);
     var models = paths.map(function (item, index, enumberable) {
       return this.get('controllers.' + item).get('model');

@@ -176,6 +176,10 @@ App.isCriticalityPlus = function(criticality) {
 
 // Handlebars helpers
 
+Ember.Handlebars.registerBoundHelper('readableError', function (xhr) {
+  return App.xhrErrorMessage(xhr);
+});
+
 Ember.Handlebars.registerBoundHelper('capitalize', function (string) {
   return (App.isEmpty(string)) ? App.NOT_APPLICABLE : string.toString().capitalize();
 });
@@ -381,6 +385,22 @@ App.errorMessage = function (response, separator) {
 };
 
 /**
+ * Return an error notification given the XHR object
+ *
+ * @param {object} xhr - the XHR object (e.g. an XMLHTTPRequest object, jqXHR object, or the XHR parameter passed to the Promises/A+ error handler)
+ * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
+ * @returns {string} The error message, which is also displayed in the UI
+ */
+App.xhrErrorMessage = function (xhr, defaultMessage) {
+  var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
+  try {
+    var json = (xhr.hasOwnProperty('responseText')) ? Ember.$.parseJSON(xhr.responseText) : xhr;
+    errorMessage = App.errorMessage(json) || errorMessage;
+  } catch(error) {}
+  return errorMessage;
+}
+
+/**
  * Display an error notification given the XHR object
  *
  * @param {object} xhr - the XHR object (e.g. an XMLHTTPRequest object, jqXHR object, or the XHR parameter passed to the Promises/A+ error handler)
@@ -388,12 +408,8 @@ App.errorMessage = function (response, separator) {
  * @returns {string} The error message, which is also displayed in the UI
  */
 App.xhrError = function (xhr, defaultMessage) {
-  var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
+  var errorMessage = App.xhrErrorMessage(xhr, defaultMessage);
   var severity = (xhr.status == 422) ? App.WARNING : App.ERROR;
-  try {
-    var json = (xhr.hasOwnProperty('responseText')) ? Ember.$.parseJSON(xhr.responseText) : xhr;
-    errorMessage = App.errorMessage(json) || errorMessage;
-  } catch(error) {}
   App.event(errorMessage, severity);
   return errorMessage;
 }

@@ -37,9 +37,6 @@ Ember.Route.reopen({
   }
 });
 
-// Loading route (when ajax requests are out)
-App.LoadingRoute = Ember.Route.extend();
-
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   isAuthenticated: false,
@@ -111,6 +108,14 @@ App.ApplicationRoute = Ember.Route.extend({
     this.controllerFor('nodes').set('model', this.store.all('node'));
   },
   actions: {
+    loading: function() {
+      var view = Ember.View.create({
+        templateName: 'globalLoading'
+      }).append();
+      this.router.one('didTransition', function() {
+        view.destroy();
+      });
+    },
     logout: function() {
       this.redirectToLogin();
 
@@ -271,7 +276,6 @@ App.VmsVmRoute = Ember.Route.extend({
 // Services
 App.ServicesIndexRoute = Ember.Route.extend({
   beforeModel: function () {
-    this._super();
     this.transitionTo('flavors');
   }
 });
@@ -391,7 +395,6 @@ App.SlaEditRoute = Ember.Route.extend({
 // Trust
 App.TrustIndexRoute = Ember.Route.extend({
   beforeModel: function () {
-    this._super();
     // If Mt. Wilson is installed, go to MLEs
     if (App.mtWilson.get('isInstalled')) {
       this.transitionTo('trust.mles.index');
@@ -478,7 +481,7 @@ App.SettingsMailserverRoute = Ember.Route.extend({
 });
 
 App.StatusesIndexRoute = Ember.Route.extend({
-  redirect: function () {
+  beforeModel: function () {
     this.transitionTo('status1', this.store.getById('status', 'system'));
   }
 });
