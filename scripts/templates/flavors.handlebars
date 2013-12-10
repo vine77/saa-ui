@@ -17,7 +17,7 @@
         <thead>
           <tr>
             {{#each columns}}
-              {{partial columnHeader}}
+              {{partial "columnHeader"}}
             {{/each}}
             <th class="column-small">
               <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
