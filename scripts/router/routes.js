@@ -477,7 +477,7 @@ App.SettingsMailserverRoute = Ember.Route.extend({
   }
 });
 
-App.StatusesRoute = Ember.Route.extend({
+App.StatusesIndexRoute = Ember.Route.extend({
   redirect: function () {
     this.transitionTo('status1', this.store.getById('status', 'system'));
   }
