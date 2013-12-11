@@ -1,0 +1,7 @@
+<h3>{{name}} (Health: {{health}})</h3>
+<ul>
+  {{#each offspring}}
+    <li>{{healthIcon this.health}} {{#link-to controller.childRoute this}}{{this.name}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+{{outlet}}
