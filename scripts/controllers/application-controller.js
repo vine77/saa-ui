@@ -1,5 +1,5 @@
 App.ApplicationController = Ember.Controller.extend({
-  needs: ['status', 'build', 'login'],
+  needs: ['statuses', 'build', 'login'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
@@ -16,9 +16,9 @@ App.ApplicationController = Ember.Controller.extend({
     this.set('height', $(window).height());
   },
   isHealthy: function () {
-    var health = this.get('controllers.status.health');
+    var health = this.get('controllers.statuses.health');
     return health === App.SUCCESS || health === App.INFO || health === App.WARNING;
-  }.property('controllers.status.health'),
+  }.property('controllers.statuses.health'),
   isConfigured: function () {
     return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists'),

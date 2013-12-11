@@ -1,3 +1,3 @@
 App.StatusNotificationsController = Ember.ArrayController.extend({
-  needs: 'status'
+  needs: ['statuses']
 });

@@ -1,58 +1,3 @@
-App.Router.map(function () {
-  this.resource('login');
-  this.resource('tempPassword');
-  this.resource('profile', {path: 'profiles/:user_id'});
-  this.resource('modal');
-  this.resource('dashboard');
-  this.resource('status');
-  this.resource('help');
-  this.resource('roles');
-  this.resource('nodes', function () {
-    this.resource('nodesNode', {path: '/:node_id'}, function () {
-      this.route('graphs');
-      this.route('vms');
-    });
-  });
-  this.resource('vms', function () {
-    this.resource('vmsVm', {path: '/:vm_id'}, function () {
-      this.route('graphs');
-    });
-  });
-  this.resource('data');
-  this.resource('logs');
-  this.resource('services', function () {
-    this.resource('slas', function () {
-      this.route('create');
-      this.resource('sla', {path: '/:sla_id'}, function () {
-        this.route('edit');
-      });
-    });
-    this.resource('flavors', function () {
-      this.route('create');
-      this.resource('flavor', {path: '/:flavor_id'}, function () {
-        this.route('edit');
-      });
-    });
-  });
-  this.resource('trust', function () {
-    this.resource('trust.mles', {path: 'mles'}, function () {
-     this.resource('trust.mle', {path: '/:trustMle_id'});
-    });
-    this.route('dashboard');
-  });
-  this.resource('settings', function () {
-    this.route('upload');
-    this.route('network');
-    this.route('mailserver');
-    this.route('users');
-    this.route('dev');
-    this.route('log');
-    this.route('trust');
-  });
-});
-
-// TODO: if attemptedTransition is login, redirect to index
-
 // Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
 App.EnabledRoute = Ember.Route.extend({
   beforeModel: function () {
@@ -107,7 +52,7 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   model: function () {
     var self = this;
-    return this.controllerFor('status').updateCurrentStatus().then(function () {
+    return this.controllerFor('statuses').updateCurrentStatus().then(function () {
       // Status API has responded
       var configurationPromise = Ember.RSVP.hash({
         nova: App.nova.check(),
@@ -531,6 +476,34 @@ App.SettingsMailserverRoute = Ember.Route.extend({
     }
   }
 });
+
+App.StatusesRoute = Ember.Route.extend({
+  redirect: function () {
+    this.transitionTo('status1', this.store.getById('status', 'system'));
+  }
+});
+App.StatusRoute = Ember.Route.extend({
+  model: function (params) {
+    var level = parseInt(this.routeName.slice(6));
+    var parameter = params['status' + level + '_id'];
+    return this.store.findById('status', parameter);
+  },
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    var level = parseInt(this.routeName.slice(6));
+    controller.set('level', level);
+  }
+});
+App.Status1Route = App.StatusRoute.extend();
+App.Status2Route = App.StatusRoute.extend();
+App.Status3Route = App.StatusRoute.extend();
+App.Status4Route = App.StatusRoute.extend();
+App.Status5Route = App.StatusRoute.extend();
+App.Status6Route = App.StatusRoute.extend();
+App.Status7Route = App.StatusRoute.extend();
+App.Status8Route = App.StatusRoute.extend();
+App.Status9Route = App.StatusRoute.extend();
+App.Status10Route = App.StatusRoute.extend();
 
 // TODO: Migrate Sunil's authentication code
 /*

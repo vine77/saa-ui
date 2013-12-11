@@ -1,0 +1,10 @@
+<div class="container-fluid" id="status">
+  <div class="portlet">
+    <div class="header">Status</div>
+    {{#link-to "dashboard"}}Dashboard{{/link-to}}
+    {{#each breadcrumbs}}
+      > {{#link-to route}}{{name}}{{/link-to}}
+    {{/each}}
+    {{outlet}}
+  </div>
+</div>

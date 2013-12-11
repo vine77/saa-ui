@@ -6,7 +6,7 @@
       <tbody>
         <tr>
           <th class="column-medium">System Health</th>
-          <td>{{{healthIcon this.controllers.status.health}}} {{healthText this.controllers.status.health}} </td>
+          <td>{{{healthIcon this.controllers.statuses.health}}} {{healthText this.controllers.statuses.health}} </td>
         </tr>
         <tr>
           <th class="column-medium">IPM Version</th>
@@ -25,7 +25,7 @@
       </tbody>
     </table>
 
-    {{#unless controllers.status.isConfigPresent}}
+    {{#unless controllers.statuses.isConfigPresent}}
       <div class="alert alert-info">Statuses will appear here after uploading configuration files and starting {{App.application.title}}.</div>
     {{else}}
       <table class="table table-bordered">
@@ -36,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each status in controllers.status.parentStatuses}}
+          {{#each status in controllers.statuses.parentStatuses}}
             <tr>
               <td class="column-small">{{{healthIcon status.health}}}</td>
               <td>
@@ -53,7 +53,7 @@
         </tbody>
       </table>
       <div class="pull-right">
-        {{#link-to "status"}}See Details{{/link-to}}
+        {{#link-to "status1" "system"}}See Details{{/link-to}}
       </div>
     {{/unless}}
 
