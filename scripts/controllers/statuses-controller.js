@@ -6,10 +6,12 @@ App.StatusesController = Ember.Controller.extend({
   // Properties
   connected: false,
   isUpdating: false,
-  health: function() {
-    var systemStatus = this.store.getById('status', 'system');
-    return (systemStatus) ? systemStatus.get('health') : null;
+  systemStatus: function () {
+    return this.store.getById('status', 'system');
   }.property('model.@each'),
+  health: function() {
+    return (this.get('systemStatus')) ? this.get('systemStatus').get('health') : null;
+  }.property('systemStatus'),
   isConfigPresent: function () {
     var samConfigFiles = this.get('model').findBy('id', 'sam_config_files');
     return (samConfigFiles) ? samConfigFiles.get('health') !== App.UNKNOWN : false;
