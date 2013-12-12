@@ -38,6 +38,7 @@ App.ApplicationController = Ember.Controller.extend({
   isDrawerExpanded: false,
   autoRefresh: function () {
     // TODO: Add authentication check to polling
+    Ember.run.later(this, 'autoRefresh', 20000);
     if (this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
       this.store.find('slo');
       this.store.find('sla');
@@ -49,7 +50,6 @@ App.ApplicationController = Ember.Controller.extend({
       }
       this.store.find('node');
     }
-    Ember.run.later(this, 'autoRefresh', 20000);
   },
 
   // Actions
