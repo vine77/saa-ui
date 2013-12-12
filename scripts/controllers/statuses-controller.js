@@ -11,32 +11,17 @@ App.StatusesController = Ember.Controller.extend({
   }.property('model.@each'),
   health: function() {
     return (this.get('systemStatus')) ? this.get('systemStatus').get('health') : null;
-  }.property('systemStatus'),
+  }.property('systemStatus.health'),
   isConfigPresent: function () {
     var samConfigFiles = this.get('model').findBy('id', 'sam_config_files');
     return (samConfigFiles) ? samConfigFiles.get('health') !== App.UNKNOWN : false;
   }.property('model.@each.health'),
-  parentStatuses: function () {
-    return this.store.all('status').filter(function(item, index, enumerable) {
-      var isMatched = false;
-      if (item.get('parent')) {
-        item.get('parent').forEach(function(item, index, enumerable) {
-          if (item.get('id') == 'system') {
-            isMatched = true;
-          }
-        });
-      }
-      return isMatched;
-    });
-  }.property('model.@each'),
-  showStatus: function () {
-    return !this.get('isUpdating') && this.get('controllers.application.loggedIn');
-  }.property('isUpdating', 'controllers.application.loggedIn'),
+  loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   statusErrorMessages: function () {
     return this.store.all('status').filterBy('isNotification');
   }.property('model.@each'),
   statusClass: function () {
-    return (!this.get('health')) ? 'alert-info' : 'alert-' + App.priorityToType(this.get('health'));
+    return (!this.get('health')) ? 'alert-warning' : 'alert-' + App.priorityToType(this.get('health'));
   }.property('health'),
 
   breadcrumbs: function () {
@@ -58,8 +43,8 @@ App.StatusesController = Ember.Controller.extend({
   updateCurrentStatus: function () {
     var self = this;
     // Update status and check connectivity every 10 seconds
-    //Ember.run.later(this, 'updateCurrentStatus', 10000);
-    if (!this.get('isUpdating')) {
+    Ember.run.later(this, 'updateCurrentStatus', 10000);
+    if (!this.get('isUpdating') && this.get('controllers.application.isAutoRefreshEnabled')) {
       this.set('isUpdating', true);
       return this.store.findAll('status').then(function (status) {
         self.set('connected', true);
@@ -67,7 +52,7 @@ App.StatusesController = Ember.Controller.extend({
       }, function (error) {
         self.set('isUpdating', false);
         self.set('connected', false);
-        return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+        return new Ember.RSVP.reject();
       });
     }
   }

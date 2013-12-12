@@ -4,21 +4,33 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <th class="column-medium">System Health</th>
+          <td class="column-medium"><strong>System Health</strong></td>
           <td>{{{healthIcon this.controllers.statuses.health}}} {{healthText this.controllers.statuses.health}} </td>
         </tr>
         <tr>
-          <th class="column-medium">IPM Version</th>
+          <td class="column-medium"><strong>IPM Version</strong></td>
           <td>{{controllers.build.version}}</td>
         </tr>
         <tr>
-          <th class="column-medium">IPM Master/Slave</th>
+          <td class="column-medium"><strong>IPM Master/Slave</strong></td>
           <td>
             {{#if controllers.build.isMaster}}
               IPM Master
             {{else}}
               IPM Slave
             {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <td class="column-medium"><strong>Nodes</strong> (total #)</td>
+          <td>
+            {{controllers.nodes.length}}
+          </td>
+        </tr>
+        <tr>
+          <td class="column-medium"><strong>VMs</strong> (total #)</td>
+          <td>
+            {{controllers.vms.length}}
           </td>
         </tr>
       </tbody>
