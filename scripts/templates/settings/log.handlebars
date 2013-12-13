@@ -5,24 +5,20 @@
   <form class="form-horizontal well-clean shadow-lifted">
     <section id="log-informational-values">
       <legend>Log Details</legend>
-      <dl class="dl-horizontal">
-        <dt>
-          {{#view App.TooltipView title="Amount of data locally stored in the database"}}
-            Actual Size:
-          {{/view}}
-        </dt>
-        <dd>{{readableMegabytes model.actualSize}}</dd>
-        <dt>Threshold:</dt>
-        <dd>{{readableMegabytes model.thresholdSize}}</dd>
+      <div> Current Log Disk Size: {{readableMegabytes model.actualSize}} </div>
+      <dl>
+        <div class="progress progress-success disk-horizontal-bar">
+          <div class="bar" {{bind-attr style="unavailableSpaceWidth"}}></div>
+        </div>
       </dl>
       <div class="control-group">
-        <label class="control-label">Configured Size:</label>
+        <label class="control-label">Maximum Size:</label>
         <div class="controls">
           {{view Ember.TextField valueBinding="model.configuredSize" class="input-small"}} MiB
         </div>
       </div>
       <p class="alert"><strong>Please Note:</strong>
-      When "Actual Size" exceeds "Threshold Size": once an hour, day(s) of data will be deleted until "Actual Size" is less than "Threshold Size". Threshold is a calculated value - the maximum value is a little less than the configured size, and dependent on the amount of free space you have left.
+      When the current size approaches maximum size or available space (exceeds about {{readableMegabytes model.thresholdSize}}), old logs will be deleted hourly.
       </p>
     </section>
     <section id="settable-values">
@@ -37,12 +33,21 @@
         "Maximum Days" are applied to every IPM.
         </p>
       </div>
-      <div class="form-actions">
-        <input type="button" value="Save" class="btn btn-primary" {{action "update" model.id}}>
-        <i class="loading hide"></i>
-        <input type="button" value="Cancel" class="btn btn-primary" {{action "cancel" model}}>
-      </div>
     </section>
+
+  </form>
+
+  <div id="form-actions">
+    <input type="button" value="Save" class="btn btn-primary" {{action "update" model.id}}>
+    <i class="loading hide"></i>
+    <input type="button" value="Cancel" class="btn btn-primary" {{action "cancel" model}}>
+  </div>
+  <br /> <br />
+  <div class="header">
+    <h3> Reset Log Data </h3>
+  </div>
+
+  <form class="form-horizontal well-clean shadow-lifted">
     <section id="reset-log-data">
       <legend>Reset Log Data</legend>
       <div class="control-group">
@@ -54,4 +59,5 @@
       </div>
     </section>
   </form>
+
 </div>
