@@ -47,8 +47,15 @@ App.NodeController = Ember.ObjectController.extend({
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isAssured: Ember.computed.equal('samControlled', 2),
-  assuredMessage: function () {
-    return (this.get('isAssured')) ? 'This is an assured node. VMs with SLAs may be placed here.' : 'This is not an assured node. VMs with SLAs may not be placed here.';
+  isMonitored: Ember.computed.equal('samControlled', 1),
+  nodeTypeMessage: function () {
+    if (this.get('isAssured')) {
+      return 'This is an assured node. VMs with SLAs may be placed here.';
+    } else if (this.get('isMonitored')) {
+      return 'This is a monitored node. SAM will monitor this node, but VMs with SLAs may not be placed here.';
+    } else {
+      return 'This is not an assured node. VMs with SLAs may not be placed here.';
+    }
   }.property('samControlled'),
   isOn: Ember.computed.equal('status.operational', App.ON),
   cpuFrequency: function () {
@@ -215,14 +222,6 @@ App.NodeController = Ember.ObjectController.extend({
       return '<i class="icon-large icon-unlock unregistered"></i>';
     }
   }.property('isTrustRegistered', 'isTrustUnknown', 'isTrusted'),
-  assuredIcon: function () {
-    // TODO: assuredMessage
-    if (this.get('isAssured')) {
-      return '<i class="icon-large icon-trophy assured"></i>';
-    } else {
-      return '<i class="icon-large icon-trophy unassured"></i>';
-    }
-  }.property('isAssured'),
   scheduledIcon: function () {
     // TODO: scheduledMessage
     if (this.get('isScheduled')) {
