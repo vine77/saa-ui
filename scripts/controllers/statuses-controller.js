@@ -6,24 +6,23 @@ App.StatusesController = Ember.Controller.extend({
   // Properties
   connected: false,
   isUpdating: false,
+  loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   systemStatus: function () {
     return this.store.getById('status', 'system');
   }.property('model.@each'),
   health: function() {
     return (this.get('systemStatus')) ? this.get('systemStatus').get('health') : null;
   }.property('systemStatus.health'),
+  statusClass: function () {
+    return (!this.get('health')) ? 'alert-warning' : 'alert-' + App.priorityToType(this.get('health'));
+  }.property('health'),
   isConfigPresent: function () {
     var samConfigFiles = this.get('model').findBy('id', 'sam_config_files');
     return (samConfigFiles) ? samConfigFiles.get('health') !== App.UNKNOWN : false;
   }.property('model.@each.health'),
-  loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   statusErrorMessages: function () {
     return this.store.all('status').filterBy('isNotification');
-  }.property('model.@each'),
-  statusClass: function () {
-    return (!this.get('health')) ? 'alert-warning' : 'alert-' + App.priorityToType(this.get('health'));
-  }.property('health'),
-
+  }.property('model.@each.health', 'model.@each.isNotification'),
   breadcrumbs: function () {
     if (this.get('controllers.application.currentPath').indexOf('statuses') === -1) return [];
     var paths = this.get('controllers.application.currentPath').split('.').slice(1, -1);
