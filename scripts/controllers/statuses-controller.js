@@ -1,5 +1,5 @@
 App.StatusesController = Ember.Controller.extend({
-  needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5'],
+  needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5', 'status6', 'status7', 'status8', 'status9', 'status10', 'status11', 'status12', 'status13', 'status14', 'status15', 'status16', 'status17', 'status18', 'status19', 'status20'],
   init: function () {
     this.set('model', this.store.all('status'));
   },
@@ -25,7 +25,8 @@ App.StatusesController = Ember.Controller.extend({
   }.property('model.@each.health', 'model.@each.isNotification'),
   breadcrumbs: function () {
     if (this.get('controllers.application.currentPath').indexOf('statuses') === -1) return [];
-    var paths = this.get('controllers.application.currentPath').split('.').slice(1, -1);
+    var paths = this.get('controllers.application.currentPath').split('.');
+    paths = paths.slice(paths.indexOf('statuses') + 1, -1);
     var models = paths.map(function (item, index, enumberable) {
       return this.get('controllers.' + item).get('model');
     }, this);
@@ -70,3 +71,18 @@ App.Status2Controller = App.StatusController.extend();
 App.Status3Controller = App.StatusController.extend();
 App.Status4Controller = App.StatusController.extend();
 App.Status5Controller = App.StatusController.extend();
+App.Status6Controller = App.StatusController.extend();
+App.Status7Controller = App.StatusController.extend();
+App.Status8Controller = App.StatusController.extend();
+App.Status9Controller = App.StatusController.extend();
+App.Status10Controller = App.StatusController.extend();
+App.Status11Controller = App.StatusController.extend();
+App.Status12Controller = App.StatusController.extend();
+App.Status13Controller = App.StatusController.extend();
+App.Status14Controller = App.StatusController.extend();
+App.Status15Controller = App.StatusController.extend();
+App.Status16Controller = App.StatusController.extend();
+App.Status17Controller = App.StatusController.extend();
+App.Status18Controller = App.StatusController.extend();
+App.Status19Controller = App.StatusController.extend();
+App.Status20Controller = App.StatusController.extend();

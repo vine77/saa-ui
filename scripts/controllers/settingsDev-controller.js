@@ -14,5 +14,4 @@ App.SettingsDevController = Ember.Controller.extend({
       location.reload();
     }
   }
-
 });
