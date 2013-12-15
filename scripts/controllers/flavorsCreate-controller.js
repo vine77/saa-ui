@@ -61,26 +61,17 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
-        /*
-        sloPromises = [];
-        slos.forEach(function (slo) {
-          sloPromises.push(slo.save());
-        });
-        Ember.RSVP.all(sloPromises).then(function () {
-          return sla.save();
-        }).then(function () {
-
+        sla.save().then(function () {
           return flavor.save();
         }).then(function () {
-        */
-        sla.save().then(function () {
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
-        }, function (xhr) {
+        }).fail(function (xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });
+        // TODO: Add special case where SLA creation succeeds, but flavor creation fails?
       } else {
         flavor.save().then(function () {
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
