@@ -108,14 +108,6 @@ App.ApplicationRoute = Ember.Route.extend({
     this.controllerFor('nodes').set('model', this.store.all('node'));
   },
   actions: {
-    loading: function() {
-      var view = Ember.View.create({
-        templateName: 'globalLoading'
-      }).append();
-      this.router.one('didTransition', function() {
-        view.destroy();
-      });
-    },
     logout: function() {
       this.redirectToLogin();
 
@@ -507,6 +499,16 @@ App.Status7Route = App.StatusRoute.extend();
 App.Status8Route = App.StatusRoute.extend();
 App.Status9Route = App.StatusRoute.extend();
 App.Status10Route = App.StatusRoute.extend();
+App.Status11Route = App.StatusRoute.extend();
+App.Status12Route = App.StatusRoute.extend();
+App.Status13Route = App.StatusRoute.extend();
+App.Status14Route = App.StatusRoute.extend();
+App.Status15Route = App.StatusRoute.extend();
+App.Status16Route = App.StatusRoute.extend();
+App.Status17Route = App.StatusRoute.extend();
+App.Status18Route = App.StatusRoute.extend();
+App.Status19Route = App.StatusRoute.extend();
+App.Status20Route = App.StatusRoute.extend();
 
 // TODO: Migrate Sunil's authentication code
 /*

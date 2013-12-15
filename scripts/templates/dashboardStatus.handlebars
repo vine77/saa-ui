@@ -24,13 +24,21 @@
         <tr>
           <td class="column-medium"><strong>Nodes</strong> (total #)</td>
           <td>
-            {{controllers.nodes.length}}
+            {{#if controllers.application.isEnabled}}
+              {{#link-to "nodes"}}{{controllers.nodes.length}} nodes{{/link-to}}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
           </td>
         </tr>
         <tr>
           <td class="column-medium"><strong>VMs</strong> (total #)</td>
           <td>
-            {{controllers.vms.length}}
+            {{#if controllers.application.isEnabled}}
+              {{#link-to "vms"}}{{controllers.vms.length}} VMs{{/link-to}}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
           </td>
         </tr>
       </tbody>
