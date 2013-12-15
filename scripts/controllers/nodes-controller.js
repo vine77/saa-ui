@@ -12,8 +12,8 @@ App.NodesColumnsController = App.ColumnsController.extend({
     sortBy: 'isTrusted',
     icon: 'icon-lock'
   }, {
-    description: 'Assured',
-    sortBy: 'isAssured',
+    description: 'Node Type (Assured, Monitored, Non-SAM)',
+    sortBy: 'samControlled',
     icon: 'icon-trophy'
   }, {
     title: 'Hostname',

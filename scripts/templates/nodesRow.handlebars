@@ -38,8 +38,16 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="assuredMessage"}}
-          <i {{bind-attr class=":icon-large :icon-trophy isAssured:assured:unassured"}}></i>
+        {{#view App.TooltipView titleBinding="nodeTypeMessage"}}
+          {{#if isAssured}}
+            <i class="icon-large icon-trophy assured"></i>
+          {{else}}
+            {{#if isMonitored}}
+              <i class="icon-large icon-eye-open monitored"></i>
+            {{else}}
+              <i class="icon-large icon-trophy unassured"></i>
+            {{/if}}
+          {{/if}}
         {{/view}}
       </div></td>
       <td><div class="cell-container">
