@@ -24,7 +24,14 @@
           <li class="showHide"><a {{action hideDrawer}}><i class="icon-double-angle-down"></i> Hide</a></li>
         </ul>
         <ul class="nav nav-tabs top">
-          <li><a {{action expandDrawer "logs"}} data-toggle="tab" data-target="#drawer-logs"><i class="icon-file"></i> Logs</a></li>
+          <li>
+            <a {{action expandDrawer "logs"}} data-toggle="tab" data-target="#drawer-logs">
+              <i class="icon-file"></i> Logs
+              {{#unless controllers.statuses.logsAreVisible}}
+                {{healthIcon controllers.statuses.loggingStatus.health}}
+              {{/unless}}
+            </a>
+          </li>
           <li><a {{action expandDrawer "graphs"}} data-toggle="tab" data-target="#drawer-graphs"><i class="icon-bar-chart"></i> Graphs</a></li>
           <li class="help"><a {{action expandDrawer "help"}} data-toggle="tab" data-target="#drawer-help"><i class="icon-question-sign"></i> Help</a></li>
           <li class="about"><a {{action expandDrawer "about"}} data-toggle="tab" data-target="#drawer-about"><i class="icon-info-sign"></i> About</a></li>

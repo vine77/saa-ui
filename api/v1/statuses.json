@@ -1,13 +1,12 @@
-
 {
   "statuses": [
     {
       "children_ids": [
         "scheduler",
-        "agent_communication",
         "cloud_communication",
-        "trust",
-        "configuration"
+        "agent_communication",
+        "configuration",
+        "logging"
       ],
       "exposed_health": 3,
       "name": "System",
@@ -15,323 +14,275 @@
       "action_name": [],
       "parent_ids": [],
       "health": 3,
-      "message": "Component health: error",
+      "message": "Component health: warning",
       "id": "system"
     },
     {
       "children_ids": [
-        "os_data_collector",
-        "persistent_db",
-        "volatile_db",
-        "amqp"
+        "configuration_process",
+        "sam_config_files"
       ],
-      "exposed_health": 3,
-      "name": "Scheduler",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "system"
-      ],
-      "health": 3,
-      "message": "Component health: warning",
-      "id": "scheduler"
-    },
-    {
-      "children_ids": [
-        "amqp",
-        "message_router"
-      ],
-      "exposed_health": 0,
-      "name": "Agents communication framework",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "system"
-      ],
-      "health": 0,
-      "message": "Component health: unknown",
-      "id": "agent_communication"
-    },
-    {
-      "children_ids": [
-        "amqp",
-        "keystone_db",
-        "nova_api_connection"
-      ],
-      "exposed_health": 4,
-      "name": "Cloud communication",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "system"
-      ],
-      "health": 4,
-      "message": "Component health: error",
-      "id": "cloud_communication"
-    },
-    {
-      "children_ids": [],
-      "exposed_health": 0,
-      "name": "Trust",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "system"
-      ],
-      "health": 0,
-      "message": "Component health: unknown",
-      "id": "trust"
-    },
-    {
-      "children_ids": [
-        "logging",
-        "disk_space",
-        "configuration_in_progress"
-      ],
-      "exposed_health": 0,
+      "exposed_health": 1,
       "name": "Configuration",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 0,
-      "message": "Component health: unknown",
+      "health": 1,
+      "message": "Component health: success",
       "id": "configuration"
     },
     {
       "children_ids": [
-        "main_os_db",
-        "neutron_db"
-      ],
-      "exposed_health": 3,
-      "name": "OpenStack data collector",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "scheduler"
-      ],
-      "health": 3,
-      "message": "Component health: warning",
-      "id": "os_data_collector"
-    },
-    {
-      "children_ids": [
-        "main_os_db_connection"
+        "amqp",
+        "nodes_data_storage",
+        "amqp_request_processor"
       ],
       "exposed_health": 1,
-      "name": "Main OpenStack DB",
+      "name": "Scheduler",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "os_data_collector"
+        "system"
       ],
       "health": 1,
       "message": "Component health: success",
-      "id": "main_os_db"
-    },
-    {
-      "children_ids": [
-        "os_data_collector_process"
-      ],
-      "exposed_health": 1,
-      "name": "Main OpenStack DB connection",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "main_os_db"
-      ],
-      "health": 1,
-      "message": "Connected to OS main DB",
-      "id": "main_os_db_connection"
+      "id": "scheduler"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "OpenStack data collector process",
+      "name": "Scheduling engine",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "main_os_db_connection",
-        "neutron_db_connection"
+        "scheduler"
       ],
       "health": 1,
-      "message": "Os_db_worker process is running",
-      "id": "os_data_collector_process"
+      "message": "Component health: success",
+      "id": "amqp_request_processor"
     },
     {
       "children_ids": [
-        "neutron_db_connection"
+        "cloud_rest_api",
+        "cloud_database"
       ],
-      "exposed_health": 3,
-      "name": "Neutron DB",
+      "exposed_health": 1,
+      "name": "Cloud communication",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "os_data_collector"
+        "system"
+      ],
+      "health": 1,
+      "message": "Component health: success",
+      "id": "cloud_communication"
+    },
+    {
+      "children_ids": [
+        "amqp"
+      ],
+      "exposed_health": 1,
+      "name": "Agents communication",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Component health: success",
+      "id": "agent_communication"
+    },
+    {
+      "children_ids": [
+        "logging_disk_space",
+        "logging_communication",
+        "logging_storage"
+      ],
+      "exposed_health": 3,
+      "name": "Logs engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
       ],
       "health": 3,
       "message": "Component health: warning",
-      "id": "neutron_db"
-    },
-    {
-      "children_ids": [
-        "os_data_collector_process"
-      ],
-      "exposed_health": 3,
-      "name": "Neutron DB connection",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "neutron_db"
-      ],
-      "health": 4,
-      "message": "Couldn't connect to Quantum's DB. Connection string = mysql://quantum:openstack@172.24.0.12:3306/ovs_quantum",
-      "id": "neutron_db_connection"
+      "id": "logging"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Persistent DB",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "scheduler"
-      ],
-      "health": 1,
-      "message": "Postgres persistent storage database process is running",
-      "id": "persistent_db"
-    },
-    {
-      "children_ids": [],
-      "exposed_health": 1,
-      "name": "Volatile DB",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "scheduler"
-      ],
-      "health": 1,
-      "message": "Postgres in-memory storage database process is running",
-      "id": "volatile_db"
-    },
-    {
-      "children_ids": [],
-      "exposed_health": 1,
-      "name": "Message Bus",
+      "name": "AMQP message bus",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "scheduler",
-        "agent_communication",
-        "cloud_communication"
+        "agent_communication"
       ],
       "health": 1,
       "message": "Component health: success",
       "id": "amqp"
     },
     {
-      "children_ids": [],
-      "exposed_health": 0,
-      "name": "Message Router",
+      "children_ids": [
+        "persistent_db",
+        "volatile_db"
+      ],
+      "exposed_health": 1,
+      "name": "Nodes data storage",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "agent_communication"
+        "scheduler"
       ],
-      "health": 0,
-      "message": "Status file not found.",
-      "id": "message_router"
+      "health": 1,
+      "message": "Component health: success",
+      "id": "nodes_data_storage"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Volatile storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "Volatile storage process is running",
+      "id": "volatile_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Persistent storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "Persistent storage process is running",
+      "id": "persistent_db"
     },
     {
       "children_ids": [
+        "keystone_connection",
+        "nova_connection",
         "keystone_authentication"
       ],
-      "exposed_health": 4,
-      "name": "Keystone DB",
+      "exposed_health": 1,
+      "name": "REST API",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_communication"
       ],
-      "health": 4,
-      "message": "Component health: error",
-      "id": "keystone_db"
+      "health": 1,
+      "message": "Component health: success",
+      "id": "cloud_rest_api"
     },
     {
       "children_ids": [
-        "keystone_connection"
+        "nova_db",
+        "neutron_db",
+        "data_synchronization_engine"
       ],
-      "exposed_health": 4,
-      "name": "Keystone authentication",
+      "exposed_health": 1,
+      "name": "Database",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "keystone_db"
+        "cloud_communication"
       ],
-      "health": 4,
-      "message": "Failed to connect to keystone",
-      "id": "keystone_authentication"
+      "health": 1,
+      "message": "Component health: success",
+      "id": "cloud_database"
     },
     {
       "children_ids": [],
-      "exposed_health": 4,
+      "exposed_health": 1,
       "name": "Keystone connection",
-      "is_notification": true,
+      "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "keystone_authentication"
+        "cloud_rest_api"
       ],
-      "health": 4,
-      "message": "Failed to connect to keystone",
+      "health": 1,
+      "message": "Component health: success",
       "id": "keystone_connection"
     },
     {
       "children_ids": [],
-      "exposed_health": 4,
-      "name": "Nova API connection",
-      "is_notification": true,
-      "action_name": [],
-      "parent_ids": [
-        "cloud_communication"
-      ],
-      "health": 4,
-      "message": "Failed to connect to keystone",
-      "id": "nova_api_connection"
-    },
-    {
-      "children_ids": [],
-      "exposed_health": 0,
-      "name": "Logging",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "configuration"
-      ],
-      "health": 0,
-      "message": "Status file not found.",
-      "id": "logging"
-    },
-    {
-      "children_ids": [],
-      "exposed_health": 0,
-      "name": "Disk space",
-      "is_notification": false,
-      "action_name": [],
-      "parent_ids": [
-        "configuration"
-      ],
-      "health": 0,
-      "message": "Status file not found.",
-      "id": "disk_space"
-    },
-    {
-      "children_ids": [
-        "sam_config_files",
-        "configuration_process"
-      ],
       "exposed_health": 1,
-      "name": "Configuration in progress",
+      "name": "Nova connection",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_rest_api"
+      ],
+      "health": 1,
+      "message": "Component health: success",
+      "id": "nova_connection"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Keystone authentication",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_rest_api"
+      ],
+      "health": 1,
+      "message": "Component health: success",
+      "id": "keystone_authentication"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Nova database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Nova database.",
+      "id": "nova_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Neutron database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Neutron database.",
+      "id": "neutron_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Data synchronization engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Data synchronization engine process is running.",
+      "id": "data_synchronization_engine"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Configuration process status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
@@ -339,33 +290,59 @@
       ],
       "health": 1,
       "message": "Component health: success",
-      "id": "configuration_in_progress"
+      "id": "configuration_process"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "SAM configuration files",
+      "name": "Configuration data accessible",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "configuration_in_progress"
+        "configuration"
       ],
       "health": 1,
-      "message": "Files: sam.conf exists, openrc exists, nova.conf exists, ovs_quantum_plugin.ini exists",
+      "message": "Component health: success",
       "id": "sam_config_files"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Configuration process",
+      "name": "Disk usage",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "configuration_in_progress"
+        "logging"
       ],
       "health": 1,
-      "message": "Component health: success",
-      "id": "configuration_process"
+      "message": "Disk usage: 57%",
+      "id": "logging_disk_space"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 3,
+      "name": "Log storage status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "logging"
+      ],
+      "health": 0,
+      "message": "Log storage status unknown",
+      "id": "logging_storage"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Communication status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "logging"
+      ],
+      "health": 1,
+      "message": "Log communications active.",
+      "id": "logging_communication"
     }
   ]
 }

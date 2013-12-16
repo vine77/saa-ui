@@ -1,21 +1,28 @@
-<div class="log-bar">
-  {{view Ember.Select viewName="select"
-    contentBinding="selectListNodes"
-    selectionBinding="nodeSelected"
-    optionLabelPath="content.label"
-    prompt="Select Node"
-    optionValuePath="content.value"
-  }}
-  {{view Ember.Select viewName="select"
-    contentBinding="selectListCriticalities"
-    selectionBinding="criticalitySelected"
-    optionLabelPath="content.label"
-    prompt="Select Severity"
-    optionValuePath="content.id"
-  }}
-
-  <button {{action reset}} class="btn btn-inverse btn-small log-buttons">Reset</button>
-  <button {{action advancedSearch}} class="btn btn-info btn-small log-buttons">Advanced</button>
-
-</div>
-<iframe {{bindAttr src="logsUrl"}} id="allLogsFrame" name="allLogsFrame" class="logsFrame"></iframe> 
+{{#if this.controllers.statuses.logsAreVisible}}
+  <div class="log-bar">
+    {{view Ember.Select viewName="select"
+      contentBinding="selectListNodes"
+      selectionBinding="nodeSelected"
+      optionLabelPath="content.label"
+      prompt="Select Node"
+      optionValuePath="content.value"
+    }}
+    {{view Ember.Select viewName="select"
+      contentBinding="selectListCriticalities"
+      selectionBinding="criticalitySelected"
+      optionLabelPath="content.label"
+      prompt="Select Severity"
+      optionValuePath="content.id"
+    }}
+    <button {{action reset}} class="btn btn-inverse btn-small log-buttons">Reset</button>
+    <button {{action advancedSearch}} class="btn btn-info btn-small log-buttons">Advanced</button>
+  </div>
+  <iframe {{bindAttr src="logsUrl"}} id="allLogsFrame" name="allLogsFrame" class="logsFrame"></iframe>
+{{else}}
+  <div class="logs-container">
+    <br />
+    <div class="alert alert-error">
+      <strong>Error!</strong> Logging is not in a healthy state: "{{controllers.statuses.loggingStatus.message}}"
+    </div>
+  </div>
+{{/if}}
