@@ -8,10 +8,10 @@ App.LogBarController = Ember.ObjectController.extend({
   kibanaLogcategoriesQuery: [],
   logsAreVisible: function() {
     var loggingStatus = this.get('controllers.statuses.loggingStatus.health');
-    if (loggingStatus == App.ERROR || loggingStatus == App.UNKNOWN) {
-      return false;
-    } else {
+    if (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING) {
       return true;
+    } else {
+      return false;
     }
   }.property('controllers.statuses.loggingStatus'),
   logsUrl: function () {
