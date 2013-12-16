@@ -7,6 +7,17 @@ App.StatusesController = Ember.Controller.extend({
   connected: false,
   isUpdating: false,
   loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
+  loggingStatus: function () {
+    return this.store.getById('status', 'logging_storage');
+  }.property('model.@each'),
+  logsAreVisible: function() {
+    var loggingStatus = this.get('loggingStatus.health');
+    if (loggingStatus == App.ERROR || loggingStatus == App.UNKNOWN) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('loggingStatus'),
   systemStatus: function () {
     return this.store.getById('status', 'system');
   }.property('model.@each'),

@@ -1,17 +1,23 @@
 App.LogBarController = Ember.ObjectController.extend({
-  needs: ['nodes', 'application', 'vms', 'criticalities', 'logcategories', 'build'],
+  needs: ['nodes', 'application', 'vms', 'criticalities', 'logcategories', 'build', 'statuses'],
   isSettingEach: false,
   kibanaFieldIds: {nodes: null, vms: null, criticalities: null, logcategories: null},
   kibanaNodesQuery: [],
   kibanaVmsQuery: [],
   kibanaCriticalitiesQuery: [],
   kibanaLogcategoriesQuery: [],
-
+  logsAreVisible: function() {
+    var loggingStatus = this.get('controllers.statuses.loggingStatus.health');
+    if (loggingStatus == App.ERROR || loggingStatus == App.UNKNOWN) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('controllers.statuses.loggingStatus'),
   logsUrl: function () {
     return this.get('controllers.application.logsUrl');
   }.property('controllers.application'),
-
-  criticalitiesFiltered: function () {
+  criticalitiesFiltered: function() {
     var returnArray = [];
     this.get('controllers.criticalities').forEach( function (item, index, enumerable) {
       if ((App.isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
