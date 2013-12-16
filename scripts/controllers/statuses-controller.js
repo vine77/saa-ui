@@ -12,10 +12,10 @@ App.StatusesController = Ember.Controller.extend({
   }.property('model.@each'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
-    if (loggingStatus == App.ERROR || loggingStatus == App.UNKNOWN) {
-      return false;
-    } else {
+    if (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING) {
       return true;
+    } else {
+      return false;
     }
   }.property('loggingStatus'),
   systemStatus: function () {
