@@ -6,46 +6,14 @@ App.EnabledRoute = Ember.Route.extend({
   }
 });
 
-// Add authentication to all routes (unless isAuthenticated flag is false)
-Ember.Route.reopen({
-  isAuthenticated: true,
-  beforeModel: function (transition) {
-    //if (!this.controllerFor('login').get('token')) {
-    if (localStorage.loggedIn) this.controllerFor('application').set('loggedIn', true);
-    var loggedIn = this.controllerFor('application').get('loggedIn');
-    if (this.get('isAuthenticated') && !loggedIn) {
-      this.redirectToLogin(transition);
-    }
-  },
-  redirectToLogin: function (transition) {
-    // Log out user
-    localStorage.removeItem('loggedIn');
-    this.controllerFor('login').set('loggedIn', false);
-    this.controllerFor('login').set('username', null);
-    this.controllerFor('login').set('password', null);
-    // Save attempted route transition
-    if (transition) this.controllerFor('login').set('attemptedTransition', transition);
-    // Redirect to login route
-    this.transitionTo('login');
-  },
-  events: {
-    error: function (reason, transition) {
-      if (reason.status === 401) {
-        this.redirectToLogin(transition);
-      }
-    }
-  }
-});
-
 // Application
 App.ApplicationRoute = Ember.Route.extend({
-  isAuthenticated: false,
   init: function () {
     App.store = this.store;
     App.route = this;
   },
-  setupController: function () {
-    this.controllerFor('vms').set('model', this.store.find('vm'));
+  beforeModel: function (transition) {
+    if (localStorage.loggedIn) this.controllerFor('application').set('loggedIn', true);
   },
   model: function () {
     var self = this;
@@ -108,8 +76,20 @@ App.ApplicationRoute = Ember.Route.extend({
     this.controllerFor('nodes').set('model', this.store.all('node'));
   },
   actions: {
+    redirectToLogin: function (transition) {
+      console.log('redirectToLogin');
+      // Log out user
+      localStorage.removeItem('loggedIn');
+      this.controllerFor('login').set('loggedIn', false);
+      this.controllerFor('login').set('username', null);
+      this.controllerFor('login').set('password', null);
+      // Save attempted route transition
+      if (transition) this.controllerFor('login').set('attemptedTransition', transition);
+      // Redirect to login route
+      this.transitionTo('login');
+    },
     logout: function() {
-      this.redirectToLogin();
+      this.send('redirectToLogin');
 
       // TODO: Migrate Sunil's authentication code
       /*
@@ -153,7 +133,6 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 App.LoginRoute = Ember.Route.extend({
-  isAuthenticated: false,
   actions: {
     login: function () {
       localStorage.loggedIn = true;
@@ -174,14 +153,35 @@ App.LoginRoute = Ember.Route.extend({
   }
 });
 
-App.DashboardRoute = Ember.Route.extend();
-
-
 App.TempPasswordRoute = Ember.Route.extend({
   actions: {
     generate_password: function() {
       this.controller.generatePassword(this);
     }
+  }
+});
+
+// Add authentication to routes under /app
+App.AppRoute = Ember.Route.extend({
+  beforeModel: function (transition) {
+    var loggedIn = this.controllerFor('application').get('loggedIn');
+    if (!loggedIn) {
+      console.log('test 1');
+      transition.send('redirectToLogin', transition);
+    }
+  },
+  events: {
+    error: function (reason, transition) {
+      if (reason.status === 401) {
+        transition.send('redirectToLogin', transition);
+      }
+    }
+  }
+});
+
+App.DataRoute = Ember.Route.extend({
+  beforeModel: function () {
+    console.log('DataRoute. isEnabled:', this.controllerFor('application').get('isEnabled'));
   }
 });
 
