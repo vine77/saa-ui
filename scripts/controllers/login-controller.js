@@ -21,7 +21,7 @@ App.LoginController = App.FormController.extend({
     });
   }.observes('csrfToken'),
   refreshSession: function () {
-    Ember.run.later(this, 'refreshSession', 300000);  // Refresh every 5 minutes
+    Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
     if (this.get('loggedIn') && this.get('controllers.application.isAutoRefreshEnabled')) {
       var host = (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain;
       Ember.$.ajax(host + '/api/v1/sessions', {
