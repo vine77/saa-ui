@@ -1,19 +1,8 @@
-// Use EnabledRoute for routes that require the app to be enabled (configured and healthy)
-App.EnabledRoute = Ember.Route.extend({
-  beforeModel: function () {
-    // TODO: Make this check async-capable
-    //if (!this.controllerFor('application').get('isEnabled')) this.transitionTo('index');
-  }
-});
-
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   init: function () {
     App.store = this.store;
     App.route = this;
-  },
-  beforeModel: function (transition) {
-    if (localStorage.loggedIn) this.controllerFor('application').set('loggedIn', true);
   },
   model: function () {
     var self = this;
@@ -46,7 +35,6 @@ App.ApplicationRoute = Ember.Route.extend({
     redirectToLogin: function (transition) {
       console.log('redirectToLogin');
       // Log out user
-      localStorage.removeItem('loggedIn');
       this.controllerFor('login').set('loggedIn', false);
       this.controllerFor('login').set('username', null);
       this.controllerFor('login').set('password', null);
