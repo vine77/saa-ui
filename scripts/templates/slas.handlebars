@@ -9,7 +9,7 @@
         <form id="filter-form" class="input-prepend clear-input pull-right">
           <span class="add-on"><i class="icon-search"></i></span>
           {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter SLAs"}}
-          <a class="close clear-button" type="reset" {{action clearFilter}}>&times;</a>
+          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
         </form>
         --}}
       </div>

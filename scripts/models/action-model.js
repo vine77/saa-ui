@@ -7,7 +7,6 @@ App.Action = DS.Model.extend({
   options: DS.attr(),
   started: DS.attr('string'),
   status: DS.attr('number'),
-  status: DS.attr('number'),
   user: DS.attr('string'),
 
   // Relationships

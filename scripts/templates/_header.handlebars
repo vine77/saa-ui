@@ -65,7 +65,7 @@
             {{/if}}
           </li>
           <li>Logged in as <em>{{controllers.login.username}}</em></li>
-          <li><a href="#" {{action logout}}><i class="icon-signout"></i>Log Out</a></li>
+          <li><a href="#" {{action "logout"}}><i class="icon-signout"></i>Log Out</a></li>
         </ul>
       {{/if}}
       {{render "statusNotifications"}}

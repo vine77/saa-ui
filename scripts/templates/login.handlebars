@@ -1,24 +1,24 @@
 <div id="login" class="container">
-  {{#if message}}
-   <div id="login-notification" class="notification">
-     <div class="alert">
-     <button type="button" class="close" {{action removeNotification}}>&times;</button>
-     {{message}}
-     </div>
-   </div>
+  {{#if alert}}
+    <div id="login-notification" class="notification">
+      <div {{bindAttr class=":alert alertClass"}}>
+        <button type="button" class="close" {{action "clearAlert"}}>&times;</button>
+        {{alert}}
+      </div>
+    </div>
   {{/if}}
   <div class="portlet" style="float:none; margin:20px auto;">
     <div class="header" style="text-align:left;">User Login</div>
-    <form>
+    <form {{action "login" on="submit"}}>
       <label for="inputUsername"><small>Username</small></label>
-        <div class="input-prepend">
+      <div class="input-prepend">
         <span class="add-on"><i class="icon-user"></i></span>
         {{view Ember.TextField valueBinding="username" id="login-username" placeholder="Username" autofocus="autofocus"}}
       </div>
       <label for="inputPassword"><small>Password</small>
         {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
-        </label>
-        <div class="input-prepend">
+      </label>
+      <div class="input-prepend">
         <span class="add-on"><i class="icon-lock"></i></span>
         {{view Ember.TextField valueBinding="password" id="login-password" placeholder="Password" type="password"}}
       </div>
@@ -27,8 +27,12 @@
         {{!-- <small>{{#link-to "tempPassword"}}Forgot your password?{{/link-to}}</small> --}}
         </a>
       </p>
-      <div class="form-actions" style="margin:20px -19px -19px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;">
-        <button class="btn btn-primary" {{action login}}>Login</button>
+      <div class="form-actions">
+        {{#unless isPending}}
+          <input class="btn btn-primary" type="submit" value="Login"></input>
+        {{else}}
+          <a class="btn btn-primary disabled"><i class="icon-spinner icon-spin"></i> Logging in...</a>
+        {{/unless}}
       </div>
     </form>
   </div>

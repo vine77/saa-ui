@@ -37,9 +37,8 @@ App.ApplicationController = Ember.Controller.extend({
   }.property(),
   isDrawerExpanded: false,
   autoRefresh: function () {
-    // TODO: Add authentication check to polling
     Ember.run.later(this, 'autoRefresh', 20000);
-    if (this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
+    if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
       this.store.find('slo');
       this.store.find('sla');
       this.store.find('flavor');
