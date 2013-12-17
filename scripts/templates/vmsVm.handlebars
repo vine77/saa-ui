@@ -135,7 +135,17 @@
       <table class="table table-bordered">
         <tr>
           <th class="column-medium">SLA Name</th>
-          <td>{{#link-to "sla" sla}}{{capitalize sla.name}}{{/link-to}}</td>
+          <td>
+            {{#if sla}}
+              {{#unless sla.deleted}}
+                {{#link-to "sla" sla}}{{capitalize slaName}}{{/link-to}}
+              {{else}}
+                {{capitalize slaName}}
+              {{/unless}}
+            {{else}}
+              {{capitalize slaName}}
+            {{/if}}
+          </td>
         </tr>
         <tr>
           <th class="column-medium">SLA Violated</th>
