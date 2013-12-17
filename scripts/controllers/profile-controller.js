@@ -110,11 +110,17 @@ App.ProfileController = App.FormController.extend({
         */
 
         return model.save().then(function () {
-          globalController = controller;
-          controller.set('isPending', false);
-          controller.get('controllers.login').set('loggedIn', true);
-          App.notify('The user profile was updated successfully.', App.SUCCESS);
-          controller.get('controllers.login').transitionToAttempted();
+          var session = controller.store.createRecord('session', {
+            username: controller.get('controllers.login.username'),
+            password: controller.get('newPassword1')
+          });
+          return session.save().then(function (session) {
+            controller.set('isPending', false);
+            controller.get('controllers.login').set('csrfToken', session.get('csrfToken'));
+            controller.get('controllers.login').set('loggedIn', true);
+            controller.get('controllers.login').transitionToAttempted();
+            App.notify('The user profile was updated successfully.', App.SUCCESS);
+          });
         }).fail(function (xhr) {
           controller.set('isPending', false);
           App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
