@@ -1,60 +1,59 @@
-<section id="profile" class="container">
-    {{#if message}}
-     <div id="profile-notification" class="notification">
-       <div class="alert">
-         <button type="button" class="close" {{action removeNotification}}>&times;</button>
-         {{message}}
-       </div>
-     </div>
-    {{/if}}
-    <h3>Edit User Profile</h3>
-    <form class="form-horizontal well-clean shadow-lifted">
-    <div class="control-group">
-      <label class="control-label">Username</label>
-      <div class="controls">
+<div id="login" class="container">
+  {{#if message}}
+    <div id="profile-notification" class="notification">
+      <div class="alert">
+        <button type="button" class="close" {{action "removeNotification"}}>&times;</button>
+        {{message}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="portlet" style="float:none; margin:20px auto;">
+    <div class="header" style="text-align:left;">Edit User Profile</div>
+    <form {{action "save" on="submit"}}>
+      {{!--
+      <label for="inputUsername"><small>Username</small></label>
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-user"></i></span>
         {{view Ember.TextField valueBinding="username" id="profile-username" placeholder="Username" disabled="true"}}
       </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label">Current Password</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
+      <label for="inputUsername"><small>Current Password</small></label>
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-lock"></i></span>
+        {{view Ember.TextField valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password" autofocus="autofocus"}}
       </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label">New Password</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="newPassword1" id="profile-newPassword1" placeholder="New Password" type="password"}}
+      --}}
+      <label for="inputUsername"><small>New Password</small></label>
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-lock"></i></span>
+        {{view Ember.TextField valueBinding="newPassword1" id="profile-newPassword1" placeholder="New password" type="password" autofocus="autofocus"}}
       </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label">New Password</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="newPassword2" id="profile-newPassword2" placeholder="New Password again" type="password"}}
+      <label for="inputUsername"><small>Confirm Password</small></label>
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-lock"></i></span>
+        {{view Ember.TextField valueBinding="newPassword2" id="profile-newPassword2" placeholder="Repeat new password" type="password"}}
       </div>
-    </div>
-
-    {{#if getEmail}}
-        <div class="control-group">
-          <label class="control-label">Email address</label>
-          <div class="controls">
-            {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
-          </div>
+      {{#if getEmail}}
+        <label for="inputUsername"><small>Email Address</small></label>
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-envelope"></i></span>
+          {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
         </div>
-    {{/if}}
-        
-    </form>
-    
-    {{#if getMailServer}}
+      {{/if}}
+
+      {{!--
+      {{#if getMailServer}}
         {{render 'settings.mailserver'}}
-    {{/if}}
-    
-    <div class="form-actions">
-        <input type="submit" class="btn btn-primary" value="Save" {{action save}}>
-        <button class="btn btn-danger" type="button" {{action reset}}>Cancel</button>
-    </div>
-        
-</section>
+      {{/if}}
+      --}}
+
+      <div class="form-actions">
+        {{#unless isPending}}
+          <a class="btn btn-danger" type="button" {{action "cancel"}}>Cancel</a>
+          <input class="btn btn-primary" type="submit" value="Save"></input>
+        {{else}}
+          <a class="btn btn-primary disabled"><i class="icon-spinner icon-spin"></i> Saving...</a>
+        {{/unless}}
+      </div>
+    </form>
+  </div>
+</div>

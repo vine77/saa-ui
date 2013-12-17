@@ -17,51 +17,13 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   model: function () {
     var self = this;
-    return this.controllerFor('statuses').updateCurrentStatus().then(function () {
-      // Status API has responded
-      var configurationPromise = Ember.RSVP.hash({
-        nova: App.nova.check(),
-        openrc: App.openrc.check(),
-        quantum: App.quantum.check()
-      });
-      return configurationPromise.then(function () {
-        // SAM is configured
-        self.store.find('sloTemplate');
-        self.store.find('slo');
-        self.store.find('sla');
-        self.store.find('flavor');
-        self.store.find('vm');
-        App.mtWilson.check().then(function () {
-          if (App.mtWilson.get('isInstalled')) {
-            self.store.find('trustMle');
-            self.store.find('trustNode');
-            self.store.find('node');
-          } else {
-            self.store.find('node');
-          }
-        }, function () {
-          self.store.find('node');
-        }),
-        App.network.check();
-        self.store.find('action');
-        //self.store.find('user');
-        //App.settingsLog.fetch();
-      }, function () {
-        // SAM is not configured
-        App.network.check();
-        //self.store.find('user');
-        // Don't block loading if SAM is not configured
-        return new Ember.RSVP.Promise(function (resolve, reject) { resolve(); });
-      });
-
-    }, function () {
+    return this.controllerFor('statuses').updateCurrentStatus().fail(function () {
       // Status API is not responding
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
       if (confirmed) {
         location.reload();
       }
-      // Block loading if Status API fails
-      return new Ember.RSVP.Promise(function (resolve, reject) { reject(); });
+      return new Ember.RSVP.reject();  // Block loading if Status API fails
     });
   },
   setupController: function (controller, model) {
@@ -74,6 +36,11 @@ App.ApplicationRoute = Ember.Route.extend({
     });
     this.controllerFor('vms').set('model', this.store.all('vm'));
     this.controllerFor('nodes').set('model', this.store.all('node'));
+  },
+  removeCookies: function () {
+    Ember.$.removeCookie('auth_pubtkt');
+    Ember.$.removeCookie('csrftoken');
+    Ember.$.removeCookie('samwebsession');
   },
   actions: {
     redirectToLogin: function (transition) {
@@ -89,23 +56,29 @@ App.ApplicationRoute = Ember.Route.extend({
       this.transitionTo('login');
     },
     logout: function() {
+      var self = this;
       this.send('redirectToLogin');
-
-      // TODO: Migrate Sunil's authentication code
-      /*
-      var cleanup = function() {
-        location.href = '/';
-      };
-      App.session.deleteRecord();
-      var handlers = {'didDelete' : {postFun:cleanup, nextRoute:'login'}};
-      App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
-      */
+      this.controllerFor('login').set('loggedIn', false);
+      var session = this.controllerFor('login').get('session');
+      if (session) {
+        session.deleteRecord();
+        session.save().then(function () {
+          self.removeCookies();
+        }).fail(function () {
+          self.removeCookies();
+        });
+      } else {
+        this.removeCookies();
+      }
     },
     showModal: function (modalName, controllerName) {
       App.ModalView.create({
         templateName: 'modals/' + modalName,
         controller: this.controllerFor(controllerName)
       }).append();
+    },
+    error: function () {
+      console.log('ApplicationRoute error');
     }
   }
 });
@@ -133,23 +106,9 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 App.LoginRoute = Ember.Route.extend({
-  actions: {
-    login: function () {
-      localStorage.loggedIn = true;
-      this.controllerFor('application').set('loggedIn', true);
-      var attemptedTransition = this.controllerFor('login').get('attemptedTransition');
-      if (attemptedTransition) {
-        if (typeof attemptedTransition === 'string') {
-          this.transitionTo(attemptedTransition);
-        } else {
-          this.controllerFor('login').get('attemptedTransition').retry();
-        }
-        this.controllerFor('login').set('attemptedTransition', null);
-      } else {
-        this.transitionTo('index');
-      }
-      //this.controller.createSession(this);
-    }
+  setupController: function(controller, model) {
+    controller.set('username', '');
+    controller.set('password', '');
   }
 });
 
@@ -158,30 +117,6 @@ App.TempPasswordRoute = Ember.Route.extend({
     generate_password: function() {
       this.controller.generatePassword(this);
     }
-  }
-});
-
-// Add authentication to routes under /app
-App.AppRoute = Ember.Route.extend({
-  beforeModel: function (transition) {
-    var loggedIn = this.controllerFor('application').get('loggedIn');
-    if (!loggedIn) {
-      console.log('test 1');
-      transition.send('redirectToLogin', transition);
-    }
-  },
-  events: {
-    error: function (reason, transition) {
-      if (reason.status === 401) {
-        transition.send('redirectToLogin', transition);
-      }
-    }
-  }
-});
-
-App.DataRoute = Ember.Route.extend({
-  beforeModel: function () {
-    console.log('DataRoute. isEnabled:', this.controllerFor('application').get('isEnabled'));
   }
 });
 
@@ -220,6 +155,80 @@ App.ProfileRoute = Ember.Route.extend({
     },
     reset: function() {
       this.controller.resetProfile(this);
+    }
+  }
+});
+
+// Routes under /app require authentication
+App.AppRoute = Ember.Route.extend({
+  beforeModel: function (transition) {
+    /*
+    var csrfToken = Ember.$.cookie('token');
+    if (csrfToken) {
+      this.controllerFor('login').set('csrfToken', csrfToken);
+    }
+    */
+    var loggedIn = this.controllerFor('application').get('loggedIn');
+    if (!loggedIn) {
+      transition.send('redirectToLogin', transition);
+    }
+  },
+  model: function () {
+    var self = this;
+    // Get current session
+    return this.store.find('session', 'current_session').then(function (session) {
+      self.controllerFor('login').set('session', session);
+      self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
+    }).then(function () {
+      // Call config and other APIs
+      return Ember.RSVP.hash({
+        nova: App.nova.check(),
+        openrc: App.openrc.check(),
+        quantum: App.quantum.check()
+      }).then(function () {
+        // SAM is configured
+        self.store.find('sloTemplate');
+        self.store.find('slo');
+        self.store.find('sla');
+        self.store.find('flavor');
+        self.store.find('vm');
+        App.mtWilson.check().then(function () {
+          if (App.mtWilson.get('isInstalled')) {
+            self.store.find('trustMle');
+            self.store.find('trustNode');
+            self.store.find('node');
+          } else {
+            self.store.find('node');
+          }
+        }, function () {
+          self.store.find('node');
+        }),
+        App.network.check();
+        self.store.find('action');
+        //self.store.find('user');
+        //App.settingsLog.fetch();
+      }, function () {
+        // SAM is not configured
+        App.network.check();
+        //self.store.find('user');
+        return new Ember.RSVP.resolve();  // Don't block loading if SAM is not configured
+      });
+    });
+  },
+  actions: {
+    error: function (reason, transition) {
+      if (reason.status === 401) {
+        transition.send('redirectToLogin', transition);
+      }
+    }
+  }
+});
+
+// Routes under /app/data require app to be enabled
+App.DataRoute = Ember.Route.extend({
+  beforeModel: function () {
+    if (!this.controllerFor('application').get('isEnabled')) {
+      this.transitionTo('index');
     }
   }
 });

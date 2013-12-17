@@ -5,7 +5,7 @@
       <label class="control-label">API domain or IP address:</label>
       <div class="controls">
         {{view Ember.TextField placeholderBinding="currentDomain" valueBinding="apiDomain" autofocus="autofocus"}}
-        <a class="btn" {{action clear}}>Reset to default</a>
+        <a class="btn" {{action "clear"}}>Reset to default</a>
       </div>
     </div>
     <div class="form-actions">

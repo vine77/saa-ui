@@ -9,7 +9,7 @@
         <form id="filter-form" class="input-prepend clear-input pull-right">
           <span class="add-on"><i class="icon-search"></i></span>
           {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter flavors"}}
-          <a class="close clear-button" type="reset" {{action clearFilter}}>&times;</a>
+          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
         </form>
         --}}
       </div>
@@ -20,14 +20,14 @@
               {{partial "columnHeader"}}
             {{/each}}
             <th class="column-small">
-              <a {{action refresh}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+              <a {{action "refresh"}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
         <tbody>
           {{#each}}
             <tr {{bindAttr class="isSelected isExpanded"}}>
-              <td><a {{action expand this}}> {{name}} </a></td>
+              <td><a {{action "expand" this}}> {{name}} </a></td>
               <td class="column-medium">{{vms.length}}</td>
               <td class="column-large">
                 {{#if sla}}
@@ -43,7 +43,7 @@
                   </ul>
                 </div>
               </td>
-              <td class="column-small"><a class="btn btn-mini toggle-details" {{action expand this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
+              <td class="column-small"><a class="btn btn-mini toggle-details" {{action "expand" this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></td>
             </tr>
             <tr class="expandable-row">
               <td colspan="100%">

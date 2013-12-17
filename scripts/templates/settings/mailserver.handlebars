@@ -2,7 +2,7 @@
   {{#if message}}
    <div id="mailserver-notification" class="notification">
      <div class="alert">
-       <button type="button" class="close" {{action removeNotification}}>&times;</button>
+       <button type="button" class="close" {{action "removeNotification"}}>&times;</button>
         {{message}}
      </div>
    </div>
@@ -15,7 +15,7 @@
         {{view Ember.TextField valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
       </div>
     </div>
-      
+
     <div class="control-group">
       <label class="control-label">Port</label>
       <div class="controls">
@@ -45,16 +45,16 @@
     </div>
 
     <div class="control-group">
-        <button class="btn btn-primary" type="button" {{action test_email}}>Send Test Email</button>
+        <button class="btn btn-primary" type="button" {{action "test_email"}}>Send Test Email</button>
     </div>
-    
+
     {{#if standalone}}
         <div class="form-actions">
-            <input type="submit" class="btn btn-primary" value="Save" {{action save}}>
-            <button class="btn btn-danger" type="button" {{action reset}}>Cancel</button>
+            <input type="submit" class="btn btn-primary" value="Save" {{action "save"}}>
+            <button class="btn btn-danger" type="button" {{action "reset"}}>Cancel</button>
         </div>
     {{/if}}
-    
+
     </form>
-    
+
 </section>

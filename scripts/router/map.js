@@ -1,9 +1,9 @@
 App.Router.map(function () {
   this.resource('login');
+  this.resource('profile', {path: '/profiles/:user_id'});
   this.resource('tempPassword');
   this.resource('app', function () {  // Routes under /app must be authenticated
     this.resource('dashboard');
-    this.resource('profile', {path: 'profiles/:user_id'});
     App.statusMap(this);
     this.resource('settings', function () {
       this.route('upload');

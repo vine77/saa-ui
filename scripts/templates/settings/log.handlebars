@@ -27,7 +27,7 @@
         <label class="control-label">Maximum Days:</label>
         <div class="controls">
           {{view Ember.TextField valueBinding="model.maximumDays" class="input-small"}} days
-        </div> 
+        </div>
         <br />
         <p class="alert"><strong>Please Note:</strong>
         "Maximum Days" are applied to every IPM.
@@ -53,7 +53,7 @@
       <div class="control-group">
         <label class="control-label">Delete all log data:</label>
         <div class="controls">
-          <input type="button" value="Delete Log Data" class="btn btn-danger" {{action deleteLogs}}>
+          <input type="button" value="Delete Log Data" class="btn btn-danger" {{action "deleteLogs"}}>
           <i class="loading hide"></i>
         </div>
       </div>
