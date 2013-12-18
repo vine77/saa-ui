@@ -206,7 +206,9 @@ App.AppRoute = Ember.Route.extend({
   actions: {
     error: function (reason, transition) {
       if (reason.status === 401) {
-        transition.send('redirectToLogin', transition);
+        //transition.send('redirectToLogin', transition);
+        App.log(reason.status + ' error caught by router: ' + reason);
+        App.notify('Please log out and log back in.', App.ERROR, 'Unauthorized');
       }
     }
   }
