@@ -1,5 +1,5 @@
 App.StatusesController = Ember.Controller.extend({
-  needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5', 'status6', 'status7', 'status8', 'status9', 'status10', 'status11', 'status12', 'status13', 'status14', 'status15', 'status16', 'status17', 'status18', 'status19', 'status20'],
+  needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5', 'status6', 'status7', 'status8', 'status9', 'status10', 'status11', 'status12', 'status13', 'status14', 'status15', 'status16', 'status17', 'status18', 'status19', 'status20', 'logBar'],
   init: function () {
     this.set('model', this.store.all('status'));
   },
@@ -12,8 +12,12 @@ App.StatusesController = Ember.Controller.extend({
   }.property('model.@each'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
-    return (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING);
-  }.property('loggingStatus'),
+    if (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING) {
+      return true;
+    } else {
+      return false;
+    }
+  }.property('loggingStatus', 'model.@each'),
   systemStatus: function () {
     return this.store.getById('status', 'system');
   }.property('model.@each'),
@@ -55,6 +59,7 @@ App.StatusesController = Ember.Controller.extend({
     if (!this.get('isUpdating') && this.get('controllers.application.isAutoRefreshEnabled')) {
       this.set('isUpdating', true);
       return this.store.findAll('status').then(function (status) {
+        self.notifyPropertyChange('loggingStatus');
         self.set('connected', true);
         self.set('isUpdating', false);
       }, function (error) {
