@@ -6,9 +6,7 @@ App.LogBarController = Ember.ObjectController.extend({
   kibanaVmsQuery: [],
   kibanaCriticalitiesQuery: [],
   kibanaLogcategoriesQuery: [],
-  logsUrl: function () {
-    return this.get('controllers.application.logsUrl');
-  }.property('controllers.application'),
+  logsUrl: Ember.computed.alias('controllers.application.logsUrl'),
   criticalitiesFiltered: function() {
     var returnArray = [];
     this.get('controllers.criticalities').forEach( function (item, index, enumerable) {

@@ -17,6 +17,11 @@ App.Slo = DS.Model.extend({
   unit: Ember.computed.alias('sloTemplate.unit'),
   valueType: Ember.computed.alias('sloTemplate.valueType'),
 
+  // Computed properties
+  isInteger: Ember.computed.equal('valueType', 'integer'),
+  isBoolean: Ember.computed.equal('valueType', 'boolean'),
+  isRange: Ember.computed.equal('valueType', 'range'),
+
   // Observers
   sloTemplateObserver: function () {
     this.set('operator', this.get('sloTemplate.allowedOperators.firstObject'));

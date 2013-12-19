@@ -26,14 +26,14 @@ App.ApplicationController = Ember.Controller.extend({
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
   horizonUrl: function() {
-    return 'http://' +window.location.hostname + '/horizon';
+    return '/horizon';
   }.property(),
   logsUrl: function() {
-    return 'http://' + window.location.hostname + '/kibana3/index.html#/dashboard/file/logs.json';
+    return '/kibana3/index.html#/dashboard/file/logs.json';
   }.property(),
   graphsUrl: function() {
     // Node Data (Graphite): port 85
-    return 'http://' + window.location.hostname + ':85';
+    return '//' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
   autoRefresh: function () {
