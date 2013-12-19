@@ -4,8 +4,13 @@
       <div class="brand">
         <img id="logo-company" src="images/logo-intel-white.svg" alt="Intel">
         <div class="application-title">
-          {{App.application.title}}
-          <div class="full-title">{{App.application.longTitle}}</div>
+          <div class="full-title">Data Center Management</div>
+          {{#if controllers.build.isReadycloud}}
+            Cloud Orchestrator<super>&trade;</super>
+            <i class="icon-cloud"></i>
+          {{else}}
+            {{App.application.longTitle}}
+          {{/if}}
         </div>
       </div>
       {{#if loggedIn}}
@@ -41,7 +46,9 @@
               {{#link-to "settings"}}<i class="icon-cog"></i>Settings{{/link-to}}
               <ul class="dropdown-menu">
                 <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
-                <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
+                {{#unless controllers.build.isReadycloud}}
+                  <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
+                {{/unless}}
                 <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
                 <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
                 {{#if isConfigured}}
