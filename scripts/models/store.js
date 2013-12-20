@@ -20,7 +20,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
       App.log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
       App.notify('Please log out and log back in.', App.ERROR, 'Unauthorized.');
       // TODO: Redirect user to login if 401 error are encountered
-      //if (currentPath !== 'login') App.route.redirectToLogin(currentPath);
+      //if (currentPath !== 'login') App.route.controllerFor('application').send('redirectToLogin', currentPath);
     } else if (jqXHR && jqXHR.status === 422) {
       var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];
       if (!jsonErrors) jsonErrors = [App.errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
@@ -221,15 +221,3 @@ App.ArrayTransform = DS.Transform.extend({
     return value;
   }
 });
-
-
-// TODO: Move Sunil's header token extension to broader solution
-/*
-App.ajaxSetup = {
-  beforeSend: function(xhr) {
-    if (App.session && App.session.get('csrf_token')) {
-      xhr.setRequestHeader("X-CSRF-Token", App.session.get('csrf_token'));
-    }
-  }
-};
-*/

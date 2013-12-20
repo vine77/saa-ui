@@ -33,7 +33,6 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   actions: {
     redirectToLogin: function (transition) {
-      console.log('redirectToLogin');
       // Log out user
       this.controllerFor('login').set('loggedIn', false);
       this.controllerFor('login').set('username', null);
@@ -45,8 +44,8 @@ App.ApplicationRoute = Ember.Route.extend({
     },
     logout: function() {
       var self = this;
-      this.send('redirectToLogin');
       this.controllerFor('login').set('loggedIn', false);
+      this.send('redirectToLogin');
       var session = this.controllerFor('login').get('session');
       if (session) {
         session.deleteRecord();
@@ -71,22 +70,6 @@ App.ApplicationRoute = Ember.Route.extend({
   }
 });
 
-// TODO: Migrate Sunil's authentication code
-/*
-// Index
-App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
-    var route = App.state.get('route');
-    var context = App.state.get('context');
-    if (context != null) {
-      this.transitionTo(route, context);
-    } else {
-      this.transitionTo(route);
-    }
-  }
-});
-*/
-
 App.IndexRoute = Ember.Route.extend({
   redirect: function() {
     this.transitionTo('dashboard');
@@ -94,6 +77,10 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 App.LoginRoute = Ember.Route.extend({
+  beforeModel: function () {
+    var loggedIn = this.controllerFor('application').get('loggedIn');
+    if (loggedIn) this.transitionTo('index');
+  },
   setupController: function(controller, model) {
     controller.set('username', '');
     controller.set('password', '');
@@ -150,13 +137,11 @@ App.ProfileRoute = Ember.Route.extend({
 // Routes under /app require authentication
 App.AppRoute = Ember.Route.extend({
   beforeModel: function (transition) {
-    /*
-    var csrfToken = Ember.$.cookie('token');
-    if (csrfToken) {
-      this.controllerFor('login').set('csrfToken', csrfToken);
+    if (sessionStorage.csrfToken) {
+      this.controllerFor('login').set('csrfToken', sessionStorage.csrfToken);
+      this.controllerFor('login').set('loggedIn', true);
     }
-    */
-    var loggedIn = this.controllerFor('application').get('loggedIn');
+    var loggedIn = this.controllerFor('login').get('loggedIn');
     if (!loggedIn) {
       transition.send('redirectToLogin', transition);
     }
@@ -164,7 +149,8 @@ App.AppRoute = Ember.Route.extend({
   model: function () {
     var self = this;
     // Get current session
-    return this.store.find('session', 'current_session').then(function (session) {
+    var currentSessionPromise = (!this.store.getById('session', 'current_session')) ? this.store.find('session', 'current_session') : this.store.getById('session', 'current_session').reload();
+    return currentSessionPromise.then(function (session) {
       self.controllerFor('login').set('session', session);
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
     }).then(function () {
@@ -206,9 +192,9 @@ App.AppRoute = Ember.Route.extend({
   actions: {
     error: function (reason, transition) {
       if (reason.status === 401) {
-        //transition.send('redirectToLogin', transition);
         App.log(reason.status + ' error caught by router.', reason);
         App.notify('Please log out and log back in.', App.ERROR, 'Unauthorized');
+        //transition.send('redirectToLogin', transition);
       }
     }
   }
