@@ -62,7 +62,6 @@ App.LogBarController = Ember.ObjectController.extend({
     return this.get('controllers.criticalities');
   }.property('controllers.criticalities.model.@each'),
   selectListCriticalitiesObserver: function () {
-    console.log('trigger');
     var criticalitySelected = this.get('criticalitySelected');
     if (criticalitySelected) {  
       if (this.get('criticalitySelected.id') !== "context") {
