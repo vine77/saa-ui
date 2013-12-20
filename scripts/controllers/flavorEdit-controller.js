@@ -61,32 +61,23 @@ App.FlavorEditController = Ember.ObjectController.extend({
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
-        /*
-        sloPromises = [];
-        slos.forEach(function (slo) {
-          sloPromises.push(slo.save());
-        });
-        Ember.RSVP.all(sloPromises).then(function () {
-          return sla.save();
-        }).then(function () {
+        sla.save().then(function () {
           return flavor.save();
         }).then(function () {
-        */
-        sla.save().then(function () {
-          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully modified flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
-        }, function (xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+        }).fail(function (xhr) {
+          App.xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
           self.set('isFlavorEditing', false);
         });
       } else {
         flavor.save().then(function () {
-          App.event('Successfully create flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully modified flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
         }, function (xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+          App.xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
           self.set('isFlavorEditing', false);
         });
       }
