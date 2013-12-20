@@ -57,8 +57,7 @@ App.ProfileController = App.FormController.extend({
       user.setProperties({
         username: this.get('username'),
         oldPassword: this.get('oldPassword'),
-        newPassword1: this.get('newPassword1'),
-        newPassword2: this.get('newPassword2'),
+        newPassword: this.get('newPassword1'),
         email: this.get('email')
       });
       this.set('isPending', true);
