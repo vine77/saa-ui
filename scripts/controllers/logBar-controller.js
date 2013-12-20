@@ -7,6 +7,13 @@ App.LogBarController = Ember.ObjectController.extend({
   kibanaCriticalitiesQuery: [],
   kibanaLogcategoriesQuery: [],
   logsUrl: Ember.computed.alias('controllers.application.logsUrl'),
+  nodesAreAvailable: function() {
+    if (this.get('controllers.nodes.length') > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }.property('controllers.nodes.model.@each'),
   criticalitiesFiltered: function() {
     var returnArray = [];
     this.get('controllers.criticalities').forEach( function (item, index, enumerable) {
@@ -55,8 +62,9 @@ App.LogBarController = Ember.ObjectController.extend({
     return this.get('controllers.criticalities');
   }.property('controllers.criticalities.model.@each'),
   selectListCriticalitiesObserver: function () {
+    console.log('trigger');
     var criticalitySelected = this.get('criticalitySelected');
-    if (criticalitySelected) {
+    if (criticalitySelected) {  
       if (this.get('criticalitySelected.id') !== "context") {
         this.set('isSettingEach', true);
         this.get('controllers.criticalities').setEach('isSelected', false);

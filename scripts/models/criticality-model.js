@@ -4,6 +4,7 @@ App.Criticality = DS.Model.extend({
   label: DS.attr('string')
 });
 
+
 App.Criticality.FIXTURES = [
   {
     id: 0,
@@ -11,22 +12,26 @@ App.Criticality.FIXTURES = [
   },
   {
     id: 1,
-    label: 'Notice+'
+    label: 'Notice'
   },
   {
     id: 2,
-    label: 'Warning'
+    label: 'Notice+'
   },
   {
     id: 3,
-    label: 'Warning+'
+    label: 'Warning'
   },
   {
     id: 4,
-    label: 'Error'
+    label: 'Warning+'
   },
   {
     id: 5,
+    label: 'Error'
+  },
+  {
+    id: 6,
     label: 'Critical'
   },
   {
@@ -34,3 +39,4 @@ App.Criticality.FIXTURES = [
     label: 'Multiple Selections'
   }
 ];
+
