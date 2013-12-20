@@ -1,19 +1,27 @@
 {{#if this.controllers.statuses.logsAreVisible}}
   <div class="log-bar">
-    {{view Ember.Select viewName="select"
-      contentBinding="selectListNodes"
-      selectionBinding="nodeSelected"
-      optionLabelPath="content.label"
-      prompt="Select Node"
-      optionValuePath="content.value"
-    }}
+
+    {{#if nodesAreAvailable}}
+      {{view Ember.Select viewName="select"
+        contentBinding="selectListNodes"
+        selectionBinding="nodeSelected"
+        optionLabelPath="content.label"
+        prompt="Select Node"
+        optionValuePath="content.value"
+      }}
+    {{else}}
+      <select disabled>
+        <option value="">Nodes are not available</option>
+      </select>
+    {{/if}}
+
     {{view Ember.Select viewName="select"
       contentBinding="selectListCriticalities"
       selectionBinding="criticalitySelected"
       optionLabelPath="content.label"
       prompt="Select Severity"
-      optionValuePath="content.id"
-    }}
+      optionValuePath="content.id"}}
+      
     <button {{action "reset"}} class="btn btn-inverse btn-small log-buttons">Reset</button>
     <button {{action "advancedSearch"}} class="btn btn-info btn-small log-buttons">Advanced</button>
   </div>
