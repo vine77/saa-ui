@@ -19,6 +19,7 @@ App.LoginController = App.FormController.extend({
         "X-CSRF-Token": csrfToken
       }
     });
+    sessionStorage.csrfToken = csrfToken;
   }.observes('csrfToken'),
   refreshSession: function () {
     Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
@@ -39,14 +40,20 @@ App.LoginController = App.FormController.extend({
   transitionToAttempted: function () {
     var attemptedTransition = this.get('attemptedTransition');
     if (attemptedTransition) {
-      if (typeof attemptedTransition === 'string') {
-        this.transitionToRoute(attemptedTransition);
-      } else {
-        this.get('attemptedTransition').retry();
+      try {
+        if (typeof attemptedTransition === 'string') {
+          this.transitionToRoute(attemptedTransition);
+        } else {
+          this.get('attemptedTransition').retry();
+        }
+        this.set('attemptedTransition', null);
+      } catch (e) {
+        this.transitionToRoute('index');
+        this.set('attemptedTransition', null);
       }
-      this.set('attemptedTransition', null);
     } else {
       this.transitionToRoute('index');
+      this.set('attemptedTransition', null);
     }
   },
   actions: {
