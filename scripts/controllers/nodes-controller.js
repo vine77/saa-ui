@@ -46,7 +46,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
 });
 
 App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
-  needs: ['nodesColumns', 'application'],
+  needs: ['nodesColumns', 'application', 'quota'],
   itemController: 'node',
   sortProperty: 'name',
   filterProperties: ['name'],
@@ -87,12 +87,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     }, 0);
   }.property('model.@each.memory.used'),
   maxRam: function () {
-    if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
-      var max = (item.get('memory.max') > 0) ? item.get('memory.max') : 0;
-      return previousValue + max;
-    }, 0);
-  }.property('model.@each.memory.max'),
+    return this.get('controllers.quota.ram');
+  }.property('this.controllers.quota.ram'),
   totalRamMessage: function () {
     return App.readableSize(this.get('totalRam') * 1048576) + ' out of ' + App.readableSize(this.get('maxRam') * 1048576);
   }.property('totalRam', 'maxRam'),
