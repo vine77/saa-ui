@@ -14,6 +14,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     @param jqXHR
     @returns error
   */
+  
   ajaxError: function(jqXHR) {
     if (jqXHR && jqXHR.status === 401) {
       var currentPath = App.route.controllerFor('application').get('currentPath');
@@ -33,6 +34,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
       return this._super(jqXHR);
     }
   },
+  
 
   /**
    * Fix query URL.
