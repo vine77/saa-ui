@@ -33,7 +33,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         }).then(function () {
           return App.nova.start();
         }).then(function () {
-          App.event('Successfully uploaded files. Please wait while the application is restarted...', App.SUCCESS, undefined, undefined, true);
+          App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', App.SUCCESS, undefined, undefined, true);
           $('i.loading').addClass('hide');
           setTimeout(function () {
             // Restart app for full reload and redirect to index
