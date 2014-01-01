@@ -246,6 +246,24 @@ App.VmController = Ember.ObjectController.extend({
     }
 
   }.observes('isSelected'),
+  detailedInstantiationNodes: function () {
+    var instantiationNodes = this.get('model.vmInstantiationDetailed.instantiationNodes');
+    var instantiationNodesController = Ember.ArrayController.create({
+      content: instantiationNodes,
+      sortProperties: ['selected'],
+      sortAscending: false
+    });
+    return instantiationNodesController;
+  }.property('model.vmInstantiationDetailed.instantiationNodes'),
+  simpleInstantiationNodes: function () {
+    var instantiationNodes = this.get('model.vmInstantiationSimple.rankedNodes');
+    var instantiationNodesController = Ember.ArrayController.create({
+      content: instantiationNodes,
+      sortProperties: ['selected'],
+      sortAscending: false
+    });
+    return instantiationNodesController;
+  }.property('model.vmInstantiationSimple.rankedNodes'),
 
   /* TODO: Does this need to be added to polling?
   didReload: function () {
