@@ -180,7 +180,12 @@
     <div class="tab-pane trust">
       {{#if vmTrustReport.vmAttestations}}
         <p class="pull-right">
-          <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
+          {{#if isActionPending}}
+            <button class="btn btn-primary disabled">Generate Trust Report</button>
+            <i class="loading"></i>
+          {{else}}
+            <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
+          {{/if}}
         </p>
         <table class="table table-bordered">
           <tr>
