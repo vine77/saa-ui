@@ -2,6 +2,7 @@ App.VmController = Ember.ObjectController.extend({
   needs: ["logBar"],
   isExpanded: false,
   isSelected: false,
+  isActionPending: false,
   status: function() {
     return Ember.$.extend({
       isHealthy: (function (self) {
@@ -289,6 +290,8 @@ App.VmController = Ember.ObjectController.extend({
         }
     },
     exportTrustReport: function (reportContent) {
+      var self = this;
+      this.set('isActionPending', true);
       this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
         reportContent = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
@@ -301,7 +304,9 @@ App.VmController = Ember.ObjectController.extend({
         } else {
           App.notify('Trust attestation logs were not found.');
         }
+        self.set('isActionPending', false);
       }, function (xhr) {
+        self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
