@@ -19,8 +19,15 @@
         {{#view App.TooltipView titleBinding="status.trustMessage"}}
           {{#if status.isTrustUnknown}}
             <i class="icon-large icon-question-sign unknown"></i>
-          {{else}}
-            <i {{bindAttr class=":icon-large status.isTrusted:icon-lock:icon-unlock status.isTrusted:trusted:untrusted"}}></i>
+          {{/if}}
+          {{#if status.isUntrusted}}
+            <i class="icon-large icon-unlock untrusted"></i>
+          {{/if}}
+          {{#if status.isTrusted}}
+            <i class="icon-large icon-lock trusted"></i>
+          {{/if}}
+          {{#if status.isUnregistered}}
+            <i class="icon-large icon-unlock unregistered"></i>
           {{/if}}
         {{/view}}
       </div></td>
