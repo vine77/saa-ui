@@ -5,7 +5,7 @@ App.NodeController = Ember.ObjectController.extend({
   isExpanded: false,
   isActionPending: false,
   updateKibana: function() {
-    if (!frames['allLogsFrame'].angular) return;
+    if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
 
@@ -41,7 +41,7 @@ App.NodeController = Ember.ObjectController.extend({
         dashboard.refresh();
       }
     }
-
+    
   }.observes('isSelected'),
 
   // Computed properties
