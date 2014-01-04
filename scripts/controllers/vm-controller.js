@@ -24,11 +24,14 @@ App.VmController = Ember.ObjectController.extend({
       operationalMessage: (function(self) {
         return '<strong>State</strong>: ' + App.codeToOperational(self.get('model.status.operational')).capitalize();
       })(this),
+      isUntrusted: (function (self) {
+        return self.get('model.status.trust') === App.UNTRUSTED;
+      })(this),
       isTrusted: (function (self) {
         return self.get('model.status.trust') === App.TRUSTED;
       })(this),
-      isNotTrusted: (function (self) {
-        return self.get('model.status.trust') === App.UNTRUSTED;
+      isUnregistered: (function (self) {
+        return self.get('model.status.trust') === App.UNREGISTERED;
       })(this),
       isTrustUnknown: (function (self) {
         return !self.get('model.status.trust');
