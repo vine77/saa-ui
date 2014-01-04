@@ -115,10 +115,14 @@
         <div class="cell-container overflow-visible">
           {{#if isOn}}
             <div class="btn-group">
-              <button class="btn disabled btn-mini"><i class="icon-off"></i> Power Off</button>
-              <button data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
-                <span class="caret"></span>
-              </button>
+              <a class="btn btn-mini disabled"><i class="icon-off"></i> Power Off</a>
+              <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+                {{#unless isActionPending}}
+                  <span class="caret"></span>
+                {{else}}
+                  <i class="icon-spinner icon-spin"></i>
+                {{/unless}}
+              </a>
               <ul class="dropdown-menu">
                 <li><a class="disabled"><i class="icon-refresh"></i> Restart</a></li>
                 {{#if App.mtWilson.isInstalled}}
@@ -128,19 +132,20 @@
             </div>
           {{else}}
             <div class="btn-group">
-              <button class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</button>
+              <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
               {{#if App.mtWilson.isInstalled}}
-                <button data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
-                  <span class="caret"></span>
-                </button>
+                <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+                  {{#unless isActionPending}}
+                    <span class="caret"></span>
+                  {{else}}
+                    <i class="icon-spinner icon-spin"></i>
+                  {{/unless}}
+                </a>
                 <ul class="dropdown-menu">
                   <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
                 </ul>
               {{/if}}
             </div>
-          {{/if}}
-          {{#if isActionPending}}
-            <i class="loading"></i>
           {{/if}}
         </div>
       </td>
