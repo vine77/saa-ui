@@ -158,11 +158,13 @@
         <tr>
           <th class="column-medium">SLOs</th>
           <td>
-            {{#each slo in sla.slos}}
-              <li>{{slo.description}}</li>
-            {{else}}
-              <li>No SLOs</li>
-            {{/each}}
+            <ul>
+              {{#each slo in sla.slos}}
+                <li>{{slo.description}}</li>
+              {{else}}
+                <li>No SLOs</li>
+              {{/each}}
+            </ul>
           </td>
         </tr>
       </table>
