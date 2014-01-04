@@ -109,16 +109,16 @@
         <div class="btn-group">
           {{#if isAgentInstalled}}
             {{#if isOn}}
-              {{#if isActionPending}}
-                <a class="btn btn-mini disabled"><i class="icon-refresh"></i> Reboot</a>
-              {{else}}
-                <a {{action "reboot" this}} class="btn btn-mini"><i class="icon-refresh"></i> Reboot</a>
-              {{/if}}
+              <a {{bindAttr class=":btn :btn-mini isActionPending:disabled"}}><i class="icon-refresh"></i> Reboot</a>
             {{else}}
-              <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
+              <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
             {{/if}}
             <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
-              <span class="caret"></span>
+              {{#unless isActionPending}}
+                <span class="caret"></span>
+              {{else}}
+                <i class="icon-spinner icon-spin"></i>
+              {{/unless}}
             </a>
             <ul class="dropdown-menu">
               {{#if App.mtWilson.isInstalled}}
@@ -148,17 +148,10 @@
             </ul>
           {{else}}
             {{#if samRegistered}}
-              {{#if isActionPending}}
-                <a class="disabled"><i class="icon-remove"></i> Unregister</a>
-              {{else}}
-                <a {{action "unregister" this}} >
-                  <i class="icon-remove"></i> Unregister
-                </a>
-              {{/if}}
+              <a {{action "unregister" this}}>
+                <i class="icon-remove"></i> Unregister
+              </a>
             {{/if}}
-          {{/if}}
-          {{#if isActionPending}}
-            <i class="loading"></i>
           {{/if}}
         </div>
       </div></td>
