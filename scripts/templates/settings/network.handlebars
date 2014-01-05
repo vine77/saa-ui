@@ -81,9 +81,12 @@
         </div>
       </div>
       <div class="form-actions">
-        <input type="submit" class="btn btn-primary" value="Save" {{action "save"}}>
-        <button class="btn btn-danger" type="button" {{action "cancel"}}>Cancel</button>
-        <i class="loading hide"></i>
+        {{#unless isActionPending}}
+          <button class="btn" {{action "cancel"}}>Cancel</button>
+          <button type="submit" class="btn btn-primary" {{action "save"}}>Save</button>
+        {{else}}
+          <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</button>
+        {{/unless}}
       </div>
     </section>
   </form>

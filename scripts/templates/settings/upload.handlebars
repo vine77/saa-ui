@@ -50,16 +50,23 @@
           {{#unless isChangingFiles}}
             <a class="btn btn-primary" {{action "changeFiles"}}>Change Files</a>
           {{else}}
-            <a class="btn" {{action "cancel"}}>Cancel</a>
-            <a class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Restart {{App.application.title}}</a>
+            {{#unless isActionPending}}
+              <button class="btn" {{action "cancel"}}>Cancel</button>
+              <button type="submit" class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Restart {{App.application.title}}</button>
+            {{else}}
+              <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Uploading files...</button>
+            {{/unless}}
           {{/unless}}
         {{else}}
-          <a class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Start {{App.application.title}}</a>
+          {{#unless isActionPending}}
+            <button class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Start {{App.application.title}}</button>
+          {{else}}
+            <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Uploading files...</button>
+          {{/unless}}
         {{/if}}
-        <i class="loading hide"></i>
       </div>
     </form>
-  {{!--
+    {{!--
     {{#if App.application.isEnabled}}
       <form id="overridesForm" class="form-horizontal" action="/nova/configuration" method="post">
         <legend>Configuration Overrides</legend>
@@ -83,6 +90,6 @@
         </div>
       </form>
     {{/if}}
-  --}}
+    --}}
   </div>
 </section>

@@ -57,7 +57,7 @@
     }
     .form-actions {
       margin: 40px -19px -19px;
-      padding-left: 170px;
+      text-align: right;
       .border-bottom-left-radius(3px);
       .border-bottom-right-radius(3px);
     }
@@ -70,15 +70,21 @@
   #log {
     .form-actions {
       margin: 40px -19px -19px;
-      padding-left: 200px;
-
+      text-align: right;
       .border-bottom-left-radius(3px);
       .border-bottom-right-radius(3px);
     }
     #form-actions {
-      i.hide { display:none; }
+      i.hide {
+        display: none;
+      }
     }
-    .disk-horizontal-bar { width:50% }
+    .disk-horizontal-bar {
+      display: inline-block;
+      margin-right: 0.5em;
+      vertical-align: text-top;
+      width: 50%;
+    }
   }
   #dev {
     .control-label {

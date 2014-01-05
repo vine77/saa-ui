@@ -109,7 +109,10 @@ App.readableSizeToBytes = function (stringSize, decimalPrefix) {
   }
 };
 App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
-  if (typeof sizeInBytes === 'number') {
+  if (typeof sizeInBytes !== 'number') sizeInBytes = parseInt(sizeInBytes);
+  if (sizeInBytes === NaN || Ember.isEmpty(sizeInBytes)) {
+    return App.NOT_APPLICABLE;
+  } else {
     if (multiplier !== undefined) {
       sizeInBytes = sizeInBytes * multiplier;
     }
@@ -127,8 +130,6 @@ App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
       i++;
     }
     return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
-  } else {
-    return App.NOT_APPLICABLE;
   }
 };
 App.readableSize = function (size) {
