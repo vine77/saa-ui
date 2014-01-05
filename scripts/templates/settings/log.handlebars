@@ -1,15 +1,17 @@
 <div id="log">
   <div class="header">
-    <h3> Log Settings</h3>
+    <h3>Log Settings</h3>
   </div>
   <form class="form-horizontal well-clean shadow-lifted">
     <section id="log-informational-values">
       <legend>Log Details</legend>
-      <div> Current Log Disk Size: {{readableMegabytes model.actualSize}} </div>
+      <br>
+      <div>Current Log Disk Size: {{readableMegabytes model.actualSize}}</div>
       <dl>
         <div class="progress progress-success disk-horizontal-bar">
           <div class="bar" {{bind-attr style="unavailableSpaceWidth"}}></div>
         </div>
+        <small>{{readableMegabytes model.configuredSize}}</small>
       </dl>
       <div class="control-group">
         <label class="control-label">Maximum Size:</label>
@@ -34,27 +36,30 @@
         </p>
       </div>
     </section>
-
+    <div class="form-actions">
+      {{#unless isActionPending}}
+        <button class="btn" {{action "cancel" model}}>Cancel</button>
+        <button type="submit" class="btn btn-primary" {{action "update" model.id}}>Save</button>
+      {{else}}
+        <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</button>
+      {{/unless}}
+    </div>
   </form>
 
-  <div id="form-actions">
-    <input type="button" value="Save" class="btn btn-primary" {{action "update" model.id}}>
-    <i class="loading hide"></i>
-    <input type="button" value="Cancel" class="btn btn-primary" {{action "cancel" model}}>
-  </div>
-  <br /> <br />
   <div class="header">
-    <h3> Reset Log Data </h3>
+    <h3>Reset Log Data</h3>
   </div>
-
   <form class="form-horizontal well-clean shadow-lifted">
     <section id="reset-log-data">
       <legend>Reset Log Data</legend>
       <div class="control-group">
         <label class="control-label">Delete all log data:</label>
         <div class="controls">
-          <input type="button" value="Delete Log Data" class="btn btn-danger" {{action "deleteLogs"}}>
-          <i class="loading hide"></i>
+          {{#unless isDeleteActionPending}}
+            <button class="btn btn-danger" {{action "deleteLogs"}}>Delete Log Data</button>
+          {{else}}
+            <button class="btn btn-danger" disabled="disabled"><i class="icon-spinner icon-spin"></i> Deleting logs...</button>
+          {{/unless}}
         </div>
       </div>
     </section>

@@ -9,6 +9,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   quantumExistsBinding: 'App.quantum.exists',
   quantumSuccessBinding: 'App.quantum.success',
   isChangingFiles: false,
+  isActionPending: false,
   showButtons: function () {
     return !this.get('isConfigured') || this.get('isChangingFiles');
   }.property('isConfigured', 'isChangingFiles'),
@@ -25,7 +26,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       var confirmUpload = true;
       if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + App.application.get('title') + '?');
       if (confirmUpload) {
-        $('i.loading').removeClass('hide');
+        this.set('isActionPending', true);
         App.nova.upload().then(function () {
           return App.openrc.upload();
         }).then(function () {
@@ -33,16 +34,16 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         }).then(function () {
           return App.nova.start();
         }).then(function () {
+          self.set('isActionPending', false);
           App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', App.SUCCESS, undefined, undefined, true);
-          $('i.loading').addClass('hide');
           setTimeout(function () {
             // Restart app for full reload and redirect to index
             document.location.href = '/';
             // TODO: Add Status API polling to determine when to reload app
           }, 30000);
         }, function () {
+          self.set('isActionPending', false);
           App.event('Error uploading config files.', App.ERROR);
-          $('i.loading').addClass('hide');
           $('.fileupload i').removeClass().addClass('icon-file');
           $('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);

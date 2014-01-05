@@ -1,36 +1,39 @@
 App.SettingsLogController = Ember.Controller.extend({
+  isActionPending: false,
+  isDeleteActionPending: false,
   unavailableSpaceWidth: function () {
     var percentage = (this.get('model.configuredSize') == 0) ? 0 : (this.get('model.actualSize')/this.get('model.configuredSize')) * 100;
     return 'width:' + percentage + '%;';
   }.property('model.configuredSize', 'model.actualSize'),
   actions: {
     deleteLogs: function() {
+      var self = this;
       verify = confirm('You are about to delete all log data. Are you sure you want to continue?');
       if (verify) {
-        $('#reset-log-data i.loading').removeClass('hide');
+        this.set('isDeleteActionPending', true);
         return Ember.$.ajax({
           url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/logs',
           type: 'DELETE'
         }).then(function () {
+          self.set('isDeleteActionPending', false);
           App.event('Successfully deleted all log data.', App.SUCCESS);
-          $('#reset-log-data i.loading').addClass('hide');
         }, function () {
+          self.set('isDeleteActionPending', false);
           App.event('Error updating log settings.', App.ERROR);
-          $('#reset-log-data i.loading').addClass('hide');
         });
       }
     },
     update: function (modelId) {
-      $('#form-actions i.loading').removeClass('hide');
+      var self = this;
+      this.set('isActionPending', true);
       this.store.getById('logSetting', modelId).save().then(function () {
-        $('#form-actions i.loading').addClass('hide');
+        self.set('isActionPending', false);
         App.event('Successfully updated  log settings.', App.SUCCESS);
       }, function (xhr) {
-        $('#form-actions i.loading').addClass('hide');
+        self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to update log settings.');
-        //var responseMessage = jQuery.parseJSON(xhr.responseText);
-        //App.event(responseMessage.error_message, App.ERROR);
       });
+      console.log('test 3');
     },
     cancel: function (model) {
       model.rollback();
