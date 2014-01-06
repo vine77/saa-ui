@@ -82,10 +82,10 @@
       </div>
       <div class="form-actions">
         {{#unless isActionPending}}
-          <button class="btn" {{action "cancel"}}>Cancel</button>
+          <a class="btn" {{action "cancel"}}>Cancel</a>
           <button type="submit" class="btn btn-primary" {{action "save"}}>Save</button>
         {{else}}
-          <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</button>
+          <a class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</a>
         {{/unless}}
       </div>
     </section>
