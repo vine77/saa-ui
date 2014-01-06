@@ -14,7 +14,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     @param jqXHR
     @returns error
   */
-  
+
   ajaxError: function(jqXHR) {
     if (jqXHR && jqXHR.status === 401) {
       var currentPath = App.route.controllerFor('application').get('currentPath');
@@ -34,7 +34,7 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
       return this._super(jqXHR);
     }
   },
-  
+
 
   /**
    * Fix query URL.
@@ -182,7 +182,7 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
     });
     var extracted = this._super(store, type, payload, id, requestType);
     missingRecords.forEach(function (item, index, enumerable) {
-      item.unloadRecord();
+      if (!item.get('isDirty')) item.unloadRecord();
     });
     return extracted;
   }
@@ -221,5 +221,32 @@ App.ArrayTransform = DS.Transform.extend({
   },
   deserialize: function(value) {
     return value;
+  }
+});
+
+// Add methods on the Model class for interacting with records
+DS.Model.reopen({
+  clearInverseRelationships: function() {
+    this.eachRelationship(function(name, relationship){
+      if (relationship.kind === 'belongsTo') {
+        var inverse = relationship.parentType.inverseFor(name);
+        var parent = this.get(name);
+        if (inverse && parent) parent.get(inverse.name).removeObject(this);
+      }
+    }, this);
+  },
+  relatedRecords: function () {
+    var records = [];
+    this.eachRelationship(function (name, relationship) {
+      var related = this.get(name);
+      if (!Ember.isEmpty(related)) {
+        if (Ember.isArray(related)) {
+          records.addObjects(related);
+        } else {
+          records.addObject(related);
+        }
+      }
+    }, this);
+    return records;
   }
 });

@@ -282,14 +282,10 @@ App.FlavorsCreateRoute = Ember.Route.extend({
     });
   },
   deactivate: function () {
-    var flavor = this.modelFor('flavorsCreate');
+    var flavor = this.get('currentModel');
     var sla = this.store.all('sla').findBy('isDirty');
-    var slos = (sla) ? sla.get('slos') : [];
-    slos.forEach(function (slo) {
-      if (slo.get('isDirty')) slo.deleteRecord();
-    });
-    if (sla && sla.get('isDirty')) sla.deleteRecord();
-    if (flavor.get('isDirty')) flavor.deleteRecord();
+    flavor.rollback();
+    if (sla) sla.rollback();
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -306,12 +302,9 @@ App.FlavorEditRoute = Ember.Route.extend({
   deactivate: function () {
     var flavor = this.get('currentModel');
     var sla = this.store.all('sla').findBy('isDirty');
-    var slos = (sla) ? sla.get('slos') : [];
-    slos.forEach(function (slo) {
-      if (slo.get('isDirty')) slo.deleteRecord();
-    });
-    if (sla && sla.get('isDirty')) sla.deleteRecord();
-    if (flavor.get('isDirty')) flavor.rollback();
+    flavor.rollback();  // Rollback record properties
+    flavor.reload();  // Reload record relationships
+    if (sla) sla.rollback();
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -341,12 +334,8 @@ App.SlasCreateRoute = Ember.Route.extend({
     });
   },
   deactivate: function () {
-    var sla = this.modelFor('slasCreate');
-    var slos = sla.get('slos');
-    slos.forEach(function (slo) {
-      if (slo.get('isDirty')) slo.deleteRecord();
-    });
-    if (sla.get('isDirty')) sla.deleteRecord();
+    var sla = this.get('currentModel');
+    sla.rollback();
   }
 });
 App.SlaEditRoute = Ember.Route.extend({
@@ -361,11 +350,13 @@ App.SlaEditRoute = Ember.Route.extend({
   },
   deactivate: function () {
     var sla = this.get('currentModel');
-    var slos = sla.get('slos');
-    slos.forEach(function (slo) {
-      slo.rollback();
+    sla.rollback();  // Rollback record properties
+    // Reload record relationships, then rollback relationships
+    sla.reload().then(function (model) {
+      model.relatedRecords().forEach(function (item) {
+        item.rollback();
+      });
     });
-    if (sla.get('isDirty')) sla.rollback();
   }
 });
 

@@ -8,14 +8,7 @@ App.SlaEditController = Ember.ObjectController.extend({
       this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
-      slo.eachRelationship(function(name, relationship){
-        if (relationship.kind === 'belongsTo') {
-          var inverse = relationship.parentType.inverseFor(name);
-          var parent = slo.get(name);
-          if (inverse && parent) parent.get(inverse.name).removeObject(slo);
-        }
-      });
-      slo.deleteRecord();
+      slo.clearInverseRelationships();
     },
     editSla: function () {
       var self = this;

@@ -44,14 +44,7 @@ App.FlavorEditController = Ember.ObjectController.extend({
       this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
-      slo.eachRelationship(function(name, relationship){
-        if (relationship.kind === 'belongsTo') {
-          var inverse = relationship.parentType.inverseFor(name);
-          var parent = slo.get(name);
-          if (inverse && parent) parent.get(inverse.name).removeObject(slo);
-        }
-      });
-      slo.deleteRecord();
+      slo.clearInverseRelationships();
     },
     editFlavor: function () {
       var self = this;
