@@ -17,18 +17,7 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="status.trustMessage"}}
-          {{#if status.isTrustUnknown}}
-            <i class="icon-large icon-question-sign unknown"></i>
-          {{/if}}
-          {{#if status.isUntrusted}}
-            <i class="icon-large icon-unlock untrusted"></i>
-          {{/if}}
-          {{#if status.isTrusted}}
-            <i class="icon-large icon-lock trusted"></i>
-          {{/if}}
-          {{#if status.isUnregistered}}
-            <i class="icon-large icon-unlock unregistered"></i>
-          {{/if}}
+          {{trustIcon status.trust}}
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">

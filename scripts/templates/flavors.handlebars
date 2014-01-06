@@ -82,7 +82,7 @@
                           <td>{{na rxtxFactor}}</td>
                           <td>
                             {{#if sla}}
-                              {{sla.name}}
+                              {{#link-to "sla" sla}}{{sla.name}}{{/link-to}}
                               {{#each slo in sla.slos}}
                                 <li>{{slo.description}}</li>
                               {{else}}
