@@ -19,8 +19,8 @@
     "mousetrap": "ccampbell/mousetrap#~1.4.4",
     "ember-renderspeed": "eviltrout/ember-renderspeed",
     "group-helper": "emberjs/group-helper",
-    "ember-json-api": "daliwali/ember-json-api",
-    "ember-list-view": "~0.0.1"
+    "list-view": "emberjs/list-view",
+    "ember-json-api": "daliwali/ember-json-api"
   },
   "resolutions": {
     "jquery": "~1.10.2",
