@@ -443,6 +443,14 @@ Ember.ListViewMixin = Ember.Mixin.create({
 
     scrollTop = max(0, y);
 
+    if (get(this, 'scrollTop') === scrollTop) {
+      return;
+    }
+
+    // allow a visual overscroll, but don't scroll the content. As we are doing needless
+    // recycyling, and adding unexpected nodes to the DOM.
+    scrollTop = Math.min(scrollTop, (get(this, 'totalHeight') - get(this, 'height')));
+
     Ember.instrument('view._scrollContentTo', {
       scrollTop: scrollTop,
       content: get(this, 'content'),
@@ -461,12 +469,12 @@ Ember.ListViewMixin = Ember.Mixin.create({
 
       this.trigger('scrollYChanged', y);
 
-      this._reuseChildren();
-
       if (startingIndex === this._lastStartingIndex &&
           endingIndex === this._lastEndingIndex) {
         return;
       }
+
+      this._reuseChildren();
 
       this._lastStartingIndex = startingIndex;
       this._lastEndingIndex = endingIndex;
@@ -775,7 +783,7 @@ Ember.ListViewMixin = Ember.Mixin.create({
       );
     }
 
-    this._scrollContentTo(get(this, 'scrollTop'));
+    this._reuseChildren();
 
     this._lastStartingIndex = startingIndex;
     this._lastEndingIndex   = this._lastEndingIndex + delta;
@@ -801,8 +809,6 @@ Ember.ListViewMixin = Ember.Mixin.create({
     visibleEndingIndex = startingIndex + this._numChildViewsForViewport();
 
     endingIndex = min(maxContentIndex, visibleEndingIndex);
-
-    this.trigger('scrollContentTo', scrollTop);
 
     contentIndexEnd = min(visibleEndingIndex, startingIndex + childViewsLength);
 
