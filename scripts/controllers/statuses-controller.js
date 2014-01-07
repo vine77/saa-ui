@@ -9,7 +9,7 @@ App.StatusesController = Ember.Controller.extend({
   loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   loggingStatus: function () {
     return this.store.getById('status', 'logging_storage');
-  }.property('model.@each'),
+  }.property('model.@each.health'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
     if (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING) {
@@ -59,7 +59,6 @@ App.StatusesController = Ember.Controller.extend({
     if (!this.get('isUpdating') && this.get('controllers.application.isAutoRefreshEnabled')) {
       this.set('isUpdating', true);
       return this.store.findAll('status').then(function (status) {
-        self.notifyPropertyChange('loggingStatus');
         self.set('connected', true);
         self.set('isUpdating', false);
       }, function (error) {
