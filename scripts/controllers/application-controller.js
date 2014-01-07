@@ -83,14 +83,6 @@ App.ApplicationController = Ember.Controller.extend({
     refreshVms: function () {
       this.store.find('vm');
     },
-    bypassLogin: function () {
-      App.nova.set('exists', true);
-      App.openrc.set('exists', true);
-      App.quantum.set('exists', true);
-      App.state.set('loggedIn', true);
-      App.session.set('bypass', true);
-      this.transitionToRoute('dashboard');
-    },
     clearConsole: function () {
       console.clear();
     },
