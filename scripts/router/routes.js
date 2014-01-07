@@ -4,6 +4,11 @@ App.ApplicationRoute = Ember.Route.extend({
     App.store = this.store;
     App.route = this;
   },
+  beforeModel: function () {
+    if (!Modernizr.svg) {
+      this.transitionTo('blocked');
+    }
+  },
   model: function () {
     var self = this;
     return this.controllerFor('statuses').updateCurrentStatus().fail(function () {

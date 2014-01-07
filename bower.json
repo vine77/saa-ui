@@ -20,7 +20,8 @@
     "ember-renderspeed": "eviltrout/ember-renderspeed",
     "group-helper": "emberjs/group-helper",
     "list-view": "emberjs/list-view",
-    "ember-json-api": "daliwali/ember-json-api"
+    "ember-json-api": "daliwali/ember-json-api",
+    "modernizr": "~2.7.1"
   },
   "resolutions": {
     "jquery": "~1.10.2",

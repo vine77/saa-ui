@@ -1,5 +1,6 @@
 App.Router.map(function () {
   this.resource('login');
+  this.resource('blocked');
   this.resource('profile', {path: '/profiles/:user_id'});
   this.resource('tempPassword');
   this.resource('app', function () {  // Routes under /app must be authenticated
