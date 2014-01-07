@@ -26,6 +26,17 @@ App.Node = DS.Model.extend({
     return this.get('status.health') + '.' + this.get('status.operational');
   }.property('status.health', 'status.operational'),
 
+  cpuSort: function () {
+    var mhz = this.get('capabilities.cpu_frequency');
+    if (!!mhz) {
+      var ghz = mhz.split(' ')[0] / 1000;
+      var cpuFrequency = ghz + 'GHz';
+    } else {
+      var cpuFrequency = '';
+    }
+    return (parseFloat(cpuFrequency) * 100 + '.' + parseFloat(this.get('capabilities.cores_per_socket')) * 50 + '.' +  parseFloat(this.get('capabilities.sockets')));
+  }.property('capabilities.cpu_frequency', 'capabilities.cores_per_socket', 'capabilities.sockets'),
+
   // Relationships
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),
   trustNode: DS.belongsTo('trustNode'),
