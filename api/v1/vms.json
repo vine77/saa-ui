@@ -55,7 +55,7 @@
       "sla_name": "Secure Silver",
       "floating_ips": null,
       "capabilities": {
-        "cores": 1,
+        "cores": 7,
         "memory_size": "2097152 KB",
         "su_allocated_max": 1,
         "su_allocated": 0.5,
@@ -505,7 +505,7 @@
       "sla_name": "Unsecure Silver",
       "floating_ips": null,
       "capabilities": {
-        "cores": 1,
+        "cores": 9,
         "memory_size": "2097152 KB",
         "su_allocated_max": 1,
         "su_allocated": 0.5,
@@ -589,7 +589,7 @@
       "sla_name": "Unsecure Silver",
       "floating_ips": null,
       "capabilities": {
-        "cores": 1,
+        "cores": 8,
         "memory_size": "None",
         "su_allocated_max": 1,
         "su_allocated": 0.5,
