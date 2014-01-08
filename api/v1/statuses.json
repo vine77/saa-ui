@@ -8,13 +8,13 @@
         "configuration",
         "logging"
       ],
-      "exposed_health": 3,
+      "exposed_health": 1,
       "name": "System",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [],
-      "health": 3,
-      "message": "Component health: warning",
+      "health": 1,
+      "message": "Health status: Ok",
       "id": "system"
     },
     {
@@ -30,7 +30,7 @@
         "system"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "configuration"
     },
     {
@@ -47,7 +47,7 @@
         "system"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "scheduler"
     },
     {
@@ -60,7 +60,7 @@
         "scheduler"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "amqp_request_processor"
     },
     {
@@ -76,7 +76,7 @@
         "system"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "cloud_communication"
     },
     {
@@ -91,7 +91,7 @@
         "system"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "agent_communication"
     },
     {
@@ -100,15 +100,15 @@
         "logging_communication",
         "logging_storage"
       ],
-      "exposed_health": 3,
+      "exposed_health": 1,
       "name": "Logs engine",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 3,
-      "message": "Component health: warning",
+      "health": 1,
+      "message": "Health status: Ok",
       "id": "logging"
     },
     {
@@ -122,7 +122,7 @@
         "agent_communication"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "amqp"
     },
     {
@@ -138,7 +138,7 @@
         "scheduler"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "nodes_data_storage"
     },
     {
@@ -151,7 +151,7 @@
         "nodes_data_storage"
       ],
       "health": 1,
-      "message": "Volatile storage process is running",
+      "message": "Health status: Ok",
       "id": "volatile_db"
     },
     {
@@ -164,7 +164,7 @@
         "nodes_data_storage"
       ],
       "health": 1,
-      "message": "Persistent storage process is running",
+      "message": "Health status: Ok",
       "id": "persistent_db"
     },
     {
@@ -181,7 +181,7 @@
         "cloud_communication"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "cloud_rest_api"
     },
     {
@@ -198,7 +198,7 @@
         "cloud_communication"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "cloud_database"
     },
     {
@@ -211,7 +211,7 @@
         "cloud_rest_api"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "keystone_connection"
     },
     {
@@ -224,7 +224,7 @@
         "cloud_rest_api"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "nova_connection"
     },
     {
@@ -237,7 +237,7 @@
         "cloud_rest_api"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "keystone_authentication"
     },
     {
@@ -276,7 +276,7 @@
         "cloud_database"
       ],
       "health": 1,
-      "message": "Data synchronization engine process is running.",
+      "message": "Health status: Ok",
       "id": "data_synchronization_engine"
     },
     {
@@ -289,7 +289,7 @@
         "configuration"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "configuration_process"
     },
     {
@@ -302,7 +302,7 @@
         "configuration"
       ],
       "health": 1,
-      "message": "Component health: success",
+      "message": "Health status: Ok",
       "id": "sam_config_files"
     },
     {
@@ -315,20 +315,20 @@
         "logging"
       ],
       "health": 1,
-      "message": "Disk usage: 57%",
+      "message": "Disk usage: 8%",
       "id": "logging_disk_space"
     },
     {
       "children_ids": [],
-      "exposed_health": 3,
+      "exposed_health": 1,
       "name": "Log storage status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "logging"
       ],
-      "health": 0,
-      "message": "Log storage status unknown",
+      "health": 1,
+      "message": "Log storage healthy",
       "id": "logging_storage"
     },
     {

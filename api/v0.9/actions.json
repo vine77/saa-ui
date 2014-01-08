@@ -1,0 +1,21 @@
+{
+  "actions": [
+    {
+      "status": 0,
+      "name": "reboot",
+      "links": {
+        "nodes": "/api/v1/nodes/065247DC-4AC0-E111-A920-001E67506F0E"
+      },
+      "started": "2013-12-04 17:16:05",
+      "id": 1,
+      "node_id": "065247DC-4AC0-E111-A920-001E67506F0E",
+      "done": true,
+      "user": null,
+      "blocking": null,
+      "message": "Action succeeded",
+      "last_update": "2013-12-04 17:16:05",
+      "vm_id": null,
+      "options": {}
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "slo_templates": [
+    {
+      "description": "SAM Units value available for each VM core shall be within <[MIN];[MAX]> range.",
+      "links": {
+        "uri": "/configuration/slo_templates/c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+        "slos": ""
+      },
+      "allowed_operators": "in_range",
+      "class_name": "performance",
+      "operators": {
+        "operator": "in_range",
+        "description": "SAM Units value available for each VM core shall be within <[MIN];[MAX]> range."
+      },
+      "deleted": false,
+      "value_type": "range",
+      "element_name": "infrastructure",
+      "id": "c4f17be0-08e3-4c3b-b78c-2a867d85122d",
+      "unit": "SU",
+      "slo_type": "compute"
+    },
+    {
+      "description": "Virtual cores available for VM shall be equal to [VALUE].",
+      "links": {
+        "uri": "/configuration/slo_templates/536d6ae2-78c8-4635-af27-5115221d2cb9",
+        "slos": ""
+      },
+      "allowed_operators": "equals",
+      "class_name": "performance",
+      "operators": {
+        "operator": "equals",
+        "description": "Virtual cores available for VM shall be equal to [VALUE]."
+      },
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "infrastructure",
+      "id": "536d6ae2-78c8-4635-af27-5115221d2cb9",
+      "unit": "core",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "description": "Node is not registered in Trust Server.",
+      "links": {
+        "uri": "/configuration/slo_templates/7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+        "slos": ""
+      },
+      "allowed_operators": "equals",
+      "class_name": "security",
+      "operators": {
+        "operator": "equals",
+        "description": "Node is not registered in Trust Server."
+      },
+      "deleted": false,
+      "value_type": "boolean",
+      "element_name": "infrastructure",
+      "id": "7f814ac3-020f-4cf0-8a9d-39c0100fe45b",
+      "unit": "",
+      "slo_type": "trusted_platform"
+    }
+  ]
+}
