@@ -1,0 +1,21 @@
+{
+  "flavors": [
+    {
+      "name": "m1.tiny",
+      "links": {
+        "uri": "/api/v1/configuration/flavors/1"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": null,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "1",
+      "vm_ids": []
+    }
+  ]
+}

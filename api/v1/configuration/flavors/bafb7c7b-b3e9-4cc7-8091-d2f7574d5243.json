@@ -1,0 +1,22 @@
+{
+  "flavors": [
+    {
+      "name": "unsb_small ",
+      "links": {
+        "slas": "/api/v1/configuration/slas/036b3499-4d29-4f45-a768-4ee096e0f5eb",
+        "uri": "/api/v1/configuration/flavors/bafb7c7b-b3e9-4cc7-8091-d2f7574d5243"
+      },
+      "deleted": false,
+      "rxtx_factor": 1,
+      "ephemeral": 0,
+      "public": true,
+      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "bafb7c7b-b3e9-4cc7-8091-d2f7574d5243",
+      "vm_ids": []
+    }
+  ]
+}

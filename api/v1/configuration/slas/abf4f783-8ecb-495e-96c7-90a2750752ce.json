@@ -1,0 +1,49 @@
+{
+  "slas": [
+    {
+      "name": "Secure Silver",
+      "links": {
+        "uri": "/api/v1/configuration/slas/abf4f783-8ecb-495e-96c7-90a2750752ce",
+        "slos": "/api/v1/configuration/slos?ids=e481c8b7-6e4f-4191-8029-89dbeaf69913,e2383c43-00ed-414f-a164-85aa866f6c27"
+      },
+      "deleted": null,
+      "slo_ids": [
+        "e481c8b7-6e4f-4191-8029-89dbeaf69913",
+        "e2383c43-00ed-414f-a164-85aa866f6c27"
+      ],
+      "class_id": "b236e868-543b-499f-b916-a8dc5af171c5",
+      "version": 1,
+      "id": "abf4f783-8ecb-495e-96c7-90a2750752ce"
+    }
+  ],
+  "slos": [
+    {
+      "description": "SAM Units value available for each VM core shall be within <0.5;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/f1d1327c-c739-4354-b43d-39d9001bb5ec",
+        "uri": "/api/v1/configuration/slos/e481c8b7-6e4f-4191-8029-89dbeaf69913",
+        "slas": "/api/v1/configuration/slas/abf4f783-8ecb-495e-96c7-90a2750752ce"
+      },
+      "deleted": false,
+      "value": "0.5;1.0",
+      "sla_id": "abf4f783-8ecb-495e-96c7-90a2750752ce",
+      "operator": "in_range",
+      "slo_template_id": "f1d1327c-c739-4354-b43d-39d9001bb5ec",
+      "id": "e481c8b7-6e4f-4191-8029-89dbeaf69913"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/195cbc1d-405b-487c-9170-dce4e45a8901",
+        "uri": "/api/v1/configuration/slos/e2383c43-00ed-414f-a164-85aa866f6c27",
+        "slas": "/api/v1/configuration/slas/abf4f783-8ecb-495e-96c7-90a2750752ce"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "abf4f783-8ecb-495e-96c7-90a2750752ce",
+      "operator": "equals",
+      "slo_template_id": "195cbc1d-405b-487c-9170-dce4e45a8901",
+      "id": "e2383c43-00ed-414f-a164-85aa866f6c27"
+    }
+  ]
+}

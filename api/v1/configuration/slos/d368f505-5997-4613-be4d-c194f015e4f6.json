@@ -1,0 +1,18 @@
+{
+  "slos": [
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/195cbc1d-405b-487c-9170-dce4e45a8901",
+        "uri": "/api/v1/configuration/slos/d368f505-5997-4613-be4d-c194f015e4f6",
+        "slas": "/api/v1/configuration/slas/036b3499-4d29-4f45-a768-4ee096e0f5eb"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
+      "operator": "equals",
+      "slo_template_id": "195cbc1d-405b-487c-9170-dce4e45a8901",
+      "id": "d368f505-5997-4613-be4d-c194f015e4f6"
+    }
+  ]
+}
