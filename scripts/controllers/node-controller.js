@@ -41,7 +41,7 @@ App.NodeController = Ember.ObjectController.extend({
         dashboard.refresh();
       }
     }
-    
+
   }.observes('isSelected'),
 
   // Computed properties
@@ -77,7 +77,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('schedulerMark', 'isScheduled'),
   isHealthy: Ember.computed.equal('status.health', App.SUCCESS),
-  isUnhealthy: Ember.computed.gte('status.health', App.INFO),
+  isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
       return 'Not under ' + App.application.get('title') + ' control';
