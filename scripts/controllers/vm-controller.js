@@ -9,7 +9,7 @@ App.VmController = Ember.ObjectController.extend({
         return self.get('model.status.health') === App.SUCCESS;
       })(this),
       isUnhealthy: (function (self) {
-        return self.get('model.status.health') >= App.INFO;
+        return self.get('model.status.health') !== App.SUCCESS;
       })(this),
       healthMessage: (function(self) {
         if (App.isEmpty(self.get('model.status.short_message')) && App.isEmpty(self.get('model.status.long_message'))) {
