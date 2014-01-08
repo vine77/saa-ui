@@ -295,7 +295,7 @@
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Configuration data accessible",
+      "name": "Configuration data status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
