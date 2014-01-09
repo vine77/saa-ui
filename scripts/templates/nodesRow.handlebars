@@ -7,11 +7,6 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="servicesMessage"}}
-          <i {{bind-attr class="servicesClass"}}></i>
-        {{/view}}
-      </div></td>
-      <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
           {{#view App.TooltipView titleBinding="healthMessage"}}
             {{healthIcon status.health}}
