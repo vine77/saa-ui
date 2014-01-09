@@ -33,6 +33,15 @@
           </td>
         </tr>
         <tr>
+          <th class="column-medium">Services</th>
+          <td>
+            {{#view App.TooltipView titleBinding="servicesMessage"}}
+              <i {{bind-attr class="servicesClass"}}></i>
+              {{capitalize nodeType}} node
+            {{/view}}
+          </td>
+        </tr>
+        <tr>
           <th class="column-medium">Trust</th>
           <td>
             {{#view App.TooltipView titleBinding="trustMessage"}}
