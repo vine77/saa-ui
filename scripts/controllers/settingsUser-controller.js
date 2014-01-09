@@ -4,7 +4,7 @@ App.SettingsUserController = Ember.ObjectController.extend({
     save: function () {
       var self = this;
       var user = this.get('model');
-      if (!this.get('oldPassword') || !this.get('newPassword1') ||  !this.get('newPassword2')) {
+      if (!this.get('oldPassword')) {
         App.event('Please enter all of the required fields.');
       } else if (this.get('newPassword1') != this.get('newPassword2')) {
         App.event('Passwords do not match. Please try again.');
@@ -15,7 +15,7 @@ App.SettingsUserController = Ember.ObjectController.extend({
         user.setProperties({
           username: this.get('username'),
           oldPassword: this.get('oldPassword'),
-          newPassword: this.get('newPassword1'),
+          newPassword: this.get('newPassword1') || '',
           email: this.get('email')
         });
         this.set('isActionPending', true);
