@@ -86,6 +86,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       return previousValue + count;
     }, 0);
   }.property('model.@each.memory.used'),
+  totalRamGibibyte: function() {
+    return App.readableSize(this.get('totalRam') * 1048576);
+  }.property('totalRam'),
   maxRam: function () {
     return this.get('controllers.quota.ram');
   }.property('this.controllers.quota.ram'),
