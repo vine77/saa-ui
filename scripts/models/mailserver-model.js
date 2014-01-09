@@ -1,3 +1,11 @@
+App.MailserverAdapter = DS.ActiveModelAdapter.extend({
+  host: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
+  namespace: 'api/v1',
+  buildURL: function(type, id) {
+    return this._super(type, id) + '.json';
+  }
+});
+
 App.Mailserver = DS.Model.extend({
   hostname: DS.attr('string'),
   port: DS.attr('string'),
