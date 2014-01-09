@@ -1,9 +1,5 @@
 App.NodesColumnsController = App.ColumnsController.extend({
   content: [{
-    description: 'Services',
-    sortBy: 'nodeType',
-    icon: 'icon-cloud'
-  }, {
     description: 'State (Health/Operational State)',
     sortBy: 'state',
     icon: 'icon-off'
