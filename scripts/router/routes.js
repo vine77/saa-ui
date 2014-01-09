@@ -92,12 +92,6 @@ App.LoginRoute = Ember.Route.extend({
   }
 });
 
-App.TempPasswordRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('user', this.controllerFor('login').get('username'));
-  }
-});
-
 App.ProfileRoute = Ember.Route.extend({
   model: function(params) {
     return this.store.find('user', params.user_id);
