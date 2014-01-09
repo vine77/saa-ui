@@ -11,6 +11,7 @@ App.Router.map(function () {
       this.route('network');
       this.route('mailserver');
       this.route('users');
+      this.route('user', {path: 'users/:user_id'});
       this.route('dev');
       this.route('log');
       this.route('trust');
@@ -43,7 +44,7 @@ App.Router.map(function () {
       });
       this.resource('trust', function () {
         this.resource('trust.mles', {path: 'mles'}, function () {
-         this.resource('trust.mle', {path: '/:trustMle_id'});
+          this.resource('trust.mle', {path: '/:trustMle_id'});
         });
       });
     });
