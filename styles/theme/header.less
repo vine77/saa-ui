@@ -2,6 +2,10 @@
 .navbar {
   font-family: "Neo Sans Intel", "Helvetica Neue", Helvetica, Arial, sans-serif;
   .box-shadow(0 1px 1px 0 darken(@themeBlue, 20%));
+  a {
+    color: white;
+    text-decoration: underline;
+  }
   .brand {
     @brandingVerticalPadding: 8px;
     height: @navbarHeight - (2 * @brandingVerticalPadding);
@@ -40,11 +44,10 @@
     color: rgba(255, 255, 255, 0.7);
     font-size: 12px;
     > li {
-      margin: 0 6px;
+      margin: 0 10px;
       list-style-type: none;
       float: left;
       > a {
-        color: white;
         > img {
           vertical-align: text-bottom;
         }

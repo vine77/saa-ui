@@ -93,10 +93,8 @@ App.LoginRoute = Ember.Route.extend({
 });
 
 App.TempPasswordRoute = Ember.Route.extend({
-  actions: {
-    generate_password: function() {
-      this.controller.generatePassword(this);
-    }
+  model: function () {
+    return this.store.find('user', this.controllerFor('login').get('username'));
   }
 });
 
@@ -158,6 +156,7 @@ App.AppRoute = Ember.Route.extend({
     return currentSessionPromise.then(function (session) {
       self.controllerFor('login').set('session', session);
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
+      self.controllerFor('login').set('username', session.get('username'));
     }).then(function () {
       // Call config and other APIs
       return Ember.RSVP.hash({
@@ -415,9 +414,14 @@ App.SettingsIndexRoute = Ember.Route.extend({
     this.transitionTo('settings.upload');
   }
 });
-App.SettingsUsersRoute = Ember.Route.extend({
+App.SettingsUploadRoute = Ember.Route.extend({
+  deactivate: function () {
+    this.controllerFor('settingsUpload').send('cancel');
+  }
+});
+App.SettingsMailserverRoute = Ember.Route.extend({
   model: function() {
-    return App.users;
+    return this.store.find('mailserver', 'default');
   }
 });
 App.SettingsLogRoute = Ember.Route.extend({
@@ -425,16 +429,14 @@ App.SettingsLogRoute = Ember.Route.extend({
     return this.store.find('logSetting', 'current');
   }
 });
-
-App.SettingsUploadRoute = Ember.Route.extend({
-  deactivate: function () {
-    this.controllerFor('settingsUpload').send('cancel');
+App.SettingsUsersRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('user');
   }
 });
-
-App.SettingsMailserverRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.find('mailserver', 'default');
+App.SettingsUserRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.store.find('user', params.user_id);
   }
 });
 

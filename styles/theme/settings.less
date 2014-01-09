@@ -10,6 +10,14 @@
   input[disabled] {
     color: #555555;
   }
+  form {
+    .form-actions {
+      margin: 40px -19px -19px;
+      text-align: right;
+      .border-bottom-left-radius(3px);
+      .border-bottom-right-radius(3px);
+    }
+  }
   #upload {
     .control-label {
       width: 290px;
@@ -55,12 +63,6 @@
         white-space: nowrap;
       }
     }
-    .form-actions {
-      margin: 40px -19px -19px;
-      text-align: right;
-      .border-bottom-left-radius(3px);
-      .border-bottom-right-radius(3px);
-    }
   }
   #mailserver {
     .control-label {
@@ -72,12 +74,6 @@
         margin-right: 20px;
         white-space: nowrap;
       }
-    }
-    .form-actions {
-      margin: 40px -19px -19px;
-      text-align: right;
-      .border-bottom-left-radius(3px);
-      .border-bottom-right-radius(3px);
     }
   }
   #log {
@@ -99,9 +95,16 @@
       width: 50%;
     }
   }
-  #users {
-    .header {
-      width: 100%;
+  #user {
+    .control-label {
+      width: 130px;
+    }
+    .controls {
+      margin-left: 150px;
+      label.inline {
+        margin-right: 20px;
+        white-space: nowrap;
+      }
     }
   }
   #dev {
@@ -113,12 +116,6 @@
       input + .btn {
         margin-left: 20px;
       }
-    }
-    .form-actions {
-      margin: 40px -19px -19px;
-      padding-left: 220px;
-      .border-bottom-left-radius(3px);
-      .border-bottom-right-radius(3px);
     }
   }
 }

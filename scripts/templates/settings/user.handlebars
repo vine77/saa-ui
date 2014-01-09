@@ -1,0 +1,51 @@
+<section id="user">
+  {{#if message}}
+    <div id="profile-notification" class="notification">
+      <div class="alert">
+        <button type="button" class="close" {{action "removeNotification"}}>&times;</button>
+        {{message}}
+      </div>
+    </div>
+  {{/if}}
+  <h3>Edit User Profile</h3>
+  <form class="form-horizontal well-clean shadow-lifted" {{action "save" on="submit"}}>
+    <div class="control-group">
+      <label class="control-label">Username</label>
+      <div class="controls">
+        {{view Ember.TextField valueBinding="username" id="profile-username" placeholder="Username" disabled="disabled"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Email Address</label>
+      <div class="controls">
+        {{view Ember.TextField id="profile-email" valueBinding="email" placeholder="Email address" autofocus="autofocus"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Current Password</label>
+      <div class="controls">
+        {{view Ember.TextField type="password" id="profile-oldPassword" valueBinding="oldPassword" placeholder="Enter existing password"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">New Password</label>
+      <div class="controls">
+        {{view Ember.TextField type="password" id="profile-newPassword1" valueBinding="newPassword1" placeholder="Enter new password"}}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Confirm Password</label>
+      <div class="controls">
+        {{view Ember.TextField type="password" id="profile-newPassword2" valueBinding="newPassword2" placeholder="Repeat new password"}}
+      </div>
+    </div>
+    <div class="form-actions">
+      {{#unless isActionPending}}
+        <a class="btn" type="button" {{action "cancel"}}>Cancel</a>
+        <input class="btn btn-primary" type="submit" value="Save" {{action "save"}}></input>
+      {{else}}
+        <a class="btn btn-primary disabled"><i class="icon-spinner icon-spin"></i> Saving...</a>
+      {{/unless}}
+    </div>
+  </form>
+</section>
