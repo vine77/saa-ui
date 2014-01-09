@@ -10,12 +10,18 @@
                 <div class="bar" {{bind-attr style="totalVcpusWidth"}}></div>
               </div>
             </div>
-            <div class="span6">
-              <small>Used of Available RAM ({{totalRamMessage}})</small>
-              <div class="progress progress-success">
-                <div class="bar" {{bind-attr style="totalRamWidth"}}></div>
+            {{#if maxRam}}
+              <div class="span6">
+                <small>Used of Available RAM ({{totalRamMessage}})</small>
+                <div class="progress progress-success">
+                  <div class="bar" {{bind-attr style="totalRamWidth"}}></div>
+                </div>
               </div>
-            </div>
+            {{else}}
+              <div class="span6">
+                <small>Current Ram: {{totalRamGibibyte}}</small>
+              </div>
+            {{/if}}
           </div>
         </div>
         <div class="span5">
