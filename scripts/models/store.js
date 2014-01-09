@@ -19,9 +19,9 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     if (jqXHR && jqXHR.status === 401) {
       var currentPath = App.route.controllerFor('application').get('currentPath');
       App.log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
-      App.notify('Please log out and log back in.', App.ERROR, 'Unauthorized.');
+      App.notify('Please log back in.', App.ERROR, 'Unauthorized.');
       // TODO: Redirect user to login if 401 error are encountered
-      //if (currentPath !== 'login') App.route.controllerFor('application').send('redirectToLogin', currentPath);
+      if (currentPath !== 'login') App.route.controllerFor('application').send('redirectToLogin', currentPath);
     } else if (jqXHR && jqXHR.status === 422) {
       var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];
       if (!jsonErrors) jsonErrors = [App.errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
