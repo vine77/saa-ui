@@ -8,53 +8,55 @@
    </div>
   {{/if}}
   <h3>Configure Mail Server</h3>
-    <form class="form-horizontal well-clean shadow-lifted">
+  <form class="form-horizontal well-clean shadow-lifted">
     <div class="control-group">
       <label class="control-label">Hostname</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
       </div>
     </div>
-
     <div class="control-group">
       <label class="control-label">Port</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="port" id="mailserver-port" placeholder="Port"}}
       </div>
     </div>
-
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="username" id="mailserver-username" placeholder="Username"}}
       </div>
     </div>
-
     <div class="control-group">
       <label class="control-label">Password</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="password" id="mailserver-password" placeholder="Password" type="password"}}
       </div>
     </div>
-
     <div class="control-group">
       <label class="control-label">Email</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="sender_email" id="mailserver-sender_email" placeholder="Email (From address)"}}
+        {{view Ember.TextField valueBinding="sender_email" placeholder="Email (&quot;From:&quot; address)"}}
       </div>
     </div>
-
     <div class="control-group">
-        <button class="btn btn-primary" type="button" {{action "test_email"}}>Send Test Email</button>
+      <div class="controls">
+        {{#unless isTestEmailActionPending}}
+          <button class="btn btn-primary" type="button" {{action "testEmail"}}>Send Test Email</button>
+        {{else}}
+          <a class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Sending Test Email...</a>
+        {{/unless}}
+      </div>
     </div>
-
     {{#if standalone}}
-        <div class="form-actions">
-            <input type="submit" class="btn btn-primary" value="Save" {{action "save"}}>
-            <button class="btn btn-danger" type="button" {{action "reset"}}>Cancel</button>
-        </div>
+      <div class="form-actions">
+        {{#unless isActionPending}}
+          <a class="btn" {{action "cancel"}}>Cancel</a>
+          <button type="submit" class="btn btn-primary" {{action "save"}}>Save</button>
+        {{else}}
+          <a class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</a>
+        {{/unless}}
+      </div>
     {{/if}}
-
-    </form>
-
+  </form>
 </section>

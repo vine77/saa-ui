@@ -47,16 +47,12 @@
               <ul class="dropdown-menu">
                 <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                 <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
-                {{!--
                 <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
-                --}}
                 {{#if isConfigured}}
                   <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                 {{/if}}
                 {{#if isEnabled}}
-                  {{!--
                   <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
-                  --}}
                   <li>{{#linkTo "settings.trust"}}Trust{{/linkTo}}</li>
                 {{/if}}
               </ul>

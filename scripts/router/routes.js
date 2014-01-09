@@ -435,31 +435,6 @@ App.SettingsUploadRoute = Ember.Route.extend({
 App.SettingsMailserverRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('mailserver', 'default');
-  },
-  setupController: function(controller, model) {
-    if (!model.get('isLoaded')) {
-      // TODO: Migrate Sunil's authentication code. Can't use model.on()
-      model.on('didLoad', function() {
-        controller.initFields(model);
-        model.off('didLoad');
-      });
-    }
-    else {
-      controller.initFields(model);
-    }
-    controller.set('standalone', true);
-    this._super(controller,model);
-  },
-  actions: {
-    save: function () {
-      this.controller.saveConfig(this, false);
-    },
-    test_email: function() {
-      this.controller.saveConfig(this, true);
-    },
-    reset: function () {
-      this.controller.resetConfig(this);
-    }
   }
 });
 

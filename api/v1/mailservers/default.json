@@ -1,0 +1,10 @@
+{
+  "mailserver": {
+    "id": "default",
+    "username": "admin",
+    "password": "changeme",
+    "hostname": "mailserver.sam.lab",
+    "port": "25",
+    "sender_email": "admin@sam.lab"
+  }
+}
