@@ -2,6 +2,7 @@
   "logs": [{
     "id": "current",
     "categories": [
+      {"name":"action"},
       {"name":"agent"},
       {"name":"apache-error"},
       {"name":"auth"},
