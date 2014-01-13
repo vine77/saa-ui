@@ -35,6 +35,7 @@
         <tr>
           <th class="column-medium">Services</th>
           <td>
+<<<<<<< HEAD
             <br />
             <table class="table table-bordered">
               <thead>
@@ -73,6 +74,12 @@
                 {{/each}}
               </tbody>
             </table>
+=======
+            {{#view App.TooltipView titleBinding="servicesMessage"}}
+              <i {{bind-attr class="servicesClass"}}></i>
+              {{capitalize nodeType}} node
+            {{/view}}
+>>>>>>> parent of e3e6d06... Addendum to EPSD100237160 to also remove cloud services from node details.
           </td>
         </tr>
         <tr>
