@@ -33,6 +33,49 @@
           </td>
         </tr>
         <tr>
+          <th class="column-medium">Services</th>
+          <td>
+            <br />
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td class="column-small">
+                    {{#view App.TooltipView title="State (Health/Operational State)"}}
+                      <i class="icon-off icon-large"></i>
+                    {{/view}}
+                  </td>
+                  <td>Service</td>
+                  <td>Updated</td>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each cloudServices itemController="service"}}
+                  <tr>
+                    <td class="column-small">
+                      {{#if parentController.isUnhealthy}}
+                        {{#view App.TooltipView titleBinding="healthMessage"}}
+                          {{healthIcon health}}
+                        {{/view}}
+                      {{else}}
+                        {{#view App.TooltipView titleBinding="operationalMessage"}}
+                          {{operationalIcon operational}}
+                        {{/view}}
+                      {{/if}}
+                    </td>
+                    <td>
+                      <i {{bind-attr class="nodeTypeClass"}}></i>
+                      {{capitalize nodeType}} node
+                    </td>
+                    <td>
+                      {{timestamp last_update}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
           <th class="column-medium">Trust</th>
           <td>
             {{#view App.TooltipView titleBinding="trustMessage"}}
