@@ -280,6 +280,8 @@ App.NodeController = Ember.ObjectController.extend({
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     unregister: function (node) {
@@ -298,6 +300,8 @@ App.NodeController = Ember.ObjectController.extend({
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     unschedule: function (node) {
@@ -316,6 +320,8 @@ App.NodeController = Ember.ObjectController.extend({
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     addTrust: function (node) {
@@ -335,6 +341,8 @@ App.NodeController = Ember.ObjectController.extend({
           newTrustNode.deleteRecord();
           App.xhrError(xhr, 'An error occured while registering node"' + node.get('name') + '" as trusted.');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     trustReportModal: function (model) {
@@ -369,6 +377,8 @@ App.NodeController = Ember.ObjectController.extend({
           newTrustMle.deleteRecord();
           App.xhrError(xhr, 'An error occured while fingerprinting node "' + node.get('name') + '".');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     schedule: function (node, socketNumber) {
@@ -396,6 +406,8 @@ App.NodeController = Ember.ObjectController.extend({
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     },
     removeTrust: function (node) {
@@ -414,6 +426,8 @@ App.NodeController = Ember.ObjectController.extend({
           node.rollback();
           App.xhrError(xhr, 'An error occured while unregistering node "' + node.get('name') + '" as trusted.');
         });
+      } else {
+        self.set('isActionPending', false);
       }
     }
   }
