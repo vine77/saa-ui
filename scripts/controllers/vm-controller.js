@@ -297,7 +297,7 @@ App.VmController = Ember.ObjectController.extend({
       this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
         reportContent = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
-          var title = 'vm-trust-report-' + reportContent.get('vmName');
+          var title = 'VM Trust Report';
           var subtitle = reportContent.get('vmName');
           var rowContent = [];
           rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
