@@ -250,7 +250,7 @@ App.NodeController = Ember.ObjectController.extend({
       this.set('isActionPending', true);
       this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
-          var title = 'node-trust-report-' + reportContent.get('name');
+          var title = 'Node Trust Report';
           var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';
           var rowContent = [];
           rowContent.push("item.get('attestation_time_formatted')");
