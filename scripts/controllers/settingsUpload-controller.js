@@ -40,7 +40,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
             // Restart app for full reload and redirect to index
             document.location.href = '/';
             // TODO: Add Status API polling to determine when to reload app
-          }, 30000);
+          }, 60000);
         }, function () {
           self.set('isActionPending', false);
           App.event('Error uploading config files.', App.ERROR);
