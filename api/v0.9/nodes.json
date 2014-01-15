@@ -408,21 +408,21 @@
           {
             "socket_number": 1,
             "llc": {
-              "value": 0.05,
-              "label": "LOW"
+              "value": 45,
+              "label": "HIGH"
             }
           },
           {
             "socket_number": 0,
             "llc": {
-              "value": 0.04,
-              "label": "LOW"
+              "value": 45,
+              "label": "HIGH"
             }
           }
         ],
         "system": {
           "llc": {
-            "value": 0.09,
+            "value": 45,
             "label": "LOW"
           }
         }
