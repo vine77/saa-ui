@@ -4,12 +4,18 @@ App.ApplicationView = Ember.View.extend({
   styleSidebar: function() {
     var docsIframe = $('#docs');
     docsIframe.contents().find('.sphinxsidebarwrapper').css({"overflow-y":"scroll", "overflow-x":"hidden", "position":"fixed", "width":"222px", "height":"770px"});
-  },
-  didInsertElement: function() {
     var self = this;
     $('#docs').load(function(){
       self.styleSidebar();
     });
-    Ember.run.later(this, 'styleSidebar', 5000);
+  },
+  didInsertElement: function() {
+    var self = this;
+    $('#docs').load(function(){
+      setTimeout(function() {
+        self.styleSidebar();
+      }, 2000);
+    });
+    Ember.run.later(this, 'styleSidebar', 8000);
   }
 });
