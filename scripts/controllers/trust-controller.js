@@ -16,7 +16,7 @@ App.TrustController = Ember.Controller.extend({
   isInstalledChanged: function () {
     var applicationController = this.get('controllers.application');
     var currentPath = applicationController.get('currentPath');
-    if ((this.get('isInstalled') == true) && (currentPath == 'trust.index')) {
+    if ((this.get('isInstalled') == true) && (currentPath == 'app.data.trust.index')) {
       var router = this.get('target');
       router.transitionTo('trust.mles');
     }
