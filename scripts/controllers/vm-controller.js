@@ -72,6 +72,13 @@ App.VmController = Ember.ObjectController.extend({
       })(this)
     }, this.get('model.status'));
   }.property('model.status'),
+  hasContention: function() {
+    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('contention.system.llc.value'),
   contentionMessage: function () {
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>Contention Not Available</strong>';

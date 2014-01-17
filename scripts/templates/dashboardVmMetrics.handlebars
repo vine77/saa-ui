@@ -1,0 +1,69 @@
+<div class="portlet span4">
+  <div class="header">VM Metrics</div>
+  <div class="portlet-content">
+    <table class="table table-bordered">
+       <tbody>
+          <tr>
+            <td class="column-medium"><strong>VMs</strong> (total #)</td>
+            <td>{{#link-to "vms"}}{{controllers.vms.length}} VMs {{/link-to}}</td>
+          </tr>
+          {{#if App.mtWilson.isSupported}}
+            <tr>
+              <td class="column-medium"><strong>Trusted VMs</strong></td>
+              <td>
+                <br />
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small> 
+                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                        {{#link-to "vms"}}
+                          {{percentOfTrusted}}% 
+                        {{/link-to}}
+                      {{/view}}
+                    </small>
+                  </div>
+              </td>
+            </tr>
+          {{/if}}
+          <tr>
+            <td class="column-medium"><strong>Victim VMs</strong></td>
+            <td>
+              <br />
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="percentOfVictimsWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small> 
+                    {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
+                      {{#link-to "vms"}}
+                        {{percentOfVictims}}% 
+                      {{/link-to}}
+                    {{/view}}
+                  </small>
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="column-medium"><strong>Aggressor VMs</strong></td>
+            <td>
+              <br />
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="percentOfAggressorsWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small> 
+                    {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
+                      {{#link-to "vms"}}
+                        {{percentOfAggressors}}% 
+                      {{/link-to}}
+                    {{/view}}
+                  </small>
+                </div>
+            </td>
+          </tr>
+       </tbody>
+    </table>
+  </div>
+</div>
