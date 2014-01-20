@@ -73,10 +73,10 @@
             <th class="column-medium">Noisy Neighbor</th>
             <td>
               {{#if isAggressor}}
-                <i {{bindAttr class=":icon-bullhorn :error"}}></i> Aggressor
+                <i {{bind-attr class=":icon-bullhorn :error"}}></i> Aggressor
               {{/if}}
               {{#if isVictim}}
-                <i {{bindAttr class=":icon-headphones :warning"}}></i> Victim
+                <i {{bind-attr class=":icon-headphones :warning"}}></i> Victim
               {{/if}}
             </td>
           </tr>
@@ -172,7 +172,7 @@
     <div class="tab-pane graphs">
       {{#each graph in graphs}}
         <figure class="thumbnail">
-          <img {{bindAttr src="graph.url"}}>
+          <img {{bind-attr src="graph.url"}}>
           <figcaption class="caption">{{graph.desc}}</figcaption>
         </figure>
       {{else}}

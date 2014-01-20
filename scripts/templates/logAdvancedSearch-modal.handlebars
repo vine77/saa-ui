@@ -24,7 +24,7 @@
         <ul class="three-columns no-list-style">
           {{#each vm in controllers.vms}}
             <li>
-              <label {{bindAttr title="vm.name"}}>
+              <label {{bind-attr title="vm.name"}}>
                 {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}}
               </label>
             </li>

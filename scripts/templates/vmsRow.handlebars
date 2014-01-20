@@ -1,6 +1,6 @@
 <table>
   <tbody>
-    <tr {{bindAttr class="isSelected isExpanded"}}>
+    <tr {{bind-attr class="isSelected isExpanded"}}>
       <td class="column-small"><div class="cell-container">
         {{view Ember.Checkbox checkedBinding="isSelected"}}
       </div></td>
@@ -22,16 +22,16 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="status.slaMessage"}}
-          <i {{bindAttr class=":icon-large status.slaViolated:icon-remove:icon-trophy status.slaViolated:error status.slaNotViolated:success status.slaUnknown:inset"}}></i>
+          <i {{bind-attr class=":icon-large status.slaViolated:icon-remove:icon-trophy status.slaViolated:error status.slaNotViolated:success status.slaUnknown:inset"}}></i>
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="noisyMessage"}}
           {{#if isAggressor}}
-            <i {{bindAttr class=":icon-bullhorn :error"}}></i>
+            <i {{bind-attr class=":icon-bullhorn :error"}}></i>
           {{/if}}
           {{#if isVictim}}
-            <i {{bindAttr class=":icon-headphones :warning"}}></i>
+            <i {{bind-attr class=":icon-headphones :warning"}}></i>
           {{/if}}
         {{/view}}
       </div></td>
@@ -67,12 +67,12 @@
         <div class="allocation">
           {{#if hasCompute}}
             {{#view App.TooltipView titleBinding="allocationMessage"}}
-              <div {{bindAttr class=":allocation-bar isRange"}}>
+              <div {{bind-attr class=":allocation-bar isRange"}}>
                 <div class="allocation-range"></div> {{! light orange dashed }}
-                <div class="allocation-min" {{bindAttr style="allocationMinWidth"}}></div> {{! light green solid }}
+                <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
                 <div class="allocation-current">
-                  <div class="allocation-current-warning" {{bindAttr style="allocationCurrentWidth"}}></div> {{! orange }}
-                  <div class="allocation-current-success" {{bindAttr style="allocationSuccessWidth"}}></div> {{! green }}
+                  <div class="allocation-current-warning" {{bind-attr style="allocationCurrentWidth"}}></div> {{! orange }}
+                  <div class="allocation-current-success" {{bind-attr style="allocationSuccessWidth"}}></div> {{! green }}
                 </div>
               </div>
               {{na utilization.su_current}}
@@ -89,7 +89,7 @@
           {{#if contentionValueExists}}
             {{#view App.TooltipView titleBinding="contentionMessage" barBinding="contentionWidth"}}
               <div class="contention-bar">
-                <div class="contention-bar-width" {{bindAttr style="contentionWidth"}} >
+                <div class="contention-bar-width" {{bind-attr style="contentionWidth"}} >
                   <div class="contention-gradient"></div>
                 </div>
               </div>
@@ -105,7 +105,7 @@
           {{#if isOn}}
             <div class="btn-group">
               <a class="btn btn-mini disabled"><i class="icon-off"></i> Power Off</a>
-              <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+              <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
                 {{#unless isActionPending}}
                   <span class="caret"></span>
                 {{else}}
@@ -123,7 +123,7 @@
             <div class="btn-group">
               <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
               {{#if App.mtWilson.isInstalled}}
-                <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+                <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
                   {{#unless isActionPending}}
                     <span class="caret"></span>
                   {{else}}
@@ -138,7 +138,7 @@
           {{/if}}
         </div>
       </td>
-      <td class="column-small"><div class="cell-container"><a class="btn btn-mini toggle-details" {{action "expand" this}}><i {{bindAttr class="isExpanded:icon-minus:icon-plus"}}></i></a></div></td>
+      <td class="column-small"><div class="cell-container"><a class="btn btn-mini toggle-details" {{action "expand" this}}><i {{bind-attr class="isExpanded:icon-minus:icon-plus"}}></i></a></div></td>
     </tr>
   </tbody>
 </table>

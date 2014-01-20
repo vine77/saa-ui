@@ -3,10 +3,10 @@
     {{#if connected}}
       {{#if statusErrorMessages}}
         <div class="notification-top">
-          <div {{bindAttr class=":alert statusClass"}}>
+          <div {{bind-attr class=":alert statusClass"}}>
             <ul>
               {{#each statusErrorMessages}}
-                <li {{bindAttr class="colorClass"}}>
+                <li {{bind-attr class="colorClass"}}>
                   {{healthIcon health}}<strong>{{name}}</strong>: {{message}}
                 </li>
               {{/each}}
