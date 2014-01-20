@@ -1,4 +1,5 @@
 // Don't listen for events that aren't used
+/*
 Ember.EventDispatcher.reopen({
   events: {
     //touchstart  : 'touchStart',
@@ -30,6 +31,7 @@ Ember.EventDispatcher.reopen({
     dragend     : 'dragEnd'
   }
 });
+*/
 
 App = Ember.Application.create({
   LOG_TRANSITIONS: true,

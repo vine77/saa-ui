@@ -1,4 +1,4 @@
-App.ListView = Ember.ListView.extend({
+App.ListView = Ember.VirtualListView.extend({
   height: 300,
   rowHeight: 34,
   controllerName: function () {
@@ -7,7 +7,9 @@ App.ListView = Ember.ListView.extend({
     return name.slice(0, name.indexOf('Controller')).toLowerCase();
   }.property(),
   itemViewClass: function () {
-    return Ember.ListItemView.extend({templateName: this.get('controllerName') + 'Row'})
+    return Ember.ReusableListItemView.extend({
+      templateName: this.get('controllerName') + 'Row'
+    });
   }.property('controllerName'),
   adjustLayout: function() {
     this.set('height', this.get('controller.controllers.application.height') - 177);
@@ -17,3 +19,4 @@ App.ListView = Ember.ListView.extend({
     this.adjustLayout();
   }
 });
+
