@@ -77,7 +77,7 @@ function enableProfilingOutput() {
   @namespace Ember
 */
 Ember.ListViewMixin = Ember.Mixin.create({
-  itemViewClass: Ember.ListItemView,
+  itemViewClass: Ember.ReusableListItemView,
   emptyViewClass: Ember.View,
   classNames: ['ember-list-view'],
   attributeBindings: ['style'],
@@ -229,10 +229,12 @@ Ember.ListViewMixin = Ember.Mixin.create({
         return;
       }
 
-      this._reuseChildren();
+      Ember.run(this, function(){
+        this._reuseChildren();
 
-      this._lastStartingIndex = startingIndex;
-      this._lastEndingIndex = endingIndex;
+        this._lastStartingIndex = startingIndex;
+        this._lastEndingIndex = endingIndex;
+      });
     }, this);
   },
 
@@ -273,7 +275,7 @@ Ember.ListViewMixin = Ember.Mixin.create({
     content = get(this, 'content');
     enableProfiling = get(this, 'enableProfiling');
     position = this.positionForIndex(contentIndex);
-    set(childView, 'position', position);
+    childView.updatePosition(position);
 
     set(childView, 'contentIndex', contentIndex);
 
