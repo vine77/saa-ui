@@ -18,7 +18,8 @@ App.ListView = Ember.VirtualListView.extend({
     return Math.ceil(topRow/pageSize) + 1;
   }.property('scrollTop', 'height'),
   goToPage: function (pageNumber) {
-    this.scrollTo(this.get('rowHeight') * this.get('pageSize') * (pageNumber - 1));
+    var scrollTop = this.get('rowHeight') * this.get('pageSize') * (pageNumber - 1);
+    this.scrollTo(scrollTop, false);
   },
   rowHeight: 34,
   _isScrolling: false,
