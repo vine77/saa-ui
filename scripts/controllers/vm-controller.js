@@ -282,56 +282,6 @@ App.VmController = Ember.ObjectController.extend({
   }
   */
 
-  // Actions
-  actions: {
-    expand: function (model) {
-      if (!this.get('isExpanded')) {
-          this.transitionToRoute('vmsVm', model);
-        } else {
-          this.transitionToRoute('vms');
-        }
-    },
-    exportTrustReport: function (reportContent) {
-      var self = this;
-      this.set('isActionPending', true);
-      this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
-        reportContent = vmTrustReport;
-        if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
-          var title = 'VM Trust Report';
-          var subtitle = reportContent.get('vmName');
-          var rowContent = [];
-          rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
-          rowContent.push("item.get('vmAttestationNode.reportMessage')");
-          App.pdfReport(reportContent, rowContent, title, subtitle, 'vmAttestations');
-        } else {
-          App.notify('Trust attestation logs were not found.');
-        }
-        self.set('isActionPending', false);
-      }, function (xhr) {
-        self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to load VM trust report.');
-      });
-    },
-    trustReportModal: function(model){
-      var controller = this;
-        modal = Ember.View.extend({
-          templateName: "vmTrustReport-modal",
-          controller: controller,
-          content: model,
-          actions: {
-            modalHide: function() {
-              $('#modal').modal('hide');
-              var context = this;
-              //setTimeout(context.remove, 3000);
-              this.remove(); //destroys the element
-            }
-          },
-          didInsertElement: function () {
-            $('#modal').modal('show');
-          }
-        }).create().appendTo('body');
-    }
-  }
 });
 
 App.VmsVmController = App.VmController.extend();

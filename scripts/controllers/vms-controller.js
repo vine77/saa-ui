@@ -60,8 +60,28 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
     'children': []
   },
 
+  numberOfPages: function () {
+    return Math.ceil(this.get('length')/this.get('listView.pageSize'));
+  }.property('listView.pageSize', 'length'),
+  isFirstPage: Ember.computed.equal('listView.currentPage', 1),
+  isLastPage: function () {
+    return this.get('listView.currentPage') === this.get('numberOfPages');
+  }.property('listView.currentPage', 'numberOfPages'),
+  visibleRows: function () {
+    return Math.min(this.get('listView.pageSize'), this.get('length'));
+  }.property('listView.pageSize', 'length'),
+
   // Actions
   actions: {
+    previousPage: function () {
+      if (this.get('isFirstPage')) return;
+      this.get('listView').goToPage(this.get('listView.currentPage') - 1);
+    },
+    nextPage: function () {
+      if (this.get('isLastPage')) return;
+      this.get('listView').goToPage(this.get('listView.currentPage') + 1);
+    },
+
     selectAll: function () {
       var isEverythingSelected = this.everyProperty('isSelected');
       this.setEach('isSelected', !isEverythingSelected);
@@ -69,43 +89,53 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
     refresh: function () {
       this.store.find('vm');
     },
+    expand: function (model) {
+      if (!model.get('isExpanded')) {
+          this.transitionToRoute('vmsVm', model);
+        } else {
+          this.transitionToRoute('vms');
+        }
+    },
     exportTrustReport: function (reportContent) {
+      var self = this;
+      this.set('isActionPending', true);
       this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
         reportContent = vmTrustReport;
-        if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('attestations.length') > 0)) {
-          var title = "SAM VM Trust Report";
+        if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
+          var title = 'VM Trust Report';
           var subtitle = reportContent.get('vmName');
           var rowContent = [];
-          rowContent.push("item.get('node.attestation_time_formatted')");
-          rowContent.push("((item.get('node.trust_status'))?'VM was started on node '+item.get('node.node_name')+' ('+item.get('node.ip_address')+') that was attested as trusted. ':'VM was started on node that failed to be found attested as trusted.')");
-          rowContent.push("item.get('node.trust_message')");
-          App.pdfReport(reportContent, rowContent, title, subtitle, 'attestations');
+          rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
+          rowContent.push("item.get('vmAttestationNode.reportMessage')");
+          App.pdfReport(reportContent, rowContent, title, subtitle, 'vmAttestations');
         } else {
           App.notify('Trust attestation logs were not found.');
         }
+        self.set('isActionPending', false);
       }, function (xhr) {
+        self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
     trustReportModal: function(model){
       var controller = this;
-        modal = Ember.View.create({
-          templateName: "vmTrustReport-modal",
-          controller: controller,
-          content: model,
-          actions: {
-            modalHide: function() {
-              $('#modal').modal('hide');
-              var context = this;
-              //setTimeout(context.remove, 3000);
-              this.remove(); //destroys the element
-            }
-          },
-          didInsertElement: function (){
-            $('#modal').modal('show');
+      modal = Ember.View.extend({
+        templateName: "vmTrustReport-modal",
+        controller: controller,
+        content: model,
+        actions: {
+          modalHide: function() {
+            $('#modal').modal('hide');
+            var context = this;
+            //setTimeout(context.remove, 3000);
+            this.remove(); //destroys the element
           }
-        }).appendTo('body');
-    },
+        },
+        didInsertElement: function () {
+          $('#modal').modal('show');
+        }
+      }).create().appendTo('body');
+    }
     renderTreemap: function () {
       if (this.isTreemapVisible) {
         $('.treemap').slideUp();

@@ -55,6 +55,18 @@
         </div>
         {{view App.ListView contentBinding="filteredModel"}}
       </div>
+      <div class="table-footer row-fluid">
+        <div class="span6">
+          <div>Displaying {{visibleRows}} out of {{length}} nodes</div>
+        </div>
+        <div class="span6 align-right">
+          On page {{listView.currentPage}} of {{numberOfPages}}
+          <div class="btn-group">
+            <a {{bind-attr class=":btn isFirstPage:disabled"}} {{action "previousPage"}}><i class="icon-arrow-left"></i> Previous</a>
+            <a {{bind-attr class=":btn isLastPage:disabled"}} {{action "nextPage"}}>Next <i class="icon-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
       {{outlet}}
     </div>
   </div>

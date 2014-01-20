@@ -96,8 +96,28 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     return 'width:' + percentage + '%;';
   }.property('totalRam', 'maxRam'),
 
+  numberOfPages: function () {
+    return Math.ceil(this.get('length')/this.get('listView.pageSize'));
+  }.property('listView.pageSize', 'length'),
+  isFirstPage: Ember.computed.equal('listView.currentPage', 1),
+  isLastPage: function () {
+    return this.get('listView.currentPage') === this.get('numberOfPages');
+  }.property('listView.currentPage', 'numberOfPages'),
+  visibleRows: function () {
+    return Math.min(this.get('listView.pageSize'), this.get('length'));
+  }.property('listView.pageSize', 'length'),
+
   // Actions
   actions: {
+    previousPage: function () {
+      if (this.get('isFirstPage')) return;
+      this.get('listView').goToPage(this.get('listView.currentPage') - 1);
+    },
+    nextPage: function () {
+      if (this.get('isLastPage')) return;
+      this.get('listView').goToPage(this.get('listView.currentPage') + 1);
+    },
+
     selectAll: function () {
       var isEverythingSelected = this.everyProperty('isSelected');
       this.setEach('isSelected', !isEverythingSelected);

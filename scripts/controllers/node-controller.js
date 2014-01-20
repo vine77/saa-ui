@@ -239,7 +239,7 @@ App.NodeController = Ember.ObjectController.extend({
   // Actions
   actions: {
     expand: function (model) {
-      if (!this.get('isExpanded')) {
+      if (!model.get('isExpanded')) {
         this.transitionToRoute('nodesNode', model);
       } else {
         this.transitionToRoute('nodes');
@@ -453,7 +453,7 @@ App.ServiceController = Ember.ObjectController.extend({
   }.property(),
   healthMessage: function() {
     return 'Healthy State: ' + App.priorityToType(this.get('health')).capitalize();
-  }.property('health'),  
+  }.property('health'),
   operationalMessage: function() {
     return 'Operational State: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),
