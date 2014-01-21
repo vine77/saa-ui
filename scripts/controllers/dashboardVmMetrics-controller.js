@@ -1,8 +1,13 @@
 App.DashboardVmMetricsController = Ember.Controller.extend({
-  needs: ['vms'],
+  needs: ['vms', 'nodes'],
   totalNumberOfVms: function() {
     return this.get('controllers.vms.length');
   }.property('controllers.vms.@each'),
+
+  totalVcpusPercent: function() {
+    return Math.round(100 * parseFloat(this.get('controllers.nodes.totalVcpus')) / parseFloat(this.get('controllers.nodes.maxVcpus')));
+  }.property('controllers.nodes.@each.vcpus'),
+
   totalCurrentSu: function() {
     return this.get('controllers.vms').reduce(function (previousValue, item, index, enumerable) {
       var count = (item.get('utilization.su_current') > 0) ? item.get('utilization.su_current') : 0;
@@ -23,11 +28,10 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   }.property('totalCurrentContention'),
   
   numberOfTrusted: function() {
-    globalVms = this.get('controllers.vms');
     return this.get('controllers.vms').filterBy('status.trust', 2).get('length');
   }.property('controllers.vms.@each'),
   percentOfTrusted: function () {
-    return 100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfVms'));
+    return Math.round(100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfVms')));
   }.property('totalNumberOfVms', 'numberOfTrusted'),
   percentOfTrustedWidth: function () {
     return 'width:'+this.get('percentOfTrusted')+'%';
@@ -40,7 +44,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
     return this.get('controllers.vms').filterBy('isVictim').get('length');
   }.property('controllers.vms.@each'), 
   percentOfVictims: function () {
-    return 100 * parseFloat(this.get('numberOfVictims')) / parseFloat(this.get('totalNumberOfVms'));
+    return Math.round(100 * parseFloat(this.get('numberOfVictims')) / parseFloat(this.get('totalNumberOfVms')));
   }.property('totalNumberOfVms', 'numberOfVictims'),
   percentOfVictimsWidth: function () {
     return 'width:'+this.get('percentOfVictims')+'%';
@@ -53,7 +57,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
     return this.get('controllers.vms').filterBy('isAggressor').get('length');
   }.property('controllers.vms.@each'),
   percentOfAggressors: function () {
-    return 100 * parseFloat(this.get('numberOfAggressors')) / parseFloat(this.get('totalNumberOfVms'));
+    return Math.round(100 * parseFloat(this.get('numberOfAggressors')) / parseFloat(this.get('totalNumberOfVms')));
   }.property('totalNumberOfVms', 'numberOfAggressors'),
   percentOfAggressorsWidth: function () {
     return 'width:'+this.get('percentOfAggressors')+'%';
@@ -66,7 +70,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
     return this.get('controllers.vms').filterBy('isAggressor').get('length');
   }.property('controllers.vms.@each'),
   percentOfAggressors: function () {
-    return 100 * parseFloat(this.get('numberOfAggressors')) / parseFloat(this.get('totalNumberOfVms'));
+    return Math.round(100 * parseFloat(this.get('numberOfAggressors')) / parseFloat(this.get('totalNumberOfVms')));
   }.property('totalNumberOfVms', 'numberOfAggressors'),
   percentOfAggressorsWidth: function () {
     return 'width:'+this.get('percentOfAggressors')+'%';
@@ -74,6 +78,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalAggressorsMessage: function() {
     return this.get('numberOfAggressors') + ' / ' + this.get('totalNumberOfVms');
   }.property('numberOfAggressors', 'totalNumberOfVms'),
-
-
+  
+  
+  
 });

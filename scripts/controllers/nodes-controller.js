@@ -95,6 +95,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     var percentage = (this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalRam', 'maxRam'),
+  percentOfRam: function () {
+    return Math.round((this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100);
+  }.property('totalRam', 'maxRam'),
 
   // Actions
   actions: {
