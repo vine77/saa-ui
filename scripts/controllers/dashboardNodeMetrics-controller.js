@@ -29,6 +29,21 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   totalControlledMessage: function() {
     return this.get('numberOfControlled') + ' / ' + this.get('totalNumberOfNodes');
   }.property('numberOfControlled', 'totalNumberOfNodes'),
+  isPercentOfControlledAvailable: function() {
+    if (isNaN(this.get('percentOfControlled'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfControlled'),
+
+  isPercentOfRamAvailable: function () {
+    if (isNaN(this.get('controllers.nodes.percentOfRam'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('controllers.nodes.percentOfRam'),
 
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
@@ -37,10 +52,11 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }, 0);
   }.property('controllers.nodes.@each.utilization'),
   totalSuMax: function() {
-    return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
+    var totalSuMax = this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
       var count = (item.get('utilization.su_max') > 0) ? parseFloat(item.get('utilization.su_max')) : 0;
       return previousValue + count;
     }, 0);
+    return Math.round(totalSuMax);
   }.property('controllers.nodes.@each.suCeiling'),
   usedOfAvailableSuPercent: function() {
     return Math.round(100 * parseFloat(this.get('totalCurrentSu')) / parseFloat(this.get('totalSuMax')));
@@ -51,5 +67,12 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   usedOfAvailableSuMessage: function() {
     return this.get('totalCurrentSu') + ' / ' + this.get('totalSuMax') + ' SU';
   }.property('numberOfControlled', 'totalSuMax'),
+  isUsedOfAvailableSuPercentAvailable: function () {
+    if (isNaN(this.get('usedOfAvailableSuPercent'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('controllers.nodes.percentOfRam'),
 
 });

@@ -27,8 +27,7 @@
               </td>
             </tr>
           {{/if}}
-
-          {{#if percentOfControlled}}
+          {{#if isPercentOfControlledAvailable}}
             <tr>
               <td class="column-medium"><strong>Controlled Nodes</strong></td>
               <td>
@@ -48,7 +47,7 @@
               </td>
             </tr>
           {{/if}}
-          {{#if controllers.nodes.percentOfRam}}
+          {{#if isPercentOfRamAvailable}}
             <tr>
               <td class="column-medium"><strong>Total RAM Usage</strong></td>
               <td>
@@ -68,7 +67,7 @@
               </td>
             </tr>
           {{/if}}
-          {{#if usedOfAvailableSuPercent}}
+          {{#if isUsedOfAvailableSuPercentAvailable}}
             <tr>
               <td class="column-medium"><strong>Total SU Usage</strong></td>
               <td>

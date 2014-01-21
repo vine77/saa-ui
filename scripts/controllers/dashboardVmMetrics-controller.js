@@ -7,6 +7,13 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalVcpusPercent: function() {
     return Math.round(100 * parseFloat(this.get('controllers.nodes.totalVcpus')) / parseFloat(this.get('controllers.nodes.maxVcpus')));
   }.property('controllers.nodes.@each.vcpus'),
+  isTotalVcpusPercentAvailable: function () {
+    if (isNaN(this.get('totalVcpusPercent'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('totalVcpusPercent'),
 
   totalCurrentSu: function() {
     return this.get('controllers.vms').reduce(function (previousValue, item, index, enumerable) {
@@ -52,6 +59,13 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalVictimsMessage: function() {
     return this.get('numberOfVictims') + ' / ' + this.get('totalNumberOfVms');
   }.property('numberOfVictims', 'totalNumberOfVms'),
+  isPercentOfVictimsAvailable: function () {
+    if (isNaN(this.get('percentOfVictims'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfVictims'),
 
   numberOfAggressors: function () {
     return this.get('controllers.vms').filterBy('isAggressor').get('length');
@@ -65,20 +79,15 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalAggressorsMessage: function() {
     return this.get('numberOfAggressors') + ' / ' + this.get('totalNumberOfVms');
   }.property('numberOfAggressors', 'totalNumberOfVms'),
+  isPercentOfAggressorsAvailable: function () {
+    if (isNaN(this.get('percentOfAggressors'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfAggressors'),
 
-  numberOfAggressors: function () {
-    return this.get('controllers.vms').filterBy('isAggressor').get('length');
-  }.property('controllers.vms.@each'),
-  percentOfAggressors: function () {
-    return Math.round(100 * parseFloat(this.get('numberOfAggressors')) / parseFloat(this.get('totalNumberOfVms')));
-  }.property('totalNumberOfVms', 'numberOfAggressors'),
-  percentOfAggressorsWidth: function () {
-    return 'width:'+this.get('percentOfAggressors')+'%';
-  }.property('totalNumberOfVms', 'numberOfAggressors'),
-  totalAggressorsMessage: function() {
-    return this.get('numberOfAggressors') + ' / ' + this.get('totalNumberOfVms');
-  }.property('numberOfAggressors', 'totalNumberOfVms'),
-  
+
   
   
 });
