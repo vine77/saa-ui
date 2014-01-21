@@ -86,8 +86,5 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
       return true;
     }
   }.property('percentOfAggressors'),
-
-
-  
   
 });
