@@ -1,7 +1,7 @@
 <div id="login" class="container">
   {{#if alert}}
     <div id="login-notification" class="notification">
-      <div {{bindAttr class=":alert alertClass"}}>
+      <div {{bind-attr class=":alert alertClass"}}>
         <button type="button" class="close" {{action "clearAlert"}}>&times;</button>
         {{alert}}
       </div>

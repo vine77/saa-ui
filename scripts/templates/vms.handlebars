@@ -5,7 +5,7 @@
       <div class="header">
         <div class="global-actions">
           {{!--
-          <a {{action "renderTreemap"}} {{bindAttr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
+          <a {{action "renderTreemap"}} {{bind-attr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
           --}}
         </div>
         <div id="filter-form" class="input-prepend pull-right clear-input">
@@ -28,15 +28,25 @@
                   {{partial "columnHeader"}}
                 {{/each}}
                 <th class="column-small">
-                  <a {{action "refresh"}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+                  <a {{action "refresh"}} class="btn btn-mini"><i {{bind-attr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
                 </th>
               </tr>
             </thead>
           </table>
         </div>
-        {{#group}}
-          {{view App.ListView contentBinding="filteredModel"}}
-        {{/group}}
+        {{view App.ListView contentBinding="filteredModel"}}
+      </div>
+      <div class="table-footer row-fluid">
+        <div class="span6">
+          <div>Displaying {{visibleRows}} of {{length}} VMs</div>
+        </div>
+        <div class="span6 align-right">
+          On page {{listView.currentPage}} of {{numberOfPages}}
+          <div class="btn-group">
+            <a {{bind-attr class=":btn isFirstPage:disabled"}} {{action "previousPage"}}><i class="icon-arrow-left"></i> Previous</a>
+            <a {{bind-attr class=":btn isLastPage:disabled"}} {{action "nextPage"}}>Next <i class="icon-arrow-right"></i></a>
+          </div>
+        </div>
       </div>
       {{outlet}}
     </div>

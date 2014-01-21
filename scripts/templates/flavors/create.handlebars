@@ -52,9 +52,9 @@
           </div>
           <div class="span7 separate">
             <div class="nav control-group btn-group">
-              <a {{bindAttr class=":btn hasNoSla:active"}} {{action "selectSlaType" undefined}}>No SLA</a>
-              <a {{bindAttr class=":btn hasExistingSla:active"}} {{action "selectSlaType" "existing"}}>Existing SLA</a>
-              <a {{bindAttr class=":btn hasNewSla:active"}} {{action "selectSlaType" "new"}}>New SLA</a>
+              <a {{bind-attr class=":btn hasNoSla:active"}} {{action "selectSlaType" undefined}}>No SLA</a>
+              <a {{bind-attr class=":btn hasExistingSla:active"}} {{action "selectSlaType" "existing"}}>Existing SLA</a>
+              <a {{bind-attr class=":btn hasNewSla:active"}} {{action "selectSlaType" "new"}}>New SLA</a>
             </div>
             {{#if hasNoSla}}
               <div class="alert">No SLA will be attached to this flavor.</div>

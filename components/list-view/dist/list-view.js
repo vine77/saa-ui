@@ -1,4 +1,4 @@
-// Last commit: ee15285 (2013-12-13 12:18:21 -0500)
+// Last commit: f789811 (2014-01-19 01:24:33 -0500)
 
 
 (function() {
@@ -13,7 +13,7 @@ function positionElement() {
 
   Ember.instrument('view.updateContext.positionElement', this, function() {
     element = get(this, 'element');
-    position = get(this, 'position');
+    position = this.position;
     _position = this._position;
 
     if (!position || !element) { return; }
@@ -34,7 +34,10 @@ Ember.ListItemViewMixin = Ember.Mixin.create({
   },
   classNames: ['ember-list-item-view'],
   _position: null,
-  _positionDidChange: Ember.observer(positionElement, 'position'),
+  updatePosition: function(position) {
+    this.position = position;
+    this._positionElement();
+  },
   _positionElement: positionElement
 });
 
@@ -325,7 +328,7 @@ function enableProfilingOutput() {
   @namespace Ember
 */
 Ember.ListViewMixin = Ember.Mixin.create({
-  itemViewClass: Ember.ListItemView,
+  itemViewClass: Ember.ReusableListItemView,
   emptyViewClass: Ember.View,
   classNames: ['ember-list-view'],
   attributeBindings: ['style'],
@@ -477,10 +480,12 @@ Ember.ListViewMixin = Ember.Mixin.create({
         return;
       }
 
-      this._reuseChildren();
+      Ember.run(this, function(){
+        this._reuseChildren();
 
-      this._lastStartingIndex = startingIndex;
-      this._lastEndingIndex = endingIndex;
+        this._lastStartingIndex = startingIndex;
+        this._lastEndingIndex = endingIndex;
+      });
     }, this);
   },
 
@@ -521,7 +526,7 @@ Ember.ListViewMixin = Ember.Mixin.create({
     content = get(this, 'content');
     enableProfiling = get(this, 'enableProfiling');
     position = this.positionForIndex(contentIndex);
-    set(childView, 'position', position);
+    childView.updatePosition(position);
 
     set(childView, 'contentIndex', contentIndex);
 
@@ -1005,7 +1010,7 @@ Ember.ListView = Ember.ContainerView.extend(Ember.ListViewMixin, {
   },
 
   scroll: function(e) {
-    Ember.run(this, this.scrollTo, e.target.scrollTop);
+    this.scrollTo(e.target.scrollTop);
   },
 
   scrollTo: function(y){
@@ -1221,9 +1226,9 @@ Ember.VirtualListView = Ember.ContainerView.extend(Ember.ListViewMixin, Ember.Vi
       if (view.state !== 'inDOM') { return; }
 
       if (view.listContainerElement) {
-        view.applyTransform(view.listContainerElement, 0, -top);
         view._scrollerTop = top;
         view._scrollContentTo(top);
+        view.applyTransform(view.listContainerElement, 0, -top);
       }
     }, {
       scrollingX: false,
@@ -1245,7 +1250,9 @@ Ember.VirtualListView = Ember.ContainerView.extend(Ember.ListViewMixin, Ember.Vi
     this.insertAt(0, this.pullToRefreshView);
     var view = this;
     this.pullToRefreshView.on('didInsertElement', function(){
-      view.applyTransform(this.get('element'), 0, -1 * view.pullToRefreshViewHeight);
+      Ember.run.schedule('afterRender', this, function(){
+        view.applyTransform(this.get('element'), 0, -1 * view.pullToRefreshViewHeight);
+      });
     });
   },
   _activateScrollerPullToRefresh: function(){

@@ -1,6 +1,6 @@
 {{#if loggedIn}}
   {{#unless isEnabled}}
-    <div id="drawer" {{bindAttr class="isDrawerExpanded:expanded"}}>
+    <div id="drawer" {{bind-attr class="isDrawerExpanded:expanded"}}>
       <div class="drawer-frame page">
         <ul class="nav nav-tabs bottom">
           <li class="showHide"><a {{action "hideDrawer"}}><i class="icon-double-angle-down"></i> Hide</a></li>
@@ -30,7 +30,7 @@
       </div>
     </div>
   {{else}}
-    <div id="drawer" {{bindAttr class="isDrawerExpanded:expanded"}}>
+    <div id="drawer" {{bind-attr class="isDrawerExpanded:expanded"}}>
       <div class="drawer-frame page">
         <ul class="nav nav-tabs bottom">
           <li class="showHide"><a {{action "hideDrawer"}}><i class="icon-double-angle-down"></i> Hide</a></li>

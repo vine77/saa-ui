@@ -1,77 +1,56 @@
 App.VmController = Ember.ObjectController.extend({
-  needs: ["logBar"],
+  needs: ['vms', 'logBar'],
   isExpanded: false,
   isSelected: false,
   isActionPending: false,
-  status: function() {
-    return Ember.$.extend({
-      isHealthy: (function (self) {
-        return self.get('model.status.health') === App.SUCCESS;
-      })(this),
-      isUnhealthy: (function (self) {
-        return self.get('model.status.health') !== App.SUCCESS;
-      })(this),
-      healthMessage: (function(self) {
-        if (App.isEmpty(self.get('model.status.short_message')) && App.isEmpty(self.get('model.status.long_message'))) {
-          // If both short and long messages are empty, show health as message
-          return '<strong>Health</strong>: ' + App.priorityToType(self.get('model.status.health')).capitalize();
-        } else if (App.isEmpty(self.get('model.status.long_message'))) {  // Short message only
-          return self.get('model.status.short_message').capitalize();
-        } else {  // Default to long message
-          return self.get('model.status.long_message').capitalize();
-        }
-      })(this),
-      operationalMessage: (function(self) {
-        return '<strong>State</strong>: ' + App.codeToOperational(self.get('model.status.operational')).capitalize();
-      })(this),
-      isUntrusted: (function (self) {
-        return self.get('model.status.trust') === App.UNTRUSTED;
-      })(this),
-      isTrusted: (function (self) {
-        return self.get('model.status.trust') === App.TRUSTED;
-      })(this),
-      isUnregistered: (function (self) {
-        return self.get('model.status.trust') === App.UNREGISTERED;
-      })(this),
-      isTrustUnknown: (function (self) {
-        return !self.get('model.status.trust');
-      })(this),
-      trustMessage:(function(self) {
-        var message = 'Trust Status: ' + App.trustToString(self.get('model.status.trust')).capitalize();
-        message += '<br>' + 'BIOS: ' + App.trustToString(self.get('model.status.trust_details.bios')).capitalize();
-        message += '<br>' + 'VMM: ' + App.trustToString(self.get('model.status.trust_details.vmm')).capitalize();
-        return message;
-      })(this),
-      slaViolated: (function(self) {
-        return self.get('model.status.sla_status') === 2;
-      })(this),
-      slaNotViolated: (function(self) {
-        return self.get('model.status.sla_status') === 1;
-      })(this),
-      slaUnknown: (function(self) {
-        return self.get('model.status.sla_status') === 0;
-      })(this),
-      slaMessage: (function(self) {
-        if (App.isEmpty(self.get('model.status.sla_messages'))) {
-          var slaStatus = '';
-          if (self.get('model.status.sla_status') === 1) {
-            slaStatus = 'Not violated';
-          } else if (self.get('model.status.sla_status') === 2) {
-            slaStatus = 'Violated';
-          } else {
-            slaStatus = 'Unknown';
-          }
-          return 'SLA Status: ' + slaStatus;
-        } else {
-          var messages = self.get('model.status.sla_messages').map(function (item, index, enumerable) {
-            if (item.slice(-1) === '.') item = item.slice(0, -1);
-            return item.capitalize();
-          });
-          return messages.join('; ');
-        }
-      })(this)
-    }, this.get('model.status'));
-  }.property('model.status'),
+
+  isHealthy: Ember.computed.equal('status.health', App.SUCCESS),
+  isUnhealthy: Ember.computed.not('isHealthy'),
+  healthMessage: function () {
+    if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
+      // If both short and long messages are empty, show health as message
+      return '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+    } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
+      return this.get('status.short_message').capitalize();
+    } else {  // Default to long message
+      return this.get('status.long_message').capitalize();
+    }
+  }.property('status.long_message', 'status.short_message'),
+  operationalMessage: function () {
+    return '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+  }.property('status.operational'),
+  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
+  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
+  isUnregistered: Ember.computed.equal('status.trust', App.UNREGISTERED),
+  isTrustUnknown: Ember.computed.not('status.trust'),
+  trustMessage: function () {
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    return message;
+  }.property('status.trust_details', 'status.trust_details'),
+  slaViolated: Ember.computed.equal('status.sla_status', 2),
+  slaNotViolated: Ember.computed.equal('status.sla_status', 1),
+  slaUnknown: Ember.computed.equal('status.sla_status', 0),
+  slaMessage: function () {
+    if (App.isEmpty(this.get('status.sla_messages'))) {
+      var slaStatus = '';
+      if (this.get('slaNotViolated')) {
+        slaStatus = 'Not violated';
+      } else if (this.get('slaViolated')) {
+        slaStatus = 'Violated';
+      } else {
+        slaStatus = 'Unknown';
+      }
+      return 'SLA Status: ' + slaStatus;
+    } else {
+      var messages = this.get('status.sla_messages').map(function (item, index, enumerable) {
+        if (item.slice(-1) === '.') item = item.slice(0, -1);
+        return item.capitalize();
+      });
+      return messages.join('; ');
+    }
+  }.property('status.sla_messages'),
   hasContention: function() {
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
       return false;
@@ -289,56 +268,12 @@ App.VmController = Ember.ObjectController.extend({
   }
   */
 
-  // Actions
   actions: {
-    expand: function (model) {
-      if (!this.get('isExpanded')) {
-          this.transitionToRoute('vmsVm', model);
-        } else {
-          this.transitionToRoute('vms');
-        }
-    },
-    exportTrustReport: function (reportContent) {
-      var self = this;
-      this.set('isActionPending', true);
-      this.store.find('vmTrustReport', reportContent.get('id')).then(function (vmTrustReport) {
-        reportContent = vmTrustReport;
-        if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (reportContent.get('vmAttestations.length') > 0)) {
-          var title = 'VM Trust Report';
-          var subtitle = reportContent.get('vmName');
-          var rowContent = [];
-          rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
-          rowContent.push("item.get('vmAttestationNode.reportMessage')");
-          App.pdfReport(reportContent, rowContent, title, subtitle, 'vmAttestations');
-        } else {
-          App.notify('Trust attestation logs were not found.');
-        }
-        self.set('isActionPending', false);
-      }, function (xhr) {
-        self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to load VM trust report.');
-      });
-    },
-    trustReportModal: function(model){
-      var controller = this;
-        modal = Ember.View.extend({
-          templateName: "vmTrustReport-modal",
-          controller: controller,
-          content: model,
-          actions: {
-            modalHide: function() {
-              $('#modal').modal('hide');
-              var context = this;
-              //setTimeout(context.remove, 3000);
-              this.remove(); //destroys the element
-            }
-          },
-          didInsertElement: function () {
-            $('#modal').modal('show');
-          }
-        }).create().appendTo('body');
+    exportTrustReport: function (model) {
+      this.get('controllers.vms').send('exportTrustReport', model);
     }
   }
+
 });
 
 App.VmsVmController = App.VmController.extend();

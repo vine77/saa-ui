@@ -48,7 +48,7 @@
       <td><div class="cell-container">
         {{#if isAgentInstalled}}
           <a {{action "expand" this}}>{{name}}</a>
-          {{scheduledIcon}}
+          {{{scheduledIcon}}}
         {{else}}
           {{name}}
         {{/if}}
@@ -73,7 +73,7 @@
           {{#if computeExists}}
             {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
               <div class="contention-bar">
-                <div class="contention-bar-width" {{bindAttr style="computeWidth"}} >
+                <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
                 </div>
               </div>
@@ -106,11 +106,11 @@
         <div class="btn-group">
           {{#if isAgentInstalled}}
             {{#if isOn}}
-              <a {{bindAttr class=":btn :btn-mini isActionPending:disabled"}} {{action "reboot" this}}><i class="icon-refresh"></i> Reboot</a>
+              <a {{bind-attr class=":btn :btn-mini isActionPending:disabled"}} {{action "reboot" this}}><i class="icon-refresh"></i> Reboot</a>
             {{else}}
               <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
             {{/if}}
-            <a data-toggle="dropdown" {{bindAttr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+            <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
               {{#unless isActionPending}}
                 <span class="caret"></span>
               {{else}}

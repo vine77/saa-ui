@@ -48,7 +48,7 @@
                   <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                 {{/if}}
                 {{#if isEnabled}}
-                  <li>{{#linkTo "settings.trust"}}Trust{{/linkTo}}</li>
+                  <li>{{#link-to "settings.trust"}}Trust{{/link-to}}</li>
                 {{/if}}
               </ul>
             </li>
@@ -57,7 +57,7 @@
         <ul class="account">
           <li>
             {{#if isEnabled}}
-              <a {{bindAttr href="horizonUrl"}} target="_blank">
+              <a {{bind-attr href="horizonUrl"}} target="_blank">
                 Tenant interface (Horizon) <i class="icon-external-link icon-small"></i>
               </a>
             {{/if}}

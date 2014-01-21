@@ -11,7 +11,7 @@ App.ApplicationRoute = Ember.Route.extend({
   },
   model: function () {
     var self = this;
-    return this.controllerFor('statuses').updateCurrentStatus().fail(function () {
+    return this.controllerFor('statuses').updateCurrentStatus().catch(function () {
       // Status API is not responding
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
       if (confirmed) {
@@ -56,7 +56,7 @@ App.ApplicationRoute = Ember.Route.extend({
         session.deleteRecord();
         session.save().then(function () {
           self.removeCookies();
-        }).fail(function () {
+        }).catch(function () {
           self.removeCookies();
         });
       } else {

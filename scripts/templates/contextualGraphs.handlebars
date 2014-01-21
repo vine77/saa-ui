@@ -8,7 +8,7 @@
         <h4>({{node.name}}) selected</h4>
         {{#each graph in node.graphs}}
           <figure class="thumbnail">
-            <img {{bindAttr src="graph.url"}}>
+            <img {{bind-attr src="graph.url"}}>
             <figcaption class="caption">{{graph.desc}}</figcaption>
           </figure>
         {{/each}}
@@ -24,7 +24,7 @@
         <h4>({{vm.name}}) selected</h4>
         {{#each graph in vm.graphs}}
           <figure class="thumbnail">
-            <img {{bindAttr src="graph.url"}}>
+            <img {{bind-attr src="graph.url"}}>
             <figcaption class="caption">{{graph.desc}}</figcaption>
           </figure>
         {{/each}}

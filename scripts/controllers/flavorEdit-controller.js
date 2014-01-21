@@ -60,7 +60,7 @@ App.FlavorEditController = Ember.ObjectController.extend({
           App.event('Successfully modified flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
-        }).fail(function (xhr) {
+        }).catch(function (xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
           self.set('isFlavorEditing', false);
         });

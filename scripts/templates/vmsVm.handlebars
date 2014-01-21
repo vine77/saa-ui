@@ -18,7 +18,7 @@
         <tr>
           <th class="column-medium">Health</th>
           <td>
-            {{#view App.TooltipView titleBinding="status.healthMessage"}}
+            {{#view App.TooltipView titleBinding="healthMessage"}}
               {{healthIcon status.health}} {{status status.health}}
             {{/view}}
           </td>
@@ -30,7 +30,7 @@
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#view App.TooltipView titleBinding="status.trustMessage"}}
+            {{#view App.TooltipView titleBinding="trustMessage"}}
               {{trustIcon status.trust}}
               {{trust status.trust}}
             {{/view}}
@@ -73,10 +73,10 @@
             <th class="column-medium">Noisy Neighbor</th>
             <td>
               {{#if isAggressor}}
-                <i {{bindAttr class=":icon-bullhorn :error"}}></i> Aggressor
+                <i {{bind-attr class=":icon-bullhorn :error"}}></i> Aggressor
               {{/if}}
               {{#if isVictim}}
-                <i {{bindAttr class=":icon-headphones :warning"}}></i> Victim
+                <i {{bind-attr class=":icon-headphones :warning"}}></i> Victim
               {{/if}}
             </td>
           </tr>
@@ -149,11 +149,11 @@
         </tr>
         <tr>
           <th class="column-medium">SLA Violated</th>
-          <td>{{capitalize status.slaViolated}}</td>
+          <td>{{capitalize slaViolated}}</td>
         </tr>
         <tr>
           <th class="column-medium">SLA Message</th>
-          <td>{{status.slaMessage}}</td>
+          <td>{{slaMessage}}</td>
         </tr>
         <tr>
           <th class="column-medium">SLOs</th>
@@ -172,7 +172,7 @@
     <div class="tab-pane graphs">
       {{#each graph in graphs}}
         <figure class="thumbnail">
-          <img {{bindAttr src="graph.url"}}>
+          <img {{bind-attr src="graph.url"}}>
           <figcaption class="caption">{{graph.desc}}</figcaption>
         </figure>
       {{else}}
@@ -183,10 +183,10 @@
       {{#if vmTrustReport.vmAttestations}}
         <p class="pull-right">
           {{#if isActionPending}}
-            <button class="btn btn-primary disabled">Generate Trust Report</button>
+            <button class="btn btn-primary disabled"><i class="icon-download-alt"></i> Download Trust Report</button>
             <i class="loading"></i>
           {{else}}
-            <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
+            <button class="btn btn-primary" {{action "exportTrustReport" this}}><i class="icon-download-alt"></i> Download Trust Report</button>
           {{/if}}
         </p>
         <table class="table table-bordered">

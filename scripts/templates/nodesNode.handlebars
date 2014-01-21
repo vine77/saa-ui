@@ -188,11 +188,11 @@
       {{#if nodeTrustReport.attestations}}
         <p class="pull-right">
           {{#if isActionPending}}
-            <button class="btn btn-primary disabled">Generate Trust Report</button>
+            <button class="btn btn-primary disabled"><i class="icon-download-alt"></i> Download Trust Report</button>
             <i class="loading"></i>
           {{else}}
-            <button class="btn btn-primary" {{action "trustReportModal" this}}>Generate Trust Report</button>
-          {{/if}}        
+            <button class="btn btn-primary" {{action "exportTrustReport" this}}><i class="icon-download-alt"></i> Download Trust Report</button>
+          {{/if}}
         </p>
         <table class="table table-bordered">
           <tr>
