@@ -60,7 +60,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
-        }).catch(function (xhr) {
+        }, function (xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });

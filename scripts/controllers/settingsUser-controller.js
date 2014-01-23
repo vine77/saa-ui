@@ -26,7 +26,7 @@ App.SettingsUserController = Ember.ObjectController.extend({
           self.set('newPassword1', '');
           self.set('newPassword2', '');
           $('#profile-email').focus();
-        }).catch(function (xhr) {
+        }, function (xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
           self.set('oldPassword', '');

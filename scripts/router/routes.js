@@ -5,13 +5,13 @@ App.ApplicationRoute = Ember.Route.extend({
     App.route = this;
   },
   beforeModel: function () {
-    if (!Modernizr.svg) {
+    if (!Modernizr.csstransitions) {
       this.transitionTo('blocked');
     }
   },
   model: function () {
     var self = this;
-    return this.controllerFor('statuses').updateCurrentStatus().catch(function () {
+    return this.controllerFor('statuses').updateCurrentStatus().then(null, function () {
       // Status API is not responding
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');
       if (confirmed) {
@@ -56,7 +56,7 @@ App.ApplicationRoute = Ember.Route.extend({
         session.deleteRecord();
         session.save().then(function () {
           self.removeCookies();
-        }).catch(function () {
+        }, function () {
           self.removeCookies();
         });
       } else {
