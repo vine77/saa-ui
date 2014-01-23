@@ -33,52 +33,45 @@ App.SloCreateController = Ember.ObjectController.extend({
     return this.store.all('sloTemplate');
   }.property(),
 
-  isBooleanSelected: 0,
-  integer: '',
-  rangeMin: '',
-  rangeMax: '',
-
-  valueModify: function (key, value) {
-    console.log('value is executed');
-
+  rangeMin: function (key, value) {
+    sloController = this;
+    // Setter
     if (arguments.length > 1) {
-      console.log('setter is executed');
+      var min = value || '';
+      var range = (this.get('value').indexOf(';') !== -1) ? this.get('value') : ';';
+      this.set('value', min + ';' + range.split(';')[1]);
     }
-    if (value) {
-      console.log('setter is executed');
+    // Getter
+    if (this.get('isRange') && this.get('value') && this.get('value').indexOf(';') !== -1) {
+      return this.get('value').split(';')[0];
+    } else {
+      return '';
     }
-
-    if (this.get('model.isRange')) {
-      //var isRangeParts = value.split(/\s+/);
-      //this.set('firstName', nameParts[0]);
-      //this.set('lastName',  nameParts[1]);
-
-      var rangeMin = (( this.get('rangeMin') )?this.get('rangeMin'):'');
-      var rangeMax = (( this.get('rangeMax') )?this.get('rangeMax'):'');
-      return rangeMin + ';' + rangeMax;
+  }.property('value'),
+  rangeMax: function (key, value) {
+    // Setter
+    if (arguments.length > 1) {
+      var max = value || '';
+      var range = (this.get('value').indexOf(';') !== -1) ? this.get('value') : ';';
+      this.set('value', range.split(';')[0] + ';' + max);
     }
-    if (this.get('model.isBoolean')) {
-      return this.get('isBooleanSelected');
+    // Getter
+    if (this.get('isRange') && this.get('value') && this.get('value').indexOf(';') !== -1) {
+      return this.get('value').split(';')[1];
+    } else {
+      return '';
     }
-    if (this.get('model.isInteger')) {
-      return this.get('integer');
-    }
-    return '';
-  }.property('rangeMin', 'rangeMax', 'isBooleanSelected', 'integer', 'sloTemplate', 'model.value'),
-  init: function() {
-    this.get('value');
-  }
-
+  }.property('value')
 });
 
 Ember.RadioButton = Ember.View.extend({
-    tagName : "input",
-    type : "radio",
-    attributeBindings : [ "name", "type", "value", "checked:checked:" ],
-    click : function() {
-        this.set("selection", this.$().val())
-    },
-    checked : function() {
-        return this.get("value") == this.get("selection"); 
-    }.property()
+  tagName: "input",
+  type: "radio",
+  attributeBindings: [ "name", "type", "value", "checked:checked:" ],
+  click: function() {
+    this.set("selection", this.$().val())
+  },
+  checked: function() {
+    return this.get("value") == this.get("selection");
+  }.property()
 });

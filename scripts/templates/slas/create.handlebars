@@ -24,28 +24,26 @@
             valueBinding="slo.operator"
           }}
 
-          {{#if model.isRange}}
-            {{view Ember.TextField class="input-tiny" valueBinding="rangeMin"}} to 
-            {{view Ember.TextField class="input-tiny" valueBinding="rangeMax"}}
+          {{#if isRange}}
+            {{view Ember.TextField class="input-tiny" value=rangeMin}} to
+            {{view Ember.TextField class="input-tiny" value=rangeMax}}
           {{/if}}
 
-          {{#if model.isBoolean}}
+          {{#if isInteger}}
+            {{view Ember.TextField class="input-small" value=value}}
+          {{/if}}
+
+          {{#if isBoolean}}
             <label style="display:inline; margin-left:10px">
-              {{view Ember.RadioButton name="booleanCheck" selectionBinding="isBooleanSelected" value="1"}}
+              {{view Ember.RadioButton selection=value value="1"}}
               True
             </label>
 
             <label style=" display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="booleanCheck" selectionBinding="isBooleanSelected" value="0"}}
+              {{view Ember.RadioButton selection=value value="0"}}
               False
             </label>
           {{/if}}
-
-          {{#if model.isInteger}}
-            {{view Ember.TextField class="input-small" valueBinding="integer"}}
-          {{/if}}
-          
-
 
           {{slo.sloTemplate.unit}}
           <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
