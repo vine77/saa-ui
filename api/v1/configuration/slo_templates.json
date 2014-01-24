@@ -1,10 +1,7 @@
 {
   "slo_templates": [
     {
-      "links": {
-        "uri": "/api/v1/configuration/slo_templates/f1d1327c-c739-4354-b43d-39d9001bb5ec",
-        "slos": "/api/v1/configuration/slos?ids=25e159cd-be2f-4fdc-bdf3-ecb6cc6cfdf0,2d8b94b6-00b1-4013-bcdd-77914a05f738,2a928912-531d-4fd2-ae29-37a533f5e716,9641d0cc-2080-4504-9ddb-15ce376215b6,e81dc012-854b-4d15-bf51-c255c73e5690,4b584ac5-7da0-4829-af89-a7e6fc756e48,0614f359-1a59-4ab0-bc87-7dbb63c277fc,0c912e5a-69f2-4bc4-9dc7-b754a3b7a9ec,893bf70d-0e73-46c4-a74b-5c853ba006f1,e481c8b7-6e4f-4191-8029-89dbeaf69913,1533a9b1-cfc2-40ad-a945-e093d60254ad,441cf2ab-31af-46a3-a6c2-33766cc4d865,eebf5103-805e-4a50-b5a8-c7bac7be392c,a06d3848-dcb7-4570-b1b4-90ac305333a9"
-      },
+      "allowed_operators": "in_range",
       "class_name": "performance",
       "operators": {
         "operator": "in_range",
@@ -18,10 +15,21 @@
       "slo_type": "compute"
     },
     {
-      "links": {
-        "uri": "/api/v1/configuration/slo_templates/195cbc1d-405b-487c-9170-dce4e45a8901",
-        "slos": "/api/v1/configuration/slos?ids=e143f668-3a67-442c-9fe5-b5e36b7333fa,e9344442-2f5a-4c49-9a3d-29b5448aaa55,36cdf9c9-90e1-4ec0-878b-dbe32a326f8d,8bdd902a-fe32-4dc6-b41c-2567e58bc15a,3cb4b948-b718-420c-8e72-f0032d9ebe9a,36e002b4-ea32-4db3-9e39-bedc529428f0,8971b57c-093d-4af5-93ce-54965ae3e952,93138572-9dd8-47a7-a57d-37332aad9893,6fc5052a-4901-4b0b-998f-5ad7300699d9,e2383c43-00ed-414f-a164-85aa866f6c27,d368f505-5997-4613-be4d-c194f015e4f6,52608df2-f4e2-4935-a2f2-7bbf1e9473cc,5db91d35-5824-4b82-9565-fb6d481c2f8c,0e1af692-606b-442b-8f66-26e2f0ae45eb"
+      "allowed_operators": "equals",
+      "class_name": "performance",
+      "operators": {
+        "operator": "equals",
+        "description": "Virtual cores available for VM shall be equal to [VALUE]."
       },
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "infrastructure",
+      "id": "536d6ae2-78c8-4635-af27-5115221d2cb9",
+      "unit": "core",
+      "slo_type": "vcpu_cores"
+    },
+    {
+      "allowed_operators": "equals",
       "class_name": "security",
       "operators": {
         "operator": "equals",
