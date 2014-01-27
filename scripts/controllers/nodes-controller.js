@@ -258,6 +258,24 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
+    configureTrustAgent: function (node) {
+      node.set('isActionPending', true);
+      var confirmed = confirm('Are you sure you want to configure the trust agent for node "' + node.get('name') + '"?');
+      if (confirmed) {
+        this.store.createRecord('action', {
+          name: 'trust_agent_config',
+          node: this.store.getById('node', node.get('id'))
+        }).save().then(function () {
+          node.set('isActionPending', false);
+          App.event('Successfully configured the trust agent for node "' + node.get('name') + '".', App.SUCCESS);
+        }, function (xhr) {
+          node.set('isActionPending', false);
+          App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
+        });
+      } else {
+        node.set('isActionPending', false);
+      }
+    },
     schedule: function (node, socketNumber) {
       var parentController = this;
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
