@@ -200,6 +200,48 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
+    setMonitored: function (node) {
+      node.set('isActionPending', true);
+      var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to monitored?');
+      if (confirmed) {
+        this.store.createRecord('action', {
+          node: this.store.getById('node', node.get('id')),
+          name: "set_agent_mode",
+          options: {
+            agent_mode: App.MONITORED
+          }
+        }).save().then( function () {
+          node.set('isActionPending', false);
+          App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', App.SUCCESS);
+        }, function (xhr) {
+          node.set('isActionPending', false);
+          App.xhrError(xhr, 'Failed to set the agent mode of node "' + node.get('name') + '" to monitored.');
+        });
+      } else {
+        node.set('isActionPending', false);
+      }
+    },
+    setAssured: function (node) {
+      node.set('isActionPending', true);
+      var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to assured?');
+      if (confirmed) {
+        this.store.createRecord('action', {
+          node: this.store.getById('node', node.get('id')),
+          name: "set_agent_mode",
+          options: {
+            agent_mode: App.ASSURED
+          }
+        }).save().then( function () {
+          node.set('isActionPending', false);
+          App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', App.SUCCESS);
+        }, function (xhr) {
+          node.set('isActionPending', false);
+          App.xhrError(xhr, 'Failed to set agent mode of node "' + node.get('name') + '" to assured.');
+        });
+      } else {
+        node.set('isActionPending', false);
+      }
+    },
     unschedule: function (node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
@@ -278,6 +320,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     schedule: function (node, socketNumber) {
       var parentController = this;
+      node.set('isActionPending', true);
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
       var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '" (socket ' + socketNumber + ')?');
       if (confirmed) {

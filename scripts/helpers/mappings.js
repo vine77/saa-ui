@@ -26,6 +26,10 @@ App.UNTRUSTED = 1;
 App.TRUSTED = 2;
 App.UNREGISTERED = 3;
 
+// Constants for agent mode
+App.MONITORED = 1;
+App.ASSURED = 2;
+
 App.caseMapping = {
   'cpu': 'CPU',
   'cpus': 'CPUs',

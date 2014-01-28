@@ -46,8 +46,8 @@ App.NodeController = Ember.ObjectController.extend({
 
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
-  isAssured: Ember.computed.equal('samControlled', 2),
-  isMonitored: Ember.computed.equal('samControlled', 1),
+  isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
+  isAssured: Ember.computed.equal('samControlled', App.ASSURED),
   nodeTypeMessage: function () {
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';

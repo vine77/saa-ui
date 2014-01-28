@@ -143,6 +143,12 @@
               {{#if samRegistered}}
                 <li><a {{action "unregister" this}}><i class="icon-remove"></i> Unregister</a></li>
               {{/if}}
+              {{#unless isMonitored}}
+                <li><a {{action "setMonitored" this}}><i class="icon-eye-open"></i> Set agent mode to monitored</a></li>
+              {{/unless}}
+              {{#unless isAssured}}
+                <li><a {{action "setAssured" this}}><i class="icon-trophy"></i> Set agent mode to assured</a></li>
+              {{/unless}}
             </ul>
           {{else}}
             {{#if samRegistered}}
