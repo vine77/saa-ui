@@ -18,6 +18,10 @@
           <td>{{name}}</td>
         </tr>
         <tr>
+          <th class="column-medium">Node ID</th>
+          <td>{{id}}</td>
+        </tr>
+        <tr>
           <th class="column-medium">Health</th>
           <td>
             {{#view App.TooltipView titleBinding="healthMessage"}}
@@ -35,15 +39,10 @@
         <tr>
           <th class="column-medium">Services</th>
           <td>
-            <br />
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <td class="column-small">
-                    {{#view App.TooltipView title="State (Health/Operational State)"}}
-                      <i class="icon-off icon-large"></i>
-                    {{/view}}
-                  </td>
+                  <td class="column-small"></td>
                   <td>Service</td>
                   <td>Updated</td>
                 </tr>
@@ -105,6 +104,16 @@
         <tr>
           <th class="column-medium">IP Address</th>
           <td>{{na ids.ip_address}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">IPMI</th>
+          <td>
+            {{#if status.ipmi}}
+              IPMI interface in available
+            {{else}}
+              IPMI interface in unavailable
+            {{/if}}
+          </td>
         </tr>
       </table>
     </div>

@@ -16,6 +16,10 @@
           <td>{{name}}</td>
         </tr>
         <tr>
+          <th class="column-medium">VM ID</th>
+          <td>{{id}}</td>
+        </tr>
+        <tr>
           <th class="column-medium">Health</th>
           <td>
             {{#view App.TooltipView titleBinding="healthMessage"}}
@@ -36,12 +40,6 @@
             {{/view}}
           </td>
         </tr>
-        {{!--
-        <tr>
-          <th class="column-medium">Locked</th>
-          <td>{{capitalize status.locked}}</td>
-        </tr>
-        --}}
         <tr>
           <th class="column-medium">vCPU Cores</th>
           <td>{{capitalize capabilities.cores}}</td>
