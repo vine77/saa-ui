@@ -33,7 +33,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalCurrentContentionWidth: function() {
     return 'width:'+this.get('totalCurrentContention')+'%';
   }.property('totalCurrentContention'),
-  
+
   numberOfTrusted: function() {
     return this.get('controllers.vms').filterBy('status.trust', 2).get('length');
   }.property('controllers.vms.@each'),
@@ -56,7 +56,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
 
   numberOfVictims: function () {
     return this.get('controllers.vms').filterBy('isVictim').get('length');
-  }.property('controllers.vms.@each'), 
+  }.property('controllers.vms.@each'),
   percentOfVictims: function () {
     return Math.round(100 * parseFloat(this.get('numberOfVictims')) / parseFloat(this.get('totalNumberOfVms')));
   }.property('totalNumberOfVms', 'numberOfVictims'),
@@ -93,5 +93,15 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
       return true;
     }
   }.property('percentOfAggressors'),
-  
+
+  contentionVms: function() {
+    var contentionVms = this.get('controllers.vms');
+    contentionVms.reopen({
+      sortProperties: ['contention.system.llc.value'],
+      sortAscending: false
+    });
+    return contentionVms.slice(0, 4).filterBy('hasContention');
+  }.property('controllers.nodes.@each'),
+  contentionVmsExist: Ember.computed.gt('contentionVms.length', 0)
+
 });

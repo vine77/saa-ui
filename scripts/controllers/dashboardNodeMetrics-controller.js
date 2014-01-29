@@ -26,7 +26,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
 
   numberOfControlled: function () {
     return this.get('controllers.nodes').filterBy('isAgentInstalled').get('length');
-  }.property('controllers.nodes.@each'), 
+  }.property('controllers.nodes.@each'),
   percentOfControlled: function () {
     return Math.round(100 * parseFloat(this.get('numberOfControlled')) / parseFloat(this.get('totalNumberOfNodes')));
   }.property('totalNumberOfNodes', 'numberOfControlled'),
@@ -83,19 +83,11 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   }.property('controllers.nodes.percentOfRam'),
   contentionNodes: function() {
     var contentionNodes = this.get('controllers.nodes');
-
     contentionNodes.reopen({
       sortProperties: ['contention.system.llc.value'],
       sortAscending: false
     });
-
-    return contentionNodes.slice(0,5).filterBy('hasContention');
+    return contentionNodes.slice(0, 4).filterBy('hasContention');
   }.property('controllers.nodes.@each'),
-  contentionNodesExist: function() {
-    if (this.get('contentionNodes').length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }.property('contentionNodes')
+  contentionNodesExist: Ember.computed.gt('contentionNodes.length', 0)
 });

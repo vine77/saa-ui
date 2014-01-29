@@ -1,4 +1,4 @@
-<div class="portlet span4">
+<div class="portlet span4 node-metrics">
   <div class="header">Node Metrics</div>
   <div class="portlet-content">
     <table class="table table-bordered">
@@ -18,7 +18,7 @@
                     <small>
                       {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                         {{#link-to "nodes"}}
-                          {{percentOfTrusted}}% 
+                          {{percentOfTrusted}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -34,10 +34,10 @@
                     <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="totalControlledMessage"}}
                         {{#link-to "nodes"}}
-                          {{percentOfControlled}}% 
+                          {{percentOfControlled}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -53,10 +53,10 @@
                     <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
                         {{#link-to "nodes"}}
-                          {{controllers.nodes.percentOfRam}}% 
+                          {{controllers.nodes.percentOfRam}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -86,16 +86,15 @@
        </tbody>
     </table>
     {{#if contentionNodesExist}}
-      <h4>Highest Contention Nodes</h4>
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td class="column-medium"><strong>Node</strong></td>
+            <td><strong>High contention nodes</strong></td>
             <td><strong>Contention</strong></td>
           </tr>
           {{#each contentionNode in contentionNodes}}
             <tr>
-              <td class="column-medium"> {{#link-to "nodesNode" contentionNode}}{{contentionNode.name}}{{/link-to}}</td>
+              <td> {{#link-to "nodesNode" contentionNode}}{{contentionNode.name}}{{/link-to}}</td>
               <td>
                 {{#if contentionNode.hasContention}}
                   <div class="contention nowrap">
@@ -114,8 +113,8 @@
               </td>
             </tr>
           {{/each}}
-          </tbody>
-        </table>
-      {{/if}}
+        </tbody>
+      </table>
+    {{/if}}
   </div>
 </div>

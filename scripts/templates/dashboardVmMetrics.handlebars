@@ -1,4 +1,4 @@
-<div class="portlet span4">
+<div class="portlet span4 vm-metrics">
   <div class="header">VM Metrics</div>
   <div class="portlet-content">
     <table class="table table-bordered">
@@ -15,10 +15,10 @@
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                         {{#link-to "vms"}}
-                          {{percentOfTrusted}}% 
+                          {{percentOfTrusted}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -34,10 +34,10 @@
                     <div class="bar" {{bind-attr style="percentOfVictimsWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
                         {{#link-to "vms"}}
-                          {{percentOfVictims}}% 
+                          {{percentOfVictims}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -53,10 +53,10 @@
                     <div class="bar" {{bind-attr style="percentOfAggressorsWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
                         {{#link-to "vms"}}
-                          {{percentOfAggressors}}% 
+                          {{percentOfAggressors}}%
                         {{/link-to}}
                       {{/view}}
                     </small>
@@ -66,13 +66,13 @@
           {{/if}}
           {{#if isTotalVcpusPercentAvailable}}
             <tr>
-              <td class="column-medium"><strong>Used of Available vCPUs </strong></td>
+              <td class="column-medium"><strong>vCPUs</strong></td>
               <td>
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalVcpusWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage"}}
                         {{#link-to "vms"}}
                           {{totalVcpusPercent}}%
@@ -85,5 +85,36 @@
           {{/if}}
        </tbody>
     </table>
+    {{#if contentionVmsExist}}
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td><strong>High contention VMs</strong></td>
+            <td><strong>Contention</strong></td>
+          </tr>
+          {{#each contentionVm in contentionVms}}
+            <tr>
+              <td> {{#link-to "vmsVm" contentionVm}}{{contentionVm.name}}{{/link-to}}</td>
+              <td>
+                {{#if contentionVm.hasContention}}
+                  <div class="contention nowrap">
+                    {{#view App.TooltipView titleBinding="contentionVm.contentionMessage"}}
+                      <div class="contention-bar">
+                        <div class="contention-bar-width" {{bind-attr style="contentionVm.contentionWidth"}}>
+                          <div class="contention-gradient"></div>
+                        </div>
+                      </div>
+                      {{na contentionVm.contentionFormatted}}
+                    {{/view}}
+                  </div>
+                {{else}}
+                  <span class="not-applicable">n/a</span>
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
   </div>
 </div>

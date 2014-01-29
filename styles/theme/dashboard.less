@@ -1,9 +1,10 @@
 #dashboard {
   .portlet {
-    @height: 350px;
+    @height: 360px;
     min-height: @height;
+    padding: 19px 19px 9px;
     .portlet-content {
-      height: @height - 60;
+      height: @height - 50;
       overflow-y: auto;
       overflow-x: hidden;
     }
@@ -35,6 +36,18 @@
     }
     &.events {
       height: @height;
+    }
+    &.node-metrics,
+    &.vm-metrics {
+      table {
+        margin-bottom: 0;
+        td:first-child {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 250px;
+        }
+      }
     }
   }
   .portlet-progress {
