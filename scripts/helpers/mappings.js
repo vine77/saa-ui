@@ -13,6 +13,13 @@ App.ON = 2;
 App.REBOOTING = 4;
 App.PAUSED = 10;
 App.SUSPENDED = 12;
+App.LIVE_MIGRATING = 15;
+App.MIGRATING_RESIZING = 16;
+App.CONFIRMATION_NEEDED = 17;
+App.REVERTING = 18;
+App.SHELVING = 21;
+App.SHELVED = 22;
+App.SHELVED_OFFLOADED = 23;
 
 // Constants for trust
 App.UNTRUSTED = 1;
@@ -239,6 +246,34 @@ App.operationalToCode = function (operational) {
     case App.SUSPENDED.toString():
     case 'suspended':
       return App.SUSPENDED;
+    case App.LIVE_MIGRATING:
+    case App.LIVE_MIGRATING.toString():
+    case 'live migrating':
+      return App.LIVE_MIGRATING;
+    case App.MIGRATING_RESIZING:
+    case App.MIGRATING_RESIZING.toString():
+    case 'migrating resizing':
+      return App.MIGRATING_RESIZING;
+    case App.CONFIRMATION_NEEDED:
+    case App.CONFIRMATION_NEEDED.toString():
+    case 'confirmation needed':
+      return App.CONFIRMATION_NEEDED;
+    case App.REVERTING:
+    case App.REVERTING.toString():
+    case 'reverting':
+      return App.REVERTING;
+    case App.SHELVING:
+    case App.SHELVING.toString():
+    case 'shelving':
+      return App.SHELVING;
+    case App.SHELVED:
+    case App.SHELVED.toString():
+    case 'shelved':
+      return App.SHELVED;
+    case App.SHELVED_OFFLOADED:
+    case App.SHELVED_OFFLOADED.toString():
+    case 'shelved offloaded':
+      return App.SHELVED_OFFLOADED;
     default:
       return App.UNKNOWN;
   }
@@ -278,6 +313,34 @@ App.operationalToIconClass = function (code) {
     case App.SUSPENDED.toString():
     case 'suspended':
       return 'icon-pause';
+    case App.LIVE_MIGRATING:
+    case App.LIVE_MIGRATING.toString():
+    case 'live migrating':
+      return 'icon-truck icon-flip-horizontal blink-success';
+    case App.MIGRATING_RESIZING:
+    case App.MIGRATING_RESIZING.toString():
+    case 'migrating resizing':
+      return 'icon-truck icon-flip-horizontal blink-success';
+    case App.CONFIRMATION_NEEDED:
+    case App.CONFIRMATION_NEEDED.toString():
+    case 'confirmation needed':
+      return 'icon-comments';
+    case App.REVERTING:
+    case App.REVERTING.toString():
+    case 'reverting':
+      return 'icon-truck blink-warning';
+    case App.SHELVING:
+    case App.SHELVING.toString():
+    case 'shelving':
+      return 'icon-folder-close blink-success';
+    case App.SHELVED:
+    case App.SHELVED.toString():
+    case 'shelved':
+      return 'icon-folder-close';
+    case App.SHELVED_OFFLOADED:
+    case App.SHELVED_OFFLOADED.toString():
+    case 'shelved offloaded':
+      return 'icon-folder-open';
     default:
       return 'icon-question-sign';
   }

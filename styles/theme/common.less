@@ -20,6 +20,34 @@
   box-shadow:         @string;
 }
 
+@keyframes blink-success {
+    0% { color: @green; }
+    100% { color: @black; }
+}
+@-webkit-keyframes blink-success {
+    0% { color: @green; }
+    100% { color: @black; }
+}
+.blink-success {
+  -webkit-animation: blink-success 0.5s linear infinite;
+  -moz-animation: blink-success 0.5s linear infinite;
+  animation: blink-success 0.5s linear infinite;
+}
+
+@keyframes blink-warning {
+    0% { color: @red; }
+    100% { color: @black; }
+}
+@-webkit-keyframes blink-warning {
+    0% { color: @red; }
+    100% { color: @black; }
+}
+.blink-warning {
+  -webkit-animation: blink-warning 0.5s linear infinite;
+  -moz-animation: blink-warning 0.5s linear infinite;
+  animation: blink-warning 0.5s linear infinite;
+}
+
 //// Overwrite Bootstrap styles ////
 
 // Extend fluid column for Ember compatibility

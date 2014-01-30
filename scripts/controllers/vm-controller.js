@@ -4,7 +4,14 @@ App.VmController = Ember.ObjectController.extend({
   isSelected: false,
   isActionPending: false,
 
-  isHealthy: Ember.computed.equal('status.health', App.SUCCESS),
+  isHealthy: function() {
+    if ( (this.get('status.health') == 1) || (this.get('status.health') == 2) ) {
+      return true;
+    } else {
+      return false;
+    }
+  }.property('status.health'),
+
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
