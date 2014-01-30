@@ -20,15 +20,15 @@ App.SettingsMailserverController = Ember.ObjectController.extend({
     testEmail: function () {
       var self = this;
       var mailserver = this.get('model');
-      mailserver.set('test_config', true);
+      mailserver.set('request', 'test');
       this.set('isActionPending', true);
       mailserver.save().then(function () {
         self.set('isActionPending', false);
-        mailserver.set('test_config', false);
+        mailserver.set('request', '');
         App.event('Sent test email to ' + mailserver.get('sender_email') + '.', App.SUCCESS);
       }, function (xhr) {
         self.set('isActionPending', false);
-        mailserver.set('test_config', false);
+        mailserver.set('request', '');
         App.xhrError(xhr, 'Failed to send test email.');
       });
     }
