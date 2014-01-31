@@ -11,5 +11,5 @@ App.User = DS.Model.extend({
   oldPassword: DS.attr('string'),
   newPassword: DS.attr('string'),
   email: DS.attr('string'),
-  resetPassword: DS.attr('boolean')
+  request: DS.attr('string')
 });
