@@ -11,15 +11,15 @@ App.TempPasswordController = App.FormController.extend({
       } else {
         this.set('isActionPending', true);
         return this.store.find('user', username).then(function (user) {
-          user.set('resetPassword', true);
+          user.set('request', 'reset_password');
           return user.save().then(function () {
             self.set('isActionPending', false);
             App.notify('Temporary password generated successfully. A temporary password was sent via email.', App.SUCCESS);
-            user.set('resetPassword', false);
+            user.set('request', '');
             self.transitionTo('login');
           }, function (xhr) {
             self.set('isActionPending', false);
-            user.set('resetPassword', false);
+            user.set('request', '');
             App.notify('A password reset email was not sent due to an error. Note that temporary passwords can only be generated once every 120 mins.', App.ERROR);
           });
         }, function (xhr) {
