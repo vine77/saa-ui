@@ -16,6 +16,13 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   totalTrustedMessage: function() {
     return this.get('numberOfTrusted') + ' / ' + this.get('totalNumberOfNodes');
   }.property('numberOfTrusted', 'totalNumberOfNodes'),
+  isPercentOfTrustedAvailable: function () {
+    if (isNaN(this.get('percentOfTrusted'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfTrusted'),
 
   numberOfControlled: function () {
     return this.get('controllers.nodes').filterBy('isAgentInstalled').get('length');

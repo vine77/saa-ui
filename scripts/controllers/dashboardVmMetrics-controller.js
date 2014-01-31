@@ -46,6 +46,13 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   totalTrustedMessage: function() {
     return this.get('numberOfTrusted') + ' / ' + this.get('totalNumberOfVms');
   }.property('numberOfTrusted', 'totalNumberOfVms'),
+  isPercentOfTrustedAvailable: function () {
+    if (isNaN(this.get('percentOfTrusted')) && (App.mtWilson.get('isSupported')) ) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfTrusted'),
 
   numberOfVictims: function () {
     return this.get('controllers.vms').filterBy('isVictim').get('length');

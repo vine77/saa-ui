@@ -7,7 +7,7 @@
             <td class="column-medium"><strong>VMs</strong> (total #)</td>
             <td>{{#link-to "vms"}}{{controllers.vms.length}} VMs {{/link-to}}</td>
           </tr>
-          {{#if App.mtWilson.isSupported}}
+          {{#if isPercentOfTrustedAvailable}}
             <tr>
               <td class="column-medium"><strong>Trusted VMs</strong></td>
               <td>

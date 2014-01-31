@@ -7,7 +7,7 @@
             <td class="column-medium"><strong>Nodes</strong> (total #)</td>
             <td>{{#link-to "nodes"}}{{controllers.nodes.length}} Nodes {{/link-to}}</td>
           </tr>
-          {{#if App.mtWilson.isSupported}}
+          {{#if isPercentOfTrustedAvailable}}
             <tr>
               <td class="column-medium"><strong>Trusted Nodes</strong></td>
               <td>
@@ -16,7 +16,7 @@
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
-                    <small> 
+                    <small>
                       {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                         {{#link-to "nodes"}}
                           {{percentOfTrusted}}% 
