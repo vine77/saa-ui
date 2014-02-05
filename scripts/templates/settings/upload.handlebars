@@ -1,45 +1,45 @@
 <section id="upload">
   <h3>Upload Configuration Files</h3>
   <div class="well-clean shadow-lifted">
-    <form id="novaForm" {{bindAttr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
+    <form id="novaForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Nova</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">Upload <code>nova.conf</code> (required)</label>
         <div class="controls">
-          <div {{bindAttr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="novaFile">
+          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="novaFile">
             <div class="input-append">
-              <div class="uneditable-input span3"><i {{bindAttr class="novaSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">nova.conf</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="novaFile"></span>
+              <div class="uneditable-input span3"><i {{bind-attr class="novaSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">nova.conf</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="novaFile"></span>
             </div>
           </div>
         </div>
       </div>
       <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAM will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>. <span class="text-warning"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</span></p>
     </form>
-    <form id="openrcForm" {{bindAttr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
+    <form id="openrcForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Credentials</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">Upload <code>openrc</code> (required)</label>
         <div class="controls">
-          <div {{bindAttr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="openrcFile">
+          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="openrcFile">
             <div class="input-append">
-              <div class="uneditable-input span3"><i {{bindAttr class="openrcSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">openrc</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="openrcFile"></span>
+              <div class="uneditable-input span3"><i {{bind-attr class="openrcSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">openrc</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="openrcFile"></span>
             </div>
           </div>
         </div>
       </div>
       <p class="instructions">Please retrieve your Cloud Controller node's OpenStack Credentials file (<code>openrc</code>) and upload it here. This file contains the credentials used by SAM to access the OpenStack APIs. (This file is usually kept in <code>/root/openrc</code>, <code>/root/stackrc</code>, or the home directory of the admin user.)</p>
     </form>
-    <form id="quantumForm" {{bindAttr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
+    <form id="quantumForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Quantum</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">Upload <code>ovs_quantum_plugin.ini</code> (required)</label>
         <div class="controls">
-          <div {{bindAttr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="quantumFile">
+          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="quantumFile">
             <div class="input-append">
-              <div class="uneditable-input span3"><i {{bindAttr class="quantumSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">ovs_quantum_plugin.ini</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="quantumFile"></span>
+              <div class="uneditable-input span3"><i {{bind-attr class="quantumSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">ovs_quantum_plugin.ini</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="quantumFile"></span>
             </div>
           </div>
         </div>
@@ -66,30 +66,5 @@
         {{/if}}
       </div>
     </form>
-    {{!--
-    {{#if App.application.isEnabled}}
-      <form id="overridesForm" class="form-horizontal" action="/nova/configuration" method="post">
-        <legend>Configuration Overrides</legend>
-        <div class="control-group">
-          <label class="control-label" for="">Rabbit Host IP</label>
-          <div class="controls">
-            {{view App.UrlField valueBinding="App.overrides.rabbitHostIp"}}
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="">Horizon Host IP</label>
-          <div class="controls">
-            {{view App.UrlField valueBinding="App.overrides.horizonHostIp"}}
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <a class="btn btn-primary" {{action "updateOverrides"}}>Submit</a>
-            <i id="overridesLoading" class="loading hide"></i>
-          </div>
-        </div>
-      </form>
-    {{/if}}
-    --}}
   </div>
 </section>

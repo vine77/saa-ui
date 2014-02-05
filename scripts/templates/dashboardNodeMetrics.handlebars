@@ -1,0 +1,93 @@
+<div class="portlet span4">
+  <div class="header">Node Metrics</div>
+  <div class="portlet-content">
+    <table class="table table-bordered">
+       <tbody>
+          <tr>
+            <td class="column-medium"><strong>Nodes</strong> (total #)</td>
+            <td>{{#link-to "nodes"}}{{controllers.nodes.length}} Nodes {{/link-to}}</td>
+          </tr>
+          {{#if isPercentOfTrustedAvailable}}
+            <tr>
+              <td class="column-medium"><strong>Trusted Nodes</strong></td>
+              <td>
+                <br />
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small>
+                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                        {{#link-to "nodes"}}
+                          {{percentOfTrusted}}% 
+                        {{/link-to}}
+                      {{/view}}
+                    </small>
+                  </div>
+              </td>
+            </tr>
+          {{/if}}
+          {{#if isPercentOfControlledAvailable}}
+            <tr>
+              <td class="column-medium"><strong>Controlled Nodes</strong></td>
+              <td>
+                <br />
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small> 
+                      {{#view App.TooltipView titleBinding="totalControlledMessage"}}
+                        {{#link-to "nodes"}}
+                          {{percentOfControlled}}% 
+                        {{/link-to}}
+                      {{/view}}
+                    </small>
+                  </div>
+              </td>
+            </tr>
+          {{/if}}
+          {{#if isPercentOfRamAvailable}}
+            <tr>
+              <td class="column-medium"><strong>Total RAM Usage</strong></td>
+              <td>
+                <br />
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small> 
+                      {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                        {{#link-to "nodes"}}
+                          {{controllers.nodes.percentOfRam}}% 
+                        {{/link-to}}
+                      {{/view}}
+                    </small>
+                  </div>
+              </td>
+            </tr>
+          {{/if}}
+          {{#if isUsedOfAvailableSuPercentAvailable}}
+            <tr>
+              <td class="column-medium"><strong>Total SU Usage</strong></td>
+              <td>
+                <br />
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small>
+                    {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+                      {{#link-to "nodes"}}
+                        {{usedOfAvailableSuPercent}}%
+                      {{/link-to}}
+                    {{/view}}
+                  </small>
+                </div>
+              </td>
+            </tr>
+          {{/if}}
+       </tbody>
+    </table>
+  </div>
+</div>

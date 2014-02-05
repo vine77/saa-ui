@@ -77,7 +77,7 @@ App.LoginController = App.FormController.extend({
         self.set('isPending', false);
         self.set('loggedIn', true);
         self.transitionToAttempted();
-      }).fail(function (xhr) {
+      }, function (xhr) {
         self.set('isPending', false);
         if (xhr instanceof DS.InvalidError) {  // status == 422
           var csrfToken = xhr.errors.message.csrf_token;

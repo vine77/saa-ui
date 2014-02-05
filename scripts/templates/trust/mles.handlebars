@@ -8,13 +8,13 @@
               {{partial "columnHeader"}}
             {{/each}}
             <th class="column-small">
-              <a {{action "refresh"}} class="btn btn-mini"><i {{bindAttr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+              <a {{action "refresh"}} class="btn btn-mini"><i {{bind-attr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
             </th>
           </tr>
         </thead>
         <tbody>
           {{#each mle in controller}}
-             <tr {{bindAttr class="mle.isSelected mle.isExpanded"}}>
+             <tr {{bind-attr class="mle.isSelected mle.isExpanded"}}>
               <td><a {{action "expand" mle}}>{{na mle.name}}</a></td>
               <td>{{na mle.mleType}}</td>
               <td>{{na mle.oemname}}</td>
@@ -27,7 +27,7 @@
               </td>
               <td class="column-small">
                 <a class="btn btn-mini toggle-details" {{action "expand" mle}}>
-                  <i {{bindAttr class="mle.isExpanded:icon-minus:icon-plus"}}></i>
+                  <i {{bind-attr class="mle.isExpanded:icon-minus:icon-plus"}}></i>
                 </a>
               </td>
             </tr>

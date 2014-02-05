@@ -1,16 +1,6 @@
 <div class="tab-pane active" id="drawer-about">
   <div id="about">
-    {{#render "build"}}
-      <div class="portlet">
-        <h3>About {{App.application.title}}</h3>
-        <p>The {{App.application.fullTitle}} is copyrighted &copy; {{year date}}.</p>
-      </div>
-      <div class="portlet">
-        <h3>Version</h3>
-        <div>{{version}}</div>
-        <small>{{timestamp date}}</small>
-      </div>
-    {{/render}}
+    {{render "build"}}
     <div class="portlet">
       <h3>License</h3>
       <div class="license-body">

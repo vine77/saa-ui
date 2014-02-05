@@ -73,7 +73,7 @@ App.ProfileController = App.FormController.extend({
           self.get('controllers.login').transitionToAttempted();
           App.notify('The user profile was updated successfully.', App.SUCCESS);
         });
-      }).fail(function (xhr) {
+      }, function (xhr) {
         self.set('isPending', false);
         App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
       });

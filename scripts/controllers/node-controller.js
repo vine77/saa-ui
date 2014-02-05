@@ -1,5 +1,5 @@
 App.NodeController = Ember.ObjectController.extend({
-  needs: ["logBar"],
+  needs: ['nodes', 'logBar'],
   // Controller Properties
   isSelected: false,
   isExpanded: false,
@@ -46,8 +46,8 @@ App.NodeController = Ember.ObjectController.extend({
 
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
-  isAssured: Ember.computed.equal('samControlled', 2),
-  isMonitored: Ember.computed.equal('samControlled', 1),
+  isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
+  isAssured: Ember.computed.equal('samControlled', App.ASSURED),
   nodeTypeMessage: function () {
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';
@@ -118,21 +118,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('isTrustRegistered'),
   isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
+  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function () {
-    var message = '';
-    if (this.get('status.trust') === App.UNKNOWN) {
-      message = 'Trust Status: Unknown';
-    } else if (this.get('status.trust') === App.UNTRUSTED) {
-      message = 'Trust Status: Not Trusted';
-    } else if (this.get('status.trust') === App.TRUSTED) {
-      message = 'Trust Status: Trusted';
-    } else if (this.get('status.trust') === App.UNREGISTERED) {
-      message = 'Trust Status: Not Registered';
-    }
+    var message = 'Trust Status: ' + App.trustToString(self.get('status.trust')).capitalize();
     message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
-    if (this.get('status.trust') === App.UNTRUSTED) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
+    if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     return message;
   }.property('status.trust'),
 
@@ -236,201 +228,12 @@ App.NodeController = Ember.ObjectController.extend({
     return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isSelected', 'isExpanded'),
 
-  // Actions
   actions: {
-    expand: function (model) {
-      if (!this.get('isExpanded')) {
-        this.transitionToRoute('nodesNode', model);
-      } else {
-        this.transitionToRoute('nodes');
-      }
-    },
-    exportTrustReport: function (reportContent) {
-      var self = this;
-      this.set('isActionPending', true);
-      this.store.find('nodeTrustReport', reportContent.get('id')).then(function (nodeTrustReport) {
-        if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
-          var title = 'Node Trust Report';
-          var subtitle = reportContent.get('name') + ' ('+reportContent.get('ids.ip_address')+')';
-          var rowContent = [];
-          rowContent.push("item.get('attestation_time_formatted')");
-          rowContent.push("item.get('report_message')");
-          App.pdfReport(nodeTrustReport, rowContent, title, subtitle, 'attestations');
-        } else {
-          App.event('No trust attestation logs were found for this node.', App.WARNING);
-        }
-        self.set('isActionPending', false);
-      }, function (xhr) {
-        self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to load node trust report.');
-      });
-    },
-    reboot: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
-      if (confirmed) {
-        this.store.createRecord('action', {
-          name: 'reboot',
-          node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
-          self.set('isActionPending', false);
-          App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    unregister: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
-      if (confirmed) {
-        this.store.createRecord('action', {
-          node: this.store.getById('node', node.get('id')),
-          name: "unregister"
-        }).save().then( function () {
-          self.set('isActionPending', false);
-          App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
-          node.reload();
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    unschedule: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
-      if (confirmed) {
-        this.store.createRecord('action', {
-          node: this.store.getById('node', node.get('id')),
-          name: "scheduler_unmark"
-        }).save().then(function () {
-          self.set('isActionPending', false);
-          App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
-          node.set('schedulerMark', null);
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    addTrust: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
-      if (confirmed) {
-        var newTrustNode = this.store.createRecord('trustNode', {
-          node: this.store.getById('node', node.get('id'))
-        });
-        newTrustNode.save().then(function () {
-           self.set('isActionPending', false);
-          App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
-          node.reload();
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          newTrustNode.deleteRecord();
-          App.xhrError(xhr, 'An error occured while registering node"' + node.get('name') + '" as trusted.');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    trustReportModal: function (model) {
-      var controller = this;
-      modal = Ember.View.extend({
-        templateName: "nodeTrustReport-modal",
-        controller: controller,
-        content: model,
-        modalHide: function() {
-          $('#modal').modal('hide');
-          var context = this;
-          this.remove(); //destroys the element
-        },
-        didInsertElement: function (){
-          $('#modal').modal('show');
-        }
-      }).create().appendTo('body');
-    },
-    trustFingerprint: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
-      if (confirmed) {
-        var newTrustMle = this.store.createRecord('trustMle', {
-          node: this.store.getById('node', node.get('id'))
-        });
-        newTrustMle.save().then(function (model) {
-          self.set('isActionPending', false);
-          App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          newTrustMle.deleteRecord();
-          App.xhrError(xhr, 'An error occured while fingerprinting node "' + node.get('name') + '".');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    schedule: function (node, socketNumber) {
-      var self = this;
-      var parentController = this.get('parentController');
-      socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
-      var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '" (socket ' + socketNumber + ')?');
-      if (confirmed) {
-        this.store.createRecord('action', {
-          node: this.store.getById('node', node.get('id')),
-          name: "scheduler_mark",
-          options: {
-            scheduler_mark: socketNumber,
-            scheduler_persistent: true
-          }
-        }).save().then( function () {
-          self.set('isActionPending', false);
-          App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
-          // Unset all other nodes
-          parentController.filterBy('isScheduled').setEach('schedulerMark', null);
-          // Set this node for VM placement
-          node.set('schedulerMark', socketNumber);
-          node.set('schedulerPersistent', true);
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
-    },
-    removeTrust: function (node) {
-      this.set('isActionPending', true);
-      var self = this;
-      var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
-      if (confirmed) {
-        var trustNode = node.get('trustNode');
-        trustNode.deleteRecord();
-        trustNode.save().then(function () {
-          self.set('isActionPending', false);
-          App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
-          node.reload();
-        }, function (xhr) {
-          self.set('isActionPending', false);
-          node.rollback();
-          App.xhrError(xhr, 'An error occured while unregistering node "' + node.get('name') + '" as trusted.');
-        });
-      } else {
-        self.set('isActionPending', false);
-      }
+    exportTrustReport: function (model) {
+      this.get('controllers.nodes').send('exportTrustReport', model);
     }
   }
+
 });
 
 App.NodesNodeController = App.NodeController.extend();
@@ -453,7 +256,7 @@ App.ServiceController = Ember.ObjectController.extend({
   }.property(),
   healthMessage: function() {
     return 'Healthy State: ' + App.priorityToType(this.get('health')).capitalize();
-  }.property('health'),  
+  }.property('health'),
   operationalMessage: function() {
     return 'Operational State: ' + App.codeToOperational(this.get('operational')).capitalize();
   }.property('operational'),

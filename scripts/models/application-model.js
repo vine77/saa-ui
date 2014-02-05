@@ -1,7 +1,7 @@
 App.Application = Ember.Object.extend({
-  fullTitle: 'Intel® Service Assurance Manager',
-  longTitle: 'Service Assurance Manager',
-  title: 'SAM',
+  fullTitle: 'Intel® Service Assurance Administrator',
+  longTitle: 'Service Assurance Administrator',
+  title: 'SAA',
   year: function () {
     return moment().format('YYYY')
   }.property(),

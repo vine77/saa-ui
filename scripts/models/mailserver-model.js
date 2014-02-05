@@ -12,5 +12,5 @@ App.Mailserver = DS.Model.extend({
   username: DS.attr('string'),
   password: DS.attr('string'),
   sender_email: DS.attr('string'),
-  test_config: DS.attr('boolean')
+  request: DS.attr('string')
 });

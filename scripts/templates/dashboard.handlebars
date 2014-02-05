@@ -1,11 +1,12 @@
 <div id="dashboard" class="container-fluid">
   <div class="row-fluid">
-    {{partial "portlets/_welcome"}}
     {{render "dashboardStatus"}}
     {{render "dashboardStatusComponents"}}
+    {{render "dashboardEvents"}}
   </div>
   <div class="row-fluid">
-    {{render "dashboardEvents"}}
+    {{render "dashboardNodeMetrics"}}
+    {{render "dashboardVmMetrics"}}
     {{render "dashboardTodo"}}
   </div>
 </div>

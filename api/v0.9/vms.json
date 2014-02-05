@@ -16,7 +16,7 @@
         },
         "long_message": "VM is healthy. VM is powered on. ",
         "health": 1,
-        "victim": 2,
+        "victim": 1,
         "trust": 2,
         "short_message": "VM is healthy."
       },
@@ -65,7 +65,7 @@
       "sla_id": "c4528524-3a3f-4980-9643-45d19ce4905f",
       "victim_ids": [],
       "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
-      "aggressor_ids": ["75375bd3-d528-436c-8298-f48221ff63da"],
+      "aggressor_ids": [],
       "vm_instantiation_detailed_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
       "vm_trust_report_id": "81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1",
       "fixed_ips": [
@@ -98,7 +98,7 @@
         ],
         "locked": false,
         "sla_status": 0,
-        "aggressor": 2,
+        "aggressor": 1,
         "operational": 2,
         "trust_details": {
           "bios": 2,
@@ -153,7 +153,7 @@
       },
       "node_name": "clientnode4.hpr.com",
       "sla_id": "c4528524-3a3f-4980-9643-45d19ce4905f",
-      "victim_ids": ["81d3ffd2-10f5-4d77-a83f-3fcc4f2d48d1"],
+      "victim_ids": [],
       "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
       "aggressor_ids": [],
       "vm_instantiation_detailed_id": "75375bd3-d528-436c-8298-f48221ff63da",
@@ -166,16 +166,16 @@
         "threads": [
           {
             "llc": {
-              "value": 45,
-              "label": "HIGH"
+              "value": 0.04,
+              "label": "LOW"
             },
             "id": 21961
           }
         ],
         "system": {
           "llc": {
-            "value": 45,
-            "label": "HIGH"
+            "value": 0.04,
+            "label": "LOW"
           }
         }
       }
