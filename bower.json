@@ -19,7 +19,7 @@
     "mousetrap": "ccampbell/mousetrap#~1.4.4",
     "ember-renderspeed": "eviltrout/ember-renderspeed",
     "group-helper": "emberjs/group-helper",
-    "list-view": "emberjs/list-view",
+    "list-view": "emberjs/list-view#aa2d5fef1ac0a82a0552f7cad7c151e9a1270a9f",
     "ember-json-api": "daliwali/ember-json-api",
     "modernizr": "~2.7.1",
     "zynga-scroller": "zynga/scroller#dadd850722ad2be9a865e4d84cb76c0197b68734"

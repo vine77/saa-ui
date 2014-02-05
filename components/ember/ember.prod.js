@@ -3902,7 +3902,6 @@ var metaFor = Ember.meta, // utils.js
     generateGuid = Ember.generateGuid,
     IS_PATH = /[\.\*]/;
 
-
 // returns true if the passed path is just a keyName
 function isKeyName(path) {
   return path==='*' || !IS_PATH.test(path);
@@ -11099,25 +11098,15 @@ if (!Ember.keys || Ember.create.isSimulated) {
   };
 }
 
-    ```javascript
-    person.incrementProperty('age');
-    team.incrementProperty('score', 2);
-    ```
+})();
 
-    @method incrementProperty
-    @param {String} keyName The name of the property to increment
-    @param {Number} increment The amount to increment by. Defaults to 1
-    @return {Number} The new property value
-  */
-  incrementProperty: function(keyName, increment) {
-    if (Ember.isNone(increment)) { increment = 1; }
 
-    set(this, keyName, (get(this, keyName) || 0) + increment);
-    return get(this, keyName);
-  },
 
-  /**
-    Set the value of a property to the current value minus some amount.
+(function() {
+/**
+@module ember
+@submodule ember-runtime
+*/
 
 var STRING_DASHERIZE_REGEXP = (/[ _]/g);
 var STRING_DASHERIZE_CACHE = {};
@@ -12760,12 +12749,6 @@ Ember.Object.toString = function() { return "Ember.Object"; };
 
 var get = Ember.get, indexOf = Ember.ArrayPolyfills.indexOf;
 
-
-})();
-
-
-
-(function() {
 /**
   A Namespace is an object usually used to contain other objects or methods
   such as an application or framework. Create a namespace anytime you want
@@ -12963,9 +12946,6 @@ Ember.Mixin.prototype.toString = classToString;
 })();
 
 
-    In addition to passing a target, you can also include an options hash
-    which you can use to override the method names that will be invoked on the
-    target.
 
 (function() {
 /**
@@ -13114,33 +13094,15 @@ Ember.ObjectProxy = Ember.Object.extend({
 
 });
 
-    return this;
-  },
+})();
 
-  /**
-    If you are implementing an object that supports `Ember.Array`, call this
-    method just after the array content changes to notify any observers and
-    invalidate any related properties. Pass the starting index of the change
-    as well as a delta of the amounts to change.
 
-    @method arrayContentDidChange
-    @param {Number} startIdx The starting index in the array that did change.
-    @param {Number} removeAmt The number of items that were removed. If you
-      pass `null` assumes 0
-    @param {Number} addAmt The number of items that were added. If you
-      pass `null` assumes 0.
-    @return {Ember.Array} receiver
-  */
-  arrayContentDidChange: function(startIdx, removeAmt, addAmt) {
 
-    // if no args are passed assume everything changes
-    if (startIdx===undefined) {
-      startIdx = 0;
-      removeAmt = addAmt = -1;
-    } else {
-      if (removeAmt === undefined) removeAmt=-1;
-      if (addAmt    === undefined) addAmt=-1;
-    }
+(function() {
+/**
+@module ember
+@submodule ember-runtime
+*/
 
 // ..........................................................
 // HELPERS
@@ -14573,20 +14535,9 @@ Ember.Array = Ember.Mixin.create(Ember.Enumerable, {
 
 }) ;
 
-  Example
+})();
 
-  ```javascript
-  App.Hamster = Ember.Object.extend({
-    remainingChores: Ember.computed.filterBy('chores', 'done', false)
-  });
 
-  var hamster = App.Hamster.create({chores: [
-    {name: 'cook', done: true},
-    {name: 'clean', done: true},
-    {name: 'write more unit tests', done: false}
-  ]});
-  hamster.get('remainingChores'); // [{name: 'write more unit tests', done: false}]
-  ```
 
 (function() {
 var e_get = Ember.get,
@@ -16588,7 +16539,6 @@ Ember.Comparable = Ember.Mixin.create({
 
 });
 
-Ember.FROZEN_ERROR = "Frozen object cannot be modified.";
 
 })();
 
@@ -16654,15 +16604,9 @@ Ember.Copyable = Ember.Mixin.create({
   }
 });
 
-  ```javascript
-  set.removeObject(contact);
-  ```
+})();
 
-  ## Implementing In Your Own Code
 
-  If you are implementing an object and want to support this API, just include
-  this mixin in your class and implement the required methods. In your unit
-  tests, be sure to apply the Ember.MutableEnumerableTests to your object.
 
 (function() {
 /**
@@ -30955,10 +30899,6 @@ function registerComponentLookup(container) {
   container.register('component-lookup:main', Ember.ComponentLookup);
 }
 
-function registerComponentLookup(container) {
-  container.register('component-lookup:main', Ember.ComponentLookup);
-}
-
 /*
   We tie this to application.load to ensure that we've at least
   attempted to bootstrap at the point that the application is loaded.
@@ -30981,6 +30921,7 @@ Ember.onLoad('Ember.Application', function(Application) {
     after: 'domTemplates',
     initialize: registerComponentLookup
   });
+});
 
 })();
 
@@ -33335,9 +33276,6 @@ Ember.Router = Ember.Object.extend(Ember.Evented, {
 
     this._cancelLoadingEvent();
 
-    
-      this._cancelLoadingEvent();
-    
     this.notifyPropertyChange('url');
 
     // Put this in the runloop so url will be accurate. Seems
@@ -35346,9 +35284,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
         normalizedPath = Ember.Handlebars.normalizePath(helperParameters.context, path, helperParameters.options.data);
         this.registerObserver(normalizedPath.root, normalizedPath.path, this, this._paramsChanged);
       }
-
-
-          },
+    },
 
     afterRender: function(){
       this._super.apply(this, arguments);

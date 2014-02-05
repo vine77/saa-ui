@@ -1912,7 +1912,6 @@ var __module11__ = (function(__dependency1__, __dependency2__) {
           }
         }
       }
-    },
 
       if (this.source[1]) {
         this.source[1] = "var " + this.source[1].substring(2) + ";";

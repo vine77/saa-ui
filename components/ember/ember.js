@@ -4110,7 +4110,6 @@ var metaFor = Ember.meta, // utils.js
     generateGuid = Ember.generateGuid,
     IS_PATH = /[\.\*]/;
 
-
 // returns true if the passed path is just a keyName
 function isKeyName(path) {
   return path==='*' || !IS_PATH.test(path);
@@ -11318,37 +11317,15 @@ if (!Ember.keys || Ember.create.isSimulated) {
   };
 }
 
-    @method incrementProperty
-    @param {String} keyName The name of the property to increment
-    @param {Number} increment The amount to increment by. Defaults to 1
-    @return {Number} The new property value
-  */
-  incrementProperty: function(keyName, increment) {
-    if (Ember.isNone(increment)) { increment = 1; }
-    Ember.assert("Must pass a numeric value to incrementProperty", (!isNaN(parseFloat(increment)) && isFinite(increment)));
-    set(this, keyName, (get(this, keyName) || 0) + increment);
-    return get(this, keyName);
-  },
+})();
 
-  /**
-    Set the value of a property to the current value minus some amount.
 
-    ```javascript
-    player.decrementProperty('lives');
-    orc.decrementProperty('health', 5);
-    ```
 
-    @method decrementProperty
-    @param {String} keyName The name of the property to decrement
-    @param {Number} decrement The amount to decrement by. Defaults to 1
-    @return {Number} The new property value
-  */
-  decrementProperty: function(keyName, decrement) {
-    if (Ember.isNone(decrement)) { decrement = 1; }
-    Ember.assert("Must pass a numeric value to decrementProperty", (!isNaN(parseFloat(decrement)) && isFinite(decrement)));
-    set(this, keyName, (get(this, keyName) || 0) - decrement);
-    return get(this, keyName);
-  },
+(function() {
+/**
+@module ember
+@submodule ember-runtime
+*/
 
 var STRING_DASHERIZE_REGEXP = (/[ _]/g);
 var STRING_DASHERIZE_CACHE = {};
@@ -11715,20 +11692,9 @@ if (Ember.EXTEND_PROTOTYPES === true || Ember.EXTEND_PROTOTYPES.String) {
 }
 
 
-        Student = App.Person.extend()
-        student = Student.create()
-        student.toString() //=> "<(subclass of App.Person):ember1025>"
+})();
 
-    If the method `toStringExtension` is defined, its return value will be
-    included in the output.
 
-        App.Teacher = App.Person.extend({
-          toStringExtension: function() {
-            return this.get('fullName');
-          }
-        });
-        teacher = App.Teacher.create()
-        teacher.toString(); //=> "<App.Teacher:ember1026:Tom Dale>"
 
 (function() {
 /**
@@ -13209,9 +13175,6 @@ Ember.Mixin.prototype.toString = classToString;
 })();
 
 
-  /**
-    Returns `true` if the passed property resolves to `true` for all items in
-    the enumerable. This method is often simpler/faster than using a callback.
 
 (function() {
 /**
@@ -13362,18 +13325,15 @@ Ember.ObjectProxy = Ember.Object.extend({
 
 });
 
-    It should return the `true` to include the item in the results, `false`
-    otherwise.
+})();
 
-    Note that in addition to a callback, you can also pass an optional target
-    object that will be set as `this` on the context. This is a good way
-    to give your iterator function access to the current object.
 
-    Usage Example:
 
-    ```javascript
-    if (people.some(isManager)) { Paychecks.addBiggerBonus(); }
-    ```
+(function() {
+/**
+@module ember
+@submodule ember-runtime
+*/
 
 // ..........................................................
 // HELPERS
@@ -14377,15 +14337,9 @@ Ember.Enumerable = Ember.Mixin.create({
   }
 });
 
-      item = dependentArray.objectAt(itemIndex);
+})();
 
-      forEach(itemPropertyKeys, removeObservers, this);
 
-      changeMeta = createChangeMeta(dependentArray, item, itemIndex, this.instanceMeta.propertyName, this.cp);
-      this.setValue( removedItem.call(
-        this.instanceMeta.context, this.getValue(), item, changeMeta, this.instanceMeta.sugarMeta));
-    }
-  },
 
 (function() {
 /**
@@ -17701,17 +17655,9 @@ Ember.Evented = Ember.Mixin.create({
   }
 });
 
-    if (target && action) {
-      var ret;
+})();
 
-      if (target.send) {
-        ret = target.send.apply(target, args(actionContext, action));
-      } else {
-        Ember.assert("The action '" + action + "' did not exist on " + target, typeof target[action] === 'function');
-        ret = target[action].apply(target, args(actionContext));
-      }
 
-      if (ret !== false) ret = true;
 
 (function() {
 var RSVP = requireModule("rsvp");
@@ -31306,10 +31252,6 @@ function registerComponentLookup(container) {
   container.register('component-lookup:main', Ember.ComponentLookup);
 }
 
-function registerComponentLookup(container) {
-  container.register('component-lookup:main', Ember.ComponentLookup);
-}
-
 /*
   We tie this to application.load to ensure that we've at least
   attempted to bootstrap at the point that the application is loaded.
@@ -31332,6 +31274,7 @@ Ember.onLoad('Ember.Application', function(Application) {
     after: 'domTemplates',
     initialize: registerComponentLookup
   });
+});
 
 })();
 
@@ -33130,8 +33073,6 @@ define("router",
           urlMethod = null;
         }
       }
-      router.currentQueryParams = newQueryParams;
-
 
       var newQueryParams = {};
       for (i = handlerInfos.length - 1; i>=0; --i) {
@@ -33690,9 +33631,6 @@ Ember.Router = Ember.Object.extend(Ember.Evented, {
 
     this._cancelLoadingEvent();
 
-    
-      this._cancelLoadingEvent();
-    
     this.notifyPropertyChange('url');
 
     // Put this in the runloop so url will be accurate. Seems
@@ -35725,9 +35663,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
         normalizedPath = Ember.Handlebars.normalizePath(helperParameters.context, path, helperParameters.options.data);
         this.registerObserver(normalizedPath.root, normalizedPath.path, this, this._paramsChanged);
       }
-
-
-          },
+    },
 
     afterRender: function(){
       this._super.apply(this, arguments);
@@ -40021,8 +39957,6 @@ Ember.Application.reopen({
     for(var i = 0, l = injectHelpersCallbacks.length; i < l; i++) {
       injectHelpersCallbacks[i](this);
     }
-
-    Ember.RSVP.configure('onerror', onerror);
   },
 
   /**
@@ -40044,9 +39978,7 @@ Ember.Application.reopen({
       delete this.testHelpers[name];
       delete this.originalMethods[name];
     }
-    Ember.RSVP.configure('onerror', null);
   }
-
 });
 
 // This method is no longer needed
