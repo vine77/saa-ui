@@ -409,6 +409,10 @@ App.SettingsIndexRoute = Ember.Route.extend({
   }
 });
 App.SettingsUploadRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    controller.set('networkType', this.store.find('networkType', 'current'));
+  },
   deactivate: function () {
     this.controllerFor('settingsUpload').send('cancel');
   }

@@ -30,6 +30,10 @@ App.UNREGISTERED = 3;
 App.MONITORED = 1;
 App.ASSURED = 2;
 
+// Constants for network type
+App.NEUTRON = 1;
+App.NOVA = 2;
+
 App.caseMapping = {
   'cpu': 'CPU',
   'cpus': 'CPUs',

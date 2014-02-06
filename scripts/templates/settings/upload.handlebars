@@ -35,7 +35,14 @@
       <input type="hidden" name="app" value="sam">
       <legend>Quantum</legend>
       <div class="control-group">
-        <label class="control-label" for="inputEmail">Upload <code>ovs_quantum_plugin.ini</code> (required)</label>
+        <label class="control-label" for="inputEmail">
+          Upload <code>ovs_quantum_plugin.ini</code>
+          {{#if isQuantumFileRequired}}
+            (required)
+          {{else}}
+            (optional)
+          {{/if}}
+        </label>
         <div class="controls">
           <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="quantumFile">
             <div class="input-append">
@@ -44,7 +51,14 @@
           </div>
         </div>
       </div>
-      <p class="instructions">Please upload your OpenStack Quantum network configuration file (<code>ovs_quantum_plugin.ini</code>). This file can be found at the file path <code>/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini</code>.</p>
+      <div class="control-group">
+        <label class="control-label">Network Type:</label>
+        <div class="controls">
+          <label class="radio inline">{{view Ember.RadioButton name="networkType" selection=networkType.setting value="1"}} Quantum/Neutron</label>
+          <label class="radio inline">{{view Ember.RadioButton name="networkType" selection=networkType.setting value="2"}} Nova</label>
+        </div>
+      </div>
+      <p class="instructions">Please upload your OpenStack Quantum network configuration file (<code>ovs_quantum_plugin.ini</code>). This file can be found at the file path <code>/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini</code>. This file is not required if the network type is Nova.</p>
       <div class="align-right">
         {{#if isConfigured}}
           {{#unless isChangingFiles}}
