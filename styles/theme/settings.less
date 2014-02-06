@@ -49,6 +49,18 @@
             display: inline;
           }
         }
+        &.disabled {
+          .uneditable-input {
+            background-color: #f5f5f5;
+            border-color: #ddd;
+            cursor: not-allowed;
+            color: #999;
+          }
+          span.btn, .icon-file, .fileupload-preview {
+            display: none;
+          }
+
+        }
       }
     }
   }

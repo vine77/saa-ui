@@ -121,7 +121,7 @@ App.NodeController = Ember.ObjectController.extend({
   isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(self.get('status.trust')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
     message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
     if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';

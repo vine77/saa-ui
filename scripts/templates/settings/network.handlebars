@@ -2,6 +2,12 @@
   <h3>Network</h3>
   <form class="form-horizontal well-clean shadow-lifted">
     <div class="control-group">
+      <label class="control-label">Network Type:</label>
+      <div class="controls">
+        <input type="text" disabled {{bindAttr value="networkTypeText"}}>
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label">Gateway:</label>
       <div class="controls">
         {{view Ember.TextField placeholder="Gateway" valueBinding="App.network.route.gateway"}}
