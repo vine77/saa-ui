@@ -86,8 +86,12 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     return App.readableSize(this.get('totalRam') * 1048576);
   }.property('totalRam'),
   maxRam: function () {
-    return this.get('controllers.quota.ram');
-  }.property('this.controllers.quota.ram'),
+    if (this.get('model') === undefined) return null;
+    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+      var count = (item.get('memory.max') > 0) ? item.get('memory.max') : 0;
+      return previousValue + count;
+    }, 0);
+  }.property('model.@each.memory.max'),
   totalRamMessage: function () {
     return App.readableSize(this.get('totalRam') * 1048576) + ' out of ' + App.readableSize(this.get('maxRam') * 1048576);
   }.property('totalRam', 'maxRam'),
