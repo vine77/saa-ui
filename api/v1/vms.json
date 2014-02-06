@@ -3154,7 +3154,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/52f0e9d8-7898-4530-b15c-b4fc844bb517"
       },
       "utilization": {
-        "su_current": 0.01,
+        "su_current": 0.09,
         "ipc": 0.42,
         "uptime": null,
         "network": null,
@@ -3226,7 +3226,7 @@
         },
         "long_message": "VM data is not available because VM was placed on a non-SAM node. VM is healthy. VM is powered on. ",
         "health": 1,
-        "victim": 1,
+        "victim": 3,
         "trust": 3,
         "short_message": "VM data is not available because VM was placed on a non-SAM node."
       },
@@ -3244,7 +3244,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/444c1b14-06a4-4de0-8d89-299f4cb9f343"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.4,
         "ipc": 0.22,
         "uptime": null,
         "network": null,
@@ -3275,7 +3275,7 @@
       "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
       "victim_ids": [],
       "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
-      "aggressor_ids": [],
+      "aggressor_ids": ["8fd3ad80-d079-440b-8fdc-aa579596c4a0"],
       "vm_instantiation_detailed_id": "444c1b14-06a4-4de0-8d89-299f4cb9f343",
       "vm_trust_report_id": "444c1b14-06a4-4de0-8d89-299f4cb9f343",
       "fixed_ips": [
@@ -3424,7 +3424,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/9d494a46-8597-41a2-b39a-0206f3d26f9a"
       },
       "utilization": {
-        "su_current": 0.03,
+        "su_current": 0.6,
         "ipc": 0.41,
         "uptime": null,
         "network": null,
@@ -3442,7 +3442,7 @@
       },
       "vm_instantiation_simple_id": "9d494a46-8597-41a2-b39a-0206f3d26f9a",
       "graphite_url": "/render?target=stats.SAM",
-      "sla_name": "Unsecure Bronze",
+      "sla_name": "Unsecure Gold",
       "floating_ips": null,
       "capabilities": {
         "cores": 1,
@@ -3452,7 +3452,7 @@
         "su_allocated_min": 0
       },
       "node_name": "clientnode9.hpr.com",
-      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
+      "sla_id": "80769134-43f0-4ae7-bd58-ef6055e71441",
       "victim_ids": [],
       "node_id": "0730E39E-65E6-E111-BD3C-001E675AF475",
       "aggressor_ids": [],
@@ -3578,7 +3578,7 @@
         ],
         "locked": false,
         "sla_status": 0,
-        "aggressor": 1,
+        "aggressor": 3,
         "operational": 2,
         "trust_details": {
           "bios": 3,
@@ -3604,7 +3604,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/8fd3ad80-d079-440b-8fdc-aa579596c4a0"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 1.8,
         "ipc": 0.24,
         "uptime": null,
         "network": null,
@@ -3622,7 +3622,7 @@
       },
       "vm_instantiation_simple_id": "8fd3ad80-d079-440b-8fdc-aa579596c4a0",
       "graphite_url": "/render?target=stats.SAM",
-      "sla_name": "Unsecure Bronze",
+      "sla_name": "Unsecure Gold",
       "floating_ips": null,
       "capabilities": {
         "cores": 1,
@@ -3632,8 +3632,8 @@
         "su_allocated_min": 0
       },
       "node_name": "clientnode4.hpr.com",
-      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
-      "victim_ids": [],
+      "sla_id": "80769134-43f0-4ae7-bd58-ef6055e71441",
+      "victim_ids": ["444c1b14-06a4-4de0-8d89-299f4cb9f343"],
       "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
       "aggressor_ids": [],
       "vm_instantiation_detailed_id": "8fd3ad80-d079-440b-8fdc-aa579596c4a0",
@@ -3694,7 +3694,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/29ece284-8010-48e0-8519-bfd68e73de30"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.4,
         "ipc": 0,
         "uptime": null,
         "network": null,
@@ -3784,7 +3784,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/622533bc-b749-40f5-a718-10463e9dea81"
       },
       "utilization": {
-        "su_current": 0.01,
+        "su_current": 0.08,
         "ipc": 0.62,
         "uptime": null,
         "network": null,
@@ -3964,7 +3964,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/6e5b9fbe-b298-447e-aa96-ef13296f6c57"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.4,
         "ipc": 0,
         "uptime": null,
         "network": null,
@@ -4234,7 +4234,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/bacba934-86f6-4ffd-b548-90e47ae3c04d"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.45,
         "ipc": 0.27,
         "uptime": null,
         "network": null,
@@ -4324,7 +4324,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/5bf08381-4c24-43e7-a28f-a21519f1d2f4"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.3,
         "ipc": 0.27,
         "uptime": null,
         "network": null,
@@ -4414,7 +4414,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/847ccbb9-5765-40e6-a0c5-607148f4392a"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.5,
         "ipc": 0.29,
         "uptime": null,
         "network": null,
@@ -4504,7 +4504,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/22d4fa99-3ef8-47cb-934f-101161c2701f"
       },
       "utilization": {
-        "su_current": 0.01,
+        "su_current": 0.08,
         "ipc": 1.11,
         "uptime": null,
         "network": null,
@@ -4684,7 +4684,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/297bc0ea-2612-4f9f-b137-3f933f1083cf"
       },
       "utilization": {
-        "su_current": 0.01,
+        "su_current": 0.04,
         "ipc": 0.98,
         "uptime": null,
         "network": null,
@@ -6034,12 +6034,12 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/48cfb825-62c9-4093-805e-8c72a99f0360"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 1.5,
         "ipc": 0.2,
         "uptime": null,
         "network": null,
-        "su_burst": 0,
-        "su_total": 0,
+        "su_burst": 2,
+        "su_total": 2,
         "threads": [
           {
             "su_current": 0,
@@ -6098,7 +6098,7 @@
         ],
         "locked": false,
         "sla_status": 0,
-        "aggressor": 1,
+        "aggressor": 3,
         "operational": 2,
         "trust_details": {
           "bios": 3,
@@ -6124,12 +6124,12 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/cb61a96c-8a11-4b4b-a049-ba36a3bbcf44"
       },
       "utilization": {
-        "su_current": 0.01,
+        "su_current": 1.3,
         "ipc": 0.54,
         "uptime": null,
         "network": null,
-        "su_burst": 0,
-        "su_total": 0,
+        "su_burst": 2,
+        "su_total": 2,
         "threads": [
           {
             "su_current": 0,
@@ -6142,18 +6142,18 @@
       },
       "vm_instantiation_simple_id": "cb61a96c-8a11-4b4b-a049-ba36a3bbcf44",
       "graphite_url": "/render?target=stats.SAM",
-      "sla_name": "Unsecure Bronze",
+      "sla_name": "Unsecure Gold",
       "floating_ips": null,
       "capabilities": {
         "cores": 1,
         "memory_size": "524288 KB",
-        "su_allocated_max": 1,
-        "su_allocated": 0,
-        "su_allocated_min": 0
+        "su_allocated_max": 2,
+        "su_allocated": 1,
+        "su_allocated_min": 1
       },
       "node_name": "clientnode4.hpr.com",
-      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
-      "victim_ids": [],
+      "sla_id": "80769134-43f0-4ae7-bd58-ef6055e71441",
+      "victim_ids": ["5d3d975a-a11f-465c-ac0b-0a32b61f54d4"],
       "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
       "aggressor_ids": [],
       "vm_instantiation_detailed_id": "cb61a96c-8a11-4b4b-a049-ba36a3bbcf44",
@@ -7204,7 +7204,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/44ffcc86-ef15-488a-9f73-8867300ab3ac"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.7,
         "ipc": 0.13,
         "uptime": null,
         "network": null,
@@ -7384,7 +7384,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/2edf8248-6c75-486f-af8b-3bbb37b8a141"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.3,
         "ipc": 0.2,
         "uptime": null,
         "network": null,
@@ -9004,7 +9004,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/23f630bf-539b-40f3-ad5e-ef285b804f77"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.6,
         "ipc": 0.11,
         "uptime": null,
         "network": null,
@@ -9544,7 +9544,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/84af3566-555a-44ef-bbc9-7435812400d4"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.8,
         "ipc": 0.06,
         "uptime": null,
         "network": null,
@@ -10246,7 +10246,7 @@
         },
         "long_message": "VM data is not available because VM was placed on a non-SAM node. VM is healthy. VM is powered on. ",
         "health": 1,
-        "victim": 1,
+        "victim": 3,
         "trust": 3,
         "short_message": "VM data is not available because VM was placed on a non-SAM node."
       },
@@ -10264,7 +10264,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/5d3d975a-a11f-465c-ac0b-0a32b61f54d4"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.4,
         "ipc": 0.09,
         "uptime": null,
         "network": null,
@@ -10295,7 +10295,7 @@
       "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
       "victim_ids": [],
       "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
-      "aggressor_ids": [],
+      "aggressor_ids": ["cb61a96c-8a11-4b4b-a049-ba36a3bbcf44"],
       "vm_instantiation_detailed_id": "5d3d975a-a11f-465c-ac0b-0a32b61f54d4",
       "vm_trust_report_id": "5d3d975a-a11f-465c-ac0b-0a32b61f54d4",
       "fixed_ips": [
@@ -11344,7 +11344,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/53e99011-3949-448b-b4e7-538dbcf6594d"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 0.2,
         "ipc": 0.11,
         "uptime": null,
         "network": null,
@@ -11637,9 +11637,9 @@
       "capabilities": {
         "cores": 1,
         "memory_size": "524288 KB",
-        "su_allocated_max": 1,
-        "su_allocated": 0,
-        "su_allocated_min": 0
+        "su_allocated_max": 2,
+        "su_allocated": 1,
+        "su_allocated_min": 1
       },
       "node_name": "clientnode4.hpr.com",
       "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
@@ -11704,12 +11704,12 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/30a34b6e-3904-40d3-bf23-ae99100adc48"
       },
       "utilization": {
-        "su_current": 0,
+        "su_current": 1.5,
         "ipc": 0,
         "uptime": null,
         "network": null,
-        "su_burst": 0,
-        "su_total": 0,
+        "su_burst": 2,
+        "su_total": 2,
         "threads": [
           {
             "su_current": 0,
@@ -11722,17 +11722,17 @@
       },
       "vm_instantiation_simple_id": "30a34b6e-3904-40d3-bf23-ae99100adc48",
       "graphite_url": "/render?target=stats.SAM",
-      "sla_name": "Unsecure Bronze",
+      "sla_name": "Unsecure Gold",
       "floating_ips": null,
       "capabilities": {
         "cores": 1,
         "memory_size": "524288 KB",
-        "su_allocated_max": 1,
-        "su_allocated": 0,
-        "su_allocated_min": 0
+        "su_allocated_max": 2,
+        "su_allocated": 1,
+        "su_allocated_min": 1
       },
       "node_name": "clientnode8.hpr.com",
-      "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
+      "sla_id": "80769134-43f0-4ae7-bd58-ef6055e71441",
       "victim_ids": [],
       "node_id": "973D1534-B403-E211-BBFA-001E673B9418",
       "aggressor_ids": [],

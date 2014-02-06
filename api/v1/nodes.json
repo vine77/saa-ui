@@ -441,7 +441,7 @@
       "id": "00F400BD-762A-E211-9C53-001E67343C15",
       "sam_registered": true,
       "utilization": {
-        "su_current": 2.3,
+        "su_current": 17.3,
         "su_max": 73.6,
         "uptime": null,
         "network": null,
@@ -497,22 +497,22 @@
           {
             "socket_number": 1,
             "llc": {
-              "value": 0,
+              "value": 3,
               "label": "LOW"
             }
           },
           {
             "socket_number": 0,
             "llc": {
-              "value": 0,
+              "value": 8,
               "label": "LOW"
             }
           }
         ],
         "system": {
           "llc": {
-            "value": 0,
-            "label": "LOW"
+            "value": 11,
+            "label": "MEDIUM"
           }
         }
       },
@@ -789,8 +789,8 @@
         "sockets": [],
         "system": {
           "llc": {
-            "value": 50,
-            "label": "LOW"
+            "value": 45,
+            "label": "HIGH"
           }
         }
       },
