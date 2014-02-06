@@ -191,7 +191,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then( function () {
           node.set('isActionPending', false);
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
-          node.reload();
+          node.get('model').reload();
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
@@ -271,7 +271,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         newTrustNode.save().then(function () {
            node.set('isActionPending', false);
           App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
-          node.reload();
+          node.get('model').reload();
         }, function (xhr) {
           node.set('isActionPending', false);
           newTrustNode.deleteRecord();
@@ -356,7 +356,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         trustNode.save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
-          node.reload();
+          node.get('model').reload();
         }, function (xhr) {
           node.set('isActionPending', false);
           node.rollback();
