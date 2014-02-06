@@ -11,8 +11,9 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   isChangingFiles: false,
   isActionPending: false,
   networkType: {},
-  isQuantumFileRequired: function () {
-    return this.get('networkType.setting') == App.NEUTRON;
+  isNeutronConfigRequired: function () {
+    var isNeutronConfigRequired = this.get('networkType.setting') == App.NEUTRON
+    return isNeutronConfigRequired;
   }.property('networkType.setting'),
   showButtons: function () {
     return !this.get('isConfigured') || this.get('isChangingFiles');
@@ -22,13 +23,13 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       var self = this;
       // Require all 3 files to be specified
       var allFilesSpecified = false;
-      if (this.get('isQuantumFileRequired')) {
+      if (this.get('isNeutronConfigRequired')) {
         allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val() && !!$('#quantumForm').find('input[type=file]').val();
       } else {
         allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val();
       }
       if (!allFilesSpecified) {
-        if (this.get('isQuantumFileRequired')) {
+        if (this.get('isNeutronConfigRequired')) {
           App.event('You must upload all three configuration files at the same time.');
         } else {
           App.event('You must upload all two configuration files at the same time.');
@@ -46,7 +47,9 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         }).then(function () {
           return App.openrc.upload();
         }).then(function () {
-          if (!!$('#quantumForm').find('input[type=file]').val()) return App.quantum.upload();
+          if (this.get('isNeutronConfigRequired') && !!$('#quantumForm').find('input[type=file]').val()) {
+            return App.quantum.upload();
+          }
         }).then(function () {
           return App.nova.start();
         }).then(function () {

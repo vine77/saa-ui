@@ -417,6 +417,12 @@ App.SettingsUploadRoute = Ember.Route.extend({
     this.controllerFor('settingsUpload').send('cancel');
   }
 });
+App.SettingsNetworkRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    controller.set('networkType', this.store.find('networkType', 'current'));
+  }
+});
 App.SettingsMailserverRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('mailserver', 'default');

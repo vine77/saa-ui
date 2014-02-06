@@ -36,15 +36,11 @@
       <legend>Quantum</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">
-          Upload <code>ovs_quantum_plugin.ini</code>
-          {{#if isQuantumFileRequired}}
-            (required)
-          {{else}}
-            (optional)
-          {{/if}}
+        Upload <code>ovs_quantum_plugin.ini</code>
+          {{#if isNeutronConfigRequired}}(required){{/if}}
         </label>
         <div class="controls">
-          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="quantumFile">
+          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new isNeutronConfigRequired::disabled"}} data-provides="fileupload" data-name="quantumFile">
             <div class="input-append">
               <div class="uneditable-input span3"><i {{bind-attr class="quantumSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">ovs_quantum_plugin.ini</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="quantumFile"></span>
             </div>
