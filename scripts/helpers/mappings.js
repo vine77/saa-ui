@@ -211,6 +211,34 @@ App.codeToOperational = function (code) {
     case App.SUSPENDED.toString():
     case 'suspended':
       return 'suspended';
+        case App.LIVE_MIGRATING:
+    case App.LIVE_MIGRATING.toString():
+    case 'live migrating':
+      return 'live migrating';
+    case App.MIGRATING_RESIZING:
+    case App.MIGRATING_RESIZING.toString():
+    case 'migrating resizing':
+      return 'migrating resizing';
+    case App.CONFIRMATION_NEEDED:
+    case App.CONFIRMATION_NEEDED.toString():
+    case 'confirmation needed':
+      return 'confirmation needed';
+    case App.REVERTING:
+    case App.REVERTING.toString():
+    case 'reverting':
+      return 'reverting';
+    case App.SHELVING:
+    case App.SHELVING.toString():
+    case 'shelving':
+      return 'shelving';
+    case App.SHELVED:
+    case App.SHELVED.toString():
+    case 'shelved':
+      return 'shelved';
+    case App.SHELVED_OFFLOADED:
+    case App.SHELVED_OFFLOADED.toString():
+    case 'shelved offloaded':
+      return 'shelved offloaded';
     default:
       return 'unknown';
   }
