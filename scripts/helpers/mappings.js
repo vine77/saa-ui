@@ -17,6 +17,7 @@ App.LIVE_MIGRATING = 15;
 App.MIGRATING_RESIZING = 16;
 App.CONFIRMATION_NEEDED = 17;
 App.REVERTING = 18;
+App.MIGRATION_BLOCKED = 19;
 App.SHELVING = 21;
 App.SHELVED = 22;
 App.SHELVED_OFFLOADED = 23;
@@ -231,6 +232,10 @@ App.codeToOperational = function (code) {
     case App.REVERTING.toString():
     case 'reverting':
       return 'reverting';
+    case App.MIGRATION_BLOCKED:
+    case App.MIGRATION_BLOCKED.toString():
+    case 'migration blocked':
+      return 'migration blocked';
     case App.SHELVING:
     case App.SHELVING.toString():
     case 'shelving':
@@ -298,6 +303,10 @@ App.operationalToCode = function (operational) {
     case App.REVERTING.toString():
     case 'reverting':
       return App.REVERTING;
+    case App.MIGRATION_BLOCKED:
+    case App.MIGRATION_BLOCKED.toString():
+    case 'migration blocked':
+      return App.MIGRATION_BLOCKED;
     case App.SHELVING:
     case App.SHELVING.toString():
     case 'shelving':
@@ -365,6 +374,10 @@ App.operationalToIconClass = function (code) {
     case App.REVERTING.toString():
     case 'reverting':
       return 'icon-truck blink-warning';
+    case App.MIGRATION_BLOCKED:
+    case App.MIGRATION_BLOCKED.toString():
+    case 'migration blocked':
+      return 'icon-minus-sign';
     case App.SHELVING:
     case App.SHELVING.toString():
     case 'shelving':
