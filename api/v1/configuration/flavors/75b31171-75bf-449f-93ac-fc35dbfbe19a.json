@@ -1,7 +1,7 @@
 {
   "flavors": [
     {
-      "name": "johntest_unsplat_noB",
+      "name": "Unsecure-Platinum1",
       "links": {
         "slas": "/api/v1/configuration/slas/5393aa35-e3e3-4544-935b-e3b1d162807e",
         "uri": "/api/v1/configuration/flavors/75b31171-75bf-449f-93ac-fc35dbfbe19a"

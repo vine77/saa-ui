@@ -1,7 +1,7 @@
 {
   "flavors": [
     {
-      "name": "johnbigpoop",
+      "name": "Unsecure-Test1",
       "links": {
         "slas": "/api/v1/configuration/slas/6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
         "uri": "/api/v1/configuration/flavors/ca066009-4191-494f-aab4-7da0f7d914c3"
