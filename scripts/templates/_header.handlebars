@@ -45,8 +45,8 @@
             <li class="dropdown">
               {{#link-to "settings"}}<i class="icon-cog"></i>Settings{{/link-to}}
               <ul class="dropdown-menu">
-                <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                 {{#unless controllers.build.isReadycloud}}
+                  <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                   <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
                 {{/unless}}
                 <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
