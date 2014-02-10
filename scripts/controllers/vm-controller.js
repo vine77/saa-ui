@@ -65,6 +65,9 @@ App.VmController = Ember.ObjectController.extend({
       return true;
     }
   }.property('contention.system.llc.value'),
+  contentionFormatted: function () {
+    return Math.round(this.get('contention.system.llc.value') * 100) / 100;
+  }.property('contention.system.llc.value'),
   contentionMessage: function () {
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>Contention Not Available</strong>';

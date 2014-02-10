@@ -37,16 +37,14 @@
     &.events {
       height: @height;
     }
-    &.node-metrics,
-    &.vm-metrics {
-      table {
-        margin-bottom: 0;
-        td:first-child {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 250px;
-        }
+    table.contention-nodes,
+    table.contention-vms {
+      table-layout: fixed;
+      margin-bottom: 0;
+      td:first-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
