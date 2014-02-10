@@ -31,7 +31,7 @@
               <td class="column-medium">{{vms.length}}</td>
               <td class="column-large">
                 {{#if sla}}
-                  {{sla.name}}
+                  {{#link-to "sla" sla}}{{sla.name}}{{/link-to}}
                 {{/if}}
               </td>
               <td class="column-medium">
@@ -104,18 +104,6 @@
                         {{/each}}
                       </ul>
                     </div>
-                    {{!--
-                    <div class="tab-pane sla">
-                      <strong>{{sla.name}}</strong>
-                      <ul>
-                        {{#each slo in sla.slos}}
-                          <li>{{slo.description}}</li>
-                        {{else}}
-                          <li>No SLOs</li>
-                        {{/each}}
-                      </ul>
-                    </div>
-                    --}}
                   </div>
                 </div>
               </td>
