@@ -73,7 +73,7 @@
             text-align: center;
           }
         }
-        > tr:not(.is-expanded):not(.is-selected) {
+        > tr:not(.is-expanded):not(.is-selected):not(.is-sla-missing) {
           > th:first-of-type,
           > td:first-of-type,
           > th:nth-last-of-type(2),
@@ -82,6 +82,9 @@
           > td:last-of-type {
             background-color: #f9f9f9;
           }
+        }
+        > tr.is-sla-missing {
+          #gradient.vertical(rgba(255, 0, 0, 0.05), rgba(130, 0, 0, 0.1));
         }
         > tr:hover:not(.is-expanded):not(.is-selected) {
           > td {

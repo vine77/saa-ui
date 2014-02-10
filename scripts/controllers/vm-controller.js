@@ -14,17 +14,23 @@ App.VmController = Ember.ObjectController.extend({
 
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
+    var healthMessage = '';
+    if (this.get('isSlaMissing')) healthMessage += 'VM is missing an SLA.<br>';
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
       // If both short and long messages are empty, show health as message
-      return '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+      healthMessage +=  '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
     } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
-      return this.get('status.short_message').capitalize();
+      healthMessage +=  this.get('status.short_message').capitalize();
     } else {  // Default to long message
-      return this.get('status.long_message').capitalize();
+      healthMessage +=  this.get('status.long_message').capitalize();
     }
+    return healthMessage;
   }.property('status.long_message', 'status.short_message'),
   operationalMessage: function () {
-    return '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    var operationalMessage = '';
+    if (this.get('isSlaMissing')) operationalMessage += 'VM is missing an SLA.<br>';
+    operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    return operationalMessage;
   }.property('status.operational'),
   isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
   isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
@@ -39,6 +45,9 @@ App.VmController = Ember.ObjectController.extend({
   slaViolated: Ember.computed.equal('status.sla_status', 2),
   slaNotViolated: Ember.computed.equal('status.sla_status', 1),
   slaUnknown: Ember.computed.equal('status.sla_status', 0),
+  isSlaMissing: function () {
+    return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === App.ASSURED;
+  }.property('sla', 'node.samControlled'),
   slaMessage: function () {
     if (App.isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
