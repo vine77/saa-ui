@@ -37,9 +37,7 @@ App.SettingsUserController = Ember.ObjectController.extend({
       }
     },
     cancel: function () {
-      this.set('oldPassword', '');
-      this.set('newPassword1', '');
-      this.set('newPassword2', '');
+      this.get('model').rollback();
       $('#profile-email').focus();
     }
   }
