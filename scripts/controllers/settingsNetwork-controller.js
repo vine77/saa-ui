@@ -3,7 +3,7 @@ App.SettingsNetworkController = Ember.Controller.extend({
   actions: {
     save: function () {
       var self = this;
-      var externalIpChanged = App.network.get('external.address') != window.location.hostname;
+      var externalIpChanged = App.network.get('external.address') != App.network.get('serverExternal.address');
       var externalChangedToDynamic = (App.network.get('external.dhcp') && App.network.get('external.dhcp') != App.network.get('serverExternal.dhcp'));
       if (externalChangedToDynamic) {
         var verify = confirm('You have changed your external interface to use DHCP, so your IP address may change, disconnecting this application, and you will have to navigate to the new location. Are you sure you want to proceed?');
