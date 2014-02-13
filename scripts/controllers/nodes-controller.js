@@ -202,7 +202,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     setMonitored: function (node) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to monitored?');
+      var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to monitored?');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
@@ -223,7 +223,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     setAssured: function (node) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to assured?');
+      var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to assured?');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
