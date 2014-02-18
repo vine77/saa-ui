@@ -130,9 +130,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.su_current'))) {
-      return '<strong>SAA Compute Units</strong>: N/A';
+      return '<strong>Service Compute Units</strong>: N/A';
     } else {
-      return 'SAA Compute Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SCU';
+      return 'Service Compute Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SCU';
     }
   }.property('utilization.su_current', 'utilization.su_max'),
   computeWidth: function () {

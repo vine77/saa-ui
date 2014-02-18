@@ -21,8 +21,8 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'CPU',
     sortBy: 'cpuSort'
   }, {
-    title: 'SAA Compute Units',
-    description: 'The SAA Compute Unit (SCU) is a measure of compute consumption on the host server',
+    title: 'SCU',
+    description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.su_current'
   }, {
     title: 'Memory',
