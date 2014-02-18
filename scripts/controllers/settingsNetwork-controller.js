@@ -1,5 +1,12 @@
 App.SettingsNetworkController = Ember.Controller.extend({
   isActionPending: false,
+  networkTypeText: function () {
+    if (this.get('networkType.setting') == App.NEUTRON) {
+      return 'Neutron';
+    } else if (this.get('networkType.setting') == App.NOVA) {
+      return 'Nova';
+    }
+  }.property('networkType.setting'),
   actions: {
     save: function () {
       var self = this;

@@ -10,6 +10,11 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   quantumSuccessBinding: 'App.quantum.success',
   isChangingFiles: false,
   isActionPending: false,
+  networkType: {},
+  isNeutronConfigRequired: function () {
+    var isNeutronConfigRequired = this.get('networkType.setting') == App.NEUTRON
+    return isNeutronConfigRequired;
+  }.property('networkType.setting'),
   showButtons: function () {
     return !this.get('isConfigured') || this.get('isChangingFiles');
   }.property('isConfigured', 'isChangingFiles'),
@@ -17,20 +22,34 @@ App.SettingsUploadController = Ember.ArrayController.extend({
     uploadFiles: function () {
       var self = this;
       // Require all 3 files to be specified
-      var allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val() && !!$('#quantumForm').find('input[type=file]').val();
+      var allFilesSpecified = false;
+      if (this.get('isNeutronConfigRequired')) {
+        allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val() && !!$('#quantumForm').find('input[type=file]').val();
+      } else {
+        allFilesSpecified = !!$('#novaForm').find('input[type=file]').val() && !!$('#openrcForm').find('input[type=file]').val();
+      }
       if (!allFilesSpecified) {
-        App.event('You must upload all three configuration files at the same time.');
+        if (this.get('isNeutronConfigRequired')) {
+          App.event('You must upload all three configuration files at the same time.');
+        } else {
+          App.event('You must upload all two configuration files at the same time.');
+        }
         return;
       }
       // Prompt user with confirmation dialog if app is already configured
+      var self = this;
       var confirmUpload = true;
       if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + App.application.get('title') + '?');
       if (confirmUpload) {
         this.set('isActionPending', true);
-        App.nova.upload().then(function () {
+        this.get('networkType.content').save().then(function () {
+          return App.nova.upload();
+        }).then(function () {
           return App.openrc.upload();
         }).then(function () {
-          return App.quantum.upload();
+          if (this.get('isNeutronConfigRequired') && !!$('#quantumForm').find('input[type=file]').val()) {
+            return App.quantum.upload();
+          }
         }).then(function () {
           return App.nova.start();
         }).then(function () {
@@ -43,7 +62,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
           }, 60000);
         }, function () {
           self.set('isActionPending', false);
-          App.event('Error uploading config files.', App.ERROR);
+          App.event('An error occurred while uploading config files.', App.ERROR);
           $('.fileupload i').removeClass().addClass('icon-file');
           $('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);
@@ -61,18 +80,6 @@ App.SettingsUploadController = Ember.ArrayController.extend({
     cancel: function () {
       $('.fileupload').fileupload('reset');
       this.set('isChangingFiles', false);
-    },
-    uploadNova: function () {
-      App.nova.upload();
-    },
-    uploadOpenrc: function () {
-      App.openrc.upload();
-    },
-    uploadQuantum: function () {
-      App.quantum.upload();
-    },
-    updateOverrides: function () {
-      App.overrides.update();
     }
   }
 });
