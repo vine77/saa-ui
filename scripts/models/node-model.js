@@ -11,7 +11,7 @@ App.Node = DS.Model.extend({
   ids: DS.attr(),
   memory: DS.attr(),
   name: DS.attr('string'),
-  samControlled: DS.attr('number'),  // 0: Not under SAM control (agent not installed), 1: SAM monitored, 2: SAM assured (can place SLA VMs on node)
+  samControlled: DS.attr('number'),  // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samRegistered: DS.attr('boolean'),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),

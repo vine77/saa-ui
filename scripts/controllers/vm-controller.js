@@ -133,7 +133,7 @@ App.VmController = Ember.ObjectController.extend({
     return messages.join('<br>');
   }.property('isVictim', 'isAggressor'),
 
-  // Compute SU allocation floor/ceiling computed properties
+  // Compute SCU allocation floor/ceiling computed properties
   hasCompute: function () {
     return !Ember.isEmpty(this.get('utilization.su_current')) && !Ember.isEmpty(this.get('suFloor'));
   }.property('utilization.su_current', 'suFloor'),

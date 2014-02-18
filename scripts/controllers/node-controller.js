@@ -52,7 +52,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
-      return 'This is a monitored node. SAM will monitor this node, but VMs with SLAs may not be placed here.';
+      return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
     } else {
       return 'This is not an assured node. VMs with SLAs may not be placed here.';
     }
@@ -130,9 +130,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.su_current'))) {
-      return '<strong>SAM Units</strong>: N/A';
+      return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAM Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SU';
+      return 'SAA Compute Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SCU';
     }
   }.property('utilization.su_current', 'utilization.su_max'),
   computeWidth: function () {

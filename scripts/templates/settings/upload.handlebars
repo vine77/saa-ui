@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAM will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>. <span class="text-warning"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</span></p>
+      <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAA will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>. <span class="text-warning"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</span></p>
     </form>
     <form id="openrcForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <p class="instructions">Please retrieve your Cloud Controller node's OpenStack Credentials file (<code>openrc</code>) and upload it here. This file contains the credentials used by SAM to access the OpenStack APIs. (This file is usually kept in <code>/root/openrc</code>, <code>/root/stackrc</code>, or the home directory of the admin user.)</p>
+      <p class="instructions">Please retrieve your Cloud Controller node's OpenStack Credentials file (<code>openrc</code>) and upload it here. This file contains the credentials used by SAA to access the OpenStack APIs. (This file is usually kept in <code>/root/openrc</code>, <code>/root/stackrc</code>, or the home directory of the admin user.)</p>
     </form>
     <form id="quantumForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">

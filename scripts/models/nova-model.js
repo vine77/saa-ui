@@ -35,7 +35,7 @@ App.Nova = Ember.Object.extend({
     });
   },
   start: function () {
-    // Start SAM
+    // Start SAA
     App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',

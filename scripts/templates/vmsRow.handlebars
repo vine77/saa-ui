@@ -49,11 +49,11 @@
             {{#if suRange}}
               <div class="cores-and-allocation">
                 <div class="cores">{{na capabilities.cores}} vCPUs</div>
-                <div class="allocation">&times; {{na suRange}} SU</div>
+                <div class="allocation">&times; {{na suRange}} SCU</div>
               </div>
               <div class="total-allocation">
                 <span class="operator">=</span>
-                {{suTotalRange}} SU
+                {{suTotalRange}} SCU
               </div>
             {{else}}
               {{na capabilities.cores}} vCPUs

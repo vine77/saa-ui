@@ -22,11 +22,11 @@ App.VmsColumnsController = App.ColumnsController.extend({
     title: 'Hostname',
     sortBy: 'nodeName'
   }, {
-    title: 'vCPUs × SU',
+    title: 'vCPUs × SCU',
     sortBy: 'vcpusTimesSu'
   }, {
-    title: 'SAM Units (SU)',
-    description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
+    title: 'SAA Compute Units (SCU)',
+    description: 'The SAA Compute Unit (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.su_current'
   }, {
     title: 'Memory',

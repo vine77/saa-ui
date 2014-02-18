@@ -21,8 +21,8 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'CPU',
     sortBy: 'cpuSort'
   }, {
-    title: 'SAM Units',
-    description: 'The SAM Unit (SU) is a measure of compute consumption on the host server',
+    title: 'SAA Compute Units',
+    description: 'The SAA Compute Unit (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.su_current'
   }, {
     title: 'Memory',
@@ -183,7 +183,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     unregister: function (node) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Note: You must uninstall the SAM node agent before doing the unregister action, or the node will be re-register once the SAM agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
+      var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),

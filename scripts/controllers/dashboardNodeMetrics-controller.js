@@ -72,7 +72,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
      return 'width:'+this.get('usedOfAvailableSuPercent')+'%';
   }.property('usedOfAvailableSuPercent'),
   usedOfAvailableSuMessage: function() {
-    return this.get('totalCurrentSu') + ' / ' + this.get('totalSuMax') + ' SU';
+    return this.get('totalCurrentSu') + ' / ' + this.get('totalSuMax') + ' SCU';
   }.property('numberOfControlled', 'totalSuMax'),
   isUsedOfAvailableSuPercentAvailable: function () {
     if (isNaN(this.get('usedOfAvailableSuPercent'))) {

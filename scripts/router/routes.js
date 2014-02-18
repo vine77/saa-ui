@@ -158,7 +158,7 @@ App.AppRoute = Ember.Route.extend({
         openrc: App.openrc.check(),
         quantum: App.quantum.check()
       }).then(function () {
-        // SAM is configured
+        // SAA is configured
         self.store.find('sloTemplate');
         self.store.find('slo');
         self.store.find('sla');
@@ -180,10 +180,10 @@ App.AppRoute = Ember.Route.extend({
         //self.store.find('user');
         //App.settingsLog.fetch();
       }, function () {
-        // SAM is not configured
+        // SAA is not configured
         App.network.check();
         //self.store.find('user');
-        return new Ember.RSVP.resolve();  // Don't block loading if SAM is not configured
+        return new Ember.RSVP.resolve();  // Don't block loading if SAA is not configured
       });
     });
   },
