@@ -209,6 +209,20 @@ App.DataRoute = Ember.Route.extend({
 
 
 // Nodes
+App.NodesRoute = Ember.Route.extend({
+  actions: {
+    previousPage: function () {
+      var controller = this.controllerFor('nodes');
+      if (controller.get('isFirstPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
+    },
+    nextPage: function () {
+      var controller = this.controllerFor('nodes');
+      if (controller.get('isLastPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
+    }
+  }
+});
 App.NodesIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
@@ -224,11 +238,37 @@ App.NodesNodeRoute = Ember.Route.extend({
   actions: {
     closeDetails: function() {
       this.transitionTo('nodes');
+    },
+    previousPage: function () {
+      var controller = this.controllerFor('nodes');
+      if (this.get('isFirstPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
+      this.transitionTo('nodes');
+    },
+    nextPage: function () {
+      var controller = this.controllerFor('nodes');
+      if (controller.get('isLastPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
+      this.transitionTo('nodes');
     }
   }
 });
 
 // VMs
+App.VmsRoute = Ember.Route.extend({
+  actions: {
+    previousPage: function () {
+      var controller = this.controllerFor('vms');
+      if (controller.get('isFirstPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
+    },
+    nextPage: function () {
+      var controller = this.controllerFor('vms');
+      if (controller.get('isLastPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
+    }
+  }
+});
 App.VmsIndexRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
@@ -243,6 +283,18 @@ App.VmsVmRoute = Ember.Route.extend({
   },
   actions: {
     closeDetails: function() {
+      this.transitionTo('vms');
+    },
+    previousPage: function () {
+      var controller = this.controllerFor('vms');
+      if (this.get('isFirstPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
+      this.transitionTo('vms');
+    },
+    nextPage: function () {
+      var controller = this.controllerFor('vms');
+      if (controller.get('isLastPage')) return;
+      controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
       this.transitionTo('vms');
     }
   }
@@ -481,48 +533,3 @@ App.Status17Route = App.StatusRoute.extend();
 App.Status18Route = App.StatusRoute.extend();
 App.Status19Route = App.StatusRoute.extend();
 App.Status20Route = App.StatusRoute.extend();
-
-// TODO: Migrate Sunil's authentication code
-/*
-Ember.Route.reopen({
-  activate: function () {
-    var route = this;
-    var currentRoute = this.get('routeName');
-    var noauth = ['login', 'profile', 'tempPassword']
-    if ($.inArray(currentRoute, noauth) == -1) {
-      if ((currentRoute != 'application') && (currentRoute != 'index')) {
-        var context = this.get('context');
-        App.state.set('route', currentRoute);
-        App.state.set('context', context);
-      }
-
-      // Not using 'isLoaded'. On error, the state is reset to 'loaded.saved' (from modelhelper).
-      // Hence isLoaded may be misleading.
-      var isLoaded = (App.session) ? !(App.session.get('isLoading') || App.session.get('isDeleted')) || App.session.get('bypass') : false;
-
-      if (!isLoaded) {
-        // Load current session
-        var initAndLoad = function(model, controller, route) {
-          App.state.set('loggedIn', true);
-          route.controllerFor('application').initModels().then(function () {
-            route.transitionTo('index');
-          }, function () {
-            route.transitionTo('index');
-          });
-        };
-        var unloadModel = function(model, controller, route) {
-          model.unloadRecord();
-        };
-        App.session = this.store.find('session', 'current_session');
-        var handlers = {
-          'didLoad' : {postFun:initAndLoad},
-          'becameError' : {postFun:unloadModel, nextRoute:'login', resetState:true}
-        };
-        App.modelhelper.doTransaction(App.session, this.controller, this, handlers);
-      }
-    }
-    this._super();
-  }
-
-});
-*/

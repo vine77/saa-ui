@@ -112,15 +112,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
 
   // Actions
   actions: {
-    previousPage: function () {
-      if (this.get('isFirstPage')) return;
-      this.get('listView').goToPage(this.get('listView.currentPage') - 1);
-    },
-    nextPage: function () {
-      if (this.get('isLastPage')) return;
-      this.get('listView').goToPage(this.get('listView.currentPage') + 1);
-    },
-
     selectAll: function () {
       var isEverythingSelected = this.everyProperty('isSelected');
       this.setEach('isSelected', !isEverythingSelected);
