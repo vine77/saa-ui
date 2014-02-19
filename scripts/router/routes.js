@@ -146,8 +146,11 @@ App.AppRoute = Ember.Route.extend({
   model: function () {
     var self = this;
     // Get current session
-    var currentSessionPromise = (!this.store.getById('session', 'current_session')) ? this.store.find('session', 'current_session') : this.store.getById('session', 'current_session').reload();
-    return currentSessionPromise.then(function (session) {
+    if (this.store.getById('session', 'current_session')) {
+      this.store.getById('session', 'current_session').transitionTo('loaded.saved');
+      this.store.getById('session', 'current_session').unloadRecord();
+    }
+    return this.store.find('session', 'current_session').then(function (session) {
       self.controllerFor('login').set('session', session);
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
       self.controllerFor('login').set('username', session.get('username'));
