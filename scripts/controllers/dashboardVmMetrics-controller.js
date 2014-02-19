@@ -95,13 +95,12 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   }.property('percentOfAggressors'),
 
   contentionVms: function() {
-    var contentionVms = this.get('controllers.vms');
-    contentionVms.reopen({
+    return Ember.ArrayController.create({
+      content: this.get('controllers.vms').filterBy('hasContention').toArray(),
       sortProperties: ['contention.system.llc.value'],
       sortAscending: false
-    });
-    return contentionVms.slice(0, 4).filterBy('hasContention');
-  }.property('controllers.nodes.@each'),
+    }).slice(0, 4);
+  }.property('controllers.vms.@each'),
   contentionVmsExist: Ember.computed.gt('contentionVms.length', 0)
 
 });

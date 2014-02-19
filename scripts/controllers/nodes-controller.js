@@ -13,7 +13,8 @@ App.NodesColumnsController = App.ColumnsController.extend({
     icon: 'icon-trophy'
   }, {
     title: 'Hostname',
-    sortBy: 'name'
+    sortBy: 'name',
+    sortAscending: true
   }, {
     title: 'VMs',
     sortBy: 'vmInfo.count'
@@ -41,6 +42,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   needs: ['nodesColumns', 'application', 'quota'],
   itemController: 'node',
   sortProperty: 'name',
+  sortAscending: true,
   filterProperties: ['name'],
   totalVms: function () {
     if (this.get('model') === undefined) return null;

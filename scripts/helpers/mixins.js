@@ -114,12 +114,12 @@ App.ColumnsController = Ember.ArrayController.extend({
     return this.get('controllers.' + this.get('parent'));
   }.property('parent'),
   actions: {
-    sort: function (column) {
+    sort: function (column, sortAscending) {
       var parent = this.get('controllers.' + this.get('parent'));
       var isDifferentColumn = !parent.get('sortProperty') || parent.get('sortProperty') !== column;
       if (isDifferentColumn) {
         parent.set('sortProperty', column);
-        parent.set('sortAscending', true);
+        parent.set('sortAscending', (sortAscending === undefined) ? false : sortAscending);
       } else {
         parent.set('sortAscending', !parent.get('sortAscending'));
       }

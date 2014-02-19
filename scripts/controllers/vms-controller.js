@@ -17,10 +17,12 @@ App.VmsColumnsController = App.ColumnsController.extend({
     icon: 'icon-bullhorn'
   }, {
     title: 'VM Name',
-    sortBy: 'name'
+    sortBy: 'name',
+    sortAscending: true
   }, {
     title: 'Hostname',
-    sortBy: 'nodeName'
+    sortBy: 'nodeName',
+    sortAscending: true
   }, {
     title: 'vCPUs × SCU',
     sortBy: 'vcpusTimesSu'
@@ -46,6 +48,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   needs: ['vmsColumns', 'application'],
   itemController: 'vm',
   sortProperty: 'name',
+  sortAscending: true,
   filterProperties: ['name', 'nodeName'],
   multipleVmsAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;

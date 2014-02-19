@@ -81,13 +81,14 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
       return true;
     }
   }.property('controllers.nodes.percentOfRam'),
+
   contentionNodes: function() {
-    var contentionNodes = this.get('controllers.nodes');
-    contentionNodes.reopen({
+    return Ember.ArrayController.create({
+      content: this.get('controllers.nodes').filterBy('hasContention').toArray(),
       sortProperties: ['contention.system.llc.value'],
       sortAscending: false
-    });
-    return contentionNodes.slice(0, 4).filterBy('hasContention');
+    }).slice(0, 4);
   }.property('controllers.nodes.@each'),
   contentionNodesExist: Ember.computed.gt('contentionNodes.length', 0)
+
 });

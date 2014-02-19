@@ -2,7 +2,7 @@
   {{#if description}}
     {{#view App.TooltipView titleBinding="description"}}
       {{#if sortBy}}
-        <a {{action "sort" sortBy}}>
+        <a {{action "sort" sortBy sortAscending}}>
           {{#if icon}}<i {{bind-attr class="icon :icon-large"}}></i>{{/if}}
           {{title}}
         </a>
@@ -13,7 +13,7 @@
     {{/view}}
   {{else}}
     {{#if sortBy}}
-      <a {{action "sort" sortBy}}>
+      <a {{action "sort" sortBy sortAscending}}>
         {{#if icon}}<i {{bind-attr class="icon :icon-large"}}></i>{{/if}}
         {{title}}
       </a>
