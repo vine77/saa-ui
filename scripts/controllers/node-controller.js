@@ -1,10 +1,101 @@
 App.NodeController = Ember.ObjectController.extend({
-  needs: ['nodes', 'logBar'],
+  needs: ['nodes', 'logBar', 'application'],
   // Controller Properties
+
   isSelected: false,
   isExpanded: false,
   isActionPending: false,
   isRebooting: false,
+
+  nodeActions: function() {
+    return  [
+      App.ActionController.create({
+        name: 'Export Trust Report',
+        method: 'exportTrustReport',
+        icon: 'icon-external-link',
+        disabledWhileRebooting: false,
+        sortOrder: 0,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Remove Trust',
+        method: 'removeTrust',
+        icon: 'icon-unlock',
+        disabledWhileRebooting: true,
+        sortOrder: 1,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Add Trust',
+        method: 'addTrust',
+        icon: 'icon-lock',
+        disabledWhileRebooting: true,
+        sortOrder: 2,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Fingerprint',
+        method: 'trustFingerprint',
+        icon: 'icon-hand-up',
+        disabledWhileRebooting: true,
+        sortOrder: 3,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Configure Trust Agent',
+        method: 'configureTrustAgent',
+        icon: 'icon-unlock-alt',
+        disabledWhileRebooting: true,
+        sortOrder: 4,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Unset for VM placement',
+        method: 'unschedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: false,
+        sortOrder: 5,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Place VMs on Socket',
+        method: 'schedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: true,
+        sortOrder: 6,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Unregister',
+        method: 'unregister',
+        icon: 'icon-remove',
+        disabledWhileRebooting: false,
+        sortOrder: 7,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Set agent mode to monitored',
+        method: 'setMonitored',
+        icon: 'icon-eye-open',
+        disabledWhileRebooting: true,
+        sortOrder: 8,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Set agent mode to assured',
+        method: 'setAssured',
+        icon: 'icon-trophy',
+        disabledWhileRebooting: true,
+        sortOrder: 9,
+        node: this
+      }),
+    ];
+  }.property('@each', 'App.mtWilson.isInstalled'),
+
+  nodeActionsAreAvailable: function() {
+    return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
+  }.property('nodeActions.@each'),
+
   updateKibana: function() {
     if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
@@ -111,6 +202,7 @@ App.NodeController = Ember.ObjectController.extend({
     }).join('<br>');
   }.property('cloudServices'),
   isTrustRegistered: Ember.computed.bool('trustNode'),
+
   isTrustRegisteredMessage: function () {
     if (this.get('isTrustRegistered')) {
       return 'Currently registered with Trust Server';
@@ -274,6 +366,123 @@ App.ServiceController = Ember.ObjectController.extend({
   }.property('health'),
   operationalMessage: function() {
     return 'Operational State: ' + App.codeToOperational(this.get('operational')).capitalize();
-  }.property('operational'),
+  }.property('operational')
 
 });
+
+App.ActionController = Ember.ObjectController.extend({
+  isDisabled: function() {
+    if (this.get('node.isRebooting') && (this.get('disabledWhileRebooting'))) {
+      return true;
+    } else {
+      return false;
+    }
+  }.property('node.@each', 'node.isRebooting'),
+  isListItem: function() {
+    switch (this.get('method')) {
+      case 'exportTrustReport':
+        if (App.mtWilson.get('isInstalled')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'removeTrust':
+        if (App.mtWilson.get('isInstalled')) {
+          if (this.get('node.isTrustRegistered')) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+        break;
+      case 'addTrust':
+        if (App.mtWilson.get('isInstalled')) {
+          if (this.get('node.isTrustRegistered')) {
+            return false;
+          } else {
+            return true;
+          }
+        } else {
+          return false;
+        }
+        break;
+      case 'trustFingerprint':
+        if (App.mtWilson.get('isInstalled')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'configureTrustAgent':
+        if (App.mtWilson.get('isInstalled')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'unschedule':
+        if (this.get('node.isScheduled')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'schedule':
+        return false;
+        break;
+      case 'unregister':
+        if (this.get('node.samRegistered')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'setMonitored':
+        if (this.get('node.isMonitored')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'setAssured':
+        if (this.get('node.isAssured')) {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      default:
+        return false;
+    }
+  }.property('node.isAssured', 'node.isMonitored', 'node.samRegistered', 'node.isScheduled', 'node.isTrustRegistered'),
+
+  additionalListItems: function() {
+    var additionalListItems = [];
+    if (this.get('method') == 'schedule') {
+      if (!this.get('node.isScheduled') && this.get('node')) {
+        this.get('node.socketsEnum').forEach( function(item, index, enumerable) {
+          additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode '+item+'}}><i class="icon-magnet"></i> Place VMs on Socket '+item+'</a></li>');
+        });
+      }
+    }
+    return Ember.View.extend({
+      tagName: '',
+      template: Ember.Handlebars.compile(additionalListItems.join(''))
+    });
+  }.property('node.socketsEnum.@each'),
+
+  actions: {
+    performAction: function(method, contextNode, socket) {
+      if (method == 'schedule') {
+        contextNode.get('parentController').send(method, contextNode, socket);
+      } else {
+        contextNode.get('parentController').send(method, contextNode);
+      }
+    }
+  }
+
+});
+
