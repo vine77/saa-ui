@@ -112,6 +112,8 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     return Math.min(this.get('listView.pageSize'), this.get('length'));
   }.property('listView.pageSize', 'length'),
 
+
+
   // Actions
   actions: {
     selectAll: function () {

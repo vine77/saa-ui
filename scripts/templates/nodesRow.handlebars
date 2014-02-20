@@ -103,61 +103,28 @@
         {{/if}}
       </div></td>
       <td><div class="cell-container overflow-visible">
-        <div class="btn-group">
-          {{#if isAgentInstalled}}
-            {{#if isOn}}
-              <a {{bind-attr class=":btn :btn-mini isActionPending:disabled"}} {{action "reboot" this}}><i class="icon-refresh"></i> Reboot</a>
-            {{else}}
-              <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
-            {{/if}}
-            <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
-              {{#unless isActionPending}}
-                <span class="caret"></span>
-              {{else}}
-                <i class="icon-spinner icon-spin"></i>
-              {{/unless}}
-            </a>
-            <ul class="dropdown-menu">
-              {{#if App.mtWilson.isInstalled}}
-                {{#if isTrustRegistered}}
-                  <li><a {{action "removeTrust" this}}><i class="icon-unlock"></i> Remove Trust</a></li>
-                  <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
-                {{else}}
-                  <li><a {{action "addTrust" this}}><i class="icon-lock"></i> Add Trust</a></li>
-                  <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
-                {{/if}}
-                <li><a {{action "trustFingerprint" this}}><i class="icon-hand-up"></i> Fingerprint</a></li>
-                <li><a {{action "configureTrustAgent" this}}><i class="icon-unlock-alt"></i> Configure Trust Agent</a></li>
-              {{/if}}
-              {{#if isScheduled}}
-                <li><a {{action "unschedule" this}}><i class="icon-magnet"></i> Unset for VM placement</a></li>
-              {{else}}
-                {{#if isAssured}}
-                  {{#with this as node}}
-                    {{#each socketsEnum}}
-                      <li><a {{action "schedule" node this}}><i class="icon-magnet"></i> Place VMs on Socket {{this}}</a></li>
-                    {{/each}}
-                  {{/with}}
-                {{/if}}
-              {{/if}}
-              {{#if samRegistered}}
-                <li><a {{action "unregister" this}}><i class="icon-remove"></i> Unregister</a></li>
-              {{/if}}
-              {{#unless isMonitored}}
-                <li><a {{action "setMonitored" this}}><i class="icon-eye-open"></i> Set agent mode to monitored</a></li>
-              {{/unless}}
-              {{#unless isAssured}}
-                <li><a {{action "setAssured" this}}><i class="icon-trophy"></i> Set agent mode to assured</a></li>
-              {{/unless}}
-            </ul>
+      <div class="btn-group">
+        {{#if isOn}}
+          <a {{bind-attr class=":btn :btn-mini isActionPending:disabled"}} {{action "reboot" this}}><i class="icon-refresh"></i> Reboot</a>
+        {{else}}
+          <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
+        {{/if}}
+        <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+          {{#unless isActionPending}}
+            <span class="caret"></span>
           {{else}}
-            {{#if samRegistered}}
-              <a {{action "unregister" this}}>
-                <i class="icon-remove"></i> Unregister
-              </a>
-            {{/if}}
-          {{/if}}
-        </div>
+            <i class="icon-spinner icon-spin"></i>
+          {{/unless}}
+        </a>
+        
+        {{#if nodeActionsAvailable}}
+          <ul class="dropdown-menu">
+            {{view nodeActions}}
+          </ul>
+        {{/if}}
+
+      </div>
+
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}

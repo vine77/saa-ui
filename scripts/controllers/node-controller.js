@@ -52,7 +52,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
-      return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
+      return 'This is a monitored node. SAM will monitor this node, but VMs with SLAs may not be placed here.';
     } else {
       return 'This is not an assured node. VMs with SLAs may not be placed here.';
     }
@@ -121,7 +121,7 @@ App.NodeController = Ember.ObjectController.extend({
   isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(self.get('status.trust')).capitalize();
     message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
     if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
@@ -130,9 +130,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.su_current'))) {
-      return '<strong>Service Compute Units</strong>: N/A';
+      return '<strong>SAM Units</strong>: N/A';
     } else {
-      return 'Service Compute Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SCU';
+      return 'SAM Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SU';
     }
   }.property('utilization.su_current', 'utilization.su_max'),
   computeWidth: function () {
@@ -227,6 +227,179 @@ App.NodeController = Ember.ObjectController.extend({
   graphObserver: function () {
     return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isSelected', 'isExpanded'),
+
+  nodeActions: function () {
+    var nodeActionsContent = [
+      {
+        name: 'Export Trust Report',
+        method: 'exportTrustReport',
+        icon: 'icon-external-link',
+        sortOrder: 0
+      },
+      {
+        name: 'Remove Trust',
+        method: 'removeTrust',
+        icon: 'icon-unlock',
+        sortOrder: 1
+      },
+      {
+        name: 'Add Trust',
+        method: 'addTrust',
+        icon: 'icon-lock',
+        sortOrder: 2
+      },
+      {
+        name: 'Fingerprint',
+        method: 'trustFingerprint',
+        icon: 'icon-hand-up',
+        sortOrder: 3
+      },
+      {
+        name: 'Configure Trust Agent',
+        method: 'configureTrustAgent',
+        icon: 'icon-unlock-alt',
+        sortOrder: 4
+      },
+      {
+        name: 'Unset for VM placement',
+        method: 'unschedule',
+        icon: 'icon-magnet',
+        sortOrder: 5
+      },
+      {
+        name: 'Place VMs on Socket',
+        method: 'schedule',
+        icon: 'icon-magnet',
+        sortOrder: 6
+      },
+      {
+        name: 'Unregister',
+        method: 'unregister',
+        icon: 'icon-remove',
+        sortOrder: 7
+      },
+      {
+        name: 'Set agent mode to monitored',
+        method: 'setMonitored',
+        icon: 'icon-eye-open',
+        sortOrder: 8
+      },
+      {
+        name: 'Set agent mode to assured',
+        method: 'setAssured',
+        icon: 'icon-trophy',
+        sortOrder: 9
+      },
+
+    ];
+    var itemController = this;
+    var nodeActions = Ember.CollectionView.create({
+      content: nodeActionsContent,
+      tagName: '',
+      itemViewClass: Ember.View.extend({
+        tagName: 'li',
+        node: itemController,
+
+        template: function () {
+          var listItem = '';
+          var additionalListItems = [];
+          switch (this.get('content.method')) {
+            case 'exportTrustReport':
+              if (App.mtWilson.get('isInstalled')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'removeTrust':
+              if (App.mtWilson.get('isInstalled') && itemController.get('isTrustRegistered')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'addTrust':
+              if (App.mtWilson.get('isInstalled') && !itemController.get('isTrustRegistered')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'trustFingerprint':
+              if (App.mtWilson.get('isInstalled')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'configureTrustAgent':
+              if (App.mtWilson.get('isInstalled')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'unschedule':
+              if (itemController.get('isScheduled')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'schedule':
+              listItem = false;
+              if (!itemController.get('isScheduled')) {
+                itemController.get('socketsEnum').forEach( function(item, index, enumerable) {
+                  additionalListItems.push('<li><a {{action "schedule" view.node '+item+'}}><i class="icon-magnet"></i> Place VMs on Socket '+item+'</a></li>');
+                });
+              }
+              break;
+            case 'unregister':
+              if (itemController.get('samRegistered')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'setMonitored':
+              if (itemController.get('isMonitored')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            case 'setAssured':
+              if (itemController.get('isAssured')) {
+                listItem = true;
+              } else {
+                listItem = false;
+              }
+              break;
+            default:
+              listItem = false;
+          }
+          
+          if (listItem) {
+            return Ember.Handlebars.compile('<a {{action "'+this.get('content.method')+'" view.node}}><i class="'+this.get('content.icon')+'"></i> '+this.get('content.name')+'</a>');
+          }
+          if (additionalListItems.length > 0) {
+            return Ember.Handlebars.compile(additionalListItems.join(''));
+          }
+        }.property('App.mtWilson.isInstalled')
+      }),
+
+      sortProperties: ['sortOrder']
+    });
+    return nodeActions;
+  }.property('App.mtWilson.isInstalled'),
+  nodeActionsAvailable: function() {
+    console.log('nodeActions', this.get('nodeActions'));
+    if (App.isEmpty(this.get('nodeActions'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('nodeActions'),
 
   actions: {
     exportTrustReport: function (model) {
