@@ -160,6 +160,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     reboot: function (node) {
       node.set('isActionPending', true);
+      node.set('isRebooting', true);
       var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
       if (confirmed) {
         this.store.createRecord('action', {
@@ -167,13 +168,16 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node: this.store.getById('node', node.get('id'))
         }).save().then(function () {
           node.set('isActionPending', false);
+          node.set('isRebooting', false);
           App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
         }, function (xhr) {
           node.set('isActionPending', false);
+          node.set('isRebooting', false);
           App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
         });
       } else {
         node.set('isActionPending', false);
+        node.set('isRebooting', false);
       }
     },
     unregister: function (node) {
