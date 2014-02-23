@@ -460,7 +460,11 @@ App.TrustMleRoute = Ember.Route.extend({
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
   beforeModel: function () {
-    this.transitionTo('settings.upload');
+    if (this.controllerFor('build').get('isReadycloud')) {
+      this.transitionTo('settings.users');
+    } else {
+      this.transitionTo('settings.upload');
+    }
   }
 });
 App.SettingsUploadRoute = Ember.Route.extend({
