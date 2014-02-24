@@ -47,7 +47,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         }).then(function () {
           return App.openrc.upload();
         }).then(function () {
-          if (this.get('isNeutronConfigRequired') && !!$('#quantumForm').find('input[type=file]').val()) {
+          if (self.get('isNeutronConfigRequired') && !!$('#quantumForm').find('input[type=file]').val()) {
             return App.quantum.upload();
           }
         }).then(function () {
