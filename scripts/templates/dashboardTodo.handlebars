@@ -1,17 +1,26 @@
 <div class="portlet span4">
   <div class="header">To Do</div>
   <div class="portlet-content">
-    {{#if isConfigured}}
+    {{#if controllers.application.isConfigured}}
       <div class="alert alert-success">
         There are no to do items.
       </div>
     {{else}}
-      <div class="alert alert-info">
-        <strong>Instructions</strong>: Configuration files must be {{#link-to "settings.upload"}}uploaded{{/link-to}} before {{App.application.title}} may be started and the application becomes fully enabled.
-      </div>
-      <div class="alert alert-warning">
-        Upload <code>nova.conf</code>, <code>openrc</code>, and <code>ovs_quantum_plugin.ini</code> from the {{#link-to "settings.upload"}}Upload{{/link-to}} page.
-      </div>
+      {{#if controllers.build.isReadycloud}}
+        <div class="alert alert-info">
+          <strong>Note</strong>: Cloud Orchestrator must be <a {{bind-attr href="controllers.application.fuelUrl"}} target="_blank">configured</a> before before the application becomes fully enabled.
+        </div>
+        <div class="alert alert-warning">
+          <strong>Instructions</strong>: Go to <a {{bind-attr href="controllers.application.fuelUrl"}} target="_blank">Orchestration</a> and use the Fuel interface to set up your cloud.
+        </div>
+      {{else}}
+        <div class="alert alert-info">
+          <strong>Note</strong>: Configuration files must be {{#link-to "settings.upload"}}uploaded{{/link-to}} before {{App.application.title}} may be started and the application becomes fully enabled.
+        </div>
+        <div class="alert alert-warning">
+          <strong>Instructions</strong>: Upload <code>nova.conf</code>, <code>openrc</code>, and <code>ovs_quantum_plugin.ini</code> from the {{#link-to "settings.upload"}}Upload{{/link-to}} page.
+        </div>
+      {{/if}}
     {{/if}}
   </div>
 </div>

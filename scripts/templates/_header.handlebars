@@ -62,14 +62,16 @@
           </ul>
         </nav>
         <ul class="account">
-          <li>
-            <a {{bind-attr href="fuelUrl"}} target="_blank">
-              Orchestration <i class="icon-external-link icon-small"></i>
-            </a>
-          </li>
+          {{#if controllers.build.isReadycloud}}
+            <li>
+              <a {{bind-attr href="fuelUrl"}} target="_blank">
+                Orchestration <i class="icon-external-link icon-small"></i>
+              </a>
+            </li>
+          {{/if}}
           <li>
             <a {{bind-attr href="horizonUrl"}} target="_blank">
-              Tenant interface (Horizon) <i class="icon-external-link icon-small"></i>
+              Horizon <i class="icon-external-link icon-small"></i>
             </a>
           </li>
           <li>Logged in as {{#link-to "settings.user" controllers.login.username}}{{controllers.login.username}}{{/link-to}}</li>
