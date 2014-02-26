@@ -502,6 +502,12 @@ App.SettingsUserRoute = Ember.Route.extend({
     return this.store.find('user', params.user_id);
   }
 });
+App.SettingsControllerRoute = Ember.Route.extend({
+  setupController: function (controller, model) {
+    this._super(controller, model);
+  }
+});
+
 
 App.StatusesIndexRoute = Ember.Route.extend({
   beforeModel: function () {

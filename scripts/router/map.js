@@ -15,6 +15,7 @@ App.Router.map(function () {
       this.route('dev');
       this.route('log');
       this.route('trust');
+      this.route('controller');
     });
     this.resource('data', function () {  // Routes under /data must have successful promises
       this.resource('nodes', function () {
