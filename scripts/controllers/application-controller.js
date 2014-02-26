@@ -28,6 +28,9 @@ App.ApplicationController = Ember.Controller.extend({
   horizonUrl: function() {
     return '/horizon';
   }.property(),
+  fuelUrl: function() {
+    return '/fuel';
+  }.property(),
   logsUrl: function() {
     return '/kibana3/index.html#/dashboard/file/logs.json';
   }.property(),
