@@ -5,6 +5,8 @@
   <form class="form-horizontal well-clean shadow-lifted">
     <section id="uninstall-trust-server">
       <legend>Reset Controller</legend>
+      <p class="text-warning"> Warning: Resetting the controller may result in an unavailable UI for a duration of time, and depending on your network configuration the UI IP may change. </p>
+
       <dl class="dl-horizontal">
         {{#unless isActionPending}}
           <button class="btn btn-danger" {{action "reset"}}>Reset Controller</button>
@@ -18,6 +20,8 @@
   <form class="form-horizontal well-clean shadow-lifted">
     <section id="uninstall-trust-server">
       <legend>Shutdown Controller</legend>
+      <p class="text-warning"> Warning: Shutting down the controller may result in an unavailable UI. </p>
+      
       <dl class="dl-horizontal">
         {{#unless isActionPending}}
           <button class="btn btn-danger" {{action "shutdown"}}>Shutdown Controller</button>
