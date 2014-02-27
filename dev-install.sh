@@ -45,3 +45,6 @@ echo -e "\nFinished installing front-end development tools. \n"
 echo -e "Running setup.jf-osdev01 (nova.conf, openrc, is-slave)... \n"
 yes | sudo ~/SAM/overlays/ipm/rootfs/etc/sam-testing/setup.jf-osdev01
 echo -e "Finished running setup.jf-osdev01 \n"
+
+sudo head -n -2 /etc/environment > ~/tmp/environment
+sudo mv ~/tmp/environment /etc/environment
