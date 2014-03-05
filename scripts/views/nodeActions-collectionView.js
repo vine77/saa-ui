@@ -2,8 +2,7 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
   tagName: '',
   node: '',
   sortProperties: ['sortOrder'],
-  content: function() {
-    return [
+  content : [
       {
         name: 'Export Trust Report',
         method: 'exportTrustReport',
@@ -74,9 +73,7 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
         disabledWhileRebooting: true,
         sortOrder: 9
       },
-    ];
-  }.property(),
-
+  ],
   itemViewClass: Ember.View.extend({
     tagName: '',
     node: function () {
@@ -85,9 +82,12 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
       }
     }.property('parentView'),
     isDisabled: function() {
+      
       if (this.get('node.isRebooting') && (this.get('content.disabledWhileRebooting')) ) {
+        console.log('isDisabled triggered', true);
         return true;
       } else {
+        console.log('isDisabled triggered', false);
         return false;
       }
     }.property('node', 'node.isRebooting'),
@@ -101,15 +101,28 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
           }
           break;
         case 'removeTrust':
-          if (App.mtWilson.get('isInstalled') && this.get('node.isTrustRegistered')) {
-            return true;
+          if (App.mtWilson.get('isInstalled')) {
+            if (this.get('node.isTrustRegistered')) {
+              return true;
+            } else {
+              return false;
+            }
           } else {
             return false;
           }
           break;
         case 'addTrust':
-          if (App.mtWilson.get('isInstalled') && !this.get('node.isTrustRegistered')) {
-            return true;
+          if (this.get('node.id') == '6396CA86-4A94-E111-BD1D-001E6747F26A') {
+            globalCollectionView = this;
+            console.log('inside AddTrust value of node.isTrustRegistered', this.get('node.isTrustRegistered'));
+          }
+
+          if (App.mtWilson.get('isInstalled')) {
+            if (this.get('node.isTrustRegistered')) {
+              return false;
+            } else {
+              return true;
+            }
           } else {
             return false;
           }
@@ -162,7 +175,8 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
         default:
           return false;
       }
-    }.property('node'),
+    //}.property('node', 'node.@each', 'node.isRebooting'),
+    }.property(),
     areAdditionalListItems: function() {
       var additionalListItems = [];
       if (this.get('content.method') == 'schedule') {
@@ -174,7 +188,12 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
       }
       return additionalListItems;
     }.property('node.socketsEnum.@each'),
+    /*
     template: function () {
+      if (this.get('node.id') == 'E7F5D9AB-C294-E111-BD1D-001E6747F682') {
+        console.log('INSIDE TEMPLATE');
+      }
+
       if (this.get('isListItem')) {
         return Ember.Handlebars.compile('<li {{bind-attr class="view.isDisabled:disabled"}}>'+
                                         '{{#if view.isDisabled}}'+
@@ -187,6 +206,51 @@ App.NodeActionsCollectionView = Ember.CollectionView.extend({
       if (this.get('areAdditionalListItems').length > 0) {
         return Ember.Handlebars.compile(this.get('areAdditionalListItems').join(''));
       }
-    }.property('App.mtWilson.isInstalled', 'node.isRebooting', 'node', 'view.isDisabled')
+
+    //}.property('App.mtWilson.isInstalled', 'node.isRebooting', 'node', 'view.isDisabled', 'node.@each')
+    }.property('App.mtWilson.isInstalled', 'node.isRebooting', 'node', 'view.isDisabled', 'node.@each', 'view.isListItem')
+  */
+    
+
+/*
+    template: Ember.Handlebars.compile('<li {{bind-attr class="view.isDisabled:disabled"}}>'+
+                                        '{{#if view.isDisabled}}'+
+                                        '<a><i {{bind-attr classBinding=view.content.icon}}></i> {{view.content.name}} </a>'+
+                                        '{{else}}'+
+                                        '<a {{action "'+this.get('view.content.method')+'" view.node}}><i class="'+this.get('view.content.icon')+'"></i> '+this.get('view.content.name')+'</a>'+
+                                        '{{/if}}'+
+                                        '</li>') 
+*/
+
+/*
+    template: Ember.Handlebars.compile('<li {{bind-attr class="view.isDisabled:disabled"}}>'+
+                                      'TEST'+this.get('view.content.method')+
+                                      '{{#if view.isDisabled}}'+
+                                      '<a><i {{bind-attr classBinding=view.content.icon}}></i> {{view.content.name}} </a>'+
+                                      '{{else}}'+
+                                      '<a {{action "'+this.get('view.content.method')+'" view.node}}><i class="'+this.get('view.content.icon')+'"></i> '+this.get('parentView.content.name')+'</a>'+
+                                      '{{/if}}'+
+                                      
+                                      '</li>')
+*/
+
+
+    template: function() {
+      if (this.get('node.id') == '6396CA86-4A94-E111-BD1D-001E6747F26A') {
+        console.log('template triggered');
+      }
+      if (this.get('isListItem')) {
+        return  Ember.Handlebars.compile('<li {{bind-attr class="view.isDisabled:disabled"}}>'+
+                                        '{{#if view.isDisabled}}'+
+                                        '<a><i class="'+this.get('content.icon')+'"></i> {{view.content.name}} </a>'+
+                                        '{{else}}'+
+                                        '<a {{action "'+this.get('content.method')+'" view.node}}><i class="'+this.get('content.icon')+'"></i> '+this.get('content.name')+'</a>'+
+                                        '{{/if}}'+
+                                        '</li>');
+      }
+      if (this.get('areAdditionalListItems').length > 0) {
+        return Ember.Handlebars.compile(this.get('areAdditionalListItems').join(''));
+      }
+    }.property()
   }),
 });

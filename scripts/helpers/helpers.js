@@ -284,6 +284,18 @@ Ember.Handlebars.registerBoundHelper('numberWithCommas', function (value) {
   return App.numberWithCommas(value);
 });
 
+/*
+Ember.Handlebars.registerHelper('eachWithParams', function(property, options) {
+  console.log('>here<');
+  console.log('property', property);
+  console.log('options', options);
+  Ember.defineProperty(this, 'isLive', Ember.computed('isNew', 'isDeleted', 'isLoading', function() {
+    return !model.get('isNew') && !model.get('isDeleted') && !model.get('isLoading');
+  }));
+  //return Ember.Handlebars.helpers.boundIf.call(this, "isLive", options);
+});
+*/
+
 // Miscellaneous helpers
 App.selectTab = function (event) {
   var tabClassName = $(event.target).text().toLowerCase().replace(/ /g,'-');
