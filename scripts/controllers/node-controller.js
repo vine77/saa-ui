@@ -321,20 +321,6 @@ App.NodeController = Ember.ObjectController.extend({
     return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isSelected', 'isExpanded'),
 
-  nodeActions: function () {
-    var itemController = this;
-    return App.NodeActionsCollectionView.create({
-      node: itemController
-    });
-  }.property('App.mtWilson.isInstalled'),
-  nodeActionsAreAvailable: function() {
-    if (this.get('nodeActions.childViews').filterBy('isListItem', true).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }.property('nodeActions'),
-
   actions: {
     exportTrustReport: function (model) {
       this.get('controllers.nodes').send('exportTrustReport', model);
