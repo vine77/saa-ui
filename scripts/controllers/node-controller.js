@@ -97,43 +97,45 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('nodeActions.@each'),
 
   updateKibana: function() {
-    if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
-    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
-    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
 
-    if (this.get('isSelected')) {
-      this.get('controllers.logBar.kibanaNodesQuery').push('host_id: \"'+this.get('id').toString()+'\"');
-      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
-      var newFieldId = filterSrv.set({
-        type:'querystring',
-        mandate:'must',
-        query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
-      }, fieldId);
+    Ember.run(function(){
+      if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
+      var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
+      var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
 
-      this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
-      dashboard.refresh();
-
-    } else {
-      var inArray = $.inArray('host_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
-      if (inArray !== -1) {
-        this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
-
+      if (this.get('isSelected')) {
+        this.get('controllers.logBar.kibanaNodesQuery').push('host_id: \"'+this.get('id').toString()+'\"');
         var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
         var newFieldId = filterSrv.set({
           type:'querystring',
           mandate:'must',
           query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
         }, fieldId);
+
         this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
-
-        if (this.get('controllers.logBar.kibanaNodesQuery').length < 1) {
-          filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.nodes'));
-          this.set('controllers.logBar.kibanaFieldIds.nodes', null);
-        }
         dashboard.refresh();
-      }
-    }
 
+      } else {
+        var inArray = $.inArray('host_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
+        if (inArray !== -1) {
+          this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
+
+          var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
+          var newFieldId = filterSrv.set({
+            type:'querystring',
+            mandate:'must',
+            query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
+          }, fieldId);
+          this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
+
+          if (this.get('controllers.logBar.kibanaNodesQuery').length < 1) {
+            filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.nodes'));
+            this.set('controllers.logBar.kibanaFieldIds.nodes', null);
+          }
+          dashboard.refresh();
+        }
+      }
+    });
   }.observes('isSelected'),
 
   // Computed properties

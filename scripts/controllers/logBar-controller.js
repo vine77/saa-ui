@@ -58,12 +58,25 @@ App.LogBarController = Ember.ObjectController.extend({
   }.observes('controllers.nodes.@each.isSelected'),
 
   criticalitySelected: null,
+
+/*
+  criticalitySelected: function() {
+    console.log('criticalitySelected begin');
+    globalObject = this.get('controllers.criticalities').objectAt(4);
+    console.log('controllers.criticalities.objectAt.3', this.get('controllers.criticalities').objectAt(4));
+
+    //this.get('controllers.criticalities').objectAt(3).set('isSelected', true);
+    return this.get('controllers.criticalities').objectAt(4);
+  }.property('controllers.criticalities.@each'),
+*/
+
+
   selectListCriticalities: function() {
     return this.get('controllers.criticalities');
   }.property('controllers.criticalities.model.@each'),
   selectListCriticalitiesObserver: function () {
     var criticalitySelected = this.get('criticalitySelected');
-    if (criticalitySelected) {  
+    if (criticalitySelected) {
       if (this.get('criticalitySelected.id') !== "context") {
         this.set('isSettingEach', true);
         this.get('controllers.criticalities').setEach('isSelected', false);
