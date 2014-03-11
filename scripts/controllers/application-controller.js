@@ -29,13 +29,12 @@ App.ApplicationController = Ember.Controller.extend({
     return '/horizon';
   }.property(),
   fuelUrl: function() {
-    return '/fuel';
+    return '//' + window.location.hostname + ':8000';
   }.property(),
   logsUrl: function() {
     return '/kibana3/index.html#/dashboard/file/logs.json';
   }.property(),
   graphsUrl: function() {
-    // Node Data (Graphite): port 85
     return '//' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
