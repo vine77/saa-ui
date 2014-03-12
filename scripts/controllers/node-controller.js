@@ -50,22 +50,6 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Unset for VM placement',
-        method: 'unschedule',
-        icon: 'icon-magnet',
-        disabledWhileRebooting: false,
-        sortOrder: 5,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Place VMs on Socket',
-        method: 'schedule',
-        icon: 'icon-magnet',
-        disabledWhileRebooting: true,
-        sortOrder: 6,
-        node: this
-      }),
-      App.ActionController.create({
         name: 'Unregister',
         method: 'unregister',
         icon: 'icon-remove',
@@ -89,6 +73,22 @@ App.NodeController = Ember.ObjectController.extend({
         sortOrder: 9,
         node: this
       }),
+      App.ActionController.create({
+        name: 'Place VMs on Socket',
+        method: 'schedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: true,
+        sortOrder: 6,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Unset for VM placement',
+        method: 'unschedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: false,
+        sortOrder: 5,
+        node: this
+      })
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
@@ -358,88 +358,30 @@ App.ServiceController = Ember.ObjectController.extend({
 
 App.ActionController = Ember.ObjectController.extend({
   isDisabled: function() {
-    if (this.get('node.isRebooting') && (this.get('disabledWhileRebooting'))) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
       case 'exportTrustReport':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'removeTrust':
-        if (App.mtWilson.get('isInstalled')) {
-          if (this.get('node.isTrustRegistered')) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-        break;
+        return (App.mtWilson.get('isInstalled')) ? this.get('node.isTrustRegistered') : false;
       case 'addTrust':
-        if (App.mtWilson.get('isInstalled')) {
-          if (this.get('node.isTrustRegistered')) {
-            return false;
-          } else {
-            return true;
-          }
-        } else {
-          return false;
-        }
-        break;
+        return (App.mtWilson.get('isInstalled')) ? !this.get('node.isTrustRegistered') : false;
       case 'trustFingerprint':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'configureTrustAgent':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'unschedule':
-        if (this.get('node.isScheduled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isScheduled');
       case 'schedule':
         return false;
-        break;
       case 'unregister':
-        if (this.get('node.samRegistered')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.samRegistered');
       case 'setMonitored':
-        if (this.get('node.isMonitored')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isAgentInstalled') && !this.get('node.isMonitored');
       case 'setAssured':
-        if (this.get('node.isAssured')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isAgentInstalled') && !this.get('node.isAssured');
       default:
         return false;
     }

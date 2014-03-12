@@ -110,35 +110,35 @@
             {{else}}
               <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
             {{/if}}
-            <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
-              {{#unless isActionPending}}
-                <span {{bind-attr class="nodeActionsAreAvailable::disabled :caret"}}></span>
-              {{else}}
-                <i class="icon-spinner icon-spin"></i>
-              {{/unless}}
-            </a>
-            {{#with this as contextNode}}
-              <ul class="dropdown-menu">
-                {{#if nodeActionsAreAvailable}}
-                  {{#each nodeActions}}
-                     {{#if isListItem}}
-                       <li {{bind-attr class="isDisabled:disabled"}}>
-                          {{#if isDisabled}}
-                            <a><i {{bind-attr class=icon}}></i> {{name}} </a>
-                          {{else}}
-                            <a {{action "performAction" method contextNode}}>
-                              <i {{bind-attr class=icon}}></i> {{name}}
-                            </a>
-                          {{/if}}
-                        </li>
-                      {{/if}}
-                      {{view additionalListItems}}
-                  {{/each}}
+            {{#if nodeActionsAreAvailable}}
+              <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+                {{#unless isActionPending}}
+                  <span {{bind-attr class="nodeActionsAreAvailable::disabled :caret"}}></span>
                 {{else}}
-                  <li style="padding:4px;"> No actions are available. </li>
-                {{/if}}
-              </ul>
-            {{/with}}
+                  <i class="icon-spinner icon-spin"></i>
+                {{/unless}}
+              </a>
+              {{#with this as contextNode}}
+                <ul class="dropdown-menu">
+                  {{#each nodeActions}}
+                    {{#if isListItem}}
+                      <li {{bind-attr class="isDisabled:disabled"}}>
+                        {{#if isDisabled}}
+                          <a class="disabled">
+                            <i {{bind-attr class="icon"}}></i> {{name}}
+                          </a>
+                        {{else}}
+                          <a {{action "performAction" method contextNode}}>
+                            <i {{bind-attr class="icon"}}></i> {{name}}
+                          </a>
+                        {{/if}}
+                      </li>
+                    {{/if}}
+                    {{view additionalListItems}}
+                  {{/each}}
+                </ul>
+              {{/with}}
+            {{/if}}
           </div>
         </div>
       </td>
