@@ -5,5 +5,6 @@ App.Build = DS.Model.extend({
   date: DS.attr('string'),
   hostname: DS.attr('string'),
   isMaster: DS.attr('boolean'),
-  isReadycloud: DS.attr('boolean')
+  isReadycloud: DS.attr('boolean'),
+  readycloudVersion: DS.attr('string')
 });

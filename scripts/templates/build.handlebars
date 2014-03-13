@@ -4,6 +4,11 @@
 </div>
 <div class="portlet">
   <h3>Version</h3>
-  <div>{{version}}</div>
+  {{#if isReadycloud}}
+    <div>SAA {{version}}</div>
+    <div>CO {{readycloudVersion}}</div>
+  {{else}}
+    <div>{{version}}</div>
+  {{/if}}
   <small>{{timestamp date}}</small>
 </div>
