@@ -7,8 +7,14 @@
           <td class="column-medium"><strong>System Health</strong></td>
           <td>{{{healthIcon this.controllers.statuses.health}}} {{healthText this.controllers.statuses.health}} </td>
         </tr>
+        {{#if controllers.build.isReadycloud}}
+          <tr>
+            <td class="column-medium"><strong>CO Version</strong></td>
+            <td>{{controllers.build.readycloudVersion}}</td>
+          </tr>
+        {{/if}}
         <tr>
-          <td class="column-medium"><strong>IPM Version</strong></td>
+          <td class="column-medium"><strong>SAA Version</strong></td>
           <td>{{controllers.build.version}}</td>
         </tr>
         <tr>
