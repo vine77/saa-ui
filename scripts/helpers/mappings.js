@@ -56,22 +56,40 @@ App.codeToTrustConfig = function(code) {
   switch (code) {
     case 'unknown':
     case 'n/a':
-    case App.TRUST_AGENT_UNKNOWN:
-    case App.TRUST_AGENT_UNKNOWN.toString():
+    case App.TRUST_CONFIG_UNKNOWN:
+    case App.TRUST_CONFIG_UNKNOWN.toString():
       return 'unknown';
     case 'false':
-    case App.TRUST_AGENT_NOT_INSTALLED:
-    case App.TRUST_AGENT_NOT_INSTALLED.toString():
+    case App.TRUST_CONFIG_FALSE:
+    case App.TRUST_CONFIG_FALSE.toString():
       return 'false';
     case 'true':
-    case App.TRUST_AGENT_INSTALLED:
-    case App.TRUST_AGENT_INSTALLED.toString():
-      return 'installed';
+    case App.TRUST_CONFIG_TRUE:
+    case App.TRUST_CONFIG_TRUE.toString():
+      return 'true';
+    default:
+      return 'unknown'
+
   }
 }
 
-App.trustConfigToCode = function() {
-
+App.trustConfigToCode = function(trustConfig) {
+  if (typeof type === 'string') code = code.toLowerCase();
+  switch (trustConfig) {
+    case 'unknown':
+    case 'n/a':
+    case App.TRUST_CONFIG_UNKNOWN:
+    case App.TRUST_CONFIG_UNKNOWN.toString():
+      return App.TRUST_CONFIG_UNKNOWN;
+    case 'false':
+    case App.TRUST_CONFIG_FALSE:
+    case App.TRUST_CONFIG_FALSE.toString():
+      return App.TRUST_CONFIG_FALSE;
+    case 'true':
+    case App.TRUST_CONFIG_TRUE:
+    case App.TRUST_CONFIG_TRUE.toString():
+      return App.TRUST_CONFIG_TRUE;
+  }
 }
 
 
