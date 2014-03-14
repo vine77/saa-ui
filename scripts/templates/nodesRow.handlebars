@@ -28,7 +28,14 @@
           {{/view}}
         {{else}}
           {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
-            <i class="icon-large icon-unlock unregistered"></i>
+            <span class="icon-stack">
+              <i class="icon-large icon-unlock unregistered"></i>
+              {{#if isTrustAgentNotInstalledOrUnknown}}
+                <i class="secondary-icon icon-ban-circle inset"> </i>
+              {{/if}}
+            </span>
+
+            
           {{/view}}
         {{/if}}
       </div></td>

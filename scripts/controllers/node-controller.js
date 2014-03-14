@@ -201,25 +201,48 @@ App.NodeController = Ember.ObjectController.extend({
       return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
     }).join('<br>');
   }.property('cloudServices'),
+
   isTrustRegistered: Ember.computed.bool('trustNode'),
+  isTrusted: Ember.computed.equal('status.trust_status.trust', App.TRUSTED),
+  isUntrusted: Ember.computed.equal('status.trust_status.trust', App.UNTRUSTED),
+  isTrustUnknown: Ember.computed.not('status.trust_status.trust'),
+
+  isTrustAgentInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_TRUE),
+  isTrustAgentNotInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_FALSE),
+  isTrustAgentUnknown: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_UNKNOWN),
+
+  isTrustAgentNotInstalledOrUnknown: function() {
+    return this.get('isTrustAgentNotInstalled') || this.get('isTrustAgentUnknown') || !(this.get('isTrustAgentInstalled'));
+  }.property('isTrustAgentNotInstalled', 'isTrustAgentUnknown'),
 
   isTrustRegisteredMessage: function () {
     if (this.get('isTrustRegistered')) {
-      return 'Currently registered with Trust Server';
+      return 'Currently registered with Trust Server' + this.get('trustAgentMessage');
     } else {
-      return 'Not registered with Trust Server';
+      return 'Not registered with Trust Server' + this.get('trustAgentMessage');
     }
   }.property('isTrustRegistered'),
-  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
-  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
-  isTrustUnknown: Ember.computed.not('status.trust'),
+
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(self.get('status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
+    message +=  this.get('trustAgentMessage');
     return message;
-  }.property('status.trust'),
+  }.property('status.trust_status.trust'),
+
+  trustAgentMessage: function() {
+    var message = '<br> Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize();
+    message += '<br> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.tpm_enabled')).capitalize();
+    message += '<br> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.tboot_measured_launch')).capitalize();
+    message += '<br> Trust Agent Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.tagent_installed')).capitalize();
+    message += '<br> Trust Agent Running = ' + App.codeToTrustConfig(this.get('status.trust_status.tagent_running')).capitalize();
+    message += '<br> Trust Agent Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.tagent_paired')).capitalize();
+    message += '<br> Trust Agent Actual Version = ' + this.get('status.trust_status.tagent_actual_version');
+    message += '<br> Trust Agent Expected Version = ' + this.get('status.trust_status.tagent_expected_version');
+    return message;
+  }.property('status.trust_status.tagent_expected_version', 'status.trust_status.tagent_actual_version', 'status.trust_status.tagent_paired', 'status.trust_status.tagent_running', 'status.trust_status.tagent_installed', 'status.trust_status.tboot_measured_launch', 'status.trust_status.tpm_enabled', 'status.trust_status.trust_config'),
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.su_current'))) {

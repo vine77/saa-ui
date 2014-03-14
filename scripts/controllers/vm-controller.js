@@ -32,16 +32,16 @@ App.VmController = Ember.ObjectController.extend({
     operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
     return operationalMessage;
   }.property('status.operational'),
-  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
-  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
-  isUnregistered: Ember.computed.equal('status.trust', App.UNREGISTERED),
-  isTrustUnknown: Ember.computed.not('status.trust'),
+  isUntrusted: Ember.computed.equal('status.trust_status.trust', App.UNTRUSTED),
+  isTrusted: Ember.computed.equal('status.trust_status.trust', App.TRUSTED),
+  isUnregistered: Ember.computed.equal('status.trust_status.trust', App.UNREGISTERED),
+  isTrustUnknown: Ember.computed.not('status.trust_status.trust'),
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     return message;
-  }.property('status.trust_details', 'status.trust_details'),
+  }.property('status.trust_status.trust_details', 'status.trust_status.trust_details'),
   slaViolated: Ember.computed.equal('status.sla_status', 2),
   slaNotViolated: Ember.computed.equal('status.sla_status', 1),
   slaUnknown: Ember.computed.equal('status.sla_status', 0),

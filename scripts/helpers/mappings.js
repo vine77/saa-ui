@@ -35,6 +35,11 @@ App.ASSURED = 2;
 App.NEUTRON = 1;
 App.NOVA = 2;
 
+//Constants for trust configuration
+App.TRUST_CONFIG_UNKNOWN = 0;
+App.TRUST_CONFIG_FALSE = 1;
+App.TRUST_CONFIG_TRUE = 2
+
 App.caseMapping = {
   'cpu': 'CPU',
   'cpus': 'CPUs',
@@ -45,6 +50,31 @@ App.caseMapping = {
   'slo': 'SLO',
   'slos': 'SLOs'
 };
+
+App.codeToTrustConfig = function(code) {
+  if (typeof type === 'string') code = code.toLowerCase();
+  switch (code) {
+    case 'unknown':
+    case 'n/a':
+    case App.TRUST_AGENT_UNKNOWN:
+    case App.TRUST_AGENT_UNKNOWN.toString():
+      return 'unknown';
+    case 'false':
+    case App.TRUST_AGENT_NOT_INSTALLED:
+    case App.TRUST_AGENT_NOT_INSTALLED.toString():
+      return 'false';
+    case 'true':
+    case App.TRUST_AGENT_INSTALLED:
+    case App.TRUST_AGENT_INSTALLED.toString():
+      return 'installed';
+  }
+}
+
+App.trustConfigToCode = function() {
+
+}
+
+
 
 /**
  * Convert string representation of priority to corresponding integer codes
