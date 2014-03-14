@@ -20,11 +20,16 @@
       <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
           {{#view App.TooltipView titleBinding="trustMessage"}}
-            {{#if isTrustUnknown}}
-              <i class="icon-large icon-question-sign unknown"></i>
-            {{else}}
-              <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
-            {{/if}}
+            <span class="icon-stack">
+              {{#if isTrustUnknown}}
+                <i class="icon-large icon-question-sign unknown"></i>
+              {{else}}
+                <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
+              {{/if}}
+              {{#if isTrustAgentNotInstalledOrUnknown}}
+                <i class="secondary-icon icon-ban-circle inset"> </i>
+              {{/if}}
+            </span>
           {{/view}}
         {{else}}
           {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
@@ -34,8 +39,6 @@
                 <i class="secondary-icon icon-ban-circle inset"> </i>
               {{/if}}
             </span>
-
-            
           {{/view}}
         {{/if}}
       </div></td>
