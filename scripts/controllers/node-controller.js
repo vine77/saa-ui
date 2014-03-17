@@ -233,16 +233,23 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust'),
 
   trustAgentMessage: function() {
-    if ( this.get('id') == '3184A832-DB98-E111-BD1D-001E6747F64A') { globalThis = this; }
     var message = '<hr style="margin:2px">';
-    message += 'Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize();
-    message += '<br> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize();
-    message += '<br> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize();
-    message += '<br> Trust Agent Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize();
-    message += '<br> Trust Agent Running = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize();
-    message += '<br> Trust Agent Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize();
-    message += '<br> Trust Agent Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version'));
-    message += '<br> Trust Agent Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version'));
+    message += '<ul class="hover-list">';
+      message += '<li>Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '</li>';
+      message += '<ul class="hover-list">';
+        message += '<li> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
+        message += '<li> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
+        message += '<li> Trust Agent </li>';
+        message += '<ul>'
+          message += '<li> Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
+          message += '<li> Running = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
+          message += '<li> Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
+          message += '<li> Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
+          message += '<li> Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
+        message += '</ul>';
+      message += '</ul>';
+    message += '</ul>';
+
     if (!this.get('isTrustAgentInstalled')) { return message; } else { return ''; }
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
