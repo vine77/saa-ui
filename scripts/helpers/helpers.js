@@ -454,3 +454,13 @@ Ember.debouncedObserver = function (debounceFunction, property, interval) {
     Ember.run.debounce(this, debounceFunction, interval);
   }, property);
 };
+
+
+//Generic isEmpty detection and string handling
+App.na = function(value) {
+  if (App.isEmpty(value)) {
+    return 'N/A';
+  } else {
+    return value;
+  }
+}

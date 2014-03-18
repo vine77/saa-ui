@@ -35,6 +35,11 @@ App.ASSURED = 2;
 App.NEUTRON = 1;
 App.NOVA = 2;
 
+//Constants for trust configuration
+App.TRUST_CONFIG_UNKNOWN = 0;
+App.TRUST_CONFIG_FALSE = 1;
+App.TRUST_CONFIG_TRUE = 2
+
 App.caseMapping = {
   'cpu': 'CPU',
   'cpus': 'CPUs',
@@ -45,6 +50,49 @@ App.caseMapping = {
   'slo': 'SLO',
   'slos': 'SLOs'
 };
+
+App.codeToTrustConfig = function(code) {
+  if (typeof type === 'string') code = code.toLowerCase();
+  switch (code) {
+    case 'unknown':
+    case 'n/a':
+    case App.TRUST_CONFIG_UNKNOWN:
+    case App.TRUST_CONFIG_UNKNOWN.toString():
+      return 'unknown';
+    case 'false':
+    case App.TRUST_CONFIG_FALSE:
+    case App.TRUST_CONFIG_FALSE.toString():
+      return 'false';
+    case 'true':
+    case App.TRUST_CONFIG_TRUE:
+    case App.TRUST_CONFIG_TRUE.toString():
+      return 'true';
+    default:
+      return 'unknown'
+
+  }
+}
+
+App.trustConfigToCode = function(trustConfig) {
+  if (typeof type === 'string') code = code.toLowerCase();
+  switch (trustConfig) {
+    case 'unknown':
+    case 'n/a':
+    case App.TRUST_CONFIG_UNKNOWN:
+    case App.TRUST_CONFIG_UNKNOWN.toString():
+      return App.TRUST_CONFIG_UNKNOWN;
+    case 'false':
+    case App.TRUST_CONFIG_FALSE:
+    case App.TRUST_CONFIG_FALSE.toString():
+      return App.TRUST_CONFIG_FALSE;
+    case 'true':
+    case App.TRUST_CONFIG_TRUE:
+    case App.TRUST_CONFIG_TRUE.toString():
+      return App.TRUST_CONFIG_TRUE;
+  }
+}
+
+
 
 /**
  * Convert string representation of priority to corresponding integer codes

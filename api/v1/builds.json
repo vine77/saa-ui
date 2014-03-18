@@ -1,6 +1,7 @@
 {
   "builds": [
     {
+      "readycloud_version": "1.0.0",
       "hostname": "samappliance",
       "is_master": true,
       "is_readycloud": false,

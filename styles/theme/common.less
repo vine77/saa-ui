@@ -579,6 +579,18 @@ i.icon-storage {
   .icon-svg();
   background-image: url(/images/nodes/storage.svg);
 }
+.icon-stack [class^="secondary-icon"] {
+  top: 8px;
+  left: 10px;
+  font-size: 12px;
+}
+.icon-stack {
+  top:-2px;
+}
+i.inset {
+  .inset();
+}
+
 
 // Headers
 h1, h2, h3, h4, h5, h6, legend {
@@ -1240,6 +1252,15 @@ ul.comma-delimited {
     &:not(:last-of-type):after {
       content: ', '
     }
+  }
+}
+
+ul.hover-list {
+  margin-left:0px;
+  padding-left:0px;
+  li {
+    list-style-type: none;
+    text-align: left;
   }
 }
 

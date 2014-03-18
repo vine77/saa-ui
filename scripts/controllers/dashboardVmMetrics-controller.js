@@ -15,25 +15,6 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
     }
   }.property('totalVcpusPercent'),
 
-  totalCurrentSu: function() {
-    return this.get('controllers.vms').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.su_current') > 0) ? item.get('utilization.su_current') : 0;
-      return previousValue + count;
-    }, 0);
-  }.property('controllers.vms.@each.utilization'),
-  totalSuCeiling: function() {
-    return this.get('controllers.vms').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('suCeiling') > 0) ? parseFloat(item.get('suCeiling')) : 0;
-      return previousValue + count;
-    }, 0);
-  }.property('controllers.vms.@each.suCeiling'),
-  totalCurrentContention: function() {
-    return 100 * parseFloat(this.get('totalCurrentSu')) / parseFloat(this.get('totalSuCeiling'));
-  }.property('totalSuCeiling', 'totalCurrentSU'),
-  totalCurrentContentionWidth: function() {
-    return 'width:'+this.get('totalCurrentContention')+'%';
-  }.property('totalCurrentContention'),
-
   numberOfTrusted: function() {
     return this.get('controllers.vms').filterBy('status.trust', 2).get('length');
   }.property('controllers.vms.@each'),

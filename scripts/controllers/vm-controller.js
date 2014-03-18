@@ -32,16 +32,16 @@ App.VmController = Ember.ObjectController.extend({
     operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
     return operationalMessage;
   }.property('status.operational'),
-  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
-  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
-  isUnregistered: Ember.computed.equal('status.trust', App.UNREGISTERED),
-  isTrustUnknown: Ember.computed.not('status.trust'),
+  isUntrusted: Ember.computed.equal('status.trust_status.trust', App.UNTRUSTED),
+  isTrusted: Ember.computed.equal('status.trust_status.trust', App.TRUSTED),
+  isUnregistered: Ember.computed.equal('status.trust_status.trust', App.UNREGISTERED),
+  isTrustUnknown: Ember.computed.not('status.trust_status.trust'),
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     return message;
-  }.property('status.trust_details', 'status.trust_details'),
+  }.property('status.trust_status.trust_details', 'status.trust_status.trust_details'),
   slaViolated: Ember.computed.equal('status.sla_status', 2),
   slaNotViolated: Ember.computed.equal('status.sla_status', 1),
   slaUnknown: Ember.computed.equal('status.sla_status', 0),
@@ -135,8 +135,8 @@ App.VmController = Ember.ObjectController.extend({
 
   // Compute SCU allocation floor/ceiling computed properties
   hasCompute: function () {
-    return !Ember.isEmpty(this.get('utilization.su_current')) && !Ember.isEmpty(this.get('suFloor'));
-  }.property('utilization.su_current', 'suFloor'),
+    return !Ember.isEmpty(this.get('utilization.su_total')) && !Ember.isEmpty(this.get('suFloor'));
+  }.property('utilization.su_total', 'suFloor'),
   suFloor: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
@@ -167,7 +167,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('suFloor', 'suCeiling'),
   suRange: function () {
     if (Ember.isEmpty(this.get('suFloor'))) {
-      return null
+      return null;
     } else if (this.get('suFloor') === this.get('suCeiling')) {
       return parseFloat(this.get('suFloor')).toFixed(1);
     } else {
@@ -176,7 +176,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('suFloor', 'suCeiling'),
   suTotalRange: function () {
     if (Ember.isEmpty(this.get('suFloor'))) {
-      return null
+      return null;
     } else if (this.get('suFloor') === this.get('suCeiling')) {
       return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
     } else {
@@ -184,16 +184,16 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('suFloor', 'suCeiling', 'capabilities.cores'),
   allocationMin: function () {
-    if (Ember.isEmpty(this.get('suFloor'))) return 0;
-    return 100 * parseFloat(this.get('suFloor')) / parseFloat(this.get('suCeiling'));
-  }.property('suFloor', 'suCeiling'),
+    if (Ember.isEmpty(this.get('capabilities.su_allocated_min'))) return 0;
+    return 100 * parseFloat(this.get('capabilities.su_allocated_min')) / parseFloat(this.get('capabilities.su_allocated_max'));
+  }.property('capabilities.su_allocated_min', 'capabilities.su_allocated_max'),
   allocationMinWidth: function () {
     return 'width:' + this.get('allocationMin') + 'px;';
   }.property('allocationMin'),
   allocationCurrent: function () {
-    if (Ember.isEmpty(this.get('utilization.su_current'))) return 0;
-    return 100 * parseFloat(this.get('utilization.su_current')) / parseFloat(this.get('suCeiling'));
-  }.property('utilization.su_current', 'suCeiling'),
+    if (Ember.isEmpty(this.get('utilization.su_total'))) return 0;
+    return 100 * parseFloat(this.get('utilization.su_total')) / parseFloat(this.get('capabilities.su_allocated_max'));
+  }.property('utilization.su_total', 'capabilities.su_allocated_max'),
   allocationCurrentWidth: function () {
     return 'width:' + this.get('allocationCurrent') + 'px;';
   }.property('allocationCurrent'),
@@ -205,11 +205,11 @@ App.VmController = Ember.ObjectController.extend({
   }.property('allocationSuccess'),
   allocationMessage: function () {
     if (this.get('isRange')) {
-    return '<strong>Current: ' + this.get('utilization.su_current') + '</strong><br>' + 'Min: ' + this.get('suFloor') + '<br>' + 'Burst: ' + this.get('suCeiling');
+    return '<strong>Current: ' + this.get('utilization.su_total') + '</strong><br>' + 'Min: ' + this.get('capabilities.su_allocated_min') + '<br>' + 'Burst: ' + this.get('capabilities.su_allocated_max');
     } else {
-    return '<strong>Current: ' + this.get('utilization.su_current') + '</strong><br>' + 'Allocated: ' + this.get('suFloor');
+    return '<strong>Current: ' + this.get('utilization.su_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.su_allocated_min');
     }
-  }.property('suFloor', 'suCeiling', 'utilization.su_current', 'isRange'),
+  }.property('capabilities.su_allocated_min', 'capabilities.su_allocated_max', 'utilization.su_total', 'isRange'),
 
   // Observers
   graphObserver: function () {

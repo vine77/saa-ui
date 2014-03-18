@@ -50,22 +50,6 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Unset for VM placement',
-        method: 'unschedule',
-        icon: 'icon-magnet',
-        disabledWhileRebooting: false,
-        sortOrder: 5,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Place VMs on Socket',
-        method: 'schedule',
-        icon: 'icon-magnet',
-        disabledWhileRebooting: true,
-        sortOrder: 6,
-        node: this
-      }),
-      App.ActionController.create({
         name: 'Unregister',
         method: 'unregister',
         icon: 'icon-remove',
@@ -89,6 +73,22 @@ App.NodeController = Ember.ObjectController.extend({
         sortOrder: 9,
         node: this
       }),
+      App.ActionController.create({
+        name: 'Place VMs on Socket',
+        method: 'schedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: true,
+        sortOrder: 6,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Unset for VM placement',
+        method: 'unschedule',
+        icon: 'icon-magnet',
+        disabledWhileRebooting: false,
+        sortOrder: 5,
+        node: this
+      })
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
@@ -203,25 +203,57 @@ App.NodeController = Ember.ObjectController.extend({
       return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
     }).join('<br>');
   }.property('cloudServices'),
+
   isTrustRegistered: Ember.computed.bool('trustNode'),
+  isTrusted: Ember.computed.equal('status.trust_status.trust', App.TRUSTED),
+  isUntrusted: Ember.computed.equal('status.trust_status.trust', App.UNTRUSTED),
+  isTrustUnknown: Ember.computed.not('status.trust_status.trust'),
+
+  isTrustAgentInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_TRUE),
+  isTrustAgentNotInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_FALSE),
+  isTrustAgentUnknown: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_UNKNOWN),
+
+  isTrustAgentNotInstalledOrUnknown: function() {
+    return this.get('isTrustAgentNotInstalled') || this.get('isTrustAgentUnknown') || !(this.get('isTrustAgentInstalled'));
+  }.property('isTrustAgentNotInstalled', 'isTrustAgentUnknown'),
 
   isTrustRegisteredMessage: function () {
     if (this.get('isTrustRegistered')) {
-      return 'Currently registered with Trust Server';
+      return 'Currently registered with Trust Server' + this.get('trustAgentMessage');
     } else {
-      return 'Not registered with Trust Server';
+      return 'Not registered with Trust Server' + this.get('trustAgentMessage');
     }
   }.property('isTrustRegistered'),
-  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
-  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
-  isTrustUnknown: Ember.computed.not('status.trust'),
+
   trustMessage: function () {
-    var message = 'Trust Status: ' + App.trustToString(self.get('status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
+    message +=  this.get('trustAgentMessage');
     return message;
-  }.property('status.trust'),
+  }.property('status.trust_status.trust'),
+
+  trustAgentMessage: function() {
+    var message = '<hr style="margin:2px">';
+    message += '<ul class="hover-list">';
+      message += '<li>Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '</li>';
+      message += '<ul class="hover-list">';
+        message += '<li> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
+        message += '<li> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
+        message += '<li> Trust Agent </li>';
+        message += '<ul>'
+          message += '<li> Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
+          message += '<li> Running = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
+          message += '<li> Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
+          message += '<li> Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
+          message += '<li> Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
+        message += '</ul>';
+      message += '</ul>';
+    message += '</ul>';
+
+    if (!this.get('isTrustAgentInstalled')) { return message; } else { return ''; }
+  }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.su_current'))) {
@@ -360,88 +392,30 @@ App.ServiceController = Ember.ObjectController.extend({
 
 App.ActionController = Ember.ObjectController.extend({
   isDisabled: function() {
-    if (this.get('node.isRebooting') && (this.get('disabledWhileRebooting'))) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
       case 'exportTrustReport':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'removeTrust':
-        if (App.mtWilson.get('isInstalled')) {
-          if (this.get('node.isTrustRegistered')) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-        break;
+        return (App.mtWilson.get('isInstalled')) ? this.get('node.isTrustRegistered') : false;
       case 'addTrust':
-        if (App.mtWilson.get('isInstalled')) {
-          if (this.get('node.isTrustRegistered')) {
-            return false;
-          } else {
-            return true;
-          }
-        } else {
-          return false;
-        }
-        break;
+        return (App.mtWilson.get('isInstalled')) ? !this.get('node.isTrustRegistered') : false;
       case 'trustFingerprint':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'configureTrustAgent':
-        if (App.mtWilson.get('isInstalled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return App.mtWilson.get('isInstalled');
       case 'unschedule':
-        if (this.get('node.isScheduled')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isScheduled');
       case 'schedule':
         return false;
-        break;
       case 'unregister':
-        if (this.get('node.samRegistered')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.samRegistered');
       case 'setMonitored':
-        if (this.get('node.isMonitored')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isAgentInstalled') && !this.get('node.isMonitored');
       case 'setAssured':
-        if (this.get('node.isAssured')) {
-          return true;
-        } else {
-          return false;
-        }
-        break;
+        return this.get('node.isAgentInstalled') && !this.get('node.isAssured');
       default:
         return false;
     }

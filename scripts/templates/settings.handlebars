@@ -10,11 +10,7 @@
         <li>{{#link-to "settings.mailserver"}}<i class="icon-chevron-right"></i><i class="icon-envelope"></i>Mail Server{{/link-to}}</li>
         {{#if isConfigured}}
           <li>{{#link-to "settings.log"}}<i class="icon-chevron-right"></i><i class="icon-reorder"></i>Logs{{/link-to}}</li>
-        {{/if}}
-        {{#if isEnabled}}
           <li>{{#link-to "settings.trust"}}<i class="icon-chevron-right"></i><i class="icon-lock"></i>Trust{{/link-to}}</li>
-        {{/if}}
-        {{#if isEnabled}}
           <li>{{#link-to "settings.controller"}}<i class="icon-chevron-right"></i><i class="icon-sitemap"></i>Controller{{/link-to}}</li>
         {{/if}}
        </ul>
