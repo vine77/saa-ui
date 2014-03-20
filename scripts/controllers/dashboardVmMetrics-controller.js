@@ -16,7 +16,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   }.property('totalVcpusPercent'),
 
   numberOfTrusted: function() {
-    return this.get('controllers.vms').filterBy('status.trust', 2).get('length');
+    return this.get('controllers.vms').filterBy('status.trust_status.trust', 2).get('length');
   }.property('controllers.vms.@each'),
   percentOfTrusted: function () {
     return Math.round(100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfVms')));
