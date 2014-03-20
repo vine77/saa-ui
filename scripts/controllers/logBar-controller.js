@@ -7,6 +7,39 @@ App.LogBarController = Ember.ObjectController.extend({
   kibanaCriticalitiesQuery: [],
   kibanaLogcategoriesQuery: [],
   logsUrl: Ember.computed.alias('controllers.application.logsUrl'),
+
+  timeFilterId: null,
+  /*
+  timeFilterObserver: function() {
+    //check if 
+    if ( ) {
+
+    }
+  }.property('timeFilterSelected'),
+  */
+
+  timeFilterReset: function () {
+    var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
+    var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+
+    if (filterSrv.idsByType('time').length > 0) {
+      filterSrv.idsByType('time').forEach( function(item, index, enumerable) {
+        filterSrv.remove(item);
+      });
+    }
+
+    var newFieldId = filterSrv.set({
+      type: 'time',
+      from: moment.utc().toDate('yesterday'),
+      to: moment.utc(moment.utc(Date.now()).toDate()).toDate(),
+      field: '@timestamp'
+    });
+
+    this.set('timeFilterId', newFieldId);
+    dashboard.refresh();
+
+  },
+
   nodesAreAvailable: function() {
     if (this.get('controllers.nodes.length') > 0) {
       return true;
@@ -110,6 +143,8 @@ App.LogBarController = Ember.ObjectController.extend({
 
     this.set('nodeSelected', null);
     this.set('criticalitySelected', null);
+
+    this.timeFilterReset();
   },
   advancedSearch: function (model) {
     var controller = this;
@@ -129,3 +164,4 @@ App.LogBarController = Ember.ObjectController.extend({
     }).appendTo('body');
   }
 });
+
