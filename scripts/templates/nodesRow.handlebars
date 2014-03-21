@@ -144,7 +144,9 @@
                         {{/if}}
                       </li>
                     {{/if}}
-                    {{view additionalListItems}}
+                    {{#if additionalListItems}}
+                      {{view additionalListItems}}
+                    {{/if}}
                   {{/each}}
                 </ul>
               {{/with}}

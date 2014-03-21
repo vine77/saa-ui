@@ -422,17 +422,19 @@ App.ActionController = Ember.ObjectController.extend({
   additionalListItems: function() {
     var additionalListItems = [];
     if (this.get('method') == 'schedule') {
-      if (!this.get('node.isScheduled') && this.get('node')) {
+      if (this.get('node') && !this.get('node.isScheduled')) {
         this.get('node.socketsEnum').forEach( function(item, index, enumerable) {
           additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode '+item+'}}><i class="icon-magnet"></i> Place VMs on Socket '+item+'</a></li>');
         });
+        return Ember.View.extend({
+          tagName: '',
+          template: Ember.Handlebars.compile(additionalListItems.join(''))
+        });
+      } else {
+        return false;
       }
     }
-    return Ember.View.extend({
-      tagName: '',
-      template: Ember.Handlebars.compile(additionalListItems.join(''))
-    });
-  }.property('node.socketsEnum.@each'),
+  }.property('node.socketsEnum.@each', 'node.isScheduled'),
 
   actions: {
     performAction: function(method, contextNode, socket) {
