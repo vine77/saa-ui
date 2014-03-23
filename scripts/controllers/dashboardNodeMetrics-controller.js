@@ -60,7 +60,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   }.property('controllers.nodes.@each.utilization'),
   totalSuMax: function() {
     var totalSuMax = this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.su_max') > 0) ? parseFloat(item.get('utilization.su_max')) : 0;
+      var count = (item.get('utilization.scu_max') > 0) ? parseFloat(item.get('utilization.scu_max')) : 0;
       return previousValue + count;
     }, 0);
     return Math.round(totalSuMax);

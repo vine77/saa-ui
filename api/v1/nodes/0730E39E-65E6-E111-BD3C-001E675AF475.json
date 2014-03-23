@@ -23,7 +23,7 @@
       "sam_registered": true,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,

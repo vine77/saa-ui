@@ -23,7 +23,7 @@
       "sam_registered": true,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -137,7 +137,7 @@
       "sam_registered": true,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -256,7 +256,7 @@
       "sam_registered": true,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -442,7 +442,7 @@
       "sam_registered": true,
       "utilization": {
         "su_current": 17.3,
-        "su_max": 73.6,
+        "scu_max": 73.6,
         "uptime": null,
         "network": null,
         "ipc": 0.32,
@@ -545,7 +545,7 @@
       "sam_registered": false,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -640,7 +640,7 @@
       "sam_registered": false,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -735,7 +735,7 @@
       "sam_registered": false,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -854,7 +854,7 @@
       "sam_registered": false,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -949,7 +949,7 @@
       "sam_registered": false,
       "utilization": {
         "su_current": null,
-        "su_max": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
