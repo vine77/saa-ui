@@ -38,7 +38,7 @@
         "ipc": 2.48,
         "uptime": null,
         "network": null,
-        "su_burst": 0.01,
+        "scu_burst": 0.01,
         "su_total": 0.01,
         "threads": [
           {
