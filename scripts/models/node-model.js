@@ -9,7 +9,6 @@ App.Node = DS.Model.extend({
   cloudServices: DS.attr(),
   contention: DS.attr(),
   ids: DS.attr(),
-  memory: DS.attr(),
   name: DS.attr('string'),
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
@@ -21,8 +20,10 @@ App.Node = DS.Model.extend({
   status: DS.attr(),
   tier: DS.attr('string'),
   utilization: DS.attr(),
-  vcpus: DS.attr(),
   vmInfo: DS.attr(),
+
+  memory: Ember.computed.alias('utilization.cloud.memory'),
+  vcpus: Ember.computed.alias('utilization.cloud.vcpus'),
 
   // Computed properties for sorting
   state: function () {

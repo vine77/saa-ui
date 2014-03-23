@@ -447,6 +447,16 @@
           "total": 0,
           "steal": 0,
           "guest": 0
+        },
+        "cloud": {
+          "memory": {
+            "max": 72379,
+            "used": 512
+          },
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          }
         }
       },
       "graphite_url": "/render?target=stats.SAM",
@@ -463,10 +473,6 @@
       "vm_info": {
         "count": 0,
         "max": null
-      },
-      "memory": {
-        "max": 72379,
-        "used": 512
       },
       "vm_ids": [],
       "status": {
@@ -516,11 +522,7 @@
         "ip_address": "192.168.3.106",
         "cloud_id": "00F400BD-762A-E211-9C53-001E67343C15"
       },
-      "node_name": "clientnode6.hpr.com",
-      "vcpus": {
-        "max": 512,
-        "used": 0
-      }
+      "node_name": "clientnode6.hpr.com"
     },
     {
       "scheduler_persistent": false,
