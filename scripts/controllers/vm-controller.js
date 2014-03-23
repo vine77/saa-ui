@@ -42,9 +42,10 @@ App.VmController = Ember.ObjectController.extend({
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     return message;
   }.property('status.trust_status.trust_details', 'status.trust_status.trust_details'),
-  slaViolated: Ember.computed.equal('status.sla_status', 2),
-  slaNotViolated: Ember.computed.equal('status.sla_status', 1),
   slaUnknown: Ember.computed.equal('status.sla_status', 0),
+  slaNotViolated: Ember.computed.equal('status.sla_status', 1),
+  slaViolatedWarning: Ember.computed.equal('status.sla_status', 2),
+  slaViolatedError: Ember.computed.equal('status.sla_status', 3),
   isSlaMissing: function () {
     return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === App.ASSURED;
   }.property('sla', 'node.samControlled'),
@@ -53,8 +54,10 @@ App.VmController = Ember.ObjectController.extend({
       var slaStatus = '';
       if (this.get('slaNotViolated')) {
         slaStatus = 'Not violated';
-      } else if (this.get('slaViolated')) {
-        slaStatus = 'Violated';
+      } else if (this.get('slaViolatedWarning')) {
+        slaStatus = 'Violated (Warning)';
+      } else if (this.get('slaViolatedError')) {
+        slaStatus = 'Violated (Error)';
       } else {
         slaStatus = 'Unknown';
       }
