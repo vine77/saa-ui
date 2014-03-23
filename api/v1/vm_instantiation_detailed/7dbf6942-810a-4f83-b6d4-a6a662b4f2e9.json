@@ -307,7 +307,7 @@
     "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
     "flavor_id": "0591ea84-e8af-4412-8914-305988157889",
     "generation_time": "2014-01-08T01:18:24+0000",
-    "scheduled_by_sam": true,
+    "scheduled_by_saa": true,
     "vm_id": "7dbf6942-810a-4f83-b6d4-a6a662b4f2e9",
     "id": "7dbf6942-810a-4f83-b6d4-a6a662b4f2e9"
   }

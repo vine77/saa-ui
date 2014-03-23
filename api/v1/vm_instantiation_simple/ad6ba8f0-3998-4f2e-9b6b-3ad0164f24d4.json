@@ -73,7 +73,7 @@
     ],
     "flavor_id": "0591ea84-e8af-4412-8914-305988157889",
     "generation_time": "2014-01-08T01:17:56+0000",
-    "scheduled_by_sam": true,
+    "scheduled_by_saa": true,
     "vm_id": "ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4",
     "id": "ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4"
   }
