@@ -46,7 +46,7 @@ App.ApplicationController = Ember.Controller.extend({
     return '/kibana3/index.html#/dashboard/file/logs.json';
   }.property(),
   graphsUrl: function() {
-    return '//' + window.location.hostname + ':85';
+    return 'http://' + window.location.hostname + ':85';
   }.property(),
   isDrawerExpanded: false,
   autoRefresh: function () {
