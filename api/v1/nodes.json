@@ -45,7 +45,8 @@
         "memory_size": null,
         "cpu_type": null,
         "cache_size": null,
-        "sockets": null
+        "sockets": null,
+        "max_scu_per_core": 5
       },
       "vm_info": {
         "count": 17,
@@ -157,7 +158,8 @@
         "memory_size": null,
         "cpu_type": null,
         "cache_size": null,
-        "sockets": null
+        "sockets": null,
+        "max_scu_per_core": 6
       },
       "vm_info": {
         "count": 22,
@@ -274,7 +276,8 @@
         "memory_size": null,
         "cpu_type": null,
         "cache_size": null,
-        "sockets": null
+        "sockets": null,
+        "max_scu_per_core": 7
       },
       "vm_info": {
         "count": 90,
@@ -468,7 +471,8 @@
         "memory_size": "49152 MB",
         "cpu_type": "",
         "cache_size": "20480 kB",
-        "sockets": 2
+        "sockets": 2,
+        "max_scu_per_core": 8
       },
       "vm_info": {
         "count": 0,

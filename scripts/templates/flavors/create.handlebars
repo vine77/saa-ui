@@ -118,6 +118,9 @@
                   <small class="block">{{slo.sloTemplate.description}}</small>
                 </p>
               {{/each}}
+              <p>
+                <small>Note: Compute SLOs are allocated per vCPU. The compute capabilities of your nodes range from {{controllers.nodes.minScuCapabilities}} to {{controllers.nodes.maxScuCapabilities}} SCUs per vCPU with an average of {{controllers.nodes.averageScuCapabilities}} SCUs per vCPU.</small>
+              </p>
             {{/if}}
           </div>
         </div>

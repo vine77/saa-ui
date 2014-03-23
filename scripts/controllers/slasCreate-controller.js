@@ -1,4 +1,5 @@
 App.SlasCreateController = Ember.ObjectController.extend({
+  needs: ['nodes'],
   isSlaCreating: false,
   sloTemplates: function () {
     return this.store.all('sloTemplate');

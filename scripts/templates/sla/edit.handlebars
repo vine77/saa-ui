@@ -11,7 +11,7 @@
         {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
         <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
       </p>
-     {{#each slo in slos itemController="slo"}}
+      {{#each slo in slos itemController="slo"}}
         <p class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
             contentBinding="sloTemplates"
@@ -46,11 +46,14 @@
           {{/if}}
 
           {{slo.sloTemplate.unit}}
-          
+
           <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
           <small class="block">{{slo.sloTemplate.description}}</small>
         </p>
       {{/each}}
+      <p>
+        <small>Note: Compute SLOs are allocated per vCPU. The compute capabilities of your nodes range from {{controllers.nodes.minScuCapabilities}} to {{controllers.nodes.maxScuCapabilities}} SCUs per vCPU with an average of {{controllers.nodes.averageScuCapabilities}} SCUs per vCPU.</small>
+      </p>
     </div>
   </div>
   <div class="modal-footer">

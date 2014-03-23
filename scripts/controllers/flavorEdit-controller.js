@@ -1,5 +1,5 @@
 App.FlavorEditController = Ember.ObjectController.extend({
-  needs: ['flavors', 'slas'],
+  needs: ['flavors', 'slas', 'nodes'],
   isFlavorEditing: false,
   flavorsWithoutSlas: function () {
     return this.get('controllers.flavors').filterBy('sla', null);

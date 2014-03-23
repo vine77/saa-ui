@@ -112,6 +112,20 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     return Math.min(this.get('listView.pageSize'), this.get('length'));
   }.property('listView.pageSize', 'length'),
 
+  allScuCapabilities: function () {
+    return this.get('model').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
+  }.property('model.@each'),
+  maxScuCapabilities: function () {
+    return Math.max.apply(null, this.get('allScuCapabilities'));
+  }.property('allScuCapabilities'),
+  minScuCapabilities: function () {
+    return Math.min.apply(null, this.get('allScuCapabilities'));
+  }.property('allScuCapabilities'),
+  averageScuCapabilities: function () {
+    return this.get('allScuCapabilities').reduce(function(previousValue, item, index, enumerable) {
+      return previousValue + item;
+    }, 0) / this.get('allScuCapabilities').get('length');
+  }.property('allScuCapabilities'),
 
 
   // Actions

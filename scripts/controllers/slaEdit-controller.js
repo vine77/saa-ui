@@ -1,4 +1,5 @@
 App.SlaEditController = Ember.ObjectController.extend({
+  needs: ['nodes'],
   isSlaEditing: false,
   sloTemplates: function () {
     return this.store.all('sloTemplate');
