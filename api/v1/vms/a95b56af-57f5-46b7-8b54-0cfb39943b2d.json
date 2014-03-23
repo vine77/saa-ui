@@ -39,7 +39,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.41,
-        "su_total": 0.41,
+        "scu_total": 0.41,
         "threads": [
           {
             "scu_current": 0.4,

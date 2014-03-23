@@ -29,7 +29,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
   }, {
     title: 'SCU',
     description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
-    sortBy: 'utilization.su_total'
+    sortBy: 'utilization.scu_total'
   }, {
     title: 'Memory',
     description: 'Memory utilization',
@@ -134,7 +134,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           },
           utilization: {
             memory: App.readableSizeToBytes(item.get('utilization.memory')),
-            scu_current: item.get('scu_current.su_total')
+            scu_current: item.get('scu_current.scu_total')
           }
         });
       });

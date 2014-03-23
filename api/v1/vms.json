@@ -39,7 +39,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.41,
-        "su_total": 0.41,
+        "scu_total": 0.41,
         "threads": [
           {
             "scu_current": 0.4,
@@ -162,7 +162,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.42,
-        "su_total": 0.42,
+        "scu_total": 0.42,
         "threads": [
           {
             "scu_current": 0.42,
@@ -285,7 +285,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.47,
-        "su_total": 0.47,
+        "scu_total": 0.47,
         "threads": [
           {
             "scu_current": 0,
@@ -408,7 +408,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.42,
-        "su_total": 0.42,
+        "scu_total": 0.42,
         "threads": [
           {
             "scu_current": 0,
@@ -531,7 +531,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.4,
-        "su_total": 0.4,
+        "scu_total": 0.4,
         "threads": [
           {
             "scu_current": 0,
@@ -654,7 +654,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.43,
-        "su_total": 0.43,
+        "scu_total": 0.43,
         "threads": [
           {
             "scu_current": 0.43,
@@ -777,7 +777,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.41,
-        "su_total": 0.41,
+        "scu_total": 0.41,
         "threads": [
           {
             "scu_current": 0.41,
@@ -900,7 +900,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.43,
-        "su_total": 0.43,
+        "scu_total": 0.43,
         "threads": [
           {
             "scu_current": 0,
@@ -1023,7 +1023,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.38,
-        "su_total": 0.38,
+        "scu_total": 0.38,
         "threads": [
           {
             "scu_current": 0.38,
@@ -1146,7 +1146,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.43,
-        "su_total": 0.43,
+        "scu_total": 0.43,
         "threads": [
           {
             "scu_current": 0,
@@ -1269,7 +1269,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1359,7 +1359,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1449,7 +1449,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1539,7 +1539,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1629,7 +1629,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1719,7 +1719,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1809,7 +1809,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1899,7 +1899,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -1989,7 +1989,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2079,7 +2079,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2169,7 +2169,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2259,7 +2259,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2349,7 +2349,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2439,7 +2439,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2529,7 +2529,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2619,7 +2619,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2709,7 +2709,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2799,7 +2799,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2889,7 +2889,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -2979,7 +2979,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3069,7 +3069,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3159,7 +3159,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3249,7 +3249,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3339,7 +3339,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3429,7 +3429,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3519,7 +3519,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3609,7 +3609,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3699,7 +3699,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3789,7 +3789,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3879,7 +3879,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -3969,7 +3969,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4059,7 +4059,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4149,7 +4149,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4239,7 +4239,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4329,7 +4329,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4419,7 +4419,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4509,7 +4509,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4599,7 +4599,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4689,7 +4689,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4779,7 +4779,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4869,7 +4869,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -4959,7 +4959,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5049,7 +5049,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5139,7 +5139,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5229,7 +5229,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5319,7 +5319,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5409,7 +5409,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5499,7 +5499,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.01,
-        "su_total": 0.01,
+        "scu_total": 0.01,
         "threads": [
           {
             "scu_current": 0.01,
@@ -5589,7 +5589,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5679,7 +5679,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5769,7 +5769,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5859,7 +5859,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -5949,7 +5949,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6039,7 +6039,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 2,
-        "su_total": 2,
+        "scu_total": 2,
         "threads": [
           {
             "scu_current": 0,
@@ -6129,7 +6129,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 2,
-        "su_total": 2,
+        "scu_total": 2,
         "threads": [
           {
             "scu_current": 0,
@@ -6219,7 +6219,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6309,7 +6309,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6399,7 +6399,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6489,7 +6489,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6579,7 +6579,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6669,7 +6669,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6759,7 +6759,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6849,7 +6849,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -6939,7 +6939,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7029,7 +7029,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7119,7 +7119,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0.01,
-        "su_total": 0.01,
+        "scu_total": 0.01,
         "threads": [
           {
             "scu_current": 0.01,
@@ -7209,7 +7209,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7299,7 +7299,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7389,7 +7389,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7479,7 +7479,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7569,7 +7569,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7659,7 +7659,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7749,7 +7749,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7839,7 +7839,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -7929,7 +7929,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8019,7 +8019,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8109,7 +8109,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8199,7 +8199,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8289,7 +8289,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8379,7 +8379,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8469,7 +8469,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8559,7 +8559,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8649,7 +8649,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8739,7 +8739,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8829,7 +8829,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -8919,7 +8919,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9009,7 +9009,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9099,7 +9099,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9189,7 +9189,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9279,7 +9279,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9369,7 +9369,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9459,7 +9459,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9549,7 +9549,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9639,7 +9639,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9729,7 +9729,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9819,7 +9819,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9909,7 +9909,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -9999,7 +9999,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10089,7 +10089,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10179,7 +10179,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10269,7 +10269,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10359,7 +10359,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10449,7 +10449,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10539,7 +10539,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10629,7 +10629,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10719,7 +10719,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10809,7 +10809,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10899,7 +10899,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -10989,7 +10989,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11079,7 +11079,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11169,7 +11169,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11259,7 +11259,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11349,7 +11349,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11439,7 +11439,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11529,7 +11529,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11619,7 +11619,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11709,7 +11709,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 2,
-        "su_total": 2,
+        "scu_total": 2,
         "threads": [
           {
             "scu_current": 0,
@@ -11799,7 +11799,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
@@ -11889,7 +11889,7 @@
         "uptime": null,
         "network": null,
         "scu_burst": 0,
-        "su_total": 0,
+        "scu_total": 0,
         "threads": [
           {
             "scu_current": 0,
