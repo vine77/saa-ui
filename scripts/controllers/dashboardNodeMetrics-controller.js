@@ -54,7 +54,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
 
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.su_current') > 0) ? item.get('utilization.su_current') : 0;
+      var count = (item.get('utilization.scu_current') > 0) ? item.get('utilization.scu_current') : 0;
       return previousValue + count;
     }, 0);
   }.property('controllers.nodes.@each.utilization'),

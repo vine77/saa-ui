@@ -34,7 +34,7 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/de0f3f48-5310-4110-90d5-4395a1843193"
       },
       "utilization": {
-        "su_current": 0,
+        "scu_current": 0,
         "ipc": 0.16,
         "uptime": null,
         "network": null,
@@ -42,7 +42,7 @@
         "su_total": 0,
         "threads": [
           {
-            "su_current": 0,
+            "scu_current": 0,
             "id": 41486
           }
         ],

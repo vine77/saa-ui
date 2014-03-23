@@ -22,7 +22,7 @@
       "id": "0730E39E-65E6-E111-BD3C-001E675AF475",
       "sam_registered": true,
       "utilization": {
-        "su_current": null,
+        "scu_current": null,
         "scu_max": null,
         "uptime": null,
         "network": null,

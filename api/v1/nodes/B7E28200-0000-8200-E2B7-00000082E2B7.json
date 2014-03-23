@@ -22,7 +22,7 @@
       "id": "B7E28200-0000-8200-E2B7-00000082E2B7",
       "sam_registered": true,
       "utilization": {
-        "su_current": null,
+        "scu_current": null,
         "scu_max": null,
         "uptime": null,
         "network": null,

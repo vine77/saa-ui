@@ -21,7 +21,7 @@
       "id": "00F400BD-762A-E211-9C53-001E67343C15",
       "sam_registered": true,
       "utilization": {
-        "su_current": 2.3,
+        "scu_current": 2.3,
         "scu_max": 73.6,
         "uptime": null,
         "network": null,

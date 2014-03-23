@@ -22,7 +22,7 @@
       "id": "973D1534-B403-E211-BBFA-001E673B9418",
       "sam_registered": true,
       "utilization": {
-        "su_current": null,
+        "scu_current": null,
         "scu_max": null,
         "uptime": null,
         "network": null,

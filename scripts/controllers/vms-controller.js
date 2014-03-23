@@ -134,7 +134,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           },
           utilization: {
             memory: App.readableSizeToBytes(item.get('utilization.memory')),
-            su_current: item.get('su_current.su_total')
+            scu_current: item.get('scu_current.su_total')
           }
         });
       });
