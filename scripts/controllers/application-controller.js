@@ -4,10 +4,22 @@ App.ApplicationController = Ember.Controller.extend({
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
+    var self = this;
     this._super();
     this.autoRefresh();
     this.resizeHandler();
     $(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
+    // Check link for OpenStack Horizon
+    Ember.$.get('/horizon').then(function () {
+      self.set('isHorizonAvailable', true);
+    }, function () {
+      Ember.$.get('/dashboard').then(function () {
+        self.set('isHorizonAvailable', true);
+        self.set('horizonUrl', '/dashboard');
+      }, function () {
+        self.set('isHorizonAvailable', false);
+      });
+    });
   },
   width: null,
   height: null,
@@ -25,9 +37,8 @@ App.ApplicationController = Ember.Controller.extend({
   isEnabled: function () {
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
-  horizonUrl: function() {
-    return '/horizon';
-  }.property(),
+  isHorizonAvailable: false,
+  horizonUrl: '/horizon',
   fuelUrl: function() {
     return '//' + window.location.hostname + ':8000';
   }.property(),
