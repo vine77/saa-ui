@@ -130,7 +130,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           },
           capabilities: {
             memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
-            su_allocated: item.get('capabilities.su_allocated_max')
+            scu_allocated: item.get('capabilities.scu_allocated_max')
           },
           utilization: {
             memory: App.readableSizeToBytes(item.get('utilization.memory')),
