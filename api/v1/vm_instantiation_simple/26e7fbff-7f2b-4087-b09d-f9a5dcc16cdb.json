@@ -42,7 +42,7 @@
     },
     "schedule_time": "2014-01-06T23:37:23+0000",
     "nodes_count": {
-      "under_sam_control": 4,
+      "under_saa_control": 4,
       "total": 6
     },
     "sla_name": "Unsecure Bronze",
