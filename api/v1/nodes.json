@@ -8,7 +8,6 @@
         "uri": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
       },
       "uri": "/nodes/973D1534-B403-E211-BBFA-001E673B9418",
-      "sam_controlled": 2,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -20,10 +19,9 @@
         }
       ],
       "id": "973D1534-B403-E211-BBFA-001E673B9418",
-      "sam_registered": true,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -122,7 +120,6 @@
         "uri": "/api/v1/nodes/0730E39E-65E6-E111-BD3C-001E675AF475"
       },
       "uri": "/nodes/0730E39E-65E6-E111-BD3C-001E675AF475",
-      "sam_controlled": 2,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -134,10 +131,9 @@
         }
       ],
       "id": "0730E39E-65E6-E111-BD3C-001E675AF475",
-      "sam_registered": true,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -241,7 +237,6 @@
         "uri": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
       },
       "uri": "/nodes/B7E28200-0000-8200-E2B7-00000082E2B7",
-      "sam_controlled": 2,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -253,10 +248,9 @@
         }
       ],
       "id": "B7E28200-0000-8200-E2B7-00000082E2B7",
-      "sam_registered": true,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -427,7 +421,6 @@
         "logs": "/api/v1/logs?node=00F400BD-762A-E211-9C53-001E67343C15"
       },
       "uri": "/nodes/00F400BD-762A-E211-9C53-001E67343C15",
-      "sam_controlled": 2,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -439,10 +432,9 @@
         }
       ],
       "id": "00F400BD-762A-E211-9C53-001E67343C15",
-      "sam_registered": true,
       "utilization": {
-        "su_current": 17.3,
-        "su_max": 73.6,
+        "scu_current": 17.3,
+        "scu_max": 73.6,
         "uptime": null,
         "network": null,
         "ipc": 0.32,
@@ -455,6 +447,16 @@
           "total": 0,
           "steal": 0,
           "guest": 0
+        },
+        "cloud": {
+          "memory": {
+            "max": 72379,
+            "used": 512
+          },
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          }
         }
       },
       "graphite_url": "/render?target=stats.SAM",
@@ -471,10 +473,6 @@
       "vm_info": {
         "count": 0,
         "max": null
-      },
-      "memory": {
-        "max": 72379,
-        "used": 512
       },
       "vm_ids": [],
       "status": {
@@ -524,11 +522,7 @@
         "ip_address": "192.168.3.106",
         "cloud_id": "00F400BD-762A-E211-9C53-001E67343C15"
       },
-      "node_name": "clientnode6.hpr.com",
-      "vcpus": {
-        "max": 512,
-        "used": 0
-      }
+      "node_name": "clientnode6.hpr.com"
     },
     {
       "scheduler_persistent": false,
@@ -537,15 +531,13 @@
         "logs": "/api/v1/logs?node=C19346D2-73E6-520C-BDBD-AAD0BD566CBD"
       },
       "uri": "/nodes/None",
-      "sam_controlled": 0,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [],
       "id": "C19346D2-73E6-520C-BDBD-AAD0BD566CBD",
-      "sam_registered": false,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -625,7 +617,6 @@
         "logs": "/api/v1/logs?node=60D2FFA3-38BF-5462-BAFC-80764A9C622F"
       },
       "uri": "/nodes/None",
-      "sam_controlled": 0,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -637,10 +628,9 @@
         }
       ],
       "id": "60D2FFA3-38BF-5462-BAFC-80764A9C622F",
-      "sam_registered": false,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -720,7 +710,6 @@
         "logs": "/api/v1/logs?node=CAF4B84A-34BD-5645-A426-E25A633A849D"
       },
       "uri": "/nodes/None",
-      "sam_controlled": 0,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -732,10 +721,9 @@
         }
       ],
       "id": "CAF4B84A-34BD-5645-A426-E25A633A849D",
-      "sam_registered": false,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -815,7 +803,6 @@
         "logs": "/api/v1/logs?node=D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
       },
       "uri": "/nodes/None",
-      "sam_controlled": 0,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -851,10 +838,9 @@
         }
       ],
       "id": "D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C",
-      "sam_registered": false,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,
@@ -934,7 +920,6 @@
         "logs": "/api/v1/logs?node=D7E6ED8E-7996-518C-AAEF-DF3A1A60286B"
       },
       "uri": "/nodes/None",
-      "sam_controlled": 0,
       "scheduler_mark": null,
       "node_trust_report_id": null,
       "cloud_services": [
@@ -946,10 +931,9 @@
         }
       ],
       "id": "D7E6ED8E-7996-518C-AAEF-DF3A1A60286B",
-      "sam_registered": false,
       "utilization": {
-        "su_current": null,
-        "su_max": null,
+        "scu_current": null,
+        "scu_max": null,
         "uptime": null,
         "network": null,
         "ipc": null,

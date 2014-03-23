@@ -9,17 +9,21 @@ App.Node = DS.Model.extend({
   cloudServices: DS.attr(),
   contention: DS.attr(),
   ids: DS.attr(),
-  memory: DS.attr(),
   name: DS.attr('string'),
-  samControlled: DS.attr('number'),  // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
-  samRegistered: DS.attr('boolean'),
+  // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
+  samControlled: Ember.computed.alias('status.mode'),
+  samRegistered: function () {
+    return this.get('status.mode') == App.MONITORED || this.get('status.mode') == App.ASSURED;
+  }.property('status.mode'),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
   status: DS.attr(),
   tier: DS.attr('string'),
   utilization: DS.attr(),
-  vcpus: DS.attr(),
   vmInfo: DS.attr(),
+
+  memory: Ember.computed.alias('utilization.cloud.memory'),
+  vcpus: Ember.computed.alias('utilization.cloud.vcpus'),
 
   // Computed properties for sorting
   state: function () {

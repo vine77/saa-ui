@@ -138,8 +138,8 @@ App.VmController = Ember.ObjectController.extend({
 
   // Compute SCU allocation floor/ceiling computed properties
   hasCompute: function () {
-    return !Ember.isEmpty(this.get('utilization.su_total')) && !Ember.isEmpty(this.get('suFloor'));
-  }.property('utilization.su_total', 'suFloor'),
+    return !Ember.isEmpty(this.get('utilization.scu_total')) && !Ember.isEmpty(this.get('suFloor'));
+  }.property('utilization.scu_total', 'suFloor'),
   suFloor: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
@@ -187,16 +187,16 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('suFloor', 'suCeiling', 'capabilities.cores'),
   allocationMin: function () {
-    if (Ember.isEmpty(this.get('capabilities.su_allocated_min'))) return 0;
-    return 100 * parseFloat(this.get('capabilities.su_allocated_min')) / parseFloat(this.get('capabilities.su_allocated_max'));
-  }.property('capabilities.su_allocated_min', 'capabilities.su_allocated_max'),
+    if (Ember.isEmpty(this.get('capabilities.scu_allocated_min'))) return 0;
+    return 100 * parseFloat(this.get('capabilities.scu_allocated_min')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+  }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   allocationMinWidth: function () {
     return 'width:' + this.get('allocationMin') + 'px;';
   }.property('allocationMin'),
   allocationCurrent: function () {
-    if (Ember.isEmpty(this.get('utilization.su_total'))) return 0;
-    return 100 * parseFloat(this.get('utilization.su_total')) / parseFloat(this.get('capabilities.su_allocated_max'));
-  }.property('utilization.su_total', 'capabilities.su_allocated_max'),
+    if (Ember.isEmpty(this.get('utilization.scu_total'))) return 0;
+    return 100 * parseFloat(this.get('utilization.scu_total')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+  }.property('utilization.scu_total', 'capabilities.scu_allocated_max'),
   allocationCurrentWidth: function () {
     return 'width:' + this.get('allocationCurrent') + 'px;';
   }.property('allocationCurrent'),
@@ -208,11 +208,11 @@ App.VmController = Ember.ObjectController.extend({
   }.property('allocationSuccess'),
   allocationMessage: function () {
     if (this.get('isRange')) {
-    return '<strong>Current: ' + this.get('utilization.su_total') + '</strong><br>' + 'Min: ' + this.get('capabilities.su_allocated_min') + '<br>' + 'Burst: ' + this.get('capabilities.su_allocated_max');
+    return '<strong>Current: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Min: ' + this.get('capabilities.scu_allocated_min') + '<br>' + 'Burst: ' + this.get('capabilities.scu_allocated_max');
     } else {
-    return '<strong>Current: ' + this.get('utilization.su_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.su_allocated_min');
+    return '<strong>Current: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.scu_allocated_min');
     }
-  }.property('capabilities.su_allocated_min', 'capabilities.su_allocated_max', 'utilization.su_total', 'isRange'),
+  }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max', 'utilization.scu_total', 'isRange'),
 
   // Observers
   graphObserver: function () {

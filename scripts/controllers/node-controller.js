@@ -256,21 +256,21 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (App.isEmpty(this.get('utilization.su_current'))) {
+    if (App.isEmpty(this.get('utilization.scu_current'))) {
       return '<strong>SAM Units</strong>: N/A';
     } else {
-      return 'SAM Units: ' + this.get('utilization.su_current') + ' out of ' + this.get('utilization.su_max') + ' SU';
+      return 'SAM Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
     }
-  }.property('utilization.su_current', 'utilization.su_max'),
+  }.property('utilization.scu_current', 'utilization.scu_max'),
   computeWidth: function () {
-    if (this.get('utilization.su_current') === 0 || App.isEmpty(this.get('utilization.su_current'))) {
+    if (this.get('utilization.scu_current') === 0 || App.isEmpty(this.get('utilization.scu_current'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('utilization.su_current'), 0, this.get('utilization.su_max'));
+      percent = App.rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.su_current', 'utilization.su_max'),
-  computeExists: Ember.computed.notEmpty('utilization.su_current'),
+  }.property('utilization.scu_current', 'utilization.scu_max'),
+  computeExists: Ember.computed.notEmpty('utilization.scu_current'),
 
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
   contentionFormatted: function () {

@@ -42,7 +42,7 @@
     },
     "schedule_time": "2014-01-06T23:37:23+0000",
     "nodes_count": {
-      "under_sam_control": 4,
+      "under_saa_control": 4,
       "total": 6
     },
     "sla_name": "Unsecure Bronze",
@@ -94,7 +94,7 @@
     ],
     "flavor_id": "0591ea84-e8af-4412-8914-305988157889",
     "generation_time": "2014-01-08T01:17:35+0000",
-    "scheduled_by_sam": true,
+    "scheduled_by_saa": true,
     "vm_id": "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb",
     "id": "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb"
   }

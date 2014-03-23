@@ -300,14 +300,14 @@
     },
     "schedule_time": "2014-01-06T23:04:12+0000",
     "nodes_count": {
-      "under_sam_control": 3,
+      "under_saa_control": 3,
       "total": 3
     },
     "vm_trust_status": false,
     "sla_id": "6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
     "flavor_id": "e4d642f1-c6d3-4812-a1f3-7c94de93f9ca",
     "generation_time": "2014-01-08T01:17:01+0000",
-    "scheduled_by_sam": true,
+    "scheduled_by_saa": true,
     "vm_id": "962cf7e0-e058-4825-9173-879cdc4be11a",
     "id": "962cf7e0-e058-4825-9173-879cdc4be11a"
   }

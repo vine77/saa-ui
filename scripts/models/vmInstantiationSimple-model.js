@@ -68,7 +68,7 @@ App.VmInstantiationSimple = DS.Model.extend({
 // Embedded models
 App.VmInstantiationSimpleNodesCount = DS.Model.extend({
   total: DS.attr('string'),
-  under_sam_control: DS.attr('string')
+  under_saa_control: DS.attr('string')
 });
 
 App.VmInstantiationSimpleSloGate = DS.Model.extend({

@@ -34,27 +34,27 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/251efa22-3b60-41e3-bb91-cb223ba4c961"
       },
       "utilization": {
-        "su_current": 0.1,
+        "scu_current": 0.1,
         "ipc": 1.73,
         "uptime": null,
         "network": null,
-        "su_burst": 0.42,
-        "su_total": 0.42,
+        "scu_burst": 0.42,
+        "scu_total": 0.42,
         "threads": [
           {
-            "su_current": 0,
+            "scu_current": 0,
             "id": 83646
           },
           {
-            "su_current": 0.42,
+            "scu_current": 0.42,
             "id": 83647
           },
           {
-            "su_current": 0,
+            "scu_current": 0,
             "id": 83644
           },
           {
-            "su_current": 0,
+            "scu_current": 0,
             "id": 83645
           }
         ],
@@ -69,9 +69,9 @@
       "capabilities": {
         "cores": 4,
         "memory_size": "4145152 KB",
-        "su_allocated_max": 2,
-        "su_allocated": 0,
-        "su_allocated_min": 0
+        "scu_allocated_max": 2,
+        "scu_allocated": 0,
+        "scu_allocated_min": 0
       },
       "node_name": "clientnode9.hpr.com",
       "sla_id": "6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",

@@ -109,7 +109,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="column-medium">Service Compute Units (SCUs)</th>
-          <td>{{na utilization.su_total}} out of {{na suTotalRange}} SCU(s) allocated</td>
+          <td>{{na utilization.scu_total}} out of {{na suTotalRange}} SCU(s) allocated</td>
         </tr>
         <tr>
           <th class="column-medium">CPU Throughput</th>
@@ -125,7 +125,7 @@
         </tr>
         <tr>
           <th class="column-medium">Uptime</th>
-          <td>{{na utilization.uptime}}</td>
+          <td>{{na status.uptime}}</td>
         </tr>
       </table>
     </div>
@@ -253,7 +253,7 @@
             </tr>
             <tr>
               <td># of SAA-controlled nodes</td>
-              <td>{{vmInstantiationSimple.nodesCount.under_sam_control}}</td>
+              <td>{{vmInstantiationSimple.nodesCount.under_saa_control}}</td>
             </tr>
           </tbody>
         </table>
