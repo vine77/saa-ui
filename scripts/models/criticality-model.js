@@ -32,6 +32,10 @@ App.Criticality.FIXTURES = [
   },
   {
     id: 6,
+    label: 'Error+'
+  },
+  {
+    id: 7,
     label: 'Critical'
   },
   {

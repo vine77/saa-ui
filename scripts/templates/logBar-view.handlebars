@@ -16,14 +16,22 @@
     {{/if}}
 
     {{view Ember.Select viewName="select"
-      contentBinding="selectListCriticalities"
+      contentBinding="cleanedUpCriticalities"
       selectionBinding="criticalitySelected"
       optionLabelPath="content.label"
       optionValuePath="content.id"
-      }}
+      prompt="Select Severity"
+    }}
 
     <button {{action "reset"}} class="btn btn-inverse btn-small log-buttons">Reset</button>
     <button {{action "advancedSearch"}} class="btn btn-info btn-small log-buttons">Advanced</button>
+
+    Toggle Graphical Mode:
+    <div class="btn-group">
+      <button {{action "graphicalMode" true}} {{bind-attr class="isGraphicalMode:btn-primary:btn :btn-small :log-buttons"}}>On</button>
+      <button {{action "graphicalMode" false}} {{bind-attr class="isGraphicalMode:btn:btn-primary :btn-small :log-buttons"}}>Off</button>
+    </div>
+
   </div>
   <iframe {{bind-attr src="logsUrl"}} id="allLogsFrame" name="allLogsFrame" class="logsFrame"></iframe>
 {{else}}

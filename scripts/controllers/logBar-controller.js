@@ -7,17 +7,9 @@ App.LogBarController = Ember.ObjectController.extend({
   kibanaCriticalitiesQuery: [],
   kibanaLogcategoriesQuery: [],
   logsUrl: Ember.computed.alias('controllers.application.logsUrl'),
+  isGraphicalMode: false,
 
   timeFilterId: null,
-  /*
-  timeFilterObserver: function() {
-    //check if 
-    if ( ) {
-
-    }
-  }.property('timeFilterSelected'),
-  */
-
   timeFilterReset: function () {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
@@ -30,7 +22,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
     var newFieldId = filterSrv.set({
       type: 'time',
-      from: moment.utc().toDate('yesterday'),
+      from: moment.utc().subtract('days', 1).toDate(),
       to: moment.utc(moment.utc(Date.now()).toDate()).toDate(),
       field: '@timestamp'
     });
@@ -47,18 +39,6 @@ App.LogBarController = Ember.ObjectController.extend({
       return false;
     }
   }.property('controllers.nodes.model.@each'),
-  criticalitiesFiltered: function() {
-    var returnArray = [];
-    this.get('controllers.criticalities').forEach( function (item, index, enumerable) {
-      if ((App.isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
-        returnArray.push(item);
-      }
-    });
-    return returnArray;
-  }.property('controllers.criticalities'),
-  selectedCriticalities: function() {
-    return this.get('controllers.criticalities').filterProperty('isSelected', true);
-  }.property('controllers.criticalities.model.@each'),
 
   nodeSelected: null,
   selectListNodes: function() {
@@ -92,21 +72,38 @@ App.LogBarController = Ember.ObjectController.extend({
 
   criticalitySelected: null,
 
-/*
-  criticalitySelected: function() {
-    console.log('criticalitySelected begin');
-    globalObject = this.get('controllers.criticalities').objectAt(4);
-    console.log('controllers.criticalities.objectAt.3', this.get('controllers.criticalities').objectAt(4));
+  cleanedUpCriticalities: function () {
+    var cleanedUpCriticalities = ['Warning+', 'Error+', 'Multiple Selections'];
+    var returnArray = [];
 
-    //this.get('controllers.criticalities').objectAt(3).set('isSelected', true);
-    return this.get('controllers.criticalities').objectAt(4);
-  }.property('controllers.criticalities.@each'),
-*/
+    this.get('controllers.criticalities').forEach( function(item, index, enumerable) {
+      var inArray = $.inArray(item.get('label'), cleanedUpCriticalities);
+      if (inArray !== -1) {
+        returnArray.push(item);
+      }
+    });
+    return returnArray;
+  }.property('controllers.criticalities.model.@each'),
+
+  criticalitiesFiltered: function() {
+    var returnArray = [];
+    this.get('controllers.criticalities').forEach( function (item, index, enumerable) {
+      if ((App.isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
+        returnArray.push(item);
+      }
+    });
+    return returnArray;
+  }.property('controllers.criticalities'),
+
+  selectedCriticalities: function() {
+    return this.get('controllers.criticalities').filterProperty('isSelected', true);
+  }.property('controllers.criticalities.model.@each'),
 
 
   selectListCriticalities: function() {
     return this.get('controllers.criticalities');
   }.property('controllers.criticalities.model.@each'),
+
   selectListCriticalitiesObserver: function () {
     var criticalitySelected = this.get('criticalitySelected');
     if (criticalitySelected) {
@@ -128,12 +125,18 @@ App.LogBarController = Ember.ObjectController.extend({
       }
     }
   }.observes('criticalitySelected'),
+
   criticalitiesMultipleObserver: function() {
      var criticalitiesSelected = this.get('controllers.criticalities').filterProperty('isSelected', true);
     if ((criticalitiesSelected.length > 1) && (!this.get('isSettingEach'))) {
-      this.set('criticalitySelected', this.get('selectListCriticalities.lastObject'));
+      //this.set('criticalitySelected', this.get('selectListCriticalities.lastObject'));
+      this.set('criticalitySelected', this.get('cleanedUpCriticalities.lastObject'));
     }
   }.observes('controllers.criticalities.@each.isSelected'),
+
+
+
+
 
   reset: function () {
     this.get('controllers.criticalities').setEach('isSelected', false);
@@ -162,6 +165,22 @@ App.LogBarController = Ember.ObjectController.extend({
         $('#advanced-search-modal').modal('show');
       }
     }).appendTo('body');
+  },
+
+  actions: {
+    graphicalMode: function(value) {
+      if (value) {
+        this.reset();
+        this.set('controllers.application.logsUrl', '/kibana3/index.html#/dashboard/file/logs-graphical.json');
+        this.set('isGraphicalMode', true);
+        
+      } else {
+        this.reset();
+        this.set('controllers.application.logsUrl', '/kibana3/index.html#/dashboard/file/logs.json');
+        this.set('isGraphicalMode', false);
+
+      }
+    }
   }
 });
 
