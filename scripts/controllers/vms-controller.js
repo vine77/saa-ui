@@ -28,7 +28,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
     sortBy: 'vcpusTimesSu'
   }, {
     title: 'SCU',
-    description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
+    description: 'The Utilization (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.scu_total'
   }, {
     title: 'Memory',
