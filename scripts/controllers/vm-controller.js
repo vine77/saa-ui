@@ -3,6 +3,7 @@ App.VmController = Ember.ObjectController.extend({
   isExpanded: false,
   isSelected: false,
   isActionPending: false,
+  isSelectable: true,
 
   isHealthy: function() {
     if ( (this.get('status.health') == 1) || (this.get('status.health') == 2) ) {
@@ -12,6 +13,7 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('status.health'),
 
+  
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     var healthMessage = '';
