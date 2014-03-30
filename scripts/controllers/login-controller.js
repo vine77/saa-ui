@@ -11,6 +11,9 @@ App.LoginController = App.FormController.extend({
   alert: '',
   isPending: false,
   session: null,
+  tenantType: 'default',
+  isDefaultTenant: Ember.computed.equal('tenantType', 'default'),
+  tenantName: '',
   setHeaders: function () {
     var csrfToken = this.get('csrfToken');
     //Ember.$.cookie('token', csrfToken);

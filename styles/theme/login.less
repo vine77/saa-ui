@@ -4,8 +4,36 @@
     float: none;
     margin: 20px auto;
   }
+  section {
+    margin-bottom: 1em;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .input-prepend {
+    display: block;
+  }
   input[type="text"], input[type="password"] {
     width: 210px;
+  }
+  .icon-info-blue {
+    color: @blue;
+  }
+  .forgot-password {
+    margin-top: -0.5em;
+  }
+  .tenant {
+    margin-bottom: 0.5em;
+    label {
+      display: inline;
+      margin-right: 1em;
+      &:last-child {
+        margin-right: 0;
+      }
+      input[type="radio"] {
+        vertical-align: top;
+      }
+    }
   }
   .form-actions {
     margin: 20px -19px -19px;
@@ -19,8 +47,5 @@
     button {
       float: right;
     }
-  }
-  .icon-info-blue {
-    color: @blue;
   }
 }
