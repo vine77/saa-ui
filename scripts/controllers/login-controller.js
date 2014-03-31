@@ -73,7 +73,8 @@ App.LoginController = App.FormController.extend({
 
       var session = this.store.createRecord('session', {
         username: this.get('username'),
-        password: this.get('password')
+        password: this.get('password'),
+        tenant: this.get('isDefaultTenant') ? '' : this.get('tenantName')
       });
       session.save().then(function (session) {
         self.set('csrfToken', session.get('csrfToken'));
