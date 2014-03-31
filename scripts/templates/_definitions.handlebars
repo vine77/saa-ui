@@ -1,15 +1,9 @@
 <div class="portlet">
   <h3>Definitions</h3>
-  <h4>Utilization (SCU) Definition</h4>
-  <p>
-   Utilization (SCU) is a measure of compute consumption of the host server. An SCU is equivalent to the performance of a hyper-thread in Intel Xeon 2650, 2 GHZ, 8 Core, 20MB L3 Cache.
-  </p>
-  <p>
-    SCU Capability = Frequency × Sockets × Cores × HT × Throughput/IPC<br>
-    <strong>Example:</strong> 2.0 GHz × 2 sockets × 16 (cores/socket) × 2 HT (threads/core) × 2.0 (max achievable throughput) = 265 SCU
-  </p>
-  <h4>Utilization (SCU) Usage</h4>
-  <p>Service Provider can determine Utilization (SCU) available in a host server by running Intel's SAA Compute Capacity Tool. The tool provides the total capacity of the Host server. Utilization (SCU) is equivalent to the performance of a hyper-thread in Intel Xeon 2650, 2 GHZ, 8 Core, 20MB L3 Cache.</p>
+  <h4>Service Compute Unit (SCU) Definition</h4>
+  <p>The Service Compute Unit (SCU) is a metric that is derived by running an Intel proprietary benchmark, which yields an accurate measure of the compute capability of the node.</p>
+  <h4>Service Compute Unit (SCU) Usage</h4>
+  <p>The service provider may determine Service Compute Units (SCU) available in a host server by running Intel's SAA Compute Capacity Tool. The tool provides the total capacity of the Host server. An SCU is equivalent to the performance of a hyper-thread in Intel Xeon 2650, 2 GHZ, 8 Core, 20MB L3 Cache.</p>
   <h3>Examples</h3>
   <h4>Host Servers</h4>
   <table class="table table-bordered">
@@ -72,4 +66,5 @@
       </tr>
     </tbody>
   </table>
+  <p class="alert"><strong>Note</strong>: The values in these tables are estimes. Actual SCU values will vary depending upon the hardware configuration of the server.</p>
 </div>
