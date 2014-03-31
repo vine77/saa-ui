@@ -1,14 +1,11 @@
 <div class="portlet">
-  <h3>About {{App.application.title}}</h3>
-  <p>The {{App.application.fullTitle}} is copyrighted &copy; {{year date}}.</p>
+  <h3>About Intel® DCM: SAA {{#if isReadycloud}}Solution{{/if}}
+  </h3>
+  <p>Intel® Datacenter Manager: Service Assurance Administrator {{#if isReadycloud}}Solution{{/if}} is copyrighted &copy; {{year date}}.</p>
 </div>
 <div class="portlet">
   <h3>Version</h3>
-  {{#if isReadycloud}}
-    <div>CO {{readycloudVersion}}</div>
-    <div>SAA {{version}}</div>
-  {{else}}
-    <div>{{version}}</div>
-  {{/if}}
+  {{#if isReadycloud}}<div>Intel® DCM: SAA Solution {{readycloudVersion}}</div>{{/if}}
+  <div>Intel® DCM: SAA {{version}}</div>
   <small>{{timestamp date}}</small>
 </div>

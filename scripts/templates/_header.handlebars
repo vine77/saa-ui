@@ -4,13 +4,8 @@
       <div class="brand">
         <img id="logo-company" src="images/logo-intel-white.svg" alt="Intel">
         <div class="application-title">
-          <div class="full-title">Data Center Management</div>
-          {{#if controllers.build.isReadycloud}}
-            Cloud Orchestrator<super>&trade;</super>
-            <i class="icon-cloud"></i>
-          {{else}}
-            {{App.application.longTitle}}
-          {{/if}}
+          <div class="full-title">Datacenter Manager</div>
+          Service Assurance Administrator {{#if controllers.build.isReadycloud}}Solution{{/if}}
         </div>
       </div>
       {{#if loggedIn}}
