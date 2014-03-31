@@ -24,7 +24,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
     sortBy: 'nodeName',
     sortAscending: true
   }, {
-    title: 'vCPUs × SCU',
+    title: 'Capacity (SCU)',
     sortBy: 'vcpusTimesSu'
   }, {
     title: 'SCU',
