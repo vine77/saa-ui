@@ -19,11 +19,11 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'VMs',
     sortBy: 'vmInfo.count'
   }, {
-    title: 'CPU',
+    title: 'Capacity',
     sortBy: 'cpuSort'
   }, {
-    title: 'Capacity (SCU)',
-    description: 'The Utilization (SCU) is a measure of compute consumption on the host server',
+    title: 'Utilization (SCU)',
+    description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.scu_current'
   }, {
     title: 'Memory',
