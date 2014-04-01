@@ -20,11 +20,11 @@ App.TempPasswordController = App.FormController.extend({
           }, function (xhr) {
             self.set('isActionPending', false);
             user.set('request', '');
-            App.notify('A password reset email was not sent due to an error. Note that temporary passwords can only be generated once every 120 mins.', App.ERROR);
+            App.xhrError(xhr, 'A password reset email was not sent due to an error. Note that temporary passwords can only be generated once every 120 mins.');
           });
         }, function (xhr) {
           self.set('isActionPending', false);
-          App.notify('Could not find user. Please check your username and try again.');
+          App.xhrError(xhr, 'Could not find user. Please check your username and try again.');
         });
       }
     }
