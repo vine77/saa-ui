@@ -382,7 +382,7 @@ module.exports = function (grunt) {
       'less:server',
       'livereload-start',
       'connect:livereload',
-      'open',
+      //'open',
       'watch'
     ]);
   });
