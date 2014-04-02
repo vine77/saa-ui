@@ -40,7 +40,7 @@ App.ApplicationController = Ember.Controller.extend({
   isHorizonAvailable: false,
   horizonUrl: '/horizon',
   fuelUrl: function() {
-    return '//' + window.location.hostname + ':8000';
+    return 'http://' + window.location.hostname + ':8000';
   }.property(),
   logsUrl: function() {
     return '/kibana3/index.html#/dashboard/file/logs.json';
