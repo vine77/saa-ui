@@ -145,7 +145,7 @@ App.LogBarController = Ember.ObjectController.extend({
     this.get('controllers.logcategories').setEach('isSelected', false);
 
     this.set('nodeSelected', null);
-    this.set('criticalitySelected', null);
+    this.set('criticalitySelected', this.get('controllers.criticalities').objectAt(4));
 
     this.timeFilterReset();
   },
