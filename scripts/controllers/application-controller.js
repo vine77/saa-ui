@@ -9,17 +9,6 @@ App.ApplicationController = Ember.Controller.extend({
     this.autoRefresh();
     this.resizeHandler();
     $(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
-    // Check link for OpenStack Horizon
-    Ember.$.get('/horizon').then(function () {
-      self.set('isHorizonAvailable', true);
-    }, function () {
-      Ember.$.get('/dashboard').then(function () {
-        self.set('isHorizonAvailable', true);
-        self.set('horizonUrl', '/dashboard');
-      }, function () {
-        self.set('isHorizonAvailable', false);
-      });
-    });
   },
   width: null,
   height: null,
