@@ -303,13 +303,11 @@ App.VmsVmRoute = Ember.Route.extend({
       var controller = this.controllerFor('vms');
       if (this.get('isFirstPage')) return;
       controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
-      this.transitionTo('vms');
     },
     nextPage: function () {
       var controller = this.controllerFor('vms');
       if (controller.get('isLastPage')) return;
       controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
-      this.transitionTo('vms');
     }
   }
 });

@@ -80,8 +80,9 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       this.store.find('vm');
     },
     expand: function (model) {
+      var item = this.findBy('id', model.get('id'));
       if (!model.get('isExpanded')) {
-          this.transitionToRoute('vmsVm', model);
+          this.transitionToRoute('vmsVm', item);
         } else {
           this.transitionToRoute('vms');
         }

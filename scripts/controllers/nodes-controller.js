@@ -147,8 +147,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
 
     // Individual actions
     expand: function (model) {
+      var item = this.findBy('id', model.get('id'));
       if (!model.get('isExpanded')) {
-        this.transitionToRoute('nodesNode', model);
+        this.transitionToRoute('nodesNode', item);
       } else {
         this.transitionToRoute('nodes');
       }
