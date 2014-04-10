@@ -1,0 +1,16 @@
+<div class="progress progress-success portlet-progress" {{bind-attr style="containerStyles"}}>
+  <div class="bar" {{bind-attr style="width"}} ></div>
+</div>
+<div class="portlet-progress-value">
+  <small>
+    {{#view App.TooltipView titleBinding="message"}}
+      {{#if linkExists}}
+        {{#link-to "nodes"}}
+          {{percent}}%
+        {{/link-to}}
+      {{else}}
+        <a>{{percent}}%</a>
+      {{/if}}
+    {{/view}}
+  </small>
+</div>

@@ -95,7 +95,15 @@
         </div>
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
-      <td><div class="cell-container">{{readableSize utilization.memory}}</div></td>
+      <td>
+        <div class="cell-container">
+          {{#if percentOfMemoryAvailable}}
+            {{progress-bar width=percentOfMemoryWidth containerStyles="width:80%; float:left; margin-right:2px;" percent=percentOfMemory message=percentOfMemoryMessage}}
+          {{else}}
+            {{readableSize utilization.memory}}
+          {{/if}}
+        </div>
+      </td>
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
