@@ -98,7 +98,7 @@
       <td>
         <div class="cell-container">
           {{#if percentOfMemoryAvailable}}
-            {{progress-bar width=percentOfMemoryWidth containerStyles="width:80%; float:left; margin-right:2px;" percent=percentOfMemory message=percentOfMemoryMessage}}
+            {{progress-bar width=percentOfMemoryWidth containerWidth="width:65%;" percent=percentOfMemory message=percentOfMemoryMessage}}
           {{else}}
             {{readableSize utilization.memory}}
           {{/if}}
