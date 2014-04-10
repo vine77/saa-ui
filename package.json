@@ -7,7 +7,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.4",
+    "grunt-cli": "~0.1.13",
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-concat": "~0.1.2",
     "grunt-contrib-uglify": "~0.1.1",
@@ -32,5 +33,11 @@
   },
   "engines": {
     "node": ">=0.8.0"
+  },
+  "scripts": {
+    "start": "grunt server",
+    "server": "grunt server",
+    "build": "grunt build",
+    "build-lite": "grunt build-lite"
   }
 }
