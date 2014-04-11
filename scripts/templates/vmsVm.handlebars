@@ -109,7 +109,10 @@
       <table class="table table-bordered">
         <tr>
           <th class="column-medium">Utilization (SCUs)</th>
-          <td>{{na utilization.scu_total}} out of {{na suTotalRange}} SCU(s) allocated</td>
+          <td>
+            {{na utilization.scu_total}} out of {{na suTotalRange}} SCU(s) allocated.<br>
+            (SCU overload is {{na utilization.scu_overload}} SCU(s).)
+          </td>
         </tr>
         <tr>
           <th class="column-medium">CPU Throughput</th>
