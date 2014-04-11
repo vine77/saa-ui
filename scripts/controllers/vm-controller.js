@@ -13,11 +13,11 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('status.health'),
 
-  
+
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     var healthMessage = '';
-    if (this.get('isSlaMissing')) healthMessage += 'VM is missing an SLA.<br>';
+    if (this.get('isSlaMissing')) healthMessage += "<strong>Warning</strong>: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
       // If both short and long messages are empty, show health as message
       healthMessage +=  '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
