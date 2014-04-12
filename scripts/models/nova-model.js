@@ -41,7 +41,7 @@ App.Nova = Ember.Object.extend({
       type: 'PUT',
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/start',
       complete: function (xhr, textStatus) {
-        App.log(xhr.status + ' response from PUT /api/v1/sam: ' + xhr.statusText);
+        App.log(xhr.status + ' response from PUT /api/v1/start: ' + xhr.statusText);
       }
     });
   }
