@@ -50,6 +50,7 @@ App.ApplicationController = Ember.Controller.extend({
         this.store.find('trustNode');
       }
       this.store.find('node');
+      this.store.find('action');
     }
   },
 
