@@ -134,10 +134,6 @@ App.LogBarController = Ember.ObjectController.extend({
     }
   }.observes('controllers.criticalities.@each.isSelected'),
 
-
-
-
-
   reset: function () {
     this.get('controllers.criticalities').setEach('isSelected', false);
     this.get('controllers.nodes').setEach('isSelected', false);
@@ -145,7 +141,7 @@ App.LogBarController = Ember.ObjectController.extend({
     this.get('controllers.logcategories').setEach('isSelected', false);
 
     this.set('nodeSelected', null);
-    this.set('criticalitySelected', this.get('controllers.criticalities').objectAt(4));
+    //this.set('criticalitySelected', this.get('controllers.criticalities').objectAt(4));
 
     this.timeFilterReset();
   },
