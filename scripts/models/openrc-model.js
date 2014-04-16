@@ -4,14 +4,14 @@ App.Openrc = Ember.Object.extend({
   check: function () {
     // Check if openrc file exists
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/openrcconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
-        App.log(xhr.status + ' response from GET /api/v1/openrcconfig: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
-            App.openrc.set('exists', true);
+            var exists = xhr.responseJSON.configs.findBy('id', 'openrcFile') && xhr.responseJSON.configs.findBy('id', 'openrcFile').exists;
+            App.openrc.set('exists', exists);
             break;
           default:
             App.openrc.set('exists', false);
@@ -24,10 +24,9 @@ App.Openrc = Ember.Object.extend({
     var formData = new FormData($('#openrcForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/openrcconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       data: formData,
       complete: function (xhr) {
-        App.log(xhr.status + ' response from PUT /api/v1/openrcconfig: ' + xhr.statusText);
         if (xhr.status === 200) $('#openrcForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,

@@ -36,8 +36,8 @@
       <legend>Neutron</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">
-        Upload <code>neutron.conf</code> (Havana) or <code>ovs_quantum_plugin.ini</code> (Grizzly) (required)
-          {{#if isNeutronConfigRequired}}(required){{/if}}
+        Upload <code>neutron.conf</code> (Havana) or <code>ovs_quantum_plugin.ini</code> (Grizzly)
+        {{#if isNeutronConfigRequired}}(required){{/if}}
         </label>
         <div class="controls">
           <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new isNeutronConfigRequired::disabled"}} data-provides="fileupload" data-name="quantumFile">

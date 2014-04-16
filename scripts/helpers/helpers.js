@@ -202,6 +202,10 @@ Ember.Handlebars.registerBoundHelper('timeago', function (time) {
   return (App.isEmpty(time)) ? App.NOT_APPLICABLE : new Handlebars.SafeString('<time class="timeago" datetime="' + moment(time).format() + '" title="' + moment(time).format('YYYY-MM-DD hh:mm:ss') + '"' + '>' + moment(time).fromNow() + '</time>');
 });
 
+Ember.Handlebars.registerBoundHelper('duration', function (duration) {
+  return (App.isEmpty(duration)) ? App.NOT_APPLICABLE : moment.duration(duration, "seconds").humanize();
+});
+
 Ember.Handlebars.registerBoundHelper('timestamp', function (time) {
   if (!App.isEmpty(time)) {
     if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch

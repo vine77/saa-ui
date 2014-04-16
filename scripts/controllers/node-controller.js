@@ -102,7 +102,7 @@ App.NodeController = Ember.ObjectController.extend({
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
     var nodeId = ((this.get('id'))?this.get('id').toString():'');
-    
+
     if (this.get('isSelected')) {
       this.get('controllers.logBar.kibanaNodesQuery').push('host_id: \"'+nodeId+'\"');
       var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
@@ -116,7 +116,7 @@ App.NodeController = Ember.ObjectController.extend({
       dashboard.refresh();
 
     } else {
-     
+
       var inArray = $.inArray('host_id: \"'+nodeId+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
@@ -137,6 +137,23 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.observes('isSelected'),
 
+  percentOfMemory: function () {
+    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))));
+  }.property('utilization.memory', 'memory.max'),
+  percentOfMemoryWidth: function () {
+    return 'width:'+this.get('percentOfMemory')+'%';
+  }.property('percentOfMemory'),
+  percentOfMemoryMessage: function() {
+    return App.readableSize(this.get('utilization.memory')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
+  }.property('utilization.memory', 'capabilities.memory_size'),
+  percentOfMemoryAvailable: function () {
+    if (isNaN(this.get('percentOfMemory'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('percentOfMemory'),
+
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
@@ -148,7 +165,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
-      return 'This is a monitored node. SAM will monitor this node, but VMs with SLAs may not be placed here.';
+      return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
     } else {
       return 'This is not an assured node. VMs with SLAs may not be placed here.';
     }
@@ -172,7 +189,9 @@ App.NodeController = Ember.ObjectController.extend({
       return 'This node is not set for VM placement.';
     }
   }.property('schedulerMark', 'isScheduled'),
-  isHealthy: Ember.computed.equal('status.health', App.SUCCESS),
+  isHealthy: function() {
+    return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
+  }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
@@ -259,9 +278,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   computeMessage: function() {
     if (App.isEmpty(this.get('utilization.scu_current'))) {
-      return '<strong>SAM Units</strong>: N/A';
+      return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAM Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
+      return 'SAA Compute Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
     }
   }.property('utilization.scu_current', 'utilization.scu_max'),
   computeWidth: function () {
@@ -316,17 +335,6 @@ App.NodeController = Ember.ObjectController.extend({
   servicesIcon: function () {
     return '<i class="icon-' + this.get('nodeType') + '" title="' + this.get('servicesMessage') + '"></i>';
   }.property('nodeType', 'servicesMessage'),
-  stateIcon: function () {
-    if (this.get('isUnhealthy')) {
-      // TODO: healthMessage
-      var code = this.get('status.health');
-      return '<i class="' + App.priorityToType(code) + ' ' + App.priorityToIconClass(code) + ' icon-large"></i>';
-    } else {
-      // TODO: operationalMessage
-      var code = this.get('status.operational');
-      return '<i class="' + App.codeToOperational(code) + ' ' + App.operationalToIconClass(code) + ' icon-large"></i>';
-    }
-  }.property('isUnhealthy', 'status.health', 'status.operational'),
   trustIcon: function () {
     // TODO: trustMessage and isTrustRegisteredMessage
     if (this.get('isTrustRegistered')) {

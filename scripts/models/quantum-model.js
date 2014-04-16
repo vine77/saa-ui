@@ -4,14 +4,14 @@ App.Quantum = Ember.Object.extend({
   check: function () {
     // Check if quantum file exists
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/quantumconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
-        App.log(xhr.status + ' response from GET /api/v1/quantumconfig: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
-            App.quantum.set('exists', true);
+            var exists = xhr.responseJSON.configs.findBy('id', 'quantumFile') && xhr.responseJSON.configs.findBy('id', 'quantumFile').exists;
+            App.quantum.set('exists', exists);
             break;
           default:
             App.quantum.set('exists', false);
@@ -24,12 +24,10 @@ App.Quantum = Ember.Object.extend({
     var formData = new FormData($('#quantumForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/quantumconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       data: formData,
       complete: function (xhr) {
-        App.log(xhr.status + ' response from PUT /api/v1/quantumconfig: ' + xhr.statusText);
         if (xhr.status === 200) $('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
-
       },
       processData: false,
       contentType: false

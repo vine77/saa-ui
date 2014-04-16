@@ -4,14 +4,14 @@ App.Nova = Ember.Object.extend({
   check: function () {
     // Check if nova.conf file exists
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/novaconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
-        App.log(xhr.status + ' response from GET /api/v1/novaconfig: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
-            App.nova.set('exists', true);
+            var exists = xhr.responseJSON.configs.findBy('id', 'novaFile') && xhr.responseJSON.configs.findBy('id', 'novaFile').exists;
+            App.nova.set('exists', exists);
             break;
           default:
             App.nova.set('exists', false);
@@ -24,10 +24,9 @@ App.Nova = Ember.Object.extend({
     var formData = new FormData($('#novaForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/novaconfig',
+      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
       data: formData,
       complete: function (xhr) {
-        App.log(xhr.status + ' response from PUT /api/v1/novaconfig: ' + xhr.statusText);
         if (xhr.status === 200) $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,
@@ -41,7 +40,7 @@ App.Nova = Ember.Object.extend({
       type: 'PUT',
       url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/start',
       complete: function (xhr, textStatus) {
-        App.log(xhr.status + ' response from PUT /api/v1/sam: ' + xhr.statusText);
+        App.log(xhr.status + ' response from PUT /api/v1/start: ' + xhr.statusText);
       }
     });
   }

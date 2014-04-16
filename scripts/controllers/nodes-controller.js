@@ -8,7 +8,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     sortBy: 'isTrusted',
     icon: 'icon-lock'
   }, {
-    description: 'Node Type (Assured, Monitored, Non-SAM)',
+    description: 'Node Type (Assured, Monitored, Non-SAA)',
     sortBy: 'samControlled',
     icon: 'icon-trophy'
   }, {
@@ -147,8 +147,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
 
     // Individual actions
     expand: function (model) {
+      var item = this.findBy('id', model.get('id'));
       if (!model.get('isExpanded')) {
-        this.transitionToRoute('nodesNode', model);
+        this.transitionToRoute('nodesNode', item);
       } else {
         this.transitionToRoute('nodes');
       }
@@ -201,7 +202,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "unregister"
-        }).save().then( function () {
+        }).save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
         }, function (xhr) {
@@ -222,7 +223,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           options: {
             agent_mode: App.MONITORED
           }
-        }).save().then( function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
           App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', App.SUCCESS);
         }, function (xhr) {
@@ -243,7 +244,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           options: {
             agent_mode: App.ASSURED
           }
-        }).save().then( function () {
+        }).save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', App.SUCCESS);
         }, function (xhr) {
@@ -342,7 +343,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
             scheduler_mark: socketNumber,
             scheduler_persistent: true
           }
-        }).save().then( function () {
+        }).save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           // Unset all other nodes

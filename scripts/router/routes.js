@@ -155,6 +155,17 @@ App.AppRoute = Ember.Route.extend({
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
       self.controllerFor('login').set('username', session.get('username'));
     }).then(function () {
+      // Update link for OpenStack Horizon (must occur after authentication)
+      Ember.$.ajax('/horizon', {type: 'HEAD'}).then(function () {
+        self.controllerFor('application').set('isHorizonAvailable', true);
+      }, function () {
+        Ember.$.ajax('/dashboard', {type: 'HEAD'}).then(function () {
+          self.controllerFor('application').set('isHorizonAvailable', true);
+          self.controllerFor('application').set('horizonUrl', '/dashboard');
+        }, function () {
+          self.controllerFor('application').set('isHorizonAvailable', false);
+        });
+      });
       // Call config and other APIs
       return Ember.RSVP.hash({
         nova: App.nova.check(),
@@ -292,13 +303,11 @@ App.VmsVmRoute = Ember.Route.extend({
       var controller = this.controllerFor('vms');
       if (this.get('isFirstPage')) return;
       controller.get('listView').goToPage(controller.get('listView.currentPage') - 1);
-      this.transitionTo('vms');
     },
     nextPage: function () {
       var controller = this.controllerFor('vms');
       if (controller.get('isLastPage')) return;
       controller.get('listView').goToPage(controller.get('listView.currentPage') + 1);
-      this.transitionTo('vms');
     }
   }
 });

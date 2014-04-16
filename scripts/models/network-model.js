@@ -58,7 +58,7 @@ App.Network = Ember.Object.extend({
       },
       error: function (xhr) {
         $('i.loading').addClass('hide');
-        App.event('Network configuration was not saved.', App.ERROR);
+        App.xhrError(xhr, 'Network configuration was not saved.');
       }
     });
   },
