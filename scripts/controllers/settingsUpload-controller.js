@@ -80,6 +80,9 @@ App.SettingsUploadController = Ember.ArrayController.extend({
     cancel: function () {
       $('.fileupload').fileupload('reset');
       this.set('isChangingFiles', false);
+    },
+    updateOverrides: function() {
+      App.overrides.update();
     }
   }
 });
