@@ -21,8 +21,8 @@ App.ApplicationController = Ember.Controller.extend({
     return health === App.SUCCESS || health === App.INFO || health === App.WARNING;
   }.property('controllers.statuses.health'),
   isConfigured: function () {
-    return App.nova.get('exists') && App.openrc.get('exists') && App.quantum.get('exists');
-  }.property('App.nova.exists', 'App.openrc.exists', 'App.quantum.exists'),
+    return App.nova.get('exists') && App.openrc.get('exists');
+  }.property('App.nova.exists', 'App.openrc.exists'),
   isEnabled: function () {
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
