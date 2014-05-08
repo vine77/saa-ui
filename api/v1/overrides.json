@@ -1,0 +1,37 @@
+{
+  "overrides": [{
+    "id": "current",
+    "configuration_values": [
+      {
+        "id": "rabbit_hosts",
+        "name": "Rabbit Hosts",
+        "value": "172.24.0.15",
+        "default_value": "172.24.0.12"
+      },
+      {
+        "id": "rabbit_ports",
+        "name": "Rabbit Ports",
+        "value": null,
+        "default_value": "5672"
+      },
+      {
+        "id": "rabbit_hosts_ports",
+        "name": "Rabbit Hosts Ports",
+        "value": null,
+        "default_value": "172.24.0.12:5672"
+      }, 
+      {
+        "id": "rabbit_host",
+        "name": "Rabbit Host",
+        "value": null,
+        "default_value": "172.24.0.12"
+      },
+      {
+        "id": "horizon_host",
+        "name": "Horizon Host",
+        "value": null,
+        "default_value": "172.24.0.12"
+      }
+    ]
+  }]
+}

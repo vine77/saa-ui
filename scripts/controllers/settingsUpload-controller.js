@@ -1,5 +1,5 @@
 App.SettingsUploadController = Ember.ArrayController.extend({
-  needs: ['application'],
+  needs: ['application', 'override'],
   isEnabledBinding: 'controllers.application.isEnabled',
   isConfiguredBinding: 'controllers.application.isConfigured',
   novaExistsBinding: 'App.nova.exists',
@@ -82,7 +82,11 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       this.set('isChangingFiles', false);
     },
     updateOverrides: function() {
-      App.overrides.update();
+      this.store.getById('override', 'current').save().then( function(){
+         App.event('Successfully updated configuration overrides.', App.SUCCESS);
+      }, function(xhr) {
+        App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
+      });
     }
   }
 });
