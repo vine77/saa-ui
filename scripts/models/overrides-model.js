@@ -1,54 +1,38 @@
-App.Overrides = Ember.Object.extend({
-  rabbitHostIp: null,
-  horizonHostIp: null,
-  //actions: {
-  update: function () {
-    $('#overridesLoading').removeClass('hide');
-    var dataJson = {
-      amqp_general: {
-        rabbit_host: App.overrides.get('rabbitHostIp')
-      },
-      horizon: {
-        horizon_host: App.overrides.get('horizonHostIp')
-      }
-    };
-    return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/override',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(dataJson),
-      dataType: 'json',
-      complete: function (jqXHR, textStatus) {
-        $('#overridesLoading').addClass('hide');
-        if (jqXHR.status == 200) {
-          App.event('Successfully updated configuration overrides.', App.SUCCESS);
-        } else if (jqXHR.status == 422) {
-            var responseMessage = jQuery.parseJSON(jqXHR.responseText);
-            App.event(responseMessage.error_message, App.ERROR);
-        } else {
-          App.event('Error updating configuration overrides.', App.ERROR);
-        }
-      }
-    });
-  },
-  //},
-  fetch: function () {
-    return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/override',
-      type: 'GET',
-      dataType: 'json',
-      complete: function (jqXHR, textStatus) {
-        if (jqXHR.status == 200) {
-          //console.log('fetch completed.');
-          overrides = jQuery.parseJSON(jqXHR.responseText);
-          //console.log('overrides', overrides);
-          //console.log('jqXHR.responseText', jqXHR.responseText);
-          App.overrides.set('rabbitHostIp', overrides.amqp_general.rabbit_host);
-          App.overrides.set('horizonHostIp', overrides.horizon.horizon_host);
-        }
-      }
-    });
-  }
+App.OverrideAdapter = DS.RESTSingletonAdapter.extend();
+
+App.Override = DS.Model.extend({
+  configurationValues: DS.attr()
+  //configurationValues: DS.attr('raw')
 });
 
-App.overrides = App.Overrides.create();
+/*
+App.ConfigurationValue = DS.Model.extend({
+  name: DS.attr(),
+  value: DS.attr(),
+  defaultValue: DS.attr()
+});
+
+App.RawTransform = DS.Transform.extend({
+  deserialize: function(serialized) {
+    console.log('inside deserialize');
+    var type = Ember.typeOf(serialized);
+    if (type == 'array') {
+      console.log('array is type.');
+      console.log('serialized', serialized);
+      self = this;
+      records = [];
+      serialized.forEach(function(object) {
+        // self.records.addObject(
+        //self.store.createRecord()
+      });
+      return serialized
+    }
+    return serialized;
+  },
+  serialize: function(deserialized) {
+    console.log('serialize');
+    return deserialized;
+  }
+});
+*/
+

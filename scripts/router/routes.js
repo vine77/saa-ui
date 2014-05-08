@@ -144,6 +144,7 @@ App.AppRoute = Ember.Route.extend({
     }
   },
   model: function () {
+    window.store = this.store;
     var self = this;
     // Get current session
     if (this.store.getById('session', 'current_session')) {
@@ -469,8 +470,8 @@ App.TrustMleRoute = Ember.Route.extend({
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
   model: function() {
-    return App.overrides.fetch();
-  },
+   return this.store.find('overrides', 'current');
+ },
   beforeModel: function () {
     if (this.controllerFor('build').get('isReadycloud')) {
       this.transitionTo('settings.users');
@@ -481,7 +482,6 @@ App.SettingsIndexRoute = Ember.Route.extend({
 });
 App.SettingsUploadRoute = Ember.Route.extend({
   setupController: function (controller, model) {
-    App.overrides.fetch();
     this._super(controller, model);
     controller.set('networkType', this.store.find('networkType', 'current'));
   },

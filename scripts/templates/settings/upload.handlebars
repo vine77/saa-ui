@@ -76,21 +76,21 @@
         {{/if}}
       </div>
     </form>
-    {{#if controllers.application.isEnabled}}
+    {{#if controllers.application.isConfigured}}
       <form id="overridesForm" class="form-horizontal" method="post">
-        <legend>Configuration Overrides</legend>
-        <div class="control-group">
-          <label class="control-label" for="">Rabbit Host IP</label>
-          <div class="controls">
-            {{view App.UrlField valueBinding="App.overrides.rabbitHostIp"}}
+        <legend>Configuration Overrides</legend> <br>
+        {{#each value in this.controllers.override.configurationValues}}
+          <div class="control-group">
+            <label class="control-label" for="">{{value.model.name}}</label>
+            <div class="controls">
+              {{input type="text" value=value.model.value disabled=value.isDisabled size="50" placeholder=placeholder}}
+              <label class="checkbox" style="vertical-align:middle; display:inline-block;">
+                {{input type="checkbox" value=value.model.value name="isAdmin" checked=value.isDefault}}
+                Use Default
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="">Horizon Host IP</label>
-          <div class="controls">
-            {{view App.UrlField valueBinding="App.overrides.horizonHostIp"}}
-          </div>
-        </div>
+        {{/each}}
         <div class="control-group">
           <div class="controls">
             <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
