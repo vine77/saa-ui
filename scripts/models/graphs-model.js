@@ -2,7 +2,7 @@
 App.Graphs = Ember.Controller.extend({
   graph: function(emberId, entityName, entityType, numSeries) {
     entityName = entityName.replace(/\./g, '-');
-    var url = ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName;
+    var url = ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName '&graphVars={"colorList":"yellow,green,orange,red,blue,pink"}';
     if (numSeries) url += '&numSeries=' + numSeries;
     return Ember.$.ajax({
       url: url,
