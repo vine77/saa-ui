@@ -1,5 +1,6 @@
 App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
-  host: (!localStorage.apiDomain) ? window.location.href.slice(0, -1) : '//' + localStorage.apiDomain,
+  //host: (!localStorage.apiDomain) ? window.location.href.slice(0, -1) : '//' + localStorage.apiDomain,
+  host: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
   namespace: 'api/v1',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
