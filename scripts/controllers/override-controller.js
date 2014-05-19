@@ -1,21 +1,14 @@
-App.OverrideController = Ember.ObjectController.extend({
-  configurationValues: function() {
-    var returnArray = [];
-    var configurationValues = this.get('model') && this.get('model').get('configurationValues');
-    if (configurationValues) {
-      configurationValues.forEach( function(item) {
-        returnArray.addObject(App.ConfigurationValueController.create({model: item}));
-      });
-    }
-    return returnArray;
-  }.property('model.@each'),
+App.OverridesController = Ember.ArrayController.extend({
+  configurationValuesExist: function() {
+    return this.get('model.configurationValues.length') > 0;
+  }.property('model.configurationValues.length'),
   init: function () {
     this._super();
-    this.set('model', this.store.find('override', 'current'));
+    this.set('content', this.store.find('override', 'current'));
   }
 });
 
-App.ConfigurationValueController = Ember.ObjectController.extend({
+App.OverrideController = Ember.ObjectController.extend({
   isDefault: null,
   isDefaultObserver: function() {
     if (!this.get('isDefault')) {
