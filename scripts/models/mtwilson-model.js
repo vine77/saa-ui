@@ -5,7 +5,7 @@ App.MtWilson = Ember.Object.extend({
   ipAddress: '',
   check: function () {
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
       type: 'GET',
       dataType: "json"
     }).then(function (data, textStatus, xhr) {
@@ -53,7 +53,7 @@ App.MtWilson = Ember.Object.extend({
     // Start Mt. Wilson install
     App.mtWilson.set('isInstalling', true);
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
       type: 'POST',
       dataType: "json",
       complete: function (xhr, textStatus) {
@@ -105,7 +105,7 @@ App.MtWilson = Ember.Object.extend({
   },
   uninstall: function () {
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
       type: 'DELETE',
       dataType: "json",
       complete: function (xhr, textStatus) {

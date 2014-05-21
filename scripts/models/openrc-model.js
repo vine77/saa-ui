@@ -4,7 +4,7 @@ App.Openrc = Ember.Object.extend({
   check: function () {
     // Check if openrc file exists
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
+      url: (App.getApiDomain()) + '/api/v1/configs',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -24,7 +24,7 @@ App.Openrc = Ember.Object.extend({
     var formData = new FormData($('#openrcForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
+      url: (App.getApiDomain()) + '/api/v1/configs',
       data: formData,
       complete: function (xhr) {
         if (xhr.status === 200) $('#openrcForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');

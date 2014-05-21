@@ -4,7 +4,7 @@ App.Nova = Ember.Object.extend({
   check: function () {
     // Check if nova.conf file exists
     return Ember.$.ajax({
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
+      url: (App.getApiDomain()) + '/api/v1/configs',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -24,7 +24,7 @@ App.Nova = Ember.Object.extend({
     var formData = new FormData($('#novaForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/configs',
+      url: (App.getApiDomain()) + '/api/v1/configs',
       data: formData,
       complete: function (xhr) {
         if (xhr.status === 200) $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
@@ -38,7 +38,7 @@ App.Nova = Ember.Object.extend({
     App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',
-      url: ((!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain) + '/api/v1/start',
+      url: (App.getApiDomain()) + '/api/v1/start',
       complete: function (xhr, textStatus) {
         App.log(xhr.status + ' response from PUT /api/v1/start: ' + xhr.statusText);
       }
