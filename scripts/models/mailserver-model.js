@@ -1,5 +1,5 @@
 App.MailserverAdapter = DS.ActiveModelAdapter.extend({
-  host: (!localStorage.apiDomain) ? '' : '//' + localStorage.apiDomain,
+  host: App.getApiDomain(),
   namespace: 'api/v1',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
