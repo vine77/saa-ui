@@ -26,13 +26,21 @@ App.ApplicationController = Ember.Controller.extend({
   isEnabled: function () {
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
+  baseUrl: function() {
+    return '//' + window.location.host + window.location.pathname.replace(/\/$/, '');
+  }.property(),
   isHorizonAvailable: false,
-  horizonUrl: '/horizon',
+  horizonUrl: function() {
+    return this.get('baseUrl') + '/horizon';
+  }.property(),
   fuelUrl: function() {
-    return 'http://' + window.location.hostname + ':8000';
+    return this.get('baseUrl') + '/fuel';
   }.property(),
   logsUrl: function() {
-    return '/kibana3/index.html#/dashboard/file/logs.json';
+    return this.get('baseUrl') + '/kibana3/index.html#/dashboard/file/logs.json';
+  }.property(),
+  helpUrl: function() {
+    return this.get('baseUrl') + '/docs/api/';
   }.property(),
   graphsUrl: function() {
     if (window.location.protocol === 'https:') {

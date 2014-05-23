@@ -22,10 +22,9 @@
             {{render "logBar"}}
           </div>
           <div class="tab-pane active" id="drawer-help">
-            <iframe src="/docs/api/" id="docs"></iframe>
+            <iframe {{bind-attr src="helpUrl"}} id="docs"></iframe>
           </div>
           {{partial "about"}}
-
         </div>
       </div>
     </div>
@@ -78,7 +77,7 @@
                 {{partial "definitions"}}
               </div>
               <div id="drawer-help-api" class="tab-pane fade">
-                <iframe src="/docs/api/" id="docs"></iframe>
+                <iframe {{bind-attr src="helpUrl"}} id="docs"></iframe>
               </div>
             </div>
           </div>
