@@ -157,12 +157,13 @@ App.AppRoute = Ember.Route.extend({
       self.controllerFor('login').set('username', session.get('username'));
     }).then(function () {
       // Update link for OpenStack Horizon (must occur after authentication)
-      Ember.$.ajax('/horizon', {type: 'HEAD'}).then(function () {
+      var baseUrl = self.controllerFor('application').get('baseUrl');
+      Ember.$.ajax(baseUrl + '/horizon', {type: 'HEAD'}).then(function () {
         self.controllerFor('application').set('isHorizonAvailable', true);
       }, function () {
-        Ember.$.ajax('/dashboard', {type: 'HEAD'}).then(function () {
+        Ember.$.ajax(baseUrl + '/dashboard', {type: 'HEAD'}).then(function () {
           self.controllerFor('application').set('isHorizonAvailable', true);
-          self.controllerFor('application').set('horizonUrl', '/dashboard');
+          self.controllerFor('application').set('horizonUrl', baseUrl + '/dashboard');
         }, function () {
           self.controllerFor('application').set('isHorizonAvailable', false);
         });

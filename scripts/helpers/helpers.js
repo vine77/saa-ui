@@ -35,7 +35,7 @@ App.log = function () {
 };
 
 App.getApiDomain = function() {
-  return (localStorage.apiDomain) ? '//' + localStorage.apiDomain : '//' + window.location.host + window.location.pathname.slice(0, -1);
+  return (localStorage.apiDomain) ? '//' + localStorage.apiDomain : '//' + window.location.host + window.location.pathname.replace(/\/$/, '');
 };
 
 // Messaging/events
