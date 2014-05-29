@@ -27,7 +27,7 @@ App.ApplicationController = Ember.Controller.extend({
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
   baseUrl: function() {
-    return '//' + window.location.host + window.location.pathname.replace(/\/$/, '');
+    return '//' + window.location.host + window.location.pathname.split('/').slice(0, -1).join('/');
   }.property(),
   isHorizonAvailable: false,
   horizonUrl: function() {
