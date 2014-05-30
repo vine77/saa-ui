@@ -364,10 +364,27 @@ App.NodeController = Ember.ObjectController.extend({
   graphObserver: function () {
     return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isSelected', 'isExpanded'),
+  graphTimeAgoValue: '-1h',
+  isGraphTimeAgoHour: function() {
+    return this.get('graphTimeAgoValue') == '-1h';
+  }.property('graphTimeAgoValue'),
+  isGraphTimeAgoDay: function() {
+    return this.get('graphTimeAgoValue') == '-24h';
+  }.property('graphTimeAgoValue'),
+  isGraphTimeAgoWeek: function() {
+    return this.get('graphTimeAgoValue') == '-168h';
+  }.property('graphTimeAgoValue'),  
+  isGraphTimeAgoMonth: function() {
+    return this.get('graphTimeAgoValue') == '-672h';
+  }.property('graphTimeAgoValue'),
 
   actions: {
     exportTrustReport: function (model) {
       this.get('controllers.nodes').send('exportTrustReport', model);
+    },
+    graphTimeAgo: function(timeAgo) {
+      this.set('graphTimeAgoValue', timeAgo);
+      App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'), timeAgo);
     }
   }
 

@@ -167,6 +167,20 @@
       </table>
     </div>
     <div class="tab-pane graphs">
+      <div class="btn-group">
+        <button {{action "graphTimeAgo" "-1h"}} {{bind-attr class="isGraphTimeAgoHour:btn-primary :btn :btn-small :log-buttons"}}>
+          Hour
+        </button>
+        <button {{action "graphTimeAgo" "-24h"}} {{bind-attr class="isGraphTimeAgoDay:btn-primary :btn :btn-small :log-buttons"}}>
+          Day
+        </button>
+        <button {{action "graphTimeAgo" "-168h"}} {{bind-attr class="isGraphTimeAgoWeek:btn-primary :btn :btn-small :log-buttons"}}>
+          Week
+        </button>
+        <button {{action "graphTimeAgo" "-672h"}} {{bind-attr class="isGraphTimeAgoMonth:btn-primary :btn :btn-small :log-buttons"}}>
+          Month
+        </button>
+      </div>
       {{#each graph in graphs}}
         <figure class="thumbnail">
           <img {{bind-attr src="graph.url"}}>

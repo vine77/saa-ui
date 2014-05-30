@@ -284,10 +284,27 @@ App.VmController = Ember.ObjectController.extend({
     }
   }
   */
+  graphTimeAgoValue: '-1h',
+  isGraphTimeAgoHour: function() {
+    return this.get('graphTimeAgoValue') == '-1h';
+  }.property('graphTimeAgoValue'),
+  isGraphTimeAgoDay: function() {
+    return this.get('graphTimeAgoValue') == '-24h';
+  }.property('graphTimeAgoValue'),
+  isGraphTimeAgoWeek: function() {
+    return this.get('graphTimeAgoValue') == '-168h';
+  }.property('graphTimeAgoValue'),  
+  isGraphTimeAgoMonth: function() {
+    return this.get('graphTimeAgoValue') == '-672h';
+  }.property('graphTimeAgoValue'),
 
   actions: {
     exportTrustReport: function (model) {
       this.get('controllers.vms').send('exportTrustReport', model);
+    },
+    graphTimeAgo: function(timeAgo) {
+      this.set('graphTimeAgoValue', timeAgo);
+      App.graphs.graph(this.get('id'), this.get('id'), 'vm', undefined, timeAgo);
     }
   }
 
