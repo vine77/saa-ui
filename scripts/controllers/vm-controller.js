@@ -212,7 +212,7 @@ App.VmController = Ember.ObjectController.extend({
   // Observers
   graphObserver: function () {
      return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
-  }.observes('isSelected', 'isExpanded'),
+  }.observes('isExpanded'),
 
   updateKibana: function() {
     if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
