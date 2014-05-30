@@ -7,7 +7,7 @@
       <div class="control-group">
         <label class="control-label" for="inputEmail">Upload <code>nova.conf</code> (required)</label>
         <div class="controls">
-          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="novaFile">
+          <div {{bind-attr class=":fileupload novaExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="novaFile">
             <div class="input-append">
               <div class="uneditable-input span3"><i {{bind-attr class="novaSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">nova.conf</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="novaFile"></span>
             </div>
@@ -22,7 +22,7 @@
       <div class="control-group">
         <label class="control-label" for="inputEmail">Upload <code>openrc</code> (required)</label>
         <div class="controls">
-          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="openrcFile">
+          <div {{bind-attr class=":fileupload openrcExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="openrcFile">
             <div class="input-append">
               <div class="uneditable-input span3"><i {{bind-attr class="openrcSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">openrc</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="openrcFile"></span>
             </div>
@@ -40,7 +40,7 @@
         {{#if isNeutronConfigRequired}}(required){{/if}}
         </label>
         <div class="controls">
-          <div {{bind-attr class=":fileupload isConfigured:fileupload-exists:fileupload-new isNeutronConfigRequired::disabled"}} data-provides="fileupload" data-name="quantumFile">
+          <div {{bind-attr class=":fileupload quantumExists:fileupload-exists:fileupload-new isNeutronConfigRequired::disabled"}} data-provides="fileupload" data-name="quantumFile">
             <div class="input-append">
               <div class="uneditable-input span3"><i {{bind-attr class="quantumSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">ovs_quantum_plugin.ini</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="quantumFile"></span>
             </div>
@@ -55,6 +55,21 @@
         </div>
       </div>
       <p class="instructions">Please upload your OpenStack Neutron network configuration file containing the database connection string. For OpenStack Grizzly, this file can be found on the OpenStack controller node at <code>/etc/quantum/plugins/openvswitch/ovsquantum_plugin.ini</code>.  For the Havana release the file to upload is <code>/etc/neutron/neutron.conf</code>. This file is not required if the network type is Nova.</p>
+    </form>
+    <form id="keystoneForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
+      <input type="hidden" name="app" value="sam">
+      <legend>Keystone</legend>
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Upload <code>cacert.pem</code></label>
+        <div class="controls">
+          <div {{bind-attr class=":fileupload keystoneExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="KeystoneCaCertFile">
+            <div class="input-append">
+              <div class="uneditable-input span3"><i {{bind-attr class="keystoneSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">cacert.pem</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="KeystoneCaCertFile"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="instructions">Please upload your OpenStack Keystone CA certificate (<code>cacert.pem</code>). This file may be found at the file path <code>/etc/keystone/ssl/certs/cacert.pem</code>.</p>
       <div class="align-right">
         {{#if isConfigured}}
           {{#unless isChangingFiles}}
