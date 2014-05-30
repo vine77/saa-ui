@@ -11,6 +11,10 @@
     {
       "id": "quantumFile",
       "exists": true
+    },
+    {
+      "id": "KeystoneCaCertFile",
+      "exists": false
     }
   ]
 }
