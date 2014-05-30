@@ -172,7 +172,8 @@ App.AppRoute = Ember.Route.extend({
       return Ember.RSVP.hash({
         nova: App.nova.check(),
         openrc: App.openrc.check(),
-        quantum: App.quantum.check()
+        quantum: App.quantum.check(),
+        keystone: App.keystone.check()
       }).then(function () {
         // SAA is configured
         self.store.find('sloTemplate');
