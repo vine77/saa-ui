@@ -8,13 +8,13 @@
         "configuration",
         "logging"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "System",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "system"
     },
     {
@@ -22,76 +22,104 @@
         "configuration_process",
         "sam_config_files"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Configuration",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "configuration"
     },
     {
       "children_ids": [
         "amqp",
         "nodes_data_storage",
-        "amqp_request_processor"
+        "amqp_request_processor",
+        "scheduler_plugin_version",
+        "cloud_scheduling_service"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Scheduler",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "scheduler"
     },
     {
       "children_ids": [],
+      "exposed_health": 0,
+      "name": "SAA scheduling engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 0,
+      "message": "Health status: Not verified yet.",
+      "id": "amqp_request_processor"
+    },
+    {
+      "children_ids": [],
       "exposed_health": 1,
-      "name": "Scheduling engine",
+      "name": "Cloud scheduling engine",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "scheduler"
       ],
       "health": 1,
-      "message": "Health status: Ok",
-      "id": "amqp_request_processor"
+      "message": "Connection to 2 of 2 services",
+      "id": "cloud_scheduling_service"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "SAA scheduler plugin",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 1,
+      "message": "Connection to 2 of 2 plugins",
+      "id": "scheduler_plugin_version"
     },
     {
       "children_ids": [
         "cloud_rest_api",
         "cloud_database"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Cloud communication",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "cloud_communication"
     },
     {
       "children_ids": [
         "amqp"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Agents communication",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "agent_communication"
     },
     {
@@ -100,20 +128,20 @@
         "logging_communication",
         "logging_storage"
       ],
-      "exposed_health": 1,
+      "exposed_health": 3,
       "name": "Logs engine",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 3,
+      "message": "Health status: Warning",
       "id": "logging"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "AMQP message bus",
       "is_notification": false,
       "action_name": [],
@@ -121,8 +149,8 @@
         "scheduler",
         "agent_communication"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "amqp"
     },
     {
@@ -173,71 +201,71 @@
         "nova_connection",
         "keystone_authentication"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "REST API",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_communication"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "cloud_rest_api"
     },
     {
       "children_ids": [
         "nova_db",
-        "neutron_db",
+        "network_db",
         "data_synchronization_engine"
       ],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Database",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_communication"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Unknown",
       "id": "cloud_database"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Keystone connection",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_rest_api"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "keystone_connection"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Nova connection",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_rest_api"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "nova_connection"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Keystone authentication",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_rest_api"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "keystone_authentication"
     },
     {
@@ -256,53 +284,53 @@
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Neutron database",
+      "name": "Network database",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_database"
       ],
       "health": 1,
-      "message": "Connected to Neutron database.",
-      "id": "neutron_db"
+      "message": "Connected to Network database.",
+      "id": "network_db"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Data synchronization engine",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "cloud_database"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "data_synchronization_engine"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 3,
       "name": "Configuration process status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "configuration"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 3,
+      "message": "SAA is being configured.",
       "id": "configuration_process"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 0,
       "name": "Configuration data status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "configuration"
       ],
-      "health": 1,
-      "message": "Health status: Ok",
+      "health": 0,
+      "message": "Health status: Not verified yet.",
       "id": "sam_config_files"
     },
     {
@@ -315,20 +343,20 @@
         "logging"
       ],
       "health": 1,
-      "message": "Disk usage: 8%",
+      "message": "Disk usage: 0%",
       "id": "logging_disk_space"
     },
     {
       "children_ids": [],
-      "exposed_health": 1,
+      "exposed_health": 3,
       "name": "Log storage status",
-      "is_notification": false,
+      "is_notification": true,
       "action_name": [],
       "parent_ids": [
         "logging"
       ],
-      "health": 1,
-      "message": "Log storage healthy",
+      "health": 4,
+      "message": "Database communications failure",
       "id": "logging_storage"
     },
     {

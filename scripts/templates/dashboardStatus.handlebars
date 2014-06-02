@@ -47,16 +47,12 @@
             {{/if}}
           </td>
         </tr>
-        <tr>
-          <td class="column-medium"><strong>High Availability</strong></td>
-          <td colspan="2">
-            <ul>
-              {{#each haMessages}}
-                <li {{bind-attr class="styleClass"}}> {{message}} </li>
-              {{/each}}
-            </ul>
-          </td>
-        </tr>
+        {{#each haMessages}}
+          <tr>
+            <td class="column-medium"><strong>{{title}}</strong></td>
+            <td>{{message}}</td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
