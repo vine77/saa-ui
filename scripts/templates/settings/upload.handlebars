@@ -68,9 +68,11 @@
                 <i {{bind-attr class="keystoneSuccess:icon-ok-circle:icon-file"}}></i>
                 <span class="fileupload-preview">cacert.pem</span>
               </div>
-              <span class="btn-group">
-                <span class="btn" {{action "deleteFiles" "keystone"}}> Delete </span>
-              </span>
+              {{#if keystoneExists}}
+                <span class="btn-group">
+                  <span class="btn" {{action "deleteFiles" "keystone"}}> Delete </span>
+                </span>
+              {{/if}}
               <span class="btn btn-file">
                 <span class="fileupload-new">Select file</span>
                 <span class="fileupload-exists">Change</span>
