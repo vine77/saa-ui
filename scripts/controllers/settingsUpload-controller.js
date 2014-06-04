@@ -88,6 +88,24 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       $('.fileupload').fileupload('reset');
       this.set('isChangingFiles', false);
     },
+    deleteFiles: function(type) {
+      if (type == 'keystone') {
+        //$('i.loading').removeClass('hide');
+        return Ember.$.ajax({
+          url: (App.getApiDomain()) + '/api/v1/configs/KeystoneCaCertFile',
+          type: 'DELETE',
+          success: function (data) {
+            //$('i.loading').addClass('hide');
+            App.event('Deleted Keystone CA certificate successfully.', App.SUCCESS);
+            App.keystone.check();
+          },
+          error: function (xhr) {
+            //$('i.loading').addClass('hide');
+            App.xhrError(xhr, 'Failed to delete Keystone CA certificate.');
+          }
+        });
+      }
+    },
     updateOverrides: function() {
       this.store.getById('override', 'current').save().then( function(){
          App.event('Successfully updated configuration overrides.', App.SUCCESS);
