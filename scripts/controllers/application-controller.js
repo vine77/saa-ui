@@ -53,6 +53,10 @@ App.ApplicationController = Ember.Controller.extend({
   autoRefresh: function () {
     Ember.run.later(this, 'autoRefresh', 20000);
     if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
+      App.nova.check();
+      App.openrc.check();
+      App.quantum.check();
+      App.keystone.check();
       this.store.find('slo');
       this.store.find('sla');
       this.store.find('flavor');
