@@ -68,24 +68,20 @@
                 <i {{bind-attr class="keystoneSuccess:icon-ok-circle:icon-file"}}></i>
                 <span class="fileupload-preview">cacert.pem</span>
               </div>
-              <span class="btn">
-                Delete
+              <span class="btn-group">
+                <span class="btn" {{action "deleteFiles" "keystone"}}> Delete </span>
               </span>
               <span class="btn btn-file">
                 <span class="fileupload-new">Select file</span>
                 <span class="fileupload-exists">Change</span>
                 <input type="file" name="KeystoneCaCertFile">
               </span>
-
             </div>
           </div>
         </div>
       </div>
       <p class="instructions">Please upload your OpenStack Keystone CA certificate (<code>cacert.pem</code>). This file may be found at the file path <code>/etc/keystone/ssl/certs/ca.pem</code>. <strong>This configuration upload is optional.</strong> If the OpenStack Keyston CA certificate is not uploaded and SSL is configured, SAA will connect to Keystone using an insecure mode. Certificate is needed only if Keystone is configured in SSL mode.</p>
       <div class="align-right">
-        {{#if keystoneExists}}
-          <a class="btn" {{action "deleteFiles" "keystone"}}> Delete </a>
-        {{/if}}
         {{#if isConfigured}}
           {{#unless isChangingFiles}}
             <a class="btn btn-primary" {{action "changeFiles"}}>Change Files</a>
