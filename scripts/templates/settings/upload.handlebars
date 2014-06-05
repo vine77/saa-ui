@@ -64,21 +64,15 @@
         <div class="controls">
           <div {{bind-attr class=":fileupload keystoneExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="KeystoneCaCertFile">
             <div class="input-append">
-              <div class="uneditable-input span3">
-                <i {{bind-attr class="keystoneSuccess:icon-ok-circle:icon-file"}}></i>
-                <span class="fileupload-preview">cacert.pem</span>
-              </div>
-              {{#if keystoneExists}}
-                <span class="btn-group">
-                  <span class="btn" {{action "deleteFiles" "keystone"}}> Delete </span>
-                </span>
-              {{/if}}
-              <span class="btn btn-file">
-                <span class="fileupload-new">Select file</span>
-                <span class="fileupload-exists">Change</span>
-                <input type="file" name="KeystoneCaCertFile">
+              <div class="uneditable-input span3"><i {{bind-attr class="keystoneSuccess:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">cacert.pem</span>
+              </div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="KeystoneCaCertFile">
               </span>
             </div>
+            {{#if keystoneExists}}
+              {{#unless isChangingFiles}}
+                <a class="btn" {{action "deleteFiles" "keystone"}}> Delete </a>
+              {{/unless}}
+            {{/if}}
           </div>
         </div>
       </div>

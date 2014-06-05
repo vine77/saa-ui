@@ -36,7 +36,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       }
       if (!allFilesSpecified) {
         if (this.get('isNeutronConfigRequired')) {
-          App.event('You must upload all three configuration files at the same time.');
+          App.event('You must upload all 4 configuration files at the same time.');
         } else {
           App.event('You must upload all two configuration files at the same time.');
         }
