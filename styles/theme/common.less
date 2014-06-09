@@ -431,6 +431,12 @@ body {
 .application {
   position: relative;
   height: 100%;
+  &.is-framed {
+    margin-top: -@navbarHeight;
+    .navbar {
+      display: none;
+    }
+  }
   > .ember-view:not(.modal) {
     height: 100%;
   }

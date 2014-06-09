@@ -16,6 +16,13 @@ App.ApplicationController = Ember.Controller.extend({
     this.set('width', $(window).width());
     this.set('height', $(window).height());
   },
+  isFramed: function () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }.property(),
   isHealthy: function () {
     var health = this.get('controllers.statuses.health');
     return health === App.SUCCESS || health === App.INFO || health === App.WARNING;

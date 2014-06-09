@@ -8,10 +8,10 @@
     {{else}}
       {{#if controllers.build.isReadycloud}}
         <div class="alert alert-info">
-          <strong>Note</strong>: SAA Recipe must be <a {{bind-attr href="controllers.application.fuelUrl"}} target="_blank">configured</a> before before the application becomes fully enabled.
+          <strong>Note</strong>: SAA must be configured before before the application becomes fully enabled.
         </div>
         <div class="alert alert-warning">
-          <strong>Instructions</strong>: Go to <a {{bind-attr href="controllers.application.fuelUrl"}} target="_blank">Orchestration</a> and use the Fuel interface to set up your cloud.
+          <strong>Instructions</strong>: Go to Orchestration and use the Fuel interface to set up your cloud.
         </div>
       {{else}}
         <div class="alert alert-info">
