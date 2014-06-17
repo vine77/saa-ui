@@ -167,14 +167,13 @@ App.LogBarController = Ember.ObjectController.extend({
     graphicalMode: function(value) {
       if (value) {
         this.reset();
-        this.set('controllers.application.logsUrl', '/kibana3/index.html#/dashboard/file/logs-graphical.json');
+        this.set('controllers.application.logsUrl', this.get('controllers.application.baseUrl') + '/kibana3/index.html#/dashboard/file/logs-graphical.json');
         this.set('isGraphicalMode', true);
         
       } else {
         this.reset();
-        this.set('controllers.application.logsUrl', '/kibana3/index.html#/dashboard/file/logs.json');
+        this.set('controllers.application.logsUrl', this.get('controllers.application.baseUrl') + '/kibana3/index.html#/dashboard/file/logs.json');
         this.set('isGraphicalMode', false);
-
       }
     }
   }
