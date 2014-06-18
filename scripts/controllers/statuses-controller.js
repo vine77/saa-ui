@@ -9,15 +9,11 @@ App.StatusesController = Ember.Controller.extend({
   loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   loggingStatus: function () {
     return this.store.getById('status', 'logging_storage');
-  }.property('model.@each.health'),
+  }.property('model.@each'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
-    if (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING) {
-      return true;
-    } else {
-      return false;
-    }
-  }.property('loggingStatus', 'model.@each'),
+    return (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING);
+  }.property('loggingStatus.health'),
   systemStatus: function () {
     return this.store.getById('status', 'system');
   }.property('model.@each'),
