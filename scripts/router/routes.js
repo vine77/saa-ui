@@ -475,11 +475,21 @@ App.SettingsIndexRoute = Ember.Route.extend({
    return this.store.find('overrides', 'current');
  },
   beforeModel: function () {
-    if (this.controllerFor('build').get('isReadycloud')) {
-      this.transitionTo('settings.users');
-    } else {
-      this.transitionTo('settings.upload');
+    var availableSettings = [];
+    if (!this.controllerFor('build').get('isReadycloud')) {
+      availableSettings.push('settings.upload');
+      availableSettings.push('settings.network');
     }
+    if (!this.controllerFor('application').get('isFramed')) {
+      availableSettings.push('settings.users');
+      availableSettings.push('settings.mailserver');
+    }
+    if (!this.controllerFor('application').get('isConfigured')) {
+      availableSettings.push('settings.log');
+      availableSettings.push('settings.trust');
+      availableSettings.push('settings.controller');
+    }
+    if (!Ember.isEmpty(availableSettings)) this.transitionTo(availableSettings[0]);
   }
 });
 App.SettingsUploadRoute = Ember.Route.extend({

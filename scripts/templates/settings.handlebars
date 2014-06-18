@@ -2,12 +2,14 @@
   <div class="row-fluid">
     <div class="span3 sidebar">
       <ul class="nav nav-list sidenav affix shadow-lifted">
-        {{#unless controllers.build.isReadycloud}}
+        {{#unless isReadycloud}}
           <li>{{#link-to "settings.upload"}}<i class="icon-chevron-right"></i><i class="icon-upload-alt"></i>Upload{{/link-to}}</li>
           <li>{{#link-to "settings.network"}}<i class="icon-chevron-right"></i><i class="icon-globe"></i>Network{{/link-to}}</li>
         {{/unless}}
-        <li>{{#link-to "settings.users"}}<i class="icon-chevron-right"></i><i class="icon-group"></i>Users{{/link-to}}</li>
-        <li>{{#link-to "settings.mailserver"}}<i class="icon-chevron-right"></i><i class="icon-envelope"></i>Mail Server{{/link-to}}</li>
+        {{#unless isFramed}}
+          <li>{{#link-to "settings.users"}}<i class="icon-chevron-right"></i><i class="icon-group"></i>Users{{/link-to}}</li>
+          <li>{{#link-to "settings.mailserver"}}<i class="icon-chevron-right"></i><i class="icon-envelope"></i>Mail Server{{/link-to}}</li>
+        {{/unless}}
         {{#if isConfigured}}
           <li>{{#link-to "settings.log"}}<i class="icon-chevron-right"></i><i class="icon-reorder"></i>Logs{{/link-to}}</li>
           <li>{{#link-to "settings.trust"}}<i class="icon-chevron-right"></i><i class="icon-lock"></i>Trust{{/link-to}}</li>
