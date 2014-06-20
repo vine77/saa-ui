@@ -29,6 +29,10 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'Memory',
     description: 'Memory utilization',
     sortBy: 'utilization.memory'
+  },{
+    title: 'Load',
+    description: 'Normalized Load',
+    sortBy: 'utilization.normalized_load'
   }, {
     title: 'Contention',
     description: 'LLC cache contention',

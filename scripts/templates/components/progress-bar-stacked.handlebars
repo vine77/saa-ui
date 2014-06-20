@@ -1,6 +1,9 @@
-<div class="progress">
+<div class="progress float-left" {{bind-attr style=styleValue}}>
   <div class="bar bar-success" {{bind-attr style=barRange1PercentageWidth}}></div>
   <div class="bar bar-warning" {{bind-attr style=barRange2PercentageWidth}}></div>
   <div class="bar bar-danger" {{bind-attr style=barRange3PercentageWidth}}></div>
+</div>
+<div class="progress-bar-value" style="float:left;">
+  <small class="inline-block"> {{value}} </small>
 </div>
 

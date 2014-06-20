@@ -98,12 +98,15 @@
       <td>
         <div class="cell-container">
           {{#if percentOfMemoryAvailable}}
-            {{progress-bar width=percentOfMemoryWidth containerWidth="width:65%;" percent=percentOfMemory message=percentOfMemoryMessage}}
+            {{progress-bar width=percentOfMemoryWidth containerWidth="width:60%;" percent=percentOfMemory message=percentOfMemoryMessage}}
           {{else}}
             {{readableSize utilization.memory}}
           {{/if}}
         </div>
       </td>
+      <td><div class="cell-container">
+        {{progress-bar-stacked value=utilization.normalized_load styleValue="width:50%" thresholdOne="1" thresholdTwo="2" thresholdThree="3"}}
+      </div></td>
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
