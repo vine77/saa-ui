@@ -40,17 +40,21 @@
             <li class="dropdown">
               {{#link-to "settings"}}<i class="icon-cog"></i>Settings{{/link-to}}
               <ul class="dropdown-menu pull-right">
-                {{#unless controllers.build.isReadycloud}}
+                {{#unless isReadycloud}}
                   <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
                   <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
                 {{/unless}}
-                <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
-                <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
+                {{#unless isFramed}}
+                  <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
+                  <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
+                {{/unless}}
                 {{#if isConfigured}}
                   <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
                   <li>{{#link-to "settings.trust"}}Trust{{/link-to}}</li>
-                  <li>{{#link-to "settings.controller"}}SAA Appliance{{/link-to}}</li>
                 {{/if}}
+                {{#unless isReadycloud}}
+                  <li>{{#link-to "settings.controller"}}SAA Appliance{{/link-to}}</li>
+                {{/unless}}
               </ul>
             </li>
           </ul>

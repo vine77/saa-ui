@@ -2,6 +2,7 @@ App.ApplicationController = Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
+  isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
     var self = this;
