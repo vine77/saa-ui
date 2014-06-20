@@ -2,6 +2,7 @@ App.ApplicationController = Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
+  isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
   init: function () {
     var self = this;
@@ -16,6 +17,13 @@ App.ApplicationController = Ember.Controller.extend({
     this.set('width', $(window).width());
     this.set('height', $(window).height());
   },
+  isFramed: function () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }.property(),
   isHealthy: function () {
     var health = this.get('controllers.statuses.health');
     return health === App.SUCCESS || health === App.INFO || health === App.WARNING;
@@ -53,6 +61,10 @@ App.ApplicationController = Ember.Controller.extend({
   autoRefresh: function () {
     Ember.run.later(this, 'autoRefresh', 20000);
     if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
+      App.nova.check();
+      App.openrc.check();
+      App.quantum.check();
+      App.keystone.check();
       this.store.find('slo');
       this.store.find('sla');
       this.store.find('flavor');

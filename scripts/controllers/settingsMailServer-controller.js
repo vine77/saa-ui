@@ -29,6 +29,8 @@ App.SettingsMailserverController = Ember.ObjectController.extend({
       }, function (xhr) {
         self.set('isActionPending', false);
         mailserver.set('request', '');
+        mailserver.transitionTo('loaded.saved');
+        mailserver.rollback();
         App.xhrError(xhr, 'Failed to send test email.');
       });
     }
