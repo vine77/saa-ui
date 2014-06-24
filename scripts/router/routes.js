@@ -471,9 +471,6 @@ App.TrustMleRoute = Ember.Route.extend({
 
 // Settings
 App.SettingsIndexRoute = Ember.Route.extend({
-  model: function() {
-   return this.store.find('overrides', 'current');
- },
   beforeModel: function () {
     var availableSettings = [];
     if (!this.controllerFor('build').get('isReadycloud')) {
@@ -484,9 +481,11 @@ App.SettingsIndexRoute = Ember.Route.extend({
       availableSettings.push('settings.users');
       availableSettings.push('settings.mailserver');
     }
-    if (!this.controllerFor('application').get('isConfigured')) {
+    if (this.controllerFor('application').get('isConfigured')) {
       availableSettings.push('settings.log');
       availableSettings.push('settings.trust');
+    }
+    if (this.controllerFor('application').get('isConfigured') && !this.controllerFor('application').get('isFramed')) {
       availableSettings.push('settings.controller');
     }
     if (!Ember.isEmpty(availableSettings)) this.transitionTo(availableSettings[0]);
