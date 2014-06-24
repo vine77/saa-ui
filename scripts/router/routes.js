@@ -485,7 +485,7 @@ App.SettingsIndexRoute = Ember.Route.extend({
       availableSettings.push('settings.log');
       availableSettings.push('settings.trust');
     }
-    if (this.controllerFor('application').get('isConfigured') && !this.controllerFor('application').get('isFramed')) {
+    if (!this.controllerFor('application').get('isFramed')) {
       availableSettings.push('settings.controller');
     }
     if (!Ember.isEmpty(availableSettings)) this.transitionTo(availableSettings[0]);
