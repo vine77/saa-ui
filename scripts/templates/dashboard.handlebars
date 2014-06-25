@@ -1,5 +1,8 @@
 <div id="dashboard" class="container-fluid">
   <div class="row-fluid">
+    {{progress-bar-stacked value=1 thresholdOne=1 thresholdTwo=2 thresholdThree=3}}
+  </div>
+  <div class="row-fluid">
     {{render "dashboardStatus"}}
     {{render "dashboardStatusComponents"}}
     {{render "dashboardEvents"}}

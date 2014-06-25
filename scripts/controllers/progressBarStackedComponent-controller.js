@@ -1,4 +1,23 @@
 App.ProgressBarStackedComponent = Ember.Component.extend({
+  overallWidth: '50%',
+  backgroundWidths: function() {
+    var sum = Number(this.get('progressBarTwoPercent')) + Number(this.get('progressBarOnePercent'));
+    var returnValue = 'background-image:'+
+    'linear-gradient('+
+    ' to right,'+
+    ' rgba(94, 185, 94, 0.3), '+
+    ' rgba(94, 185, 94, 0.3) ' + this.get('progressBarOnePercent') + '%,'+
+    ' rgba(250, 167, 50, 0.3) '+ this.get('progressBarOnePercent') + '%,'+
+    ' rgba(250, 167, 50, 0.3) '+ sum + '%,' +
+    ' rgba(221, 81, 76, 0.3) ' + sum + '%' +
+    ');';
+    return returnValue;
+  }.property('progressBarOnePercent', 'progressBarTwoPercent', 'progressBarThreePercent'),
+
+  styles: function() {
+    return 'width:' + this.get('overallWidth') + '; ' + this.get('backgroundWidths');
+  }.property('overallWidth', 'backgroundWidths'),
+
   numberOfBars: 3,
   progressBarPercent: function() { //33.33% for each segment.
     return 100 / this.get('numberOfBars');
