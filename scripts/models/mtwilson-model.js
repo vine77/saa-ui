@@ -5,16 +5,16 @@ App.MtWilson = Ember.Object.extend({
   ipAddress: '',
   check: function () {
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'GET',
       dataType: "json"
     }).then(function (data, textStatus, xhr) {
-      App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
+      App.log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       // Mt. Wilson is installed
       App.mtWilson.set('isInstalled', true);
       App.mtWilson.set('isInstalling', false);
     }, function (xhr, textStatus, errorThrown) {
-      App.log(xhr.status + ' response from GET /api/v1/mtwilson/install: ' + xhr.statusText);
+      App.log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       switch (xhr.status) {
         case 404:
           // Mt. Wilson is not installed
@@ -53,11 +53,11 @@ App.MtWilson = Ember.Object.extend({
     // Start Mt. Wilson install
     App.mtWilson.set('isInstalling', true);
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'POST',
       dataType: "json",
       complete: function (xhr, textStatus) {
-        App.log(xhr.status + ' response from POST /api/v1/mtwilson/install: ' + xhr.statusText);
+        App.log(xhr.status + ' response from POST /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
           case 201:
             // Mt. Wilson install successfully started.
@@ -105,11 +105,11 @@ App.MtWilson = Ember.Object.extend({
   },
   uninstall: function () {
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v1/mtwilson/install',
+      url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'DELETE',
       dataType: "json",
       complete: function (xhr, textStatus) {
-        App.log(xhr.status + ' response from DELETE /api/v1/mtwilson/install: ' + xhr.statusText);
+        App.log(xhr.status + ' response from DELETE /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
             App.mtWilson.set('isInstalled', false);

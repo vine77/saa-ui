@@ -28,7 +28,7 @@ App.LoginController = App.FormController.extend({
     Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
     if (this.get('loggedIn') && this.get('controllers.application.isAutoRefreshEnabled')) {
       var host = App.getApiDomain();
-      Ember.$.ajax(host + '/api/v1/sessions', {
+      Ember.$.ajax(host + '/api/v2/sessions', {
         type: 'POST',
         data: JSON.stringify({
           session: {

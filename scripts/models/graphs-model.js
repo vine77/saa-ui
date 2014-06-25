@@ -2,10 +2,10 @@
 App.Graphs = Ember.Controller.extend({
   graph: function(emberId, entityName, entityType, numSeries, timeAgo) {
     entityName = entityName.replace(/\./g, '-');
-    
+
     if (Ember.isEmpty(timeAgo)) { timeAgo = '-1hr'; }
 
-    var url = (App.getApiDomain()) + '/api/v1/graphs?entityType=' + entityType + '&entityName=' + entityName + '&graphVars={"colorList":"yellow,green,orange,red,blue,pink", "from": "'+timeAgo+'"}';
+    var url = (App.getApiDomain()) + '/api/v2/graphs?entityType=' + entityType + '&entityName=' + entityName + '&graphVars={"colorList":"yellow,green,orange,red,blue,pink", "from": "'+timeAgo+'"}';
 
     if (numSeries) url += '&numSeries=' + numSeries;
     return Ember.$.ajax({
