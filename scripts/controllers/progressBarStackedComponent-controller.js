@@ -4,7 +4,6 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
   thresholdTwo: null,
   thresholdThree: null,
   thresholdMax: function() {
-    globalThis = this;
     return this.get('thresholdThree');
   }.property('thresholdThree'),
   areEvenThresholds: function() {
@@ -36,10 +35,10 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
   currentValueStyles: function() {
     var right = ~~this.get('barRange1Percentage') + ~~this.get('barRange2Percentage') + ~~this.get('barRange3Percentage');
     right = 100 - right;
-    if (right < 25) {
-      right = right - 20;
+    if (right < 10) { // this is here for small case. consider extending later for different sizes.
+      right = 0;
     } else if (right < 95) {
-      right = right - 5;
+      right = right - 1;
     } else {
       right = right - 15;
     }
