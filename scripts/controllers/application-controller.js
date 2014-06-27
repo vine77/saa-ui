@@ -32,7 +32,8 @@ App.ApplicationController = Ember.Controller.extend({
     return App.nova.get('exists') && App.openrc.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists'),
   isEnabled: function () {
-    return this.get('isHealthy') && this.get('isConfigured');
+    return true;
+    //return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
   baseUrl: function() {
     return '//' + window.location.host + window.location.pathname.split('/').slice(0, -1).join('/');

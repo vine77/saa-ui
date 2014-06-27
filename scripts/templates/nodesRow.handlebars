@@ -106,7 +106,8 @@
       </td>
       <td><div class="cell-container">
         {{#if utilization.normalized_load}}
-          {{progress-bar-stacked value=utilization.normalized_load overallWidth="width:50%" thresholdOne="1" thresholdTwo="2" thresholdThree="3"}}
+          {{progress-bar-stacked value=utilization.normalized_load overallWidth="90%" thresholdOne=1 thresholdTwo=2 thresholdThree=3}}
+          normalized load:{{utilization.normalized_load}}
         {{else}}
           {{na utilization.normalized_load}}
         {{/if}}
