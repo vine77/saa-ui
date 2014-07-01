@@ -8,12 +8,12 @@
         "configuration",
         "logging"
       ],
-      "exposed_health": 0,
+      "exposed_health": 1,
       "name": "System",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [],
-      "health": 0,
+      "health": 1,
       "message": "Health status: Unknown",
       "id": "system"
     },
@@ -322,14 +322,14 @@
     },
     {
       "children_ids": [],
-      "exposed_health": 0,
+      "exposed_health": 1,
       "name": "Configuration data status",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "configuration"
       ],
-      "health": 0,
+      "health": 1,
       "message": "Health status: Not verified yet.",
       "id": "sam_config_files"
     },
