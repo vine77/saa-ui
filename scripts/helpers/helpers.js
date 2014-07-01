@@ -426,9 +426,9 @@ App.xhrErrorMessage = function (xhr, defaultMessage) {
  * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
  * @returns {string} The error message, which is also displayed in the UI
  */
-App.xhrError = function (xhr, defaultMessage) {
+App.xhrError = function (xhr, defaultMessage, severity) {
   var errorMessage = App.xhrErrorMessage(xhr, defaultMessage);
-  var severity = (xhr.status == 422) ? App.WARNING : App.ERROR;
+  var severity = (severity !== undefined) ? severity : (xhr.status == 422) ? App.WARNING : App.ERROR;
   App.event(errorMessage, severity);
   return errorMessage;
 }

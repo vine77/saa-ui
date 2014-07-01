@@ -66,9 +66,9 @@ App.SettingsUploadController = Ember.ArrayController.extend({
             document.location.href = '/';
             // TODO: Add Status API polling to determine when to reload app
           }, 60000);
-        }, function () {
+        }, function (xhr) {
           self.set('isActionPending', false);
-          App.event('An error occurred while uploading config files.', App.ERROR);
+          App.xhrError(xhr, 'An error occurred while uploading config files.', App.ERROR);
           $('.fileupload i').removeClass().addClass('icon-file');
           $('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);

@@ -65,13 +65,12 @@ module.exports = function (grunt) {
                 // Log requests to terminal
                 grunt.log.writeln(req.method, req.url);
 
-                /*
-                if (req.url === '/api/v1/netconfig' && req.method === 'POST') {
-                  res.writeHead(400, {'Content-Type': 'application/json'});
-                  res.end(JSON.stringify({"error_message": "Invalid request: invalid gateway address. '10.23.34.3' is invalid or not in the network defined by '10.23.35.70/255.255.255.0'", "error_code": 400}));
+                if (req.url === '/api/v2/start' && req.method === 'PUT') {
+                  res.writeHead(422, {'Content-Type': 'application/json'});
+                  res.end(JSON.stringify({'code': 422, 'errors': ['This is a test of the error reporting system.', 'This is only a test.']}));
                   return;
                 }
-                */
+                if (req.method === 'PUT') req.method = 'GET';
 
                 // Serve API requests
                 if (req.url.indexOf('/api/') === 0) {
