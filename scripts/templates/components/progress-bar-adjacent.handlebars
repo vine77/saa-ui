@@ -1,0 +1,17 @@
+<div style="position: relative; float:left; width:94%; float:left; margin-right:1px;">
+  {{#each bar in bars}}
+    <div {{bind-attr style=bar.containerStyles class=":progress progressBarColor"}}>
+      <div {{bind-attr style=bar.barStyles class=":bar"}}>
+        <span {{bind-attr style=currentValueStyles}}>
+          {{current}}
+        </span>
+      </div>
+      <span style="position:absolute; right:0%; bottom:5px; color:black; font-size:.7em;">
+        {{currentValueTop}} out of {{max}}
+      </span>
+      <span style="position:absolute; left:1%; bottom:5px; color:black; font-size:.7em;">
+        {{label}}
+      </span>
+    </div>
+  {{/each}}
+</div>
