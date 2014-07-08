@@ -1,4 +1,23 @@
 <div id="dashboard" class="container-fluid">
+
+  <div style="width:15%; overflow:hidden; padding: 15px;">
+    {{progress-bar-stacked
+      value="1.5"
+      thresholdOne=1
+      thresholdTwo=2
+      thresholdThree=3
+    }}
+  </div>
+
+  <div style="width:15%; overflow:hidden; padding: 15px;">
+    {{progress-bar-stacked
+      value=currentValue
+      thresholdOne=50
+      thresholdTwo=80
+      thresholdThree=100
+    }}
+  </div>
+
   <div class="row-fluid">
     {{render "dashboardStatus"}}
     {{render "dashboardStatusComponents"}}
