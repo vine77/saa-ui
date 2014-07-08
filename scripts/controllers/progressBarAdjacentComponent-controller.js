@@ -13,13 +13,13 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
   numberOfBars: 2,
   maxTotal: 0,
   styleBinding: 'width:30px;',
-  classNames: ['progress-adjacent-container'],
+  classNames: ['progress-bar-adjacent-container'],
   bars: function() {
     // Get the max total.
     var i = 1;
     while (i <= this.get('numberOfBars')) {
       var max = this.get('barMax' + i);
-      this.set('maxTotal', ~~this.get('maxTotal') + ~~max);
+      this.set('maxTotal', parseInt(this.get('maxTotal')) + parseInt(max));
       i++;
     }
     var returnBars = [];
@@ -102,23 +102,24 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
       'height:8px; ' +
       'overflow:visible; ' +
       'background:' + this.get('progressBarBackground') + ';' +
-      ((!this.get('isFirstBar') && !this.get('isLastBar'))?'border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius:0px; border-bottom-right-radius:0px; ':'') +
-      ((this.get('isFirstBar'))?'border-top-right-radius:0px; border-bottom-right-radius:0px; ':'') +
-      'position:relative; ';
+      'position:relative; ' +
+      'border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius:0px; border-bottom-right-radius:0px; ';
+      //((!this.get('isFirstBar') && !this.get('isLastBar'))?'border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius:0px; border-bottom-right-radius:0px; ':'') +
+      //((this.get('isFirstBar'))?'border-top-right-radius:0px; border-bottom-right-radius:0px; ':'') +
   }.property('totalWidth', 'progressBarBackground', 'isFirstBar'),
   barStyles: function() {
     return 'width:' + this.get('currentPercentageWidth') + '%; ' + 
       'position:relative; ' +
-      'height: 8px; ' +
-      ((this.get('isLastBar'))?'border-top-right-radius:4px; border-bottom-right-radius:4px; ':'') +
-      ((this.get('isFirstBar'))?'border-top-left-radius:4px; border-bottom-left-radius:4px; ':'');
+      'height: 8px; ';
+      //((this.get('isLastBar'))?'border-top-right-radius:4px; border-bottom-right-radius:4px; ':'') +
+      //((this.get('isFirstBar'))?'border-top-left-radius:4px; border-bottom-left-radius:4px; ':'');
   }.property('currentPercentageWidth'),
   currentValueLeft: function() {
     if (this.get('currentPercentage') < 5) {
       return 0;
     } else {
       return 0;
-    }    
+    }
   }.property('currentPercentage'),
   isCurrentValueVisible: function() {
     return (this.get('currentPercentage') < 95);
@@ -127,14 +128,12 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
     if (this.get('isCurrentValueVisible')) {
       return 'position:absolute; right:0px; bottom:-17px; color:black; font-size:.8em;';
     } else {
-      return 'display:none';
+      return 'position:absolute; left:0px; bottom:-17px; color:black; font-size:.8em;';
     }
   }.property('isCurrentValueVisible'),
-  currentValueTop: function() {
-    if (!this.get('isCurrentValueVisible')) {
-      return this.get('current');
-    } 
-  }.property('isCurrentValueVisible')
+  currentValueToolTip: function() {
+    return this.get('current') + ' out of ' + this.get('max');
+  }.property('current', 'max')
 });
 
 
