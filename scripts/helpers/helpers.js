@@ -40,6 +40,7 @@ App.getApiDomain = function() {
 
 // Messaging/events
 App.notify = function (message, type, notifyTitle, sticky) {
+  if (message.length > 600) message = message.substring(0, 600) + '... [truncated]';
   if (typeof type === 'undefined') {
     type = 'warning';
   } else {
@@ -49,7 +50,7 @@ App.notify = function (message, type, notifyTitle, sticky) {
     notifyTitle = type.capitalize();
   }
   // Display notification to screen
-  $.pnotify({
+  Ember.$.pnotify({
     title: notifyTitle,
     text: message,
     type: type,
