@@ -80,24 +80,6 @@ App.VmController = Ember.ObjectController.extend({
       return '<strong>Contention Not Available</strong>';
     } else {
       var message = 'Overall Cache Contention: ' + this.get('contention.system.llc.value');
-      var vCPU = this.get('contention.threads');
-      vCPUs.forEach(function (item, index, enumerable) {
-        vCPU = item.get('contention.system.llc');
-        message += '<br>' + 'vCPU Contention: ' + vCPU.get('contention.system.llc.value');
-      });
-      return message;
-    }
-  }.property('contention.system.llc.value'),
-  contentionMessage: function () {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
-      return '<strong>Contention Not Available</strong>';
-    } else {
-      var message = 'Overall Cache Contention: ' + this.get('contention.system.llc.value');
-      var vCPUs = this.get('contention.threads');
-      vCPUs.forEach(function (item, index, enumerable) {
-        vCPU = item.llc;
-        message += '<br>' + 'vCPU Contention: ' + vCPU.value;
-      });
       return message;
     }
   }.property('contention.system.llc.value'),
