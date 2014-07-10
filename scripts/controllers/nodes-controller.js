@@ -117,7 +117,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   }.property('listView.pageSize', 'length'),
 
   allScuCapabilities: function () {
-    return this.get('model').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
+    return this.get('model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
   }.property('model.@each'),
   maxScuCapabilities: function () {
     return Math.max.apply(null, this.get('allScuCapabilities'));
