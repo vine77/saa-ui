@@ -15,6 +15,7 @@ App.Node = DS.Model.extend({
   samRegistered: function () {
     return this.get('status.mode') == App.MONITORED || this.get('status.mode') == App.ASSURED;
   }.property('status.mode'),
+  isAssured: Ember.computed.equal('status.mode', App.ASSURED),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
   status: DS.attr(),
