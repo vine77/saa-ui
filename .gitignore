@@ -1,12 +1,21 @@
-temp
-.tmp
-.sass-cache
-.bower.json
-scripts/templates.js
-styles/main.css
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Ignore node_modules not used for Node.js server (i.e. dev/build tools)
-node_modules/
-!node_modules/.bin/
-!node_modules/crypto/
-!node_modules/express/
+# OS
+.DS_Store
+Thumbs.db
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/vendor/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log

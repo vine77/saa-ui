@@ -1,27 +1,16 @@
 {
-  "name": "saa-ui",
   "dependencies": {
-    "handlebars": "~1.3.0",
-    "jquery": "^1.11.1",
-    "qunit": "~1.12.0",
-    "ember-qunit": "~0.1.5",
-    "ember": "^1.6.0",
+    "ember": "1.3.1",
     "ember-data": "1.0.0-beta.3",
-    "ember-resolver": "~0.1.1",
-    "loader": "stefanpenner/loader.js#1.0.0",
-    "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.2",
-    "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
-    "ember-qunit-notifications": "^0.0.3",
-    "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
-    "bootstrap": "http://jasny.github.io/bootstrap/2.3.1/assets/bootstrap.zip",
+    "bootstrap": "jasny/bootstrap#2.3.0-p4",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.2.0",
     "font-awesome": "components/font-awesome#~3.2.1",
-    "jquery-cookie": "carhartl/jquery-cookie#~1.4.1",
+    "jquery.cookie": "carhartl/jquery-cookie#~1.3.1",
     "moment": "moment/moment#~2.1.0",
     "pnotify": "sciactive/pnotify#~1.2.0",
     "d3": "mbostock/d3#~3.2.8",
     "rickshaw": "shutterstock/rickshaw#~1.4.3",
-    "jspdf": "~1.0.178",
+    "jspdf": "MrRio/jsPDF",
     "filesaver": "eligrey/FileSaver.js",
     "mousetrap": "ccampbell/mousetrap#~1.4.4",
     "ember-renderspeed": "eviltrout/ember-renderspeed",
@@ -31,10 +20,5 @@
     "modernizr": "~2.7.1",
     "zynga-scroller": "zynga/scroller#dadd850722ad2be9a865e4d84cb76c0197b68734",
     "natural-sort": "overset/javascript-natural-sort"
-  },
-  "resolutions": {
-    "bootstrap": "*",
-    "ember-data": "1.0.0-beta.3",
-    "ember": "^1.6.0"
   }
 }
