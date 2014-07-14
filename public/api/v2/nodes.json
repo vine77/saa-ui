@@ -438,6 +438,15 @@
       "utilization": {
         "scu_current": 17.3,
         "scu_max": 73.6,
+
+        "os_scu_current": 17.3,
+        "os_scu_min": 0,
+        "os_scu_max": 73.6,
+
+        "vm_scu_current": 17.3,
+        "vm_scu_min": 0,
+        "vm_scu_max": 73.6,
+
         "uptime": null,
         "network": null,
         "ipc": 0.32,
