@@ -121,7 +121,11 @@
       <table class="table table-bordered">
         <tr>
           <th class="column-medium">Service Compute Units (SCU)</th>
-          <td>{{na utilization.scu_current}} out of {{na utilization.scu_max}} SCU</td>
+          <td>
+            Total: {{na utilization.scu_current}} out of {{na utilization.scu_max}} SCU <br />
+            OS: {{na utilization.os_scu_current}} out of {{na utilization.os_scu_max}} SCU <br />
+            VM: {{na utilization.vm_scu_current}} out of {{na utilization.vm_scu_max}} SCU
+          </td>
         </tr>
         <tr>
           <th class="column-medium">CPU Throughput</th>
