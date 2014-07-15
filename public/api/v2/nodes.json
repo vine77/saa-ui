@@ -525,6 +525,22 @@
             "value": 11,
             "label": "MEDIUM"
           }
+        },
+        "os": {
+          "llc": {
+            "min": 0,
+            "max": 30,
+            "value": 11,
+            "label": "MEDIUM"
+          }
+        },
+        "vm": {
+          "llc": {
+            "min": 0,
+            "max": 30,
+            "value": 12,
+            "label": "MEDIUM"
+          }
         }
       },
       "logs_url": "/logs?node=00F400BD-762A-E211-9C53-001E67343C15",

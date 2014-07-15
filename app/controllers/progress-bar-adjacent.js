@@ -83,6 +83,9 @@ export default Ember.ObjectController.extend({
     }
   }.property('isCurrentValueVisible'),
   currentValueToolTip: function() {
-    return this.get('current') + ' out of ' + this.get('max');
-  }.property('current', 'max')
+    return ((!Ember.isEmpty(this.get('title')))?'<strong>' + this.get('title') + '</strong> <br />':'') +
+      this.get('current') + ' out of ' + this.get('max') + ' <br />' +
+      ((!Ember.isEmpty(this.get('label')))?this.get('label'):'');
+
+  }.property('current', 'max', 'title')
 });
