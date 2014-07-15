@@ -291,21 +291,21 @@ export default Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (isEmpty(this.get('utilization.scu_current'))) {
+    if (isEmpty(this.get('utilization.scus.total.current'))) {
       return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAA Compute Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
+      return 'SAA Compute Units: ' + this.get('utilization.scus.total.current') + ' out of ' + this.get('utilization.scus.total.max') + ' SCU';
     }
-  }.property('utilization.scu_current', 'utilization.scu_max'),
+  }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
   computeWidth: function() {
-    if (this.get('utilization.scu_current') === 0 || isEmpty(this.get('utilization.scu_current'))) {
+    if (this.get('utilization.scus.total.current') === 0 || App.isEmpty(this.get('utilization.scus.total.current'))) {
       return 'display:none;';
     } else {
-      var percent = rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
+      percent = App.rangeToPercentage(this.get('utilization.scus.total.current'), 0, this.get('utilization.scus.total.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.scu_current', 'utilization.scu_max'),
-  computeExists: Ember.computed.notEmpty('utilization.scu_current'),
+  }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
+  computeExists: Ember.computed.notEmpty('utilization.scus.total.current'),
 
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
   contentionFormatted: function() {

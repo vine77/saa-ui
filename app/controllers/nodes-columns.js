@@ -26,7 +26,7 @@ export default ColumnsController.extend({
   }, {
     title: 'Utilization (SCU)',
     description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
-    sortBy: 'utilization.scu_current'
+    sortBy: 'utilization.scus.total.current'
   }, {
     title: 'Memory',
     description: 'Memory utilization',
