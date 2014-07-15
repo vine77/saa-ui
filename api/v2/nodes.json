@@ -436,17 +436,24 @@
       ],
       "id": "00F400BD-762A-E211-9C53-001E67343C15",
       "utilization": {
-        "scu_current": 17.3,
-        "scu_max": 73.6,
+        "scus": {
+          "total": {
+            "min": 0,
+            "max": 73.6,
+            "current": 17.3
+          },
+          "os": {
+            "min": 0,
+            "max": 73.6,
+            "current": 17.3
+          },
+          "vm": {
+            "min": 0,
+            "max": 73.6,
+            "current": 17.3
+          }
+        },
 
-        "os_scu_current": 17.3,
-        "os_scu_min": 0,
-        "os_scu_max": 73.6,
-        
-        "vm_scu_current": 17.3,
-        "vm_scu_min": 0,
-        "vm_scu_max": 73.6,
-        
         "uptime": null,
         "network": null,
         "ipc": 0.32,
