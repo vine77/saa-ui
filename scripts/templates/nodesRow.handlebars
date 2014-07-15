@@ -82,8 +82,8 @@
         <div class="contention">
           {{#if computeExists}}
             {{progress-bar-adjacent numberOfBars="2"
-            barMin1=utilization.os_scu_min barMax1=utilization.os_scu_max barValue1=utilization.os_scu_current barLabel1="OS SCU Usage"
-            barMin2=utilization.vm_scu_min barMax2=utilization.vm_scu_max barValue2=utilization.vm_scu_current barLabel2="VM SCU Usage"}}
+            barMin1=utilization.os_scu_min barMax1=utilization.os_scu_max barValue1=utilization.os_scu_current barTitle1="OS SCU Usage"
+            barMin2=utilization.vm_scu_min barMax2=utilization.vm_scu_max barValue2=utilization.vm_scu_current barTitle2="VM SCU Usage"}}
           {{else}}
             <span class="not-applicable">n/a</span>
           {{/if}}
@@ -108,16 +108,9 @@
       </div></td>
       <td><div class="cell-container">
         {{#if hasContention}}
-          <div class="contention nowrap">
-            {{#view App.TooltipView titleBinding="contentionMessage"}}
-              <div class="contention-bar">
-                <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
-                  <div class="contention-gradient"></div>
-                </div>
-              </div>
-              {{na contentionFormatted}}
-            {{/view}}
-          </div>
+          {{progress-bar-adjacent numberOfBars="2"
+            barMin1="0" barMax1=contention.os.llc.max barValue1=contention.os.llc.value barLabel1=contentionMessage barTitle1="OS Contention"
+            barMin2="0" barMax2=contention.vm.llc.max barValue2=contention.vm.llc.value barLabel2=contentionMessage barTitle2="VM Contention"}}
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}
