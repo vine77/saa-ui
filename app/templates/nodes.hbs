@@ -1,0 +1,73 @@
+<div id="nodes" class="container-fluid">
+  <div class="row-fluid">
+    <div class="content">
+      <div class="header row-fluid">
+        <div class="span7">
+          <div class="row-fluid">
+            <div class="span6">
+              <small>Used of Available vCPUs ({{totalVcpusMessage}})</small>
+              <div class="progress progress-success">
+                <div class="bar" {{bind-attr style="totalVcpusWidth"}}></div>
+              </div>
+            </div>
+            {{#if maxRam}}
+              <div class="span6">
+                <small>Used of Available RAM ({{totalRamMessage}})</small>
+                <div class="progress progress-success">
+                  <div class="bar" {{bind-attr style="totalRamWidth"}}></div>
+                </div>
+              </div>
+            {{else}}
+              <div class="span6">
+                <small>Current RAM Usage: {{totalRamGibibyte}}</small>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="span5">
+          <div class="global-actions"></div>
+          <div id="filter-form" class="input-prepend clear-input pull-right">
+            <span class="add-on"><i class="icon-search"></i></span>
+            {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter nodes"}}
+            <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+          </div>
+        </div>
+      </div>
+      <div class="table table-bordered expandable">
+        <div class="thead">
+          <table>
+            <thead>
+              <tr>
+                <th class="column-small">
+                  {{#view App.TooltipView title="Checkboxes update contextual Graphs and Logs in the slide-out drawer on the right. &#10152;"}}
+                    <a {{action "selectAll"}} title="Select all"><i class="icon-check icon-large"></i></a>
+                  {{/view}}
+                </th>
+                {{#each columns}}
+                  {{partial "columnHeader"}}
+                {{/each}}
+                <th class="column-small">
+                  <a {{action "refresh"}} class="btn btn-mini"><i {{bind-attr class=":icon-refresh model.isUpdating:icon-spin model.isUpdating:disabled"}}></i></a>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        {{view App.ListView contentBinding="filteredModel"}}
+      </div>
+      <div class="table-footer row-fluid">
+        <div class="span6">
+          <div>Displaying {{visibleRows}} of {{length}} nodes</div>
+        </div>
+        <div class="span6 align-right">
+          On page {{listView.currentPage}} of {{numberOfPages}}
+          <div class="btn-group">
+            <a {{bind-attr class=":btn isFirstPage:disabled"}} {{action "previousPage"}}><i class="icon-arrow-left"></i> Previous</a>
+            <a {{bind-attr class=":btn isLastPage:disabled"}} {{action "nextPage"}}>Next <i class="icon-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      {{outlet}}
+    </div>
+  </div>
+</div>

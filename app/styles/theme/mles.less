@@ -1,0 +1,24 @@
+#mles {
+  .content > table {
+    > thead,
+    > tbody {
+      > tr {
+        > th:not(.sortable),
+        > td.column-small {
+          text-align: center;
+        }
+      }
+      > tr:not(.is-expanded):not(.is-selected) {
+        > th:last-of-type,
+        > td:last-of-type {
+          background-color: #f9f9f9;
+        }
+      }
+      > tr:hover:not(.is-expanded):not(.is-selected) {
+        > td {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

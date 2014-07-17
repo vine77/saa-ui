@@ -1,0 +1,142 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3>Edit Flavor</h3>
+</div>
+<form id="flavorsForm" {{action "editFlavor" on="submit"}}>
+  <div class="modal-body">
+    <p>Edit flavor "{{model.name}}" and attached <abbr title="Service-Level Agreement">SLA</abbr>.</p>
+    <div class="form-horizontal well-clean shadow-lifted">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span5 separator-right">
+            <div class="control-group">
+              <label class="control-label">Flavor name:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">vCPUs:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-small" valueBinding="model.vcpus"}}
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">RAM:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-small" valueBinding="model.memory"}}
+                MiB
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Root Disk:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-small" valueBinding="model.root"}}
+                GiB
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Ephemeral Disk:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-small" valueBinding="model.ephemeral"}}
+                GiB
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Swap Disk:</label>
+              <div class="controls">
+                {{view Ember.TextField class="input-small" valueBinding="model.swap"}}
+                MiB
+              </div>
+            </div>
+          </div>
+          <div class="span7 separate">
+            <div class="nav control-group btn-group">
+              <a {{bind-attr class=":btn hasNoSla:active"}} {{action "selectSlaType" undefined}}>No SLA</a>
+              <a {{bind-attr class=":btn hasExistingSla:active"}} {{action "selectSlaType" "existing"}}>Existing SLA</a>
+              <a {{bind-attr class=":btn hasNewSla:active"}} {{action "selectSlaType" "new"}}>New SLA</a>
+            </div>
+            {{#if hasNoSla}}
+              <div class="alert">No SLA will be attached to this flavor.</div>
+            {{/if}}
+            {{#if hasExistingSla}}
+              <div class="control-group">
+                <label class="inline">SLA:</label>
+                {{view Ember.Select viewName="select"
+                  contentBinding="slas"
+                  optionValuePath="content.id"
+                  optionLabelPath="content.name"
+                  selectionBinding="model.sla"
+                }}
+              </div>
+              SLOs in "{{model.sla.name}}":
+              <ol>
+                {{#each slo in model.sla.slos}}
+                  <li>{{slo.description}}</li>
+                {{/each}}
+              </ol>
+            {{/if}}
+            {{#if hasNewSla}}
+              <p>
+                <label class="inline">New SLA name:</label>
+                {{view Ember.TextField class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
+                <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
+              </p>
+              {{#each slo in model.sla.slos itemController="slo"}}
+                <p class="slo-row separator-top">
+                  {{view Ember.Select viewName="select" class="input-medium"
+                    contentBinding="sloTemplates"
+                    optionValuePath="content.id"
+                    optionLabelPath="content.readableSloType"
+                    selectionBinding="sloTemplate"
+                  }}
+                  {{view Ember.Select viewName="select" class="input-small"
+                    contentBinding="slo.sloTemplate.allowedOperators"
+                    valueBinding="slo.operator"
+                  }}
+
+                  {{#if isRange}}
+                    {{view Ember.TextField class="input-tiny" value=rangeMin}} to
+                    {{view Ember.TextField class="input-tiny" value=rangeMax}}
+                  {{/if}}
+
+                  {{#if isInteger}}
+
+                    {{view Ember.TextField class="input-small" value=value}}
+
+                  {{/if}}
+
+                  {{#if isBoolean}}
+
+                    <label style="display:inline; margin-left:10px">
+                      {{view Ember.RadioButton name="value" selection=value value="1"}}
+                        True
+                    </label>
+
+                    <label style=" display:inline; margin-left:10px;">
+                      {{view Ember.RadioButton name="value" selection=value value="0"}}
+                      False
+                    </label>
+
+                  {{/if}}
+
+                  {{slo.sloTemplate.unit}}
+                  <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
+                  <small class="block">{{slo.sloTemplate.description}}</small>
+                </p>
+              {{/each}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn" data-dismiss="modal">Cancel</a>
+    {{#if isFlavorCreating}}
+      <a class="btn btn-primary" disabled>Save</a>
+    {{else}}
+      <input class="btn btn-primary" type="submit" value="Save">
+    {{/if}}
+  </div>
+</form>

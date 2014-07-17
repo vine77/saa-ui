@@ -13,7 +13,8 @@
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
     "ember-qunit-notifications": "^0.0.3",
     "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
-    "bootstrap": "http://jasny.github.io/bootstrap/2.3.1/assets/bootstrap.zip",
+    "bootstrap": "jasny/bootstrap#v2.3.1-p6",
+    "bootstrap-build": "http://jasny.github.io/bootstrap/2.3.1/assets/bootstrap.zip",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.2.0",
     "font-awesome": "components/font-awesome#~3.2.1",
     "jquery-cookie": "carhartl/jquery-cookie#~1.4.1",
@@ -33,8 +34,8 @@
     "natural-sort": "overset/javascript-natural-sort"
   },
   "resolutions": {
-    "bootstrap": "*",
     "ember-data": "1.0.0-beta.3",
-    "ember": "^1.6.0"
+    "ember": "^1.6.0",
+    "jquery": "^1.11.1"
   }
 }

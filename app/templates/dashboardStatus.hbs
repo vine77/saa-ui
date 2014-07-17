@@ -1,0 +1,59 @@
+<div class="portlet span4">
+  <div class="header">System Status</div>
+  <div class="portlet-content">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="column-medium"><strong>System Health</strong></td>
+          <td>{{{health-icon this.controllers.statuses.health}}} {{health-text this.controllers.statuses.health}} </td>
+        </tr>
+        {{#if controllers.build.isReadycloud}}
+          <tr>
+            <td class="column-medium"><strong>SAA Recipe</strong></td>
+            <td>{{controllers.build.readycloudVersion}}</td>
+          </tr>
+        {{/if}}
+        <tr>
+          <td class="column-medium"><strong>SAA {{#if controllers.build.isReadycloud}}Ingredient{{else}}Version{{/if}}</strong></td>
+          <td>{{controllers.build.version}}</td>
+        </tr>
+        <tr>
+          <td class="column-medium"><strong>IPM Master/Slave</strong></td>
+          <td>
+            {{#if controllers.build.isMaster}}
+              IPM Master
+            {{else}}
+              IPM Slave
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <td class="column-medium"><strong>Nodes</strong> (total #)</td>
+          <td>
+            {{#if controllers.application.isEnabled}}
+              {{#link-to "nodes"}}{{controllers.nodes.length}} nodes{{/link-to}}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <td class="column-medium"><strong>VMs</strong> (total #)</td>
+          <td>
+            {{#if controllers.application.isEnabled}}
+              {{#link-to "vms"}}{{controllers.vms.length}} VMs{{/link-to}}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
+          </td>
+        </tr>
+        {{#each haMessages}}
+          <tr>
+            <td class="column-medium"><strong>{{title}}</strong></td>
+            <td>{{message}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

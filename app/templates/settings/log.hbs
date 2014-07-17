@@ -1,0 +1,68 @@
+<div id="log">
+  <div class="header">
+    <h3>Log Settings</h3>
+  </div>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <section id="log-informational-values">
+      <legend>Log Details</legend>
+      <br>
+      <div>Current Log Disk Size: {{readable-megabytes model.actualSize}}</div>
+      <dl>
+        <div class="progress progress-success disk-horizontal-bar">
+          <div class="bar" {{bind-attr style="unavailableSpaceWidth"}}></div>
+        </div>
+        <small>{{readable-megabytes model.configuredSize}}</small>
+      </dl>
+      <div class="control-group">
+        <label class="control-label">Maximum Size:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="model.configuredSize" class="input-small"}} MiB
+        </div>
+      </div>
+      <p class="alert"><strong>Please Note:</strong>
+      When the current size approaches maximum size or available space (exceeds about {{readable-megabytes model.thresholdSize}}), old logs will be deleted hourly.
+      </p>
+    </section>
+    <section id="settable-values">
+      <legend>Log Settings</legend>
+      <div class="control-group">
+        <label class="control-label">Maximum Days:</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="model.maximumDays" class="input-small"}} days
+        </div>
+        <br />
+        <p class="alert"><strong>Please Note:</strong>
+        "Maximum Days" are applied to every IPM.
+        </p>
+      </div>
+    </section>
+    <div class="form-actions">
+      {{#unless isActionPending}}
+        <a class="btn" {{action "cancel" model}}>Cancel</a>
+        <button type="submit" class="btn btn-primary" {{action "update" model.id}}>Save</button>
+      {{else}}
+        <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</button>
+      {{/unless}}
+    </div>
+  </form>
+
+  <div class="header">
+    <h3>Reset Log Data</h3>
+  </div>
+  <form class="form-horizontal well-clean shadow-lifted">
+    <section id="reset-log-data">
+      <legend>Reset Log Data</legend>
+      <div class="control-group">
+        <label class="control-label">Delete all log data:</label>
+        <div class="controls">
+          {{#unless isDeleteActionPending}}
+            <button class="btn btn-danger" {{action "deleteLogs"}}>Delete Log Data</button>
+          {{else}}
+            <button class="btn btn-danger" disabled="disabled"><i class="icon-spinner icon-spin"></i> Deleting logs...</button>
+          {{/unless}}
+        </div>
+      </div>
+    </section>
+  </form>
+
+</div>

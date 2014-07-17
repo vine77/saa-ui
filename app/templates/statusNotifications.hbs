@@ -1,0 +1,25 @@
+{{#with controllers.statuses}}
+  {{#if loggedIn}}
+    {{#if connected}}
+      {{#if statusErrorMessages}}
+        <div class="notification-top">
+          <div {{bind-attr class=":alert statusClass"}}>
+            <ul>
+              {{#each statusErrorMessages}}
+                <li {{bind-attr class="colorClass"}}>
+                  {{health-icon health}}<strong>{{n-ame}}</strong>: {{message}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="notification-top">
+        <div class="alert alert-error">
+          <i class="error icon-remove icon-large fixed-width"></i> Error: API connectivity has been lost.
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+{{/with}}

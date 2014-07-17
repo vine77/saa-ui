@@ -1,0 +1,20 @@
+<div class="contention-container">
+  {{!-- Used for Nodes --}}
+  {{#if view.content.capabilities.sockets}}
+    {{#each socket in view.content.contention.socketsSorted}}
+      <div class="socket">
+        <div class="socket-label">Socket {{socket.socket_number}}</div>
+        <div class="contention-bar-container">
+          {{#view App.TooltipView titleBinding="socket.llc.socketMessage" class="contention-tooltip"}}
+            <div class="contention-bar-width" {{bind-attr style="socket.llc.barWidth"}}>
+              <div class="contention-gradient"></div>
+            </div>
+          {{/view}}
+        </div>
+        <div class="socket-value">{{n-a socket.llc.value}}</div>
+      </div>
+    {{/each}}
+  {{else}}
+    <span class="not-applicable-contention"> {{n-a view.content.capabilities.sockets}} </span>
+  {{/if}}
+</div>

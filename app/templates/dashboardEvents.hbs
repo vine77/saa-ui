@@ -1,0 +1,45 @@
+<div class="portlet span4 events">
+  <div class="header">Actions</div>
+  <div class="portlet-content">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="column-small"></th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model}}
+          <tr>
+            <td class="column-small">
+              {{#view App.TooltipView titleBinding="message"}}
+                {{#if done}}
+                  {{{health-icon status}}}
+                {{else}}
+                  <i class="icon-spinner icon-spin icon-large fixed-width"></i>
+                {{/if}}
+              {{/view}}
+            </td>
+            <td>
+              {{message}}
+              <div class="row-fluid">
+                <div class="span6 nowrap ellipsis">
+                  <small>
+                    {{#if node}}{{#link-to "nodesNode" node}}{{node.name}}{{/link-to}}{{/if}}
+                    {{#if vm}}{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}{{/if}}
+                  </small>
+                </div>
+                <div class="span6 align-right"><small>{{time-stamp lastUpdate}}</small></div>
+              </div>
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td class="column-small"></td>
+            <td>No actions</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

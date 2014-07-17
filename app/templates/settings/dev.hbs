@@ -1,0 +1,16 @@
+<div id="dev">
+  <h3>Development Settings</h3>
+  <form class="form-horizontal well-clean shadow-lifted" {{action "save" on="submit"}}>
+    <div class="control-group">
+      <label class="control-label">API domain or IP address:</label>
+      <div class="controls">
+        {{view Ember.TextField placeholderBinding="currentDomain" valueBinding="apiDomain" autofocus="autofocus"}}
+        <a class="btn" {{action "clear"}}>Reset to default</a>
+      </div>
+    </div>
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" value="Save">
+      <i class="loading hide"></i>
+    </div>
+  </form>
+</div>

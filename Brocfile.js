@@ -8,7 +8,7 @@ var mergeTrees = require('broccoli-merge-trees');
 var trees = [];
 
 // Import app-specific dependencies
-app.import('vendor/bootstrap/js/bootstrap.js');
+app.import('vendor/bootstrap-build/js/bootstrap.js');
 app.import('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js');
 app.import('vendor/pnotify/jquery.pnotify.js');
 app.import('vendor/jquery-cookie/jquery.cookie.js');

@@ -1,0 +1,84 @@
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="brand">
+        <img id="logo-company" src="images/logo-intel-white.svg" alt="Intel">
+        <div class="application-title">
+          <div class="full-title">Datacenter Manager</div>
+          Service Assurance Administrator
+        </div>
+      </div>
+      {{#if loggedIn}}
+        <nav class="nav-collapse collapse pull-right">
+          <ul class="nav">
+            <li>{{#link-to "dashboard"}}<i class="icon-th"></i>Dashboard{{/link-to}}</li>
+            {{#if isEnabled}}
+              <li>{{#link-to "nodes"}}<i class="icon-cloud"></i>Nodes{{/link-to}}</li>
+              <li>{{#link-to "vms"}}<i class="icon-desktop"></i>VMs{{/link-to}}</li>
+              <li class="dropdown">
+                {{#link-to "services" class="dropdown-toggle"}}<i class="icon-tasks"></i>Services{{/link-to}}
+                <ul class="dropdown-menu">
+                  <li>{{#link-to "flavors"}}Flavors{{/link-to}}</li>
+                  <li>{{#link-to "slas"}}SLAs{{/link-to}}</li>
+                </ul>
+              </li>
+              {{#if App.mtWilson.isSupported}}
+                <li class="dropdown">
+                  {{#link-to "trust" class="dropdown-toggle"}}<i class="icon-lock"></i>Trust{{/link-to}}
+                  {{#if isMtWilsonInstalled}}
+                    <ul class="dropdown-menu">
+                      <li>{{#link-to "trust.mles"}}MLEs{{/link-to}}</li>
+                    </ul>
+                  {{/if}}
+                </li>
+              {{/if}}
+            {{else}}
+              <li><a class="disabled"><i class="icon-cloud"></i>Nodes</a></li>
+              <li><a class="disabled"><i class="icon-desktop"></i>VMs</a></li>
+              <li><a class="disabled"><i class="icon-tasks"></i>Services</a></li>
+            {{/if}}
+            <li class="dropdown">
+              {{#link-to "settings"}}<i class="icon-cog"></i>Settings{{/link-to}}
+              <ul class="dropdown-menu pull-right">
+                {{#unless isReadycloud}}
+                  <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
+                  <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
+                {{/unless}}
+                {{#unless isFramed}}
+                  <li>{{#link-to "settings.users"}}Users{{/link-to}}</li>
+                  <li>{{#link-to "settings.mailserver"}}Mail Server{{/link-to}}</li>
+                {{/unless}}
+                {{#if isConfigured}}
+                  <li>{{#link-to "settings.log"}}Logs{{/link-to}}</li>
+                  <li>{{#link-to "settings.trust"}}Trust{{/link-to}}</li>
+                {{/if}}
+                {{#unless isFramed}}
+                  <li>{{#link-to "settings.controller"}}SAA Appliance{{/link-to}}</li>
+                {{/unless}}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <ul class="account">
+          {{#if controllers.build.isReadycloud}}
+            <li>
+              <a {{bind-attr href="fuelUrl"}} target="_blank">
+                Orchestration <i class="icon-external-link icon-small"></i>
+              </a>
+            </li>
+          {{/if}}
+          <li>
+            {{#if isHorizonAvailable}}
+              <a {{bind-attr href="horizonUrl"}} target="_blank">
+                Horizon <i class="icon-external-link icon-small"></i>
+              </a>
+            {{/if}}
+          </li>
+          <li>Logged in as {{#link-to "settings.user" controllers.login.username}}{{controllers.login.username}}{{/link-to}}</li>
+          <li><a href="#" {{action "logout"}}><i class="icon-signout"></i>Log Out</a></li>
+        </ul>
+      {{/if}}
+      {{render "statusNotifications"}}
+    </div>
+  </div>
+</header>

@@ -1,0 +1,182 @@
+<table>
+  <tbody>
+    <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
+      <td class="column-small"><div class="cell-container">
+        {{#if isAgentInstalled}}
+          {{view Ember.Checkbox checkedBinding="isSelected"}}
+        {{/if}}
+      </div></td>
+      <td class="column-small"><div class="cell-container">
+        {{#if isUnhealthy}}
+          {{#view App.TooltipView titleBinding="healthMessage"}}
+            {{health-icon status.health}}
+          {{/view}}
+        {{else}}
+          {{#view App.TooltipView titleBinding="operationalMessage"}}
+            {{code-to-operationalIcon status.operational}}
+          {{/view}}
+        {{/if}}
+      </div></td>
+      <td class="column-small"><div class="cell-container">
+        {{#if isTrustRegistered}}
+          {{#view App.TooltipView titleBinding="trustMessage"}}
+            <span class="icon-stack">
+              {{#if isTrustUnknown}}
+                <i class="icon-large icon-question-sign unknown"></i>
+              {{else}}
+                <i {{bind-attr class=":icon-large isTrusted:icon-lock:icon-unlock isTrusted:trusted:untrusted"}}></i>
+              {{/if}}
+              {{#if isTrustAgentNotInstalledOrUnknown}}
+                <i class="secondary-icon icon-ban-circle inset" style="font-size:12px;"> </i>
+              {{/if}}
+            </span>
+          {{/view}}
+        {{else}}
+          {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
+            <span class="icon-stack">
+              <i class="icon-large icon-unlock unregistered"></i>
+              {{#if isTrustAgentNotInstalledOrUnknown}}
+                <i class="secondary-icon icon-ban-circle inset" style="font-size:12px;"> </i>
+              {{/if}}
+            </span>
+          {{/view}}
+        {{/if}}
+      </div></td>
+      <td class="column-small"><div class="cell-container">
+        {{#view App.TooltipView titleBinding="nodeTypeMessage"}}
+          {{#if isAssured}}
+            <i class="icon-large icon-trophy assured"></i>
+          {{else}}
+            {{#if isMonitored}}
+              <i class="icon-large icon-eye-open monitored"></i>
+            {{else}}
+              <i class="icon-large icon-trophy unassured"></i>
+            {{/if}}
+          {{/if}}
+        {{/view}}
+      </div></td>
+      <td><div class="cell-container">
+        {{#if isAgentInstalled}}
+          <a {{action "expand" this}}>{{n-ame}}</a>
+          {{{scheduledIcon}}}
+        {{else}}
+          {{n-ame}}
+        {{/if}}
+      </div></td>
+      <td><div class="cell-container">{{n-a vmInfo.count}}</div></td>
+      <td>
+        <div class="cell-container">
+          <div class="cpu-typography">
+            <div class="sockets-and-cores">
+              <div class="sockets">{{n-a capabilities.sockets}} CPUs </div>
+              <div class="cores">&times; {{n-a capabilities.cores_per_socket}} cores </div>
+            </div>
+            <div class="cpu-frequency">
+              <span class="operator">@</span>
+              {{n-a cpuFrequency}}
+            </div>
+          </div>
+        </div>
+      </td>
+      <td><div class="cell-container">
+        <div class="contention">
+          {{#if computeExists}}
+            {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
+              <div class="contention-bar">
+                <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
+                  <div class="contention-gradient"></div>
+                </div>
+              </div>
+              {{n-a utilization.scu_current}}
+            {{/view}}
+          {{else}}
+            <span class="not-applicable">n/a</span>
+          {{/if}}
+        </div>
+      </div></td>
+      {{!-- <td><div class="cell-container">{{n-a utilization.ipc}}</div></td> --}}
+      <td>
+        <div class="cell-container">
+          {{#if percentOfMemoryAvailable}}
+            {{progress-bar width=percentOfMemoryWidth containerWidth="width:60%;" percent=percentOfMemory message=percentOfMemoryMessage}}
+          {{else}}
+            {{readable-size utilization.memory}}
+          {{/if}}
+        </div>
+      </td>
+      <td><div class="cell-container">
+        {{#if utilization.normalized_load}}
+          {{progress-bar-stacked value=utilization.normalized_load overallWidth="90%" thresholdOne=1 thresholdTwo=2 thresholdThree=3}}
+        {{else}}
+          {{n-a utilization.normalized_load}}
+        {{/if}}
+      </div></td>
+      <td><div class="cell-container">
+        {{#if hasContention}}
+          <div class="contention nowrap">
+            {{#view App.TooltipView titleBinding="contentionMessage"}}
+              <div class="contention-bar">
+                <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
+                  <div class="contention-gradient"></div>
+                </div>
+              </div>
+              {{n-a contentionFormatted}}
+            {{/view}}
+          </div>
+        {{else}}
+          <span class="not-applicable">n/a</span>
+        {{/if}}
+      </div></td>
+      <td>
+        <div class="cell-container overflow-visible">
+          <div class="btn-group">
+            {{#if isOn}}
+              <a {{bind-attr class=":btn :btn-mini isActionPending:disabled"}} {{action "reboot" this}}><i class="icon-refresh"></i> Reboot</a>
+            {{else}}
+              <a class="btn btn-mini disabled"><i class="icon-bolt"></i> Power On</a>
+            {{/if}}
+            {{#if nodeActionsAreAvailable}}
+              <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
+                {{#unless isActionPending}}
+                  <span {{bind-attr class="nodeActionsAreAvailable::disabled :caret"}}></span>
+                {{else}}
+                  <i class="icon-spinner icon-spin"></i>
+                {{/unless}}
+              </a>
+              {{#with this as contextNode}}
+                <ul class="dropdown-menu">
+                  {{#each nodeActions}}
+                    {{#if isListItem}}
+                      <li {{bind-attr class="isDisabled:disabled"}}>
+                        {{#if isDisabled}}
+                          <a class="disabled">
+                            <i {{bind-attr class="icon"}}></i> {{n-ame}}
+                          </a>
+                        {{else}}
+                          <a {{action "performAction" method contextNode}}>
+                            <i {{bind-attr class="icon"}}></i> {{n-ame}}
+                          </a>
+                        {{/if}}
+                      </li>
+                    {{/if}}
+                    {{#if additionalListItems}}
+                      {{view additionalListItems}}
+                    {{/if}}
+                  {{/each}}
+                </ul>
+              {{/with}}
+            {{/if}}
+          </div>
+        </div>
+      </td>
+      <td class="column-small"><div class="cell-container">
+        {{#if isAgentInstalled}}
+          <a class="btn btn-mini toggle-details" {{action "expand" this}}>
+            <i {{bind-attr class="isExpanded:icon-minus:icon-plus"}}></i>
+          </a>
+        {{/if}}
+
+      </div></td>
+    </tr>
+  </tbody>
+</table>

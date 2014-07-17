@@ -1,0 +1,437 @@
+<div class="details">
+  <a class="close" {{action "closeDetails"}}>&times;</a>
+  <ul class="nav nav-tabs">
+    <li class="active"><a onclick="App.selectTab(event)">Details</a></li>
+    <li><a onclick="App.selectTab(event)">Utilization</a></li>
+    <li><a onclick="App.selectTab(event)">SLAs</a></li>
+    <li><a onclick="App.selectTab(event)">Graphs</a></li>
+    <li><a onclick="App.selectTab(event)">Trust</a></li>
+    <li><a onclick="App.selectTab(event)">Instantiation</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active details">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">VM Name</th>
+          <td>{{n-ame}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">VM ID</th>
+          <td>{{id}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Health</th>
+          <td>
+            {{#view App.TooltipView titleBinding="healthMessage"}}
+              {{health-icon status.health}} {{priority-to-type status.health}}
+            {{/view}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Operational State</th>
+          <td>{{code-to-operationalIcon status.operational}} {{code-to-operational status.operational}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Trust</th>
+          <td>
+            {{#view App.TooltipView titleBinding="trustMessage"}}
+              {{trust-to-stringIcon status.trust}}
+              {{trust-to-string status.trust}}
+            {{/view}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">vCPU Cores</th>
+          <td>{{capitalize-text capabilities.cores}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Memory Size</th>
+          <td>{{readable-size capabilities.memory_size}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">MAC Addresses</th>
+          <td>
+            <ul class="comma-delimited">
+              {{#each mac in macs}}
+                <li>{{uppercase-text mac}}</li>
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Fixed IP Addresses</th>
+          <td>{{concatenate-strings fixedIps}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Floating IP Addresses</th>
+          <td>{{concatenate-strings floatingIps}}</td>
+        </tr>
+        {{#unless notNoisy}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor</th>
+            <td>
+              {{#if isAggressor}}
+                <i {{bind-attr class=":icon-bullhorn :error"}}></i> Aggressor
+              {{/if}}
+              {{#if isVictim}}
+                <i {{bind-attr class=":icon-headphones :warning"}}></i> Victim
+              {{/if}}
+            </td>
+          </tr>
+        {{/unless}}
+        {{#if aggressors}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor Aggressor(s)</th>
+            <td>
+              <ul>
+                {{#each vm in aggressors}}
+                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                {{/each}}
+              </ul>
+            </td>
+          </tr>
+        {{/if}}
+        {{#if victims}}
+          <tr>
+            <th class="column-medium">Noisy Neighbor Victim(s)</th>
+            <td>
+              <ul>
+                {{#each vm in victims}}
+                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                {{/each}}
+              </ul>
+            </td>
+          </tr>
+        {{/if}}
+      </table>
+    </div>
+    <div class="tab-pane utilization">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">Utilization (SCUs)</th>
+          <td>
+            {{n-a utilization.scu_total}} out of {{n-a suTotalRange}} SCU(s) allocated.<br>
+            (SCU overload is {{n-a utilization.scu_overload}} SCU(s).)
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">CPU Throughput</th>
+          <td>{{n-a utilization.ipc}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Memory</th>
+          <td>{{readable-size utilization.memory}} out of {{readable-size capabilities.memory_size}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">CPU</th>
+          <td>{{one-decimal utilization.cpu}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Uptime</th>
+          <td>{{time-duration utilization.uptime}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="tab-pane slas">
+      <table class="table table-bordered">
+        <tr>
+          <th class="column-medium">SLA Name</th>
+          <td>
+            {{#if sla}}
+              {{#unless sla.deleted}}
+                {{#link-to "sla" sla}}{{capitalize-text slaName}}{{/link-to}}
+              {{else}}
+                {{capitalize-text slaName}}
+              {{/unless}}
+            {{else}}
+              {{capitalize-text slaName}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">SLA Message</th>
+          <td>{{slaMessage}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">SLOs</th>
+          <td>
+            <ul>
+              {{#each slo in sla.slos}}
+                <li>{{slo.description}}</li>
+              {{else}}
+                <li>No SLOs</li>
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="tab-pane graphs">
+      <div class="btn-group">
+        <button {{action "graphTimeAgo" "-1h"}} {{bind-attr class="isGraphTimeAgoHour:btn-primary :btn :btn-small :log-buttons"}}>
+          Hour
+        </button>
+        <button {{action "graphTimeAgo" "-24h"}} {{bind-attr class="isGraphTimeAgoDay:btn-primary :btn :btn-small :log-buttons"}}>
+          Day
+        </button>
+        <button {{action "graphTimeAgo" "-168h"}} {{bind-attr class="isGraphTimeAgoWeek:btn-primary :btn :btn-small :log-buttons"}}>
+          Week
+        </button>
+        <button {{action "graphTimeAgo" "-672h"}} {{bind-attr class="isGraphTimeAgoMonth:btn-primary :btn :btn-small :log-buttons"}}>
+          Month
+        </button>
+      </div>
+      {{#each graph in graphs}}
+        <figure class="thumbnail">
+          <img {{bind-attr src="graph.url"}}>
+          <figcaption class="caption">{{graph.desc}}</figcaption>
+        </figure>
+      {{else}}
+        <div class="alert alert-info">No graphs found.</div>
+      {{/each}}
+    </div>
+    <div class="tab-pane trust">
+      {{#if vmTrustReport.vmAttestations}}
+        <p class="pull-right">
+          {{#if isActionPending}}
+            <button class="btn btn-primary disabled"><i class="icon-download-alt"></i> Download Trust Report</button>
+            <i class="loading"></i>
+          {{else}}
+            <button class="btn btn-primary" {{action "exportTrustReport" this}}><i class="icon-download-alt"></i> Download Trust Report</button>
+          {{/if}}
+        </p>
+        <table class="table table-bordered">
+          <tr>
+            <th class="column-small">Trust Status</th>
+            <th>Trust Details</th>
+            <th>Node</th>
+            <th>Timestamp</th>
+          </tr>
+          {{#each vmAttestation in vmTrustReport.vmAttestations}}
+            <tr>
+              <td class="column-small">{{trust-to-stringIcon vmAttestation.vmAttestationNode.trustStatus}} {{trust-to-string vmAttestation.vmAttestationNode.trustStatus}}</td>
+              <td>{{vmAttestation.vmAttestationNode.reportMessage}}</td>
+              <td>
+                {{#if vmAttestation.vmAttestationNode.node.samControlled}}
+                  {{#link-to "nodesNode" node}}{{vmAttestation.vmAttestationNode.nodeName}}{{/link-to}}
+                {{else}}
+                  {{vmAttestation.vmAttestationNode.nodeName}}
+                {{/if}}
+              </td>
+              <td>{{time-stamp vmAttestation.vmAttestationNode.attestationTime}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        {{#unless model.isUpdating}}
+          <div class="alert alert-info">No attestations found.</div>
+        {{/unless}}
+      {{/if}}
+    </div>
+    <div class="tab-pane instantiation">
+      {{#if vmInstantiationSimple.generationTime}}
+        <table class="table table-bordered">
+          <tbody>
+             <tr>
+              <td>VM Name</td>
+              <td>{{vmInstantiationSimple.vmName}}</td>
+            </tr>
+            <tr>
+              <td>VM ID</td>
+              <td>{{vmInstantiationSimple.id}}</td>
+            </tr>
+            <tr>
+              <td>VM Instantiation Trust</td>
+              <td>
+                <strong>
+                  {{#if vmInstantiationSimple.vmTrustStatus}}
+                    <i class="icon-lock"></i> Trusted
+                  {{else}}
+                    <i class="icon-unlock"></i> Untrusted
+                  {{/if}}
+                </strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Schedule Time</td>
+              <td>{{time-stamp vmInstantiationSimple.scheduleTime}}</td>
+            </tr>
+            <tr>
+              <td>Generation Time</td>
+              <td>{{time-stamp vmInstantiationSimple.generationTime}}</td>
+            </tr>
+            <tr>
+              <td>SLA</td>
+              <td>{{vmInstantiationSimple.slaName}}</td>
+            </tr>
+            <tr>
+              <td>Total # of nodes</td>
+              <td>{{vmInstantiationSimple.nodesCount.total}}</td>
+            </tr>
+            <tr>
+              <td># of SAA-controlled nodes</td>
+              <td>{{vmInstantiationSimple.nodesCount.under_saa_control}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {{#if vmInstantiationSimple.nodesCount.total}}
+          <div class="alert alert-info">
+            The {{vmInstantiationSimple.nodesCount.total}} node{{#if vmInstantiationSimple.multipleNodes}}s{{/if}} on which this VM was considered to be placed {{#if vmInstantiationSimple.multipleNodes}}are{{else}}is{{/if}} listed below along with criteria used by the SAA scheduler to make the {{#if vmInstantiationSimple.selectedNode}}decision to place the VM on node "{{vmInstantiationSimple.selectedNode.name}}"{{else}}VM placement decision{{/if}}.
+          </div>
+        {{/if}}
+        <ul class="nav nav-tabs">
+          <li class="active"><a onclick="App.selectTab(event)">Simple VM Instantiation Report</a></li>
+          <li><a onclick="App.selectTab(event)">Detailed VM Instantiation Report</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active simple-vm-instantiation-report">
+            <table class="table table-bordered ranked-nodes-table">
+              <thead>
+                <tr>
+                  <th>Ranked Nodes</th>
+                  <th>Selected</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each rankedNode in simpleInstantiationNodes}}
+                  <tr {{bind-attr class="rankedNode.selected:success"}}>
+                    <td>{{#link-to "nodesNode" rankedNode.node}}{{rankedNode.node.name}}{{/link-to}}</td>
+                    <td>
+                      {{#if rankedNode.selected}}
+                        <strong>Selected</strong>
+                      {{else}}
+                        Not selected
+                      {{/if}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <table class="table table-bordered slo-gates-table">
+              <thead>
+                <tr>
+                  <th>SLO Gates</th>
+                  <th># of Nodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each gate in vmInstantiationSimple.sloGates}}
+                  <tr>
+                    <td>{{gate.description}}</td>
+                    <td>{{gate.nodesCount}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane detailed-vm-instantiation-report">
+            {{#if vmInstantiationDetailed.generation_time}}
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Ranked Nodes</th>
+                    <th>Scheduler Placement Criteria</th>
+                    <th>Contention</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each instantiationNode in detailedInstantiationNodes}}
+                    <tr {{bind-attr class="instantiationNode.selected:success"}}>
+                      <td class="column-medium">
+                        <p class="break-word">
+                          {{#link-to "nodesNode" instantiationNode.node}}
+                            {{instantiationNode.node.name}}
+                          {{/link-to}}
+                        </p>
+                        {{#if instantiationNode.selected}} (Selected) {{/if}}
+                      </td>
+                      <td class="nested-cell">
+                        <table class="table table-bordered nested-table">
+                          <thead>
+                            <tr>
+                              <th>Instantiation SLOs</th>
+                              <th>Value</th>
+                              <th>Unit</th>
+                              <th>Passed</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each slo in instantiationNode.instantiationSlos}}
+                              <tr>
+                                <td>{{slo.description}}</td>
+                                <td><span class="nowrap">{{slo.readableValue}}</span></td>
+                                <td><span class="nowrap">{{slo.unit}}</span></td>
+                                <td>
+                                  {{#if slo.passed}}
+                                    <span class="text-success">Passed</span>
+                                  {{else}}
+                                    <span class="text-error">Failed</span>
+                                  {{/if}}
+                                </td>
+                              </tr>
+                            {{else}}
+                              <tr>
+                                <td colspan="4"><span class="not-applicable">n/a</span></td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                        <table class="table table-bordered nested-table">
+                          <thead>
+                            <tr>
+                              <th>Internal Filters</th>
+                              <th>Value</th>
+                              <th>Passed</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each internalFilter in instantiationNode.internalFilters}}
+                              <tr>
+                                <td>{{internalFilter.description}}</td>
+                                <td><span class="nowrap">{{capitalize-text internalFilter.value}}</span></td>
+                                <td>
+                                  {{#if internalFilter.passed}}
+                                    <span class="text-success">Passed</span>
+                                  {{else}}
+                                    <span class="text-error">Failed</span>
+                                  {{/if}}
+                                </td>
+                              </tr>
+                            {{else}}
+                              <tr>
+                                <td colspan="4"><span class="not-applicable">n/a</span></td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <strong class="nowrap">System LLC:</strong>
+                        {{#if instantiationNode.contention.system.llc.value}}
+                          {{instantiationNode.contention.system.llc.value}} ({{instantiationNode.contention.system.llc.label}})<br><br>
+                        {{else}}
+                          <span class="not-applicable">n/a</span>
+                        {{/if}}
+                        {{#each socket in instantiationNode.contention.sockets}}
+                          <strong class="nowrap">Socket #{{socket.socket_number}}:</strong><br>
+                          {{socket.llc.value}} ({{socket.llc.label}})<br>
+                        {{/each}}
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            {{else}}
+              <div class="alert alert-info">The detailed instantiation report is not available.</div>
+            {{/if}}
+          </div>
+        </div>
+
+      {{else}}
+        <div class="alert alert-info">The VM instantiation report is not available.</div>
+      {{/if}}
+    </div>
+  </div>
+</div>
