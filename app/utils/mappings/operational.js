@@ -1,0 +1,17 @@
+// Constants for operational status codes
+export default {
+  UNKNOWN: 0,
+  OFF: 1,
+  ON: 2,
+  REBOOTING: 4,
+  PAUSED: 10,
+  SUSPENDED: 12,
+  LIVE_MIGRATING: 15,
+  MIGRATING_RESIZING: 16,
+  CONFIRMATION_NEEDED: 17,
+  REVERTING: 18,
+  MIGRATION_BLOCKED: 19,
+  SHELVING: 21,
+  SHELVED: 22,
+  SHELVED_OFFLOADED: 23
+};

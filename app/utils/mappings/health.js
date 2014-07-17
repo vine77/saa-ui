@@ -1,3 +1,4 @@
+// Constants for priority codes
 export default {
   UNKNOWN: 0,
   SUCCESS: 1,
