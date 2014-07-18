@@ -1,4 +1,6 @@
-App.Vm = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   capabilities: DS.attr(),
   contention: DS.attr(),
   floatingIps: DS.attr('array'),
@@ -11,14 +13,14 @@ App.Vm = DS.Model.extend({
   utilization: DS.attr(),
 
   // Computed properties for sorting
-  state: function () {
+  state: function() {
     return this.get('status.health') + '.' + this.get('status.operational');
   }.property('status.health', 'status.operational'),
-  noisy: function () {
+  noisy: function() {
     return this.get('status.victim') + '.' + this.get('status.aggressor');
   }.property('status.victim', 'status.aggressor'),
 
-  vcpusTimesSu: function () {
+  vcpusTimesSu: function() {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
     var suRange = computeSlo && computeSlo.get('value');

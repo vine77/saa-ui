@@ -1,5 +1,7 @@
+import Ember from 'ember';
+
 // TODO: Port to real model
-App.Network = Ember.Object.extend({
+export default Ember.Object.extend({
   route: {
     gateway: ''
   },
@@ -28,7 +30,7 @@ App.Network = Ember.Object.extend({
     hostname: ''
   },
   serverExternal: {},
-  save: function () {
+  save: function() {
     var networkData = {
       route: App.network.get('route'),
       management: App.network.get('management'),
@@ -43,10 +45,10 @@ App.Network = Ember.Object.extend({
       data: JSON.stringify(networkData),
       dataType: 'json',
       contentType: 'application/json',
-      complete: function (xhr) {
+      complete: function(xhr) {
         App.log(xhr.status + ' response from POST /api/v2/netconfig: ' + xhr.statusText);
       },
-      success: function (data) {
+      success: function(data) {
         $('i.loading').addClass('hide');
         // Update network config info (e.g. for DHCP)
         App.network.set('route', data.route);
@@ -57,21 +59,21 @@ App.Network = Ember.Object.extend({
         App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
         App.event('Network configuration saved successfully.', App.SUCCESS);
       },
-      error: function (xhr) {
+      error: function(xhr) {
         $('i.loading').addClass('hide');
         App.xhrError(xhr, 'Network configuration was not saved.');
       }
     });
   },
-  check: function () {
+  check: function() {
     return Ember.$.ajax({
       url: (App.getApiDomain()) + '/api/v2/netconfig',
       type: 'GET',
       dataType: 'json',
-      complete: function (xhr) {
+      complete: function(xhr) {
         App.log(xhr.status + ' response from GET /api/v2/netconfig: ' + xhr.statusText);
       },
-      success: function (data) {
+      success: function(data) {
         // Load network config info
         App.network.set('route', data.route);
         App.network.set('management', data.management);
@@ -81,11 +83,10 @@ App.Network = Ember.Object.extend({
         App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
         App.event('Successfully loaded network configuration details.', App.SUCCESS, false);
       },
-      error: function (xhr) {
+      error: function(xhr) {
         App.event('Network configuration details could not be loaded.', App.ERROR, false);
         App.log('ERROR ' + xhr.status + ' from GET /api/v2/netconfig: ' + xhr.statusText);
       }
     });
   }
-});
-App.network = App.Network.create();
+}).create();

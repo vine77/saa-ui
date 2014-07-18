@@ -1,4 +1,6 @@
-App.StatusSerializer = App.ApplicationSerializer.extend({
+import ApplicationSerializer from 'application';
+
+export default ApplicationSerializer.extend({
   extractArray: function(store, type, payload) {
     var json = JSON.parse(JSON.stringify(payload));
     json.statuses.map( function(item, index, enumerable) {

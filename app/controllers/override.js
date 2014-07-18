@@ -1,4 +1,6 @@
-App.OverrideController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   isDefault: null,
   isDefaultObserver: function() {
     if (!this.get('isDefault')) {

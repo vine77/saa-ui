@@ -1,4 +1,6 @@
-App.SettingsUsersController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   columns: ['username'],
   count: function() {
     return this.get('model.length');

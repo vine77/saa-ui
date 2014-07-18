@@ -1,1 +1,3 @@
-App.Status10Controller = App.StatusController.extend();
+import StatusController from 'status';
+
+export default StatusController.extend();

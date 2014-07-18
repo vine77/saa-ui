@@ -1,41 +1,45 @@
-App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+import Ember from 'ember';
+import FilterableMixin from '../mixins/filterable';
+import SortableMixin from '../mixins/sortable';
+
+export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['nodesColumns', 'application', 'quota', 'node'],
   itemController: 'node',
   sortProperty: 'name',
   sortAscending: true,
   filterProperties: ['name'],
-  totalVms: function () {
+  totalVms: function() {
     if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('vmInfo.count') > 0) ? item.get('vmInfo.count') : 0;
       return previousValue + count;
     }, 0);
   }.property('model.@each.vmInfo.count'),
-  totalVcpus: function () {
+  totalVcpus: function() {
     if (this.get('model') === undefined) return null;
-    return this.get('model').rejectBy('samControlled', 0).reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').rejectBy('samControlled', 0).reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('vcpus.used') > 0) ? item.get('vcpus.used') : 0;
       return previousValue + count;
     }, 0);
   }.property('model.@each.vcpus.used'),
-  maxVcpus: function () {
+  maxVcpus: function() {
     if (this.get('model') === undefined) return null;
-    return this.get('model').rejectBy('samControlled', 0).reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').rejectBy('samControlled', 0).reduce(function(previousValue, item, index, enumerable) {
       var max = (item.get('vcpus.max') > 0) ? item.get('vcpus.max') : 0;
       return previousValue + max;
     }, 0);
   }.property('model.@each.vcpus.max'),
-  totalVcpusMessage: function () {
+  totalVcpusMessage: function() {
     var maxVcpus = (this.get('maxVcpus') == 0) ? 'N/A' : this.get('maxVcpus');
     return this.get('totalVcpus') + ' out of ' + maxVcpus + ' vCPUs';
   }.property('totalVcpus', 'maxVcpus'),
-  totalVcpusWidth: function () {
+  totalVcpusWidth: function() {
     var percentage = (this.get('maxVcpus') == 0) ? 0 : (this.get('totalVcpus')/this.get('maxVcpus')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalVcpus', 'maxVcpus'),
-  totalRam: function () {
+  totalRam: function() {
     if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('memory.used') > 0) ? item.get('memory.used') : 0;
       return previousValue + count;
     }, 0);
@@ -43,45 +47,45 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   totalRamGibibyte: function() {
     return App.readableSize(this.get('totalRam') * 1048576);
   }.property('totalRam'),
-  maxRam: function () {
+  maxRam: function() {
     if (this.get('model') === undefined) return null;
-    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('model').reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('memory.max') > 0) ? item.get('memory.max') : 0;
       return previousValue + count;
     }, 0);
   }.property('model.@each.memory.max'),
-  totalRamMessage: function () {
+  totalRamMessage: function() {
     return App.readableSize(this.get('totalRam') * 1048576) + ' out of ' + App.readableSize(this.get('maxRam') * 1048576);
   }.property('totalRam', 'maxRam'),
-  totalRamWidth: function () {
+  totalRamWidth: function() {
     var percentage = (this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalRam', 'maxRam'),
-  percentOfRam: function () {
+  percentOfRam: function() {
     return Math.round((this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100);
   }.property('totalRam', 'maxRam'),
 
-  numberOfPages: function () {
+  numberOfPages: function() {
     return Math.ceil(this.get('length')/this.get('listView.pageSize'));
   }.property('listView.pageSize', 'length'),
   isFirstPage: Ember.computed.equal('listView.currentPage', 1),
-  isLastPage: function () {
+  isLastPage: function() {
     return this.get('listView.currentPage') === this.get('numberOfPages');
   }.property('listView.currentPage', 'numberOfPages'),
-  visibleRows: function () {
+  visibleRows: function() {
     return Math.min(this.get('listView.pageSize'), this.get('length'));
   }.property('listView.pageSize', 'length'),
 
-  allScuCapabilities: function () {
+  allScuCapabilities: function() {
     return this.get('model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
   }.property('model.@each'),
-  maxScuCapabilities: function () {
+  maxScuCapabilities: function() {
     return Math.max.apply(null, this.get('allScuCapabilities'));
   }.property('allScuCapabilities'),
-  minScuCapabilities: function () {
+  minScuCapabilities: function() {
     return Math.min.apply(null, this.get('allScuCapabilities'));
   }.property('allScuCapabilities'),
-  averageScuCapabilities: function () {
+  averageScuCapabilities: function() {
     return this.get('allScuCapabilities').reduce(function(previousValue, item, index, enumerable) {
       return previousValue + item;
     }, 0) / this.get('allScuCapabilities').get('length');
@@ -90,11 +94,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
 
   // Actions
   actions: {
-    selectAll: function () {
+    selectAll: function() {
       var isEverythingSelected = this.filterBy('isSelectable').everyProperty('isSelected');
       this.filterBy('isSelectable').setEach('isSelected', !isEverythingSelected);
     },
-    refresh: function () {
+    refresh: function() {
       if (!this.get('isUpdating')) {
         if (App.mtWilson.get('isInstalled') === true) {
           this.store.find('trustNode');
@@ -106,7 +110,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
 
     // Individual actions
-    expand: function (model) {
+    expand: function(model) {
       var item = this.findBy('id', model.get('id'));
       if (!model.get('isExpanded')) {
         this.transitionToRoute('nodesNode', item);
@@ -114,9 +118,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.transitionToRoute('nodes');
       }
     },
-    exportTrustReport: function (model) {
+    exportTrustReport: function(model) {
       model.set('isActionPending', true);
-      this.store.find('nodeTrustReport', model.get('id')).then(function (nodeTrustReport) {
+      this.store.find('nodeTrustReport', model.get('id')).then(function(nodeTrustReport) {
         if (nodeTrustReport !== null && (nodeTrustReport.get('attestations.length') > 0)) {
           var title = 'Node Trust Report';
           var subtitle = model.get('name') + ' ('+ model.get('ids.ip_address') + ')';
@@ -128,12 +132,12 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           App.event('No trust attestation logs were found for this node.', App.WARNING);
         }
         model.set('isActionPending', false);
-      }, function (xhr) {
+      }, function(xhr) {
         model.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to load node trust report.');
       });
     },
-    reboot: function (node) {
+    reboot: function(node) {
       node.set('isActionPending', true);
       node.set('isRebooting', true);
       var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
@@ -141,11 +145,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           name: 'reboot',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
           App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
           App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
@@ -155,17 +159,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isRebooting', false);
       }
     },
-    unregister: function (node) {
+    unregister: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "unregister"
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
         });
@@ -173,7 +177,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    setMonitored: function (node) {
+    setMonitored: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to monitored?');
       if (confirmed) {
@@ -183,10 +187,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           options: {
             agent_mode: App.MONITORED
           }
-        }).save().then(function (action) {
+        }).save().then(function(action) {
           node.set('isActionPending', false);
           App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set the agent mode of node "' + node.get('name') + '" to monitored.');
         });
@@ -194,7 +198,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    setAssured: function (node) {
+    setAssured: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to assured?');
       if (confirmed) {
@@ -204,10 +208,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           options: {
             agent_mode: App.ASSURED
           }
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set agent mode of node "' + node.get('name') + '" to assured.');
         });
@@ -215,18 +219,18 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    unschedule: function (node) {
+    unschedule: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "scheduler_unmark"
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           node.set('schedulerMark', null);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
         });
@@ -234,17 +238,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    addTrust: function (node) {
+    addTrust: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to register node "' + node.get('name') + '" as trusted?');
       if (confirmed) {
         var newTrustNode = this.store.createRecord('trustNode', {
           node: this.store.getById('node', node.get('id'))
         });
-        newTrustNode.save().then(function () {
+        newTrustNode.save().then(function() {
            node.set('isActionPending', false);
           App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           newTrustNode.deleteRecord();
           App.xhrError(xhr, 'An error occured while registering node"' + node.get('name') + '" as trusted.');
@@ -253,17 +257,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    trustFingerprint: function (node) {
+    trustFingerprint: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to fingerprint node "' + node.get('name') + '"?');
       if (confirmed) {
         var newTrustMle = this.store.createRecord('trustMle', {
           node: this.store.getById('node', node.get('id'))
         });
-        newTrustMle.save().then(function (model) {
+        newTrustMle.save().then(function(model) {
           node.set('isActionPending', false);
           App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           newTrustMle.deleteRecord();
           App.xhrError(xhr, 'An error occured while fingerprinting node "' + node.get('name') + '".');
@@ -272,17 +276,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    configureTrustAgent: function (node) {
+    configureTrustAgent: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to configure the trust agent for node "' + node.get('name') + '"?');
       if (confirmed) {
         this.store.createRecord('action', {
           name: 'trust_agent_config',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully configured the trust agent for node "' + node.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
         });
@@ -290,7 +294,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    schedule: function (node, socketNumber) {
+    schedule: function(node, socketNumber) {
       var parentController = this;
       node.set('isActionPending', true);
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
@@ -303,7 +307,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
             scheduler_mark: socketNumber,
             scheduler_persistent: true
           }
-        }).save().then(function () {
+        }).save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
           // Unset all other nodes
@@ -311,7 +315,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           // Set this node for VM placement
           node.set('schedulerMark', socketNumber);
           node.set('schedulerPersistent', true);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
         });
@@ -319,16 +323,16 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         node.set('isActionPending', false);
       }
     },
-    removeTrust: function (node) {
+    removeTrust: function(node) {
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to unregister node "' + node.get('name') + ' as trusted"?');
       if (confirmed) {
         var trustNode = node.get('trustNode');
         trustNode.deleteRecord();
-        trustNode.save().then(function () {
+        trustNode.save().then(function() {
           node.set('isActionPending', false);
           App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           node.set('isActionPending', false);
           node.rollback();
           App.xhrError(xhr, 'An error occured while unregistering node "' + node.get('name') + '" as trusted.');

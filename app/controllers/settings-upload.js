@@ -1,4 +1,6 @@
-App.SettingsUploadController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
   isEnabledBinding: 'controllers.application.isEnabled',
   isConfiguredBinding: 'controllers.application.isConfigured',
@@ -13,15 +15,15 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   isChangingFiles: false,
   isActionPending: false,
   networkType: {},
-  isNeutronConfigRequired: function () {
+  isNeutronConfigRequired: function() {
     var isNeutronConfigRequired = this.get('networkType.setting') == App.NEUTRON
     return isNeutronConfigRequired;
   }.property('networkType.setting'),
-  showButtons: function () {
+  showButtons: function() {
     return !this.get('isConfigured') || this.get('isChangingFiles');
   }.property('isConfigured', 'isChangingFiles'),
   actions: {
-    uploadFiles: function () {
+    uploadFiles: function() {
       var self = this;
       // Require all 3 files to be specified
       var isNovaSpecified = !!$('#novaForm').find('input[type=file]').val();
@@ -48,25 +50,25 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + App.application.get('title') + '?');
       if (confirmUpload) {
         this.set('isActionPending', true);
-        this.get('networkType.content').save().then(function () {
+        this.get('networkType.content').save().then(function() {
           return App.nova.upload();
-        }).then(function () {
+        }).then(function() {
           return App.openrc.upload();
-        }).then(function () {
+        }).then(function() {
           if (self.get('isNeutronConfigRequired') && isQuantumSpecified) return App.quantum.upload();
-        }).then(function () {
+        }).then(function() {
           if (isKeystoneSpecified) return App.keystone.upload();
-        }).then(function () {
+        }).then(function() {
           return App.nova.start();
-        }).then(function () {
+        }).then(function() {
           self.set('isActionPending', false);
           App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', App.SUCCESS, undefined, undefined, true);
-          setTimeout(function () {
+          setTimeout(function() {
             // Restart app for full reload and redirect to index
             document.location.href = '/';
             // TODO: Add Status API polling to determine when to reload app
           }, 60000);
-        }, function (xhr) {
+        }, function(xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'An error occurred while uploading config files.', App.ERROR);
           $('.fileupload i').removeClass().addClass('icon-file');
@@ -80,11 +82,11 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         });
       }
     },
-    changeFiles: function () {
+    changeFiles: function() {
       $('.fileupload').fileupload('clear');
       this.set('isChangingFiles', true);
     },
-    cancel: function () {
+    cancel: function() {
       $('.fileupload').fileupload('reset');
       this.set('isChangingFiles', false);
     },
@@ -94,12 +96,12 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         return Ember.$.ajax({
           url: (App.getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
           type: 'DELETE',
-          success: function (data) {
+          success: function(data) {
             //$('i.loading').addClass('hide');
             App.event('Deleted Keystone CA certificate successfully.', App.SUCCESS);
             App.keystone.check();
           },
-          error: function (xhr) {
+          error: function(xhr) {
             //$('i.loading').addClass('hide');
             App.xhrError(xhr, 'Failed to delete Keystone CA certificate.');
           }

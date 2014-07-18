@@ -1,10 +1,14 @@
-App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+import Ember from 'ember';
+import FilterableMixin from '../mixins/filterable';
+import SortableMixin from '../mixins/sortable';
+
+export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['vmsColumns', 'application'],
   itemController: 'vm',
   sortProperty: 'name',
   sortAscending: true,
   filterProperties: ['name', 'nodeName'],
-  multipleVmsAreSelected: function () {
+  multipleVmsAreSelected: function() {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
   isTreemapVisible: false,
@@ -13,27 +17,27 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
     'children': []
   },
 
-  numberOfPages: function () {
+  numberOfPages: function() {
     return Math.ceil(this.get('length')/this.get('listView.pageSize'));
   }.property('listView.pageSize', 'length'),
   isFirstPage: Ember.computed.equal('listView.currentPage', 1),
-  isLastPage: function () {
+  isLastPage: function() {
     return this.get('listView.currentPage') === this.get('numberOfPages');
   }.property('listView.currentPage', 'numberOfPages'),
-  visibleRows: function () {
+  visibleRows: function() {
     return Math.min(this.get('listView.pageSize'), this.get('length'));
   }.property('listView.pageSize', 'length'),
 
   // Actions
   actions: {
-    selectAll: function () {
+    selectAll: function() {
       var isEverythingSelected = this.filterBy('isSelectable').everyProperty('isSelected');
       this.filterBy('isSelectable').setEach('isSelected', !isEverythingSelected);
     },
-    refresh: function () {
+    refresh: function() {
       this.store.find('vm');
     },
-    expand: function (model) {
+    expand: function(model) {
       var item = this.findBy('id', model.get('id'));
       if (!model.get('isExpanded')) {
           this.transitionToRoute('vmsVm', item);
@@ -41,10 +45,10 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           this.transitionToRoute('vms');
         }
     },
-    exportTrustReport: function (model) {
+    exportTrustReport: function(model) {
       var self = this;
       this.set('isActionPending', true);
-      this.store.find('vmTrustReport', model.get('id')).then(function (vmTrustReport) {
+      this.store.find('vmTrustReport', model.get('id')).then(function(vmTrustReport) {
         model = vmTrustReport;
         if ((vmTrustReport !== undefined) && (vmTrustReport !== null) && (model.get('vmAttestations.length') > 0)) {
           var title = 'VM Trust Report';
@@ -57,12 +61,12 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
           App.notify('Trust attestation logs were not found.');
         }
         self.set('isActionPending', false);
-      }, function (xhr) {
+      }, function(xhr) {
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
-    renderTreemap: function () {
+    renderTreemap: function() {
       if (this.isTreemapVisible) {
         $('.treemap').slideUp();
         this.set('isTreemapVisible', false);
@@ -74,7 +78,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       // Generate object for D3 treemap layout
       var vms = {};
       var json = [];
-      this.store.all('vm').forEach(function (item, index, enumerable) {
+      this.store.all('vm').forEach(function(item, index, enumerable) {
         if (!vms.hasOwnProperty(item.get('nodeName'))) vms[item.get('nodeName')] = [];
         vms[item.get('nodeName')].push({
           id: item.get('id'),
@@ -111,7 +115,7 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
       var treemap = d3.layout.treemap()
         .sticky(true)
         .size([$('.treemap').width(), 200])
-        .value(function (d) {
+        .value(function(d) {
           if (d.capabilities && d.capabilities.memory_size) {
             return d.capabilities.memory_size;
           } else {
@@ -125,12 +129,12 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         .enter()
         .append('div')
         .attr('class', 'node')
-        .style('left', function (d) { return d.x + 'px'; })
-        .style('top', function (d) { return d.y + 'px'; })
-        .style('width', function (d) { return Math.max(0, d.dx - 1) + 'px'; })
-        .style('height', function (d) { return Math.max(0, d.dy - 1) + 'px'; })
-        .style('background', function (d) { return d.children ? null : color(d.nodeName); })
-        .html(function (d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
+        .style('left', function(d) { return d.x + 'px'; })
+        .style('top', function(d) { return d.y + 'px'; })
+        .style('width', function(d) { return Math.max(0, d.dx - 1) + 'px'; })
+        .style('height', function(d) { return Math.max(0, d.dy - 1) + 'px'; })
+        .style('background', function(d) { return d.children ? null : color(d.nodeName); })
+        .html(function(d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
     }
   }
 });

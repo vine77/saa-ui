@@ -1,4 +1,6 @@
-App.NodeTrustReportSerializer = App.ApplicationSerializer.extend({
+import ApplicationSerializer from 'application';
+
+export default ApplicationSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     var json = JSON.parse(JSON.stringify(payload)),
         attestations = json.node_trust_report.attestations,
@@ -7,7 +9,7 @@ App.NodeTrustReportSerializer = App.ApplicationSerializer.extend({
     json.attestations = attestations;
     json.node_trust_report.attestation_ids = attestation_ids;
 
-    json.attestations.map(function (item, index, enumerable) {
+    json.attestations.map(function(item, index, enumerable) {
       item.id = item.attestation_time;
       item.node_trust_report_id = this.id.toString();
     }, json.node_trust_report);

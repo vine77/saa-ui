@@ -1,4 +1,6 @@
-App.Build = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   version: DS.attr('string'),
   date: DS.attr('string'),
   hostname: DS.attr('string'),

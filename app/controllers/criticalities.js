@@ -1,4 +1,6 @@
-App.CriticalitiesController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   itemController: 'criticality',
   init: function() {
     self = this;

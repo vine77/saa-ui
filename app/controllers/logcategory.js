@@ -1,4 +1,6 @@
-App.LogcategoryController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   isSelected: false,
   needs:["logBar"],
   updateKibana: function() {

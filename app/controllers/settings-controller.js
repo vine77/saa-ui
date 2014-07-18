@@ -1,17 +1,19 @@
-App.SettingsControllerController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   isActionPending: false,
   actions: {
-    reset: function () {
+    reset: function() {
       this.set('isActionPending', true);
       var self = this;
       var confirmed = confirm('Are you sure you want to reset the controller? Warning: Resetting the controller may result in an unavailable UI for a duration of time, and depending on your network configuration the UI IP may change.');
       if (confirmed) {
         this.store.createRecord('action', {
           name: 'reset_controller'
-        }).save().then(function () {
+        }).save().then(function() {
           self.set('isActionPending', false);
           App.event('Successfully reset the controller', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to reset the controller');
         });
@@ -26,10 +28,10 @@ App.SettingsControllerController = Ember.Controller.extend({
       if (confirmed) {
         this.store.createRecord('action', {
           name: 'shutdown_controller'
-        }).save().then(function () {
+        }).save().then(function() {
           self.set('isActionPending', false);
           App.event('Successfully shutdown controller', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to shutdown controller');
         });

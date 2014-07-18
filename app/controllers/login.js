@@ -1,6 +1,8 @@
-App.LoginController = App.FormController.extend({
+import FormController from 'form';
+
+export default FormController.extend({
   needs: ['application'],
-  init: function () {
+  init: function() {
     this._super();
     this.refreshSession();
   },
@@ -14,7 +16,7 @@ App.LoginController = App.FormController.extend({
   tenantType: 'default',
   isDefaultTenant: Ember.computed.equal('tenantType', 'default'),
   tenantName: '',
-  setHeaders: function () {
+  setHeaders: function() {
     var csrfToken = this.get('csrfToken');
     //Ember.$.cookie('token', csrfToken);
     Ember.$.ajaxSetup({
@@ -24,7 +26,7 @@ App.LoginController = App.FormController.extend({
     });
     sessionStorage.csrfToken = csrfToken;
   }.observes('csrfToken'),
-  refreshSession: function () {
+  refreshSession: function() {
     Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
     if (this.get('loggedIn') && this.get('controllers.application.isAutoRefreshEnabled')) {
       var host = App.getApiDomain();
@@ -40,7 +42,7 @@ App.LoginController = App.FormController.extend({
       });
     }
   },
-  transitionToAttempted: function () {
+  transitionToAttempted: function() {
     var attemptedTransition = this.get('attemptedTransition');
     if (attemptedTransition) {
       try {
@@ -62,10 +64,10 @@ App.LoginController = App.FormController.extend({
     }
   },
   actions: {
-    clearAlert: function () {
+    clearAlert: function() {
       this.set('alert', '');
     },
-    login: function () {
+    login: function() {
       var self = this;
       this.set('isPending', true);
       this.send('clearAlert');
@@ -76,12 +78,12 @@ App.LoginController = App.FormController.extend({
         password: this.get('password'),
         tenant: this.get('isDefaultTenant') ? '' : this.get('tenantName')
       });
-      session.save().then(function (session) {
+      session.save().then(function(session) {
         self.set('csrfToken', session.get('csrfToken'));
         self.set('isPending', false);
         self.set('loggedIn', true);
         self.transitionToAttempted();
-      }, function (xhr) {
+      }, function(xhr) {
         self.set('isPending', false);
         if (xhr instanceof DS.InvalidError) {  // status == 422
           var csrfToken = xhr.errors.message.csrf_token;

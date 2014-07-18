@@ -1,4 +1,6 @@
-App.VmController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   needs: ['vms', 'logBar'],
   isExpanded: false,
   isSelected: false,
@@ -8,7 +10,7 @@ App.VmController = Ember.ObjectController.extend({
     return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
-  healthMessage: function () {
+  healthMessage: function() {
     var healthMessage = '';
     if (this.get('isSlaMissing')) healthMessage += "<strong>Warning</strong>: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
@@ -21,7 +23,7 @@ App.VmController = Ember.ObjectController.extend({
     }
     return healthMessage;
   }.property('status.long_message', 'status.short_message'),
-  operationalMessage: function () {
+  operationalMessage: function() {
     var operationalMessage = '';
     if (this.get('isSlaMissing')) operationalMessage += 'VM is missing an SLA.<br>';
     operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
@@ -31,7 +33,7 @@ App.VmController = Ember.ObjectController.extend({
   isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
   isUnregistered: Ember.computed.equal('status.trust', App.UNREGISTERED),
   isTrustUnknown: Ember.computed.not('status.trust'),
-  trustMessage: function () {
+  trustMessage: function() {
     var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
     message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
@@ -41,10 +43,10 @@ App.VmController = Ember.ObjectController.extend({
   slaNotViolated: Ember.computed.equal('status.sla_status', 1),
   slaViolatedWarning: Ember.computed.equal('status.sla_status', 2),
   slaViolatedError: Ember.computed.equal('status.sla_status', 3),
-  isSlaMissing: function () {
+  isSlaMissing: function() {
     return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === App.ASSURED;
   }.property('sla', 'node.samControlled'),
-  slaMessage: function () {
+  slaMessage: function() {
     if (App.isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
       if (this.get('slaNotViolated')) {
@@ -58,7 +60,7 @@ App.VmController = Ember.ObjectController.extend({
       }
       return 'SLA Status: ' + slaStatus;
     } else {
-      var messages = this.get('status.sla_messages').map(function (item, index, enumerable) {
+      var messages = this.get('status.sla_messages').map(function(item, index, enumerable) {
         if (item.slice(-1) === '.') item = item.slice(0, -1);
         return item.capitalize();
       });
@@ -72,10 +74,10 @@ App.VmController = Ember.ObjectController.extend({
       return true;
     }
   }.property('contention.system.llc.value'),
-  contentionFormatted: function () {
+  contentionFormatted: function() {
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
-  contentionMessage: function () {
+  contentionMessage: function() {
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>Contention Not Available</strong>';
     } else {
@@ -83,7 +85,7 @@ App.VmController = Ember.ObjectController.extend({
       return message;
     }
   }.property('contention.system.llc.value'),
-  contentionWidth: function () {
+  contentionWidth: function() {
     if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
@@ -91,18 +93,18 @@ App.VmController = Ember.ObjectController.extend({
       return "width:"+percent+"%;";
     }
   }.property('contention.system.llc.value'),
-  contentionValueExists: function () {
+  contentionValueExists: function() {
     return typeof this.get('contention.system.llc.value') !== 'undefined' && this.get('contention.system.llc.value') !== null;
   }.property('contention.system.llc.value'),
-  isOn: function () {
+  isOn: function() {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),
   isVictim: Ember.computed.gte('status.victim', App.INFO),
   isAggressor: Ember.computed.gte('status.aggressor', App.INFO),
-  notNoisy: function () {
+  notNoisy: function() {
     return (!this.get('isVictim') && !this.get('isAggressor'));
   }.property('isVictim', 'isAggressor'),
-  noisyMessage: function () {
+  noisyMessage: function() {
     var messages = [];
     if (!this.get('isAggressor') && !this.get('isVictim')) {
       return 'This VM is not an aggressor or a victim.';
@@ -114,10 +116,10 @@ App.VmController = Ember.ObjectController.extend({
   }.property('isVictim', 'isAggressor'),
 
   // Compute SCU allocation floor/ceiling computed properties
-  hasCompute: function () {
+  hasCompute: function() {
     return !Ember.isEmpty(this.get('utilization.scu_total')) && !Ember.isEmpty(this.get('suFloor'));
   }.property('utilization.scu_total', 'suFloor'),
-  suFloor: function () {
+  suFloor: function() {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
     var suRange = computeSlo && computeSlo.get('value');
@@ -129,7 +131,7 @@ App.VmController = Ember.ObjectController.extend({
       return suRange.split(';')[0];
     }
   }.property('sla.slos.@each'),
-  suCeiling: function () {
+  suCeiling: function() {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
     var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
     var suRange = computeSlo && computeSlo.get('value');
@@ -141,11 +143,11 @@ App.VmController = Ember.ObjectController.extend({
       return suRange.split(';')[1];
     }
   }.property('sla.slos.@each'),
-  isRange: function () {
+  isRange: function() {
     if (Ember.isEmpty(this.get('suFloor'))) return false;
     return this.get('suFloor') !== this.get('suCeiling');
   }.property('suFloor', 'suCeiling'),
-  suRange: function () {
+  suRange: function() {
     if (Ember.isEmpty(this.get('suFloor'))) {
       return null;
     } else if (this.get('suFloor') === this.get('suCeiling')) {
@@ -154,7 +156,7 @@ App.VmController = Ember.ObjectController.extend({
       return parseFloat(this.get('suFloor')).toFixed(1) + '-' + parseFloat(this.get('suCeiling')).toFixed(1);
     }
   }.property('suFloor', 'suCeiling'),
-  suTotalRange: function () {
+  suTotalRange: function() {
     if (Ember.isEmpty(this.get('suFloor'))) {
       return null;
     } else if (this.get('suFloor') === this.get('suCeiling')) {
@@ -163,27 +165,27 @@ App.VmController = Ember.ObjectController.extend({
       return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1) + '-' + (parseFloat(this.get('suCeiling')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
     }
   }.property('suFloor', 'suCeiling', 'capabilities.cores'),
-  allocationMin: function () {
+  allocationMin: function() {
     if (Ember.isEmpty(this.get('capabilities.scu_allocated_min'))) return 0;
     return 100 * parseFloat(this.get('capabilities.scu_allocated_min')) / parseFloat(this.get('capabilities.scu_allocated_max'));
   }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
-  allocationMinWidth: function () {
+  allocationMinWidth: function() {
     return 'width:' + this.get('allocationMin') + 'px;';
   }.property('allocationMin'),
-  allocationCurrent: function () {
+  allocationCurrent: function() {
     if (Ember.isEmpty(this.get('utilization.scu_total'))) return 0;
     return 100 * parseFloat(this.get('utilization.scu_total')) / parseFloat(this.get('capabilities.scu_allocated_max'));
   }.property('utilization.scu_total', 'capabilities.scu_allocated_max'),
-  allocationCurrentWidth: function () {
+  allocationCurrentWidth: function() {
     return 'width:' + this.get('allocationCurrent') + 'px;';
   }.property('allocationCurrent'),
-  allocationSuccess: function () {
+  allocationSuccess: function() {
     return Math.min(this.get('allocationMin'), this.get('allocationCurrent'));
   }.property('allocationMin', 'allocationCurrent'),
-  allocationSuccessWidth: function () {
+  allocationSuccessWidth: function() {
     return 'width:' + this.get('allocationSuccess') + 'px;';
   }.property('allocationSuccess'),
-  allocationMessage: function () {
+  allocationMessage: function() {
     if (this.get('isRange')) {
     return '<strong>Current: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Min: ' + this.get('capabilities.scu_allocated_min') + '<br>' + 'Burst: ' + this.get('capabilities.scu_allocated_max');
     } else {
@@ -192,7 +194,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max', 'utilization.scu_total', 'isRange'),
 
   // Observers
-  graphObserver: function () {
+  graphObserver: function() {
      return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isExpanded'),
 
@@ -234,7 +236,7 @@ App.VmController = Ember.ObjectController.extend({
       }
     }
   }.observes('isSelected'),
-  detailedInstantiationNodes: function () {
+  detailedInstantiationNodes: function() {
     var instantiationNodes = this.get('model.vmInstantiationDetailed.instantiationNodes');
     var instantiationNodesController = Ember.ArrayController.create({
       content: instantiationNodes,
@@ -243,7 +245,7 @@ App.VmController = Ember.ObjectController.extend({
     });
     return instantiationNodesController;
   }.property('model.vmInstantiationDetailed.instantiationNodes'),
-  simpleInstantiationNodes: function () {
+  simpleInstantiationNodes: function() {
     var instantiationNodes = this.get('model.vmInstantiationSimple.rankedNodes');
     var instantiationNodesController = Ember.ArrayController.create({
       content: instantiationNodes,
@@ -254,7 +256,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('model.vmInstantiationSimple.rankedNodes'),
 
   /* TODO: Does this need to be added to polling?
-  didReload: function () {
+  didReload: function() {
     if (this.get('vmTrustReport.isLoaded')) {
       this.get('vmTrustReport').reload();
     }
@@ -275,13 +277,13 @@ App.VmController = Ember.ObjectController.extend({
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoWeek: function() {
     return this.get('graphTimeAgoValue') == '-168h';
-  }.property('graphTimeAgoValue'),  
+  }.property('graphTimeAgoValue'),
   isGraphTimeAgoMonth: function() {
     return this.get('graphTimeAgoValue') == '-672h';
   }.property('graphTimeAgoValue'),
 
   actions: {
-    exportTrustReport: function (model) {
+    exportTrustReport: function(model) {
       this.get('controllers.vms').send('exportTrustReport', model);
     },
     graphTimeAgo: function(timeAgo) {

@@ -1,4 +1,6 @@
-App.Sla = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   name: DS.attr('string'),
   deleted: DS.attr('boolean'),
   version: DS.attr('number'),
@@ -8,9 +10,9 @@ App.Sla = DS.Model.extend({
   flavor: DS.belongsTo('flavor'),
 
   // Computed Properties
-  sloTypes: function () {
+  sloTypes: function() {
     //return this.get('slos').getEach('sloType').toString();
-    return this.get('slos').map(function (item, index, enumerable) {
+    return this.get('slos').map(function(item, index, enumerable) {
       if (!item || !item.get('sloType')) return null;
       return item.get('sloType').replace('_', ' ');
     }).join(', ');

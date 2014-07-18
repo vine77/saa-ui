@@ -1,3 +1,5 @@
-App.FlavorsCreateView = App.ModalView.extend({
+import ModalView from 'modal';
+
+export default ModalView.extend({
   classNames: ['modal', 'large', 'hide', 'fade'],
 });

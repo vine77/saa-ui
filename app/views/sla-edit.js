@@ -1,3 +1,5 @@
-App.SlaEditView = App.ModalView.extend({
+import ModalView from 'modal';
+
+export default ModalView.extend({
   classNames: ['modal', 'hide', 'fade'],
 });

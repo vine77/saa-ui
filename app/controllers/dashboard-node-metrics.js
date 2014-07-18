@@ -1,4 +1,6 @@
-App.DashboardNodeMetricsController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   needs: ['vms', 'nodes'],
   totalNumberOfNodes: function() {
     return this.get('controllers.nodes.length');
@@ -7,16 +9,16 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   numberOfTrusted: function() {
     return this.get('controllers.nodes').filterBy('status.trust_status.trust', 2).get('length');
   }.property('controllers.nodes.@each'),
-  percentOfTrusted: function () {
+  percentOfTrusted: function() {
     return Math.round(100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfNodes')));
   }.property('totalNumberOfNodes', 'numberOfTrusted'),
-  percentOfTrustedWidth: function () {
+  percentOfTrustedWidth: function() {
     return 'width:'+this.get('percentOfTrusted')+'%';
   }.property('totalNumberOfNodes', 'numberOfTrusted'),
   totalTrustedMessage: function() {
     return this.get('numberOfTrusted') + ' / ' + this.get('totalNumberOfNodes');
   }.property('numberOfTrusted', 'totalNumberOfNodes'),
-  isPercentOfTrustedAvailable: function () {
+  isPercentOfTrustedAvailable: function() {
     if (isNaN(this.get('percentOfTrusted'))) {
       return false;
     } else {
@@ -24,13 +26,13 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }
   }.property('percentOfTrusted'),
 
-  numberOfControlled: function () {
+  numberOfControlled: function() {
     return this.get('controllers.nodes').filterBy('isAgentInstalled').get('length');
   }.property('controllers.nodes.@each'),
-  percentOfControlled: function () {
+  percentOfControlled: function() {
     return Math.round(100 * parseFloat(this.get('numberOfControlled')) / parseFloat(this.get('totalNumberOfNodes')));
   }.property('totalNumberOfNodes', 'numberOfControlled'),
-  percentOfControlledWidth: function () {
+  percentOfControlledWidth: function() {
     return 'width:'+this.get('percentOfControlled')+'%';
   }.property('totalNumberOfNodes', 'numberOfnumberOfControlled'),
   totalControlledMessage: function() {
@@ -44,7 +46,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }
   }.property('percentOfControlled'),
 
-  isPercentOfRamAvailable: function () {
+  isPercentOfRamAvailable: function() {
     if (isNaN(this.get('controllers.nodes.percentOfRam'))) {
       return false;
     } else {
@@ -53,13 +55,13 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   }.property('controllers.nodes.percentOfRam'),
 
   totalCurrentSu: function() {
-    return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
+    return this.get('controllers.nodes').reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('utilization.scu_current') > 0) ? item.get('utilization.scu_current') : 0;
       return previousValue + count;
     }, 0);
   }.property('controllers.nodes.@each.utilization'),
   totalSuMax: function() {
-    var totalSuMax = this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
+    var totalSuMax = this.get('controllers.nodes').reduce(function(previousValue, item, index, enumerable) {
       var count = (item.get('utilization.scu_max') > 0) ? parseFloat(item.get('utilization.scu_max')) : 0;
       return previousValue + count;
     }, 0);
@@ -74,7 +76,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   usedOfAvailableSuMessage: function() {
     return this.get('totalCurrentSu') + ' / ' + this.get('totalSuMax') + ' SCU';
   }.property('numberOfControlled', 'totalSuMax'),
-  isUsedOfAvailableSuPercentAvailable: function () {
+  isUsedOfAvailableSuPercentAvailable: function() {
     if (isNaN(this.get('usedOfAvailableSuPercent'))) {
       return false;
     } else {

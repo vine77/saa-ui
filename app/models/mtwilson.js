@@ -1,20 +1,22 @@
+import Ember from 'ember';
+
 // TODO: Port to real model
-App.MtWilson = Ember.Object.extend({
+export default Ember.Object.extend({
   isInstalled: false,
   isInstalling: false,
   isSupported: true,
   ipAddress: '',
-  check: function () {
+  check: function() {
     return Ember.$.ajax({
       url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'GET',
-      dataType: "json"
-    }).then(function (data, textStatus, xhr) {
+      dataType: 'json'
+    }).then(function(data, textStatus, xhr) {
       App.log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       // Mt. Wilson is installed
       App.mtWilson.set('isInstalled', true);
       App.mtWilson.set('isInstalling', false);
-    }, function (xhr, textStatus, errorThrown) {
+    }, function(xhr, textStatus, errorThrown) {
       App.log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       switch (xhr.status) {
         case 404:
@@ -38,10 +40,10 @@ App.MtWilson = Ember.Object.extend({
       }
     });
   },
-  checkPeriodically: function () {
+  checkPeriodically: function() {
     // If Mt. Wilson is installing, recheck status periodically
     if (App.mtWilson.get('isInstalling')) {
-      App.mtWilsonCheck = setInterval(function () {
+      App.mtWilsonCheck = setInterval(function() {
         if (App.mtWilson.get('isInstalling')) {
           App.mtWilson.check();
         } else {
@@ -50,14 +52,14 @@ App.MtWilson = Ember.Object.extend({
       }, 10000);
     }
   },
-  install: function () {
+  install: function() {
     // Start Mt. Wilson install
     App.mtWilson.set('isInstalling', true);
     return Ember.$.ajax({
       url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'POST',
       dataType: "json",
-      complete: function (xhr, textStatus) {
+      complete: function(xhr, textStatus) {
         App.log(xhr.status + ' response from POST /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
           case 201:
@@ -104,12 +106,12 @@ App.MtWilson = Ember.Object.extend({
       }
     });
   },
-  uninstall: function () {
+  uninstall: function() {
     return Ember.$.ajax({
       url: (App.getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'DELETE',
       dataType: "json",
-      complete: function (xhr, textStatus) {
+      complete: function(xhr, textStatus) {
         App.log(xhr.status + ' response from DELETE /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
@@ -123,6 +125,4 @@ App.MtWilson = Ember.Object.extend({
       }
     });
   }
-});
-
-App.mtWilson = App.MtWilson.create();
+}).create();

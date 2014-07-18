@@ -1,4 +1,6 @@
-App.NodeController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
   // Controller Properties
 
@@ -137,16 +139,16 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.observes('isSelected'),
 
-  percentOfMemory: function () {
+  percentOfMemory: function() {
     return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))));
   }.property('utilization.memory', 'memory.max'),
-  percentOfMemoryWidth: function () {
+  percentOfMemoryWidth: function() {
     return 'width:'+this.get('percentOfMemory')+'%';
   }.property('percentOfMemory'),
   percentOfMemoryMessage: function() {
     return App.readableSize(this.get('utilization.memory')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
   }.property('utilization.memory', 'capabilities.memory_size'),
-  percentOfMemoryAvailable: function () {
+  percentOfMemoryAvailable: function() {
     if (isNaN(this.get('percentOfMemory'))) {
       return false;
     } else {
@@ -161,7 +163,7 @@ App.NodeController = Ember.ObjectController.extend({
   isSelectable: function() {
     return this.get('isAgentInstalled');
   }.property('isAgentInstalled'),
-  nodeTypeMessage: function () {
+  nodeTypeMessage: function() {
     if (this.get('isAssured')) {
       return 'This is an assured node. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
@@ -171,7 +173,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('samControlled'),
   isOn: Ember.computed.equal('status.operational', App.ON),
-  cpuFrequency: function () {
+  cpuFrequency: function() {
     // MHz to GHz conversion
     var mhz = this.get('capabilities.cpu_frequency');
     if (!!mhz) {
@@ -182,7 +184,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('capabilities.cpu_frequency'),
   isScheduled: Ember.computed.notEmpty('schedulerMark'),
-  scheduledMessage: function () {
+  scheduledMessage: function() {
     if (this.get('isScheduled')) {
       return 'VMs will be placed on this node\'s socket ' + this.get('schedulerMark') + '.';
     } else {
@@ -193,7 +195,7 @@ App.NodeController = Ember.ObjectController.extend({
     return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
-  healthMessage: function () {
+  healthMessage: function() {
     if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
       return 'Not under ' + App.application.get('title') + ' control';
     }
@@ -204,10 +206,10 @@ App.NodeController = Ember.ObjectController.extend({
       return this.get('status.short_message').trim().replace('!', '.').capitalize();
     }
   }.property('status.short_message', 'status.health', 'isAgentInstalled'),
-  operationalMessage: function () {
+  operationalMessage: function() {
     return '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
   }.property('status.operational'),
-  nodeType: function () {
+  nodeType: function() {
     var services = this.get('cloudServices').mapBy('name');
     if (services.length < 1) return 'generic';
     if (services.indexOf('compute') !== -1) return 'compute';
@@ -215,12 +217,12 @@ App.NodeController = Ember.ObjectController.extend({
     if (services.indexOf('storage') !== -1) return 'storage';
     return 'generic';
   }.property('cloudServices'),
-  servicesClass: function () {
+  servicesClass: function() {
     return 'icon-' + this.get('nodeType');
   }.property('nodeType'),
-  servicesMessage: function () {
+  servicesMessage: function() {
     if (!this.get('cloudServices')) return null;
-    return '<strong>Services:</strong><br>' + this.get('cloudServices').map(function (item, index, enumerable) {
+    return '<strong>Services:</strong><br>' + this.get('cloudServices').map(function(item, index, enumerable) {
       return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
     }).join('<br>');
   }.property('cloudServices'),
@@ -238,7 +240,7 @@ App.NodeController = Ember.ObjectController.extend({
     return this.get('isTrustAgentNotInstalled') || this.get('isTrustAgentUnknown') || !(this.get('isTrustAgentInstalled'));
   }.property('isTrustAgentNotInstalled', 'isTrustAgentUnknown'),
 
-  isTrustRegisteredMessage: function () {
+  isTrustRegisteredMessage: function() {
     if (this.get('isTrustRegistered')) {
       return 'Currently registered with Trust Server' + this.get('trustAgentMessage');
     } else {
@@ -246,7 +248,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('isTrustRegistered'),
 
-  trustMessage: function () {
+  trustMessage: function() {
     var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
     message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
     message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
@@ -283,7 +285,7 @@ App.NodeController = Ember.ObjectController.extend({
       return 'SAA Compute Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
     }
   }.property('utilization.scu_current', 'utilization.scu_max'),
-  computeWidth: function () {
+  computeWidth: function() {
     if (this.get('utilization.scu_current') === 0 || App.isEmpty(this.get('utilization.scu_current'))) {
       return 'display:none;';
     } else {
@@ -294,7 +296,7 @@ App.NodeController = Ember.ObjectController.extend({
   computeExists: Ember.computed.notEmpty('utilization.scu_current'),
 
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
-  contentionFormatted: function () {
+  contentionFormatted: function() {
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
   contentionMessage: function() {
@@ -315,7 +317,7 @@ App.NodeController = Ember.ObjectController.extend({
       return message;
     }
   }.property('contention'),
-  contentionWidth: function () {
+  contentionWidth: function() {
     if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
@@ -323,7 +325,7 @@ App.NodeController = Ember.ObjectController.extend({
       return 'width:' + percent + '%;';
     }
   }.property('contention.system.llc.value'),
-  socketsEnum: function () {
+  socketsEnum: function() {
     var socketsEnum = [];
     for (var i = 0; i < this.get('capabilities.sockets'); i++) {
       socketsEnum.push(i);
@@ -332,10 +334,10 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('capabilities.sockets'),
 
   // Icons for list view table
-  servicesIcon: function () {
+  servicesIcon: function() {
     return '<i class="icon-' + this.get('nodeType') + '" title="' + this.get('servicesMessage') + '"></i>';
   }.property('nodeType', 'servicesMessage'),
-  trustIcon: function () {
+  trustIcon: function() {
     // TODO: trustMessage and isTrustRegisteredMessage
     if (this.get('isTrustRegistered')) {
       if (this.get('isTrustUnknown')) {
@@ -351,7 +353,7 @@ App.NodeController = Ember.ObjectController.extend({
       return '<i class="icon-large icon-unlock unregistered"></i>';
     }
   }.property('isTrustRegistered', 'isTrustUnknown', 'isTrusted'),
-  scheduledIcon: function () {
+  scheduledIcon: function() {
     // TODO: scheduledMessage
     if (this.get('isScheduled')) {
       return '<i class="icon-magnet"></i>';
@@ -361,7 +363,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('isScheduled'),
 
   // Observers
-  graphObserver: function () {
+  graphObserver: function() {
     return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isExpanded'),
   graphTimeAgoValue: '-1h',
@@ -379,7 +381,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('graphTimeAgoValue'),
 
   actions: {
-    exportTrustReport: function (model) {
+    exportTrustReport: function(model) {
       this.get('controllers.nodes').send('exportTrustReport', model);
     },
     graphTimeAgo: function(timeAgo) {

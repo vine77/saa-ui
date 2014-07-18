@@ -89,11 +89,11 @@ export default DS.ActiveModelSerializer.extend({
   /**
    * Patch the extractFindAll method to unload records not present in findAll requests, and ignore "isEditing" records
    */
-  extractFindAll: function (store, type, payload, id, requestType) {
+  extractFindAll: function(store, type, payload, id, requestType) {
     var missingRecords = [];
     var editingRecords = [];
-    store.all(type).forEach(function (item, index, enumerable) {
-      var payloadIds = payload[Object.keys(payload)[0]].getEach('id').map(function (item, index, enumerable) {
+    store.all(type).forEach(function(item, index, enumerable) {
+      var payloadIds = payload[Object.keys(payload)[0]].getEach('id').map(function(item, index, enumerable) {
         return item.toString();
       });
       var isMissing = (payloadIds.indexOf(item.get('id').toString()) === -1);
@@ -101,10 +101,10 @@ export default DS.ActiveModelSerializer.extend({
       if (item.get('isEditing')) editingRecords.push(item);
     });
     var extracted = this._super(store, type, payload, id, requestType);
-    missingRecords.forEach(function (item, index, enumerable) {
+    missingRecords.forEach(function(item, index, enumerable) {
       if (!item.get('isDirty')) item.unloadRecord();
     });
-    return extracted.filter(function (item, index, enumerable) {
+    return extracted.filter(function(item, index, enumerable) {
       return editingRecords.mapBy('id').indexOf(item.id) === -1;
     });
   }

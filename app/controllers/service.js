@@ -1,5 +1,7 @@
-App.ServiceController = Ember.ObjectController.extend({
-  nodeType: function () {
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
+  nodeType: function() {
     var name = this.get('name');
     if (name.length < 1) {
       return 'generic';
@@ -8,7 +10,7 @@ App.ServiceController = Ember.ObjectController.extend({
     }
     return 'generic';
   }.property('name'),
-  nodeTypeClass: function () {
+  nodeTypeClass: function() {
     return 'icon-' + this.get('nodeType');
   }.property('nodeType'),
   overallHealth: function() {

@@ -1,4 +1,6 @@
-App.SlasColumnsController = App.ColumnsController.extend({
+import ColumnsController from 'columns';
+
+export default ColumnsController.extend({
   content: [{
     title: 'SLA Name',
     sortBy: 'name'

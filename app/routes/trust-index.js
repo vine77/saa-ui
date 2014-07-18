@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  beforeModel: function () {
+  beforeModel: function() {
     // If Mt. Wilson is installed, go to MLEs
     if (App.mtWilson.get('isInstalled')) {
       this.transitionTo('trust.mles.index');

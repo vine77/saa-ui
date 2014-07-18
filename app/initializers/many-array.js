@@ -15,9 +15,9 @@ export default {
           }
         }, this);
       },
-      relatedRecords: function () {
+      relatedRecords: function() {
         var records = [];
-        this.eachRelationship(function (name, relationship) {
+        this.eachRelationship(function(name, relationship) {
           var related = this.get(name);
           if (!Ember.isEmpty(related)) {
             if (Ember.isArray(related)) {

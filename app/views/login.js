@@ -1,10 +1,12 @@
-App.LoginView = Ember.View.extend({
+import Ember from 'ember';
+
+export default Ember.View.extend({
   didInsertElement: function() {
     // Tooltips
-    $('[rel=tooltip].tooltip-right').tooltip({
+    Ember.$('[rel=tooltip].tooltip-right').tooltip({
       placement: 'right'
     });
-    $('[rel=tooltip].tooltip-left').tooltip({
+    Ember.$('[rel=tooltip].tooltip-left').tooltip({
       placement: 'left'
     });
   }

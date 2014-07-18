@@ -1,4 +1,6 @@
-App.DashboardStatusController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: ['application', 'statuses', 'build', 'nodes', 'vms'],
   haMessages: function() {
     var messages = [];

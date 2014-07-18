@@ -27,7 +27,7 @@ export default Ember.Route.extend({
     this._super(controller, model);
   },
   actions: {
-    save: function () {
+    save: function() {
       this.controller.saveProfile(this);
     },
     test_email: function() {

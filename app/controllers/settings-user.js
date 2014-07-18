@@ -1,7 +1,9 @@
-App.SettingsUserController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   isActionPending: false,
   actions: {
-    save: function () {
+    save: function() {
       var self = this;
       var user = this.get('model');
       if (!this.get('oldPassword')) {
@@ -19,14 +21,14 @@ App.SettingsUserController = Ember.ObjectController.extend({
           email: this.get('email')
         });
         this.set('isActionPending', true);
-        return user.save().then(function () {
+        return user.save().then(function() {
           self.set('isActionPending', false);
           App.notify('The user profile was updated successfully.', App.SUCCESS);
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');
           $('#profile-email').focus();
-        }, function (xhr) {
+        }, function(xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
           self.set('oldPassword', '');
@@ -36,7 +38,7 @@ App.SettingsUserController = Ember.ObjectController.extend({
         });
       }
     },
-    cancel: function () {
+    cancel: function() {
       this.get('model').rollback();
       $('#profile-email').focus();
     }

@@ -100,7 +100,7 @@ App.trustConfigToCode = function(trustConfig) {
  * @param {string} type A string representing priority level: 'unknown', 'success', 'warning', or 'error'
  * @return {number} The corresponding numerical code for that priority level
  */
-App.typeToPriority = function (type) {
+App.typeToPriority = function(type) {
   if (typeof type === 'string') type = type.toLowerCase();
   switch (type) {
     // Unknown
@@ -147,7 +147,7 @@ App.typeToPriority = function (type) {
  * @param {number} priority A numerical code for priority level
  * @return {string} The corresponding string representation for that priority level: 'unknown', 'success', 'info', 'warning', or 'error'
  */
-App.priorityToType = function (priority, good) {
+App.priorityToType = function(priority, good) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
     // Unknown
@@ -194,7 +194,7 @@ App.priorityToType = function (priority, good) {
  * @param {number} priority A numerical code for priority level (the corresponding string representation works too)
  * @return {string} The corresponding icon class (to be applied to an <i> tag)
  */
-App.priorityToIconClass = function (priority) {
+App.priorityToIconClass = function(priority) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
     case App.UNKNOWN:
@@ -236,7 +236,7 @@ App.priorityToIconClass = function (priority) {
  * @param {number} code A numerical code for operational status
  * @return {string} The corresponding string representation for that operational status
  */
-App.codeToOperational = function (code) {
+App.codeToOperational = function(code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
     case App.UNKNOWN:
@@ -307,7 +307,7 @@ App.codeToOperational = function (code) {
  * @param {string} code A string representation of operational status
  * @return {number} The corresponding integer code for that operational status
  */
-App.operationalToCode = function (operational) {
+App.operationalToCode = function(operational) {
   if (typeof operational === 'string') operational = operational.toLowerCase();
   switch (operational) {
     case App.UNKNOWN:
@@ -378,7 +378,7 @@ App.operationalToCode = function (operational) {
  * @param {number} code A numerical code for operational status (the corresponding string representation works too)
  * @return {string} The corresponding icon class (to be applied to an <i> tag)
  */
-App.operationalToIconClass = function (code) {
+App.operationalToIconClass = function(code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
     case App.UNKNOWN:
@@ -443,7 +443,7 @@ App.operationalToIconClass = function (code) {
   }
 };
 
-App.overallHealth = function (health, operational) {
+App.overallHealth = function(health, operational) {
   if (health === App.SUCCESS) {
     return App.codeToOperational(operational);
   } else {
@@ -451,7 +451,7 @@ App.overallHealth = function (health, operational) {
   }
 };
 
-App.trustToString = function (value) {
+App.trustToString = function(value) {
   switch (value) {
     case App.UNKNOWN:
     case '0':
@@ -476,7 +476,7 @@ App.trustToString = function (value) {
  * @param {number} code A numerical code for trust status
  * @return {string} The corresponding icon class (to be applied to an <i> tag)
  */
-App.trustToIconClass = function (code) {
+App.trustToIconClass = function(code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
     case App.UNKNOWN:
@@ -503,7 +503,7 @@ App.trustToIconClass = function (code) {
  * @param {string} code A log time label for Kibana parameter
  * @return {string} The corresponding number of seconds
  */
-App.logTimeToSeconds = function (time) {
+App.logTimeToSeconds = function(time) {
   switch (time) {
     case 'Last 15min':
       return '900';
@@ -534,7 +534,7 @@ App.logTimeToSeconds = function (time) {
  * @param {number} danger The lower threshold for red values
  * @return {string} A CSS color string, e.g. 'hsl(60, 100%, 100%)'
  */
-App.rangeToColor = function (value, minimum, maximum, warning, danger) {
+App.rangeToColor = function(value, minimum, maximum, warning, danger) {
   if (typeof value !== 'number') {
     return null;
   } else if (typeof minimum === 'number' && typeof maximum === 'number' && typeof warning === 'undefined' && typeof danger === 'undefined') {

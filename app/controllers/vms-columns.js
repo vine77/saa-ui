@@ -1,4 +1,6 @@
-App.VmsColumnsController = App.ColumnsController.extend({
+import ColumnsController from 'columns';
+
+export default ColumnsController.extend({
   content: [{
     description: 'State (Health/Operational State)',
     sortBy: 'state',

@@ -1,7 +1,9 @@
-App.SettingsLogController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   isActionPending: false,
   isDeleteActionPending: false,
-  unavailableSpaceWidth: function () {
+  unavailableSpaceWidth: function() {
     var percentage = (this.get('model.configuredSize') == 0) ? 0 : (this.get('model.actualSize')/this.get('model.configuredSize')) * 100;
     return 'width:' + percentage + '%;';
   }.property('model.configuredSize', 'model.actualSize'),
@@ -14,28 +16,28 @@ App.SettingsLogController = Ember.Controller.extend({
         return Ember.$.ajax({
           url: (App.getApiDomain()) + '/api/v2/logs',
           type: 'DELETE'
-        }).then(function () {
+        }).then(function() {
           self.set('isDeleteActionPending', false);
           App.event('Successfully deleted all log data.', App.SUCCESS);
-        }, function () {
+        }, function() {
           self.set('isDeleteActionPending', false);
           App.event('Error updating log settings.', App.ERROR);
         });
       }
     },
-    update: function (modelId) {
+    update: function(modelId) {
       var self = this;
       this.set('isActionPending', true);
-      this.store.getById('logSetting', modelId).save().then(function () {
+      this.store.getById('logSetting', modelId).save().then(function() {
         self.set('isActionPending', false);
         App.event('Successfully updated  log settings.', App.SUCCESS);
-      }, function (xhr) {
+      }, function(xhr) {
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to update log settings.');
       });
       console.log('test 3');
     },
-    cancel: function (model) {
+    cancel: function(model) {
       model.rollback();
     }
   }

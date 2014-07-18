@@ -1,10 +1,12 @@
-App.ContextualGraphsController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   needs: ['application', 'nodes', 'vms'],
   currentRouteNameBinding: 'controllers.application.currentRouteName',
-  selectedNodes: function () {
+  selectedNodes: function() {
     return this.get('controllers.nodes').filterProperty('isSelected', true);
-  }.property('controllers.nodes.@each.isSelected'),  
-  selectedVms: function () {
+  }.property('controllers.nodes.@each.isSelected'),
+  selectedVms: function() {
     return this.get('controllers.vms').filterProperty('isSelected', true);
   }.property('controllers.vms.@each.isSelected'),
   nodePath: function() {
@@ -21,7 +23,7 @@ App.ContextualGraphsController = Ember.ObjectController.extend({
       return false;
     }
   }.property('currentRouteName'),
-  contextualPath: function () {
+  contextualPath: function() {
     if ((this.get('currentRouteName').indexOf("vm") != -1) || (this.get('currentRouteName').indexOf("node") != -1)) {
       return true;
     } else {

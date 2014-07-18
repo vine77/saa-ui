@@ -1,10 +1,12 @@
-App.ApplicationController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
   isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
-  init: function () {
+  init: function() {
     var self = this;
     this._super();
     this.autoRefresh();
@@ -13,25 +15,25 @@ App.ApplicationController = Ember.Controller.extend({
   },
   width: null,
   height: null,
-  resizeHandler: function () {
+  resizeHandler: function() {
     this.set('width', $(window).width());
     this.set('height', $(window).height());
   },
-  isFramed: function () {
+  isFramed: function() {
     try {
       return window.self !== window.top;
     } catch (e) {
       return true;
     }
   }.property(),
-  isHealthy: function () {
+  isHealthy: function() {
     var health = this.get('controllers.statuses.health');
     return health === App.SUCCESS || health === App.INFO || health === App.WARNING;
   }.property('controllers.statuses.health'),
-  isConfigured: function () {
+  isConfigured: function() {
     return App.nova.get('exists') && App.openrc.get('exists');
   }.property('App.nova.exists', 'App.openrc.exists'),
-  isEnabled: function () {
+  isEnabled: function() {
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
   baseUrl: function() {
@@ -58,7 +60,7 @@ App.ApplicationController = Ember.Controller.extend({
     }
   }.property(),
   isDrawerExpanded: false,
-  autoRefresh: function () {
+  autoRefresh: function() {
     Ember.run.later(this, 'autoRefresh', 20000);
     if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
       App.nova.check();
@@ -80,24 +82,24 @@ App.ApplicationController = Ember.Controller.extend({
 
   // Actions
   actions: {
-    expandDrawer: function (target) {
+    expandDrawer: function(target) {
       this.set('isDrawerExpanded', true);
     },
-    hideDrawer: function () {
+    hideDrawer: function() {
       $('#drawer ul.nav-tabs > li').removeClass('active');
       this.set('isDrawerExpanded', false);
     },
-    loadFrame: function (target) {
+    loadFrame: function(target) {
       var iframe = $('#drawer-' + target + '-all > iframe');
       if (iframe.attr('src') === undefined) {
         iframe.attr('src', this.get(target + 'Url'));
       }
     },
-    updateCurrentPath: function () {
+    updateCurrentPath: function() {
       App.set('currentPath', this.get('currentPath'));
     }.observes('currentPath'),
     // Debug Toolbar actions
-    refreshNodes: function () {
+    refreshNodes: function() {
       var self = this;
       if (App.mtWilson.get('isInstalled')) {
         this.store.find('trustNode').then(function() {
@@ -107,16 +109,16 @@ App.ApplicationController = Ember.Controller.extend({
         this.store.find('node');
       }
     },
-    refreshVms: function () {
+    refreshVms: function() {
       this.store.find('vm');
     },
-    clearConsole: function () {
+    clearConsole: function() {
       console.clear();
     },
-    disableAutoRefresh: function () {
+    disableAutoRefresh: function() {
       this.set('isAutoRefreshEnabled', false);
     },
-    enableAutoRefresh: function () {
+    enableAutoRefresh: function() {
       this.set('isAutoRefreshEnabled', true);
     }
   }

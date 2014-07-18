@@ -1,5 +1,7 @@
+import Ember from 'ember';
+
 // TODO: Port to real model
-App.Login = Ember.Object.extend({
+export default Ember.Object.extend({
   username: '',
   password: '',
   oldPassword: '',
@@ -11,5 +13,4 @@ App.Login = Ember.Object.extend({
   loggedIn: false,
   resetPassword: false,
   rememberMe: false
-});
-App.login = App.Login.create();
+}).create();

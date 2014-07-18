@@ -1,4 +1,6 @@
-App.FlavorsColumnsController = App.ColumnsController.extend({
+import ColumnsController from 'columns';
+
+export default ColumnsController.extend({
   content: [{
     title: 'Flavor Name',
     sortBy: 'name'

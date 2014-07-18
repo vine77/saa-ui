@@ -1,19 +1,21 @@
-App.TrustController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   needs: ['application'],
   isInstalledBinding: 'App.mtWilson.isInstalled',
   isInstallingBinding: 'App.mtWilson.isInstalling',
   ipAddressBinding: 'App.mtWilson.ipAddress',
   actions: {
-    install: function () {
+    install: function() {
       // Start Mt. Wilson install
       App.mtWilson.install();
       App.mtWilson.checkPeriodically();
     }
   },
-  checkInstall: function () {
+  checkInstall: function() {
     App.mtWilson.check();
   },
-  isInstalledChanged: function () {
+  isInstalledChanged: function() {
     var applicationController = this.get('controllers.application');
     var currentPath = applicationController.get('currentPath');
     if ((this.get('isInstalled') == true) && (currentPath == 'app.data.trust.index')) {

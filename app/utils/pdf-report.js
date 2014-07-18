@@ -23,8 +23,8 @@ export default function(reportContent, rowContent, title, subtitle, enumerablePa
   var leftPosition = 10;
 
   if (reportContent.get(enumerablePath)) {
-    reportContent.get(enumerablePath).forEach(function (item, index, enumerable) {
-      rowContent.forEach(function (item2, index2, enumerable2) {
+    reportContent.get(enumerablePath).forEach(function(item, index, enumerable) {
+      rowContent.forEach(function(item2, index2, enumerable2) {
         if (rowCounter % 22 == 0 && rowCounter != 0) {
           verticalRowPosition = 25;
           doc.addPage();

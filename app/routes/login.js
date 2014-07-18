@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  beforeModel: function () {
+  beforeModel: function() {
     var loggedIn = this.controllerFor('application').get('loggedIn');
     if (loggedIn) this.transitionTo('index');
   },

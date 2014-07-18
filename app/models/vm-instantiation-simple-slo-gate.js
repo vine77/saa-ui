@@ -1,4 +1,6 @@
-App.SloGate = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   slo: DS.belongsTo('slo'),
   vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
   description: DS.attr('string'),

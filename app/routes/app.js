@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 // Routes under /app require authentication
 export default Ember.Route.extend({
-  beforeModel: function (transition) {
+  beforeModel: function(transition) {
     if (sessionStorage.csrfToken) {
       this.controllerFor('login').set('csrfToken', sessionStorage.csrfToken);
       this.controllerFor('login').set('loggedIn', true);
@@ -12,7 +12,7 @@ export default Ember.Route.extend({
       transition.send('redirectToLogin', transition);
     }
   },
-  model: function () {
+  model: function() {
     window.store = this.store;
     var self = this;
     // Get current session
@@ -20,20 +20,20 @@ export default Ember.Route.extend({
       this.store.getById('session', 'current_session').transitionTo('loaded.saved');
       this.store.getById('session', 'current_session').unloadRecord();
     }
-    return this.store.find('session', 'current_session').then(function (session) {
+    return this.store.find('session', 'current_session').then(function(session) {
       self.controllerFor('login').set('session', session);
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
       self.controllerFor('login').set('username', session.get('username'));
-    }).then(function () {
+    }).then(function() {
       // Update link for OpenStack Horizon (must occur after authentication)
       var baseUrl = self.controllerFor('application').get('baseUrl');
-      Ember.$.ajax(baseUrl + '/horizon', {type: 'HEAD'}).then(function () {
+      Ember.$.ajax(baseUrl + '/horizon', {type: 'HEAD'}).then(function() {
         self.controllerFor('application').set('isHorizonAvailable', true);
-      }, function () {
-        Ember.$.ajax(baseUrl + '/dashboard', {type: 'HEAD'}).then(function () {
+      }, function() {
+        Ember.$.ajax(baseUrl + '/dashboard', {type: 'HEAD'}).then(function() {
           self.controllerFor('application').set('isHorizonAvailable', true);
           self.controllerFor('application').set('horizonUrl', baseUrl + '/dashboard');
-        }, function () {
+        }, function() {
           self.controllerFor('application').set('isHorizonAvailable', false);
         });
       });
@@ -43,14 +43,14 @@ export default Ember.Route.extend({
         openrc: App.openrc.check(),
         quantum: App.quantum.check(),
         keystone: App.keystone.check()
-      }).then(function () {
+      }).then(function() {
         // SAA is configured
         self.store.find('sloTemplate');
         self.store.find('slo');
         self.store.find('sla');
         self.store.find('flavor');
         self.store.find('vm');
-        App.mtWilson.check().then(function () {
+        App.mtWilson.check().then(function() {
           if (App.mtWilson.get('isInstalled')) {
             self.store.find('trustMle');
             self.store.find('trustNode');
@@ -58,14 +58,14 @@ export default Ember.Route.extend({
           } else {
             self.store.find('node');
           }
-        }, function () {
+        }, function() {
           self.store.find('node');
         }),
         App.network.check();
         self.store.find('action');
         //self.store.find('user');
         //App.settingsLog.fetch();
-      }, function () {
+      }, function() {
         // SAA is not configured
         App.network.check();
         //self.store.find('user');
@@ -74,7 +74,7 @@ export default Ember.Route.extend({
     });
   },
   actions: {
-    error: function (reason, transition) {
+    error: function(reason, transition) {
       if (reason.status === 401) {
         App.log(reason.status + ' error caught by router.', reason);
         App.notify('Please log back in', App.ERROR, 'Unauthorized');

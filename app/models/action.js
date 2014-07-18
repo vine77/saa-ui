@@ -1,4 +1,6 @@
-App.Action = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   blocking: DS.attr('boolean'),
   done: DS.attr('boolean'),
   lastUpdate: DS.attr('string'),

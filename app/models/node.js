@@ -1,4 +1,6 @@
-App.Node = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   capabilities: DS.attr(),
   cloudServices: DS.attr(),
   contention: DS.attr(),
@@ -6,7 +8,7 @@ App.Node = DS.Model.extend({
   name: DS.attr('string'),
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
-  samRegistered: function () {
+  samRegistered: function() {
     return this.get('status.mode') == App.MONITORED || this.get('status.mode') == App.ASSURED;
   }.property('status.mode'),
   isAssured: Ember.computed.equal('status.mode', App.ASSURED),
@@ -21,11 +23,11 @@ App.Node = DS.Model.extend({
   vcpus: Ember.computed.alias('utilization.cloud.vcpus'),
 
   // Computed properties for sorting
-  state: function () {
+  state: function() {
     return this.get('status.health') + '.' + this.get('status.operational');
   }.property('status.health', 'status.operational'),
 
-  cpuSort: function () {
+  cpuSort: function() {
     var mhz = this.get('capabilities.cpu_frequency');
     if (!!mhz) {
       var ghz = mhz.split(' ')[0] / 1000;

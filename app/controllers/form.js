@@ -1,4 +1,6 @@
-App.FormController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   id:'',
   message: '',
   validated_fields: [],

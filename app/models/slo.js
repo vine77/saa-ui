@@ -1,4 +1,6 @@
-App.Slo = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   // Editable properties
   operator: DS.attr('string'),
   value: DS.attr('string'),
@@ -21,7 +23,7 @@ App.Slo = DS.Model.extend({
   isRange: Ember.computed.equal('valueType', 'range'),
 
   // Observers
-  sloTemplateObserver: function () {
+  sloTemplateObserver: function() {
     this.set('operator', this.get('sloTemplate.allowedOperators.firstObject'));
   }.observes('sloTemplate'),
 

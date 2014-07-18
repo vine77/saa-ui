@@ -1,27 +1,31 @@
-App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
+import Ember from 'ember';
+import FilterableMixin from '../mixins/filterable';
+import SortableMixin from '../mixins/sortable';
+
+export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   sortProperty: 'name',
   actions: {
-    selectAll: function () {
+    selectAll: function() {
       var isEverythingSelected = this.get('model').everyProperty('isSelected');
       this.get('model').setEach('isSelected', !isEverythingSelected);
     },
-    expand: function (model) {
+    expand: function(model) {
       if (!model.get('isExpanded')) {
         this.transitionToRoute('sla', model);
       } else {
         this.transitionToRoute('slas');
       }
     },
-    refresh: function () {
+    refresh: function() {
       this.store.find('sla');
     },
-    deleteSla: function (sla) {
+    deleteSla: function(sla) {
       var confirmedDelete = confirm('Are you sure you want to delete SLA "' + sla.get('name') + '"?');
       if (confirmedDelete) {
         sla.deleteRecord();
-        sla.save().then(function () {
+        sla.save().then(function() {
           App.event('Successfully deleted SLA "' + sla.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
+        }, function(xhr) {
           sla.rollback();
           App.xhrError(xhr, 'Failed to delete SLA "' + sla.get('name') + '".');
         });

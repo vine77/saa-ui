@@ -1,4 +1,6 @@
-App.Quota = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   injectedFileContentBytes: DS.attr('number'),
   metadataItems: DS.attr('number'),
   ram: DS.attr('number'),

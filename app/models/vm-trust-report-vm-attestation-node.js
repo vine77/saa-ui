@@ -1,15 +1,17 @@
-App.VmAttestationNode = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   node: DS.belongsTo('node'),
   vmAttestation: DS.belongsTo('vmAttestation'),
   nodeName: DS.attr('string'),
   ipAddress: DS.attr('string'),
   attestationTime: DS.attr('string'),
-  attestationTimeFormatted: function () {
+  attestationTimeFormatted: function() {
     return moment(this.get('attestationTime')).format('LLL');
   }.property('attestationTime'),
   trustStatus: DS.attr('number'),
   trustDetails: DS.attr(),
-  trustMessage: function () {
+  trustMessage: function() {
     return 'BIOS: ' + App.trustToString(this.get('trustDetails.bios')).capitalize() + ', VMM: ' + App.trustToString(this.get('trustDetails.vmm')).capitalize();
   }.property('trustDetails'),
   reportMessage: function() {

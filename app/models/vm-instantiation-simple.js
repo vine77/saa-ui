@@ -1,4 +1,6 @@
-App.VmInstantiationSimple = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   scheduleTime: DS.attr('string'),
   generationTime: DS.attr('string'),
   nodesCount: DS.attr(),
@@ -11,7 +13,7 @@ App.VmInstantiationSimple = DS.Model.extend({
 
   // Computed properties
   multipleNodes: Ember.computed.gt('nodesCount.total', 1),
-  selectedNode: function () {
+  selectedNode: function() {
     if (Ember.isEmpty('rankedNodes')) return null;
     return this.get('rankedNodes').findBy('selected').get('node');
   }.property('rankedNodes'),

@@ -1,4 +1,6 @@
-App.SettingsController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: ['application', 'build'],
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
   isEnabled: Ember.computed.alias('controllers.application.isEnabled'),

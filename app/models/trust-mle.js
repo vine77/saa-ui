@@ -1,4 +1,6 @@
-App.TrustMle = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   attestationType: DS.attr('string'),
   description: DS.attr('string'),
   mleManifests: DS.attr('string'),

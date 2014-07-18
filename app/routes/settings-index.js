@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  beforeModel: function () {
+  beforeModel: function() {
     var availableSettings = [];
     if (!this.controllerFor('build').get('isReadycloud')) {
       availableSettings.push('settings.upload');

@@ -1,4 +1,6 @@
-App.DashboardNewStatusController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: 'newStatus',
   currentSelections: [],
   breadcrumbsSorted: function() {
@@ -11,11 +13,9 @@ App.DashboardNewStatusController = Ember.ArrayController.extend({
     });
   }.property('currentSelections'),
   actions: {
-    toggleChildren: function (elementId, name, breadcrumbSelect) {
-      
-      var children = "#children-"+elementId,
-          selector = "#selector-"+elementId;
-
+    toggleChildren: function(elementId, name, breadcrumbSelect) {
+      var children = "#children-" + elementId,
+      var selector = "#selector-" + elementId;
       if ($(children).is(":visible")) {
         if (breadcrumbSelect !== true) { $(children).hide(); }
         var descendants = $('#'+elementId).find('div');
@@ -38,7 +38,7 @@ App.DashboardNewStatusController = Ember.ArrayController.extend({
       }
 
       var siblings = $('#'+elementId).siblings('div');
-   
+
       for (var i = 0; i < siblings.length; i++) {
 
         $('#children-'+siblings[i].id).hide();

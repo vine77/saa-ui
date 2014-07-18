@@ -1,4 +1,6 @@
-App.SloTemplateSerializer = App.ApplicationSerializer.extend({
+import ApplicationSerializer from 'application';
+
+export default ApplicationSerializer.extend({
   normalize: function(type, hash, property) {
     // Force operators to be an array
     if (!Ember.isArray(hash.operators)) {

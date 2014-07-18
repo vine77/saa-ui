@@ -1,32 +1,34 @@
-App.FlavorsCreateController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
   isFlavorCreating: false,
-  flavorsWithoutSlas: function () {
+  flavorsWithoutSlas: function() {
     return this.get('controllers.flavors').filterBy('sla', null);
   }.property('controllers.flavors.@each.sla'),
-  slas: function () {
+  slas: function() {
     return this.get('controllers.slas').filterBy('deleted', false).filterBy('isDirty', false);
   }.property('controllers.slas.@each', 'controllers.slas.@each.deleted'),
-  sloTemplates: function () {
+  sloTemplates: function() {
     return this.store.all('sloTemplate');
   }.property(),
-  hasNoSla: function () {
+  hasNoSla: function() {
     return this.get('model.sla') === null;
   }.property('model.sla'),
-  hasExistingSla: function () {
+  hasExistingSla: function() {
     return this.get('model.sla.isDirty') === false;
   }.property('model.sla'),
-  hasNewSla: function () {
+  hasNewSla: function() {
     return this.get('model.sla.isDirty') === true;
   }.property('model.sla'),
   selectedExistingSla: null,
-  storeExistingSla: function () {
+  storeExistingSla: function() {
     if (this.get('model.sla') && !this.get('model.sla.isDirty')) {
       this.set('selectedExistingSla', this.get('model.sla'));
     }
   },
   actions: {
-    selectSlaType: function (slaType) {
+    selectSlaType: function(slaType) {
       this.storeExistingSla();
       if (slaType === undefined) {  // No SLA button
         this.set('model.sla', null);
@@ -40,13 +42,13 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
         this.set('model.sla', newSla);
       }
     },
-    addSlo: function () {
+    addSlo: function() {
       this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
-    deleteSlo: function (slo) {
+    deleteSlo: function(slo) {
       slo.clearInverseRelationships();
     },
-    createFlavor: function () {
+    createFlavor: function() {
       var self = this;
       if (this.get('isFlavorCreating')) return;
       this.set('isFlavorCreating', true);
@@ -54,23 +56,23 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       var sla = flavor.get('sla');
       var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
-        sla.save().then(function () {
+        sla.save().then(function() {
           return flavor.save();
-        }).then(function () {
+        }).then(function() {
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
-        }).fail(function (xhr) {
+        }).fail(function(xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });
         // TODO: Add special case where SLA creation succeeds, but flavor creation fails?
       } else {
-        flavor.save().then(function () {
+        flavor.save().then(function() {
           App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
-        }, function (xhr) {
+        }, function(xhr) {
           App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });

@@ -10,15 +10,15 @@ App.Filterable = Ember.Mixin.create({
   filterQuery: '',
   filterProperties: [],
   filteredModel: [],
-  filterModel: function () {
+  filterModel: function() {
     var searchText = this.get('filterQuery');
     if (!searchText) {
       this.set('filteredModel', this);
       return this;
     } else {
-      var results = this.filter(function (item, index, enumerable) {
+      var results = this.filter(function(item, index, enumerable) {
         var isMatched = false;
-        this.get('filterProperties').forEach(function (property, index, array) {
+        this.get('filterProperties').forEach(function(property, index, array) {
           var haystack = item.get(property);
           if (haystack && haystack.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
             isMatched = true;
@@ -30,11 +30,11 @@ App.Filterable = Ember.Mixin.create({
       return results;
     }
   }.observes('this.@each'),
-  debouncedFilterQueryObserver: Ember.debouncedObserver(function () {
+  debouncedFilterQueryObserver: Ember.debouncedObserver(function() {
     this.filterModel();
   }, 'filterQuery', 500),
   actions: {
-    clearFilter: function () {
+    clearFilter: function() {
       this.set('filterQuery', '');
     }
   }
@@ -47,30 +47,30 @@ App.Filterable = Ember.Mixin.create({
  * sortModel: Call this action from a table header cell to sort by that column
  */
 App.Sortable = Ember.Mixin.create({
-  self: function () {
+  self: function() {
     var name = this.constructor.toString().split('.')[1];
     if (name.indexOf('Controller') === -1) throw new Error('Name of controller extended by Mixin must end with "Controller"');
     return name.slice(0, name.indexOf('Controller')).camelize();
   }.property(),
-  needs: function () {
+  needs: function() {
     var needs = this._super() || [];
     needs.push(this.get('self') + 'Columns');
     return needs;
   }.property('self'),
-  columns: function () {
+  columns: function() {
     return this.get('controllers.' + this.get('self') + 'Columns');
   }.property('self'),
   sortProperty: null,
-  sortProperties: function () {
+  sortProperties: function() {
     return (!this.get('sortProperty')) ? null : [this.get('sortProperty')];
   }.property('sortProperty'),
-  sortIndex: function () {
+  sortIndex: function() {
     return this.get('columns').indexOf(this.get('sortProperty'));
   }.property('columns', 'sortProperty'),
   sortAscending: true,
   sortFunction: App.naturalSort,
   actions: {
-    sortModel: function (column) {
+    sortModel: function(column) {
       var isDifferentColumn = !this.get('sortProperty') || this.get('sortProperty') !== column;
       if (isDifferentColumn) {
         this.set('sortProperty', column);
@@ -88,33 +88,33 @@ App.Sortable = Ember.Mixin.create({
  * e.g. NodesColumnsController if "parent" is NodesColumnsController
  */
 App.ColumnsController = Ember.ArrayController.extend({
-  init: function () {
+  init: function() {
     this._super();
     var self = this;
     // Generate an itemController for this ArrayController using conventional naming
     App[self.get('parent').capitalize() + 'ColumnController'] = Ember.ObjectController.extend({
       needs: [self.get('parent')],
-      isSorted: function () {
+      isSorted: function() {
         return this.get('sortBy') === this.get('controllers.' + self.get('parent') + '.sortProperty');
       }.property('sortBy', 'controllers.' + self.get('parent') + '.sortProperty')
     });
   },
-  parent: function () {
+  parent: function() {
     var name = this.constructor.toString().split('.')[1];
     if (name.indexOf('ColumnsController') === -1) throw new Error('Name of controller extended by Mixin must end with "ColumnsController"');
     return name.slice(0, name.indexOf('ColumnsController')).camelize();
   }.property(),
-  needs: function () {
+  needs: function() {
     return [this.get('parent')];
   }.property('parent'),
-  itemController: function () {
+  itemController: function() {
     return this.get('parent') + 'Column';
   }.property('parent'),
-  tableController: function () {
+  tableController: function() {
     return this.get('controllers.' + this.get('parent'));
   }.property('parent'),
   actions: {
-    sort: function (column, sortAscending) {
+    sort: function(column, sortAscending) {
       var parent = this.get('controllers.' + this.get('parent'));
       var isDifferentColumn = !parent.get('sortProperty') || parent.get('sortProperty') !== column;
       if (isDifferentColumn) {

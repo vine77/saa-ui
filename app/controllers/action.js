@@ -1,4 +1,6 @@
-App.ActionController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   isDisabled: function() {
     return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
   }.property('node.@each', 'node.isRebooting'),
@@ -28,7 +30,6 @@ App.ActionController = Ember.ObjectController.extend({
         return false;
     }
   }.property('node.isAssured', 'node.isMonitored', 'node.samRegistered', 'node.isScheduled', 'node.isTrustRegistered'),
-
   additionalListItems: function() {
     var additionalListItems = [];
     if (this.get('method') == 'schedule') {
@@ -45,7 +46,6 @@ App.ActionController = Ember.ObjectController.extend({
       }
     }
   }.property('node.socketsEnum.@each', 'node.isScheduled'),
-
   actions: {
     performAction: function(method, contextNode, socket) {
       if (method == 'schedule') {
@@ -55,5 +55,4 @@ App.ActionController = Ember.ObjectController.extend({
       }
     }
   }
-
 });

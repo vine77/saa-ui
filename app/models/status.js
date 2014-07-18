@@ -1,4 +1,6 @@
-App.Status = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   name: DS.attr('string'),
   message: DS.attr('string'),
   health: DS.attr('number'),
@@ -7,7 +9,7 @@ App.Status = DS.Model.extend({
   offspring: DS.hasMany('status'),
 
   // Computed properties
-  colorClass: function () {
+  colorClass: function() {
     return "text-" + App.priorityToType(this.get('health'));
   }.property('health')
 });

@@ -3,19 +3,19 @@
 App.NOT_APPLICABLE = '<span class="not-applicable">n/a</span>'.htmlSafe();
 
 // Generate a v4 (random) UUID
-App.uuid = function () {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+App.uuid = function() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0;
     var v = c == 'x' ? r : (r&0x3|0x8);
     return v.toString(16);
   });
 };
 
-App.humanize = function (str) {
-  var newString = str.replace(/_id$/, '').replace(/_/g, ' ').replace(/^\w/g, function (s) {
+App.humanize = function(str) {
+  var newString = str.replace(/_id$/, '').replace(/_/g, ' ').replace(/^\w/g, function(s) {
     return s.toUpperCase();
   });
-  Object.keys(App.caseMapping).forEach(function (searchString) {
+  Object.keys(App.caseMapping).forEach(function(searchString) {
     var replacementString = App.caseMapping[searchString];
     newString = newString.replace(new RegExp(searchString, 'ig'), replacementString);
   });
@@ -23,7 +23,7 @@ App.humanize = function (str) {
 };
 
 // Console.log wrapper
-App.log = function () {
+App.log = function() {
   App.log.history = App.log.history || [];   // store logs to an array for reference
   if (arguments.length === 1) {
     App.log.history.push(arguments[0]);
@@ -39,7 +39,7 @@ App.getApiDomain = function() {
 };
 
 // Messaging/events
-App.notify = function (message, type, notifyTitle, sticky) {
+App.notify = function(message, type, notifyTitle, sticky) {
   if (message.length > 600) message = message.substring(0, 600) + '... [truncated]';
   if (typeof type === 'undefined') {
     type = 'warning';
@@ -59,7 +59,7 @@ App.notify = function (message, type, notifyTitle, sticky) {
     hide: (sticky) ? false : true
   });
 };
-App.event = function (message, type, notify, title, sticky) {
+App.event = function(message, type, notify, title, sticky) {
   if (typeof type === 'undefined') type = App.WARNING;
   type = App.priorityToType(type);
   if (typeof message === 'undefined') {
@@ -91,10 +91,10 @@ Ember.TextSupport.reopen({
 
 
 // View helpers
-App.isEmpty = function (value) {
+App.isEmpty = function(value) {
   return (Ember.isEmpty(value) || value === -1);
 };
-App.readableSizeToBytes = function (stringSize, decimalPrefix) {
+App.readableSizeToBytes = function(stringSize, decimalPrefix) {
   if (!stringSize) return null;
   var intSize = parseInt(stringSize);
   var inputUnits = stringSize.replace(intSize, '').trim().toUpperCase();
@@ -112,7 +112,7 @@ App.readableSizeToBytes = function (stringSize, decimalPrefix) {
     return null;
   }
 };
-App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
+App.bytesToReadableSize = function(sizeInBytes, multiplier, decimalPrefix) {
   if (typeof sizeInBytes !== 'number') sizeInBytes = parseInt(sizeInBytes);
   if (sizeInBytes === NaN || Ember.isEmpty(sizeInBytes)) {
     return App.NOT_APPLICABLE;
@@ -136,7 +136,7 @@ App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
     return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
   }
 };
-App.readableSize = function (size) {
+App.readableSize = function(size) {
   if (typeof size === 'string') {
     // Assume backend is using historic units for customary binary prefixes
     var byteUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -159,13 +159,13 @@ App.readableSize = function (size) {
   }
 };
 
-App.numberWithCommas = function (number) {
+App.numberWithCommas = function(number) {
   if (number){
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }
 
-App.isOdd = function (number) {
+App.isOdd = function(number) {
   return (number % 2) == 1;
 }
 
@@ -180,7 +180,7 @@ App.isCriticalityPlus = function(criticality) {
 }
 
 // Miscellaneous helpers
-App.selectTab = function (event) {
+App.selectTab = function(event) {
   var tabClassName = $(event.target).text().toLowerCase().replace(/ /g,'-');
   $(event.target).parent('li').addClass('active').siblings().removeClass('active');
   var tab = $(event.target).closest('.nav-tabs').next('.tab-content').find('.' + tabClassName);
@@ -197,7 +197,7 @@ App.selectTab = function (event) {
  * @param {string} enumerablePath The path inside of the reportContent object to iterate over.
  * @return {pdf}
  */
- App.pdfReport = function (reportContent, rowContent, title, subtitle, enumerablePath) {
+ App.pdfReport = function(reportContent, rowContent, title, subtitle, enumerablePath) {
   var doc = new jsPDF();
   // Header
   doc.setFontSize(22);
@@ -212,8 +212,8 @@ App.selectTab = function (event) {
   var leftPosition = 10;
 
   if (reportContent.get(enumerablePath)) {
-    reportContent.get(enumerablePath).forEach(function (item, index, enumerable) {
-      rowContent.forEach(function (item2, index2, enumerable2) {
+    reportContent.get(enumerablePath).forEach(function(item, index, enumerable) {
+      rowContent.forEach(function(item2, index2, enumerable2) {
         if (rowCounter % 22 == 0 && rowCounter != 0) {
           verticalRowPosition = 25;
           doc.addPage();
@@ -231,13 +231,13 @@ App.selectTab = function (event) {
   doc.save(title + '.pdf');
 };
 
-App.percentageToRange = function (value, minimum, maximum) {
+App.percentageToRange = function(value, minimum, maximum) {
   percent = value / maximum;
   percent = Math.round(percent * 100);
   return percent;
 };
 
-App.associativeToNumericArray = function (associativeArray) {
+App.associativeToNumericArray = function(associativeArray) {
   var numericArray = [];
   for (var key in associativeArray) {
     numericArray.push(associativeArray[key]);
@@ -252,7 +252,7 @@ App.associativeToNumericArray = function (associativeArray) {
  * @param {string} [separator=<br>]
  * @returns {string} Error message if found, otherwise the empty string
  */
-App.errorMessage = function (response, separator) {
+App.errorMessage = function(response, separator) {
   if (typeof separator === 'undefined') separator = '<br>';
   if (response.meta && response.meta.registration_status) {
     return response.meta.registration_status.mapBy('error_message').join(separator);
@@ -286,7 +286,7 @@ App.errorMessage = function (response, separator) {
  * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
  * @returns {string} The error message, which is also displayed in the UI
  */
-App.xhrErrorMessage = function (xhr, defaultMessage) {
+App.xhrErrorMessage = function(xhr, defaultMessage) {
   var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
   try {
     var json = (xhr.hasOwnProperty('responseText')) ? Ember.$.parseJSON(xhr.responseText) : xhr;
@@ -302,7 +302,7 @@ App.xhrErrorMessage = function (xhr, defaultMessage) {
  * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
  * @returns {string} The error message, which is also displayed in the UI
  */
-App.xhrError = function (xhr, defaultMessage, severity) {
+App.xhrError = function(xhr, defaultMessage, severity) {
   var errorMessage = App.xhrErrorMessage(xhr, defaultMessage);
   var severity = (severity !== undefined) ? severity : (xhr.status == 422) ? App.WARNING : App.ERROR;
   App.event(errorMessage, severity);
@@ -316,7 +316,7 @@ App.xhrError = function (xhr, defaultMessage, severity) {
  * @param {string|number|boolean} b
  * @returns {number} -1 if a < b, 0 if a == b, or 1 if a > b
  */
-App.naturalSort = function (a, b) {
+App.naturalSort = function(a, b) {
   // Sort undefined/null as less than non-undefined/non-null
   if (a === undefined || a === null) {
     return (b === undefined || b === null) ? 0 : -1;
@@ -327,8 +327,8 @@ App.naturalSort = function (a, b) {
 }
 
 // Debounced observers that will only fire once at end of interval if no additional calls have been made
-Ember.debouncedObserver = function (debounceFunction, property, interval) {
-  return Ember.observer(function () {
+Ember.debouncedObserver = function(debounceFunction, property, interval) {
+  return Ember.observer(function() {
     Ember.run.debounce(this, debounceFunction, interval);
   }, property);
 };

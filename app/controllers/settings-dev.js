@@ -1,14 +1,16 @@
-App.SettingsDevController = Ember.Controller.extend({
-  currentDomain: function () {
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  currentDomain: function() {
     return location.host;
   }.property(),
   apiDomainBinding: 'App.application.apiDomain',
   actions: {
-    save: function () {
+    save: function() {
       localStorage.apiDomain = this.get('apiDomain');
       location.reload();
     },
-    clear: function () {
+    clear: function() {
       this.set('apiDomain', '');
       localStorage.apiDomain = '';
       location.reload();

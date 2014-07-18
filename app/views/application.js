@@ -1,18 +1,20 @@
-App.ApplicationView = Ember.View.extend({
+import Ember from 'ember';
+
+export default Ember.View.extend({
   tagName: 'div',
   classNames: ['application'],
   classNameBindings: ['controller.isFramed'],
   styleSidebar: function() {
-    var docsIframe = $('#docs');
+    var docsIframe = Ember.$('#docs');
     docsIframe.contents().find('.sphinxsidebarwrapper').css({"overflow-y":"scroll", "overflow-x":"hidden", "position":"fixed", "width":"222px", "height":"770px"});
     var self = this;
-    $('#docs').load(function(){
+    Ember.$('#docs').load(function(){
       self.styleSidebar();
     });
   },
   didInsertElement: function() {
     var self = this;
-    $('#docs').load(function(){
+    Ember.$('#docs').load(function(){
       setTimeout(function() {
         self.styleSidebar();
       }, 2000);

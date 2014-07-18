@@ -1,4 +1,6 @@
-App.LogcategoriesController = Ember.ArrayController.extend({
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   itemController: 'logcategory',
   init: function() {
     var self = this;

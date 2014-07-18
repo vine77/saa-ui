@@ -1,4 +1,6 @@
-App.SloTemplate = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   //allowedOperators: DS.attr(),  // Array of strings
   className: DS.attr('string'),
   description: DS.attr('string'),
@@ -10,13 +12,13 @@ App.SloTemplate = DS.Model.extend({
   sloType: DS.attr('string'),
 
   // Computed properties
-  readableSloType: function () {
+  readableSloType: function() {
     return App.humanize(this.get('sloType'));
   }.property('sloType'),
-  doesNotHaveMultipleOperators: function () {
+  doesNotHaveMultipleOperators: function() {
     return this.get('allowedOperators.length') < 2;
   }.property('allowedOperators'),
-  allowedOperators: function () {
+  allowedOperators: function() {
     return this.get('operators').mapBy('operator');
   }.property('operators.@each')
 });

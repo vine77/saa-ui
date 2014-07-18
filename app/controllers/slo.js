@@ -1,9 +1,11 @@
-App.SloController = Ember.ObjectController.extend({
-  sloTemplates: function () {
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
+  sloTemplates: function() {
     return this.store.all('sloTemplate');
   }.property(),
 
-  rangeMin: function (key, value) {
+  rangeMin: function(key, value) {
     // Setter
     if (arguments.length > 1) {
       var min = value || '';
@@ -17,7 +19,7 @@ App.SloController = Ember.ObjectController.extend({
       return '';
     }
   }.property('value'),
-  rangeMax: function (key, value) {
+  rangeMax: function(key, value) {
     // Setter
     if (arguments.length > 1) {
       var max = value || '';

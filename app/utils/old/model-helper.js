@@ -1,8 +1,8 @@
 // TODO: Migrate Sunil's authentication code
 App.ModelHelper = Ember.Object.extend({
   doTransaction: function(model, controller, route, handlers) {
-    var handler_fun = function (handler) {
-      return function () {
+    var handler_fun = function(handler) {
+      return function() {
         for (var event in handlers) {
           model.off(event);
         }

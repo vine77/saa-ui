@@ -1,4 +1,7 @@
-App.SessionSerializer = DS.ActiveModelSerializer.extend({
+import Ember from 'ember';
+import DS from 'ember-data';
+
+export default DS.ActiveModelSerializer.extend({
   extractSingle: function(store, primaryType, payload, recordId, requestType) {
     // Add ID
     var json = Ember.$.extend(true, {}, payload);

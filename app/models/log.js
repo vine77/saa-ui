@@ -1,3 +1,5 @@
-App.Log = DS.Model.extend({
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   categories: DS.attr()
 });

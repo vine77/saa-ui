@@ -1,7 +1,8 @@
-App.DatePickerView = Ember.TextField.extend({
+import Ember from 'ember';
+
+export default Ember.TextField.extend({
   attributeBindings: ['dataDateFormat:data-date-format', 'class'],
-  didInsertElement: function () {
+  didInsertElement: function() {
     $('.datepicker').datepicker();
   }
-
 });

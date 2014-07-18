@@ -1,4 +1,6 @@
-App.TrustMlesColumnsController = App.ColumnsController.extend({
+import ColumnsController from 'columns';
+
+export default ColumnsController.extend({
   content: [{
     title: 'MLE Name',
     sortBy: 'name'

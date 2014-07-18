@@ -1,4 +1,6 @@
-App.LogBarController = Ember.ObjectController.extend({
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   needs: ['nodes', 'application', 'vms', 'criticalities', 'logcategories', 'build', 'statuses'],
   isSettingEach: false,
   kibanaFieldIds: {nodes: null, vms: null, criticalities: null, logcategories: null},
@@ -10,7 +12,7 @@ App.LogBarController = Ember.ObjectController.extend({
   isGraphicalMode: false,
 
   timeFilterId: null,
-  timeFilterReset: function () {
+  timeFilterReset: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
 
@@ -44,14 +46,14 @@ App.LogBarController = Ember.ObjectController.extend({
   selectListNodes: function() {
     var returnArray = [];
     returnArray.pushObject({value:"ipm", label:this.get('controllers.build.hostname')});
-    this.get('controllers.nodes').forEach( function (item, index, enumerable) {
+    this.get('controllers.nodes').forEach( function(item, index, enumerable) {
       var nodeObj = {"value": item.get('id'), "label": item.get('name')};
       returnArray.pushObject(nodeObj);
     });
     returnArray.pushObject({value:"context", label:"Multiple Selections"});
     return returnArray;
   }.property('controllers.nodes.model.@each'),
-  selectListNodesObserver: function () {
+  selectListNodesObserver: function() {
     var nodeSelected = this.get('nodeSelected');
     if (nodeSelected) {
       if (nodeSelected.value !== "context") {
@@ -72,7 +74,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
   criticalitySelected: null,
 
-  cleanedUpCriticalities: function () {
+  cleanedUpCriticalities: function() {
     var cleanedUpCriticalities = ['Warning+', 'Error+', 'Multiple Selections'];
     var returnArray = [];
 
@@ -87,7 +89,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
   criticalitiesFiltered: function() {
     var returnArray = [];
-    this.get('controllers.criticalities').forEach( function (item, index, enumerable) {
+    this.get('controllers.criticalities').forEach( function(item, index, enumerable) {
       if ((App.isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
         returnArray.push(item);
       }
@@ -104,7 +106,7 @@ App.LogBarController = Ember.ObjectController.extend({
     return this.get('controllers.criticalities');
   }.property('controllers.criticalities.model.@each'),
 
-  selectListCriticalitiesObserver: function () {
+  selectListCriticalitiesObserver: function() {
     var criticalitySelected = this.get('criticalitySelected');
     if (criticalitySelected) {
       if (this.get('criticalitySelected.id') !== "context") {
@@ -134,7 +136,7 @@ App.LogBarController = Ember.ObjectController.extend({
     }
   }.observes('controllers.criticalities.@each.isSelected'),
 
-  reset: function () {
+  reset: function() {
     this.get('controllers.criticalities').setEach('isSelected', false);
     this.get('controllers.nodes').setEach('isSelected', false);
     this.get('controllers.vms').setEach('isSelected', false);
@@ -145,7 +147,7 @@ App.LogBarController = Ember.ObjectController.extend({
 
     this.timeFilterReset();
   },
-  advancedSearch: function (model) {
+  advancedSearch: function(model) {
     var controller = this;
     modal = Ember.View.create({
       templateName: "logAdvancedSearch-modal",
@@ -157,7 +159,7 @@ App.LogBarController = Ember.ObjectController.extend({
         //setTimeout(context.remove, 3000);
         this.remove(); //destroys the element
       },
-      didInsertElement: function () {
+      didInsertElement: function() {
         $('#advanced-search-modal').modal('show');
       }
     }).appendTo('body');
@@ -169,7 +171,7 @@ App.LogBarController = Ember.ObjectController.extend({
         this.reset();
         this.set('controllers.application.logsUrl', this.get('controllers.application.baseUrl') + '/kibana3/index.html#/dashboard/file/logs-graphical.json');
         this.set('isGraphicalMode', true);
-        
+
       } else {
         this.reset();
         this.set('controllers.application.logsUrl', this.get('controllers.application.baseUrl') + '/kibana3/index.html#/dashboard/file/logs.json');

@@ -1,5 +1,7 @@
+import DS from 'ember-data';
+
 // TODO: Check that embedded models are referenced correctly
-App.VmInstantiationDetailed = DS.Model.extend({
+export default DS.Model.extend({
   generation_time: DS.attr('string'),
   instantiationNodes: DS.hasMany('vmInstantiationDetailedNode'),
   nodesCount: DS.attr(),
