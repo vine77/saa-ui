@@ -1,18 +1,22 @@
 import Ember from 'ember';
-import associativeToNumericArray from '../utils/associative-to-numeric-array';
+import associativeToNumericArray from 'associative-to-numeric-array';
 
+/**
+ * Extract an error message from a JSON object
+ *
+ * @param {object} response - The JSON object returned from the API (already JSON.parse'd)
+ * @param {string} [separator=<br>]
+ * @returns {string} Error message if found, otherwise the empty string
+ */
 export default function(response, separator) {
   if (typeof separator === 'undefined') separator = '<br>';
 
   if (response.meta && response.meta.registration_status) {
     return response.meta.registration_status.mapBy('error_message').join(separator);
   }
-
   if (Ember.isArray(response)) {
-    if (response[0] && response[0].then) {
-      if (response[0].status !== 200) {
-        return response[0].statusText;
-      }
+    if (response[0] && response[0].then && response[0].status !== 200) {
+      return response[0].statusText;
     } else {
       return response.join(separator);
     }
