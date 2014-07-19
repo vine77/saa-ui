@@ -41,6 +41,38 @@
       "id": "195cbc1d-405b-487c-9170-dce4e45a8901",
       "unit": "",
       "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slo_templates/fd46f8e6-db3a-49af-9c9d-6de8421d628e"
+      },
+      "class_name": "performance",
+      "operators": {
+        "operator": "in_range",
+        "description": "Service Compute Units value available for each VM shall be within <[MIN];[MAX]> range."
+      },
+      "deleted": false,
+      "value_type": "range",
+      "element_name": "infrastructure",
+      "id": "fd46f8e6-db3a-49af-9c9d-6de8421d628e",
+      "unit": "SCU",
+      "slo_type": "vm_compute"
+    },
+    {
+      "links": {
+        "uri": "/api/v1/configuration/slo_templates/0bbac81c-1847-4c21-84d0-44d0a167be62"
+      },
+      "class_name": "performance",
+      "operators": {
+        "operator": "equals",
+        "description": "Number of exclusive cores for each VM shall be equal to [NUMBER]."
+      },
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "infrastructure",
+      "id": "0bbac81c-1847-4c21-84d0-44d0a167be62",
+      "unit": "",
+      "slo_type": "vm_cores"
     }
   ]
 }

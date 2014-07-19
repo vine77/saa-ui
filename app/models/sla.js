@@ -16,5 +16,8 @@ export default DS.Model.extend({
       if (!item || !item.get('sloType')) return null;
       return item.get('sloType').replace('_', ' ');
     }).join(', ');
+  }.property('slos.@each.sloType'),
+  sloTypesArray: function() {
+    return this.get('slos').mapBy('sloType');
   }.property('slos.@each.sloType')
 });
