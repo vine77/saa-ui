@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import associativeToNumericArray from 'associative-to-numeric-array';
+import associativeToNumericArray from './associative-to-numeric-array';
 
 /**
  * Extract an error message from a JSON object

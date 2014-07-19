@@ -1,6 +1,6 @@
-import notify from 'notify';
-import health from 'mappings/health';
-import priorityToType from 'priority-to-type';
+import notify from './notify';
+import health from './mappings/health';
+import priorityToType from './priority-to-type';
 
 export default function(message, type, isNotify, title, sticky) {
   if (typeof type === 'undefined') type = health.WARNING;

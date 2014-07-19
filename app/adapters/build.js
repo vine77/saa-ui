@@ -1,3 +1,3 @@
-import RESTSingletonAdapter from 'rest-singleton';
+import RESTSingletonAdapter from './rest-singleton';
 
 export default RESTSingletonAdapter.extend();

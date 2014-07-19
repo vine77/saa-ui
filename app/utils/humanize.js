@@ -1,4 +1,4 @@
-import caseMapping from 'mappings/case';
+import caseMapping from './mappings/case';
 
 export default function(str) {
   var newString = str.replace(/_id$/, '').replace(/_/g, ' ').replace(/^\w/g, function(s) {

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import operational from '../mappings/operational';
+import operational from './../mappings/operational';
 
 /**
  * Convert string representation of operational status to corresponding integer code

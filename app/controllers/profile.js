@@ -1,4 +1,4 @@
-import FormController from 'form';
+import FormController from './form';
 
 // TODO: Migrate Sunil's authentication code
 export default FormController.extend({

@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import FilterableMixin from '../mixins/filterable';
-import SortableMixin from '../mixins/sortable';
+import FilterableMixin from './../mixins/filterable';
+import SortableMixin from './../mixins/sortable';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['vmsColumns', 'application'],

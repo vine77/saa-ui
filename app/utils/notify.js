@@ -1,5 +1,5 @@
-import health from 'mappings/health';
-import priorityToType from 'priority-to-type';
+import health from './mappings/health';
+import priorityToType from './priority-to-type';
 
 export default function(message, type, notifyTitle, sticky) {
   if (message.length > 600) message = message.substring(0, 600) + '... [truncated]';

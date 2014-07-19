@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import getJson from './get-json';
+import getJson from '././get-json';
 
 /**
  * Determine if an IPM is available by querying its possible URI

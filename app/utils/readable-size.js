@@ -1,4 +1,4 @@
-import bytesToReadableSize from './bytes-to-readable-size';
+import bytesToReadableSize from '././bytes-to-readable-size';
 
 export default function(size) {
   if (typeof size === 'string') {

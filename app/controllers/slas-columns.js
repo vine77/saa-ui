@@ -1,4 +1,4 @@
-import ColumnsController from 'columns';
+import ColumnsController from './columns';
 
 export default ColumnsController.extend({
   content: [{

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import health from '../mappings/health';
+import health from './../mappings/health';
 
 /**
  * Convert priority to corresponding icon class

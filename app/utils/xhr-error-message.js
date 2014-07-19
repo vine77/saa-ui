@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import errorMessage from 'error-message';
+import errorMessage from './error-message';
 
 /**
  * Return an error notification given the XHR object

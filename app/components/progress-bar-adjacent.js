@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ProgressBarAdjacentController from '../controllers/progress-bar-adjacent';
+import ProgressBarAdjacentController from './../controllers/progress-bar-adjacent';
 
 /**
  * Creates a multiple segment progress bar with independent ranges.

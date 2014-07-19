@@ -1,4 +1,4 @@
-import ApplicationAdapter from 'application';
+import ApplicationAdapter from './application';
 
 // RESTSingletonAdapter for singleton resources in primary namespace
 export default ApplicationAdapter.extend({
