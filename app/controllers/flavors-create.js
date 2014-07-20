@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
@@ -59,7 +60,7 @@ export default Ember.ObjectController.extend({
         sla.save().then(function() {
           return flavor.save();
         }).then(function() {
-          App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }).fail(function(xhr) {
@@ -69,7 +70,7 @@ export default Ember.ObjectController.extend({
         // TODO: Add special case where SLA creation succeeds, but flavor creation fails?
       } else {
         flavor.save().then(function() {
-          App.event('Successfully created flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }, function(xhr) {

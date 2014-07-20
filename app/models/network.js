@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 // TODO: Port to real model
 export default Ember.Object.extend({
@@ -57,7 +58,7 @@ export default Ember.Object.extend({
         App.network.set('dns', data.dns);
         App.network.set('other', data.other);
         App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
-        App.event('Network configuration saved successfully.', App.SUCCESS);
+        App.event('Network configuration saved successfully.', Health.SUCCESS);
       },
       error: function(xhr) {
         $('i.loading').addClass('hide');
@@ -81,10 +82,10 @@ export default Ember.Object.extend({
         App.network.set('dns', data.dns);
         App.network.set('other', data.other);
         App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
-        App.event('Successfully loaded network configuration details.', App.SUCCESS, false);
+        App.event('Successfully loaded network configuration details.', Health.SUCCESS, false);
       },
       error: function(xhr) {
-        App.event('Network configuration details could not be loaded.', App.ERROR, false);
+        App.event('Network configuration details could not be loaded.', Health.ERROR, false);
         App.log('ERROR ' + xhr.status + ' from GET /api/v2/netconfig: ' + xhr.statusText);
       }
     });

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes'],
@@ -20,7 +21,7 @@ export default Ember.ObjectController.extend({
       var sla = this.get('model');
       var slos = this.get('slos');
       sla.save().then(function() {
-        App.event('Successfully created SLA "' + sla.get('name') + '".', App.SUCCESS);
+        App.event('Successfully created SLA "' + sla.get('name') + '".', Health.SUCCESS);
         $('.modal:visible').modal('hide');
         self.set('isSlaCreating', false);
       }, function(xhr) {

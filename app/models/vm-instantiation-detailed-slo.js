@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import trustToString from '../utils/convert/trust-to-string';
 
 export default DS.Model.extend({
   slo: DS.belongsTo('slo'),
@@ -7,7 +8,7 @@ export default DS.Model.extend({
   value: DS.attr('string'),
   readableValue: function() {
     if (this.get('slo.sloType') === 'trusted_platform') {
-      return App.trustToString(this.get('value')).capitalize();
+      return trustToString(this.get('value')).capitalize();
     } else {
       return this.get('value');
     }

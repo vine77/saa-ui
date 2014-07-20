@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FilterableMixin from './../mixins/filterable';
 import SortableMixin from './../mixins/sortable';
+import Health from '../utils/mappings/health';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['flavorsColumns', 'slas'],
@@ -31,7 +32,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
       if (confirmedDelete) {
         flavor.deleteRecord();
         flavor.save().then(function() {
-          App.event('Successfully deleted flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully deleted flavor "' + flavor.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           flavor.rollback();
           App.xhrError(xhr, 'Failed to delete flavor "' + flavor.get('name') + '".');

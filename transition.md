@@ -2,7 +2,9 @@
 
 * [X] Use export with renamed files
 * [X] Port utils/old/mappings.js
-* [ ] Change instances of App.X mappings to use modules
+* [X] Change instances of App.X mappings to use modules
+* [X] NOT_APPLICABLE
+* [X] Change instances of App.X convertions to use modules
 * [X] Port utils/old/helpers.js
 * [ ] Change instances of App.Y helpers to use modules
 * [X] Port utils/old/mixins.js

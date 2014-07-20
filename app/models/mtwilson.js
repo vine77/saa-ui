@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 // TODO: Port to real model
 export default Ember.Object.extend({
@@ -66,32 +67,32 @@ export default Ember.Object.extend({
             // Mt. Wilson install successfully started.
             App.mtWilson.set('isInstalled', false);
             App.mtWilson.set('isInstalling', true);
-            App.event('Trust Server install successfully started.', App.SUCCESS);
+            App.event('Trust Server install successfully started.', Health.SUCCESS);
             break;
           case 409:
             // Mt. Wilson install can't be started.  Mt. Wilson is already installed.
             App.mtWilson.set('isInstalled', true);
             App.mtWilson.set('isInstalling', false);
-            App.event('Trust Server is already installed.', App.WARNING);
+            App.event('Trust Server is already installed.', Health.WARNING);
             break;
           case 412:
             // Mt. Wilson install can't be started.  Please set the management IP address first.
             App.mtWilson.set('isInstalled', false);
             App.mtWilson.set('isInstalling', false);
-            App.event('Please set the management IP address before attempting to install Trust Server.', App.ERROR);
+            App.event('Please set the management IP address before attempting to install Trust Server.', Health.ERROR);
             break;
           case 410:
             // Mt. Wilson is not supported
             App.mtWilson.set('isInstalled', false);
             App.mtWilson.set('isInstalling', false);
             App.mtWilson.set('isSupported', false);
-            App.event('Trust Server is not supported', App.ERROR);
+            App.event('Trust Server is not supported', Health.ERROR);
             break;
           case 503:
             // Mt. Wilson install can't be started.  Mt. Wilson install is in progress.
             App.mtWilson.set('isInstalled', false);
             App.mtWilson.set('isInstalling', true);
-            App.event('A Trust Server install is already in progress.', App.WARNING);
+            App.event('A Trust Server install is already in progress.', Health.WARNING);
             break;
           case 500:
             // Mt. Wilson install failed to start.
@@ -99,7 +100,7 @@ export default Ember.Object.extend({
             App.mtWilson.set('isInstalling', false);
           default:
             // Unhandled response code
-            App.event('Trust Server install failed to start.', App.ERROR);
+            App.event('Trust Server install failed to start.', Health.ERROR);
             App.mtWilson.set('isInstalled', false);
             App.mtWilson.set('isInstalling', false);
         }
@@ -116,11 +117,11 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             App.mtWilson.set('isInstalled', false);
-            App.event('Trust Server successfully uninstalled.', App.SUCCESS);
+            App.event('Trust Server successfully uninstalled.', Health.SUCCESS);
             break;
           case 500:
           default:
-            App.event('Trust Server failed to uninstall.', App.ERROR);
+            App.event('Trust Server failed to uninstall.', Health.ERROR);
         }
       }
     });

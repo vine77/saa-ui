@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import priorityToType from '../utils/convert/priority-to-type';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -10,6 +11,6 @@ export default DS.Model.extend({
 
   // Computed properties
   colorClass: function() {
-    return "text-" + App.priorityToType(this.get('health'));
+    return "text-" + priorityToType(this.get('health'));
   }.property('health')
 });

@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
+import Network from '../utils/mappings/network';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
@@ -16,7 +18,7 @@ export default Ember.ArrayController.extend({
   isActionPending: false,
   networkType: {},
   isNeutronConfigRequired: function() {
-    var isNeutronConfigRequired = this.get('networkType.setting') == App.NEUTRON
+    var isNeutronConfigRequired = this.get('networkType.setting') == Network.NEUTRON
     return isNeutronConfigRequired;
   }.property('networkType.setting'),
   showButtons: function() {
@@ -62,7 +64,7 @@ export default Ember.ArrayController.extend({
           return App.nova.start();
         }).then(function() {
           self.set('isActionPending', false);
-          App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', App.SUCCESS, undefined, undefined, true);
+          App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', Health.SUCCESS, undefined, undefined, true);
           setTimeout(function() {
             // Restart app for full reload and redirect to index
             document.location.href = '/';
@@ -70,7 +72,7 @@ export default Ember.ArrayController.extend({
           }, 60000);
         }, function(xhr) {
           self.set('isActionPending', false);
-          App.xhrError(xhr, 'An error occurred while uploading config files.', App.ERROR);
+          App.xhrError(xhr, 'An error occurred while uploading config files.', Health.ERROR);
           $('.fileupload i').removeClass().addClass('icon-file');
           $('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);
@@ -98,7 +100,7 @@ export default Ember.ArrayController.extend({
           type: 'DELETE',
           success: function(data) {
             //$('i.loading').addClass('hide');
-            App.event('Deleted Keystone CA certificate successfully.', App.SUCCESS);
+            App.event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
             App.keystone.check();
           },
           error: function(xhr) {
@@ -110,7 +112,7 @@ export default Ember.ArrayController.extend({
     },
     updateOverrides: function() {
       this.store.getById('override', 'current').save().then( function(){
-         App.event('Successfully updated configuration overrides.', App.SUCCESS);
+         App.event('Successfully updated configuration overrides.', Health.SUCCESS);
       }, function(xhr) {
         App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
       });

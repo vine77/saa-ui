@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import Network from '../utils/mappings/network';
 
 export default Ember.Controller.extend({
   isActionPending: false,
   networkTypeText: function() {
-    if (this.get('networkType.setting') == App.NEUTRON) {
+    if (this.get('networkType.setting') == Network.NEUTRON) {
       return 'Neutron';
-    } else if (this.get('networkType.setting') == App.NOVA) {
+    } else if (this.get('networkType.setting') == Network.NOVA) {
       return 'Nova';
     }
   }.property('networkType.setting'),

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
@@ -28,7 +29,7 @@ export default Ember.Controller.extend({
   }.property(),
   isHealthy: function() {
     var health = this.get('controllers.statuses.health');
-    return health === App.SUCCESS || health === App.INFO || health === App.WARNING;
+    return health === Health.SUCCESS || health === Health.INFO || health === Health.WARNING;
   }.property('controllers.statuses.health'),
   isConfigured: function() {
     return App.nova.get('exists') && App.openrc.get('exists');

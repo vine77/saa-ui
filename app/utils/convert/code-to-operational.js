@@ -1,70 +1,70 @@
 import Ember from 'ember';
-import operational from './../mappings/operational';
+import Operational from './../mappings/Operational';
 
 /**
- * Convert integer code of operational status to corresponding string representation
+ * Convert integer code of Operational status to corresponding string representation
  *
- * @param {number} code A numerical code for operational status
- * @return {string} The corresponding string representation for that operational status
+ * @param {number} code A numerical code for Operational status
+ * @return {string} The corresponding string representation for that Operational status
  */
 export default function(code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
-    case operational.UNKNOWN:
-    case operational.UNKNOWN.toString():
+    case Operational.UNKNOWN:
+    case Operational.UNKNOWN.toString():
     case 'unknown':
     case 'n/a':
       return 'unknown';
-    case operational.ON:
-    case operational.ON.toString():
+    case Operational.ON:
+    case Operational.ON.toString():
     case 'on':
       return 'on';
-    case operational.OFF:
-    case operational.OFF.toString():
+    case Operational.OFF:
+    case Operational.OFF.toString():
     case 'off':
       return 'off';
-    case operational.REBOOTING:
-    case operational.REBOOTING.toString():
+    case Operational.REBOOTING:
+    case Operational.REBOOTING.toString():
     case 'rebooting':
       return 'rebooting';
-    case operational.PAUSED:
-    case operational.PAUSED.toString():
+    case Operational.PAUSED:
+    case Operational.PAUSED.toString():
     case 'paused':
       return 'paused';
-    case operational.SUSPENDED:
-    case operational.SUSPENDED.toString():
+    case Operational.SUSPENDED:
+    case Operational.SUSPENDED.toString():
     case 'suspended':
       return 'suspended';
-        case operational.LIVE_MIGRATING:
-    case operational.LIVE_MIGRATING.toString():
+        case Operational.LIVE_MIGRATING:
+    case Operational.LIVE_MIGRATING.toString():
     case 'live migrating':
       return 'live migrating';
-    case operational.MIGRATING_RESIZING:
-    case operational.MIGRATING_RESIZING.toString():
+    case Operational.MIGRATING_RESIZING:
+    case Operational.MIGRATING_RESIZING.toString():
     case 'migrating resizing':
       return 'migrating resizing';
-    case operational.CONFIRMATION_NEEDED:
-    case operational.CONFIRMATION_NEEDED.toString():
+    case Operational.CONFIRMATION_NEEDED:
+    case Operational.CONFIRMATION_NEEDED.toString():
     case 'confirmation needed':
       return 'confirmation needed';
-    case operational.REVERTING:
-    case operational.REVERTING.toString():
+    case Operational.REVERTING:
+    case Operational.REVERTING.toString():
     case 'reverting':
       return 'reverting';
-    case operational.MIGRATION_BLOCKED:
-    case operational.MIGRATION_BLOCKED.toString():
+    case Operational.MIGRATION_BLOCKED:
+    case Operational.MIGRATION_BLOCKED.toString():
     case 'migration blocked':
       return 'migration blocked';
-    case operational.SHELVING:
-    case operational.SHELVING.toString():
+    case Operational.SHELVING:
+    case Operational.SHELVING.toString():
     case 'shelving':
       return 'shelving';
-    case operational.SHELVED:
-    case operational.SHELVED.toString():
+    case Operational.SHELVED:
+    case Operational.SHELVED.toString():
     case 'shelved':
       return 'shelved';
-    case operational.SHELVED_OFFLOADED:
-    case operational.SHELVED_OFFLOADED.toString():
+    case Operational.SHELVED_OFFLOADED:
+    case Operational.SHELVED_OFFLOADED.toString():
     case 'shelved offloaded':
       return 'shelved offloaded';
     default:

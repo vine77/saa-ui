@@ -1,4 +1,12 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
+import Operational from '../utils/mappings/operational';
+import Trust from '../utils/mappings/trust';
+import Mode from '../utils/mappings/mode';
+import priorityToType from '../utils/convert/priority-to-type';
+import codeToOperational from '../utils/convert/code-to-operational';
+import trustToString from '../utils/convert/trust-to-string';
+import rangeToPercentage from '../utils/convert/range-to-percentage';
 
 export default Ember.ObjectController.extend({
   needs: ['vms', 'logBar'],
@@ -7,7 +15,7 @@ export default Ember.ObjectController.extend({
   isActionPending: false,
   isSelectable: true,
   isHealthy: function() {
-    return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
+    return (this.get('status.health') == Health.SUCCESS) || (this.get('status.health') == Health.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
@@ -15,7 +23,7 @@ export default Ember.ObjectController.extend({
     if (this.get('isSlaMissing')) healthMessage += "<strong>Warning</strong>: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
       // If both short and long messages are empty, show health as message
-      healthMessage +=  '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+      healthMessage +=  '<strong>Health</strong>: ' + priorityToType(this.get('status.health')).capitalize();
     } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
       healthMessage +=  this.get('status.short_message').capitalize();
     } else {  // Default to long message
@@ -26,17 +34,17 @@ export default Ember.ObjectController.extend({
   operationalMessage: function() {
     var operationalMessage = '';
     if (this.get('isSlaMissing')) operationalMessage += 'VM is missing an SLA.<br>';
-    operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    operationalMessage += '<strong>State</strong>: ' + codeToOperational(this.get('status.operational')).capitalize();
     return operationalMessage;
   }.property('status.operational'),
-  isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
-  isTrusted: Ember.computed.equal('status.trust', App.TRUSTED),
-  isUnregistered: Ember.computed.equal('status.trust', App.UNREGISTERED),
+  isUntrusted: Ember.computed.equal('status.trust', Trust.UNTRUSTED),
+  isTrusted: Ember.computed.equal('status.trust', Trust.TRUSTED),
+  isUnregistered: Ember.computed.equal('status.trust', Trust.UNREGISTERED),
   isTrustUnknown: Ember.computed.not('status.trust'),
   trustMessage: function() {
-    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + trustToString(this.get('status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + trustToString(this.get('status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + trustToString(this.get('status.trust_details.vmm')).capitalize();
     return message;
   }.property('status.trust_details', 'status.trust_details'),
   slaUnknown: Ember.computed.equal('status.sla_status', 0),
@@ -44,7 +52,7 @@ export default Ember.ObjectController.extend({
   slaViolatedWarning: Ember.computed.equal('status.sla_status', 2),
   slaViolatedError: Ember.computed.equal('status.sla_status', 3),
   isSlaMissing: function() {
-    return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === App.ASSURED;
+    return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === Mode.ASSURED;
   }.property('sla', 'node.samControlled'),
   slaMessage: function() {
     if (App.isEmpty(this.get('status.sla_messages'))) {
@@ -89,7 +97,7 @@ export default Ember.ObjectController.extend({
     if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
+      percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
       return "width:"+percent+"%;";
     }
   }.property('contention.system.llc.value'),
@@ -97,10 +105,10 @@ export default Ember.ObjectController.extend({
     return typeof this.get('contention.system.llc.value') !== 'undefined' && this.get('contention.system.llc.value') !== null;
   }.property('contention.system.llc.value'),
   isOn: function() {
-    return (this.get('status.operational') === App.ON);
+    return (this.get('status.operational') === Operational.ON);
   }.property('status.operational'),
-  isVictim: Ember.computed.gte('status.victim', App.INFO),
-  isAggressor: Ember.computed.gte('status.aggressor', App.INFO),
+  isVictim: Ember.computed.gte('status.victim', Health.INFO),
+  isAggressor: Ember.computed.gte('status.aggressor', Health.INFO),
   notNoisy: function() {
     return (!this.get('isVictim') && !this.get('isAggressor'));
   }.property('isVictim', 'isAggressor'),

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import FilterableMixin from './../mixins/filterable';
 import SortableMixin from './../mixins/sortable';
+import Health from '../utils/mappings/health';
+import Mode from '../utils/mappings/mode';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['nodesColumns', 'application', 'quota', 'node'],
@@ -129,7 +131,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           rowContent.push("item.get('report_message')");
           App.pdfReport(nodeTrustReport, rowContent, title, subtitle, 'attestations');
         } else {
-          App.event('No trust attestation logs were found for this node.', App.WARNING);
+          App.event('No trust attestation logs were found for this node.', Health.WARNING);
         }
         model.set('isActionPending', false);
       }, function(xhr) {
@@ -148,7 +150,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         }).save().then(function() {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
-          App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully started rebooting node "' + node.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
@@ -168,7 +170,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           name: "unregister"
         }).save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully unregistered node "' + node.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
@@ -185,11 +187,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           node: this.store.getById('node', node.get('id')),
           name: "set_agent_mode",
           options: {
-            agent_mode: App.MONITORED
+            agent_mode: Mode.MONITORED
           }
         }).save().then(function(action) {
           node.set('isActionPending', false);
-          App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', App.SUCCESS);
+          App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set the agent mode of node "' + node.get('name') + '" to monitored.');
@@ -206,11 +208,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           node: this.store.getById('node', node.get('id')),
           name: "set_agent_mode",
           options: {
-            agent_mode: App.ASSURED
+            agent_mode: Mode.ASSURED
           }
         }).save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', App.SUCCESS);
+          App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set agent mode of node "' + node.get('name') + '" to assured.');
@@ -228,7 +230,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           name: "scheduler_unmark"
         }).save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
+          App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', Health.SUCCESS);
           node.set('schedulerMark', null);
         }, function(xhr) {
           node.set('isActionPending', false);
@@ -247,7 +249,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         });
         newTrustNode.save().then(function() {
            node.set('isActionPending', false);
-          App.event('Successfully trusted node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully trusted node "' + node.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           newTrustNode.deleteRecord();
@@ -266,7 +268,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         });
         newTrustMle.save().then(function(model) {
           node.set('isActionPending', false);
-          App.event('Successfully fingerprinted node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully fingerprinted node "' + node.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           newTrustMle.deleteRecord();
@@ -285,7 +287,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           node: this.store.getById('node', node.get('id'))
         }).save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully configured the trust agent for node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully configured the trust agent for node "' + node.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
@@ -309,7 +311,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           }
         }).save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
+          App.event('Successfully set node "' + node.get('name') + '" for VM placement.', Health.SUCCESS);
           // Unset all other nodes
           parentController.filterBy('isScheduled').setEach('schedulerMark', null);
           // Set this node for VM placement
@@ -331,7 +333,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         trustNode.deleteRecord();
         trustNode.save().then(function() {
           node.set('isActionPending', false);
-          App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', App.SUCCESS);
+          App.event('Successfully unregistered node "' + node.get('name') + '" as trusted.', Health.SUCCESS);
         }, function(xhr) {
           node.set('isActionPending', false);
           node.rollback();

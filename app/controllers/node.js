@@ -1,4 +1,15 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
+import Operational from '../utils/mappings/operational';
+import Trust from '../utils/mappings/trust';
+import TrustConfig from '../utils/mappings/trust-config';
+import Mode from '../utils/mappings/mode';
+import codeToTrustConfig from '../utils/convert/code-to-trust-config';
+import priorityToType from '../utils/convert/priority-to-type';
+import codeToOperational from '../utils/convert/code-to-operational';
+import overallHealth from '../utils/convert/overall-health';
+import trustToString from '../utils/convert/trust-to-string';
+import rangeToPercentage from '../utils/convert/range-to-percentage';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
@@ -158,8 +169,8 @@ export default Ember.ObjectController.extend({
 
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
-  isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
-  isAssured: Ember.computed.equal('samControlled', App.ASSURED),
+  isMonitored: Ember.computed.equal('samControlled', Mode.MONITORED),
+  isAssured: Ember.computed.equal('samControlled', Mode.ASSURED),
   isSelectable: function() {
     return this.get('isAgentInstalled');
   }.property('isAgentInstalled'),
@@ -172,7 +183,7 @@ export default Ember.ObjectController.extend({
       return 'This is not an assured node. VMs with SLAs may not be placed here.';
     }
   }.property('samControlled'),
-  isOn: Ember.computed.equal('status.operational', App.ON),
+  isOn: Ember.computed.equal('status.operational', Operational.ON),
   cpuFrequency: function() {
     // MHz to GHz conversion
     var mhz = this.get('capabilities.cpu_frequency');
@@ -192,7 +203,7 @@ export default Ember.ObjectController.extend({
     }
   }.property('schedulerMark', 'isScheduled'),
   isHealthy: function() {
-    return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
+    return (this.get('status.health') == Health.SUCCESS) || (this.get('status.health') == Health.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
@@ -201,13 +212,13 @@ export default Ember.ObjectController.extend({
     }
     if (App.isEmpty(this.get('status.short_message'))) {
       // If status message is empty, just show health as a string
-      return '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+      return '<strong>Health</strong>: ' + priorityToType(this.get('status.health')).capitalize();
     } else {
       return this.get('status.short_message').trim().replace('!', '.').capitalize();
     }
   }.property('status.short_message', 'status.health', 'isAgentInstalled'),
   operationalMessage: function() {
-    return '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    return '<strong>State</strong>: ' + codeToOperational(this.get('status.operational')).capitalize();
   }.property('status.operational'),
   nodeType: function() {
     var services = this.get('cloudServices').mapBy('name');
@@ -223,18 +234,18 @@ export default Ember.ObjectController.extend({
   servicesMessage: function() {
     if (!this.get('cloudServices')) return null;
     return '<strong>Services:</strong><br>' + this.get('cloudServices').map(function(item, index, enumerable) {
-      return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
+      return item.name.toString().capitalize() + ': ' + overallHealth(item.health, item.operational).capitalize();
     }).join('<br>');
   }.property('cloudServices'),
 
   isTrustRegistered: Ember.computed.bool('trustNode'),
-  isTrusted: Ember.computed.equal('status.trust_status.trust', App.TRUSTED),
-  isUntrusted: Ember.computed.equal('status.trust_status.trust', App.UNTRUSTED),
+  isTrusted: Ember.computed.equal('status.trust_status.trust', Trust.TRUSTED),
+  isUntrusted: Ember.computed.equal('status.trust_status.trust', Trust.UNTRUSTED),
   isTrustUnknown: Ember.computed.not('status.trust_status.trust'),
 
-  isTrustAgentInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_TRUE),
-  isTrustAgentNotInstalled: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_FALSE),
-  isTrustAgentUnknown: Ember.computed.equal('status.trust_status.trust_config', App.TRUST_CONFIG_UNKNOWN),
+  isTrustAgentInstalled: Ember.computed.equal('status.trust_status.trust_config', TrustConfig.TRUE),
+  isTrustAgentNotInstalled: Ember.computed.equal('status.trust_status.trust_config', TrustConfig.FALSE),
+  isTrustAgentUnknown: Ember.computed.equal('status.trust_status.trust_config', TrustConfig.UNKNOWN),
 
   isTrustAgentNotInstalledOrUnknown: function() {
     return this.get('isTrustAgentNotInstalled') || this.get('isTrustAgentUnknown') || !(this.get('isTrustAgentInstalled'));
@@ -249,9 +260,9 @@ export default Ember.ObjectController.extend({
   }.property('isTrustRegistered'),
 
   trustMessage: function() {
-    var message = 'Trust Status: ' + App.trustToString(this.get('status.trust_status.trust')).capitalize();
-    message += '<br>' + 'BIOS: ' + App.trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
-    message += '<br>' + 'VMM: ' + App.trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
+    var message = 'Trust Status: ' + trustToString(this.get('status.trust_status.trust')).capitalize();
+    message += '<br>' + 'BIOS: ' + trustToString(this.get('status.trust_status.trust_details.bios')).capitalize();
+    message += '<br>' + 'VMM: ' + trustToString(this.get('status.trust_status.trust_details.vmm')).capitalize();
     if (this.get('isUntrusted')) message += '<br><em>Note: Check PCR Logs tab for details.</em>';
     message +=  this.get('trustAgentMessage');
     return message;
@@ -260,15 +271,15 @@ export default Ember.ObjectController.extend({
   trustAgentMessage: function() {
     var message = '<hr style="margin:2px">';
     message += '<ul class="hover-list">';
-      message += '<li>Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '</li>';
+      message += '<li>Trust Config = ' + codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '</li>';
       message += '<ul class="hover-list">';
-        message += '<li> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
-        message += '<li> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
+        message += '<li> TPM Enabled = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
+        message += '<li> Tboot Measured Launch = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
         message += '<li> Trust Agent </li>';
         message += '<ul>'
-          message += '<li> Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
-          message += '<li> Running = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
-          message += '<li> Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
+          message += '<li> Installed = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
+          message += '<li> Running = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
+          message += '<li> Paired = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
           message += '<li> Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
           message += '<li> Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
         message += '</ul>';
@@ -289,7 +300,7 @@ export default Ember.ObjectController.extend({
     if (this.get('utilization.scu_current') === 0 || App.isEmpty(this.get('utilization.scu_current'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
+      percent = rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
       return 'width:' + percent + '%;';
     }
   }.property('utilization.scu_current', 'utilization.scu_max'),
@@ -321,7 +332,7 @@ export default Ember.ObjectController.extend({
     if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
+      percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
       return 'width:' + percent + '%;';
     }
   }.property('contention.system.llc.value'),

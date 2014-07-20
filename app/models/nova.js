@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 // TODO: Port this to a real model or controller
 export default Ember.Object.extend({
@@ -38,7 +39,7 @@ export default Ember.Object.extend({
   },
   start: function() {
     // Start SAA
-    App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
+    App.log('Starting ' + App.application.get('title'), Health.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',
       url: (App.getApiDomain()) + '/api/v2/start',

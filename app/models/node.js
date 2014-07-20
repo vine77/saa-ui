@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Mode from '../utils/mappings/mode';
 
 export default DS.Model.extend({
   capabilities: DS.attr(),
@@ -9,9 +10,9 @@ export default DS.Model.extend({
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
   samRegistered: function() {
-    return this.get('status.mode') == App.MONITORED || this.get('status.mode') == App.ASSURED;
+    return this.get('status.mode') == Mode.MONITORED || this.get('status.mode') == Mode.ASSURED;
   }.property('status.mode'),
-  isAssured: Ember.computed.equal('status.mode', App.ASSURED),
+  isAssured: Ember.computed.equal('status.mode', Mode.ASSURED),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
   status: DS.attr(),

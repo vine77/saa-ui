@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 // TODO: Migrate Sunil's authentication code
 export default = Ember.ObjectController.extend({
@@ -10,7 +11,7 @@ export default = Ember.ObjectController.extend({
       this.set('isActionPending', true);
       mailserver.save().then(function() {
         self.set('isActionPending', false);
-        App.event('Successfully updated mail server settings.', App.SUCCESS);
+        App.event('Successfully updated mail server settings.', Health.SUCCESS);
       }, function(xhr) {
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to update mail server settings.');
@@ -27,7 +28,7 @@ export default = Ember.ObjectController.extend({
       mailserver.save().then(function() {
         self.set('isActionPending', false);
         mailserver.set('request', '');
-        App.event('Sent test email to ' + mailserver.get('sender_email') + '.', App.SUCCESS);
+        App.event('Sent test email to ' + mailserver.get('sender_email') + '.', Health.SUCCESS);
       }, function(xhr) {
         self.set('isActionPending', false);
         mailserver.set('request', '');

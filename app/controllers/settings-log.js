@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.Controller.extend({
   isActionPending: false,
@@ -18,10 +19,10 @@ export default Ember.Controller.extend({
           type: 'DELETE'
         }).then(function() {
           self.set('isDeleteActionPending', false);
-          App.event('Successfully deleted all log data.', App.SUCCESS);
+          App.event('Successfully deleted all log data.', Health.SUCCESS);
         }, function() {
           self.set('isDeleteActionPending', false);
-          App.event('Error updating log settings.', App.ERROR);
+          App.event('Error updating log settings.', Health.ERROR);
         });
       }
     },
@@ -30,7 +31,7 @@ export default Ember.Controller.extend({
       this.set('isActionPending', true);
       this.store.getById('logSetting', modelId).save().then(function() {
         self.set('isActionPending', false);
-        App.event('Successfully updated  log settings.', App.SUCCESS);
+        App.event('Successfully updated  log settings.', Health.SUCCESS);
       }, function(xhr) {
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to update log settings.');

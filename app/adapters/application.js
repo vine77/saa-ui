@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Health from '../utils/mappings/health';
 
 export default DS.ActiveModelAdapter.extend({
   host: App.getApiDomain(),
@@ -9,7 +10,7 @@ export default DS.ActiveModelAdapter.extend({
   },
 
   /**
-    Override the `ajaxError` method, using the App.errorMessage() helper
+    Override the `ajaxError` method, using the errorMessage() helper
     to return a DS.InvalidError for all 422 Unprocessable Entity
     responses.
 
@@ -23,7 +24,7 @@ export default DS.ActiveModelAdapter.extend({
       var currentPath = App.route.controllerFor('application').get('currentPath');
       App.log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
       if (currentPath !== 'login') {
-        App.notify('Please log back in.', App.ERROR, 'Unauthorized.');
+        App.notify('Please log back in.', Health.ERROR, 'Unauthorized.');
         App.route.controllerFor('application').send('redirectToLogin', currentPath);
       }
     } else if (jqXHR && jqXHR.status === 422) {

@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import priorityToType from '../utils/convert/priority-to-type';
+import overallHealth from '../utils/convert/overall-health';
+import codeToOperational from '../utils/convert/code-to-operational';
 
 export default Ember.ObjectController.extend({
   nodeType: function() {
@@ -14,13 +17,13 @@ export default Ember.ObjectController.extend({
     return 'icon-' + this.get('nodeType');
   }.property('nodeType'),
   overallHealth: function() {
-     return App.overallHealth(health, operational);
+     return overallHealth(health, operational);
   }.property(),
   healthMessage: function() {
-    return 'Healthy State: ' + App.priorityToType(this.get('health')).capitalize();
+    return 'Healthy State: ' + priorityToType(this.get('health')).capitalize();
   }.property('health'),
   operationalMessage: function() {
-    return 'Operational State: ' + App.codeToOperational(this.get('operational')).capitalize();
+    return 'Operational State: ' + codeToOperational(this.get('operational')).capitalize();
   }.property('operational')
 
 });

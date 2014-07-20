@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.ObjectController.extend({
   isActionPending: false,
@@ -23,7 +24,7 @@ export default Ember.ObjectController.extend({
         this.set('isActionPending', true);
         return user.save().then(function() {
           self.set('isActionPending', false);
-          App.notify('The user profile was updated successfully.', App.SUCCESS);
+          App.notify('The user profile was updated successfully.', Health.SUCCESS);
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');

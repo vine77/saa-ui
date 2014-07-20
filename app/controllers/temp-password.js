@@ -1,4 +1,5 @@
 import FormController from './form';
+import Health from '../utils/mappings/health';
 
 export default FormController.extend({
   needs: ['login'],
@@ -16,7 +17,7 @@ export default FormController.extend({
           user.set('request', 'reset_password');
           return user.save().then(function() {
             self.set('isActionPending', false);
-            App.notify('Temporary password generated successfully. A temporary password was sent via email.', App.SUCCESS);
+            App.notify('Temporary password generated successfully. A temporary password was sent via email.', Health.SUCCESS);
             user.set('request', '');
             self.transitionTo('login');
           }, function(xhr) {

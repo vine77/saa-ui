@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import FilterableMixin from './../mixins/filterable';
 import SortableMixin from './../mixins/sortable';
+import Health from '../utils/mappings/health';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   sortProperty: 'name',
@@ -24,7 +25,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
       if (confirmedDelete) {
         sla.deleteRecord();
         sla.save().then(function() {
-          App.event('Successfully deleted SLA "' + sla.get('name') + '".', App.SUCCESS);
+          App.event('Successfully deleted SLA "' + sla.get('name') + '".', Health.SUCCESS);
         }, function(xhr) {
           sla.rollback();
           App.xhrError(xhr, 'Failed to delete SLA "' + sla.get('name') + '".');

@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import trustToString from '../utils/convert/trust-to-string';
 
 export default DS.Model.extend({
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),
@@ -9,9 +10,9 @@ export default DS.Model.extend({
   trust_status: DS.attr('number'),
   trust_details: DS.attr(),
   trust_message: function() {
-    return 'BIOS: ' + App.trustToString(this.get('trust_details.bios')).capitalize() + ', VMM: ' + App.trustToString(this.get('trust_details.vmm')).capitalize();
+    return 'BIOS: ' + trustToString(this.get('trust_details.bios')).capitalize() + ', VMM: ' + trustToString(this.get('trust_details.vmm')).capitalize();
   }.property('trust_details'),
   report_message: function() {
-    return 'Node attestation: ' + App.trustToString(this.get('trust_status')).capitalize() + ' (' + this.get('trust_message') + ')';
+    return 'Node attestation: ' + trustToString(this.get('trust_status')).capitalize() + ' (' + this.get('trust_message') + ')';
   }.property('trust_message', 'trust_status')
 });

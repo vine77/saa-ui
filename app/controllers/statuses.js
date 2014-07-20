@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
+import priorityToType from '../utils/convert/priority-to-type';
 
 export default Ember.Controller.extend({
   needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5', 'status6', 'status7', 'status8', 'status9', 'status10', 'status11', 'status12', 'status13', 'status14', 'status15', 'status16', 'status17', 'status18', 'status19', 'status20', 'logBar'],
@@ -14,7 +16,7 @@ export default Ember.Controller.extend({
   }.property('model.@each'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
-    return (loggingStatus === App.SUCCESS || loggingStatus === App.INFO || loggingStatus === App.WARNING);
+    return (loggingStatus === Health.SUCCESS || loggingStatus === Health.INFO || loggingStatus === Health.WARNING);
   }.property('loggingStatus.health'),
   systemStatus: function() {
     return this.store.getById('status', 'system');
@@ -23,11 +25,11 @@ export default Ember.Controller.extend({
     return (this.get('systemStatus')) ? this.get('systemStatus').get('health') : null;
   }.property('systemStatus.health'),
   statusClass: function() {
-    return (!this.get('health')) ? 'alert-warning' : 'alert-' + App.priorityToType(this.get('health'));
+    return (!this.get('health')) ? 'alert-warning' : 'alert-' + priorityToType(this.get('health'));
   }.property('health'),
   isConfigPresent: function() {
     var samConfigFiles = this.get('model').findBy('id', 'sam_config_files');
-    return (samConfigFiles) ? samConfigFiles.get('health') !== App.UNKNOWN : false;
+    return (samConfigFiles) ? samConfigFiles.get('health') !== Health.UNKNOWN : false;
   }.property('model.@each.health'),
   statusErrorMessages: function() {
     return this.store.all('status').filterBy('isNotification');

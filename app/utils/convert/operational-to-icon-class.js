@@ -1,70 +1,70 @@
 import Ember from 'ember';
-import operational from './../mappings/operational';
+import Operational from './../mappings/Operational';
 
 /**
- * Convert operational status to corresponding icon class
+ * Convert Operational status to corresponding icon class
  *
- * @param {number} code A numerical code for operational status (the corresponding string representation works too)
+ * @param {number} code A numerical code for Operational status (the corresponding string representation works too)
  * @return {string} The corresponding icon class (to be applied to an <i> tag)
  */
 export default function(code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
-    case operational.UNKNOWN:
-    case operational.UNKNOWN.toString():
+    case Operational.UNKNOWN:
+    case Operational.UNKNOWN.toString():
     case 'unknown':
     case 'n/a':
       return 'icon-question-sign';
-    case operational.ON:
-    case operational.ON.toString():
+    case Operational.ON:
+    case Operational.ON.toString():
     case 'on':
       return 'icon-bolt';
-    case operational.OFF:
-    case operational.OFF.toString():
+    case Operational.OFF:
+    case Operational.OFF.toString():
     case 'off':
       return 'icon-off';
-    case operational.REBOOTING:
-    case operational.REBOOTING.toString():
+    case Operational.REBOOTING:
+    case Operational.REBOOTING.toString():
     case 'rebooting':
       return 'icon-spinner icon-spin';
-    case operational.PAUSED:
-    case operational.PAUSED.toString():
+    case Operational.PAUSED:
+    case Operational.PAUSED.toString():
     case 'paused':
       return 'icon-pause';
-    case operational.SUSPENDED:
-    case operational.SUSPENDED.toString():
+    case Operational.SUSPENDED:
+    case Operational.SUSPENDED.toString():
     case 'suspended':
       return 'icon-pause';
-    case operational.LIVE_MIGRATING:
-    case operational.LIVE_MIGRATING.toString():
+    case Operational.LIVE_MIGRATING:
+    case Operational.LIVE_MIGRATING.toString():
     case 'live migrating':
       return 'icon-truck icon-flip-horizontal blink-success';
-    case operational.MIGRATING_RESIZING:
-    case operational.MIGRATING_RESIZING.toString():
+    case Operational.MIGRATING_RESIZING:
+    case Operational.MIGRATING_RESIZING.toString():
     case 'migrating resizing':
       return 'icon-truck icon-flip-horizontal blink-success';
-    case operational.CONFIRMATION_NEEDED:
-    case operational.CONFIRMATION_NEEDED.toString():
+    case Operational.CONFIRMATION_NEEDED:
+    case Operational.CONFIRMATION_NEEDED.toString():
     case 'confirmation needed':
       return 'icon-comments';
-    case operational.REVERTING:
-    case operational.REVERTING.toString():
+    case Operational.REVERTING:
+    case Operational.REVERTING.toString():
     case 'reverting':
       return 'icon-truck blink-warning';
-    case operational.MIGRATION_BLOCKED:
-    case operational.MIGRATION_BLOCKED.toString():
+    case Operational.MIGRATION_BLOCKED:
+    case Operational.MIGRATION_BLOCKED.toString():
     case 'migration blocked':
       return 'icon-minus-sign';
-    case operational.SHELVING:
-    case operational.SHELVING.toString():
+    case Operational.SHELVING:
+    case Operational.SHELVING.toString():
     case 'shelving':
       return 'icon-folder-close blink-success';
-    case operational.SHELVED:
-    case operational.SHELVED.toString():
+    case Operational.SHELVED:
+    case Operational.SHELVED.toString():
     case 'shelved':
       return 'icon-folder-close';
-    case operational.SHELVED_OFFLOADED:
-    case operational.SHELVED_OFFLOADED.toString():
+    case Operational.SHELVED_OFFLOADED:
+    case Operational.SHELVED_OFFLOADED.toString():
     case 'shelved offloaded':
       return 'icon-folder-open';
     default:

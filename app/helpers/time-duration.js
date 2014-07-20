@@ -1,5 +1,6 @@
 import Ember from 'ember';
+import placeholders from '../utils/mappings/placeholders';
 
 export default Ember.Handlebars.makeBoundHelper(function(duration) {
-  return (App.isEmpty(duration)) ? App.NOT_APPLICABLE : moment.duration(duration, 'seconds').humanize();
+  return (App.isEmpty(duration)) ? placeholders.NOT_APPLICABLE : moment.duration(duration, 'seconds').humanize();
 });

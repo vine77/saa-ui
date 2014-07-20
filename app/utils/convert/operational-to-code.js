@@ -1,73 +1,73 @@
 import Ember from 'ember';
-import operational from './../mappings/operational';
+import Operational from './../mappings/Operational';
 
 /**
- * Convert string representation of operational status to corresponding integer code
+ * Convert string representation of Operational status to corresponding integer code
  *
- * @param {string} code A string representation of operational status
- * @return {number} The corresponding integer code for that operational status
+ * @param {string} code A string representation of Operational status
+ * @return {number} The corresponding integer code for that Operational status
  */
-export default function(operational) {
-  if (typeof operational === 'string') operational = operational.toLowerCase();
-  switch (operational) {
-    case operational.UNKNOWN:
-    case operational.UNKNOWN.toString():
+export default function(Operational) {
+  if (typeof Operational === 'string') Operational = Operational.toLowerCase();
+  switch (Operational) {
+    case Operational.UNKNOWN:
+    case Operational.UNKNOWN.toString():
     case 'unknown':
     case 'n/a':
-      return operational.UNKNOWN;
-    case operational.ON:
-    case operational.ON.toString():
+      return Operational.UNKNOWN;
+    case Operational.ON:
+    case Operational.ON.toString():
     case 'on':
-      return operational.ON;
-    case operational.OFF:
-    case operational.OFF.toString():
+      return Operational.ON;
+    case Operational.OFF:
+    case Operational.OFF.toString():
     case 'off':
-      return operational.OFF;
-    case operational.REBOOTING:
-    case operational.REBOOTING.toString():
+      return Operational.OFF;
+    case Operational.REBOOTING:
+    case Operational.REBOOTING.toString():
     case 'rebooting':
-      return operational.REBOOTING;
-    case operational.PAUSED:
-    case operational.PAUSED.toString():
+      return Operational.REBOOTING;
+    case Operational.PAUSED:
+    case Operational.PAUSED.toString():
     case 'paused':
-      return operational.PAUSED;
-    case operational.SUSPENDED:
-    case operational.SUSPENDED.toString():
+      return Operational.PAUSED;
+    case Operational.SUSPENDED:
+    case Operational.SUSPENDED.toString():
     case 'suspended':
-      return operational.SUSPENDED;
-    case operational.LIVE_MIGRATING:
-    case operational.LIVE_MIGRATING.toString():
+      return Operational.SUSPENDED;
+    case Operational.LIVE_MIGRATING:
+    case Operational.LIVE_MIGRATING.toString():
     case 'live migrating':
-      return operational.LIVE_MIGRATING;
-    case operational.MIGRATING_RESIZING:
-    case operational.MIGRATING_RESIZING.toString():
+      return Operational.LIVE_MIGRATING;
+    case Operational.MIGRATING_RESIZING:
+    case Operational.MIGRATING_RESIZING.toString():
     case 'migrating resizing':
-      return operational.MIGRATING_RESIZING;
-    case operational.CONFIRMATION_NEEDED:
-    case operational.CONFIRMATION_NEEDED.toString():
+      return Operational.MIGRATING_RESIZING;
+    case Operational.CONFIRMATION_NEEDED:
+    case Operational.CONFIRMATION_NEEDED.toString():
     case 'confirmation needed':
-      return operational.CONFIRMATION_NEEDED;
-    case operational.REVERTING:
-    case operational.REVERTING.toString():
+      return Operational.CONFIRMATION_NEEDED;
+    case Operational.REVERTING:
+    case Operational.REVERTING.toString():
     case 'reverting':
-      return operational.REVERTING;
-    case operational.MIGRATION_BLOCKED:
-    case operational.MIGRATION_BLOCKED.toString():
+      return Operational.REVERTING;
+    case Operational.MIGRATION_BLOCKED:
+    case Operational.MIGRATION_BLOCKED.toString():
     case 'migration blocked':
-      return operational.MIGRATION_BLOCKED;
-    case operational.SHELVING:
-    case operational.SHELVING.toString():
+      return Operational.MIGRATION_BLOCKED;
+    case Operational.SHELVING:
+    case Operational.SHELVING.toString():
     case 'shelving':
-      return operational.SHELVING;
-    case operational.SHELVED:
-    case operational.SHELVED.toString():
+      return Operational.SHELVING;
+    case Operational.SHELVED:
+    case Operational.SHELVED.toString():
     case 'shelved':
-      return operational.SHELVED;
-    case operational.SHELVED_OFFLOADED:
-    case operational.SHELVED_OFFLOADED.toString():
+      return Operational.SHELVED;
+    case Operational.SHELVED_OFFLOADED:
+    case Operational.SHELVED_OFFLOADED.toString():
     case 'shelved offloaded':
-      return operational.SHELVED_OFFLOADED;
+      return Operational.SHELVED_OFFLOADED;
     default:
-      return operational.UNKNOWN;
+      return Operational.UNKNOWN;
   }
 }

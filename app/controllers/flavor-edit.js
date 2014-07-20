@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
@@ -59,7 +60,7 @@ export default Ember.ObjectController.extend({
         sla.save().then(function() {
           return flavor.save();
         }).then(function() {
-          App.event('Successfully modified flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
         }, function(xhr) {
@@ -68,7 +69,7 @@ export default Ember.ObjectController.extend({
         });
       } else {
         flavor.save().then(function() {
-          App.event('Successfully modified flavor "' + flavor.get('name') + '".', App.SUCCESS);
+          App.event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
         }, function(xhr) {

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes'],
@@ -29,7 +30,7 @@ export default Ember.ObjectController.extend({
       }).then(function() {
       */
       sla.save().then(function() {
-        App.event('Successfully modified SLA "' + sla.get('name') + '".', App.SUCCESS);
+        App.event('Successfully modified SLA "' + sla.get('name') + '".', Health.SUCCESS);
         $('.modal:visible').modal('hide');
         self.set('isSlaEditing', false);
       }, function(xhr) {

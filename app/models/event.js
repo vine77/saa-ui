@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Health from '../utils/mappings/health';
 
 // TODO: Port to real model
 export default DS.Model.extend({
@@ -11,7 +12,7 @@ export default DS.Model.extend({
   FIXTURES: [{
     id: 1,
     message: 'Application loaded',
-    priority: App.SUCCESS,
+    priority: Health.SUCCESS,
     timestamp: moment().valueOf()
   }]
 });
