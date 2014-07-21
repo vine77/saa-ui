@@ -12,28 +12,28 @@
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="username" id="profile-username" placeholder="Username" disabled="true"}}
+        {{input valueBinding="username" id="profile-username" placeholder="Username" disabled="true"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Current Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
+        {{input valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="newPassword1" id="profile-newPassword1" placeholder="New Password" type="password"}}
+        {{input valueBinding="newPassword1" id="profile-newPassword1" placeholder="New Password" type="password"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="newPassword2" id="profile-newPassword2" placeholder="New Password again" type="password"}}
+        {{input valueBinding="newPassword2" id="profile-newPassword2" placeholder="New Password again" type="password"}}
       </div>
     </div>
 
@@ -41,7 +41,7 @@
         <div class="control-group">
           <label class="control-label">Email address</label>
           <div class="controls">
-            {{view Ember.TextField valueBinding="email" id="profile-email" placeholder="Email address"}}
+            {{input valueBinding="email" id="profile-email" placeholder="Email address"}}
           </div>
         </div>
     {{/if}}

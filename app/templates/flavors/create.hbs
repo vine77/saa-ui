@@ -12,40 +12,40 @@
             <div class="control-group">
               <label class="control-label">Flavor name:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
+                {{input class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">vCPUs:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.vcpus"}}
+                {{input class="input-small" valueBinding="model.vcpus"}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">RAM:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.memory"}}
+                {{input class="input-small" valueBinding="model.memory"}}
                 MiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Root Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.root"}}
+                {{input class="input-small" valueBinding="model.root"}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Ephemeral Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.ephemeral"}}
+                {{input class="input-small" valueBinding="model.ephemeral"}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Swap Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.swap"}}
+                {{input class="input-small" valueBinding="model.swap"}}
                 MiB
               </div>
             </div>
@@ -79,7 +79,7 @@
             {{#if hasNewSla}}
               <p>
                 <label class="inline">New SLA name:</label>
-                {{view Ember.TextField class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
+                {{input class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
                 <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
               </p>
               {{#each slo in model.sla.slos itemController="slo"}}
@@ -95,11 +95,11 @@
                     valueBinding="slo.operator"
                   }}
                   {{#if isRange}}
-                    {{view Ember.TextField class="input-tiny" value=rangeMin}} to
-                    {{view Ember.TextField class="input-tiny" value=rangeMax}}
+                    {{input class="input-tiny" value=rangeMin}} to
+                    {{input class="input-tiny" value=rangeMax}}
                   {{/if}}
                   {{#if isInteger}}
-                    {{view Ember.TextField class="input-small" value=value}}
+                    {{input class="input-small" value=value}}
                   {{/if}}
                   {{#if isBoolean}}
                     <label style="display:inline; margin-left:10px">

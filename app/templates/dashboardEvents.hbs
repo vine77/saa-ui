@@ -12,7 +12,7 @@
         {{#each model}}
           <tr>
             <td class="column-small">
-              {{#view App.TooltipView titleBinding="message"}}
+              {{#view "tooltip" titleBinding="message"}}
                 {{#if done}}
                   {{{health-icon status}}}
                 {{else}}

@@ -6,27 +6,27 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
-          {{#view App.TooltipView titleBinding="healthMessage"}}
+          {{#view "tooltip" titleBinding="healthMessage"}}
             {{health-icon status.health}}
           {{/view}}
         {{else}}
-          {{#view App.TooltipView titleBinding="operationalMessage"}}
+          {{#view "tooltip" titleBinding="operationalMessage"}}
             {{code-to-operationalIcon status.operational}}
           {{/view}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="trustMessage"}}
+        {{#view "tooltip" titleBinding="trustMessage"}}
           {{trust-to-stringIcon status.trust}}
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="slaMessage"}}
+        {{#view "tooltip" titleBinding="slaMessage"}}
           <i {{bind-attr class=":icon-large slaUnknown:icon-trophy slaUnknown:inset slaNotViolated:icon-trophy slaNotViolated:success slaViolatedWarning:icon-warning-sign slaViolatedWarning:warning slaViolatedError:icon-remove-sign slaViolatedError:error"}}></i>
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="noisyMessage"}}
+        {{#view "tooltip" titleBinding="noisyMessage"}}
           {{#if isAggressor}}
             <i {{bind-attr class=":icon-bullhorn :error"}}></i>
           {{/if}}
@@ -66,7 +66,7 @@
       <td><div class="cell-container">
         <div class="allocation">
           {{#if hasCompute}}
-            {{#view App.TooltipView titleBinding="allocationMessage"}}
+            {{#view "tooltip" titleBinding="allocationMessage"}}
               <div {{bind-attr class=":allocation-bar isRange"}}>
                 <div class="allocation-range"></div> {{! light orange dashed }}
                 <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
@@ -87,7 +87,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if contentionValueExists}}
-            {{#view App.TooltipView titleBinding="contentionMessage" barBinding="contentionWidth"}}
+            {{#view "tooltip" titleBinding="contentionMessage" barBinding="contentionWidth"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}} >
                   <div class="contention-gradient"></div>

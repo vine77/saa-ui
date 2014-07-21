@@ -16,7 +16,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                      {{#view "tooltip" titleBinding="totalTrustedMessage"}}
                         {{#link-to "vms"}}
                           {{percentOfTrusted}}%
                         {{/link-to}}
@@ -35,7 +35,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
+                      {{#view "tooltip" titleBinding="totalVictimsMessage"}}
                         {{#link-to "vms"}}
                           {{percentOfVictims}}%
                         {{/link-to}}
@@ -54,7 +54,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
+                      {{#view "tooltip" titleBinding="totalAggressorsMessage"}}
                         {{#link-to "vms"}}
                           {{percentOfAggressors}}%
                         {{/link-to}}
@@ -73,7 +73,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage"}}
+                      {{#view "tooltip" titleBinding="controllers.nodes.totalVcpusMessage"}}
                         {{#link-to "vms"}}
                           {{totalVcpusPercent}}%
                         {{/link-to}}
@@ -98,7 +98,7 @@
               <td>
                 {{#if contentionVm.hasContention}}
                   <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionVm.contentionMessage"}}
+                    {{#view "tooltip" titleBinding="contentionVm.contentionMessage"}}
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionVm.contentionWidth"}}>
                           <div class="contention-gradient"></div>

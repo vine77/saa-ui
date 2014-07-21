@@ -12,43 +12,43 @@
     <div class="control-group">
       <label class="control-label">Hostname</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
+        {{input valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Port</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="port" id="mailserver-port" placeholder="Port"}}
+        {{input valueBinding="port" id="mailserver-port" placeholder="Port"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="username" id="mailserver-username" placeholder="Username"}}
+        {{input valueBinding="username" id="mailserver-username" placeholder="Username"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="password" id="mailserver-password" placeholder="Password" type="password"}}
+        {{input valueBinding="password" id="mailserver-password" placeholder="Password" type="password"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Email
-        {{#view App.TooltipView title="This email address will be the 'from' address as sent to recipents from the mail server"}}
+        {{#view "tooltip" title="This email address will be the 'from' address as sent to recipents from the mail server"}}
           <a> <i class="icon-question-sign"></i> </a>
         {{/view}}
       </label>
 
       <div class="controls">
-        {{view Ember.TextField valueBinding="sender_email" placeholder="Email Address"}}
+        {{input valueBinding="sender_email" placeholder="Email Address"}}
       </div>
     </div>
     <div class="control-group">
       <div class="controls">
         {{#unless isTestEmailActionPending}}
           <button class="btn btn-primary" type="button" {{action "testEmail"}}>Send Test Email</button>
-          {{#view App.TooltipView title="This will send a test email to the 'From' address above"}}
+          {{#view "tooltip" title="This will send a test email to the 'From' address above"}}
             <a> <i class="icon-question-sign"></i> </a>
           {{/view}}
         {{else}}

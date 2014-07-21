@@ -24,7 +24,7 @@
         {{#if status.component}}
           <div class="panel" {{bind-attr id=view.childrenId}} style="left:300px; top: 70px; position: absolute; display:none">
             {{#each component in status.component}}
-              {{view App.StatusPanelView content=component level=2}}
+              {{view "status-panel" content=component level=2}}
             {{/each}}
           </div>
         {{/if}}

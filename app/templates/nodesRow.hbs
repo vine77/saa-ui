@@ -8,18 +8,18 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
-          {{#view App.TooltipView titleBinding="healthMessage"}}
+          {{#view "tooltip" titleBinding="healthMessage"}}
             {{health-icon status.health}}
           {{/view}}
         {{else}}
-          {{#view App.TooltipView titleBinding="operationalMessage"}}
+          {{#view "tooltip" titleBinding="operationalMessage"}}
             {{code-to-operationalIcon status.operational}}
           {{/view}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
-          {{#view App.TooltipView titleBinding="trustMessage"}}
+          {{#view "tooltip" titleBinding="trustMessage"}}
             <span class="icon-stack">
               {{#if isTrustUnknown}}
                 <i class="icon-large icon-question-sign unknown"></i>
@@ -32,7 +32,7 @@
             </span>
           {{/view}}
         {{else}}
-          {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
+          {{#view "tooltip" titleBinding="isTrustRegisteredMessage"}}
             <span class="icon-stack">
               <i class="icon-large icon-unlock unregistered"></i>
               {{#if isTrustAgentNotInstalledOrUnknown}}
@@ -43,7 +43,7 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="nodeTypeMessage"}}
+        {{#view "tooltip" titleBinding="nodeTypeMessage"}}
           {{#if isAssured}}
             <i class="icon-large icon-trophy assured"></i>
           {{else}}
@@ -81,7 +81,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
+            {{#view "tooltip" titleBinding="computeMessage" barBinding="computeWidth"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
@@ -114,7 +114,7 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view App.TooltipView titleBinding="contentionMessage"}}
+            {{#view "tooltip" titleBinding="contentionMessage"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>

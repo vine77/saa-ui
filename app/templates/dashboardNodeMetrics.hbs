@@ -16,7 +16,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                      {{#view "tooltip" titleBinding="totalTrustedMessage"}}
                         {{#link-to "nodes"}}
                           {{percentOfTrusted}}%
                         {{/link-to}}
@@ -35,7 +35,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalControlledMessage"}}
+                      {{#view "tooltip" titleBinding="totalControlledMessage"}}
                         {{#link-to "nodes"}}
                           {{percentOfControlled}}%
                         {{/link-to}}
@@ -54,7 +54,7 @@
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                      {{#view "tooltip" titleBinding="controllers.nodes.totalRamMessage"}}
                         {{#link-to "nodes"}}
                           {{controllers.nodes.percentOfRam}}%
                         {{/link-to}}
@@ -73,7 +73,7 @@
                 </div>
                 <div class="portlet-progress-value">
                   <small>
-                    {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+                    {{#view "tooltip" titleBinding="usedOfAvailableSuMessage"}}
                       {{#link-to "nodes"}}
                         {{usedOfAvailableSuPercent}}%
                       {{/link-to}}
@@ -98,7 +98,7 @@
               <td>
                 {{#if contentionNode.hasContention}}
                   <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage"}}
+                    {{#view "tooltip" titleBinding="contentionNode.contentionMessage"}}
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionNode.contentionWidth"}}>
                           <div class="contention-gradient"></div>
