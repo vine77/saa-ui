@@ -19,6 +19,6 @@
     "ember-json-api": "daliwali/ember-json-api",
     "modernizr": "~2.7.1",
     "zynga-scroller": "zynga/scroller#dadd850722ad2be9a865e4d84cb76c0197b68734",
-    "natural-sort": "overset/javascript-natural-sort"
+    "natural-sort": "vine77/natural-sort"
   }
 }

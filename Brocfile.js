@@ -12,7 +12,6 @@ app.import('vendor/bootstrap-build/js/bootstrap.js');
 app.import('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js');
 app.import('vendor/pnotify/jquery.pnotify.js');
 app.import('vendor/jquery-cookie/jquery.cookie.js');
-
 app.import('vendor/zynga-scroller/src/Animate.js');
 app.import('vendor/zynga-scroller/src/Scroller.js');
 app.import('vendor/list-view/dist/list-view.prod.js');
@@ -24,7 +23,11 @@ app.import('vendor/d3/d3.js');
 app.import('vendor/mousetrap/mousetrap.js');
 app.import('vendor/jspdf/dist/jspdf.min.js');
 app.import('vendor/filesaver/FileSaver.js');
-app.import('vendor/natural-sort/naturalSort.js');
+app.import('vendor/natural-sort/naturalSort.js', {
+  exports: {
+    'natural-sort': ['default']
+  }
+});
 
 trees.push(pickFiles('vendor', {
   srcDir: '/font-awesome/font',
