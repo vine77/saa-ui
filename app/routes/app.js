@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Health from '../utils/mappings/health';
 import log from '../utils/log';
 import notify from '../utils/notify';
+import mtWilson from '../models/mt-wilson';
 
 // Routes under /app require authentication
 export default Ember.Route.extend({
@@ -53,8 +54,8 @@ export default Ember.Route.extend({
         self.store.find('sla');
         self.store.find('flavor');
         self.store.find('vm');
-        App.mtWilson.check().then(function() {
-          if (App.mtWilson.get('isInstalled')) {
+        mtWilson.check().then(function() {
+          if (mtWilson.get('isInstalled')) {
             self.store.find('trustMle');
             self.store.find('trustNode');
             self.store.find('node');

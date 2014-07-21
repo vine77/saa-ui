@@ -22,7 +22,7 @@
                   <li>{{#link-to "slas"}}SLAs{{/link-to}}</li>
                 </ul>
               </li>
-              {{#if App.mtWilson.isSupported}}
+              {{#if isMtWilsonSupported}}
                 <li class="dropdown">
                   {{#link-to "trust" class="dropdown-toggle"}}<i class="icon-lock"></i>Trust{{/link-to}}
                   {{#if isMtWilsonInstalled}}

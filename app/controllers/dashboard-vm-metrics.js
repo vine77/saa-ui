@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import mtWilson from '../models/mtWilson';
 
 export default Ember.Controller.extend({
   needs: ['vms', 'nodes'],
@@ -30,7 +31,7 @@ export default Ember.Controller.extend({
     return this.get('numberOfTrusted') + ' / ' + this.get('totalNumberOfVms');
   }.property('numberOfTrusted', 'totalNumberOfVms'),
   isPercentOfTrustedAvailable: function() {
-    if (isNaN(this.get('percentOfTrusted')) && (App.mtWilson.get('isSupported')) ) {
+    if (isNaN(this.get('percentOfTrusted')) && (mtWilson.get('isSupported')) ) {
       return false;
     } else {
       return true;

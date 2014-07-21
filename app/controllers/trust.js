@@ -1,19 +1,20 @@
 import Ember from 'ember';
+import mtWilson from '../models/mtWilson';
 
 export default Ember.Controller.extend({
   needs: ['application'],
-  isInstalledBinding: 'App.mtWilson.isInstalled',
-  isInstallingBinding: 'App.mtWilson.isInstalling',
-  ipAddressBinding: 'App.mtWilson.ipAddress',
+  isInstalledBinding: 'mtWilson.isInstalled',
+  isInstallingBinding: 'mtWilson.isInstalling',
+  ipAddressBinding: 'mtWilson.ipAddress',
   actions: {
     install: function() {
       // Start Mt. Wilson install
-      App.mtWilson.install();
-      App.mtWilson.checkPeriodically();
+      mtWilson.install();
+      mtWilson.checkPeriodically();
     }
   },
   checkInstall: function() {
-    App.mtWilson.check();
+    mtWilson.check();
   },
   isInstalledChanged: function() {
     var applicationController = this.get('controllers.application');

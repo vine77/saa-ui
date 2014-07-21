@@ -11,6 +11,7 @@ export default Ember.Object.extend({
   isSupported: true,
   ipAddress: '',
   check: function() {
+    var self = this;
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'GET',
@@ -18,26 +19,26 @@ export default Ember.Object.extend({
     }).then(function(data, textStatus, xhr) {
       log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       // Mt. Wilson is installed
-      App.mtWilson.set('isInstalled', true);
-      App.mtWilson.set('isInstalling', false);
+      self.set('isInstalled', true);
+      self.set('isInstalling', false);
     }, function(xhr, textStatus, errorThrown) {
       log(xhr.status + ' response from GET /api/v2/mtwilson/install: ' + xhr.statusText);
       switch (xhr.status) {
         case 404:
           // Mt. Wilson is not installed
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', false);
+          self.set('isInstalled', false);
+          self.set('isInstalling', false);
           break;
         case 410:
            // Mt. Wilson is not installed
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', false);
-          App.mtWilson.set('isSupported', false);
+          self.set('isInstalled', false);
+          self.set('isInstalling', false);
+          self.set('isSupported', false);
           break;
         case 503:
           // Mt. Wilson install is in progress
-          App.mtWilson.set('isInstalled', false);
-          App.mtWilson.set('isInstalling', true);
+          self.set('isInstalled', false);
+          self.set('isInstalling', true);
           break;
         default:
           // Unhandled response code
@@ -46,19 +47,21 @@ export default Ember.Object.extend({
   },
   checkPeriodically: function() {
     // If Mt. Wilson is installing, recheck status periodically
-    if (App.mtWilson.get('isInstalling')) {
-      App.mtWilsonCheck = setInterval(function() {
-        if (App.mtWilson.get('isInstalling')) {
-          App.mtWilson.check();
+    var self = this;
+    if (this.get('isInstalling')) {
+      this.mtWilsonTimer = setInterval(function() {
+        if (self.get('isInstalling')) {
+          self.check();
         } else {
-          clearInterval(App.mtWilsonCheck);
+          clearInterval(self.mtWilsonTimer);
         }
       }, 10000);
     }
   },
   install: function() {
     // Start Mt. Wilson install
-    App.mtWilson.set('isInstalling', true);
+    var self = this;
+    this.set('isInstalling', true);
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'POST',
@@ -68,49 +71,50 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 201:
             // Mt. Wilson install successfully started.
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', true);
+            self.set('isInstalled', false);
+            self.set('isInstalling', true);
             event('Trust Server install successfully started.', Health.SUCCESS);
             break;
           case 409:
             // Mt. Wilson install can't be started.  Mt. Wilson is already installed.
-            App.mtWilson.set('isInstalled', true);
-            App.mtWilson.set('isInstalling', false);
+            self.set('isInstalled', true);
+            self.set('isInstalling', false);
             event('Trust Server is already installed.', Health.WARNING);
             break;
           case 412:
             // Mt. Wilson install can't be started.  Please set the management IP address first.
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', false);
+            self.set('isInstalled', false);
+            self.set('isInstalling', false);
             event('Please set the management IP address before attempting to install Trust Server.', Health.ERROR);
             break;
           case 410:
             // Mt. Wilson is not supported
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', false);
-            App.mtWilson.set('isSupported', false);
+            self.set('isInstalled', false);
+            self.set('isInstalling', false);
+            self.set('isSupported', false);
             event('Trust Server is not supported', Health.ERROR);
             break;
           case 503:
             // Mt. Wilson install can't be started.  Mt. Wilson install is in progress.
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', true);
+            self.set('isInstalled', false);
+            self.set('isInstalling', true);
             event('A Trust Server install is already in progress.', Health.WARNING);
             break;
           case 500:
             // Mt. Wilson install failed to start.
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', false);
+            self.set('isInstalled', false);
+            self.set('isInstalling', false);
           default:
             // Unhandled response code
             event('Trust Server install failed to start.', Health.ERROR);
-            App.mtWilson.set('isInstalled', false);
-            App.mtWilson.set('isInstalling', false);
+            self.set('isInstalled', false);
+            self.set('isInstalling', false);
         }
       }
     });
   },
   uninstall: function() {
+    var self = this;
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'DELETE',
@@ -119,7 +123,7 @@ export default Ember.Object.extend({
         log(xhr.status + ' response from DELETE /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
           case 200:
-            App.mtWilson.set('isInstalled', false);
+            self.set('isInstalled', false);
             event('Trust Server successfully uninstalled.', Health.SUCCESS);
             break;
           case 500:

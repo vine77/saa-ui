@@ -7,6 +7,7 @@ import event from '../utils/event';
 import readableSize from '../utils/readable-size';
 import pdfReport from '../utils/pdf-report';
 import xhrError from '../utils/xhr-error';
+import mtWilson from '../models/mtWilson';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['nodesColumns', 'application', 'quota', 'node'],
@@ -106,7 +107,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     },
     refresh: function() {
       if (!this.get('isUpdating')) {
-        if (App.mtWilson.get('isInstalled') === true) {
+        if (mtWilson.get('isInstalled') === true) {
           this.store.find('trustNode');
           this.store.find('node');
         } else {

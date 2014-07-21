@@ -1,13 +1,14 @@
 import Ember from 'ember';
+import mtWilson from '../models/mt-wilson';
 
 export default Ember.Route.extend({
   beforeModel: function() {
     // If Mt. Wilson is installed, go to MLEs
-    if (App.mtWilson.get('isInstalled')) {
+    if (mtWilson.get('isInstalled')) {
       this.transitionTo('trust.mles.index');
     } else {
       // If Mt. Wilson is installing, recheck status
-      if (App.mtWilson.get('isInstalling')) App.mtWilson.check();
+      if (mtWilson.get('isInstalling')) mtWilson.check();
     }
   }
 });

@@ -114,7 +114,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="disabled"><i class="icon-refresh"></i> Restart</a></li>
-                {{#if App.mtWilson.isInstalled}}
+                {{#if isMtWilsonInstalled}}
                   <li><a {{action "exportTrustReport" this}}><i class="icon-external-link"></i> Export Trust Report</a></li>
                 {{/if}}
               </ul>
@@ -122,7 +122,7 @@
           {{else}}
             <div class="btn-group">
               <a class="btn disabled btn-mini"><i class="icon-bolt"></i> Power On</a>
-              {{#if App.mtWilson.isInstalled}}
+              {{#if isMtWilsonInstalled}}
                 <a data-toggle="dropdown" {{bind-attr class=":btn :dropdown-toggle :btn-mini isActionPending:disabled"}}>
                   {{#unless isActionPending}}
                     <span class="caret"></span>

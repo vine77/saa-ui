@@ -38,6 +38,7 @@ export default Ember.ObjectController.extend({
     operationalMessage += '<strong>State</strong>: ' + codeToOperational(this.get('status.operational')).capitalize();
     return operationalMessage;
   }.property('status.operational'),
+  isMtWilsonInstalled: Ember.computed.alias('mtWilson.isInstalled'),
   isUntrusted: Ember.computed.equal('status.trust', Trust.UNTRUSTED),
   isTrusted: Ember.computed.equal('status.trust', Trust.TRUSTED),
   isUnregistered: Ember.computed.equal('status.trust', Trust.UNREGISTERED),

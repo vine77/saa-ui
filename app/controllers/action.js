@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import mtWilson from '../models/mt-wilson';
 
 export default Ember.ObjectController.extend({
   isDisabled: function() {
@@ -7,15 +8,15 @@ export default Ember.ObjectController.extend({
   isListItem: function() {
     switch (this.get('method')) {
       case 'exportTrustReport':
-        return App.mtWilson.get('isInstalled');
+        return mtWilson.get('isInstalled');
       case 'removeTrust':
-        return (App.mtWilson.get('isInstalled')) ? this.get('node.isTrustRegistered') : false;
+        return (mtWilson.get('isInstalled')) ? this.get('node.isTrustRegistered') : false;
       case 'addTrust':
-        return (App.mtWilson.get('isInstalled')) ? !this.get('node.isTrustRegistered') : false;
+        return (mtWilson.get('isInstalled')) ? !this.get('node.isTrustRegistered') : false;
       case 'trustFingerprint':
-        return App.mtWilson.get('isInstalled');
+        return mtWilson.get('isInstalled');
       case 'configureTrustAgent':
-        return App.mtWilson.get('isInstalled');
+        return mtWilson.get('isInstalled');
       case 'unschedule':
         return this.get('node.isScheduled');
       case 'schedule':

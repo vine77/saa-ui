@@ -107,7 +107,7 @@ export default Ember.ObjectController.extend({
         node: this
       })
     ];
-  }.property('@each', 'App.mtWilson.isInstalled'),
+  }.property('@each', 'mtWilson.isInstalled'),
 
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;

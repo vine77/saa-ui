@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import mtWilson from '../models/mtWilson';
 
 export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
-  isMtWilsonInstalledBinding: 'App.mtWilson.isInstalled',
+  isMtWilsonInstalledBinding: 'mtWilson.isInstalled',
+  isMtWilsonSupportedBinding: 'mtWilson.isSupported',
   init: function() {
     var self = this;
     this._super();
@@ -72,7 +74,7 @@ export default Ember.Controller.extend({
       this.store.find('sla');
       this.store.find('flavor');
       this.store.find('vm');
-      if (App.mtWilson.get('isInstalled')) {
+      if (mtWilson.get('isInstalled')) {
         this.store.find('trustMle');
         this.store.find('trustNode');
       }
@@ -102,7 +104,7 @@ export default Ember.Controller.extend({
     // Debug Toolbar actions
     refreshNodes: function() {
       var self = this;
-      if (App.mtWilson.get('isInstalled')) {
+      if (mtWilson.get('isInstalled')) {
         this.store.find('trustNode').then(function() {
           self.store.find('node');
         });

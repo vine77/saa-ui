@@ -1,10 +1,11 @@
 import Ember from 'ember';
+import mtWilson from '../models/mt-wilson';
 
 export default Ember.View.extend({
   didInsertElement: function() {
-    App.mtWilson.checkPeriodically();
+    mtWilson.checkPeriodically();
   },
   willDestroyElement: function() {
-    clearInterval(App.mtWilsonCheck);
+    clearInterval(mtWilson.mtWilsonTimer);
   }
 });
