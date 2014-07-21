@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.Controller.extend({
   isActionPending: false,
@@ -13,10 +15,10 @@ export default Ember.Controller.extend({
           name: 'reset_controller'
         }).save().then(function() {
           self.set('isActionPending', false);
-          App.event('Successfully reset the controller', Health.SUCCESS);
+          event('Successfully reset the controller', Health.SUCCESS);
         }, function(xhr) {
           self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to reset the controller');
+          xhrError(xhr, 'Failed to reset the controller');
         });
       } else {
         self.set('isActionPending', false);
@@ -31,10 +33,10 @@ export default Ember.Controller.extend({
           name: 'shutdown_controller'
         }).save().then(function() {
           self.set('isActionPending', false);
-          App.event('Successfully shutdown controller', Health.SUCCESS);
+          event('Successfully shutdown controller', Health.SUCCESS);
         }, function(xhr) {
           self.set('isActionPending', false);
-          App.xhrError(xhr, 'Failed to shutdown controller');
+          xhrError(xhr, 'Failed to shutdown controller');
         });
       } else {
         self.set('isActionPending', false);

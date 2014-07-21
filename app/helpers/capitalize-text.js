@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import placeholders from '../utils/mappings/placeholders';
+import isEmpty from '../utils/is-empty';
 
 export default Ember.Handlebars.makeBoundHelper(function(string) {
-  return (App.isEmpty(string)) ? placeholders.NOT_APPLICABLE : string.toString().capitalize();
+  return (isEmpty(string)) ? placeholders.NOT_APPLICABLE : string.toString().capitalize();
 });

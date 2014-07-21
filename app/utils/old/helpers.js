@@ -286,7 +286,7 @@ App.errorMessage = function(response, separator) {
  * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
  * @returns {string} The error message, which is also displayed in the UI
  */
-App.xhrErrorMessage = function(xhr, defaultMessage) {
+xhrErrorMessage = function(xhr, defaultMessage) {
   var errorMessage = defaultMessage || 'An error occured: ' + xhr.status + ' ' + xhr.statusText;
   try {
     var json = (xhr.hasOwnProperty('responseText')) ? Ember.$.parseJSON(xhr.responseText) : xhr;
@@ -302,8 +302,9 @@ App.xhrErrorMessage = function(xhr, defaultMessage) {
  * @param {string} [defaultMessage] - The error message to display if no message is found in the XHR response text. Defaults to a message of the form: 'An error occured: 404 Not Found'.
  * @returns {string} The error message, which is also displayed in the UI
  */
-App.xhrError = function(xhr, defaultMessage, severity) {
-  var errorMessage = App.xhrErrorMessage(xhr, defaultMessage);
+
+xhrError = function(xhr, defaultMessage, severity) {
+  var errorMessage = xhrErrorMessage(xhr, defaultMessage);
   var severity = (severity !== undefined) ? severity : (xhr.status == 422) ? App.WARNING : App.ERROR;
   App.event(errorMessage, severity);
   return errorMessage;

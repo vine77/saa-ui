@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import getApiDomain from '../utils/get-api-domain';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.Controller.extend({
   isActionPending: false,
@@ -15,14 +18,14 @@ export default Ember.Controller.extend({
       if (verify) {
         this.set('isDeleteActionPending', true);
         return Ember.$.ajax({
-          url: (App.getApiDomain()) + '/api/v2/logs',
+          url: (getApiDomain()) + '/api/v2/logs',
           type: 'DELETE'
         }).then(function() {
           self.set('isDeleteActionPending', false);
-          App.event('Successfully deleted all log data.', Health.SUCCESS);
+          event('Successfully deleted all log data.', Health.SUCCESS);
         }, function() {
           self.set('isDeleteActionPending', false);
-          App.event('Error updating log settings.', Health.ERROR);
+          event('Error updating log settings.', Health.ERROR);
         });
       }
     },
@@ -31,10 +34,10 @@ export default Ember.Controller.extend({
       this.set('isActionPending', true);
       this.store.getById('logSetting', modelId).save().then(function() {
         self.set('isActionPending', false);
-        App.event('Successfully updated  log settings.', Health.SUCCESS);
+        event('Successfully updated  log settings.', Health.SUCCESS);
       }, function(xhr) {
         self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to update log settings.');
+        xhrError(xhr, 'Failed to update log settings.');
       });
       console.log('test 3');
     },

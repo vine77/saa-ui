@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import debouncedObserver from '../utils/debounced-observer';
 /**
  * Creates a filterable table
  *
@@ -32,7 +32,7 @@ export default Ember.Mixin.create({
       return results;
     }
   }.observes('this.@each'),
-  debouncedFilterQueryObserver: Ember.debouncedObserver(function() {
+  debouncedFilterQueryObserver: debouncedObserver(function() {
     this.filterModel();
   }, 'filterQuery', 500),
   actions: {

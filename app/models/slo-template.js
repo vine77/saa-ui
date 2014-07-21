@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import humanize from '../utils/humanize';
 
 export default DS.Model.extend({
   //allowedOperators: DS.attr(),  // Array of strings
@@ -13,7 +14,7 @@ export default DS.Model.extend({
 
   // Computed properties
   readableSloType: function() {
-    return App.humanize(this.get('sloType'));
+    return humanize(this.get('sloType'));
   }.property('sloType'),
   doesNotHaveMultipleOperators: function() {
     return this.get('allowedOperators.length') < 2;

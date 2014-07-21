@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import notify from '../utils/notify';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.ObjectController.extend({
   isActionPending: false,
@@ -8,9 +11,9 @@ export default Ember.ObjectController.extend({
       var self = this;
       var user = this.get('model');
       if (!this.get('oldPassword')) {
-        App.event('Please enter all of the required fields.');
+        event('Please enter all of the required fields.');
       } else if (this.get('newPassword1') != this.get('newPassword2')) {
-        App.event('Passwords do not match. Please try again.');
+        event('Passwords do not match. Please try again.');
         this.set('newPassword1', '');
         this.set('newPassword2', '');
         $('#profile-newPassword1').focus();
@@ -24,14 +27,14 @@ export default Ember.ObjectController.extend({
         this.set('isActionPending', true);
         return user.save().then(function() {
           self.set('isActionPending', false);
-          App.notify('The user profile was updated successfully.', Health.SUCCESS);
+          notify('The user profile was updated successfully.', Health.SUCCESS);
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');
           $('#profile-email').focus();
         }, function(xhr) {
           self.set('isActionPending', false);
-          App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
+          xhrError(xhr, 'An error occurred while attempting to update the user profile.');
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');

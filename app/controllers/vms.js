@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import FilterableMixin from './../mixins/filterable';
 import SortableMixin from './../mixins/sortable';
+import notify from '../utils/notify';
+import readableSizeToBytes from '../utils/readable-size-to-bytes';
+import pdfReport from '../utils/pdf-report';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['vmsColumns', 'application'],
@@ -56,14 +60,14 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
           var rowContent = [];
           rowContent.push("item.get('vmAttestationNode.attestationTimeFormatted')");
           rowContent.push("item.get('vmAttestationNode.reportMessage')");
-          App.pdfReport(model, rowContent, title, subtitle, 'vmAttestations');
+          pdfReport(model, rowContent, title, subtitle, 'vmAttestations');
         } else {
-          App.notify('Trust attestation logs were not found.');
+          notify('Trust attestation logs were not found.');
         }
         self.set('isActionPending', false);
       }, function(xhr) {
         self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to load VM trust report.');
+        xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
     renderTreemap: function() {
@@ -88,11 +92,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
             health: item.get('status.health')
           },
           capabilities: {
-            memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
+            memory_size: readableSizeToBytes(item.get('capabilities.memory_size')),
             scu_allocated: item.get('capabilities.scu_allocated_max')
           },
           utilization: {
-            memory: App.readableSizeToBytes(item.get('utilization.memory')),
+            memory: readableSizeToBytes(item.get('utilization.memory')),
             scu_current: item.get('scu_current.scu_total')
           }
         });

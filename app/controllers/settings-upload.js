@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
 import Network from '../utils/mappings/network';
+import getApiDomain from '../utils/get-api-domain';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
@@ -40,9 +43,9 @@ export default Ember.ArrayController.extend({
       }
       if (!allFilesSpecified) {
         if (this.get('isNeutronConfigRequired')) {
-          App.event('You must upload all 4 configuration files at the same time.');
+          event('You must upload all 4 configuration files at the same time.');
         } else {
-          App.event('You must upload all two configuration files at the same time.');
+          event('You must upload all two configuration files at the same time.');
         }
         return;
       }
@@ -64,7 +67,7 @@ export default Ember.ArrayController.extend({
           return App.nova.start();
         }).then(function() {
           self.set('isActionPending', false);
-          App.event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', Health.SUCCESS, undefined, undefined, true);
+          event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', Health.SUCCESS, undefined, undefined, true);
           setTimeout(function() {
             // Restart app for full reload and redirect to index
             document.location.href = '/';
@@ -72,7 +75,7 @@ export default Ember.ArrayController.extend({
           }, 60000);
         }, function(xhr) {
           self.set('isActionPending', false);
-          App.xhrError(xhr, 'An error occurred while uploading config files.', Health.ERROR);
+          xhrError(xhr, 'An error occurred while uploading config files.', Health.ERROR);
           $('.fileupload i').removeClass().addClass('icon-file');
           $('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);
@@ -96,25 +99,25 @@ export default Ember.ArrayController.extend({
       if (type == 'keystone') {
         //$('i.loading').removeClass('hide');
         return Ember.$.ajax({
-          url: (App.getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
+          url: (getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
           type: 'DELETE',
           success: function(data) {
             //$('i.loading').addClass('hide');
-            App.event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
+            event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
             App.keystone.check();
           },
           error: function(xhr) {
             //$('i.loading').addClass('hide');
-            App.xhrError(xhr, 'Failed to delete Keystone CA certificate.');
+            xhrError(xhr, 'Failed to delete Keystone CA certificate.');
           }
         });
       }
     },
     updateOverrides: function() {
       this.store.getById('override', 'current').save().then( function(){
-         App.event('Successfully updated configuration overrides.', Health.SUCCESS);
+         event('Successfully updated configuration overrides.', Health.SUCCESS);
       }, function(xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
+        xhrError(xhr, 'An error occurred while attempting to override configuration values.');
       });
     }
   }

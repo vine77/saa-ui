@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import uuid from '../utils/uuid';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
@@ -44,7 +47,7 @@ export default Ember.ObjectController.extend({
       }
     },
     addSlo: function() {
-      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: uuid()}));
     },
     deleteSlo: function(slo) {
       slo.clearInverseRelationships();
@@ -60,20 +63,20 @@ export default Ember.ObjectController.extend({
         sla.save().then(function() {
           return flavor.save();
         }).then(function() {
-          App.event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
+          event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
         }, function(xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
+          xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
           self.set('isFlavorEditing', false);
         });
       } else {
         flavor.save().then(function() {
-          App.event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
+          event('Successfully modified flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorEditing', false);
         }, function(xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
+          xhrError(xhr, 'An error occurred while attempting to modify flavor "' + flavor.get('name') + '".');
           self.set('isFlavorEditing', false);
         });
       }

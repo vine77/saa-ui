@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import naturalSort from '../utils/natural-sort';
 /**
  * Creates a sortable table
  *
@@ -28,7 +28,7 @@ export default Ember.Mixin.create({
     return this.get('columns').indexOf(this.get('sortProperty'));
   }.property('columns', 'sortProperty'),
   sortAscending: true,
-  sortFunction: App.naturalSort,
+  sortFunction: naturalSort,
   actions: {
     sortModel: function(column) {
       var isDifferentColumn = !this.get('sortProperty') || this.get('sortProperty') !== column;

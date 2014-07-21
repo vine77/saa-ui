@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import naturalSort from 'natural-sort';
 
 /**
  * Sort two inputs

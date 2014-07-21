@@ -1,9 +1,13 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import Health from '../utils/mappings/health';
+import log from '../utils/log';
+import getApiDomain from '../utils/get-api-domain';
+import notify from '../utils/notify';
+import errorMessage from '../utils/error-message';
 
 export default DS.ActiveModelAdapter.extend({
-  host: App.getApiDomain(),
+  host: getApiDomain(),
   namespace: 'api/v2',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
@@ -22,14 +26,14 @@ export default DS.ActiveModelAdapter.extend({
   ajaxError: function(jqXHR) {
     if (jqXHR && jqXHR.status === 401) {
       var currentPath = App.route.controllerFor('application').get('currentPath');
-      App.log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
+      log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
       if (currentPath !== 'login') {
-        App.notify('Please log back in.', Health.ERROR, 'Unauthorized.');
+        notify('Please log back in.', Health.ERROR, 'Unauthorized.');
         App.route.controllerFor('application').send('redirectToLogin', currentPath);
       }
     } else if (jqXHR && jqXHR.status === 422) {
       var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];
-      if (!jsonErrors) jsonErrors = [App.errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
+      if (!jsonErrors) jsonErrors = [errorMessage(Ember.$.parseJSON(jqXHR.responseText))];
       var errors = {};
       Ember.EnumerableUtils.forEach(Ember.keys(jsonErrors), function(key) {
         errors[Ember.String.camelize(key)] = jsonErrors[key];

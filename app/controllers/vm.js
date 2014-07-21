@@ -7,6 +7,7 @@ import priorityToType from '../utils/convert/priority-to-type';
 import codeToOperational from '../utils/convert/code-to-operational';
 import trustToString from '../utils/convert/trust-to-string';
 import rangeToPercentage from '../utils/convert/range-to-percentage';
+import isEmpty from '../utils/is-empty';
 
 export default Ember.ObjectController.extend({
   needs: ['vms', 'logBar'],
@@ -21,10 +22,10 @@ export default Ember.ObjectController.extend({
   healthMessage: function() {
     var healthMessage = '';
     if (this.get('isSlaMissing')) healthMessage += "<strong>Warning</strong>: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
-    if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
+    if (isEmpty(this.get('status.short_message')) && isEmpty(this.get('status.long_message'))) {
       // If both short and long messages are empty, show health as message
       healthMessage +=  '<strong>Health</strong>: ' + priorityToType(this.get('status.health')).capitalize();
-    } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
+    } else if (isEmpty(this.get('status.long_message'))) {  // Short message only
       healthMessage +=  this.get('status.short_message').capitalize();
     } else {  // Default to long message
       healthMessage +=  this.get('status.long_message').capitalize();
@@ -55,7 +56,7 @@ export default Ember.ObjectController.extend({
     return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === Mode.ASSURED;
   }.property('sla', 'node.samControlled'),
   slaMessage: function() {
-    if (App.isEmpty(this.get('status.sla_messages'))) {
+    if (isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
       if (this.get('slaNotViolated')) {
         slaStatus = 'Not violated';
@@ -76,7 +77,7 @@ export default Ember.ObjectController.extend({
     }
   }.property('status.sla_messages'),
   hasContention: function() {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (isEmpty(this.get('contention.system.llc.value'))) {
       return false;
     } else {
       return true;
@@ -86,7 +87,7 @@ export default Ember.ObjectController.extend({
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
   contentionMessage: function() {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>Contention Not Available</strong>';
     } else {
       var message = 'Overall Cache Contention: ' + this.get('contention.system.llc.value');
@@ -94,7 +95,7 @@ export default Ember.ObjectController.extend({
     }
   }.property('contention.system.llc.value'),
   contentionWidth: function() {
-    if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (this.get('contention.system.llc.value') === 0 || isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
       percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);

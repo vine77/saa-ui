@@ -1,4 +1,6 @@
 import FormController from './form';
+import getApiDomain from '../utils/get-api-domain';
+import xhrError from '../utils/xhr-error';
 
 export default FormController.extend({
   needs: ['application'],
@@ -29,7 +31,7 @@ export default FormController.extend({
   refreshSession: function() {
     Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
     if (this.get('loggedIn') && this.get('controllers.application.isAutoRefreshEnabled')) {
-      var host = App.getApiDomain();
+      var host = getApiDomain();
       Ember.$.ajax(host + '/api/v2/sessions', {
         type: 'POST',
         data: JSON.stringify({
@@ -96,7 +98,7 @@ export default FormController.extend({
           self.set('password', '');
           $('#login-username').focus();
         } else {
-          App.xhrError(xhr, 'An error occurred while attempting to log in.');
+          xhrError(xhr, 'An error occurred while attempting to log in.');
         }
       });
     }

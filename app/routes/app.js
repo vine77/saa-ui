@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import log from '../utils/log';
+import notify from '../utils/notify';
 
 // Routes under /app require authentication
 export default Ember.Route.extend({
@@ -77,8 +79,8 @@ export default Ember.Route.extend({
   actions: {
     error: function(reason, transition) {
       if (reason.status === 401) {
-        App.log(reason.status + ' error caught by router.', reason);
-        App.notify('Please log back in', Health.ERROR, 'Unauthorized');
+        log(reason.status + ' error caught by router.', reason);
+        notify('Please log back in', Health.ERROR, 'Unauthorized');
         transition.send('redirectToLogin', transition);
       }
     }

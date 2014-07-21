@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import isCriticalityPlus from '../utils/is-criticality-plus';
 
 export default Ember.ObjectController.extend({
   isSelected: false,
@@ -6,7 +7,7 @@ export default Ember.ObjectController.extend({
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
-    if (this.get('isSelected') && !App.isCriticalityPlus(this) && (this.get('id') !== 'context')) {
+    if (this.get('isSelected') && !isCriticalityPlus(this) && (this.get('id') !== 'context')) {
       this.get('controllers.logBar.kibanaCriticalitiesQuery').push('severity: \"'+this.get('label').toString()+'\"');
       var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
       var newFieldId = filterSrv.set({

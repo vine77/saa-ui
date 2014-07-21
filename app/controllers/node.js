@@ -10,6 +10,10 @@ import codeToOperational from '../utils/convert/code-to-operational';
 import overallHealth from '../utils/convert/overall-health';
 import trustToString from '../utils/convert/trust-to-string';
 import rangeToPercentage from '../utils/convert/range-to-percentage';
+import isEmpty from '../utils/is-empty';
+import readableSizeToBytes from '../utils/readable-size-to-bytes';
+import readableSize from '../utils/readable-size';
+import na from '../utils/na';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
@@ -151,13 +155,13 @@ export default Ember.ObjectController.extend({
   }.observes('isSelected'),
 
   percentOfMemory: function() {
-    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))));
+    return Math.round(100 * parseFloat(readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( readableSizeToBytes(this.get('capabilities.memory_size'))));
   }.property('utilization.memory', 'memory.max'),
   percentOfMemoryWidth: function() {
     return 'width:'+this.get('percentOfMemory')+'%';
   }.property('percentOfMemory'),
   percentOfMemoryMessage: function() {
-    return App.readableSize(this.get('utilization.memory')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
+    return readableSize(this.get('utilization.memory')) + ' used out of ' + readableSize(this.get('capabilities.memory_size'));
   }.property('utilization.memory', 'capabilities.memory_size'),
   percentOfMemoryAvailable: function() {
     if (isNaN(this.get('percentOfMemory'))) {
@@ -207,10 +211,10 @@ export default Ember.ObjectController.extend({
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
-    if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
+    if (!this.get('isAgentInstalled') && isEmpty(this.get('status.short_message'))) {
       return 'Not under ' + App.application.get('title') + ' control';
     }
-    if (App.isEmpty(this.get('status.short_message'))) {
+    if (isEmpty(this.get('status.short_message'))) {
       // If status message is empty, just show health as a string
       return '<strong>Health</strong>: ' + priorityToType(this.get('status.health')).capitalize();
     } else {
@@ -280,8 +284,8 @@ export default Ember.ObjectController.extend({
           message += '<li> Installed = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
           message += '<li> Running = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
           message += '<li> Paired = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
-          message += '<li> Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
-          message += '<li> Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
+          message += '<li> Actual Version = ' + na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
+          message += '<li> Expected Version = ' + na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
         message += '</ul>';
       message += '</ul>';
     message += '</ul>';
@@ -290,14 +294,14 @@ export default Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (App.isEmpty(this.get('utilization.scu_current'))) {
+    if (isEmpty(this.get('utilization.scu_current'))) {
       return '<strong>SAA Compute Units</strong>: N/A';
     } else {
       return 'SAA Compute Units: ' + this.get('utilization.scu_current') + ' out of ' + this.get('utilization.scu_max') + ' SU';
     }
   }.property('utilization.scu_current', 'utilization.scu_max'),
   computeWidth: function() {
-    if (this.get('utilization.scu_current') === 0 || App.isEmpty(this.get('utilization.scu_current'))) {
+    if (this.get('utilization.scu_current') === 0 || isEmpty(this.get('utilization.scu_current'))) {
       return 'display:none;';
     } else {
       percent = rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
@@ -311,7 +315,7 @@ export default Ember.ObjectController.extend({
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
   contentionMessage: function() {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>System LLC Contention</strong>: N/A';
     } else {
       var message = 'Overall LLC Contention: ' + this.get('contention.system.llc.value') + ' (' + this.get('contention.system.llc.label') + ')';
@@ -329,7 +333,7 @@ export default Ember.ObjectController.extend({
     }
   }.property('contention'),
   contentionWidth: function() {
-    if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (this.get('contention.system.llc.value') === 0 || isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
       percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);

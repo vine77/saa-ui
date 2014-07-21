@@ -1,5 +1,6 @@
 import Ember from 'ember';
+import bytesToReadableSize from '../utils/bytes-to-readable-size';
 
 export default Ember.Handlebars.makeBoundHelper(function(sizeInMegabytes) {
-  return App.bytesToReadableSize(sizeInMegabytes, 1048576);
+  return bytesToReadableSize(sizeInMegabytes, 1048576);
 });

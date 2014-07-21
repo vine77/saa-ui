@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import isCriticalityPlus from '../utils/is-criticality-plus';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes', 'application', 'vms', 'criticalities', 'logcategories', 'build', 'statuses'],
@@ -90,7 +91,7 @@ export default Ember.ObjectController.extend({
   criticalitiesFiltered: function() {
     var returnArray = [];
     this.get('controllers.criticalities').forEach( function(item, index, enumerable) {
-      if ((App.isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
+      if ((isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
         returnArray.push(item);
       }
     });
@@ -112,7 +113,7 @@ export default Ember.ObjectController.extend({
       if (this.get('criticalitySelected.id') !== "context") {
         this.set('isSettingEach', true);
         this.get('controllers.criticalities').setEach('isSelected', false);
-        if (App.isCriticalityPlus(criticalitySelected)) {
+        if (isCriticalityPlus(criticalitySelected)) {
           this.get('controllers.criticalities').forEach(function(item, index, enumerable) {
             //previous item, should be current criticality without +
             nonPlusCriticalitySelected = criticalitySelected.get('id') - 1;

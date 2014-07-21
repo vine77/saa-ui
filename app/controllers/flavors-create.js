@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
+import uuid from '../utils/uuid';
+import event from '../utils/event';
+import xhrError from '../utils/xhr-error';
 
 export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
@@ -44,7 +47,7 @@ export default Ember.ObjectController.extend({
       }
     },
     addSlo: function() {
-      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      this.get('model.sla.slos').addObject(this.store.createRecord('slo', {id: uuid()}));
     },
     deleteSlo: function(slo) {
       slo.clearInverseRelationships();
@@ -60,21 +63,21 @@ export default Ember.ObjectController.extend({
         sla.save().then(function() {
           return flavor.save();
         }).then(function() {
-          App.event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
+          event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }).fail(function(xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+          xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });
         // TODO: Add special case where SLA creation succeeds, but flavor creation fails?
       } else {
         flavor.save().then(function() {
-          App.event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
+          event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
           $('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }, function(xhr) {
-          App.xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
+          xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
           self.set('isFlavorCreating', false);
         });
       }

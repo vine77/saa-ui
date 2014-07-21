@@ -1,5 +1,7 @@
 import FormController from './form';
 import Health from '../utils/mappings/health';
+import notify from '../utils/notify';
+import xhrError from '../utils/xhr-error';
 
 // TODO: Migrate Sunil's authentication code
 export default FormController.extend({
@@ -74,11 +76,11 @@ export default FormController.extend({
           self.get('controllers.login').set('csrfToken', session.get('csrfToken'));
           self.get('controllers.login').set('loggedIn', true);
           self.get('controllers.login').transitionToAttempted();
-          App.notify('The user profile was updated successfully.', Health.SUCCESS);
+          notify('The user profile was updated successfully.', Health.SUCCESS);
         });
       }, function(xhr) {
         self.set('isPending', false);
-        App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
+        xhrError(xhr, 'An error occurred while attempting to update the user profile.');
       });
     }
   },

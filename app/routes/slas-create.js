@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import uuid from '../utils/uuid';
 
 export default Ember.Route.extend({
   model: function() {
-    return this.store.createRecord('sla', {id: App.uuid()});
+    return this.store.createRecord('sla', {id: uuid()});
   },
   renderTemplate: function(controller, model) {
     this.render({
