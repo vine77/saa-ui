@@ -7,13 +7,13 @@ export default Ember.Controller.extend({
   reset_fields:[],
   actions: {
     removeNotification: function() {
-      $(this.id + '-notification').hide();
+      Ember.$(this.id + '-notification').hide();
       this.set('message', "");
     }
   },
   showTooltip: function(field) {
     field_id = this.id + '-' + field;
-    $(field_id).tooltip({
+    Ember.$(field_id).tooltip({
       title: 'Please enter ' + this.fieldname[field] + '.',
       placement: 'right',
       trigger: 'manual'
@@ -22,26 +22,26 @@ export default Ember.Controller.extend({
   hideTooltips: function() {
     for (var i=0; i< this.validated_fields.length; i++) {
       field_id = this.id + '-' + this.validated_fields[i];
-      if (typeof($(field_id).data('tooltip')) !== 'undefined') {
-        $(field_id).tooltip('destroy');
+      if (typeof(Ember.$(field_id).data('tooltip')) !== 'undefined') {
+        Ember.$(field_id).tooltip('destroy');
       }
     }
   },
   showNotification: function(message) {
     this.set('message', message);
-    $(this.id + '-notification').show();
+    Ember.$(this.id + '-notification').show();
   },
   setDisable: function(state, element) {
     var id;
     if (typeof element === 'undefined') {
       id = this.id;
-      $( id + ' :input').prop('disabled', state);
+      Ember.$( id + ' :input').prop('disabled', state);
     } else {
       id = this.id + '-' + element;
       if (state) {
-        $(id).prop('disabled', state);
+        Ember.$(id).prop('disabled', state);
       } else {
-        $(id).removeProp('disabled');
+        Ember.$(id).removeProp('disabled');
       }
     }
   },

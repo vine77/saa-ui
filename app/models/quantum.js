@@ -25,13 +25,13 @@ export default Ember.Object.extend({
   },
   upload: function() {
     // Upload quantum file
-    var formData = new FormData($('#quantumForm')[0]);
+    var formData = new FormData(Ember.$('#quantumForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
       url: (getApiDomain()) + '/api/v2/configs',
       data: formData,
       complete: function(xhr) {
-        if (xhr.status === 200) $('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
+        if (xhr.status === 200) Ember.$('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,
       contentType: false

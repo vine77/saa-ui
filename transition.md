@@ -10,8 +10,8 @@
 * [X] Port utils/old/mixins.js
 * [X] App.mtWilson
 * [X] Move instances of NOT_APPLICABLE to better levels of abstraction
+* [X] Change $ to Ember.$
 * [ ] Change {{#view App.ExampleView}} to {{#view "example"}}
-* [ ] Change $ to Ember.$
 * [ ] Convert Binding to Ember.computed.alias
 * [ ] Change other instances of App.Z to use modules
 * [ ] Remove utils/old

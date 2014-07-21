@@ -16,45 +16,45 @@ export default Ember.ArrayController.extend({
     toggleChildren: function(elementId, name, breadcrumbSelect) {
       var children = "#children-" + elementId,
       var selector = "#selector-" + elementId;
-      if ($(children).is(":visible")) {
-        if (breadcrumbSelect !== true) { $(children).hide(); }
-        var descendants = $('#'+elementId).find('div');
+      if (Ember.$(children).is(":visible")) {
+        if (breadcrumbSelect !== true) { Ember.$(children).hide(); }
+        var descendants = Ember.$('#'+elementId).find('div');
         for (var i = 0; i < descendants.length; i++) {
-          $('#children-'+descendants[i].id).hide();
-          $('#selector-'+descendants[i].id).removeClass('panel-selector');
+          Ember.$('#children-'+descendants[i].id).hide();
+          Ember.$('#selector-'+descendants[i].id).removeClass('panel-selector');
           var obj = this.get('currentSelections').findProperty('id', descendants[i].id);
           if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
         }
         if (breadcrumbSelect !== true) {
-          $(selector).removeClass('panel-selector');
+          Ember.$(selector).removeClass('panel-selector');
           var obj = this.get('currentSelections').findProperty('id', elementId);
           this.get('currentSelections').removeObject(obj);
         }
       } else {
-        $(children).show();
-        $(selector).addClass('panel-selector');
+        Ember.$(children).show();
+        Ember.$(selector).addClass('panel-selector');
         var obj = this.get('currentSelections').findProperty('id', elementId);
         if (obj == undefined) { this.get('currentSelections').pushObject({id: elementId, name: name}); }
       }
 
-      var siblings = $('#'+elementId).siblings('div');
+      var siblings = Ember.$('#'+elementId).siblings('div');
 
       for (var i = 0; i < siblings.length; i++) {
 
-        $('#children-'+siblings[i].id).hide();
-        $('#selector-'+siblings[i].id).removeClass('panel-selector');
+        Ember.$('#children-'+siblings[i].id).hide();
+        Ember.$('#selector-'+siblings[i].id).removeClass('panel-selector');
 
         var obj = this.get('currentSelections').findProperty('id', siblings[i].id);
         if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
 
-        var siblingDescendants = $('#'+siblings[i].id).find('*');
+        var siblingDescendants = Ember.$('#'+siblings[i].id).find('*');
 
         for (var i2 = 0; i2 < siblingDescendants.length; i2++) {
           if (siblingDescendants[i2].id.indexOf('children') !== -1) {
-            $('#'+siblingDescendants[i2].id).hide();
+            Ember.$('#'+siblingDescendants[i2].id).hide();
           }
           if (siblingDescendants[i2].id.indexOf('selector') !== -1) {
-            $('#'+siblingDescendants[i2].id).removeClass('panel-selector');
+            Ember.$('#'+siblingDescendants[i2].id).removeClass('panel-selector');
             var obj = this.get('currentSelections').findProperty('id', siblingDescendants[i2].id.replace('selector-', ''));
             if (obj !== undefined) { this.get('currentSelections').removeObject(obj); }
           }

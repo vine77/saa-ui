@@ -34,7 +34,7 @@ export default Ember.ObjectController.extend({
       */
       sla.save().then(function() {
         event('Successfully modified SLA "' + sla.get('name') + '".', Health.SUCCESS);
-        $('.modal:visible').modal('hide');
+        Ember.$('.modal:visible').modal('hide');
         self.set('isSlaEditing', false);
       }, function(xhr) {
         xhrError(xhr, 'An error occurred while attempting to modify SLA "' + sla.get('name') + '".');

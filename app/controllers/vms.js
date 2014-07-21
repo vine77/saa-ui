@@ -72,11 +72,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     },
     renderTreemap: function() {
       if (this.isTreemapVisible) {
-        $('.treemap').slideUp();
+        Ember.$('.treemap').slideUp();
         this.set('isTreemapVisible', false);
         return;
       }
-      $('.treemap').slideDown();
+      Ember.$('.treemap').slideDown();
       this.set('isTreemapVisible', true);
 
       // Generate object for D3 treemap layout
@@ -118,7 +118,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
       // Draw treemap
       var treemap = d3.layout.treemap()
         .sticky(true)
-        .size([$('.treemap').width(), 200])
+        .size([Ember.$('.treemap').width(), 200])
         .value(function(d) {
           if (d.capabilities && d.capabilities.memory_size) {
             return d.capabilities.memory_size;

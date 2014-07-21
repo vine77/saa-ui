@@ -64,7 +64,7 @@ export default Ember.ObjectController.extend({
           return flavor.save();
         }).then(function() {
           event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
-          $('.modal:visible').modal('hide');
+          Ember.$('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }).fail(function(xhr) {
           xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');
@@ -74,7 +74,7 @@ export default Ember.ObjectController.extend({
       } else {
         flavor.save().then(function() {
           event('Successfully created flavor "' + flavor.get('name') + '".', Health.SUCCESS);
-          $('.modal:visible').modal('hide');
+          Ember.$('.modal:visible').modal('hide');
           self.set('isFlavorCreating', false);
         }, function(xhr) {
           xhrError(xhr, 'An error occurred while attempting to create flavor "' + flavor.get('name') + '".');

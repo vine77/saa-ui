@@ -80,7 +80,7 @@ export default Ember.ObjectController.extend({
     var returnArray = [];
 
     this.get('controllers.criticalities').forEach( function(item, index, enumerable) {
-      var inArray = $.inArray(item.get('label'), cleanedUpCriticalities);
+      var inArray = Ember.$.inArray(item.get('label'), cleanedUpCriticalities);
       if (inArray !== -1) {
         returnArray.push(item);
       }
@@ -155,13 +155,13 @@ export default Ember.ObjectController.extend({
       controller: controller,
       content: model,
       modalHide: function() {
-        $('#advanced-search-modal').modal('hide');
+        Ember.$('#advanced-search-modal').modal('hide');
         var context = this;
         //setTimeout(context.remove, 3000);
         this.remove(); //destroys the element
       },
       didInsertElement: function() {
-        $('#advanced-search-modal').modal('show');
+        Ember.$('#advanced-search-modal').modal('show');
       }
     }).appendTo('body');
   },

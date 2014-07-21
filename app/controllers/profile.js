@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import FormController from './form';
 import Health from '../utils/mappings/health';
 import notify from '../utils/notify';
@@ -41,7 +42,7 @@ export default FormController.extend({
       this.showNotification('Passwords do not match. Please try again.');
       this.set('newPassword1', '');
       this.set('newPassword2', '');
-      $('#profile-newPassword1').focus();
+      Ember.$('#profile-newPassword1').focus();
     } else {
       /*
       var email_configured = (this.email != '');

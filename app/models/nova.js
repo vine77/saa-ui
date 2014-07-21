@@ -27,13 +27,13 @@ export default Ember.Object.extend({
   },
   upload: function() {
     // Upload nova.conf file
-    var formData = new FormData($('#novaForm')[0]);
+    var formData = new FormData(Ember.$('#novaForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
       url: (getApiDomain()) + '/api/v2/configs',
       data: formData,
       complete: function(xhr) {
-        if (xhr.status === 200) $('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
+        if (xhr.status === 200) Ember.$('#novaForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,
       contentType: false

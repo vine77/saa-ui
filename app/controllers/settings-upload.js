@@ -31,10 +31,10 @@ export default Ember.ArrayController.extend({
     uploadFiles: function() {
       var self = this;
       // Require all 3 files to be specified
-      var isNovaSpecified = !!$('#novaForm').find('input[type=file]').val();
-      var isOpenrcSpecified = !!$('#openrcForm').find('input[type=file]').val();
-      var isQuantumSpecified = !!$('#quantumForm').find('input[type=file]').val();
-      var isKeystoneSpecified = !!$('#keystoneForm').find('input[type=file]').val();
+      var isNovaSpecified = !!Ember.$('#novaForm').find('input[type=file]').val();
+      var isOpenrcSpecified = !!Ember.$('#openrcForm').find('input[type=file]').val();
+      var isQuantumSpecified = !!Ember.$('#quantumForm').find('input[type=file]').val();
+      var isKeystoneSpecified = !!Ember.$('#keystoneForm').find('input[type=file]').val();
       var allFilesSpecified = false;
       if (this.get('isNeutronConfigRequired')) {
         allFilesSpecified = isNovaSpecified && isOpenrcSpecified && isQuantumSpecified;
@@ -76,8 +76,8 @@ export default Ember.ArrayController.extend({
         }, function(xhr) {
           self.set('isActionPending', false);
           xhrError(xhr, 'An error occurred while uploading config files.', Health.ERROR);
-          $('.fileupload i').removeClass().addClass('icon-file');
-          $('.fileupload').fileupload('reset');
+          Ember.$('.fileupload i').removeClass().addClass('icon-file');
+          Ember.$('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);
           // Reset isConfigured state by re-checking file existence
           App.nova.check();
@@ -88,26 +88,26 @@ export default Ember.ArrayController.extend({
       }
     },
     changeFiles: function() {
-      $('.fileupload').fileupload('clear');
+      Ember.$('.fileupload').fileupload('clear');
       this.set('isChangingFiles', true);
     },
     cancel: function() {
-      $('.fileupload').fileupload('reset');
+      Ember.$('.fileupload').fileupload('reset');
       this.set('isChangingFiles', false);
     },
     deleteFiles: function(type) {
       if (type == 'keystone') {
-        //$('i.loading').removeClass('hide');
+        //Ember.$('i.loading').removeClass('hide');
         return Ember.$.ajax({
           url: (getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
           type: 'DELETE',
           success: function(data) {
-            //$('i.loading').addClass('hide');
+            //Ember.$('i.loading').addClass('hide');
             event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
             App.keystone.check();
           },
           error: function(xhr) {
-            //$('i.loading').addClass('hide');
+            //Ember.$('i.loading').addClass('hide');
             xhrError(xhr, 'Failed to delete Keystone CA certificate.');
           }
         });

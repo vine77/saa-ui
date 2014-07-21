@@ -18,7 +18,7 @@ export default Ember.ObjectController.extend({
       this.set('controllers.logBar.kibanaFieldIds.criticalities', newFieldId);
       dashboard.refresh();
     } else {
-      var inArray = $.inArray('severity: \"'+this.get('label').toString()+'\"', this.get('controllers.logBar.kibanaCriticalitiesQuery'));
+      var inArray = Ember.$.inArray('severity: \"'+this.get('label').toString()+'\"', this.get('controllers.logBar.kibanaCriticalitiesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaCriticalitiesQuery').removeAt(inArray);
         var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);

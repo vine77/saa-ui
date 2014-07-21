@@ -16,7 +16,7 @@ export default Ember.ObjectController.extend({
         event('Passwords do not match. Please try again.');
         this.set('newPassword1', '');
         this.set('newPassword2', '');
-        $('#profile-newPassword1').focus();
+        Ember.$('#profile-newPassword1').focus();
       } else {
         user.setProperties({
           username: this.get('username'),
@@ -31,20 +31,20 @@ export default Ember.ObjectController.extend({
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');
-          $('#profile-email').focus();
+          Ember.$('#profile-email').focus();
         }, function(xhr) {
           self.set('isActionPending', false);
           xhrError(xhr, 'An error occurred while attempting to update the user profile.');
           self.set('oldPassword', '');
           self.set('newPassword1', '');
           self.set('newPassword2', '');
-          $('#profile-email').focus();
+          Ember.$('#profile-email').focus();
         });
       }
     },
     cancel: function() {
       this.get('model').rollback();
-      $('#profile-email').focus();
+      Ember.$('#profile-email').focus();
     }
   }
 });

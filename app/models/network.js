@@ -43,7 +43,7 @@ export default Ember.Object.extend({
       dns: App.network.get('dns'),
       other: App.network.get('other')
     };
-    $('i.loading').removeClass('hide');
+    Ember.$('i.loading').removeClass('hide');
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/netconfig',
       type: 'POST',
@@ -54,7 +54,7 @@ export default Ember.Object.extend({
         log(xhr.status + ' response from POST /api/v2/netconfig: ' + xhr.statusText);
       },
       success: function(data) {
-        $('i.loading').addClass('hide');
+        Ember.$('i.loading').addClass('hide');
         // Update network config info (e.g. for DHCP)
         App.network.set('route', data.route);
         App.network.set('management', data.management);
@@ -65,7 +65,7 @@ export default Ember.Object.extend({
         event('Network configuration saved successfully.', Health.SUCCESS);
       },
       error: function(xhr) {
-        $('i.loading').addClass('hide');
+        Ember.$('i.loading').addClass('hide');
         xhrError(xhr, 'Network configuration was not saved.');
       }
     });

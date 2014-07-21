@@ -25,7 +25,7 @@ export default Ember.ObjectController.extend({
       var slos = this.get('slos');
       sla.save().then(function() {
         event('Successfully created SLA "' + sla.get('name') + '".', Health.SUCCESS);
-        $('.modal:visible').modal('hide');
+        Ember.$('.modal:visible').modal('hide');
         self.set('isSlaCreating', false);
       }, function(xhr) {
         xhrError(xhr, 'An error occurred while attempting to create SLA "' + sla.get('name') + '".');

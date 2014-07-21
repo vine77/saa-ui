@@ -4,7 +4,7 @@ export default {
   name: 'keyboard-shortcuts',
   initialize: function(container, application) {
     Mousetrap.bind('shift+ctrl+alt+i', function(e) {
-      $('footer').toggle();
+      Ember.$('footer').toggle();
     });
   }
 };

@@ -19,7 +19,7 @@ export default Ember.ObjectController.extend({
       this.set('controllers.logBar.kibanaFieldIds.logcategories', newFieldId);
       dashboard.refresh();
     } else {
-      var inArray = $.inArray('category: \"'+this.get('name').toString()+'\"', this.get('controllers.logBar.kibanaLogcategoriesQuery'));
+      var inArray = Ember.$.inArray('category: \"'+this.get('name').toString()+'\"', this.get('controllers.logBar.kibanaLogcategoriesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaLogcategoriesQuery').removeAt(inArray);
 

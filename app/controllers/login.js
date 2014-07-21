@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import FormController from './form';
 import getApiDomain from '../utils/get-api-domain';
 import xhrError from '../utils/xhr-error';
@@ -96,7 +97,7 @@ export default FormController.extend({
           self.set('alert', 'The username or password you entered was incorrect. Please try again.');
           self.set('username', '');
           self.set('password', '');
-          $('#login-username').focus();
+          Ember.$('#login-username').focus();
         } else {
           xhrError(xhr, 'An error occurred while attempting to log in.');
         }

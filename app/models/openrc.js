@@ -25,13 +25,13 @@ export default Ember.Object.extend({
   },
   upload: function() {
     // Upload openrc file
-    var formData = new FormData($('#openrcForm')[0]);
+    var formData = new FormData(Ember.$('#openrcForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
       url: (getApiDomain()) + '/api/v2/configs',
       data: formData,
       complete: function(xhr) {
-        if (xhr.status === 200) $('#openrcForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
+        if (xhr.status === 200) Ember.$('#openrcForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
       },
       processData: false,
       contentType: false

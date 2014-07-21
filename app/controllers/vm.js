@@ -226,7 +226,7 @@ export default Ember.ObjectController.extend({
       dashboard.refresh();
 
     } else {
-      var inArray = $.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
+      var inArray = Ember.$.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaVmsQuery').removeAt(inArray);
 

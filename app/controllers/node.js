@@ -134,7 +134,7 @@ export default Ember.ObjectController.extend({
 
     } else {
 
-      var inArray = $.inArray('host_id: \"'+nodeId+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
+      var inArray = Ember.$.inArray('host_id: \"'+nodeId+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
         var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);

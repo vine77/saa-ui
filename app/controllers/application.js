@@ -14,13 +14,13 @@ export default Ember.Controller.extend({
     this._super();
     this.autoRefresh();
     this.resizeHandler();
-    $(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
+    Ember.$(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
   },
   width: null,
   height: null,
   resizeHandler: function() {
-    this.set('width', $(window).width());
-    this.set('height', $(window).height());
+    this.set('width', Ember.$(window).width());
+    this.set('height', Ember.$(window).height());
   },
   isFramed: function() {
     try {
@@ -89,11 +89,11 @@ export default Ember.Controller.extend({
       this.set('isDrawerExpanded', true);
     },
     hideDrawer: function() {
-      $('#drawer ul.nav-tabs > li').removeClass('active');
+      Ember.$('#drawer ul.nav-tabs > li').removeClass('active');
       this.set('isDrawerExpanded', false);
     },
     loadFrame: function(target) {
-      var iframe = $('#drawer-' + target + '-all > iframe');
+      var iframe = Ember.$('#drawer-' + target + '-all > iframe');
       if (iframe.attr('src') === undefined) {
         iframe.attr('src', this.get(target + 'Url'));
       }
