@@ -12,7 +12,7 @@
 * [X] Move instances of NOT_APPLICABLE to better levels of abstraction
 * [X] Change $ to Ember.$
 * [X] Change {{#view App.ExampleView}} to {{#view "example"}}
-* [ ] Convert Binding to Ember.computed.alias
+* [X] Convert Binding to Ember.computed.alias
 * [ ] Change other instances of App.Z to use modules
 * [ ] Remove utils/old
 * [ ] If we still need to use global (e.g. moment), add those to the predef section of .jshintrc and set value in initializers
