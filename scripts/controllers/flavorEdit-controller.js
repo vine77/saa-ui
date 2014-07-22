@@ -1,14 +1,17 @@
 App.FlavorEditController = Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
 
+  vcpusInteger: function() {
+    return ((this.get('model.vcpus'))?this.get('model.vcpus'):0);
+  }.property('model.vcpus'),
   isComputeSloTable: function() {
-    return this.get('model.sla.sloTypesArray').contains('compute');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('compute');
   }.property('model.sla.sloTypesArray.@each'),
   isComputeVmSloTable: function() {
-    return this.get('model.sla.sloTypesArray').contains('vm_compute');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('vm_compute');
   }.property('model.sla.sloTypesArray.@each'),
   isExclusiveCoresSloTable: function() {
-    return this.get('model.sla.sloTypesArray').contains('vm_cores');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('vm_cores');
   }.property('model.sla.sloTypesArray.@each'),
   isSloTableVisible: function() {
     return (!!this.get('isComputeSloTable') || !!this.get('isComputeVmSloTable') || !!this.get('isExclusiveCoresSloTable'));
@@ -43,8 +46,8 @@ App.FlavorEditController = Ember.ObjectController.extend({
   }.property('controllers.nodes.model.@each'),
 
   sloVmTableMaximumScus: function() {
-    return this.get('controllers.nodes.maxScuCapabilities') * this.get('model.vcpus');
-  }.property('controllers.nodes.maxScuCapabilities', 'model.vcpus', 'isComputeVmSloTable'),
+    return this.get('controllers.nodes.maxScuCapabilities') * this.get('vcpusInteger');
+  }.property('controllers.nodes.maxScuCapabilities', 'vcpusInteger', 'isComputeVmSloTable'),
   sloVmTableNumberOfNodesMaximumScus: function() {
     var self = this;
     return this.get('controllers.nodes.model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
@@ -52,8 +55,8 @@ App.FlavorEditController = Ember.ObjectController.extend({
     }, 0);
   }.property('controllers.nodes.model.@each', 'controllers.nodes'),
   sloVmTableMedianScus: function() {
-    return this.get('controllers.nodes.medianScuCapabilities') * this.get('model.vcpus');
-  }.property('controllers.nodes.medianScuCapabilities', 'model.vcpus'),
+    return this.get('controllers.nodes.medianScuCapabilities') * this.get('vcpusInteger');
+  }.property('controllers.nodes.medianScuCapabilities', 'vcpusInteger'),
   sloVmTableNumberOfNodesMedianScus: function() {
     var self = this;
     return this.get('controllers.nodes.model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
@@ -61,8 +64,8 @@ App.FlavorEditController = Ember.ObjectController.extend({
     }, 0);
   }.property('controllers.nodes.model.@each'),
   sloVmTableMinimumScus: function() {
-    return this.get('controllers.nodes.minScuCapabilities') * this.get('model.vcpus');
-  }.property('controllers.nodes.minScuCapabilities', 'model.vcpus'),
+    return this.get('controllers.nodes.minScuCapabilities') * this.get('vcpusInteger');
+  }.property('controllers.nodes.minScuCapabilities', 'vcpusInteger'),
   sloVmTableNumberOfNodesMinimumScus: function() {
     var self = this;
     return this.get('controllers.nodes.model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
@@ -97,7 +100,6 @@ App.FlavorEditController = Ember.ObjectController.extend({
       return previousValue + (item.get('capabilities.cores_per_socket') >= self.get('controllers.nodes.minScuCapabilities'));
     }, 0);
   }.property('controllers.nodes.model.@each'),
-
 
   isFlavorEditing: false,
   flavorsWithoutSlas: function () {
