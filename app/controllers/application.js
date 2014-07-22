@@ -7,8 +7,8 @@ export default Ember.Controller.extend({
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
-  isMtWilsonInstalledBinding: 'mtWilson.isInstalled',
-  isMtWilsonSupportedBinding: 'mtWilson.isSupported',
+  isMtWilsonInstalledBinding: Ember.computed.alias('mtWilson.isInstalled'),
+  isMtWilsonSupportedBinding: Ember.computed.alias('mtWilson.isSupported'),
   init: function() {
     var self = this;
     this._super();

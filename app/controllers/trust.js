@@ -3,9 +3,9 @@ import mtWilson from '../models/mtWilson';
 
 export default Ember.Controller.extend({
   needs: ['application'],
-  isInstalledBinding: 'mtWilson.isInstalled',
-  isInstallingBinding: 'mtWilson.isInstalling',
-  ipAddressBinding: 'mtWilson.ipAddress',
+  isInstalled: Ember.computed.alias('mtWilson.isInstalled'),
+  isInstalling: Ember.computed.alias('mtWilson.isInstalling'),
+  ipAddress: Ember.computed.alias('mtWilson.ipAddress'),
   actions: {
     install: function() {
       // Start Mt. Wilson install
