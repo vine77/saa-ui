@@ -22,7 +22,7 @@
         <tr>
           <th class="column-medium">Health</th>
           <td>
-            {{#view "tooltip" titleBinding="healthMessage"}}
+            {{#view "tooltip" title=healthMessage}}
               {{health-icon status.health}} {{priority-to-type status.health}}
             {{/view}}
           </td>
@@ -34,7 +34,7 @@
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#view "tooltip" titleBinding="trustMessage"}}
+            {{#view "tooltip" title=trustMessage}}
               {{trust-to-stringIcon status.trust}}
               {{trust-to-string status.trust}}
             {{/view}}

@@ -24,7 +24,7 @@
         <tr>
           <th class="column-medium">Health</th>
           <td>
-            {{#view "tooltip" titleBinding="healthMessage"}}
+            {{#view "tooltip" title=healthMessage}}
               {{health-icon status.health}} {{priority-to-type status.health}}
             {{/view}}
           </td>
@@ -52,11 +52,11 @@
                   <tr>
                     <td class="column-small">
                       {{#if parentController.isUnhealthy}}
-                        {{#view "tooltip" titleBinding="healthMessage"}}
+                        {{#view "tooltip" title=healthMessage}}
                           {{health-icon health}}
                         {{/view}}
                       {{else}}
-                        {{#view "tooltip" titleBinding="operationalMessage"}}
+                        {{#view "tooltip" title=operationalMessage}}
                           {{code-to-operationalIcon operational}}
                         {{/view}}
                       {{/if}}
@@ -77,7 +77,7 @@
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#view "tooltip" titleBinding="trustMessage"}}
+            {{#view "tooltip" title=trustMessage}}
               {{trust-to-stringIcon status.trust_status.trust}}
               {{trust-to-string status.trust_status.trust}}
             {{/view}}

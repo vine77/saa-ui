@@ -3,7 +3,7 @@
     <div {{bind-attr style=bar.containerStyles class=":progress progressBarColor"}}>
       <div {{bind-attr style=bar.barStyles class=":bar"}}>
         <span {{bind-attr style=currentValueStyles}}>
-          {{#view "tooltip" titleBinding="currentValueToolTip" tagName="span" }}
+          {{#view "tooltip" title=currentValueToolTip tagName="span" }}
             {{current}}
           {{/view}}
         </span>

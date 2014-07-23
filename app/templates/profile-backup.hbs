@@ -12,28 +12,28 @@
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{input valueBinding="username" id="profile-username" placeholder="Username" disabled="true"}}
+        {{input value=username id="profile-username" placeholder="Username" disabled="true"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Current Password</label>
       <div class="controls">
-        {{input valueBinding="oldPassword" id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
+        {{input value=oldPassword id="profile-oldPassword" placeholder="Current Password" type="password"  autofocus="autofocus"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{input valueBinding="newPassword1" id="profile-newPassword1" placeholder="New Password" type="password"}}
+        {{input value=newPassword1 id="profile-newPassword1" placeholder="New Password" type="password"}}
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{input valueBinding="newPassword2" id="profile-newPassword2" placeholder="New Password again" type="password"}}
+        {{input value=newPassword2 id="profile-newPassword2" placeholder="New Password again" type="password"}}
       </div>
     </div>
 
@@ -41,20 +41,20 @@
         <div class="control-group">
           <label class="control-label">Email address</label>
           <div class="controls">
-            {{input valueBinding="email" id="profile-email" placeholder="Email address"}}
+            {{input value=email id="profile-email" placeholder="Email address"}}
           </div>
         </div>
     {{/if}}
-        
+
     </form>
-    
+
     {{#if getMailServer}}
         {{render 'settings.mailserver'}}
     {{/if}}
-    
+
     <div class="form-actions">
         <input type="submit" class="btn btn-primary" value="Save" {{action save}}>
         <button class="btn btn-danger" type="button" {{action reset}}>Cancel</button>
     </div>
-        
+
 </section>

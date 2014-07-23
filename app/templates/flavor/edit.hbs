@@ -12,40 +12,40 @@
             <div class="control-group">
               <label class="control-label">Flavor name:</label>
               <div class="controls">
-                {{input class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
+                {{input class="input-medium" value=model.name autofocus="autofocus"}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">vCPUs:</label>
               <div class="controls">
-                {{input class="input-small" valueBinding="model.vcpus"}}
+                {{input class="input-small" value=model.vcpus}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">RAM:</label>
               <div class="controls">
-                {{input class="input-small" valueBinding="model.memory"}}
+                {{input class="input-small" value=model.memory}}
                 MiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Root Disk:</label>
               <div class="controls">
-                {{input class="input-small" valueBinding="model.root"}}
+                {{input class="input-small" value=model.root}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Ephemeral Disk:</label>
               <div class="controls">
-                {{input class="input-small" valueBinding="model.ephemeral"}}
+                {{input class="input-small" value=model.ephemeral}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Swap Disk:</label>
               <div class="controls">
-                {{input class="input-small" valueBinding="model.swap"}}
+                {{input class="input-small" value=model.swap}}
                 MiB
               </div>
             </div>
@@ -63,10 +63,10 @@
               <div class="control-group">
                 <label class="inline">SLA:</label>
                 {{view Ember.Select viewName="select"
-                  contentBinding="slas"
+                  content=slas
                   optionValuePath="content.id"
                   optionLabelPath="content.name"
-                  selectionBinding="model.sla"
+                  selection=model.sla
                 }}
               </div>
               SLOs in "{{model.sla.name}}":
@@ -79,20 +79,20 @@
             {{#if hasNewSla}}
               <p>
                 <label class="inline">New SLA name:</label>
-                {{input class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
+                {{input class="input-medium" value=model.sla.name autofocus="autofocus"}}
                 <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
               </p>
               {{#each slo in model.sla.slos itemController="slo"}}
                 <p class="slo-row separator-top">
                   {{view Ember.Select viewName="select" class="input-medium"
-                    contentBinding="sloTemplates"
+                    content=sloTemplates
                     optionValuePath="content.id"
                     optionLabelPath="content.readableSloType"
-                    selectionBinding="sloTemplate"
+                    selection=sloTemplate
                   }}
                   {{view Ember.Select viewName="select" class="input-small"
-                    contentBinding="slo.sloTemplate.allowedOperators"
-                    valueBinding="slo.operator"
+                    content=slo.sloTemplate.allowedOperators
+                    value=slo.operator
                   }}
 
                   {{#if isRange}}

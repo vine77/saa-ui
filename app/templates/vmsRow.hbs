@@ -2,31 +2,31 @@
   <tbody>
     <tr {{bind-attr class="isSelected isExpanded isSlaMissing"}}>
       <td class="column-small"><div class="cell-container">
-        {{view Ember.Checkbox checkedBinding="isSelected"}}
+        {{view Ember.Checkbox checked=isSelected}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
-          {{#view "tooltip" titleBinding="healthMessage"}}
+          {{#view "tooltip" title=healthMessage}}
             {{health-icon status.health}}
           {{/view}}
         {{else}}
-          {{#view "tooltip" titleBinding="operationalMessage"}}
+          {{#view "tooltip" title=operationalMessage}}
             {{code-to-operationalIcon status.operational}}
           {{/view}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view "tooltip" titleBinding="trustMessage"}}
+        {{#view "tooltip" title=trustMessage}}
           {{trust-to-stringIcon status.trust}}
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view "tooltip" titleBinding="slaMessage"}}
+        {{#view "tooltip" title=slaMessage}}
           <i {{bind-attr class=":icon-large slaUnknown:icon-trophy slaUnknown:inset slaNotViolated:icon-trophy slaNotViolated:success slaViolatedWarning:icon-warning-sign slaViolatedWarning:warning slaViolatedError:icon-remove-sign slaViolatedError:error"}}></i>
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view "tooltip" titleBinding="noisyMessage"}}
+        {{#view "tooltip" title=noisyMessage}}
           {{#if isAggressor}}
             <i {{bind-attr class=":icon-bullhorn :error"}}></i>
           {{/if}}
@@ -66,7 +66,7 @@
       <td><div class="cell-container">
         <div class="allocation">
           {{#if hasCompute}}
-            {{#view "tooltip" titleBinding="allocationMessage"}}
+            {{#view "tooltip" title=allocationMessage}}
               <div {{bind-attr class=":allocation-bar isRange"}}>
                 <div class="allocation-range"></div> {{! light orange dashed }}
                 <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
@@ -87,7 +87,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if contentionValueExists}}
-            {{#view "tooltip" titleBinding="contentionMessage" barBinding="contentionWidth"}}
+            {{#view "tooltip" title=contentionMessage bar=contentionWidth}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}} >
                   <div class="contention-gradient"></div>

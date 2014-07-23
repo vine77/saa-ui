@@ -3,23 +3,23 @@
     <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
       <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}
-          {{view Ember.Checkbox checkedBinding="isSelected"}}
+          {{view Ember.Checkbox checked=isSelected}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
-          {{#view "tooltip" titleBinding="healthMessage"}}
+          {{#view "tooltip" title=healthMessage}}
             {{health-icon status.health}}
           {{/view}}
         {{else}}
-          {{#view "tooltip" titleBinding="operationalMessage"}}
+          {{#view "tooltip" title=operationalMessage}}
             {{code-to-operationalIcon status.operational}}
           {{/view}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
-          {{#view "tooltip" titleBinding="trustMessage"}}
+          {{#view "tooltip" title=trustMessage}}
             <span class="icon-stack">
               {{#if isTrustUnknown}}
                 <i class="icon-large icon-question-sign unknown"></i>
@@ -32,7 +32,7 @@
             </span>
           {{/view}}
         {{else}}
-          {{#view "tooltip" titleBinding="isTrustRegisteredMessage"}}
+          {{#view "tooltip" title=isTrustRegisteredMessage}}
             <span class="icon-stack">
               <i class="icon-large icon-unlock unregistered"></i>
               {{#if isTrustAgentNotInstalledOrUnknown}}
@@ -43,7 +43,7 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view "tooltip" titleBinding="nodeTypeMessage"}}
+        {{#view "tooltip" title=nodeTypeMessage}}
           {{#if isAssured}}
             <i class="icon-large icon-trophy assured"></i>
           {{else}}
@@ -81,7 +81,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{#view "tooltip" titleBinding="computeMessage" barBinding="computeWidth"}}
+            {{#view "tooltip" title=computeMessage bar=computeWidth}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
@@ -114,7 +114,7 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view "tooltip" titleBinding="contentionMessage"}}
+            {{#view "tooltip" title=contentionMessage}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>

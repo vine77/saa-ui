@@ -15,7 +15,7 @@
       <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-list-style">
           {{#each node in controllers.nodes}}
-            <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
+            <li><label>{{view Ember.Checkbox checked=node.isSelected}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
@@ -25,7 +25,7 @@
           {{#each vm in controllers.vms}}
             <li>
               <label {{bind-attr title="vm.name"}}>
-                {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}}
+                {{view Ember.Checkbox checked=vm.isSelected}} {{vm.name}}
               </label>
             </li>
           {{/each}}
@@ -37,7 +37,7 @@
           {{#each criticality in criticalitiesFiltered}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}}
+                {{view Ember.Checkbox checked=criticality.isSelected}} {{criticality.label}}
               </label>
             </li>
           {{/each}}
@@ -48,7 +48,7 @@
           {{#each logCategory in controllers.logcategories}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="logCategory.isSelected"}} {{logCategory.name}}
+                {{view Ember.Checkbox checked=logCategory.isSelected}} {{logCategory.name}}
               </label>
             </li>
           {{/each}}
