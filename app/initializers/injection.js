@@ -2,6 +2,7 @@ import Ember from 'ember';
 import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
 import applicationModel from '../models/application';
+import openrc from '../models/';
 
 export default {
   name: 'injection',
@@ -22,6 +23,10 @@ export default {
     application.inject('controller:dashboard-status-components', 'application', 'application:main');
     application.inject('controller:dashboard-todo', 'application', 'application:main');
     application.inject('controller:settings-upload', 'application', 'application:main');
+
+    application.register('openrc:main', openrc, {instantiate: false});
+    application.inject('controller:application', 'openrc', 'openrc:main');
+    application.inject('controller:settings-upload', 'openrc', 'openrc:main');
 
   }
 };

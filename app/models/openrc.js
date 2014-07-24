@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   exists: false,
   success: false,
   check: function() {
+    var self = this;
     // Check if openrc file exists
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/configs',
@@ -15,10 +16,10 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             var exists = xhr.responseJSON.configs.findBy('id', 'openrcFile') && xhr.responseJSON.configs.findBy('id', 'openrcFile').exists;
-            App.openrc.set('exists', exists);
+            self.set('exists', exists);
             break;
           default:
-            App.openrc.set('exists', false);
+            self.set('exists', false);
         }
       }
     });
