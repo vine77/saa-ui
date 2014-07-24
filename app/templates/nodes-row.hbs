@@ -91,13 +91,13 @@
             {{/view}}
             {{progress-bar-adjacent
               numberOfBars="2"
-              barMin1=utilization.scus.os.min
-              barMax1=utilization.scus.os.max
-              barValue1=utilization.scus.os.current
+              barMin1=scuOsUtilization.min
+              barMax1=scuOsUtilization.max
+              barValue1=scuOsUtilization.value
               barTitle1="OS SCU Usage"
-              barMin2=utilization.scus.vm.min
-              barMax2=utilization.scus.vm.max
-              barValue2=utilization.scus.vm.current
+              barMin2=scuVmUtilization.min
+              barMax2=scuVmUtilization.max
+              barValue2=scuVmUtilization.value
               barTitle2="VM SCU Usage"
             }}
           {{else}}
@@ -126,14 +126,14 @@
         {{#if hasContention}}
           {{progress-bar-adjacent
             numberOfBars="2"
-            barMin1="0"
-            barMax1=contention.os.llc.max
-            barValue1=contention.os.llc.value
+            barMin1=osContention.min
+            barMax1=osContention.max
+            barValue1=osContention.value
             barLabel1=contentionMessage
             barTitle1="OS Contention"
             barMin2="0"
-            barMax2=contention.vm.llc.max
-            barValue2=contention.vm.llc.value
+            barMax2=vmContention.max
+            barValue2=vmContention.value
             barLabel2=contentionMessage
             barTitle2="VM Contention"
           }}
