@@ -8,6 +8,7 @@ import codeToOperational from '../utils/convert/code-to-operational';
 import trustToString from '../utils/convert/trust-to-string';
 import rangeToPercentage from '../utils/convert/range-to-percentage';
 import isEmpty from '../utils/is-empty';
+import graphs from '../models/graphs';
 
 export default Ember.ObjectController.extend({
   needs: ['vms', 'logBar'],
@@ -205,7 +206,7 @@ export default Ember.ObjectController.extend({
 
   // Observers
   graphObserver: function() {
-     return App.graphs.graph(this.get('id'), this.get('id'), 'vm');
+     return graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isExpanded'),
 
   updateKibana: function() {
@@ -298,7 +299,7 @@ export default Ember.ObjectController.extend({
     },
     graphTimeAgo: function(timeAgo) {
       this.set('graphTimeAgoValue', timeAgo);
-      App.graphs.graph(this.get('id'), this.get('id'), 'vm', undefined, timeAgo);
+      graphs.graph(this.get('id'), this.get('id'), 'vm', undefined, timeAgo);
     }
   }
 

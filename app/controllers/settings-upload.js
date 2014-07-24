@@ -8,6 +8,7 @@ import nova from '../models/nova';
 import application from '../models/application';
 import openrc from '/..models/openrc';
 import quantum from '/..models/quantum';
+import keystone from '../models/keystone';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
@@ -19,8 +20,8 @@ export default Ember.ArrayController.extend({
   openrcSuccess: Ember.computed.alias('openrc.success'),
   quantumExists: Ember.computed.alias('quantum.exists'),
   quantumSuccess: Ember.computed.alias('quantum.success'),
-  keystoneExists: Ember.computed.alias('App.keystone.exists'),
-  keystoneSuccess: Ember.computed.alias('App.keystone.success'),
+  keystoneExists: Ember.computed.alias('network.exists'),
+  keystoneSuccess: Ember.computed.alias('network.success'),
   isChangingFiles: false,
   isActionPending: false,
   networkType: {},
@@ -66,7 +67,7 @@ export default Ember.ArrayController.extend({
         }).then(function() {
           if (self.get('isNeutronConfigRequired') && isQuantumSpecified) return quantum.upload();
         }).then(function() {
-          if (isKeystoneSpecified) return App.keystone.upload();
+          if (isKeystoneSpecified) return network.upload();
         }).then(function() {
           return nova.start();
         }).then(function() {
@@ -87,7 +88,7 @@ export default Ember.ArrayController.extend({
           nova.check();
           openrc.check();
           quantum.check();
-          App.keystone.check();
+          network.check();
         });
       }
     },
@@ -108,7 +109,7 @@ export default Ember.ArrayController.extend({
           success: function(data) {
             //Ember.$('i.loading').addClass('hide');
             event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
-            App.keystone.check();
+            network.check();
           },
           error: function(xhr) {
             //Ember.$('i.loading').addClass('hide');

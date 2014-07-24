@@ -36,12 +36,13 @@ export default Ember.Object.extend({
   },
   serverExternal: {},
   save: function() {
+    var self = this;
     var networkData = {
-      route: App.network.get('route'),
-      management: App.network.get('management'),
-      external: App.network.get('external'),
-      dns: App.network.get('dns'),
-      other: App.network.get('other')
+      route: this.get('route'),
+      management: this.get('management'),
+      external: this.get('external'),
+      dns: this.get('dns'),
+      other: this.get('other')
     };
     Ember.$('i.loading').removeClass('hide');
     return Ember.$.ajax({
@@ -56,12 +57,12 @@ export default Ember.Object.extend({
       success: function(data) {
         Ember.$('i.loading').addClass('hide');
         // Update network config info (e.g. for DHCP)
-        App.network.set('route', data.route);
-        App.network.set('management', data.management);
-        App.network.set('external', data.external);
-        App.network.set('dns', data.dns);
-        App.network.set('other', data.other);
-        App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
+        self.set('route', data.route);
+        self.set('management', data.management);
+        self.set('external', data.external);
+        self.set('dns', data.dns);
+        self.set('other', data.other);
+        self.set('serverExternal', Ember.$.extend(true, {}, data.external));
         event('Network configuration saved successfully.', Health.SUCCESS);
       },
       error: function(xhr) {
@@ -71,6 +72,7 @@ export default Ember.Object.extend({
     });
   },
   check: function() {
+    var self = this;
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/netconfig',
       type: 'GET',
@@ -80,12 +82,12 @@ export default Ember.Object.extend({
       },
       success: function(data) {
         // Load network config info
-        App.network.set('route', data.route);
-        App.network.set('management', data.management);
-        App.network.set('external', data.external);
-        App.network.set('dns', data.dns);
-        App.network.set('other', data.other);
-        App.network.set('serverExternal', Ember.$.extend(true, {}, data.external));
+        self.set('route', data.route);
+        self.set('management', data.management);
+        self.set('external', data.external);
+        self.set('dns', data.dns);
+        self.set('other', data.other);
+        self.set('serverExternal', Ember.$.extend(true, {}, data.external));
         event('Successfully loaded network configuration details.', Health.SUCCESS, false);
       },
       error: function(xhr) {

@@ -16,6 +16,7 @@ import readableSizeToBytes from '../utils/readable-size-to-bytes';
 import readableSize from '../utils/readable-size';
 import na from '../utils/na';
 import application from '../models/application';
+import graphs from '../models/graphs';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
@@ -381,7 +382,7 @@ export default Ember.ObjectController.extend({
 
   // Observers
   graphObserver: function() {
-    return App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
+    return graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'));
   }.observes('isExpanded'),
   graphTimeAgoValue: '-1h',
   isGraphTimeAgoHour: function() {
@@ -403,7 +404,7 @@ export default Ember.ObjectController.extend({
     },
     graphTimeAgo: function(timeAgo) {
       this.set('graphTimeAgoValue', timeAgo);
-      App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'), timeAgo);
+      graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'), timeAgo);
     }
   }
 

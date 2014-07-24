@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   exists: false,
   success: false,
   check: function() {
+    var self = this;
     // Check if cacert.pem file exists
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/configs',
@@ -15,10 +16,10 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             var exists = xhr.responseJSON.configs.findBy('id', 'KeystoneCaCertFile') && xhr.responseJSON.configs.findBy('id', 'KeystoneCaCertFile').exists;
-            App.keystone.set('exists', exists);
+            self.set('exists', exists);
             break;
           default:
-            App.keystone.set('exists', false);
+            self.set('exists', false);
         }
       }
     });

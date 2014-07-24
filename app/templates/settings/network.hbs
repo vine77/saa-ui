@@ -10,13 +10,13 @@
     <div class="control-group">
       <label class="control-label">Gateway:</label>
       <div class="controls">
-        {{input placeholder="Gateway" value=App.network.route.gateway}}
+        {{input placeholder="Gateway" value=network.route.gateway}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Hostname:</label>
       <div class="controls">
-        {{input placeholder="Hostname" value=App.network.other.hostname}}
+        {{input placeholder="Hostname" value=network.other.hostname}}
       </div>
     </div>
     <section>
@@ -24,14 +24,14 @@
       <div class="control-group">
         <label class="control-label">MAC Address:</label>
         <div class="controls">
-          <input type="text" class="mac" disabled {{bind-attr value="App.network.external.mac"}}>
+          <input type="text" class="mac" disabled {{bind-attr value="network.external.mac"}}>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Configure IPv4:</label>
         <div class="controls">
           <label class="checkbox">
-            {{view Ember.Checkbox class="dhcp" checked=App.network.external.dhcp}}
+            {{view Ember.Checkbox class="dhcp" checked=network.external.dhcp}}
             Using DHCP
           </label>
         </div>
@@ -39,21 +39,21 @@
       <div class="control-group">
         <label class="control-label">DNS Servers:</label>
         <div class="controls">
-          {{input class="input-medium" placeholder="Name server 1" value=App.network.dns.ns1 disabled=App.network.external.dhcp}}
-          {{input class="input-medium" placeholder="Name server 2" value=App.network.dns.ns2 disabled=App.network.external.dhcp}}
-          {{input class="input-medium" placeholder="Name server 3" value=App.network.dns.ns3 disabled=App.network.external.dhcp}}
+          {{input class="input-medium" placeholder="Name server 1" value=network.dns.ns1 disabled=network.external.dhcp}}
+          {{input class="input-medium" placeholder="Name server 2" value=network.dns.ns2 disabled=network.external.dhcp}}
+          {{input class="input-medium" placeholder="Name server 3" value=network.dns.ns3 disabled=network.external.dhcp}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">IPv4 Address:</label>
         <div class="controls">
-          {{input class="address" placeholder="IP address" value=App.network.external.address disabled=App.network.external.dhcp}}
+          {{input class="address" placeholder="IP address" value=network.external.address disabled=network.external.dhcp}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Subnet Mask:</label>
         <div class="controls">
-          {{input class="netmask" placeholder="Netmask" value=App.network.external.netmask disabled=App.network.external.dhcp}}
+          {{input class="netmask" placeholder="Netmask" value=network.external.netmask disabled=network.external.dhcp}}
         </div>
       </div>
     </section>
@@ -62,14 +62,14 @@
       <div class="control-group">
         <label class="control-label">MAC Address:</label>
         <div class="controls">
-          <input type="text" class="mac" disabled {{bind-attr value="App.network.management.mac"}}>
+          <input type="text" class="mac" disabled {{bind-attr value="network.management.mac"}}>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Configure IPv4:</label>
         <div class="controls">
           <label class="checkbox">
-            {{view Ember.Checkbox class="dhcp" checked=App.network.management.dhcp}}
+            {{view Ember.Checkbox class="dhcp" checked=network.management.dhcp}}
             Using DHCP
           </label>
         </div>
@@ -77,13 +77,13 @@
       <div class="control-group">
         <label class="control-label">IPv4 Address:</label>
         <div class="controls">
-          {{input class="address" placeholder="IP adress" value=App.network.management.address disabled=App.network.management.dhcp}}
+          {{input class="address" placeholder="IP adress" value=network.management.address disabled=network.management.dhcp}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Subnet Mask:</label>
         <div class="controls">
-          {{input class="netmask" placeholder="Netmask" value=App.network.management.netmask disabled=App.network.management.dhcp}}
+          {{input class="netmask" placeholder="Netmask" value=network.management.netmask disabled=network.management.dhcp}}
         </div>
       </div>
     </section>

@@ -3,6 +3,8 @@ import ModalView from '../views/modal';
 
 export default Ember.Route.extend({
   init: function() {
+    // TODO: Use injections instead of globals
+    if (typeof App === 'undefined') App = {};
     App.store = this.store;
     App.route = this;
   },

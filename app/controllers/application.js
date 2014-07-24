@@ -4,6 +4,7 @@ import mtWilson from '../models/mtWilson';
 import nova from '../models/nova';
 import openrc from '../models/openrc';
 import quantum from '../models/quantum';
+import keystone from '../models/keystone';
 
 export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
@@ -72,7 +73,7 @@ export default Ember.Controller.extend({
       nova.check();
       openrc.check();
       quantum.check();
-      App.keystone.check();
+      keystone.check();
       this.store.find('slo');
       this.store.find('sla');
       this.store.find('flavor');

@@ -5,7 +5,9 @@ import notify from '../utils/notify';
 import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
 import openrc from '../models/openrc';
-import openrc from '../models/quantum';
+import quantum from '../models/quantum';
+import keystone from '../models/keystone';
+import network from '../models/network';
 
 // Routes under /app require authentication
 export default Ember.Route.extend({
@@ -49,7 +51,7 @@ export default Ember.Route.extend({
         nova: nova.check(),
         openrc: openrc.check(),
         quantum: quantum.check(),
-        keystone: App.keystone.check()
+        keystone: keystone.check()
       }).then(function() {
         // SAA is configured
         self.store.find('sloTemplate');
@@ -68,13 +70,13 @@ export default Ember.Route.extend({
         }, function() {
           self.store.find('node');
         }),
-        App.network.check();
+        network.check();
         self.store.find('action');
         //self.store.find('user');
         //App.settingsLog.fetch();
       }, function() {
         // SAA is not configured
-        App.network.check();
+        network.check();
         //self.store.find('user');
         return new Ember.RSVP.resolve();  // Don't block loading if SAA is not configured
       });
