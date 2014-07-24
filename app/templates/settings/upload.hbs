@@ -102,7 +102,7 @@
       {{#if controllers.application.isConfigured}}
         <form id="overridesForm" class="form-horizontal" method="post">
           <legend>Configuration Overrides</legend> <br>
-          {{#each value in this.controllers.overrides.model.configurationValues itemController="override"}}
+          {{#each value in controllers.overrides.model.configurationValues itemController="override"}}
             <div class="control-group">
               <label class="control-label" for="">{{value.model.name}}</label>
               <div class="controls">

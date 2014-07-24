@@ -1,3 +1,4 @@
 import Ember from 'ember';
+import NodeController from './node';
 
-export default App.NodeController.extend();
+export default NodeController.extend();

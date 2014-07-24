@@ -303,5 +303,3 @@ export default Ember.ObjectController.extend({
   }
 
 });
-
-App.VmsVmController = App.VmController.extend();

@@ -98,9 +98,6 @@ export default Ember.Controller.extend({
         iframe.attr('src', this.get(target + 'Url'));
       }
     },
-    updateCurrentPath: function() {
-      App.set('currentPath', this.get('currentPath'));
-    }.observes('currentPath'),
     // Debug Toolbar actions
     refreshNodes: function() {
       var self = this;

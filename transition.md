@@ -15,5 +15,15 @@
 * [X] Convert Binding to Ember.computed.alias
 * [X] Convert template exampleBinding="something" to example=something
 * [ ] Change other instances of App.Z to use modules
+    * [ ] App.application
+    * [ ] App.nova
+    * [ ] App.openrc
+    * [ ] App.quantum
+    * [ ] App.keystone
+    * [ ] App.network
+    * [ ] App.graphs
+    * [ ] App.selectTab
+    * [ ] App.route
+    * [ ] App.store
 * [ ] Remove utils/old
 * [ ] If we still need to use global (e.g. moment), add those to the predef section of .jshintrc and set value in initializers

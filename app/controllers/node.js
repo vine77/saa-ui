@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ActionController from './action';
 import Health from '../utils/mappings/health';
 import Operational from '../utils/mappings/operational';
 import Trust from '../utils/mappings/trust';
@@ -26,7 +27,7 @@ export default Ember.ObjectController.extend({
 
   nodeActions: function() {
     return  [
-      App.ActionController.create({
+      ActionController.create({
         name: 'Export Trust Report',
         method: 'exportTrustReport',
         icon: 'icon-external-link',
@@ -34,7 +35,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 0,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Remove Trust',
         method: 'removeTrust',
         icon: 'icon-unlock',
@@ -42,7 +43,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 1,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Add Trust',
         method: 'addTrust',
         icon: 'icon-lock',
@@ -50,7 +51,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 2,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Fingerprint',
         method: 'trustFingerprint',
         icon: 'icon-hand-up',
@@ -58,7 +59,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 3,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Configure Trust Agent',
         method: 'configureTrustAgent',
         icon: 'icon-unlock-alt',
@@ -66,7 +67,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 4,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Unregister',
         method: 'unregister',
         icon: 'icon-remove',
@@ -74,7 +75,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 7,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Set agent mode to monitored',
         method: 'setMonitored',
         icon: 'icon-eye-open',
@@ -82,7 +83,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 8,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Set agent mode to assured',
         method: 'setAssured',
         icon: 'icon-trophy',
@@ -90,7 +91,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 9,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Place VMs on Socket',
         method: 'schedule',
         icon: 'icon-magnet',
@@ -98,7 +99,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 6,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Unset for VM placement',
         method: 'unschedule',
         icon: 'icon-magnet',

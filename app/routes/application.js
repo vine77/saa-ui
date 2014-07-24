@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ModalView from '../views/modal';
 
 export default Ember.Route.extend({
   init: function() {
@@ -65,7 +66,7 @@ export default Ember.Route.extend({
       }
     },
     showModal: function(modalName, controllerName) {
-      App.ModalView.create({
+      ModalView.create({
         templateName: 'modals/' + modalName,
         controller: this.controllerFor(controllerName)
       }).append();
