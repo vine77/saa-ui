@@ -15,8 +15,8 @@
 * [X] Convert Binding to Ember.computed.alias
 * [X] Convert template exampleBinding="something" to example=something
 * [ ] Change other instances of App.Z to use modules
-    * [ ] App.application
-    * [ ] App.nova
+    * [X] App.application
+    * [X] App.nova
     * [ ] App.openrc
     * [ ] App.quantum
     * [ ] App.keystone

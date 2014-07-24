@@ -8,6 +8,7 @@ import readableSize from '../utils/readable-size';
 import pdfReport from '../utils/pdf-report';
 import xhrError from '../utils/xhr-error';
 import mtWilson from '../models/mtWilson';
+import application from '../models/application';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   needs: ['nodesColumns', 'application', 'quota', 'node'],
@@ -168,7 +169,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     },
     unregister: function(node) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
+      var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + application.title + '.');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),

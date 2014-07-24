@@ -3,6 +3,7 @@ import Health from '../utils/mappings/health';
 import log from '../utils/log';
 import notify from '../utils/notify';
 import mtWilson from '../models/mt-wilson';
+import nova from '../models/nova';
 
 // Routes under /app require authentication
 export default Ember.Route.extend({
@@ -43,7 +44,7 @@ export default Ember.Route.extend({
       });
       // Call config and other APIs
       return Ember.RSVP.hash({
-        nova: App.nova.check(),
+        nova: nova.check(),
         openrc: App.openrc.check(),
         quantum: App.quantum.check(),
         keystone: App.keystone.check()

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
 import mtWilson from '../models/mtWilson';
+import nova from '../models/nova';
 
 export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
@@ -34,8 +35,8 @@ export default Ember.Controller.extend({
     return health === Health.SUCCESS || health === Health.INFO || health === Health.WARNING;
   }.property('controllers.statuses.health'),
   isConfigured: function() {
-    return App.nova.get('exists') && App.openrc.get('exists');
-  }.property('App.nova.exists', 'App.openrc.exists'),
+    return nova.get('exists') && App.openrc.get('exists');
+  }.property('nova.exists', 'App.openrc.exists'),
   isEnabled: function() {
     return this.get('isHealthy') && this.get('isConfigured');
   }.property('isHealthy', 'isConfigured'),
@@ -66,7 +67,7 @@ export default Ember.Controller.extend({
   autoRefresh: function() {
     Ember.run.later(this, 'autoRefresh', 20000);
     if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
-      App.nova.check();
+      nova.check();
       App.openrc.check();
       App.quantum.check();
       App.keystone.check();

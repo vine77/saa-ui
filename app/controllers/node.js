@@ -15,6 +15,7 @@ import isEmpty from '../utils/is-empty';
 import readableSizeToBytes from '../utils/readable-size-to-bytes';
 import readableSize from '../utils/readable-size';
 import na from '../utils/na';
+import application from '../models/application';
 
 export default Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
@@ -213,7 +214,7 @@ export default Ember.ObjectController.extend({
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
     if (!this.get('isAgentInstalled') && isEmpty(this.get('status.short_message'))) {
-      return 'Not under ' + App.application.get('title') + ' control';
+      return 'Not under ' + application.get('title') + ' control';
     }
     if (isEmpty(this.get('status.short_message'))) {
       // If status message is empty, just show health as a string

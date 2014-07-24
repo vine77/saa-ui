@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   currentDomain: function() {
     return location.host;
   }.property(),
-  apiDomain: Ember.computed.alias('App.application.apiDomain'),
+  apiDomain: Ember.computed.alias('application.apiDomain'),
   actions: {
     save: function() {
       localStorage.apiDomain = this.get('apiDomain');

@@ -84,14 +84,14 @@
           {{else}}
             {{#unless isActionPending}}
               <a class="btn" {{action "cancel"}}>Cancel</a>
-              <button type="submit" class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Restart {{App.application.title}}</button>
+              <button type="submit" class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Restart {{application.title}}</button>
             {{else}}
               <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Uploading files...</button>
             {{/unless}}
           {{/unless}}
         {{else}}
           {{#unless isActionPending}}
-            <a class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Start {{App.application.title}}</a>
+            <a class="btn btn-primary" {{action "uploadFiles"}}>Upload Files and Start {{application.title}}</a>
           {{else}}
             <button class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Uploading files...</button>
           {{/unless}}

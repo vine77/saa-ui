@@ -4,13 +4,15 @@ import Network from '../utils/mappings/network';
 import getApiDomain from '../utils/get-api-domain';
 import event from '../utils/event';
 import xhrError from '../utils/xhr-error';
+import nova from '../models/nova';
+import application from '../models/application';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
   isEnabled: Ember.computed.alias('controllers.application.isEnabled'),
   isConfigured: Ember.computed.alias('controllers.application.isConfigured'),
-  novaExists: Ember.computed.alias('App.nova.exists'),
-  novaSuccess: Ember.computed.alias('App.nova.success'),
+  novaExists: Ember.computed.alias('nova.exists'),
+  novaSuccess: Ember.computed.alias('nova.success'),
   openrcExists: Ember.computed.alias('App.openrc.exists'),
   openrcSuccess: Ember.computed.alias('App.openrc.success'),
   quantumExists: Ember.computed.alias('App.quantum.exists'),
@@ -52,11 +54,11 @@ export default Ember.ArrayController.extend({
       // Prompt user with confirmation dialog if app is already configured
       var self = this;
       var confirmUpload = true;
-      if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + App.application.get('title') + '?');
+      if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + application.get('title') + '?');
       if (confirmUpload) {
         this.set('isActionPending', true);
         this.get('networkType.content').save().then(function() {
-          return App.nova.upload();
+          return nova.upload();
         }).then(function() {
           return App.openrc.upload();
         }).then(function() {
@@ -64,7 +66,7 @@ export default Ember.ArrayController.extend({
         }).then(function() {
           if (isKeystoneSpecified) return App.keystone.upload();
         }).then(function() {
-          return App.nova.start();
+          return nova.start();
         }).then(function() {
           self.set('isActionPending', false);
           event('<i class="loading"></i> <div> Successfully uploaded files. </div> Please wait while the application is restarted...', Health.SUCCESS, undefined, undefined, true);
@@ -80,7 +82,7 @@ export default Ember.ArrayController.extend({
           Ember.$('.fileupload').fileupload('reset');
           self.set('isChangingFiles', false);
           // Reset isConfigured state by re-checking file existence
-          App.nova.check();
+          nova.check();
           App.openrc.check();
           App.quantum.check();
           App.keystone.check();

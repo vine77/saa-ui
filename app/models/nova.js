@@ -2,12 +2,14 @@ import Ember from 'ember';
 import Health from '../utils/mappings/health';
 import log from '../utils/log';
 import getApiDomain from '../utils/get-api-domain';
+import application from '../models/application';
 
 // TODO: Port this to a real model or controller
 export default Ember.Object.extend({
   exists: false,
   success: false,
   check: function() {
+    var self = this;
     // Check if nova.conf file exists
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/configs',
@@ -17,10 +19,10 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             var exists = xhr.responseJSON.configs.findBy('id', 'novaFile') && xhr.responseJSON.configs.findBy('id', 'novaFile').exists;
-            App.nova.set('exists', exists);
+            self.set('exists', exists);
             break;
           default:
-            App.nova.set('exists', false);
+            self.set('exists', false);
         }
       }
     });
@@ -41,7 +43,7 @@ export default Ember.Object.extend({
   },
   start: function() {
     // Start SAA
-    log('Starting ' + App.application.get('title'), Health.SUCCESS, false);
+    log('Starting ' + application.get('title'), Health.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',
       url: (getApiDomain()) + '/api/v2/start',
