@@ -15,10 +15,10 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             var exists = xhr.responseJSON.configs.findBy('id', 'quantumFile') && xhr.responseJSON.configs.findBy('id', 'quantumFile').exists;
-            App.quantum.set('exists', exists);
+            this.set('exists', exists);
             break;
           default:
-            App.quantum.set('exists', false);
+            this.set('exists', false);
         }
       }
     });

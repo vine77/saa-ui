@@ -3,6 +3,7 @@ import Health from '../utils/mappings/health';
 import mtWilson from '../models/mtWilson';
 import nova from '../models/nova';
 import openrc from '../models/openrc';
+import quantum from '../models/quantum';
 
 export default Ember.Controller.extend({
   needs: ['statuses', 'build', 'login'],
@@ -70,7 +71,7 @@ export default Ember.Controller.extend({
     if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
       nova.check();
       openrc.check();
-      App.quantum.check();
+      quantum.check();
       App.keystone.check();
       this.store.find('slo');
       this.store.find('sla');

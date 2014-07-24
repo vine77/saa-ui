@@ -2,7 +2,8 @@ import Ember from 'ember';
 import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
 import applicationModel from '../models/application';
-import openrc from '../models/';
+import openrc from '../models/openrc';
+import openrc from '../models/quantam';
 
 export default {
   name: 'injection',
@@ -27,6 +28,11 @@ export default {
     application.register('openrc:main', openrc, {instantiate: false});
     application.inject('controller:application', 'openrc', 'openrc:main');
     application.inject('controller:settings-upload', 'openrc', 'openrc:main');
+
+    application.register('quantum:main', quantum, {instantiate: false});
+    application.inject('controller:application', 'quantum', 'quantum:main');
+    application.inject('controller:settings-upload', 'quantum', 'quantum:main');
+
 
   }
 };

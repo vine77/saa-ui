@@ -7,6 +7,7 @@ import xhrError from '../utils/xhr-error';
 import nova from '../models/nova';
 import application from '../models/application';
 import openrc from '/..models/openrc';
+import quantum from '/..models/quantum';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],
@@ -16,8 +17,8 @@ export default Ember.ArrayController.extend({
   novaSuccess: Ember.computed.alias('nova.success'),
   openrcExists: Ember.computed.alias('openrc.exists'),
   openrcSuccess: Ember.computed.alias('openrc.success'),
-  quantumExists: Ember.computed.alias('App.quantum.exists'),
-  quantumSuccess: Ember.computed.alias('App.quantum.success'),
+  quantumExists: Ember.computed.alias('quantum.exists'),
+  quantumSuccess: Ember.computed.alias('quantum.success'),
   keystoneExists: Ember.computed.alias('App.keystone.exists'),
   keystoneSuccess: Ember.computed.alias('App.keystone.success'),
   isChangingFiles: false,
@@ -63,7 +64,7 @@ export default Ember.ArrayController.extend({
         }).then(function() {
           return openrc.upload();
         }).then(function() {
-          if (self.get('isNeutronConfigRequired') && isQuantumSpecified) return App.quantum.upload();
+          if (self.get('isNeutronConfigRequired') && isQuantumSpecified) return quantum.upload();
         }).then(function() {
           if (isKeystoneSpecified) return App.keystone.upload();
         }).then(function() {
@@ -85,7 +86,7 @@ export default Ember.ArrayController.extend({
           // Reset isConfigured state by re-checking file existence
           nova.check();
           openrc.check();
-          App.quantum.check();
+          quantum.check();
           App.keystone.check();
         });
       }
