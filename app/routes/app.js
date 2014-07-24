@@ -4,7 +4,7 @@ import log from '../utils/log';
 import notify from '../utils/notify';
 import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
-
+import openrc from '../models/openrc'
 // Routes under /app require authentication
 export default Ember.Route.extend({
   beforeModel: function(transition) {
@@ -45,7 +45,7 @@ export default Ember.Route.extend({
       // Call config and other APIs
       return Ember.RSVP.hash({
         nova: nova.check(),
-        openrc: App.openrc.check(),
+        openrc: openrc.check(),
         quantum: App.quantum.check(),
         keystone: App.keystone.check()
       }).then(function() {

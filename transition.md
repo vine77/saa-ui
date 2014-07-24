@@ -17,7 +17,7 @@
 * [ ] Change other instances of App.Z to use modules
     * [X] App.application
     * [X] App.nova
-    * [ ] App.openrc
+    * [X] App.openrc
     * [ ] App.quantum
     * [ ] App.keystone
     * [ ] App.network
