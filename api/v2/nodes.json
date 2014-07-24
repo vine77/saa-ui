@@ -436,24 +436,33 @@
       ],
       "id": "00F400BD-762A-E211-9C53-001E67343C15",
       "utilization": {
-        "scus": {
-          "total": {
+        "scu": {
+          "system": {
+            "value": 634.0,
             "min": 0,
-            "max": 73.6,
-            "current": 17.3
+            "max": 1024.0
           },
-          "os": {
-            "min": 0,
-            "max": 73.6,
-            "current": 17.3
-          },
-          "vm": {
-            "min": 0,
-            "max": 73.6,
-            "current": 17.3
-          }
+          "cgroups": [
+            {
+              "type": "vm",
+              "value": 530,
+              "min": 0,
+              "max": 886.0
+            },
+            {
+              "type": "os",
+              "value": 100,
+              "min": 0,
+              "max": 128.0
+            },
+            {
+              "type": "6wind",
+              "value": 4.0,
+              "min": 0,
+              "max": 10
+            }
+          ]
         },
-
         "uptime": null,
         "network": null,
         "ipc": 0.32,
@@ -533,22 +542,29 @@
             "label": "MEDIUM"
           }
         },
-        "os": {
-          "llc": {
-            "min": 0,
-            "max": 30,
+        "cgroups": [
+          {
+            "type": "os",
             "value": 11,
-            "label": "MEDIUM"
-          }
-        },
-        "vm": {
-          "llc": {
             "min": 0,
             "max": 30,
-            "value": 12,
+            "label": "MEDIUM"
+          },
+          {
+            "type": "vm",
+            "value": 11,
+            "min": 0,
+            "max": 30,
+            "label": "MEDIUM"
+          },
+          {
+            "type": "6Wind",
+            "value": 11,
+            "min": 0,
+            "max": 30,
             "label": "MEDIUM"
           }
-        }
+        ]
       },
       "logs_url": "/logs?node=00F400BD-762A-E211-9C53-001E67343C15",
       "tier": null,

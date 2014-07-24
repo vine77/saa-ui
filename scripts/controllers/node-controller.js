@@ -92,6 +92,27 @@ App.NodeController = Ember.ObjectController.extend({
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
+  scuUtilizationCgroups: function() {
+    return this.get('utilization.scu.cgroups');
+  }.property('utilization.scu.cgroups.@each'),  
+
+  contentionCgroups: function() {
+    return this.get('contention.cgroups');
+  }.property('contention.cgroups.@each'),
+  osContention: function() {
+    return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'os');
+  }.property('contentionCgroups'),
+  vmContention: function() {
+    return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'vm');
+  }.property('contentionCgroups'),
+
+  scuOsUtilization: function() {
+    return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'os');
+  }.property('scuUtilizationCgroups'),
+  scuVmUtilization: function() {
+    return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'vm');
+  }.property('scuUtilizationCgroups'),
+
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
   }.property('nodeActions.@each'),
@@ -291,7 +312,7 @@ App.NodeController = Ember.ObjectController.extend({
       return 'width:' + percent + '%;';
     }
   }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
-  computeExists: Ember.computed.notEmpty('utilization.scus.total.current'),
+  computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
   contentionFormatted: function () {
