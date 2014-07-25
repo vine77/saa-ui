@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import trust from './../mappings/trust';
+import trust from '../mappings/trust';
 
 /**
  * Convert trust status to corresponding icon class

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import trustConfig from './../mappings/trust-config';
+import trustConfig from '../mappings/trust-config';
 
 export default function(code) {
   if (typeof type === 'string') code = code.toLowerCase();

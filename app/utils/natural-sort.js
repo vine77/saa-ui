@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import naturalSort from 'natural-sort';
 
 /**
  * Sort two inputs
@@ -15,5 +14,5 @@ export default function(a, b) {
   } else if (b === undefined || b === null) {
     return 1;
   }
-  return naturalSort(a, b);
+  return window.naturalSort(a, b);
 }

@@ -1,6 +1,6 @@
-import notify from './../utils/notify';
-import health from './../utils/mappings/health';
-import errorMessage from './../utils/xhr-error-message';
+import notify from '../utils/notify';
+import health from '../utils/mappings/health';
+import errorMessage from '../utils/xhr-error-message';
 
 /**
  * Display an error notification given the XHR object

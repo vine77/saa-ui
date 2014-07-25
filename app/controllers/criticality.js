@@ -7,10 +7,11 @@ export default Ember.ObjectController.extend({
   updateKibana: function() {
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
+    var fieldId, newFieldId;
     if (this.get('isSelected') && !isCriticalityPlus(this) && (this.get('id') !== 'context')) {
       this.get('controllers.logBar.kibanaCriticalitiesQuery').push('severity: \"'+this.get('label').toString()+'\"');
-      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
-      var newFieldId = filterSrv.set({
+      fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
+      newFieldId = filterSrv.set({
         type:'querystring',
         mandate:'must',
         query:"(" + this.get('controllers.logBar.kibanaCriticalitiesQuery').join(' OR ') + ")"
@@ -21,8 +22,8 @@ export default Ember.ObjectController.extend({
       var inArray = Ember.$.inArray('severity: \"'+this.get('label').toString()+'\"', this.get('controllers.logBar.kibanaCriticalitiesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaCriticalitiesQuery').removeAt(inArray);
-        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
-        var newFieldId = filterSrv.set({
+        fieldId = ((this.get('controllers.logBar.kibanaFieldIds.criticalities') !== null)?this.get('controllers.logBar.kibanaFieldIds.criticalities'):undefined);
+        newFieldId = filterSrv.set({
           type:'querystring',
           mandate:'must',
           query:"(" + this.get('controllers.logBar.kibanaCriticalitiesQuery').join(' OR ') + ")"

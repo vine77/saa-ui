@@ -4,10 +4,10 @@ export default Ember.ArrayController.extend({
   needs: ['application', 'statuses', 'build', 'nodes', 'vms'],
   haMessages: function() {
     var messages = [];
-    cloudSchedulingService = this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service');
-    cloudSchedulingServiceMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service').get('message');
-    schedulerPluginVersion = this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version');
-    schedulerPluginVersionMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version').get('message');
+    var cloudSchedulingService = this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service');
+    var cloudSchedulingServiceMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service').get('message');
+    var schedulerPluginVersion = this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version');
+    var schedulerPluginVersionMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version').get('message');
     if (!schedulerPluginVersionMessage && !schedulerPluginVersionMessage) return [{
       title: 'High Availability',
       message: 'N/A'

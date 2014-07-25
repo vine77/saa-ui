@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import mtWilson from '../models/mtWilson';
+import mtWilson from '../models/mt-wilson';
 
 export default Ember.Controller.extend({
   needs: ['application'],

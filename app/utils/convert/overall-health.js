@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import health from './../mappings/health';
+import health from '../mappings/health';
 import codeToOperational from './code-to-operational';
 import priorityToType from './priority-to-type';
 

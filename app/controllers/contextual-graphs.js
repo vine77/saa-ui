@@ -10,21 +10,21 @@ export default Ember.ObjectController.extend({
     return this.get('controllers.vms').filterProperty('isSelected', true);
   }.property('controllers.vms.@each.isSelected'),
   nodePath: function() {
-    if (this.get('currentRouteName').indexOf("node") != -1) {
+    if (this.get('currentRouteName').indexOf("node") !== -1) {
       return true;
     } else {
       return false;
     }
   }.property('currentRouteName'),
   vmPath: function() {
-    if (this.get('currentRouteName').indexOf("vm") != -1) {
+    if (this.get('currentRouteName').indexOf("vm") !== -1) {
       return true;
     } else {
       return false;
     }
   }.property('currentRouteName'),
   contextualPath: function() {
-    if ((this.get('currentRouteName').indexOf("vm") != -1) || (this.get('currentRouteName').indexOf("node") != -1)) {
+    if ((this.get('currentRouteName').indexOf("vm") !== -1) || (this.get('currentRouteName').indexOf("node") !== -1)) {
       return true;
     } else {
       return false;

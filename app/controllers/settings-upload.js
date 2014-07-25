@@ -6,8 +6,8 @@ import event from '../utils/event';
 import xhrError from '../utils/xhr-error';
 import nova from '../models/nova';
 import application from '../models/application';
-import openrc from '/..models/openrc';
-import quantum from '/..models/quantum';
+import openrc from '../models/openrc';
+import quantum from '../models/quantum';
 import keystone from '../models/keystone';
 
 export default Ember.ArrayController.extend({

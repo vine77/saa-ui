@@ -1,4 +1,4 @@
-import health from './../utils/mappings/health';
+import health from '../utils/mappings/health';
 
 export default function(priority) {
   if (typeof priority === 'string') priority = priority.toLowerCase();

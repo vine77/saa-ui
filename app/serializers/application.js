@@ -74,7 +74,7 @@ export default DS.ActiveModelSerializer.extend({
     var json = {};
     for(var key in payload) {
       var typeName = Ember.String.singularize(key);
-      if(typeName === primaryTypeName && Ember.isArray(payload[key])) {
+      if (typeName === primaryTypeName && Ember.isArray(payload[key])) {
         json[typeName] = payload[key][0];
         if (payload[key].length > 1) {
           json['_' + key] = payload[key].slice(1);

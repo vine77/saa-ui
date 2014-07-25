@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ProgressBarAdjacentController from './../controllers/progress-bar-adjacent';
+import ProgressBarAdjacentController from '../controllers/progress-bar-adjacent';
 
 /**
  * Creates a multiple segment progress bar with independent ranges.
@@ -18,20 +18,21 @@ export default Ember.Component.extend({
   styleBinding: 'width:30px;',
   classNames: ['progress-bar-adjacent-container'],
   bars: function() {
-    // Get the max total.
+    // Get the max total
     var i = 1;
+    var min, max, current, label;
     while (i <= this.get('numberOfBars')) {
-      var max = this.get('barMax' + i);
+      max = this.get('barMax' + i);
       this.set('maxTotal', parseInt(this.get('maxTotal')) + parseInt(max));
       i++;
     }
     var returnBars = [];
-    var i = 1;
+    i = 1;
     while (i <= this.get('numberOfBars')) {
-      var min = this.get('barMin' + i);
-      var max = this.get('barMax' + i);
-      var current = this.get('barValue' + i);
-      var label = this.get('barLabel' + i);
+      max = this.get('barMax' + i);
+      min = this.get('barMin' + i);
+      current = this.get('barValue' + i);
+      label = this.get('barLabel' + i);
       returnBars.push(
         ProgressBarAdjacentController.create({
           min: min,

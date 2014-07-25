@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import Health from '../utils/mappings/health';
-import mtWilson from '../models/mtWilson';
+import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
 import openrc from '../models/openrc';
 import quantum from '../models/quantum';
@@ -14,7 +14,6 @@ export default Ember.Controller.extend({
   isMtWilsonInstalledBinding: Ember.computed.alias('mtWilson.isInstalled'),
   isMtWilsonSupportedBinding: Ember.computed.alias('mtWilson.isSupported'),
   init: function() {
-    var self = this;
     this._super();
     this.autoRefresh();
     this.resizeHandler();
@@ -38,7 +37,7 @@ export default Ember.Controller.extend({
     return health === Health.SUCCESS || health === Health.INFO || health === Health.WARNING;
   }.property('controllers.statuses.health'),
   isConfigured: function() {
-    return nova.get('exists') && && openrc.get('exists');
+    return nova.get('exists') && openrc.get('exists');
   }.property('nova.exists', 'openrc.exists'),
   isEnabled: function() {
     return this.get('isHealthy') && this.get('isConfigured');

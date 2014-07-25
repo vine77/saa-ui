@@ -22,14 +22,13 @@ export default DS.ActiveModelAdapter.extend({
     @param jqXHR
     @returns error
   */
-
   ajaxError: function(jqXHR) {
     if (jqXHR && jqXHR.status === 401) {
-      var currentPath = App.route.controllerFor('application').get('currentPath');
+      var currentPath = window.App.route.controllerFor('application').get('currentPath');
       log(jqXHR.status + ' error caught by ajaxError.', jqXHR);
       if (currentPath !== 'login') {
         notify('Please log back in.', Health.ERROR, 'Unauthorized.');
-        App.route.controllerFor('application').send('redirectToLogin', currentPath);
+        window.App.route.controllerFor('application').send('redirectToLogin', currentPath);
       }
     } else if (jqXHR && jqXHR.status === 422) {
       var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)['errors'];

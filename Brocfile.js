@@ -23,11 +23,7 @@ app.import('vendor/d3/d3.js');
 app.import('vendor/mousetrap/mousetrap.js');
 app.import('vendor/jspdf/dist/jspdf.min.js');
 app.import('vendor/filesaver/FileSaver.js');
-app.import('vendor/natural-sort/naturalSort.js', {
-  exports: {
-    'natural-sort': ['default']
-  }
-});
+app.import('vendor/natural-sort/naturalSort.js');
 
 trees.push(pickFiles('vendor', {
   srcDir: '/font-awesome/font',

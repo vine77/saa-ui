@@ -11,7 +11,8 @@ export default Ember.ArrayController.extend({
     this._super();
     var self = this;
     // Generate an itemController for this ArrayController using conventional naming
-    App[self.get('parent').capitalize() + 'ColumnController'] = Ember.ObjectController.extend({
+    // TODO: Migrate away from global App
+    window.App[self.get('parent').capitalize() + 'ColumnController'] = Ember.ObjectController.extend({
       needs: [self.get('parent')],
       isSorted: function() {
         return this.get('sortBy') === this.get('controllers.' + self.get('parent') + '.sortProperty');

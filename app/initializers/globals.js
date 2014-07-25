@@ -5,6 +5,6 @@ export default {
   name: 'globals',
   initialize: function(container, application) {
     if (typeof App === 'undefined') App = {};
-    App.selectTab = selectTab;
+    window.App.selectTab = selectTab;
   }
 };

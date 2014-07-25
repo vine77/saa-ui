@@ -1,13 +1,13 @@
 import Ember from 'ember';
-import FilterableMixin from './../mixins/filterable';
-import SortableMixin from './../mixins/sortable';
+import FilterableMixin from '../mixins/filterable';
+import SortableMixin from '../mixins/sortable';
 import Health from '../utils/mappings/health';
 import Mode from '../utils/mappings/mode';
 import event from '../utils/event';
 import readableSize from '../utils/readable-size';
 import pdfReport from '../utils/pdf-report';
 import xhrError from '../utils/xhr-error';
-import mtWilson from '../models/mtWilson';
+import mtWilson from '../models/mt-wilson';
 import application from '../models/application';
 
 export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {

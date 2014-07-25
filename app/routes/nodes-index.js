@@ -5,3 +5,4 @@ export default Ember.Route.extend({
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
   }
+});

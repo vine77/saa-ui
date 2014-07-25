@@ -1,3 +1,3 @@
 import VmController from './vm';
 
-export VmController.extend();
+export default VmController.extend();

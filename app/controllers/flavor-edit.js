@@ -58,7 +58,6 @@ export default Ember.ObjectController.extend({
       this.set('isFlavorEditing', true);
       var flavor = this.get('model');
       var sla = flavor.get('sla');
-      var slos = (sla) ? sla.get('slos') : [];
       if (sla && sla.get('isDirty')) {
         sla.save().then(function() {
           return flavor.save();

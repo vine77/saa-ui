@@ -33,7 +33,7 @@ export default Ember.ObjectController.extend({
   }.property('node.isAssured', 'node.isMonitored', 'node.samRegistered', 'node.isScheduled', 'node.isTrustRegistered'),
   additionalListItems: function() {
     var additionalListItems = [];
-    if (this.get('method') == 'schedule') {
+    if (this.get('method') === 'schedule') {
       if (this.get('node') && !this.get('node.isScheduled')) {
         this.get('node.socketsEnum').forEach( function(item, index, enumerable) {
           additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode '+item+'}}><i class="icon-magnet"></i> Place VMs on Socket '+item+'</a></li>');
@@ -49,7 +49,7 @@ export default Ember.ObjectController.extend({
   }.property('node.socketsEnum.@each', 'node.isScheduled'),
   actions: {
     performAction: function(method, contextNode, socket) {
-      if (method == 'schedule') {
+      if (method === 'schedule') {
         contextNode.get('parentController').send(method, contextNode, socket);
       } else {
         contextNode.get('parentController').send(method, contextNode);
