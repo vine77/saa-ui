@@ -14,7 +14,7 @@ export default Ember.ObjectController.extend({
   }.property('model.@each', 'model.value'),
   isIP: function() {
     var ipValue = this.get('model.default_value');
-    var ipPattern = '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$';
+    var ipPattern = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
     var ipArray = ipValue.match(ipPattern);
     return Ember.isEmpty(ipArray);
   }.property('model.@each'),

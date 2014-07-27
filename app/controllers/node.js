@@ -117,37 +117,32 @@ export default Ember.ObjectController.extend({
   }.property('nodeActions.@each'),
 
   updateKibana: function() {
-    var self = this;
     if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
     var nodeId = ((this.get('id'))?this.get('id').toString():'');
-
+    var fieldId, newFieldId;
     if (this.get('isSelected')) {
       this.get('controllers.logBar.kibanaNodesQuery').push('host_id: \"'+nodeId+'\"');
-      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
-      var newFieldId = filterSrv.set({
+      fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
+      newFieldId = filterSrv.set({
         type:'querystring',
         mandate:'must',
         query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
       }, fieldId);
-
       this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
       dashboard.refresh();
-
     } else {
-
       var inArray = Ember.$.inArray('host_id: \"'+nodeId+'\"', this.get('controllers.logBar.kibanaNodesQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaNodesQuery').removeAt(inArray);
-        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
-        var newFieldId = filterSrv.set({
+        fieldId = ((this.get('controllers.logBar.kibanaFieldIds.nodes') !== null)?this.get('controllers.logBar.kibanaFieldIds.nodes'):undefined);
+        newFieldId = filterSrv.set({
           type:'querystring',
           mandate:'must',
           query:"(" + this.get('controllers.logBar.kibanaNodesQuery').join(' OR ') + ")"
         }, fieldId);
         this.set('controllers.logBar.kibanaFieldIds.nodes', newFieldId);
-
         if (this.get('controllers.logBar.kibanaNodesQuery').length < 1) {
           filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.nodes'));
           this.set('controllers.logBar.kibanaFieldIds.nodes', null);
@@ -156,7 +151,6 @@ export default Ember.ObjectController.extend({
       }
     }
   }.observes('isSelected'),
-
   percentOfMemory: function() {
     return Math.round(100 * parseFloat(readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( readableSizeToBytes(this.get('capabilities.memory_size'))));
   }.property('utilization.memory', 'memory.max'),
@@ -210,7 +204,7 @@ export default Ember.ObjectController.extend({
     }
   }.property('schedulerMark', 'isScheduled'),
   isHealthy: function() {
-    return (this.get('status.health') == Health.SUCCESS) || (this.get('status.health') == Health.INFO);
+    return (this.get('status.health') === Health.SUCCESS) || (this.get('status.health') === Health.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
@@ -283,7 +277,7 @@ export default Ember.ObjectController.extend({
         message += '<li> TPM Enabled = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
         message += '<li> Tboot Measured Launch = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
         message += '<li> Trust Agent </li>';
-        message += '<ul>'
+        message += '<ul>';
           message += '<li> Installed = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
           message += '<li> Running = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
           message += '<li> Paired = ' + codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
@@ -307,7 +301,7 @@ export default Ember.ObjectController.extend({
     if (this.get('utilization.scu_current') === 0 || isEmpty(this.get('utilization.scu_current'))) {
       return 'display:none;';
     } else {
-      percent = rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
+      var percent = rangeToPercentage(this.get('utilization.scu_current'), 0, this.get('utilization.scu_max'));
       return 'width:' + percent + '%;';
     }
   }.property('utilization.scu_current', 'utilization.scu_max'),
@@ -339,7 +333,7 @@ export default Ember.ObjectController.extend({
     if (this.get('contention.system.llc.value') === 0 || isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
-      percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
+      var percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
       return 'width:' + percent + '%;';
     }
   }.property('contention.system.llc.value'),
@@ -386,16 +380,16 @@ export default Ember.ObjectController.extend({
   }.observes('isExpanded'),
   graphTimeAgoValue: '-1h',
   isGraphTimeAgoHour: function() {
-    return this.get('graphTimeAgoValue') == '-1h';
+    return this.get('graphTimeAgoValue') === '-1h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoDay: function() {
-    return this.get('graphTimeAgoValue') == '-24h';
+    return this.get('graphTimeAgoValue') === '-24h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoWeek: function() {
-    return this.get('graphTimeAgoValue') == '-168h';
+    return this.get('graphTimeAgoValue') === '-168h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoMonth: function() {
-    return this.get('graphTimeAgoValue') == '-672h';
+    return this.get('graphTimeAgoValue') === '-672h';
   }.property('graphTimeAgoValue'),
 
   actions: {

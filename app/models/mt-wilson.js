@@ -65,7 +65,7 @@ export default Ember.Object.extend({
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'POST',
-      dataType: "json",
+      dataType: 'json',
       complete: function(xhr, textStatus) {
         log(xhr.status + ' response from POST /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
@@ -104,6 +104,7 @@ export default Ember.Object.extend({
             // Mt. Wilson install failed to start.
             self.set('isInstalled', false);
             self.set('isInstalling', false);
+            break;
           default:
             // Unhandled response code
             event('Trust Server install failed to start.', Health.ERROR);
@@ -118,7 +119,7 @@ export default Ember.Object.extend({
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/mtwilson/install',
       type: 'DELETE',
-      dataType: "json",
+      dataType: 'json',
       complete: function(xhr, textStatus) {
         log(xhr.status + ' response from DELETE /api/v2/mtwilson/install: ' + xhr.statusText);
         switch (xhr.status) {
@@ -127,6 +128,8 @@ export default Ember.Object.extend({
             event('Trust Server successfully uninstalled.', Health.SUCCESS);
             break;
           case 500:
+            event('Trust Server failed to uninstall.', Health.ERROR);
+            break;
           default:
             event('Trust Server failed to uninstall.', Health.ERROR);
         }

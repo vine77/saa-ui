@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import health from './mappings/health';
 import priorityToType from './priority-to-type';
 

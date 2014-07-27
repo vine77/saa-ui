@@ -6,7 +6,7 @@ export default Ember.Object.extend({
   longTitle: 'Service Assurance Administrator',
   title: 'SAA',
   year: function() {
-    return moment().format('YYYY');
+    return window.moment().format('YYYY');
   }.property(),
   apiDomain: function() {
     return localStorage.apiDomain;

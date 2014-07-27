@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 import FormController from './form';
 import getApiDomain from '../utils/get-api-domain';
 import xhrError from '../utils/xhr-error';
@@ -88,9 +89,8 @@ export default FormController.extend({
         self.transitionToAttempted();
       }, function(xhr) {
         self.set('isPending', false);
-        if (xhr instanceof DS.InvalidError) {  // status == 422
+        if (xhr.status === 422 || xhr instanceof DS.InvalidError) {
           var csrfToken = xhr.errors.message.csrf_token;
-          var setProfile = xhr.errors.message.set_profile;
           self.set('csrfToken', csrfToken);
           self.transitionToRoute('profile', self.get('username'));
         } else if (xhr.status === 401) {

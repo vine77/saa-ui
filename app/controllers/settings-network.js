@@ -5,19 +5,20 @@ import network from '../models/network';
 export default Ember.Controller.extend({
   isActionPending: false,
   networkTypeText: function() {
-    if (this.get('networkType.setting') == Network.NEUTRON) {
+    if (this.get('networkType.setting') === Network.NEUTRON) {
       return 'Neutron';
-    } else if (this.get('networkType.setting') == Network.NOVA) {
+    } else if (this.get('networkType.setting') === Network.NOVA) {
       return 'Nova';
     }
   }.property('networkType.setting'),
   actions: {
     save: function() {
       var self = this;
-      var externalIpChanged = network.get('external.address') != network.get('serverExternal.address');
-      var externalChangedToDynamic = (network.get('external.dhcp') && network.get('external.dhcp') != network.get('serverExternal.dhcp'));
+      var externalIpChanged = network.get('external.address') !== network.get('serverExternal.address');
+      var externalChangedToDynamic = (network.get('external.dhcp') && network.get('external.dhcp') !== network.get('serverExternal.dhcp'));
+      var verify;
       if (externalChangedToDynamic) {
-        var verify = confirm('You have changed your external interface to use DHCP, so your IP address may change, disconnecting this application, and you will have to navigate to the new location. Are you sure you want to proceed?');
+        verify = confirm('You have changed your external interface to use DHCP, so your IP address may change, disconnecting this application, and you will have to navigate to the new location. Are you sure you want to proceed?');
         if (verify) {
           this.set('isActionPending', true);
           network.save().then(function() {
@@ -27,7 +28,7 @@ export default Ember.Controller.extend({
           });
         }
       } else if (externalIpChanged) {
-        var verify = confirm('You have changed your external interface\'s IP address, so this application will become disconnected and you will have to navigate to the new location. Are you sure you want to proceed?');
+        verify = confirm('You have changed your external interface\'s IP address, so this application will become disconnected and you will have to navigate to the new location. Are you sure you want to proceed?');
         if (verify) {
           this.set('isActionPending', true);
           network.save().then(function() {

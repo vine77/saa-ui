@@ -12,7 +12,7 @@ export default Ember.ObjectController.extend({
       var user = this.get('model');
       if (!this.get('oldPassword')) {
         event('Please enter all of the required fields.');
-      } else if (this.get('newPassword1') != this.get('newPassword2')) {
+      } else if (this.get('newPassword1') !== this.get('newPassword2')) {
         event('Passwords do not match. Please try again.');
         this.set('newPassword1', '');
         this.set('newPassword2', '');

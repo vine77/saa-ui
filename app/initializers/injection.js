@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import mtWilson from '../models/mt-wilson';
 import nova from '../models/nova';
 import openrc from '../models/openrc';

@@ -69,7 +69,7 @@ export default Ember.Route.extend({
           }
         }, function() {
           self.store.find('node');
-        }),
+        });
         network.check();
         self.store.find('action');
         //self.store.find('user');

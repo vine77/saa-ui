@@ -14,10 +14,10 @@ export default Ember.Controller.extend({
       type: 'GET',
       dataType: 'json'
     }).then(function(data) {
-      if (entityType == 'node') {
-        App.store.getById('node', emberId).set('graphs', associativeToNumericArray(data));
-      } else if (entityType == 'vm') {
-        App.store.getById('vm', emberId).set('graphs', associativeToNumericArray(data));
+      if (entityType === 'node') {
+        window.App.store.getById('node', emberId).set('graphs', associativeToNumericArray(data));
+      } else if (entityType === 'vm') {
+        window.App.store.getById('vm', emberId).set('graphs', associativeToNumericArray(data));
       }
     });
   }

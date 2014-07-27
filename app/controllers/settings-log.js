@@ -8,13 +8,13 @@ export default Ember.Controller.extend({
   isActionPending: false,
   isDeleteActionPending: false,
   unavailableSpaceWidth: function() {
-    var percentage = (this.get('model.configuredSize') == 0) ? 0 : (this.get('model.actualSize')/this.get('model.configuredSize')) * 100;
+    var percentage = (this.get('model.configuredSize') === 0) ? 0 : (this.get('model.actualSize')/this.get('model.configuredSize')) * 100;
     return 'width:' + percentage + '%;';
   }.property('model.configuredSize', 'model.actualSize'),
   actions: {
     deleteLogs: function() {
       var self = this;
-      verify = confirm('You are about to delete all log data. Are you sure you want to continue?');
+      var verify = confirm('You are about to delete all log data. Are you sure you want to continue?');
       if (verify) {
         this.set('isDeleteActionPending', true);
         return Ember.$.ajax({

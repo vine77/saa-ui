@@ -1,5 +1,4 @@
-import Ember from 'ember';
-import health from '../mappings/health';
+import Health from '../mappings/health';
 
 /**
  * Convert string representation of priority to corresponding integer codes
@@ -13,36 +12,36 @@ export default function(type) {
     // Unknown
     case 'unknown':
     case 'n/a':
-    case health.UNKNOWN:
-    case health.UNKNOWN.toString():
-      return health.UNKNOWN;
+    case Health.UNKNOWN:
+    case Health.UNKNOWN.toString():
+      return Health.UNKNOWN;
     // Success
     case 'success':
     case 'good':
-    case health.SUCCESS:
-    case health.SUCCESS.toString():
-      return health.SUCCESS;
+    case Health.SUCCESS:
+    case Health.SUCCESS.toString():
+      return Health.SUCCESS;
     // Info
     case 'info':
-    case health.INFO:
-    case health.INFO.toString():
-      return health.INFO;
+    case Health.INFO:
+    case Health.INFO.toString():
+      return Health.INFO;
     // Warning
     case 'warning':
-    case health.WARNING:
-    case health.WARNING.toString():
-      return health.WARNING;
+    case Health.WARNING:
+    case Health.WARNING.toString():
+      return Health.WARNING;
     // Error
     case 'error':
     case 'danger':
     case 'important':
     case 'bad':
     case 'critical':
-    case health.ERROR:
-    case health.ERROR.toString():
-    case health.CRITICAL:
-    case health.CRITICAL.toString():
-      return health.ERROR;
+    case Health.ERROR:
+    case Health.ERROR.toString():
+    case Health.CRITICAL:
+    case Health.CRITICAL.toString():
+      return Health.ERROR;
     default:
       return null;
   }

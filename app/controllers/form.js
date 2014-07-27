@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  id:'',
+  id: '',
   message: '',
   validated_fields: [],
-  reset_fields:[],
+  reset_fields: [],
   actions: {
     removeNotification: function() {
       Ember.$(this.id + '-notification').hide();
@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     }
   },
   showTooltip: function(field) {
-    field_id = this.id + '-' + field;
+    var field_id = this.id + '-' + field;
     Ember.$(field_id).tooltip({
       title: 'Please enter ' + this.fieldname[field] + '.',
       placement: 'right',
@@ -20,7 +20,8 @@ export default Ember.Controller.extend({
     }).tooltip('show');
   },
   hideTooltips: function() {
-    for (var i=0; i< this.validated_fields.length; i++) {
+    var field_id;
+    for (var i = 0; i< this.validated_fields.length; i++) {
       field_id = this.id + '-' + this.validated_fields[i];
       if (typeof(Ember.$(field_id).data('tooltip')) !== 'undefined') {
         Ember.$(field_id).tooltip('destroy');
@@ -46,7 +47,8 @@ export default Ember.Controller.extend({
     }
   },
   validate: function(obj) {
-    for (var i=0; i < this.validated_fields.length; i++) {
+    var field;
+    for (var i = 0; i < this.validated_fields.length; i++) {
       field = this.validated_fields[i];
       if (!obj[field]) {
         throw {
@@ -63,7 +65,7 @@ export default Ember.Controller.extend({
       this.validate(record);
       this.setDisable(true);
     } catch (e) {
-      if (e.name == 'ValidationError') {
+      if (e.name === 'ValidationError') {
         this.showTooltip(e.field);
         return false;
       }
@@ -72,8 +74,9 @@ export default Ember.Controller.extend({
     return true;
   },
   reset_form: function() {
+    var field;
     this.setDisable(false);
-    for (var i=0; i < this.reset_fields.length; i++) {
+    for (var i = 0; i < this.reset_fields.length; i++) {
       field = this.reset_fields[i];
       this.set(field, '');
     }

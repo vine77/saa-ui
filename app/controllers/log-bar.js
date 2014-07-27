@@ -25,8 +25,8 @@ export default Ember.ObjectController.extend({
 
     var newFieldId = filterSrv.set({
       type: 'time',
-      from: moment.utc().subtract('days', 1).toDate(),
-      to: moment.utc(moment.utc(Date.now()).toDate()).toDate(),
+      from: window.moment.utc().subtract('days', 1).toDate(),
+      to: window.moment.utc(window.moment.utc(Date.now()).toDate()).toDate(),
       field: '@timestamp'
     });
 
@@ -91,7 +91,7 @@ export default Ember.ObjectController.extend({
   criticalitiesFiltered: function() {
     var returnArray = [];
     this.get('controllers.criticalities').forEach( function(item, index, enumerable) {
-      if ((isCriticalityPlus(item) == false) && (item.get('id') != 'context')) {
+      if ((isCriticalityPlus(item) === false) && (item.get('id') !== 'context')) {
         returnArray.push(item);
       }
     });
@@ -115,9 +115,9 @@ export default Ember.ObjectController.extend({
         this.get('controllers.criticalities').setEach('isSelected', false);
         if (isCriticalityPlus(criticalitySelected)) {
           this.get('controllers.criticalities').forEach(function(item, index, enumerable) {
-            //previous item, should be current criticality without +
-            nonPlusCriticalitySelected = criticalitySelected.get('id') - 1;
-            if ((index >= criticalitySelected.get('id')) || (index == nonPlusCriticalitySelected)) {
+            // previous item, should be current criticality without +
+            var nonPlusCriticalitySelected = criticalitySelected.get('id') - 1;
+            if ((index >= criticalitySelected.get('id')) || (index === nonPlusCriticalitySelected)) {
               item.set('isSelected', true);
             }
           });
@@ -150,20 +150,19 @@ export default Ember.ObjectController.extend({
   },
   advancedSearch: function(model) {
     var controller = this;
-    modal = Ember.View.create({
+    var modal = Ember.View.create({
       templateName: "logAdvancedSearch-modal",
       controller: controller,
       content: model,
       modalHide: function() {
         Ember.$('#advanced-search-modal').modal('hide');
-        var context = this;
-        //setTimeout(context.remove, 3000);
         this.remove(); //destroys the element
       },
       didInsertElement: function() {
         Ember.$('#advanced-search-modal').modal('show');
       }
-    }).appendTo('body');
+    });
+    modal.appendTo('body');
   },
 
   actions: {

@@ -38,11 +38,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     }, 0);
   }.property('model.@each.vcpus.max'),
   totalVcpusMessage: function() {
-    var maxVcpus = (this.get('maxVcpus') == 0) ? 'N/A' : this.get('maxVcpus');
+    var maxVcpus = (this.get('maxVcpus') === 0) ? 'N/A' : this.get('maxVcpus');
     return this.get('totalVcpus') + ' out of ' + maxVcpus + ' vCPUs';
   }.property('totalVcpus', 'maxVcpus'),
   totalVcpusWidth: function() {
-    var percentage = (this.get('maxVcpus') == 0) ? 0 : (this.get('totalVcpus')/this.get('maxVcpus')) * 100;
+    var percentage = (this.get('maxVcpus') === 0) ? 0 : (this.get('totalVcpus')/this.get('maxVcpus')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalVcpus', 'maxVcpus'),
   totalRam: function() {
@@ -66,11 +66,11 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     return readableSize(this.get('totalRam') * 1048576) + ' out of ' + readableSize(this.get('maxRam') * 1048576);
   }.property('totalRam', 'maxRam'),
   totalRamWidth: function() {
-    var percentage = (this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100;
+    var percentage = (this.get('maxRam') === 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalRam', 'maxRam'),
   percentOfRam: function() {
-    return Math.round((this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100);
+    return Math.round((this.get('maxRam') === 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100);
   }.property('totalRam', 'maxRam'),
 
   numberOfPages: function() {

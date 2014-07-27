@@ -3,33 +3,32 @@ import Ember from 'ember';
 export default Ember.ObjectController.extend({
   progressBarColors: ['progress-info', 'progress-success', 'progress-warning', 'progress-danger'],
   progressBarColor: function() {
-    if (this.get('barCount') == 1) {
+    if (this.get('barCount') === 1) {
       return this.get('progressBarColors')[0];
-    } else if (this.get('barCount') % 2 == 0) {
+    } else if (this.get('barCount') % 2 === 0) {
       return this.get('progressBarColors')[1];
-    } else if (this.get('barCount') % 3 == 0) {
+    } else if (this.get('barCount') % 3 === 0) {
       return this.get('progressBarColors')[2];
-    } else if (this.get('barCount') % 4 == 0) {
+    } else if (this.get('barCount') % 4 === 0) {
       return this.get('progressBarColors')[3];
     }
   }.property('progressBarColors', 'barCount'),
   progressBarBackground: function() {
-   if (this.get('barCount') == 1) {
+   if (this.get('barCount') === 1) {
       //info -> #4bb1cf -> rgba(75, 177, 207, 0.25)
       return 'rgba(75, 177, 207, 0.25)';
-    } else if (this.get('barCount') % 2 == 0) {
+    } else if (this.get('barCount') % 2 === 0) {
       // success -> #5eb95e -> rgba(94, 185, 94, 0.25)
       return 'rgba(94, 185, 94, 0.25)';
-    } else if (this.get('barCount') % 3 == 0) {
+    } else if (this.get('barCount') % 3 === 0) {
       // warning -> #faa732 -> rgba(250, 167, 50, 0.25)
       return 'rgba(250, 167, 50, 0.25)';
-    } else if (this.get('barCount') % 4 == 0) {
+    } else if (this.get('barCount') % 4 === 0) {
       // danger -> #dd514c ->
       return 'rgba(221, 81, 76, 0.25)';
     }
   }.property('barCount'),
   totalWidth: function() {
-    globalThis = this;
     return (parseInt(this.get('max')) / parseInt(this.get('maxTotal'))) * 100;
   }.property('max', 'maxTotal'),
   currentPercentage: function() {
@@ -43,10 +42,10 @@ export default Ember.ObjectController.extend({
     }
   }.property('currentPercentage'),
   isLastBar: function() {
-    return (this.get('barCount') == this.get('numberOfBars'));
+    return (this.get('barCount') === this.get('numberOfBars'));
   }.property('numberOfBars', 'barCount'),
   isFirstBar: function() {
-    return (this.get('barCount') == 1);
+    return (this.get('barCount') === 1);
   }.property('barCount'),
   containerStyles: function() {
     return 'width:' + this.get('totalWidth') + '%; ' +

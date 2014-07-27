@@ -1,5 +1,4 @@
-import Ember from 'ember';
-import Operational from '../mappings/Operational';
+import Operational from '../mappings/operational';
 
 /**
  * Convert string representation of Operational status to corresponding integer code
@@ -7,9 +6,9 @@ import Operational from '../mappings/Operational';
  * @param {string} code A string representation of Operational status
  * @return {number} The corresponding integer code for that Operational status
  */
-export default function(Operational) {
-  if (typeof Operational === 'string') Operational = Operational.toLowerCase();
-  switch (Operational) {
+export default function(operational) {
+  if (typeof operational === 'string') operational = operational.toLowerCase();
+  switch (operational) {
     case Operational.UNKNOWN:
     case Operational.UNKNOWN.toString():
     case 'unknown':

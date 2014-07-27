@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import Mode from '../utils/mappings/mode';
 
@@ -10,7 +11,7 @@ export default DS.Model.extend({
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
   samRegistered: function() {
-    return this.get('status.mode') == Mode.MONITORED || this.get('status.mode') == Mode.ASSURED;
+    return this.get('status.mode') === Mode.MONITORED || this.get('status.mode') === Mode.ASSURED;
   }.property('status.mode'),
   isAssured: Ember.computed.equal('status.mode', Mode.ASSURED),
   schedulerMark: DS.attr('number'),
@@ -30,11 +31,12 @@ export default DS.Model.extend({
 
   cpuSort: function() {
     var mhz = this.get('capabilities.cpu_frequency');
+    var cpuFrequency;
     if (!!mhz) {
       var ghz = mhz.split(' ')[0] / 1000;
-      var cpuFrequency = ghz + 'GHz';
+      cpuFrequency = ghz + 'GHz';
     } else {
-      var cpuFrequency = '';
+      cpuFrequency = '';
     }
     return (parseFloat(cpuFrequency) * 100 + '.' + parseFloat(this.get('capabilities.cores_per_socket')) * 50 + '.' +  parseFloat(this.get('capabilities.sockets')));
   }.property('capabilities.cpu_frequency', 'capabilities.cores_per_socket', 'capabilities.sockets'),

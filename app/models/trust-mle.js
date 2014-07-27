@@ -3,7 +3,6 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   attestationType: DS.attr('string'),
   description: DS.attr('string'),
-  mleManifests: DS.attr('string'),
   mleManifests: DS.attr(),
   mleType: DS.attr('string'),
   name: DS.attr('string'),

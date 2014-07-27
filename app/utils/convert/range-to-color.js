@@ -1,5 +1,3 @@
-import Ember from 'ember';
-
 /**
  * Convert a value to a color given the range of possible values
  *
@@ -11,30 +9,31 @@ import Ember from 'ember';
  * @return {string} A CSS color string, e.g. 'hsl(60, 100%, 100%)'
  */
 export default function(value, minimum, maximum, warning, danger) {
+  var range, percentage, hue;
   if (typeof value !== 'number') {
     return null;
   } else if (typeof minimum === 'number' && typeof maximum === 'number' && typeof warning === 'undefined' && typeof danger === 'undefined') {
-    var range = maximum - minimum;
-    var percentage = value/range;
+    range = maximum - minimum;
+    percentage = value/range;
     // Hues of green through red are 120 through 0
-    var hue = -1 * (percentage * 120) + 120;
+    hue = -1 * (percentage * 120) + 120;
     return 'hsl(' + hue + ', 100%, 45%)';
   } else if (typeof minimum === 'number' && typeof maximum === 'number' && typeof warning === 'number' && typeof danger === 'number' && minimum <= warning && warning <= danger && danger <= maximum && value >= minimum && value <= maximum) {
     if (value <= warning) {
       // Hues of green through yellow are 120 through 60
-      var range = warning - minimum;
-      var percentage = value/range;
-      var hue = -1 * (percentage * 60) + 120;
+      range = warning - minimum;
+      percentage = value/range;
+      hue = -1 * (percentage * 60) + 120;
     } else if (value <= danger) {
       // Hues of yellow through dark orange are 60 through 30
-      var range = danger - warning;
-      var percentage = (value - warning)/range;
-      var hue = -1 * (percentage * 30) + 60;
+      range = danger - warning;
+      percentage = (value - warning)/range;
+      hue = -1 * (percentage * 30) + 60;
     } else {
       // Hues of dark orange through red orange are 30 through 0
-      var range = maximum - danger;
-      var percentage = (value - danger)/range;
-      var hue = -1 * (percentage * 30) + 30;
+      range = maximum - danger;
+      percentage = (value - danger)/range;
+      hue = -1 * (percentage * 30) + 30;
     }
     return 'hsl(' + hue + ', 100%, 45%)';
   } else {

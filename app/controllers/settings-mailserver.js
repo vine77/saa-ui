@@ -4,7 +4,7 @@ import event from '../utils/event';
 import xhrError from '../utils/xhr-error';
 
 // TODO: Migrate Sunil's authentication code
-export default = Ember.ObjectController.extend({
+export default Ember.ObjectController.extend({
   standalone: true,
   actions: {
     save: function() {

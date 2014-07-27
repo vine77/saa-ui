@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import FormController from './form';
 import Health from '../utils/mappings/health';
 import notify from '../utils/notify';

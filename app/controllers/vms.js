@@ -2,7 +2,6 @@ import Ember from 'ember';
 import FilterableMixin from '../mixins/filterable';
 import SortableMixin from '../mixins/sortable';
 import notify from '../utils/notify';
-import readableSizeToBytes from '../utils/readable-size-to-bytes';
 import pdfReport from '../utils/pdf-report';
 import xhrError from '../utils/xhr-error';
 
@@ -70,6 +69,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         xhrError(xhr, 'Failed to load VM trust report.');
       });
     },
+    /*
     renderTreemap: function() {
       if (this.isTreemapVisible) {
         Ember.$('.treemap').slideUp();
@@ -140,5 +140,6 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
         .style('background', function(d) { return d.children ? null : color(d.nodeName); })
         .html(function(d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
     }
+    */
   }
 });

@@ -16,7 +16,7 @@ export default Ember.ObjectController.extend({
   nodeTypeClass: function() {
     return 'icon-' + this.get('nodeType');
   }.property('nodeType'),
-  overallHealth: function() {
+  overallHealth: function(health, operational) {
      return overallHealth(health, operational);
   }.property(),
   healthMessage: function() {

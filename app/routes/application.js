@@ -4,17 +4,16 @@ import ModalView from '../views/modal';
 export default Ember.Route.extend({
   init: function() {
     // TODO: Use injections instead of globals
-    if (typeof App === 'undefined') App = {};
-    App.store = this.store;
-    App.route = this;
+    if (typeof window.App === 'undefined') window.App = {};
+    window.App.store = this.store;
+    window.App.route = this;
   },
   beforeModel: function() {
-    if (!Modernizr.csstransitions) {
+    if (!window.Modernizr.csstransitions) {
       this.transitionTo('blocked');
     }
   },
   model: function() {
-    var self = this;
     return this.controllerFor('statuses').updateCurrentStatus().then(null, function() {
       // Status API is not responding
       var confirmed = confirm('The Status API is not responding. Would you like to try to load the application again?');

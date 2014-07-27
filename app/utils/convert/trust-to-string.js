@@ -1,18 +1,17 @@
-import Ember from 'ember';
-import trust from '../mappings/trust'
+import Trust from '../mappings/trust';
 
 export default function(value) {
   switch (value) {
-    case trust.UNKNOWN:
+    case Trust.UNKNOWN:
     case '0':
       return 'unknown';
-    case trust.UNTRUSTED:
+    case Trust.UNTRUSTED:
     case '1':
       return 'untrusted';
-    case trust.TRUSTED:
+    case Trust.TRUSTED:
     case '2':
       return 'trusted';
-    case trust.UNREGISTERED:
+    case Trust.UNREGISTERED:
     case '3':
       return 'unregistered';
     default:

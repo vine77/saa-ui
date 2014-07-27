@@ -8,7 +8,7 @@ export default Ember.VirtualListView.extend({
   },
   height: function() {
     var listViewHeight = this.get('controller.controllers.application.height') - 205;
-    var pageSize = Math.round(listViewHeight/this.get('rowHeight'));
+    //var pageSize = Math.round(listViewHeight/this.get('rowHeight'));
     return listViewHeight;
   }.property('controller.controllers.application.height'),
   pageSize: function() {

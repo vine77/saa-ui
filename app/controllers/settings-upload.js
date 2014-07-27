@@ -20,13 +20,13 @@ export default Ember.ArrayController.extend({
   openrcSuccess: Ember.computed.alias('openrc.success'),
   quantumExists: Ember.computed.alias('quantum.exists'),
   quantumSuccess: Ember.computed.alias('quantum.success'),
-  keystoneExists: Ember.computed.alias('network.exists'),
-  keystoneSuccess: Ember.computed.alias('network.success'),
+  keystoneExists: Ember.computed.alias('keystone.exists'),
+  keystoneSuccess: Ember.computed.alias('keystone.success'),
   isChangingFiles: false,
   isActionPending: false,
   networkType: {},
   isNeutronConfigRequired: function() {
-    var isNeutronConfigRequired = this.get('networkType.setting') == Network.NEUTRON
+    var isNeutronConfigRequired = this.get('networkType.setting') === Network.NEUTRON;
     return isNeutronConfigRequired;
   }.property('networkType.setting'),
   showButtons: function() {
@@ -55,7 +55,6 @@ export default Ember.ArrayController.extend({
         return;
       }
       // Prompt user with confirmation dialog if app is already configured
-      var self = this;
       var confirmUpload = true;
       if (this.get('isEnabled')) confirmUpload = confirm('Are you sure you want to upload new configuration files and restart ' + application.get('title') + '?');
       if (confirmUpload) {
@@ -67,7 +66,7 @@ export default Ember.ArrayController.extend({
         }).then(function() {
           if (self.get('isNeutronConfigRequired') && isQuantumSpecified) return quantum.upload();
         }).then(function() {
-          if (isKeystoneSpecified) return network.upload();
+          if (isKeystoneSpecified) return keystone.upload();
         }).then(function() {
           return nova.start();
         }).then(function() {
@@ -88,7 +87,7 @@ export default Ember.ArrayController.extend({
           nova.check();
           openrc.check();
           quantum.check();
-          network.check();
+          keystone.check();
         });
       }
     },
@@ -101,7 +100,7 @@ export default Ember.ArrayController.extend({
       this.set('isChangingFiles', false);
     },
     deleteFiles: function(type) {
-      if (type == 'keystone') {
+      if (type === 'keystone') {
         //Ember.$('i.loading').removeClass('hide');
         return Ember.$.ajax({
           url: (getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
@@ -109,7 +108,7 @@ export default Ember.ArrayController.extend({
           success: function(data) {
             //Ember.$('i.loading').addClass('hide');
             event('Deleted Keystone CA certificate successfully.', Health.SUCCESS);
-            network.check();
+            keystone.check();
           },
           error: function(xhr) {
             //Ember.$('i.loading').addClass('hide');

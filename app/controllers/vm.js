@@ -17,7 +17,7 @@ export default Ember.ObjectController.extend({
   isActionPending: false,
   isSelectable: true,
   isHealthy: function() {
-    return (this.get('status.health') == Health.SUCCESS) || (this.get('status.health') == Health.INFO);
+    return (this.get('status.health') === Health.SUCCESS) || (this.get('status.health') === Health.INFO);
   }.property('status.health'),
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function() {
@@ -97,11 +97,12 @@ export default Ember.ObjectController.extend({
     }
   }.property('contention.system.llc.value'),
   contentionWidth: function() {
+    var percent;
     if (this.get('contention.system.llc.value') === 0 || isEmpty(this.get('contention.system.llc.value'))) {
       return 'display:none;';
     } else {
       percent = rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
-      return "width:"+percent+"%;";
+      return 'width:' + percent + '%;';
     }
   }.property('contention.system.llc.value'),
   contentionValueExists: function() {
@@ -208,37 +209,32 @@ export default Ember.ObjectController.extend({
   graphObserver: function() {
      return graphs.graph(this.get('id'), this.get('id'), 'vm');
   }.observes('isExpanded'),
-
   updateKibana: function() {
+    var fieldId, newFieldId;
     if (!frames['allLogsFrame'] || !frames['allLogsFrame'].angular) return;
     var filterSrv = frames['allLogsFrame'].angular.element('[ng-controller="filtering"]').scope().filterSrv;
     var dashboard = frames['allLogsFrame'].angular.element('body').scope().dashboard;
-
     if (this.get('isSelected')) {
       this.get('controllers.logBar.kibanaVmsQuery').push('vm_id: \"'+this.get('id').toString()+'\"');
-      var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
-      var newFieldId = filterSrv.set({
+      fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+      newFieldId = filterSrv.set({
         type:'querystring',
         mandate:'must',
         query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
       }, fieldId);
-
       this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
       dashboard.refresh();
-
     } else {
       var inArray = Ember.$.inArray('vm_id: \"'+this.get('id').toString()+'\"', this.get('controllers.logBar.kibanaVmsQuery'));
       if (inArray !== -1) {
         this.get('controllers.logBar.kibanaVmsQuery').removeAt(inArray);
-
-        var fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
-        var newFieldId = filterSrv.set({
+        fieldId = ((this.get('controllers.logBar.kibanaFieldIds.vms') !== null)?this.get('controllers.logBar.kibanaFieldIds.vms'):undefined);
+        newFieldId = filterSrv.set({
           type:'querystring',
           mandate:'must',
           query:"(" + this.get('controllers.logBar.kibanaVmsQuery').join(' OR ') + ")"
         }, fieldId);
         this.set('controllers.logBar.kibanaFieldIds.vms', newFieldId);
-
         if (this.get('controllers.logBar.kibanaVmsQuery').length < 1) {
           filterSrv.remove(this.get('controllers.logBar.kibanaFieldIds.vms'));
           this.set('controllers.logBar.kibanaFieldIds.vms', null);
@@ -281,16 +277,16 @@ export default Ember.ObjectController.extend({
   */
   graphTimeAgoValue: '-1h',
   isGraphTimeAgoHour: function() {
-    return this.get('graphTimeAgoValue') == '-1h';
+    return this.get('graphTimeAgoValue') === '-1h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoDay: function() {
-    return this.get('graphTimeAgoValue') == '-24h';
+    return this.get('graphTimeAgoValue') === '-24h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoWeek: function() {
-    return this.get('graphTimeAgoValue') == '-168h';
+    return this.get('graphTimeAgoValue') === '-168h';
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoMonth: function() {
-    return this.get('graphTimeAgoValue') == '-672h';
+    return this.get('graphTimeAgoValue') === '-672h';
   }.property('graphTimeAgoValue'),
 
   actions: {

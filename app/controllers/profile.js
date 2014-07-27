@@ -38,7 +38,7 @@ export default FormController.extend({
   saveProfile: function(route) {
     var self = this;
     var user = this.get('model');
-    if (this.get('newPassword1') != this.get('newPassword2')) {
+    if (this.get('newPassword1') !== this.get('newPassword2')) {
       this.showNotification('Passwords do not match. Please try again.');
       this.set('newPassword1', '');
       this.set('newPassword2', '');

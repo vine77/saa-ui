@@ -8,7 +8,7 @@ export default DS.Model.extend({
   ipAddress: DS.attr('string'),
   attestationTime: DS.attr('string'),
   attestationTimeFormatted: function() {
-    return moment(this.get('attestationTime')).format('LLL');
+    return window.moment(this.get('attestationTime')).format('LLL');
   }.property('attestationTime'),
   trustStatus: DS.attr('number'),
   trustDetails: DS.attr(),

@@ -5,7 +5,7 @@ export default DS.Model.extend({
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),
   attestation_time: DS.attr('date'),
   attestation_time_formatted: function() {
-    return moment(this.get('attestation_time')).format('LLL');
+    return window.moment(this.get('attestation_time')).format('LLL');
   }.property('attestation_time'),
   trust_status: DS.attr('number'),
   trust_details: DS.attr(),

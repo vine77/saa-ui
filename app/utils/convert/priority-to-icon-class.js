@@ -1,5 +1,4 @@
-import Ember from 'ember';
-import health from '../mappings/health';
+import Health from '../mappings/health';
 
 /**
  * Convert priority to corresponding icon class
@@ -10,28 +9,28 @@ import health from '../mappings/health';
 export default function(priority) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
-    case health.UNKNOWN:
-    case health.UNKNOWN.toString():
+    case Health.UNKNOWN:
+    case Health.UNKNOWN.toString():
     case 'unknown':
     case 'n/a':
       return 'icon-question-sign';
-    case health.SUCCESS:
-    case health.SUCCESS.toString():
+    case Health.SUCCESS:
+    case Health.SUCCESS.toString():
     case 'success':
     case 'good':
       return 'icon-ok';
-    case health.INFO:
-    case health.INFO.toString():
+    case Health.INFO:
+    case Health.INFO.toString():
     case 'info':
       return 'icon-info-sign';
-    case health.WARNING:
-    case health.WARNING.toString():
+    case Health.WARNING:
+    case Health.WARNING.toString():
     case 'warning':
       return 'icon-warning-sign';
-    case health.ERROR:
-    case health.ERROR.toString():
-    case health.CRITICAL:
-    case health.CRITICAL.toString():
+    case Health.ERROR:
+    case Health.ERROR.toString():
+    case Health.CRITICAL:
+    case Health.CRITICAL.toString():
     case 'error':
     case 'danger':
     case 'important':

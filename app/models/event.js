@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import DS from 'ember-data';
 import Health from '../utils/mappings/health';
 
 // TODO: Port to real model
@@ -13,6 +13,6 @@ export default DS.Model.extend({
     id: 1,
     message: 'Application loaded',
     priority: Health.SUCCESS,
-    timestamp: moment().valueOf()
+    timestamp: window.moment().valueOf()
   }]
 });

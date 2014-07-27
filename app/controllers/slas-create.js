@@ -22,7 +22,6 @@ export default Ember.ObjectController.extend({
       if (this.get('isSlaCreating')) return;
       this.set('isSlaCreating', true);
       var sla = this.get('model');
-      var slos = this.get('slos');
       sla.save().then(function() {
         event('Successfully created SLA "' + sla.get('name') + '".', Health.SUCCESS);
         Ember.$('.modal:visible').modal('hide');

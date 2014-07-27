@@ -22,8 +22,8 @@ export default Ember.ObjectController.extend({
       if (this.get('isSlaEditing')) return;
       this.set('isSlaEditing', true);
       var sla = this.get('model');
-      var slos = this.get('slos');
       /*
+      var slos = this.get('slos');
       sloPromises = [];
       slos.forEach(function(slo) {
         sloPromises.push(slo.save());

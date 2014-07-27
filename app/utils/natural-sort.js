@@ -1,5 +1,3 @@
-import Ember from 'ember';
-
 /**
  * Sort two inputs
  *

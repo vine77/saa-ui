@@ -7,7 +7,7 @@ export default Ember.ArrayController.extend({
     var cloudSchedulingService = this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service');
     var cloudSchedulingServiceMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'cloud_scheduling_service').get('message');
     var schedulerPluginVersion = this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version');
-    var schedulerPluginVersionMessage = cloudSchedulingService && this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version').get('message');
+    var schedulerPluginVersionMessage = schedulerPluginVersion && this.get('controllers.statuses.model').findBy('id', 'scheduler_plugin_version').get('message');
     if (!schedulerPluginVersionMessage && !schedulerPluginVersionMessage) return [{
       title: 'High Availability',
       message: 'N/A'
