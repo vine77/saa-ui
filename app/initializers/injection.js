@@ -9,37 +9,37 @@ import network from '../models/network';
 export default {
   name: 'injection',
   initialize: function(container, application) {
-    application.register('mtWilson:main', mtWilson, {instantiate: false});
-    application.inject('controller:application', 'mtWilson', 'mtWilson:main');
-    application.inject('controller:trust', 'mtWilson', 'mtWilson:main');
-    application.inject('controller:node', 'mtWilson', 'mtWilson:main');
-    application.inject('controller:settings-trust', 'mtWilson', 'mtWilson:main');
-    application.inject('controller:vm', 'mtWilson', 'mtWilson:main');
+    application.register('models:mtWilson', mtWilson, {instantiate: false});
+    application.inject('controller:application', 'mtWilson', 'models:mtWilson');
+    application.inject('controller:trust', 'mtWilson', 'models:mtWilson');
+    application.inject('controller:node', 'mtWilson', 'models:mtWilson');
+    application.inject('controller:settings-trust', 'mtWilson', 'models:mtWilson');
+    application.inject('controller:vm', 'mtWilson', 'models:mtWilson');
 
-    application.register('nova:main', nova, {instantiate: false});
-    application.inject('controller:application', 'nova', 'nova:main');
-    application.inject('controller:settings-upload', 'nova', 'nova:main');
+    application.register('models:nova', nova, {instantiate: false});
+    application.inject('controller:application', 'nova', 'models:nova');
+    application.inject('controller:settings-upload', 'nova', 'models:nova');
 
-    application.register('openrc:main', openrc, {instantiate: false});
-    application.inject('controller:application', 'openrc', 'openrc:main');
-    application.inject('controller:settings-upload', 'openrc', 'openrc:main');
+    application.register('models:openrc', openrc, {instantiate: false});
+    application.inject('controller:application', 'openrc', 'models:openrc');
+    application.inject('controller:settings-upload', 'openrc', 'models:openrc');
 
-    application.register('quantum:main', quantum, {instantiate: false});
-    application.inject('controller:application', 'quantum', 'quantum:main');
-    application.inject('controller:settings-upload', 'quantum', 'quantum:main');
+    application.register('models:quantum', quantum, {instantiate: false});
+    application.inject('controller:application', 'quantum', 'models:quantum');
+    application.inject('controller:settings-upload', 'quantum', 'models:quantum');
 
-    application.register('keystone:main', keystone, {instantiate: false});
-    application.inject('controller:settings-upload', 'keystone', 'keystone:main');
+    application.register('models:keystone', keystone, {instantiate: false});
+    application.inject('controller:settings-upload', 'keystone', 'models:keystone');
 
-    application.register('application:main', applicationModel, {instantiate: false});
-    application.inject('controller:settings-dev', 'application', 'application:main');
-    application.inject('controller:dashboard-status-components', 'application', 'application:main');
-    application.inject('controller:dashboard-todo', 'application', 'application:main');
-    application.inject('controller:settings-upload', 'application', 'application:main');
+    application.register('models:application', applicationModel, {instantiate: false});
+    application.inject('controller:settings-dev', 'application', 'models:application');
+    application.inject('controller:dashboard-status-components', 'application', 'models:application');
+    application.inject('controller:dashboard-todo', 'application', 'models:application');
+    application.inject('controller:settings-upload', 'application', 'models:application');
 
-    application.register('network:main', network, {instantiate: false});
-    application.inject('controller:settings-network', 'network', 'network:main');
-    application.inject('controller:trust', 'network', 'network:main');
+    application.register('models:network', network, {instantiate: false});
+    application.inject('controller:settings-network', 'network', 'models:network');
+    application.inject('controller:trust', 'network', 'models:network');
 
   }
 };

@@ -34,8 +34,8 @@
       <section>
         <label><small>Tenant</small></label>
         <div class="tenant">
-          <label>{{view Ember.RadioButton selection=tenantType value="default"}} Default</label>
-          <label>{{view Ember.RadioButton selection=tenantType value="custom"}} Custom</label>
+          <label>{{view "radio-button" selection=tenantType value="default"}} Default</label>
+          <label>{{view "radio-button" selection=tenantType value="custom"}} Custom</label>
         </div>
         {{#unless isDefaultTenant}}
           <div class="input-prepend">

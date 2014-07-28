@@ -35,12 +35,12 @@
 
           {{#if isBoolean}}
             <label style="display:inline; margin-left:10px">
-              {{view Ember.RadioButton name="value" selection=value value="1"}}
+              {{view "radio-button" name="value" selection=value value="1"}}
               True
             </label>
 
             <label style=" display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="value" selection=value value="0"}}
+              {{view "radio-button" name="value" selection=value value="0"}}
               False
             </label>
           {{/if}}

@@ -20,9 +20,11 @@ export default Ember.ArrayController.extend({
     });
   },
   parent: function() {
-    var name = this.constructor.toString().split('.')[1];
-    if (name.indexOf('ColumnsController') === -1) throw new Error('Name of controller extended by Mixin must end with "ColumnsController"');
-    return name.slice(0, name.indexOf('ColumnsController')).camelize();
+    var name = this.constructor.toString();
+    if (name.indexOf('controller:') === -1) throw new Error('Object extended by mixin must be a controller');
+    if (name.indexOf('-columns') === -1) throw new Error('Controller extended by mixin must be a be named ...-columns');
+    name = name.slice(name.indexOf('controller:') + 11).split(':')[0];
+    return name.slice(0, name.indexOf('-columns'));
   }.property(),
   needs: function() {
     return [this.get('parent')];

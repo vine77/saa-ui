@@ -8,17 +8,17 @@ import naturalSort from '../utils/natural-sort';
  */
 export default Ember.Mixin.create({
   self: function() {
-    var name = this.constructor.toString().split('.')[1];
-    if (name.indexOf('Controller') === -1) throw new Error('Name of controller extended by Mixin must end with "Controller"');
-    return name.slice(0, name.indexOf('Controller')).camelize();
+    var name = this.constructor.toString();
+    if (name.indexOf('controller:') === -1) throw new Error('Object extended by SortableMixin must be a controller');
+    return name.slice(name.indexOf('controller:') + 11).split(':')[0];
   }.property(),
   needs: function() {
     var needs = this._super() || [];
-    needs.push(this.get('self') + 'Columns');
+    needs.push(this.get('self') + '-columns');
     return needs;
   }.property('self'),
   columns: function() {
-    return this.get('controllers.' + this.get('self') + 'Columns');
+    return this.get('controllers.' + this.get('self') + '-columns');
   }.property('self'),
   sortProperty: null,
   sortProperties: function() {
