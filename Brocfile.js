@@ -7,7 +7,7 @@ var pickFiles = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var trees = [];
 
-// Import app-specific dependencies
+// Import non-AMD dependencies
 app.import('vendor/bootstrap-build/js/bootstrap.js');
 app.import('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js');
 app.import('vendor/pnotify/jquery.pnotify.js');
@@ -25,11 +25,23 @@ app.import('vendor/jspdf/dist/jspdf.min.js');
 app.import('vendor/filesaver/FileSaver.js');
 app.import('vendor/natural-sort/naturalSort.js');
 
+// Import static CSS
+app.import('vendor/pnotify/jquery.pnotify.default.css');
+
+// Import fonts
+app.import('vendor/font-awesome/font/fontawesome-webfont.woff', {
+  exports: {
+    destDir: 'assets/fonts'
+  }
+});
+
+/*
 trees.push(pickFiles('vendor', {
   srcDir: '/font-awesome/font',
   files: ['*.woff', '*.ttf', '*.svg', '*.eot'],
   destDir: '/fonts'
 }));
+*/
 
 trees.push(app.toTree());
 tree = mergeTrees(trees);

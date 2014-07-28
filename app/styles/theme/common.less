@@ -222,6 +222,35 @@ table .dropdown-menu {
   cursor: default;
 }
 
+// Shadow with lifted edges
+.shadow-lifted {
+  position: relative;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+  &:before,
+  &:after {
+    position: absolute;
+    bottom: 15px;
+    width: 50%;
+    height: 20%;
+    max-width: 300px;
+    max-height: 100px;
+    z-index: -2;
+    content: "";
+    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.3);
+  }
+  &:before {
+    left: 6px;
+    -webkit-transform: rotate(-2.5deg);
+    -ms-transform: rotate(-2.5deg);
+    transform: rotate(-2.5deg);
+  }
+  &:after {
+    right: 6px;
+    -webkit-transform: rotate(2.5deg);
+    -ms-transform: rotate(2.5deg);
+    transform: rotate(2.5deg);
+  }
+}
 
 // Tables
 .table {
@@ -373,8 +402,104 @@ table .dropdown-menu {
       }
     }
   }
+  // Alternate color for tbody groups
+  > tbody:nth-of-type(even) {
+    > tr:not(.is-expanded) {
+      > td {
+        background-color: #f9f9f9;
+        &:first-of-type {
+          background: -moz-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
+          background: -webkit-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
+          background: -o-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
+          background: -ms-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
+          background: linear-gradient(to right, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
+        }
+      }
+      &:first-of-type > td {
+        border-top: 1px solid #bbb;
+      }
+    }
+    + tbody > tr:first-of-type > td,
+    + script + tbody > tr:first-of-type > td,
+    + script + script + tbody > tr:first-of-type > td {
+      border-top: 1px solid #bbb;
+    }
+  }
+  th.sortable {
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    .tooltip-container {
+      width: 100%;
+    }
+    a {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin-right: 7px;
+    }
+    a:after {
+      // icon-sort
+      position: absolute;
+      right: -3px;
+      font-family: 'FontAwesome';
+      content: '\f0dc';
+    }
+    &.sorted {
+      background-color: #eee;
+      a:after {
+        // icon-sort-down
+        position: absolute;
+        font-family: 'FontAwesome';
+        content: '\f0dd';
+      }
+    }
+    &.sorted.sort-ascending {
+      background-color: #eee;
+      a:after {
+        // icon-sort-up
+        position: absolute;
+        font-family: 'FontAwesome';
+        content: '\f0de';
+      }
+    }
+  }
+  thead {
+    .sorting,
+    .sorting_desc,
+    .sorting_asc_disabled,
+    .sorting_desc_disabled {
+      cursor: pointer;
+      *cursor: hand;
+    }
+    .sorting {
+      background: url("../images/icons/arrow-updown.gif") no-repeat center right;
+    }
+    .sorting_asc {
+      background: url("../images/icons/arrow-up.gif") no-repeat center right;
+    }
+    .sorting_desc {
+      background: url("../images/icons/arrow-down.gif") no-repeat center right;
+    }
+    .sorting_asc_disabled {
+      background: url("../images/icons/arrow-up.gif") no-repeat center right;
+      opacity: 0.5;
+    }
+    .sorting_desc_disabled {
+      background: url("../images/icons/arrow-down.gif") no-repeat center right;
+      opacity: 0.5;
+    }
+  }
+}
+.dataTables_filter {
+  .pull-right();
 }
 
+// Customize ember-table style (which uses div"s not standard table tags)
+.tables-container .header-container {
+  font-weight: bold;
+}
 
 // Extend form styles
 form {
@@ -388,7 +513,6 @@ form {
     padding: 0;
   }
 }
-
 .well-transparent {
   background-color: rgba(0, 0, 0, 0.02);
   box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(0, 0, 0, 0.06);
@@ -403,7 +527,6 @@ form {
   border-radius: 4px;
 }
 
-
 ///// Extend pNotify styles /////
 .ui-pnotify-container {
   padding: 0.6em 0.8em !important;
@@ -416,7 +539,6 @@ form {
 }
 
 
-
 //// Common styles ////
 html {
   height: 100%;
@@ -426,7 +548,7 @@ body {
   height: 100%;
   padding: (@navbarHeight + 20px) 0 20px;
   overflow-x: hidden;
-  background-image: url(../images/texture.png);
+  background-image: url(../assets/images/texture.png);
 }
 .application {
   position: relative;
@@ -464,7 +586,6 @@ input[type="checkbox"] {
 .block {
   display: block;
 }
-
 
 // Div styles
 .separator-left {
@@ -588,16 +709,13 @@ i.icon-storage {
   .icon-svg();
   background-image: url(../images/nodes/storage.svg);
 }
-.icon-stack [class^="secondary-icon"], .icon-stack [class~="secondary-icon"], .icon-stack [class|="secondary-icon"] {
+.cell-container .icon-stack {
+  top: -2px;
+}
+.secondary-icon {
   top: 8px;
   left: 10px;
   font-size: 12px;
-}
-.icon-stack {
-  top:-2px;
-}
-i.inset {
-  .inset();
 }
 
 
@@ -625,37 +743,37 @@ legend {
 // Intel fonts
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-light.woff") format("woff");
+  src: url("fonts/neosansintel-light.woff") format("woff");
   font-weight: 200;
   font-style: normal;
 }
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-lightitalic.woff") format("woff");
+  src: url("fonts/neosansintel-lightitalic.woff") format("woff");
   font-weight: 200;
   font-style: italic;
 }
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-normal.woff") format("woff");
+  src: url("fonts/neosansintel-normal.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-normalitalic.woff") format("woff");
+  src: url("fonts/neosansintel-normalitalic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-medium.woff") format("woff");
+  src: url("fonts/neosansintel-medium.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Neo Sans Intel";
-  src: url("../font/neosansintel-mediumitalic.woff") format("woff");
+  src: url("fonts/neosansintel-mediumitalic.woff") format("woff");
   font-weight: 600;
   font-style: italic;
 }
@@ -716,36 +834,6 @@ i.loading {
   }
 }
 
-// Shadow with lifted edges
-.shadow-lifted {
-  position: relative;
-  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2);
-  &:before,
-  &:after {
-    position: absolute;
-    bottom: 15px;
-    width: 50%;
-    height: 20%;
-    max-width: 300px;
-    max-height: 100px;
-    z-index: -2;
-    content: "";
-    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.3);
-  }
-  &:before {
-    left: 6px;
-    -webkit-transform: rotate(-2.5deg);
-    -ms-transform: rotate(-2.5deg);
-    transform: rotate(-2.5deg);
-  }
-  &:after {
-    right: 6px;
-    -webkit-transform:rotate(2.5deg);
-    -ms-transform:rotate(2.5deg);
-    transform:rotate(2.5deg);
-  }
-}
-
 // Page
 .page {
   background-color: white;
@@ -755,109 +843,6 @@ i.loading {
 .page-full {
   height: 100%;
   min-height: 0;
-}
-
-// Tables
-.table {
-  // Alternate color for tbody groups
-  > tbody:nth-of-type(even) {
-    > tr:not(.is-expanded) {
-      > td {
-        background-color: #f9f9f9;
-        &:first-of-type {
-          background: -moz-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
-          background: -webkit-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
-          background: -o-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
-          background: -ms-linear-gradient(left, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
-          background: linear-gradient(to right, #e0e0e0 0%, #e0e0e0 6%, transparent 6%, transparent 100%);
-        }
-      }
-      &:first-of-type > td {
-        border-top: 1px solid #bbb;
-      }
-    }
-    + tbody > tr:first-of-type > td,
-    + script + tbody > tr:first-of-type > td,
-    + script + script + tbody > tr:first-of-type > td {
-      border-top: 1px solid #bbb;
-    }
-  }
-  th.sortable {
-    background-repeat: no-repeat;
-    background-position: center right;
-    cursor: pointer;
-    .tooltip-container {
-      width: 100%;
-    }
-    a {
-      display: inline-block;
-      position: relative;
-      width: 100%;
-      height: 100%;
-      margin-right: 7px;
-    }
-    a:after {
-      // icon-sort
-      position: absolute;
-      right: -3px;
-      font-family: 'FontAwesome';
-      content: '\f0dc';
-    }
-    &.sorted {
-      background-color: #eee;
-      a:after {
-        // icon-sort-down
-        position: absolute;
-        font-family: 'FontAwesome';
-        content: '\f0dd';
-      }
-    }
-    &.sorted.sort-ascending {
-      background-color: #eee;
-      a:after {
-        // icon-sort-up
-        position: absolute;
-        font-family: 'FontAwesome';
-        content: '\f0de';
-      }
-    }
-  }
-}
-.dataTables_filter {
-  .pull-right();
-}
-.table {
-  thead {
-    .sorting,
-    .sorting_desc,
-    .sorting_asc_disabled,
-    .sorting_desc_disabled {
-      cursor: pointer;
-      *cursor: hand;
-    }
-    .sorting {
-      background: url("../images/icons/arrow-updown.gif") no-repeat center right;
-    }
-    .sorting_asc {
-      background: url("../images/icons/arrow-up.gif") no-repeat center right;
-    }
-    .sorting_desc {
-      background: url("../images/icons/arrow-down.gif") no-repeat center right;
-    }
-    .sorting_asc_disabled {
-      background: url("../images/icons/arrow-up.gif") no-repeat center right;
-      opacity: 0.5;
-    }
-    .sorting_desc_disabled {
-      background: url("../images/icons/arrow-down.gif") no-repeat center right;
-      opacity: 0.5;
-    }
-  }
-}
-
-// Customize ember-table style (which uses div"s not standard table tags)
-.tables-container .header-container {
-  font-weight: bold;
 }
 
 .pagination {
@@ -951,7 +936,7 @@ i.loading {
      -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
           box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
 }
-/* Chevrons */
+// Chevrons
 .sidenav .icon-chevron-right {
   float: right;
   margin-top: 2px;
@@ -1190,7 +1175,6 @@ table {
   }
 }
 
-
 .not-applicable,
 small {
   color: rgba(0, 0, 0, 0.6);
@@ -1263,7 +1247,6 @@ ul.comma-delimited {
     }
   }
 }
-
 ul.hover-list {
   margin-left:0px;
   padding-left:0px;
