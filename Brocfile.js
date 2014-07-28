@@ -30,18 +30,8 @@ app.import('vendor/pnotify/jquery.pnotify.default.css');
 
 // Import fonts
 app.import('vendor/font-awesome/font/fontawesome-webfont.woff', {
-  exports: {
-    destDir: 'assets/fonts'
-  }
+  destDir: 'assets/fonts'
 });
-
-/*
-trees.push(pickFiles('vendor', {
-  srcDir: '/font-awesome/font',
-  files: ['*.woff', '*.ttf', '*.svg', '*.eot'],
-  destDir: '/fonts'
-}));
-*/
 
 trees.push(app.toTree());
 tree = mergeTrees(trees);

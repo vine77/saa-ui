@@ -23,7 +23,7 @@ This README outlines the details of collaborating on this Ember application.
 
 ## Notes on development
 
-For more information on using ember-cli, visit [http://iamstef.net/ember-cli/](http://iamstef.net/ember-cli/).
+For more information on using ember-cli, visit [http://ember-cli.com](http://ember-cli.com).
 
 ## Notes on source control
 
