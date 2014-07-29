@@ -7,8 +7,8 @@ export default DS.Model.extend({
   priority: DS.attr('number'),
   timestamp: DS.attr('number'),
   node: DS.belongsTo('node'),
-  vm: DS.belongsTo('vm'),
-  // TODO: Don't use fixtures
+  vm: DS.belongsTo('vm')
+}).reopenClass({
   FIXTURES: [{
     id: 1,
     message: 'Application loaded',

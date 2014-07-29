@@ -25,5 +25,5 @@
     * [X] App.selectTab
     * [X] App.route
     * [X] App.store
-* [ ] Remove utils/old
-* [ ] If we still need to use global (e.g. moment), add those to the predef section of .jshintrc and set value in initializers
+* [X] Remove utils/old
+* [X] Handle globals (e.g. moment) with window

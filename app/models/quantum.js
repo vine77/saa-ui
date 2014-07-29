@@ -8,7 +8,7 @@ export default Ember.Object.extend({
   check: function() {
     // Check if quantum file exists
     return Ember.$.ajax({
-      url: (getApiDomain()) + '/api/v2/configs',
+      url: (getApiDomain()) + '/api/v2/configs.json',
       type: 'GET',
       dataType: "json",
       complete: function(xhr) {
@@ -28,7 +28,7 @@ export default Ember.Object.extend({
     var formData = new FormData(Ember.$('#quantumForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: (getApiDomain()) + '/api/v2/configs',
+      url: (getApiDomain()) + '/api/v2/configs.json',
       data: formData,
       complete: function(xhr) {
         if (xhr.status === 200) Ember.$('#quantumForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');

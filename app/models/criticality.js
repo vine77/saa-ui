@@ -2,7 +2,8 @@ import DS from 'ember-data';
 
 // TODO: Don't use fixtures
 export default DS.Model.extend({
-  label: DS.attr('string'),
+  label: DS.attr('string')
+}).reopenClass({
   FIXTURES: [{
     id: 0,
     label: 'Debug'

@@ -46,7 +46,7 @@ export default Ember.Object.extend({
     };
     Ember.$('i.loading').removeClass('hide');
     return Ember.$.ajax({
-      url: (getApiDomain()) + '/api/v2/netconfig',
+      url: (getApiDomain()) + '/api/v2/netconfig.json',
       type: 'POST',
       data: JSON.stringify(networkData),
       dataType: 'json',
@@ -74,7 +74,7 @@ export default Ember.Object.extend({
   check: function() {
     var self = this;
     return Ember.$.ajax({
-      url: (getApiDomain()) + '/api/v2/netconfig',
+      url: (getApiDomain()) + '/api/v2/netconfig.json',
       type: 'GET',
       dataType: 'json',
       complete: function(xhr) {
