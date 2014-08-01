@@ -80,8 +80,17 @@
               <p>
                 <label class="inline">New SLA name:</label>
                 {{input class="input-medium" value=model.sla.name autofocus="autofocus"}}
-                <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
+                {{#if isAddSloAvailable}}
+                  <a class="btn pull-right" {{action "addSlo"}}>
+                    <i class="icon-plus-sign"></i> Add SLO
+                  </a>
+                {{else}}
+                  <a {{bind-attr class="isAddSloAvailable::disabled :btn :pull-right"}}>
+                    <i class="icon-plus-sign"></i> Add SLO
+                  </a>
+                {{/if}}
               </p>
+
               {{#each slo in model.sla.slos itemController="slo"}}
                 <p class="slo-row separator-top">
                   {{view Ember.Select viewName="select" class="input-medium"
@@ -89,11 +98,14 @@
                     optionValuePath="content.id"
                     optionLabelPath="content.readableSloType"
                     selection=sloTemplate
+                    prompt="Select template"
                   }}
-                  {{view Ember.Select viewName="select" class="input-small"
-                    content=slo.sloTemplate.allowedOperators
-                    value=slo.operator
-                  }}
+                  {{#if sloTemplate}}
+                    {{view Ember.Select viewName="select" class="input-small"
+                      content=slo.sloTemplate.allowedOperators
+                      value=slo.operator
+                    }}
+                  {{/if}}
                   {{#if isRange}}
                     {{input class="input-tiny" value=rangeMin}} to
                     {{input class="input-tiny" value=rangeMax}}
@@ -106,7 +118,6 @@
                       {{view "radio-button" name="value" selection=value value="1"}}
                       True
                     </label>
-
                     <label style=" display:inline; margin-left:10px;">
                       {{view "radio-button" name="value" selection=value value="0"}}
                       False

@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
   sloTemplates: function() {
-    return this.store.all('sloTemplate');
-  }.property(),
+    return this.get('parentController.sloTemplates');
+  }.property('parentController.sloTemplates.@each', 'parentController.isAddSloAvailable'),
 
   rangeMin: function(key, value) {
     // Setter

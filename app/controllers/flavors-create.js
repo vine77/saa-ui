@@ -6,6 +6,54 @@ import xhrError from '../utils/xhr-error';
 
 export default Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
+
+  sloTemplates: function() {
+    var self = this;
+    var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
+      var disabled = false;
+      switch(item.get('sloType')) {
+        case 'compute':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          break;
+        case 'vm_compute':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          break;
+        case 'vm_cores':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          break;
+        case 'trusted_platform':
+          if (self.get('trustSloCount') >= 1) {
+            disabled = true;
+          }
+          break;
+        default:
+          disabled = false;
+          break;
+      }
+      item.disabled = disabled;
+      return item;
+    });
+    return returnArray;
+  }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
+  bucketSloCount: function() {
+    var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'compute'; }).get('length');
+    var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_compute'; }).get('length');
+    var vmCoresCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_cores'; }).get('length');
+    return computeCount + vmComputeCount + vmCoresCount;
+  }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
+  trustSloCount: function () {
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'trusted_platform'; }).get('length');
+  }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
+  isAddSloAvailable: function() {
+    return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1);
+  }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray', 'bucketSloCount', 'trustSloCount'),
+
   vcpusInteger: function() {
     return ((this.get('model.vcpus'))?this.get('model.vcpus'):0);
   }.property('model.vcpus'),
@@ -113,9 +161,6 @@ export default Ember.ObjectController.extend({
   slas: function() {
     return this.get('controllers.slas').filterBy('deleted', false).filterBy('isDirty', false);
   }.property('controllers.slas.@each', 'controllers.slas.@each.deleted'),
-  sloTemplates: function() {
-    return this.store.all('sloTemplate');
-  }.property(),
   hasNoSla: function() {
     return this.get('model.sla') === null;
   }.property('model.sla'),
