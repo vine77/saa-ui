@@ -179,7 +179,7 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
       var payloadIds = payload[Object.keys(payload)[0]].getEach('id').map(function (item, index, enumerable) {
         return item.toString();
       });
-      var isMissing = (payloadIds.indexOf(item.get('id').toString()) === -1);
+      var isMissing = (item.get('id') && payloadIds.indexOf(item.get('id').toString()) === -1);
       if (isMissing) missingRecords.push(item);
       if (item.get('isEditing')) editingRecords.push(item);
     });
@@ -254,4 +254,13 @@ DS.Model.reopen({
     }, this);
     return records;
   }
+});
+
+//Extend Ember.SelectOption so that disabled attribute for indivudal options may be used.
+Ember.SelectOption.reopen({
+  attributeBindings: ['value', 'selected', 'disabled'],
+  disabled: function() {
+    var content = this.get('content');
+    return content.disabled || false;
+  }.property('content')
 });

@@ -80,44 +80,47 @@
               <p>
                 <label class="inline">New SLA name:</label>
                 {{view Ember.TextField class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
-                <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
+                {{#if isAddSloAvailable}}
+                  <a class="btn pull-right" {{action "addSlo"}}>
+                    <i class="icon-plus-sign"></i> Add SLO
+                  </a>
+                {{else}}
+                  <a {{bind-attr class="isAddSloAvailable::disabled :btn :pull-right"}}>
+                    <i class="icon-plus-sign"></i> Add SLO
+                  </a>
+                {{/if}}
               </p>
               {{#each slo in model.sla.slos itemController="slo"}}
                 <p class="slo-row separator-top">
                   {{view Ember.Select viewName="select" class="input-medium"
-                    contentBinding="sloTemplates"
+                    content=sloTemplates
                     optionValuePath="content.id"
                     optionLabelPath="content.readableSloType"
                     selectionBinding="sloTemplate"
+                    prompt="Select template"
                   }}
-                  {{view Ember.Select viewName="select" class="input-small"
-                    contentBinding="slo.sloTemplate.allowedOperators"
-                    valueBinding="slo.operator"
-                  }}
-
+                  {{#if sloTemplate}}
+                    {{view Ember.Select viewName="select" class="input-small"
+                      contentBinding="slo.sloTemplate.allowedOperators"
+                      valueBinding="slo.operator"
+                    }}
+                  {{/if}}
                   {{#if isRange}}
                     {{view Ember.TextField class="input-tiny" value=rangeMin}} to
                     {{view Ember.TextField class="input-tiny" value=rangeMax}}
                   {{/if}}
-
                   {{#if isInteger}}
-
                     {{view Ember.TextField class="input-small" value=value}}
-
                   {{/if}}
-
                   {{#if isBoolean}}
-
                     <label style="display:inline; margin-left:10px">
                       {{view Ember.RadioButton name="value" selection=value value="1"}}
-                        True
+                      True
                     </label>
-
                     <label style=" display:inline; margin-left:10px;">
                       {{view Ember.RadioButton name="value" selection=value value="0"}}
                       False
                     </label>
-
                   {{/if}}
 
                   {{slo.sloTemplate.unit}}
