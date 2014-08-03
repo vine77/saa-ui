@@ -319,10 +319,10 @@ export default Ember.ObjectController.extend({
     }
   }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
   computeWidth: function() {
-    if (this.get('utilization.scus.total.current') === 0 || App.isEmpty(this.get('utilization.scus.total.current'))) {
+    if (this.get('utilization.scus.total.current') === 0 || isEmpty(this.get('utilization.scus.total.current'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('utilization.scus.total.current'), 0, this.get('utilization.scus.total.max'));
+      var percent = rangeToPercentage(this.get('utilization.scus.total.current'), 0, this.get('utilization.scus.total.max'));
       return 'width:' + percent + '%;';
     }
   }.property('utilization.scus.total.current', 'utilization.scus.total.max'),

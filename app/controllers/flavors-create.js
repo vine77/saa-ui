@@ -42,13 +42,13 @@ export default Ember.ObjectController.extend({
     return returnArray;
   }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
   bucketSloCount: function() {
-    var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'compute'; }).get('length');
-    var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_compute'; }).get('length');
-    var vmCoresCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_cores'; }).get('length');
+    var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'compute'; }).get('length');
+    var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'vm_compute'; }).get('length');
+    var vmCoresCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'vm_cores'; }).get('length');
     return computeCount + vmComputeCount + vmCoresCount;
   }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
   trustSloCount: function () {
-    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'trusted_platform'; }).get('length');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'trusted_platform'; }).get('length');
   }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
   isAddSloAvailable: function() {
     return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1);
