@@ -463,6 +463,53 @@
             }
           ]
         },
+        "cores": {
+         "system": {
+           "used": 6,
+           "max": 32
+         },
+         "cgroups": [
+           {
+             "type": "os",
+             "used": [
+               {
+                 "socket": "0",
+                 "core": "1"
+               },
+               {
+                 "socket": "0",
+                 "core": "2"
+               }
+             ]
+           },
+           {
+             "type": "6Wind",
+             "used": [
+               {
+                 "socket": "0",
+                 "core": "1"
+               }
+             ]
+           },
+           {
+             "type": "vm",
+             "used": [
+               {
+                 "socket": "1",
+                 "core": "0"
+               },
+               {
+                 "socket": "1",
+                 "core": "1"
+               },
+               {
+                 "socket": "1",
+                 "core": "2"
+               }
+             ]
+           }
+         ]
+       },
         "uptime": null,
         "network": null,
         "ipc": 0.32,
