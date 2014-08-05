@@ -120,6 +120,35 @@
     <div class="tab-pane utilization">
       <table class="table table-bordered">
         <tr>
+          <th class="column-medium"> Cores </th>
+          <td>
+            {{#if hasCores}}
+              {{progress-bar-adjacent 
+                numberOfBars="3"
+                barMin1="0" 
+                barMax1=osCores
+                barValue1=osCores
+                barTitle1="OS Cores"
+                barMin2="0"
+                barMax2=vmCores
+                barValue2=vmCores 
+                barTitle2="VM Cores"
+                barMin3="0"
+                barMax3=sixWindCores
+                barValue3=sixWindCores 
+                barTitle3="6Wind Cores"
+              }}
+              <ul>
+                <li>OS Cores: {{osCores}} </li>
+                <li>VM Cores: {{vmCores}} </li>
+                <li>6Wind Cores: {{sixWindCores}} </li>
+              </ul>
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
           <th class="column-medium">Service Compute Units (SCU)</th>
           <td>
             Total: {{na utilization.scu.system.value}} out of {{na utilization.scu.system.max}} SCU <br />

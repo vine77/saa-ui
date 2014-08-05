@@ -92,6 +92,23 @@ App.NodeController = Ember.ObjectController.extend({
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
+  utilizationCoresCgroups: function() {
+    return this.get('utilization.cores.cgroups');
+  }.property('utilization.cores.cgroups.@each'),
+  hasCores: function() {
+    return (this.get('osCores') > 1 && this.get('vmCores') > 1);
+  }.property('osCores'),
+
+  osCores: function() {
+    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'os').used.length;
+  }.property('utilizationCoresCgroups.@each'),  
+  vmCores: function() {
+    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'vm').used.length;
+  }.property('utilizationCoresCgroups.@each'),
+  sixWindCores: function() {
+    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', '6Wind').used.length;
+  }.property('utilizationCoresCgroups.@each'),
+
   scuUtilizationCgroups: function() {
     return this.get('utilization.scu.cgroups');
   }.property('utilization.scu.cgroups.@each'),  
