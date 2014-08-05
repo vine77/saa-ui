@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import Network from '../utils/mappings/network';
-import network from '../models/network';
+import Network from '../../utils/mappings/network';
+import network from '../../models/network';
 
 export default Ember.Controller.extend({
   isActionPending: false,

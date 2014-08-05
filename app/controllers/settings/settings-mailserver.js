@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import Health from '../utils/mappings/health';
-import event from '../utils/event';
-import xhrError from '../utils/xhr-error';
+import Health from '../../utils/mappings/health';
+import event from '../../utils/event';
+import xhrError from '../../utils/xhr-error';
 
 // TODO: Migrate Sunil's authentication code
 export default Ember.ObjectController.extend({

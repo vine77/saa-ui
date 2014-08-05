@@ -1,14 +1,14 @@
 import Ember from 'ember';
-import Health from '../utils/mappings/health';
-import Network from '../utils/mappings/network';
-import getApiDomain from '../utils/get-api-domain';
-import event from '../utils/event';
-import xhrError from '../utils/xhr-error';
-import nova from '../models/nova';
-import application from '../models/application';
-import openrc from '../models/openrc';
-import quantum from '../models/quantum';
-import keystone from '../models/keystone';
+import Health from '../../utils/mappings/health';
+import Network from '../../utils/mappings/network';
+import getApiDomain from '../../utils/get-api-domain';
+import event from '../../utils/event';
+import xhrError from '../../utils/xhr-error';
+import nova from '../../models/nova';
+import application from '../../models/application';
+import openrc from '../../models/openrc';
+import quantum from '../../models/quantum';
+import keystone from '../../models/keystone';
 
 export default Ember.ArrayController.extend({
   needs: ['application', 'overrides'],

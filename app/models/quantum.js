@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   exists: false,
   success: false,
   check: function() {
+    var self = this;
     // Check if quantum file exists
     return Ember.$.ajax({
       url: (getApiDomain()) + '/api/v2/configs.json',
@@ -15,10 +16,10 @@ export default Ember.Object.extend({
         switch (xhr.status) {
           case 200:
             var exists = xhr.responseJSON.configs.findBy('id', 'quantumFile') && xhr.responseJSON.configs.findBy('id', 'quantumFile').exists;
-            this.set('exists', exists);
+            self.set('exists', exists);
             break;
           default:
-            this.set('exists', false);
+            self.set('exists', false);
         }
       }
     });

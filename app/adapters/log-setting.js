@@ -1,3 +1,3 @@
-import DS from 'ember-data';
+import RESTSingletonAdapter from './rest-singleton';
 
-export default DS.RESTSingletonAdapter.extend();
+export default RESTSingletonAdapter.extend();

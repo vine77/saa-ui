@@ -5,6 +5,7 @@ import priorityToType from '../utils/convert/priority-to-type';
 export default Ember.Controller.extend({
   needs: ['application', 'status1', 'status2', 'status3', 'status4', 'status5', 'status6', 'status7', 'status8', 'status9', 'status10', 'status11', 'status12', 'status13', 'status14', 'status15', 'status16', 'status17', 'status18', 'status19', 'status20', 'logBar'],
   init: function() {
+    this._super();
     this.set('model', this.store.all('status'));
   },
   // Properties

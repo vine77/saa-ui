@@ -1,3 +1,3 @@
-import DS from 'ember-data';
+import RESTConfigAdapter from './rest-config';
 
-export default DS.RESTConfigAdapter.extend();
+export default RESTConfigAdapter.extend();

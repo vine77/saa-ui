@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import Health from '../utils/mappings/health';
-import getApiDomain from '../utils/get-api-domain';
-import event from '../utils/event';
-import xhrError from '../utils/xhr-error';
+import Health from '../../utils/mappings/health';
+import getApiDomain from '../../utils/get-api-domain';
+import event from '../../utils/event';
+import xhrError from '../../utils/xhr-error';
 
 export default Ember.Controller.extend({
   isActionPending: false,
