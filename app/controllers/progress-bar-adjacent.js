@@ -88,4 +88,5 @@ export default Ember.ObjectController.extend({
       ((!Ember.isEmpty(this.get('label')))?this.get('label'):'');
 
   }.property('current', 'max', 'title')
+
 });

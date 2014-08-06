@@ -46,8 +46,16 @@ export default Ember.Component.extend({
           title: title
         })
       );
+      this.addObserver('barValue' + i, this, this.notifyBars);
+      this.addObserver('barLabel' + i, this, this.notifyBars);
+      this.addObserver('barTitle' + i, this, this.notifyBars);
+      this.addObserver('barMin' + i, this, this.notifyBars);
+      this.addObserver('barMax' + i, this, this.notifyBars);
       i++;
     }
     return returnBars;
-  }.property('numberOfBars')
+  }.property('numberOfBars'),
+  notifyBars: function() {
+    this.notifyPropertyChange('bars');
+  }
 });
