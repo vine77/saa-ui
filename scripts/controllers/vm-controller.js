@@ -4,6 +4,9 @@ App.VmController = Ember.ObjectController.extend({
   isSelected: false,
   isActionPending: false,
   isSelectable: true,
+  cores: function() {
+    return this.get('utilization.cores.system.used') && this.get('utilization.cores.system.used.length');
+  }.property('utilization.cores.system.used.@each'),
   isHealthy: function() {
     return (this.get('status.health') == App.SUCCESS) || (this.get('status.health') == App.INFO);
   }.property('status.health'),

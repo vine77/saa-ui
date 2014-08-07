@@ -34,6 +34,11 @@
         "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/a95b56af-57f5-46b7-8b54-0cfb39943b2d"
       },
       "utilization": {
+        "cores": {
+          "system": {
+            "used": [{"socket": "0", "core": "1"}, {"socket": "0", "core": "2"}]
+          }
+        },
         "scu_current": 0.1,
         "ipc": 1.64,
         "uptime": null,
