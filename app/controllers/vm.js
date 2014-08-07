@@ -16,6 +16,9 @@ export default Ember.ObjectController.extend({
   isSelected: false,
   isActionPending: false,
   isSelectable: true,
+  cores: function() {
+    return this.get('utilization.cores.system.used') && this.get('utilization.cores.system.used.length');
+  }.property('utilization.cores.system.used.@each'),
   isHealthy: function() {
     return (this.get('status.health') === Health.SUCCESS) || (this.get('status.health') === Health.INFO);
   }.property('status.health'),
