@@ -9,5 +9,6 @@ git checkout $(git rev-list -n 1 --before="$(node -p "require('moment')().startO
 plato -r -d ~/plato/saa-ui -t "SAA UI" -D `node -p "require('moment')().startOf('month').subtract(2, 'month').unix()"` ~/saa-ui/scripts/**/*.js
 git checkout $(git rev-list -n 1 --before="$(node -p "require('moment')().startOf('month').subtract(1, 'month').format()")" master)
 plato -r -d ~/plato/saa-ui -t "SAA UI" -D `node -p "require('moment')().startOf('month').subtract(1, 'month').unix()"` ~/saa-ui/scripts/**/*.js
+git checkout $(git rev-list -n 1 --before="$(node -p "require('moment')().startOf('month').format()")" master)
+plato -r -d ~/plato/saa-ui -t "SAA UI" -D `node -p "require('moment')().startOf('month').unix()"` ~/saa-ui/scripts/**/*.js
 git checkout master
-plato -r -d ~/plato/saa-ui -t "SAA UI" ~/saa-ui/scripts/{*.js,**/*.js}
