@@ -1,0 +1,1 @@
+git log --all --after="$(node -p "require('moment')().startOf('month').subtract(1, 'month').format()")" --before="$(node -p "require('moment')().startOf('month').format()")" --pretty=format:"%h %an: %s" | sed "s/Nathan Ward/NW/g;s/Alex Houchens/AH/g;s/GregoryX Houchens/AH/g"
