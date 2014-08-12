@@ -3,6 +3,18 @@
     "vm_name": "test44-01ad3eab-8dd5-4017-9261-5789b487141d",
     "instantiation_nodes": [
       {
+        "free_cores": {
+          "sockets": [
+            {
+              "cores": 12,
+              "socket_number": 1
+            },
+            {
+              "cores": 4,
+              "socket_number": 2
+            }
+          ]
+        },
         "contention": {
           "system": {
             "llc": {

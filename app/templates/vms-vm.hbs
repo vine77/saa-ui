@@ -338,10 +338,11 @@
                     <th>Ranked Nodes</th>
                     <th>Scheduler Placement Criteria</th>
                     <th>Contention</th>
+                    <th>Free Cores</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each instantiationNode in detailedInstantiationNodes}}
+                  {{#each instantiationNode in detailedInstantiationNodes itemController="instantiationDetailedNode"}}
                     <tr {{bind-attr class="instantiationNode.selected:success"}}>
                       <td class="column-medium">
                         <p class="break-word">
@@ -423,6 +424,9 @@
                           {{socket.llc.value}} ({{socket.llc.label}})<br>
                         {{/each}}
                       </td>
+                      <td>
+                        {{n-a freeCoresTotal}} cores
+                     </td>
                     </tr>
                   {{/each}}
                 </tbody>

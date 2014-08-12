@@ -6,5 +6,6 @@ export default DS.Model.extend({
   vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
   node: DS.belongsTo('node'),
   instantiationSlos: DS.hasMany('vmInstantiationDetailedSlo'),
-  internalFilters: DS.attr()
+  internalFilters: DS.attr(),
+  freeCores: DS.attr()
 });
