@@ -3,6 +3,18 @@
     "vm_name": "test44-01ad3eab-8dd5-4017-9261-5789b487141d",
     "instantiation_nodes": [
       {
+        "free_cores": {
+          "sockets": [
+            {
+              "cores": 12,
+              "socket_number": 1
+            },
+            {
+              "cores": 4,
+              "socket_number": 2
+            }
+          ]
+        },
         "contention": {
           "system": {
             "llc": {
@@ -100,7 +112,8 @@
           }
         ],
         "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7"
-      },
+      }
+      ,
       {
         "contention": {
           "system": {
@@ -288,7 +301,7 @@
             "id": 4,
             "passed": true,
             "description": "SAM Agent version is the same as SAM IPM."
-          }
+          } 
         ],
         "node_id": "0730E39E-65E6-E111-BD3C-001E675AF475"
       }

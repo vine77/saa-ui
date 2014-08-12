@@ -46,7 +46,8 @@ App.InstantiationNode = DS.Model.extend({
   vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
   node: DS.belongsTo('node'),
   instantiationSlos: DS.hasMany('instantiationSlo'),
-  internalFilters: DS.attr()
+  internalFilters: DS.attr(),
+  freeCores: DS.attr()
 });
 
 App.InstantiationSlo = DS.Model.extend({
