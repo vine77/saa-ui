@@ -33,7 +33,6 @@ App.SettingsLogController = Ember.Controller.extend({
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to update log settings.');
       });
-      console.log('test 3');
     },
     cancel: function (model) {
       model.rollback();

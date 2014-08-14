@@ -7,5 +7,5 @@ App.InstantiationDetailedNodeController = Ember.ObjectController.extend({
       }, 0);
     }
     return freeCores;
-  }.property('freeCores.sockets.@each')
+  }.property()
 });

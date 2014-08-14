@@ -6,7 +6,7 @@
         "free_cores": {
           "sockets": [
             {
-              "cores": 12,
+              "cores": 20,
               "socket_number": 1
             },
             {

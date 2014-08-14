@@ -1,5 +1,5 @@
 App.ApplicationController = Ember.Controller.extend({
-  needs: ['statuses', 'build', 'login'],
+  needs: ['statuses', 'build', 'login', 'vms'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
@@ -68,7 +68,21 @@ App.ApplicationController = Ember.Controller.extend({
       this.store.find('slo');
       this.store.find('sla');
       this.store.find('flavor');
-      this.store.find('vm');
+      var self = this;
+      this.store.find('vm').then(function(vms) {
+        if (self.get('currentPath') == 'app.data.vms.vmsVm.index') {
+          var currentVm = self.get('controllers.vms').findBy('isExpanded', true) && self.get('controllers.vms').findBy('isExpanded', true).get('id');
+          self.store.find('vm', currentVm).then(function(record) {
+            record.reload();
+          });
+          self.store.find('vmInstantiationDetailed', currentVm).then(function(record) {
+            record.reload();
+          });
+          self.store.find('vmInstantiationSimple', currentVm).then(function(record) {
+            record.reload();
+          });
+        }
+      });
       if (App.mtWilson.get('isInstalled')) {
         this.store.find('trustMle');
         this.store.find('trustNode');
