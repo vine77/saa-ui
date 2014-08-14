@@ -254,7 +254,7 @@ export default Ember.ObjectController.extend({
       sortAscending: false
     });
     return instantiationNodesController;
-  }.property('model.vmInstantiationDetailed.instantiationNodes'),
+  }.property('model.vmInstantiationDetailed.instantiationNodes.@each'),
   simpleInstantiationNodes: function() {
     var instantiationNodes = this.get('model.vmInstantiationSimple.rankedNodes');
     var instantiationNodesController = Ember.ArrayController.create({
@@ -263,7 +263,7 @@ export default Ember.ObjectController.extend({
       sortAscending: false
     });
     return instantiationNodesController;
-  }.property('model.vmInstantiationSimple.rankedNodes'),
+  }.property('model.vmInstantiationSimple.rankedNodes.@each'),
 
   /* TODO: Does this need to be added to polling?
   didReload: function() {

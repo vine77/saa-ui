@@ -9,5 +9,5 @@ export default Ember.ObjectController.extend({
       }, 0);
     }
     return freeCores;
-  }.property('freeCores.sockets.@each')
+  }.property()
 });
