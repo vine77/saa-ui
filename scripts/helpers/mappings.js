@@ -28,8 +28,11 @@ App.TRUSTED = 2;
 App.UNREGISTERED = 3;
 
 // Constants for agent mode
+App.NON_SAM = 0;
 App.MONITORED = 1;
-App.ASSURED = 2;
+App.ASSURED_SCU_VCPU = 2;
+App.ASSURED_SCU_VM = 3;
+App.ASSURED_CORES_PHYSICAL = 4;
 
 // Constants for network type
 App.NEUTRON = 1;
@@ -50,6 +53,26 @@ App.caseMapping = {
   'slo': 'SLO',
   'slos': 'SLOs'
 };
+
+App.codeToMode = function(code) {
+  if (typeof type === 'string') code = code.toLowerCase();
+  switch (code) {
+    case App.NON_SAM:
+    case App.NON_SAM.toString():
+      return 'Not Controlled';
+    case App.ASSURED_SCU_VCPU:
+    case App.ASSURED_SCU_VCPU.toString():
+      return 'Assured SCU VCPU';
+    case App.ASSURED_SCU_VM:
+    case App.ASSURED_SCU_VM.toString():
+      return 'Assured SCU VCPU';    
+    case App.ASSURED_CORES_PHYSICAL:
+    case App.ASSURED_CORES_PHYSICAL.toString():
+      return 'Assured Physical Cores';
+    default:
+      return 'Unknown'
+  }
+}
 
 App.codeToTrustConfig = function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
