@@ -195,13 +195,31 @@ App.NodeController = Ember.ObjectController.extend({
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
-  isAssured: Ember.computed.equal('samControlled', App.ASSURED),
+  isAssured: function() {
+    switch(this.get('samControlled')) {
+      case '2':
+      case 2:
+        return true;
+        break;
+      case '3':
+      case 3:
+        return true;
+        break;
+      case '4':
+      case 4:
+        return true;
+        break;
+      default:
+        return false;
+        break;
+    }
+  }.property('samControlled'),
   isSelectable: function() {
     return this.get('isAgentInstalled');
   }.property('isAgentInstalled'),
   nodeTypeMessage: function () {
     if (this.get('isAssured')) {
-      return 'This is an assured node. VMs with SLAs may be placed here.';
+      return 'This is an assured node. Assured type: ' + App.codeToMode(this.get('samControlled')) + '. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
       return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
     } else {
