@@ -1,4 +1,4 @@
-import Mode from '../utils/mappings/health';
+import Mode from '../utils/mappings/mode';
 
 export default function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
