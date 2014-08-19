@@ -6,6 +6,7 @@ import Trust from '../utils/mappings/trust';
 import TrustConfig from '../utils/mappings/trust-config';
 import Mode from '../utils/mappings/mode';
 import codeToTrustConfig from '../utils/convert/code-to-trust-config';
+import codeToMode from '../utils/convert/code-to-mode';
 import priorityToType from '../utils/convert/priority-to-type';
 import codeToOperational from '../utils/convert/code-to-operational';
 import overallHealth from '../utils/convert/overall-health';
@@ -233,7 +234,7 @@ export default Ember.ObjectController.extend({
   }.property('isAgentInstalled'),
   nodeTypeMessage: function() {
     if (this.get('isAssured')) {
-      return 'This is an assured node. Assured type: ' + App.codeToMode(this.get('samControlled')) + '. VMs with SLAs may be placed here.';
+      return 'This is an assured node. Assured type: ' + codeToMode(this.get('samControlled')) + '. VMs with SLAs may be placed here.';
     } else if (this.get('isMonitored')) {
       return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
     } else {
