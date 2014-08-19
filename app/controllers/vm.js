@@ -58,7 +58,7 @@ export default Ember.ObjectController.extend({
   slaViolatedWarning: Ember.computed.equal('status.sla_status', 2),
   slaViolatedError: Ember.computed.equal('status.sla_status', 3),
   isSlaMissing: function() {
-    return Ember.isEmpty(this.get('sla')) && this.get('node.samControlled') === Mode.ASSURED;
+    return Ember.isEmpty(this.get('sla')) && this.get('node.isAssured');
   }.property('sla', 'node.samControlled'),
   slaMessage: function() {
     if (isEmpty(this.get('status.sla_messages'))) {

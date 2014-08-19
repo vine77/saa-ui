@@ -10,10 +10,28 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
+  isAssured: function() {
+    switch(this.get('samControlled')) {
+      case '2':
+      case 2:
+        return true;
+        break;
+       case '3':
+       case 3:
+         return true;
+         break;
+       case '4':
+       case 4:
+         return true;
+          break;
+        default:
+          return false;
+          break;
+    }
+  }.property('samControlled'),
   samRegistered: function() {
-    return this.get('status.mode') === Mode.MONITORED || this.get('status.mode') === Mode.ASSURED;
+    return this.get('status.mode') === Mode.MONITORED || this.get('isAssured');
   }.property('status.mode'),
-  isAssured: Ember.computed.equal('status.mode', Mode.ASSURED),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
   status: DS.attr(),
