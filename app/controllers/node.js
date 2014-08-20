@@ -374,16 +374,10 @@ export default Ember.ObjectController.extend({
     } else {
       var message = 'Overall LLC Contention: ' + this.get('contention.system.llc.value') + ' (' + this.get('contention.system.llc.label') + ')';
       var sockets = this.get('contention.sockets');
-      var j = sockets.length;
-      for (var i = 0; i < j; i++) {
-        var socket = sockets.findBy('socket_number', i);
-        if (!socket) {
-          j++;
-        } else {
-          message += '<br>' + 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')';
-        }
-      }
-      return message;
+      if (!Ember.isArray(sockets) || sockets.length === 0) return message;
+      return message + '<br>' + sockets.map(function(socket) {
+        return 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')'
+      }).join('<br>');
     }
   }.property('contention'),
   contentionWidth: function() {
