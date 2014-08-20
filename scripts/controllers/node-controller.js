@@ -101,7 +101,7 @@ App.NodeController = Ember.ObjectController.extend({
 
   osCores: function() {
     return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'os').used.length;
-  }.property('utilizationCoresCgroups.@each'),  
+  }.property('utilizationCoresCgroups.@each'),
   vmCores: function() {
     return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'vm').used.length;
   }.property('utilizationCoresCgroups.@each'),
@@ -111,7 +111,7 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuUtilizationCgroups: function() {
     return this.get('utilization.scu.cgroups');
-  }.property('utilization.scu.cgroups.@each'),  
+  }.property('utilization.scu.cgroups.@each'),
 
   contentionCgroups: function() {
     return this.get('contention.cgroups');
@@ -359,16 +359,10 @@ App.NodeController = Ember.ObjectController.extend({
     } else {
       var message = 'Overall LLC Contention: ' + this.get('contention.system.llc.value') + ' (' + this.get('contention.system.llc.label') + ')';
       var sockets = this.get('contention.sockets');
-      var j = sockets.length;
-      for (var i = 0; i < j; i++) {
-        var socket = sockets.findBy('socket_number', i);
-        if (!socket) {
-          j++;
-        } else {
-          message += '<br>' + 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')';
-        }
-      }
-      return message;
+      if (!Ember.isArray(sockets) || sockets.length === 0) return message;
+      return message + '<br>' + sockets.map(function(socket) {
+        return 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')'
+      }).join('<br>');
     }
   }.property('contention'),
   contentionWidth: function () {
@@ -429,7 +423,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoWeek: function() {
     return this.get('graphTimeAgoValue') == '-168h';
-  }.property('graphTimeAgoValue'),  
+  }.property('graphTimeAgoValue'),
   isGraphTimeAgoMonth: function() {
     return this.get('graphTimeAgoValue') == '-672h';
   }.property('graphTimeAgoValue'),

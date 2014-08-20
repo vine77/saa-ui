@@ -1,6 +1,153 @@
 {
   "nodes": [
     {
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "agent_version": "1.1.2.53",
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "\u001b[1;31mError: Unrecognized command: version\u001b[0;39m ",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "1.2.2",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "long_message": "Unknown operational state of node.SAA agent is installed. ",
+        "health": 0,
+        "mode": 1,
+        "ipmi": true,
+        "operational": 0,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "ids": {
+        "platform_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "mac": "00:1e:67:47:f6:82",
+        "ip_address": "172.24.0.21",
+        "cloud_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "logs": "/api/v1/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "utilization": {
+        "ipc": null,
+        "scu_max": 39.52,
+        "sockets": [
+          {
+            "socket_number": -1,
+            "scu_current": 2.47,
+            "scu_max": 19.76
+          },
+          {
+            "socket_number": -1,
+            "scu_current": 0.0,
+            "scu_max": 19.76
+          }
+        ],
+        "network": null,
+        "cpu_frequency_current": null,
+        "normalized_load": 0.03,
+        "scu_current": 2.47,
+        "io": null,
+        "memory": "4020696 KB",
+        "cpu": {
+          "iowait": 924.96,
+          "idle": 23697998.4,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          },
+          "disk": {
+            "max": 82,
+            "used": 0
+          },
+          "memory": {
+            "max": 23926,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": null,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt21.mgmt",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "logs_url": "/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "tier": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-08-20T16:37:44+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-08-20T16:37:46+0000",
+          "health": 0,
+          "name": "scheduler",
+          "operational": 1
+        }
+      ],
+      "id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "vm_ids": [],
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": -1,
+            "llc": {
+              "value": 0.94,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": -1,
+            "llc": {
+              "value": 0.0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.94,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
       "scheduler_persistent": false,
       "links": {
         "logs": "/api/v1/logs?node=973D1534-B403-E211-BBFA-001E673B9418",
