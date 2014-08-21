@@ -9,7 +9,15 @@
       <p>
         <label class="inline">SLA name:</label>
         {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
-        <a class="btn pull-right" {{action "addSlo"}}><i class="icon-plus-sign"></i> Add SLO</a>
+        {{#if isAddSloAvailable}}
+          <a class="btn pull-right" {{action "addSlo"}}>
+            <i class="icon-plus-sign"></i> Add SLO
+          </a>
+        {{else}}
+          <a {{bind-attr class="isAddSloAvailable::disabled :btn :pull-right"}}>
+            <i class="icon-plus-sign"></i> Add SLO
+          </a>
+        {{/if}}
       </p>
       {{#each slo in slos itemController="slo"}}
         <p class="slo-row separator-top">
@@ -18,6 +26,7 @@
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
             selectionBinding="sloTemplate"
+            prompt="Select template"
           }}
           {{view Ember.Select viewName="select" class="input-small"
             contentBinding="slo.sloTemplate.allowedOperators"
