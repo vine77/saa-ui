@@ -12,7 +12,7 @@ App.SettingsLogController = Ember.Controller.extend({
       if (verify) {
         this.set('isDeleteActionPending', true);
         return Ember.$.ajax({
-          url: (App.getApiDomain()) + '/api/v2/logs',
+          url: (App.getApiDomain()) + '/api/v1/logs',
           type: 'DELETE'
         }).then(function () {
           self.set('isDeleteActionPending', false);

@@ -37,13 +37,13 @@ App.Network = Ember.Object.extend({
     };
     $('i.loading').removeClass('hide');
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v2/netconfig',
+      url: (App.getApiDomain()) + '/api/v1/netconfig',
       type: 'POST',
       data: JSON.stringify(networkData),
       dataType: 'json',
       contentType: 'application/json',
       complete: function (xhr) {
-        App.log(xhr.status + ' response from POST /api/v2/netconfig: ' + xhr.statusText);
+        App.log(xhr.status + ' response from POST /api/v1/netconfig: ' + xhr.statusText);
       },
       success: function (data) {
         $('i.loading').addClass('hide');
@@ -64,11 +64,11 @@ App.Network = Ember.Object.extend({
   },
   check: function () {
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v2/netconfig',
+      url: (App.getApiDomain()) + '/api/v1/netconfig',
       type: 'GET',
       dataType: 'json',
       complete: function (xhr) {
-        App.log(xhr.status + ' response from GET /api/v2/netconfig: ' + xhr.statusText);
+        App.log(xhr.status + ' response from GET /api/v1/netconfig: ' + xhr.statusText);
       },
       success: function (data) {
         // Load network config info
@@ -82,7 +82,7 @@ App.Network = Ember.Object.extend({
       },
       error: function (xhr) {
         App.event('Network configuration details could not be loaded.', App.ERROR, false);
-        App.log('ERROR ' + xhr.status + ' from GET /api/v2/netconfig: ' + xhr.statusText);
+        App.log('ERROR ' + xhr.status + ' from GET /api/v1/netconfig: ' + xhr.statusText);
       }
     });
   }

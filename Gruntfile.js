@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                 // Log requests to terminal
                 grunt.log.writeln(req.method, req.url);
 
-                if (req.url === '/api/v2/start' && req.method === 'PUT') {
+                if (req.url === '/api/v1/start' && req.method === 'PUT') {
                   res.writeHead(422, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'code': 422, 'errors': ['This is a test of the error reporting system.', 'This is only a test.']}));
                   return;
