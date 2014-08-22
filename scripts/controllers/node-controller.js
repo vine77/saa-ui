@@ -266,7 +266,7 @@ App.NodeController = Ember.ObjectController.extend({
   nodeType: function () {
     var services = this.get('cloudServices').mapBy('name');
     if (services.length < 1) return 'generic';
-    if (services.indexOf('compute') !== -1) return 'compute';
+    if (services.indexOf('assured-scu-vcpu') !== -1) return 'assured-scu-vcpu';
     if (services.indexOf('networking') !== -1) return 'networking';
     if (services.indexOf('storage') !== -1) return 'storage';
     return 'generic';

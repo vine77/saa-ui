@@ -6,17 +6,17 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
     var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
       var disabled = false;
       switch(item.get('sloType')) {
-        case 'compute':
+        case 'assured-scu-vcpu':
           if (self.get('bucketSloCount') >= 1) {
             disabled = true;
           }
           break;
-        case 'vm_compute':
+        case 'assured-scu-vm':
           if (self.get('bucketSloCount') >= 1) {
             disabled = true;
           }
           break;
-        case 'vm_cores':
+        case 'assured-cores-physical':
           if (self.get('bucketSloCount') >= 1) {
             disabled = true;
           }
@@ -36,9 +36,9 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
     return returnArray;
   }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
   bucketSloCount: function() {
-    var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'compute'; }).get('length');
-    var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_compute'; }).get('length');
-    var vmCoresCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'vm_cores'; }).get('length');
+    var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
+    var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');
+    var vmCoresCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'assured-cores-physical'; }).get('length');
     return computeCount + vmComputeCount + vmCoresCount;
   }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
   trustSloCount: function () {
@@ -52,13 +52,13 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
     return ((this.get('model.vcpus'))?this.get('model.vcpus'):0);
   }.property('model.vcpus'),
   isComputeSloTable: function() {
-    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('compute');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('assured-scu-vcpu');
   }.property('model.sla.sloTypesArray.@each'),
   isComputeVmSloTable: function() {
-    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('vm_compute');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('assured-scu-vm');
   }.property('model.sla.sloTypesArray.@each'),
   isExclusiveCoresSloTable: function() {
-    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('vm_cores');
+    return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').contains('assured-cores-physical');
   }.property('model.sla.sloTypesArray.@each'),
   isSloTableVisible: function() {
     return (!!this.get('isComputeSloTable') || !!this.get('isComputeVmSloTable') || !!this.get('isExclusiveCoresSloTable'));

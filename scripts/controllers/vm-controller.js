@@ -122,7 +122,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('utilization.scu_total', 'suFloor'),
   suFloor: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       return null;
@@ -134,7 +134,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('sla.slos.@each'),
   suCeiling: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       return null;
@@ -278,7 +278,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('graphTimeAgoValue'),
   isGraphTimeAgoWeek: function() {
     return this.get('graphTimeAgoValue') == '-168h';
-  }.property('graphTimeAgoValue'),  
+  }.property('graphTimeAgoValue'),
   isGraphTimeAgoMonth: function() {
     return this.get('graphTimeAgoValue') == '-672h';
   }.property('graphTimeAgoValue'),

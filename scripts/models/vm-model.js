@@ -26,7 +26,7 @@ App.Vm = DS.Model.extend({
 
   vcpusTimesSu: function () {
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       var suFloor = null;
@@ -37,7 +37,7 @@ App.Vm = DS.Model.extend({
     }
 
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
     var suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       var suCeiling = null;

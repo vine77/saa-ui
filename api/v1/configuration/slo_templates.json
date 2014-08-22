@@ -12,7 +12,7 @@
       "element_name": "infrastructure",
       "id": "f1d1327c-c739-4354-b43d-39d9001bb5ec",
       "unit": "SU",
-      "slo_type": "compute"
+      "slo_type": "assured-scu-vcpu"
     },
     {
       "allowed_operators": "equals",
@@ -57,7 +57,7 @@
       "element_name": "infrastructure",
       "id": "fd46f8e6-db3a-49af-9c9d-6de8421d628e",
       "unit": "SCU",
-      "slo_type": "vm_compute"
+      "slo_type": "assured-scu-vm"
     },
     {
         "links": {
@@ -74,7 +74,7 @@
         "element_name": "infrastructure",
         "id": "0bbac81c-1847-4c21-84d0-44d0a167be62",
         "unit": "",
-        "slo_type": "vm_cores"
+        "slo_type": "assured-cores-physical"
     }
   ]
 }
