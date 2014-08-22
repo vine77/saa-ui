@@ -24,7 +24,7 @@ export default DS.Model.extend({
   vcpusTimesSu: function() {
     var suFloor, suCeiling, computeSlo, suRange, suTotalRange;
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    computeSlo = this.get('sla.slos').findBy('sloType', 'compute');
+    computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
     suRange = computeSlo && computeSlo.get('value');
     if (Ember.isEmpty(suRange)) {
       suFloor = null;
