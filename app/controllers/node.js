@@ -190,6 +190,9 @@ export default Ember.ObjectController.extend({
       }
     }
   }.observes('isSelected'),
+  maxMemory: function() {
+    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
+  }.property('utilization.memory', 'maxMemory'),
   percentOfMemory: function() {
     return Math.round(100 * parseFloat(readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( readableSizeToBytes(this.get('capabilities.memory_size'))));
   }.property('utilization.memory', 'memory.max'),
@@ -200,12 +203,12 @@ export default Ember.ObjectController.extend({
     return readableSize(this.get('utilization.memory')) + ' used out of ' + readableSize(this.get('capabilities.memory_size'));
   }.property('utilization.memory', 'capabilities.memory_size'),
   percentOfMemoryAvailable: function() {
-    if (isNaN(this.get('percentOfMemory'))) {
+    if (isNaN(this.get('percentOfMemory')) || this.get('maxMemory') <= 0) {
       return false;
     } else {
       return true;
     }
-  }.property('percentOfMemory'),
+  }.property('percentOfMemory', 'maxMemory'),
 
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
