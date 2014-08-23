@@ -29,10 +29,14 @@
             selectionBinding="sloTemplate"
             prompt="Select Template"
           }}
-          {{view Ember.Select viewName="select" class="input-small"
-            contentBinding="slo.sloTemplate.allowedOperators"
-            valueBinding="slo.operator"
-          }}
+          {{#if allowedOperatorsGreaterThanOne}}
+            {{view Ember.Select viewName="select" class="input-small"
+              contentBinding="slo.sloTemplate.allowedOperators"
+              valueBinding="slo.operator"
+            }}
+          {{else}}
+            {{slo.sloTemplate.allowedOperators}}
+          {{/if}}
 
           {{#if isRange}}
             {{view Ember.TextField class="input-tiny" value=rangeMin}} to

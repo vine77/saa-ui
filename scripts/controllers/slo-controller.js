@@ -2,7 +2,9 @@ App.SloController = Ember.ObjectController.extend({
   sloTemplates: function() {
     return this.get('parentController.sloTemplates');
   }.property('parentController.sloTemplates.@each', 'parentController.isAddSloAvailable'),
-
+  allowedOperatorsGreaterThanOne: function() {
+    return (this.get('model.sloTemplate.allowedOperators.length') > 1);
+  }.property('model.sloTemplate.allowedOperators'),
   rangeMin: function (key, value) {
     // Setter
     if (arguments.length > 1) {

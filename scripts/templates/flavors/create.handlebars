@@ -102,10 +102,14 @@
                     prompt="Select Template"
                   }}
                   {{#if sloTemplate}}
+                    {{#if allowedOperatorsGreaterThanOne}}
                     {{view Ember.Select viewName="select" class="input-small"
                       contentBinding="slo.sloTemplate.allowedOperators"
                       valueBinding="slo.operator"
                     }}
+                  {{else}}
+                    {{slo.sloTemplate.allowedOperators}}
+                  {{/if}}
                   {{/if}}
                   {{#if isRange}}
                     {{view Ember.TextField class="input-tiny" value=rangeMin}} to
