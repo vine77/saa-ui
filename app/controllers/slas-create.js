@@ -8,8 +8,47 @@ export default Ember.ObjectController.extend({
   needs: ['nodes'],
   isSlaCreating: false,
   sloTemplates: function() {
-    return this.store.all('sloTemplate');
-  }.property(),
+    var self = this;
+    var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
+      var disabled = false;
+      switch(item.get('sloType')) {
+        case 'assured-scu-vcpu':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          item.set('readableSloType', 'Assured SCUs (per-vCPU)');
+          item.set('group', 'Compute Modes');
+          break;
+        case 'assured-scu-vm':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          item.set('readableSloType', 'Assured SCUs (per-VM)');
+          item.set('group', 'Compute Modes');
+          break;
+        case 'assured-cores-physical':
+          if (self.get('bucketSloCount') >= 1) {
+            disabled = true;
+          }
+          item.set('readableSloType', 'Assured physical cores');
+          item.set('group', 'Compute Modes');
+          break;
+        case 'trusted_platform':
+          if (self.get('trustSloCount') >= 1) {
+            disabled = true;
+            item.set('group', 'Trust');
+          }
+          item.set('readableSloType', 'Trusted platform');
+          break;
+        default:
+          disabled = false;
+          break;
+      }
+      item.disabled = disabled;
+      return item;
+    });
+    return returnArray.sortBy('readableSloType');
+  }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
   actions: {
     addSlo: function() {
       this.get('model.slos').addObject(this.store.createRecord('slo', {id: uuid()}));
