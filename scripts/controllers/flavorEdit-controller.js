@@ -1,6 +1,9 @@
 App.FlavorEditController = Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
 
+  bucketSloCountGreaterThanOne: function() {
+    return (this.get('bucketSloCount') >= 1);
+  }.property('bucketSloCount'),
   sloTemplates: function() {
     var self = this;
     var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
