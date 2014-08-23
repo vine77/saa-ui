@@ -25,8 +25,9 @@
             contentBinding="sloTemplates"
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
+            optionGroupPath="group"
             selectionBinding="sloTemplate"
-            prompt="Select template"
+            prompt="Select Template"
           }}
           {{view Ember.Select viewName="select" class="input-small"
             contentBinding="slo.sloTemplate.allowedOperators"
