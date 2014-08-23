@@ -175,9 +175,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.observes('isSelected'),
 
+  maxMemory: function() {
+    return parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size')));
+  }.property('capabilities.memory_size'),
   percentOfMemory: function () {
-    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))));
-  }.property('utilization.memory', 'memory.max'),
+    console.log('value', parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))) );
+    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
+  }.property('utilization.memory', 'maxMemory'),
   percentOfMemoryWidth: function () {
     return 'width:'+this.get('percentOfMemory')+'%';
   }.property('percentOfMemory'),
@@ -185,12 +189,12 @@ App.NodeController = Ember.ObjectController.extend({
     return App.readableSize(this.get('utilization.memory')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
   }.property('utilization.memory', 'capabilities.memory_size'),
   percentOfMemoryAvailable: function () {
-    if (isNaN(this.get('percentOfMemory'))) {
+    if (isNaN(this.get('percentOfMemory')) || this.get('maxMemory') <= 0) {
       return false;
     } else {
       return true;
     }
-  }.property('percentOfMemory'),
+  }.property('percentOfMemory', 'maxMemory'),
 
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
