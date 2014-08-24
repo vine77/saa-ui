@@ -13,7 +13,19 @@ import ProgressBarAdjacentController from '../controllers/progress-bar-adjacent'
  *
  */
 export default Ember.Component.extend({
-  numberOfBars: 2,
+  numberOfBars: function() {
+    var i = 1;
+    var barCount = 0;
+    while (i > barCount) {
+      if (this.get('barMax' + i)) {
+        i++;
+        barCount++;
+      } else {
+        i--;
+      }
+    }
+    return barCount;
+  }.property(),
   maxTotal: 0,
   styleBinding: 'width:30px;',
   classNames: ['progress-bar-adjacent-container'],

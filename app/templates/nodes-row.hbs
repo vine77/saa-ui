@@ -81,16 +81,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{#view "tooltip" title=computeMessage bar=computeWidth}}
-              <div class="contention-bar">
-                <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
-                  <div class="contention-gradient"></div>
-                </div>
-              </div>
-              {{n-a utilization.scu_current}}
-            {{/view}}
             {{progress-bar-adjacent
-              numberOfBars="2"
               barMin1=scuOsUtilization.min
               barMax1=scuOsUtilization.max
               barValue1=scuOsUtilization.value
@@ -99,6 +90,10 @@
               barMax2=scuVmUtilization.max
               barValue2=scuVmUtilization.value
               barTitle2="VM SCU Usage"
+              barMin3=scu6WindUtilization.min
+              barMax3=scu6WindUtilization.max
+              barValue3=scu6WindUtilization.value
+              barTitle3="6Wind SCU Usage"
             }}
           {{else}}
             <span class="not-applicable">n/a</span>
@@ -125,7 +120,6 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           {{progress-bar-adjacent
-            numberOfBars="2"
             barMin1=osContention.min
             barMax1=osContention.max
             barValue1=osContention.value
@@ -135,8 +129,7 @@
             barMax2=vmContention.max
             barValue2=vmContention.value
             barLabel2=contentionMessage
-            barTitle2="VM Contention"
-          }}
+            barTitle2="VM Contention"}}
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}

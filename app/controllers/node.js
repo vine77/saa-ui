@@ -150,6 +150,9 @@ export default Ember.ObjectController.extend({
   scuVmUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'vm');
   }.property('scuUtilizationCgroups'),
+  scu6WindUtilization: function() {
+    return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', '6wind');
+  }.property('scuUtilizationCgroups'),
 
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
