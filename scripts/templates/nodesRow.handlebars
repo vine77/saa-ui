@@ -81,11 +81,20 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{progress-bar-adjacent numberOfBars="2"
-              barMin1=scuOsUtilization.min barMax1=scuOsUtilization.max 
-              barValue1=scuOsUtilization.value barTitle1="OS SCU Usage"
-              barMin2=scuVmUtilization.min barMax2=scuVmUtilization.max 
-              barValue2=scuVmUtilization.value barTitle2="VM SCU Usage"}}
+            {{progress-bar-adjacent
+              barMin1=scuOsUtilization.min
+              barMax1=scuOsUtilization.max
+              barValue1=scuOsUtilization.value
+              barTitle1="OS SCU Usage"
+              barMin2=scuVmUtilization.min
+              barMax2=scuVmUtilization.max
+              barValue2=scuVmUtilization.value
+              barTitle2="VM SCU Usage"
+              barMin3=scu6WindUtilization.min
+              barMax3=scu6WindUtilization.max
+              barValue3=scu6WindUtilization.value
+              barTitle3="6Wind SCU Usage"
+            }}
           {{else}}
             <span class="not-applicable">n/a</span>
           {{/if}}
@@ -110,10 +119,17 @@
       </div></td>
       <td><div class="cell-container">
         {{#if hasContention}}
-          {{progress-bar-adjacent numberOfBars="2"
-            barMin1=osContention.min barMax1=osContention.max 
-            barValue1=osContention.value barLabel1=contentionMessage barTitle1="OS Contention"
-            barMin2="0" barMax2=vmContention.max barValue2=vmContention.value barLabel2=contentionMessage barTitle2="VM Contention"}}
+          {{progress-bar-adjacent
+            barMin1=osContention.min
+            barMax1=osContention.max
+            barValue1=osContention.value
+            barLabel1=contentionMessage
+            barTitle1="OS Contention"
+            barMin2="0"
+            barMax2=vmContention.max
+            barValue2=vmContention.value
+            barLabel2=contentionMessage
+            barTitle2="VM Contention"}}
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}
@@ -134,7 +150,7 @@
                   <i class="icon-spinner icon-spin"></i>
                 {{/unless}}
               </a>
-              {{#with this as contextNode}} 
+              {{#with this as contextNode}}
                 <ul class="dropdown-menu">
                   {{#each nodeActions}}
                     {{#if isListItem}}

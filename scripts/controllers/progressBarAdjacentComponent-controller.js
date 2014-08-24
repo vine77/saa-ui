@@ -1,16 +1,28 @@
 /**
- * Creates a multiple segment progress bar with independent ranges. 
+ * Creates a multiple segment progress bar with independent ranges.
  * It can accept an arbitrary number of progress bars.
  *
  * @ Handlebars Usage Example:
  * {{progress-bar-adjacent numberOfBars="3"
  * barMin1="0" barMax1="20" barValue1="15" barLabel1="OS SCU Usage"
- * barMin2="40" barMax2="80" barValue2="50" barLabel2="VM SCU Usage"      
+ * barMin2="40" barMax2="80" barValue2="50" barLabel2="VM SCU Usage"
  * barMin3="0" barMax3="50" barValue3="4" barLabel3="Testing Usage"}}
- * 
+ *
  */
 App.ProgressBarAdjacentComponent = Ember.Component.extend({
-  numberOfBars: 2,
+  numberOfBars: function() {
+    var i = 1;
+    var barCount = 0;
+    while (i > barCount) {
+      if (this.get('barMax' + i)) {
+        i++;
+        barCount++;
+      } else {
+        i--;
+      }
+    }
+    return barCount;
+  }.property(),
   maxTotal: 0,
   styleBinding: 'width:30px;',
   classNames: ['progress-bar-adjacent-container'],
@@ -82,7 +94,7 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
       // warning -> #faa732 -> rgba(250, 167, 50, 0.25)
       return 'rgba(250, 167, 50, 0.25)';
     } else if (this.get('barCount') % 4 == 0) {
-      // danger -> #dd514c -> 
+      // danger -> #dd514c ->
       return 'rgba(221, 81, 76, 0.25)';
     }
   }.property('barCount'),
@@ -118,7 +130,7 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
       //((this.get('isFirstBar'))?'border-top-right-radius:0px; border-bottom-right-radius:0px; ':'') +
   }.property('totalWidth', 'progressBarBackground', 'isFirstBar'),
   barStyles: function() {
-    return 'width:' + this.get('currentPercentageWidth') + '%; ' + 
+    return 'width:' + this.get('currentPercentageWidth') + '%; ' +
       'position:relative; ' +
       'height: 8px; ';
       //((this.get('isLastBar'))?'border-top-right-radius:4px; border-bottom-right-radius:4px; ':'') +

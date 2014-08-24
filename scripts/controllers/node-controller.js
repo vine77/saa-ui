@@ -129,6 +129,9 @@ App.NodeController = Ember.ObjectController.extend({
   scuVmUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'vm');
   }.property('scuUtilizationCgroups'),
+  scu6WindUtilization: function() {
+    return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', '6wind');
+  }.property('scuUtilizationCgroups'),
 
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
@@ -179,7 +182,6 @@ App.NodeController = Ember.ObjectController.extend({
     return parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size')));
   }.property('capabilities.memory_size'),
   percentOfMemory: function () {
-    console.log('value', parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size'))) );
     return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
   }.property('utilization.memory', 'maxMemory'),
   percentOfMemoryWidth: function () {
