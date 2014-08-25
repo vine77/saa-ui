@@ -29,6 +29,7 @@ App.Router.map(function () {
           this.route('graphs');
         });
       });
+      this.resource('cgroups');
       this.resource('services', function () {
         this.resource('slas', function () {
           this.route('create');
