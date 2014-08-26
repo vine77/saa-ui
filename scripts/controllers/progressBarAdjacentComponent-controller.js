@@ -10,7 +10,12 @@
  *
  */
 App.ProgressBarAdjacentComponent = Ember.Component.extend({
-  numberOfBars: function() {
+  maxTotal: 0,
+  //numberOfBars: 3,
+  styleBinding: 'width:30px;',
+  classNames: ['progress-bar-adjacent-container'],
+  bars: function() {
+    //Get the number of bars.
     var i = 1;
     var barCount = 0;
     while (i > barCount) {
@@ -21,19 +26,18 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
         i--;
       }
     }
-    return barCount;
-  }.property(),
-  maxTotal: 0,
-  styleBinding: 'width:30px;',
-  classNames: ['progress-bar-adjacent-container'],
-  bars: function() {
+    this.set('numberOfBars', barCount);
     // Get the max total.
     var i = 1;
+    var maxTotal = 0;
     while (i <= this.get('numberOfBars')) {
       var max = this.get('barMax' + i);
-      this.set('maxTotal', parseInt(this.get('maxTotal')) + parseInt(max));
+      if (max) {
+        maxTotal = parseInt(max) + parseInt(maxTotal);
+      }
       i++;
     }
+    this.set('maxTotal', maxTotal);
     var returnBars = [];
     var i = 1;
     while (i <= this.get('numberOfBars')) {
@@ -99,7 +103,6 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
     }
   }.property('barCount'),
   totalWidth: function() {
-    globalThis = this;
     return (parseInt(this.get('max')) / parseInt(this.get('maxTotal'))) * 100;
   }.property('max', 'maxTotal'),
   currentPercentage: function() {
