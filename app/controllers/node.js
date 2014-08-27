@@ -75,23 +75,39 @@ export default Ember.ObjectController.extend({
         method: 'unregister',
         icon: 'icon-remove',
         disabledWhileRebooting: false,
-        sortOrder: 7,
+        sortOrder: 6,
         node: this
       }),
       ActionController.create({
-        name: 'Set agent mode to monitored',
+        name: 'Change agent mode to monitored',
         method: 'setMonitored',
-        icon: 'icon-eye-open',
+        icon: 'icon-trophy',
+        disabledWhileRebooting: true,
+        sortOrder: 7,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Change agent mode to assured (per-vCPU SCUs)',
+        method: 'setAssuredVcpu',
+        icon: 'icon-trophy',
         disabledWhileRebooting: true,
         sortOrder: 8,
         node: this
       }),
-      ActionController.create({
-        name: 'Set agent mode to assured',
-        method: 'setAssured',
+      App.ActionController.create({
+        name: 'Change agent mode to assured (per-VM SCUs)',
+        method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
         sortOrder: 9,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Change agent mode to assured (exclusive cores)',
+        method: 'setAssuredCores',
+        icon: 'icon-trophy',
+        disabledWhileRebooting: true,
+        sortOrder: 10,
         node: this
       }),
       ActionController.create({

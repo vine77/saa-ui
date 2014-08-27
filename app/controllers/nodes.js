@@ -92,6 +92,8 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   maxScuCapabilities: function() {
     return Math.max.apply(null, this.get('allScuCapabilities'));
   }.property('allScuCapabilities'),
+
+
   minScuCapabilities: function() {
     return Math.min.apply(null, this.get('allScuCapabilities'));
   }.property('allScuCapabilities'),
@@ -207,6 +209,15 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
       } else {
         node.set('isActionPending', false);
       }
+    },
+    setAssuredCores: function(node, mode) {
+      this.send('setAssured', node, Mode.ASSURED_CORES_PHYSICAL);
+    },
+    setAssuredVm: function(node, mode) {
+      this.send('setAssured', node, Mode.ASSURED_SCU_VM);
+    },
+    setAssuredVcpu: function(node, mode) {
+      this.send('setAssured', node, Mode.ASSURED_SCU_VCPU);
     },
     setAssured: function (node, mode) {
       node.set('isActionPending', true);

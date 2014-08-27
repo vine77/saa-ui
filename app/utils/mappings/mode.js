@@ -1,4 +1,4 @@
-// Constants for trust
+// Constants for mode
 export default {
   NON_SAM: 0,
   MONITORED: 1,
