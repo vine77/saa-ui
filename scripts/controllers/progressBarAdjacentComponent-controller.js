@@ -11,7 +11,6 @@
  */
 App.ProgressBarAdjacentComponent = Ember.Component.extend({
   maxTotal: 0,
-  //numberOfBars: 3,
   styleBinding: 'width:30px;',
   classNames: ['progress-bar-adjacent-container'],
   bars: function() {
@@ -71,8 +70,6 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
     this.notifyPropertyChange('bars');
   }
 });
-
-
 
 App.ProgressBarAdjacentController = Ember.ObjectController.extend({
   progressBarColors: ['progress-info', 'progress-success', 'progress-warning', 'progress-danger'],
@@ -155,14 +152,7 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
     } else {
       return 'position:absolute; left:0px; bottom:-17px; color:black; font-size:.8em;';
     }
-  }.property('isCurrentValueVisible'),
-  currentValueToolTip: function() {
-    return ((!Ember.isEmpty(this.get('title')))?'<strong>' + this.get('title') + '</strong> <br />':'') +
-      this.get('current') + ' out of ' + this.get('max') + ' <br />' +
-      ((!Ember.isEmpty(this.get('label')))?this.get('label'):'');
-
-  }.property('current', 'max', 'title')
-
+  }.property('isCurrentValueVisible')
 });
 
 

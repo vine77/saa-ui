@@ -122,6 +122,9 @@ App.NodeController = Ember.ObjectController.extend({
   vmContention: function() {
     return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'vm');
   }.property('contentionCgroups'),
+  sixWindContention: function() {
+    return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', '6Wind');
+  }.property('contentionCgroups'),
 
   scuOsUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'os');
@@ -132,6 +135,19 @@ App.NodeController = Ember.ObjectController.extend({
   scu6WindUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', '6wind');
   }.property('scuUtilizationCgroups'),
+
+  scuTooltip: function() {
+    return '<strong>System:</strong> ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
+    ((!!this.get('scuOsUtilization.max'))?'<strong> OS SCU Usage </strong>' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
+    ((!!this.get('scuVmUtilization.max'))?'<strong> VM SCU Usage </strong>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
+    ((!!this.get('scu6WindUtilization.max'))?'<strong> 6Wind SCU Usage </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'');
+  }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max'),
+  contentionTooltip: function() {
+    return this.get('contentionMessage') + '<br>' +
+    ((!!this.get('osContention.max'))?'<strong> OS Contention </strong>' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
+    ((!!this.get('vmContention.max'))?'<strong> VM Contention </strong>' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
+    ((!!this.get('sixWindContention.max'))?'<strong> 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
+  }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
