@@ -54,23 +54,39 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'unregister',
         icon: 'icon-remove',
         disabledWhileRebooting: false,
+        sortOrder: 6,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Change agent mode to monitored',
+        method: 'setMonitored',
+        icon: 'icon-trophy',
+        disabledWhileRebooting: true,
         sortOrder: 7,
         node: this
       }),
       App.ActionController.create({
-        name: 'Set agent mode to monitored',
-        method: 'setMonitored',
-        icon: 'icon-eye-open',
+        name: 'Change agent mode to assured (per-vCPU SCUs)',
+        method: 'setAssuredVcpu',
+        icon: 'icon-trophy',
         disabledWhileRebooting: true,
         sortOrder: 8,
         node: this
       }),
       App.ActionController.create({
-        name: 'Set agent mode to assured',
-        method: 'setAssured',
+        name: 'Change agent mode to assured (per-VM SCUs)',
+        method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
         sortOrder: 9,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Change agent mode to assured (exclusive cores)',
+        method: 'setAssuredCores',
+        icon: 'icon-trophy',
+        disabledWhileRebooting: true,
+        sortOrder: 10,
         node: this
       }),
       App.ActionController.create({
@@ -78,7 +94,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'schedule',
         icon: 'icon-magnet',
         disabledWhileRebooting: true,
-        sortOrder: 6,
+        sortOrder: 4,
         node: this
       }),
       App.ActionController.create({
@@ -497,7 +513,7 @@ App.ServiceController = Ember.ObjectController.extend({
 
 App.ActionController = Ember.ObjectController.extend({
   isDisabled: function() {
-    return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting') || (this.get('method') == 'setAssuredVm');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
@@ -518,9 +534,13 @@ App.ActionController = Ember.ObjectController.extend({
       case 'unregister':
         return this.get('node.samRegistered');
       case 'setMonitored':
-        return this.get('node.isAgentInstalled') && !this.get('node.isMonitored');
-      case 'setAssured':
-        return this.get('node.isAgentInstalled') && !this.get('node.isAssured');
+        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.MONITORED));
+      case 'setAssuredVcpu':
+        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VCPU));
+      case 'setAssuredVm':
+        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VM));
+      case 'setAssuredCores':
+        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_CORES_PHYSICAL));
       default:
         return false;
     }
@@ -534,11 +554,6 @@ App.ActionController = Ember.ObjectController.extend({
           additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode '+item+'}}><i class="icon-magnet"></i> Place VMs on Socket '+item+'</a></li>');
         });
       }
-    }
-    if (this.get('method') == 'setAssured') {
-      additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode "2"}}><i class="icon-magnet"></i> Set agent mode to Assured SCU vCPU</a></li>');
-      additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode 3}}><i class="icon-magnet"></i> Set agent mode to Assured SCU VM</a></li>');
-      additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode 4}}><i class="icon-magnet"></i> Set agent mode to Assured Physical Cores</a></li>');
     }
     if (additionalListItems.length > 0) {
       return Ember.View.extend({

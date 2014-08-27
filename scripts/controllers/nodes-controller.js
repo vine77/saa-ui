@@ -119,7 +119,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   allScuCapabilities: function () {
     return this.get('model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
   }.property('model.@each'),
-  
+
 
   maxScuCapabilities: function () {
     return Math.max.apply(null, this.get('allScuCapabilities'));
@@ -239,6 +239,15 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       } else {
         node.set('isActionPending', false);
       }
+    },
+    setAssuredCores: function(node, mode) {
+      this.send('setAssured', node, App.ASSURED_CORES_PHYSICAL);
+    },
+    setAssuredVm: function(node, mode) {
+      this.send('setAssured', node, App.ASSURED_SCU_VM);
+    },
+    setAssuredVcpu: function(node, mode) {
+      this.send('setAssured', node, App.ASSURED_SCU_VCPU);
     },
     setAssured: function (node, mode) {
       node.set('isActionPending', true);
