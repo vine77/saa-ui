@@ -94,6 +94,7 @@
               barMax3=scu6WindUtilization.max
               barValue3=scu6WindUtilization.value
               barTitle3="6Wind SCU Usage"
+              tooltip=scuTooltip
             }}
           {{else}}
             <span class="not-applicable">n/a</span>
@@ -125,11 +126,18 @@
             barValue1=osContention.value
             barLabel1=contentionMessage
             barTitle1="OS Contention"
-            barMin2="0"
+            barMin2=vmContention.min
             barMax2=vmContention.max
             barValue2=vmContention.value
             barLabel2=contentionMessage
-            barTitle2="VM Contention"}}
+            barTitle2="VM Contention"
+            barMin3=sixWindContention.min
+            barMax3=sixWindContention.max
+            barValue3=sixWindContention.value
+            barLabel3=contentionMessage
+            barTitle3="VM Contention"
+            tooltip=contentionTooltip
+          }}
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}

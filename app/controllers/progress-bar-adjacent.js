@@ -81,12 +81,5 @@ export default Ember.ObjectController.extend({
     } else {
       return 'position:absolute; left:0px; bottom:-17px; color:black; font-size:.8em;';
     }
-  }.property('isCurrentValueVisible'),
-  currentValueToolTip: function() {
-    return ((!Ember.isEmpty(this.get('title')))?'<strong>' + this.get('title') + '</strong> <br />':'') +
-      this.get('current') + ' out of ' + this.get('max') + ' <br />' +
-      ((!Ember.isEmpty(this.get('label')))?this.get('label'):'');
-
-  }.property('current', 'max', 'title')
-
+  }.property('isCurrentValueVisible')
 });
