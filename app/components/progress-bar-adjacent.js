@@ -33,7 +33,7 @@ export default Ember.Component.extend({
     // Get the max total
     i = 1;
     var maxTotal = 0;
-    var min, max, current, label, title;
+    var min, max, current, label, title, color;
     while (i <= this.get('numberOfBars')) {
       max = this.get('barMax' + i);
       if (max) {
@@ -50,6 +50,7 @@ export default Ember.Component.extend({
       current = this.get('barValue' + i);
       label = this.get('barLabel' + i);
       title = this.get('barTitle' + i);
+      color = this.get('barColor' + i);
       returnBars.push(
         ProgressBarAdjacentController.create({
           min: min,
@@ -58,6 +59,7 @@ export default Ember.Component.extend({
           current: current,
           numberOfBars: this.get('numberOfBars'),
           barCount: i,
+          barColor: i,
           label: label,
           title: title
         })
@@ -67,6 +69,7 @@ export default Ember.Component.extend({
       this.addObserver('barTitle' + i, this, this.notifyBars);
       this.addObserver('barMin' + i, this, this.notifyBars);
       this.addObserver('barMax' + i, this, this.notifyBars);
+      this.addObserver('barColor' + i, this, this.notifyBars);
       i++;
     }
     return returnBars;

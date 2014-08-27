@@ -151,17 +151,22 @@ export default Ember.ObjectController.extend({
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'os');
   }.property('scuUtilizationCgroups'),
   scuTooltip: function() {
-    return '<strong>System:</strong> ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
-    ((!!this.get('scuOsUtilization.max'))?'<strong> OS SCU Usage </strong>' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuVmUtilization.max'))?'<strong> VM SCU Usage </strong>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
-    ((!!this.get('scu6WindUtilization.max'))?'<strong> 6Wind SCU Usage </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'');
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max'),
+    return '<strong> SCU Usage </strong>' + '<br>' +
+    '<strong>System:</strong> ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
+    ((!!this.get('scuOsUtilization.max'))?'<strong>OS: </strong>' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
+    ((!!this.get('scu6WindUtilization.max'))?'<strong> 6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
+    ((!!this.get('scuVmUtilization.max'))?'<strong>VM: </strong>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
+    ((!!this.get('scuUnallocated'))?'<strong> Unallocated:</strong> ' + this.get('scuUnallocated'):'');
+  }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
     return this.get('contentionMessage') + '<br>' +
     ((!!this.get('osContention.max'))?'<strong> OS Contention </strong>' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
     ((!!this.get('vmContention.max'))?'<strong> VM Contention </strong>' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
     ((!!this.get('sixWindContention.max'))?'<strong> 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
+  scuUnallocated: function() {
+    return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
+  }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
   scuVmUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'vm');
