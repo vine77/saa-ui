@@ -4,6 +4,7 @@ temp
 .bower.json
 scripts/templates.js
 styles/main.css
+styles/theme.css
 
 # Ignore node_modules not used for Node.js server (i.e. dev/build tools)
 node_modules/
