@@ -587,14 +587,14 @@
           "system": {
             "value": 634.0,
             "min": 0,
-            "max": 1024.0
+            "max": 2024.0
           },
           "cgroups": [
             {
               "type": "vm",
               "value": 530,
               "min": 0,
-              "max": 886.0
+              "max": 530.0
             },
             {
               "type": "os",
@@ -604,9 +604,9 @@
             },
             {
               "type": "6wind",
-              "value": 4.0,
+              "value": 500.0,
               "min": 0,
-              "max": 10
+              "max": 500
             }
           ]
         },
