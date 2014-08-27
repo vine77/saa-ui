@@ -76,23 +76,31 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
 
 App.ProgressBarAdjacentController = Ember.ObjectController.extend({
   progressBarColors: ['progress-info', 'progress-success', 'progress-warning', 'progress-danger', 'progress-neutral'],
+  currentExceedsMax: function() {
+    return (this.get('current') > this.get('max'));
+  }.property('max', 'current'),
   progressBarColor: function() {
-    if (!!this.get('barColor')) {
-      if (this.get('barColor') == 'progress-neutral') {
-        return this.get('progressBarColors')[4];
-      }
+    if (this.get('currentExceedsMax')) {
+      return this.get('progressBarColors')[3];
     } else {
-      if (this.get('barCount') == 1) {
-        return this.get('progressBarColors')[0];
-      } else if (this.get('barCount') % 2 == 0) {
-        return this.get('progressBarColors')[1];
-      } else if (this.get('barCount') % 3 == 0) {
-        return this.get('progressBarColors')[2];
-      } else if (this.get('barCount') % 4 == 0) {
-        return this.get('progressBarColors')[3];
+      if (!!this.get('barColor')) {
+        if (this.get('barColor') == 'progress-neutral') {
+          return this.get('progressBarColors')[4];
+        }
+      } else {
+        if (this.get('barCount') == 1) {
+          return this.get('progressBarColors')[0];
+        } else if (this.get('barCount') % 2 == 0) {
+          return this.get('progressBarColors')[1];
+        } else if (this.get('barCount') % 3 == 0) {
+          return this.get('progressBarColors')[2];
+        }
+        //} else if (this.get('barCount') % 4 == 0) {
+        //  return this.get('progressBarColors')[3];
+        //}
       }
     }
-  }.property('progressBarColors', 'barCount', 'barColor'),
+  }.property('progressBarColors', 'barCount', 'barColor', 'currentExceedsMax'),
   progressBarBackground: function() {
     if (!!this.get('barColor')) {
       if (this.get('barColor') == 'progress-neutral') {
@@ -108,10 +116,11 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
       } else if (this.get('barCount') % 3 == 0) {
         // warning -> #faa732 -> rgba(250, 167, 50, 0.25)
         return 'rgba(250, 167, 50, 0.25)';
-      } else if (this.get('barCount') % 4 == 0) {
-        // danger -> #dd514c ->
-        return 'rgba(221, 81, 76, 0.25)';
       }
+        // } else if (this.get('barCount') % 4 == 0) {
+        // danger -> #dd514c ->
+        // return 'rgba(221, 81, 76, 0.25)';
+        //}
     }
   }.property('barCount', 'barColor'),
   totalWidth: function() {
