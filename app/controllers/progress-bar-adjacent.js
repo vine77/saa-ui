@@ -42,6 +42,7 @@ export default Ember.ObjectController.extend({
       } else if (this.get('barCount') % 3 == 0) {
         // warning -> #faa732 -> rgba(250, 167, 50, 0.25)
         return 'rgba(250, 167, 50, 0.25)';
+      }
       //} else if (this.get('barCount') % 4 == 0) {
         // danger -> #dd514c ->
       //  return 'rgba(221, 81, 76, 0.25)';
