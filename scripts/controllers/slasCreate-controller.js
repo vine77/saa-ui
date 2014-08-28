@@ -1,11 +1,16 @@
 App.SlasCreateController = Ember.ObjectController.extend({
-  needs: ['nodes'],
+  needs: ['nodes', 'slos'],
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);
   }.property('bucketSloCount'),
   sloTemplates: function() {
     var self = this;
+    console.log('inside sloTemplates');
+    this.get('slos').forEach( function(item, index, enumerable){
+      console.log('item', item);
+      console.log('item.sloTemplate', item.get('sloTemplate'));
+    });
     var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
       var disabled = false;
       switch(item.get('sloType')) {
