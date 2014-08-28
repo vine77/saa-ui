@@ -8,6 +8,7 @@ import Mode from '../utils/mappings/mode';
 import codeToTrustConfig from '../utils/convert/code-to-trust-config';
 import codeToMode from '../utils/convert/code-to-mode';
 import priorityToType from '../utils/convert/priority-to-type';
+import typeToSortOrder from '../utils/convert/type-to-sort-order';
 import codeToOperational from '../utils/convert/code-to-operational';
 import overallHealth from '../utils/convert/overall-health';
 import trustToString from '../utils/convert/trust-to-string';
@@ -183,6 +184,42 @@ export default Ember.ObjectController.extend({
   scuUnallocated: function() {
     return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
+  scuValues: function() {
+    var returnArray = [];
+    if (this.get('scuUtilizationCgroups')) {
+      this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
+        returnArray.push({
+          min: item.min,
+          max: item.max,
+          value: item.value,
+          sortOrder: typeToSortOrder(item.type)
+        });
+      });
+      returnArray.push({
+        min: 0,
+        max: this.get('scuUnallocated'),
+        value: this.get('scuUnallocated'),
+        color: "progress-neutral",
+        sortOrder: 9999
+      });
+    }
+    return returnArray.sortBy('sortOrder');
+  }.property('scuUtilizationCgroups', 'scuUnallocated'),
+
+  contentionValues: function() {
+    var returnArray = [];
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach(function(item, index, enumerable) {
+        returnArray.push({
+          min: item.min,
+          max: item.max,
+          value: item.value,
+          sortOrder: typeToSortOrder(item.type)
+        });
+      });
+    }
+    return returnArray;
+  }.property('contentionCgroups'),
 
   scuVmUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'vm');

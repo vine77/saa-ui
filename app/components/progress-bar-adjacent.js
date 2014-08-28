@@ -17,20 +17,19 @@ export default Ember.Component.extend({
   styleBinding: 'width:30px;',
   classNames: ['progress-bar-adjacent-container'],
   bars: function() {
-    //Get the number of bars.
-    var i = 1;
-    var barCount = 0;
-    while (i > barCount) {
-      if (this.get('barMax' + i)) {
-        i++;
-        barCount++;
-      } else {
-        i--;
-      }
-    }
-    this.set('numberOfBars', barCount);
-
-    // Get the max total
+     var i = 1;
+    if (!!this.get('values')) {
+      var self = this;
+      this.get('values').forEach( function(item, index, enumerable) {
+        if (typeof item.min != 'undefined') { self.set('barMin' + i, item.min); }
+        if (typeof item.max != 'undefined') { self.set('barMax' + i, item.max); }
+        if (typeof item.value != 'undefined') { self.set('barValue' + i, item.value); }
+        if (typeof item.color != 'undefined') { self.set('barColor' + i, item.color); }
+         i++;
+      });
+     }
+    this.set('numberOfBars', this.get('values.length'));
+     // Get the max total.
     i = 1;
     var maxTotal = 0;
     var min, max, current, label, title, color;
@@ -73,7 +72,7 @@ export default Ember.Component.extend({
       i++;
     }
     return returnBars;
-  }.property('numberOfBars'),
+  }.property('tooltip'),
   notifyBars: function() {
     this.notifyPropertyChange('bars');
   }
