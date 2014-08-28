@@ -54,6 +54,17 @@ App.caseMapping = {
   'slos': 'SLOs'
 };
 
+App.typeToSortOrder = function(type) {
+  switch(type) {
+    case 'os':
+      return 0;
+    case '6wind':
+      return 1;
+    case 'vm':
+      return 2;
+  }
+}
+
 App.codeToMode = function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
   switch (code) {
@@ -65,7 +76,7 @@ App.codeToMode = function(code) {
       return 'Assured SCU VCPU';
     case App.ASSURED_SCU_VM:
     case App.ASSURED_SCU_VM.toString():
-      return 'Assured SCU VCPU';    
+      return 'Assured SCU VCPU';
     case App.ASSURED_CORES_PHYSICAL:
     case App.ASSURED_CORES_PHYSICAL.toString():
       return 'Assured Physical Cores';

@@ -171,6 +171,43 @@ App.NodeController = Ember.ObjectController.extend({
     return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
+  scuValues: function() {
+    var returnArray = [];
+    if (this.get('scuUtilizationCgroups')) {
+      this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
+        returnArray.push({
+          min: item.min,
+          max: item.max,
+          value: item.value,
+          sortOrder: App.typeToSortOrder(item.type)
+        });
+      });
+      returnArray.push({
+        min: 0,
+        max: this.get('scuUnallocated'),
+        value: this.get('scuUnallocated'),
+        color: "progress-neutral",
+        sortOrder: 9999
+      });
+    }
+    return returnArray.sortBy('sortOrder');
+  }.property('scuUtilizationCgroups', 'scuUnallocated'),
+
+  contentionValues: function() {
+    var returnArray = [];
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach(function(item, index, enumerable) {
+        returnArray.push({
+          min: item.min,
+          max: item.max,
+          value: item.value,
+          sortOrder: App.typeToSortOrder(item.type)
+        });
+      });
+    }
+    return returnArray;
+  }.property('contentionCgroups'),
+
   nodeActionsAreAvailable: function() {
     return this.get('nodeActions') && this.get('nodeActions').filterBy('isListItem', true).length > 0;
   }.property('nodeActions.@each'),

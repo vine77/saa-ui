@@ -79,23 +79,11 @@
         </div>
       </td>
       <td><div class="cell-container">
-        <div class="zcontention">
+        <div class="contention">
           {{#if computeExists}}
             {{progress-bar-adjacent
               tooltip=scuTooltip
-              barMin1=scuOsUtilization.min
-              barMax1=scuOsUtilization.max
-              barValue1=scuOsUtilization.value
-              barMin2=scu6WindUtilization.min
-              barMax2=scu6WindUtilization.max
-              barValue2=scu6WindUtilization.value
-              barMin3=scuVmUtilization.min
-              barMax3=scuVmUtilization.max
-              barValue3=scuVmUtilization.value
-              barMin4="0"
-              barMax4=scuUnallocated
-              barValue4=scuUnallocated
-              barColor4="progress-neutral"
+              values=scuValues
             }}
           {{else}}
             <span class="not-applicable">n/a</span>
@@ -123,21 +111,7 @@
         {{#if hasContention}}
           {{progress-bar-adjacent
             tooltip=contentionTooltip
-            barMin1=osContention.min
-            barMax1=osContention.max
-            barValue1=osContention.value
-            barLabel1=contentionMessage
-            barTitle1="OS Contention"
-            barMin2=vmContention.min
-            barMax2=vmContention.max
-            barValue2=vmContention.value
-            barLabel2=contentionMessage
-            barTitle2="VM Contention"
-            barMin3=sixWindContention.min
-            barMax3=sixWindContention.max
-            barValue3=sixWindContention.value
-            barLabel3=contentionMessage
-            barTitle3="VM Contention"
+            values=contentionValues
           }}
         {{else}}
           <span class="not-applicable">n/a</span>
