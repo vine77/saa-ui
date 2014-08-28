@@ -71,8 +71,8 @@
                 <div class="allocation-range"></div> {{! light orange dashed }}
                 <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
                 <div class="allocation-current">
-                  <div class="allocation-current-warning" {{bind-attr style="allocationCurrentWidth"}}></div> {{! orange }}
-                  <div class="allocation-current-success" {{bind-attr style="allocationSuccessWidth"}}></div> {{! green }}
+                  <div class="allocation-current-warning" {{bind-attr style="utilizationBurstStyle"}}></div> {{! orange }}
+                  <div class="allocation-current-success" {{bind-attr style="utilizationCurrentWidth"}}></div> {{! green }}
                 </div>
               </div>
               {{na utilization.scu_total}}

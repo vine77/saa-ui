@@ -187,12 +187,54 @@ App.VmController = Ember.ObjectController.extend({
     return 'width:' + this.get('allocationSuccess') + 'px;';
   }.property('allocationSuccess'),
   allocationMessage: function () {
+    var message = '';
     if (this.get('isRange')) {
-    return '<strong>Current: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Min: ' + this.get('capabilities.scu_allocated_min') + '<br>' + 'Burst: ' + this.get('capabilities.scu_allocated_max');
+      message += '<strong>Total: ' + this.get('utilization.scu_total') + '</strong><br>';
+      message += 'Non-bursting: ' + this.get('utilizationCurrent') + '<br>';
+      message += 'Bursting: ' + this.get('utilizationBurst') + '<br>';
+      message += 'Min Allocated: ' + this.get('capabilities.scu_allocated_min') + '<br>';
+      message += 'Burst Allocated: ' + this.get('capabilities.scu_allocated_max');
     } else {
-    return '<strong>Current: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.scu_allocated_min');
+      return '<strong>Total: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.scu_allocated_min');
     }
-  }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max', 'utilization.scu_total', 'isRange'),
+    return message;
+  }.property('isRange', 'utilization.scu_total', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
+  utilizationBurst: function() {
+    var burst = this.get('utilization.scu_burst');
+    if (Ember.isEmpty(burst)) burst = 0;
+    return this.get('utilization.scu_burst');
+  }.property('utilization.scu_burst'),
+  utilizationCurrent: function() {
+    var total = this.get('utilization.scu_total');
+    if (Ember.isEmpty(total)) total = 0;
+    return Math.max(0, total - this.get('utilizationBurst'));
+  }.property('utilization.scu_total', 'utilizationBurst'),
+  utilizationBurstWidth: function() {
+    if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
+    var percent = 100 * parseFloat(this.get('utilizationBurst')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+    return 'width:' + percent.toFixed(0) + 'px;';
+  }.property('utilizationBurst', 'capabilities.scu_allocated_max'),
+  utilizationCurrentWidth: function() {
+    if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
+    var percent = 100 * parseFloat(this.get('utilizationCurrent')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+    return 'width:' + percent.toFixed(0) + 'px;';
+  }.property('utilizationCurrent', 'capabilities.scu_allocated_max'),
+  utilizationBurstLeft: function() {
+    if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
+    if (!this.get('isRange')) {
+      // Current
+      var percent = 100 * parseFloat(this.get('utilizationCurrent')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+      return 'left:' + percent.toFixed(0) + 'px;';
+    } else {
+      // Max of current and scu_allocated_min
+      var left = Math.max(this.get('utilizationCurrent'), this.get('capabilities.scu_allocated_min'));
+      var percent = (100 * left / parseFloat(this.get('capabilities.scu_allocated_max'))) + 1;
+      return 'left:' + percent.toFixed(0) + 'px;';
+    }
+  }.property('isRange', 'capabilities.scu_allocated_max', 'utilizationCurrent'),
+  utilizationBurstStyle: function() {
+    return this.get('utilizationBurstWidth') + this.get('utilizationBurstLeft');
+  }.property('utilizationBurstWidth', 'utilizationBurstLeft'),
 
   // Observers
   graphObserver: function () {
