@@ -1,0 +1,197 @@
+{
+  "prefixes": {
+    "oslc": "http://open-services.net/ns/core#",
+    "oslc_cm": "http://open-services.net/ns/cm#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "cq": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/"
+  },
+  "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798068",
+  "dcterms:type": "Defect",
+  "rdf:type": [
+    {
+      "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+    },
+    {
+      "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+    }
+  ],
+  "oslc:instanceShape": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+  },
+  "dcterms:contributor": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+  },
+  "dcterms:creator": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+  },
+  "dcterms:description": "After logging into the CO UI, when one visits the Assurance tab it sometimes requires authnetication. Normally it should not require separate authentication.\r\n\r\nWhile not consistent, this behavior can be observed on BigVal, for example:\r\n\r\nhttps://10.23.35.10 sam / changeme",
+  "dcterms:identifier": "33798068",
+  "dcterms:subject": [],
+  "dcterms:title": "CO 1.1.0.30 RC9 - Assurance tab requests authentication - SSO seems broken",
+  "oslc:shortTitle": "EPSD100243636",
+  "oslc_cm:status": "Assigned",
+  "cq:ACL": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16783135-46907537"
+  },
+  "cq:Affected_Web_Browser": "",
+  "cq:Attachments": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798068/field/Attachments"
+    }
+  ],
+  "cq:Audio_Driver": "",
+  "cq:BIOS_Version": "",
+  "cq:BoardName": "",
+  "cq:Chipset": "",
+  "cq:Chipset_Driver": "",
+  "cq:Classification": "Defect",
+  "cq:Clone_Record": "",
+  "cq:Cloned_From": "",
+  "cq:Cloned_To": "",
+  "cq:Closed_By": "",
+  "cq:Closed_By_FullName": "",
+  "cq:Closed_Date": "",
+  "cq:Closed_Reason": "",
+  "cq:Configuration": "Chassis:\r\nBaseboard PBA: \r\nBIOS Version: \r\nBMC Version: \r\nHSC Version:\r\nFRUSDR Version: \r\nME FW Version:\r\n\r\nOperating System: \r\n\r\nHW Description Notes: \r\n\r\n  Processors: \r\n     Model (e.g. E7420) and Qty:\r\n  HDDs: \r\n     Mfg, Model #, Qty:\r\n     Slot Locations, RAID Config (if applicable):\r\n  Memory:\r\n     Mfg, Model #, Qty:\r\n  Adapters:\r\n     Mfg, Model #, FW/BIOS/Driver Versions:\r\n     Slot Locations:\r\n  Drive BackPlane:\r\n    Model, PBA, HSC FW\r\n\r\nOther configuration Information:",
+  "cq:Critical_Customer": "No",
+  "cq:Customer_Contacts_CC_FORM": "",
+  "cq:Customer_Contacts_C_FORM": "",
+  "cq:Customer_Impact": "",
+  "cq:Customer_Needs_By": "",
+  "cq:Customer_Support_ID": "",
+  "cq:Defect_Link": "https://pg.clearquest.intel.com/cqweb/main?command=GenerateMainFrame&service=CQ&schema=CQMS.EPSD.PG&contextid=EPSD1&entityDefName=Defect&entityID=33798068",
+  "cq:Deferred_Reason": "",
+  "cq:Escalation": "No",
+  "cq:Exposure": "High",
+  "cq:Exposure_Definition": "https://epsdappsupport.intel.com/clearquest/docs/EPSD_CQ_Exposure_definition_v11.doc",
+  "cq:FirstSlipped_At": "",
+  "cq:Fixed_in_Comp_Version_": "",
+  "cq:Fixed_in_Component": "",
+  "cq:Fixed_in_Component_Build": "",
+  "cq:Fixed_in_Component_Build_": "",
+  "cq:Fixed_in_Product_Build": "",
+  "cq:Fixed_in_Product_Build_": "",
+  "cq:Fixed_in_Product_Version": "",
+  "cq:Fixed_in_Product_Version_": "",
+  "cq:Found_by_Customer": "",
+  "cq:Found_in_Comp_Version": "",
+  "cq:Found_in_Comp_Version_": "",
+  "cq:Found_in_Component": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777247-48143295"
+  },
+  "cq:Found_in_Component_Build": "",
+  "cq:Found_in_Component_Build_": "",
+  "cq:Found_in_Product_Build": "",
+  "cq:Found_in_Product_Build_": "",
+  "cq:Found_in_Product_Family": "",
+  "cq:Found_in_Product_Release": "Official",
+  "cq:Found_in_Product_Version": "",
+  "cq:Found_in_Product_Version_": "",
+  "cq:Found_in_Project": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777243-48143288"
+  },
+  "cq:Found_in_Project_Build": "",
+  "cq:Found_in_Project_Build_": "",
+  "cq:Found_in_Project_Version": "",
+  "cq:Found_in_Project_Version_": "",
+  "cq:Gate_To": "CO 1.1",
+  "cq:Implemented_By": "",
+  "cq:Implemented_By_FullName": "",
+  "cq:Implemented_Date": "",
+  "cq:Interval_Notif": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16784426-49059294"
+  },
+  "cq:LVMM_Version": "",
+  "cq:Last_Good_Project_Build": "",
+  "cq:Last_Good_Project_Version": "",
+  "cq:Mail_Listing": "",
+  "cq:NIC": "",
+  "cq:Note_Entry": "",
+  "cq:Notes_Log": "",
+  "cq:Notification_Note": "",
+  "cq:Notify_From": "sunil.raghavan@intel.com",
+  "cq:Notify_Status": "",
+  "cq:Notify_Template": "",
+  "cq:Notify_To_String": "",
+  "cq:Owner_FORM": "WARD, NATHAN J",
+  "cq:Pending_Reason": "",
+  "cq:Phase_Discovered": "CO 1.1",
+  "cq:Phase_Injected": "",
+  "cq:Priority": "P2",
+  "cq:Priority_Definition": "https://epsdappsupport.intel.com/clearquest/docs/EPSD_ClearQuest_Defect_Priority_Field_Definitions.docx",
+  "cq:Processor": "",
+  "cq:Product": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+  },
+  "cq:QA_Private": "",
+  "cq:RAM_Size": "",
+  "cq:Regression_Is": "",
+  "cq:Regression_Test": "",
+  "cq:Related_Defects": "",
+  "cq:Resolution_Statetype": "Not_Resolved",
+  "cq:Reviewer": "",
+  "cq:RootCause_Summary_": "",
+  "cq:Root_Cause": "",
+  "cq:Source_Target": "",
+  "cq:Submit_Date": "2014-08-08T16:00:00Z",
+  "cq:Submitter_FORM": "WYNNE, MICHAEL",
+  "cq:Submitter_Group": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777239-33701354"
+  },
+  "cq:Submitter_Role": "",
+  "cq:Supplier_ID": "",
+  "cq:Support_Action_Required": "",
+  "cq:Target_Release": "",
+  "cq:Transfered_From_DB": "",
+  "cq:Transfered_To_DB": "",
+  "cq:Verified_By": "",
+  "cq:Verified_By_FullName": "",
+  "cq:Verified_Date": "",
+  "cq:Video_Driver": "",
+  "cq:Windows_HAL": "",
+  "cq:at_field_history": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777257-49059295"
+  },
+  "cq:at_filter": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777250-46612507"
+  },
+  "cq:at_filtered": "Time\t: 2014-08-09 05:48:34 +08:00\r\nUser\t: WYNNE, MICHAEL\r\nAction\t: Submit\r\nState\t: New\r\nFound in Component\t: CO Controller Other\r\n--------------------",
+  "cq:attachment_size_message": "(Warning Max Size per file is limited to 20  MB)",
+  "cq:history": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798068/field/history"
+    }
+  ],
+  "cq:id": "EPSD100243636",
+  "cq:is_active": "1",
+  "cq:is_duplicate": "0",
+  "cq:lock_version": "0",
+  "cq:locked_by": "0",
+  "cq:ratl_mastership": {
+    "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777237-16777323"
+  },
+  "cq:unduplicate_state": "",
+  "cq:version": "3",
+  "cq:Affected_OS": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777267-47375409"
+    }
+  ],
+  "cq:MailList_Users": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16783137-48482446"
+    }
+  ],
+  "cq:Mail_List": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777240-47376126"
+    }
+  ],
+  "cq:Notes": [
+    {
+      "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777269-49110649"
+    }
+  ]
+}

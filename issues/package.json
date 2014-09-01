@@ -1,0 +1,9 @@
+{
+  "name": "sync-issues",
+  "main": "sync.js",
+  "dependencies": {
+    "request": "^2.40.0",
+    "rsvp": "^3.0.13",
+    "xhr2": "^0.1.0"
+  }
+}

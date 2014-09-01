@@ -1,0 +1,1679 @@
+{
+  "prefixes": {
+    "oslc": "http://open-services.net/ns/core#",
+    "oslc_cm": "http://open-services.net/ns/cm#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "cq": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/"
+  },
+  "rdf:type": [
+    {
+      "rdf:resource": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Description"
+    }
+  ],
+  "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594",
+  "oslc:responseInfo": {
+    "rdf:type": [
+      {
+        "rdf:resource": "http://open-services.net/ns/core#ResponseInfo"
+      }
+    ],
+    "dcterms:title": "Front-end team",
+    "oslc:totalCount": 55,
+    "oslc:self": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594",
+    "oslc:nextPage": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594?rcm.startIndex=51&oslc.pageSize=50"
+  },
+  "rdfs:member": [
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798068",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+      },
+      "dcterms:identifier": "33798068",
+      "dcterms:title": "CO 1.1.0.30 RC9 - Assurance tab requests authentication - SSO seems broken",
+      "oslc:shortTitle": "EPSD100243636",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "High",
+      "cq:Gate_To": "CO 1.1",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-08T16:00:00Z",
+      "cq:id": "EPSD100243636"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794372",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794372",
+      "dcterms:title": "Style navigation/theme for Fuel Mirantis",
+      "oslc:shortTitle": "EPSD100239940",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "High",
+      "cq:Gate_To": "CO 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-26T16:00:00Z",
+      "cq:id": "EPSD100239940"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33797261",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/svest"
+      },
+      "dcterms:identifier": "33797261",
+      "dcterms:title": "SAA 1.1.0.117 SLO Creation Range Issue",
+      "oslc:shortTitle": "EPSD100242829",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "CO 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-06-26T16:00:00Z",
+      "cq:id": "EPSD100242829"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33797142",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/btvu"
+      },
+      "dcterms:identifier": "33797142",
+      "dcterms:title": "CO1.1.0.24-SAA1.1.0.114> Node page's Memory column sorting not working for both Up & Down",
+      "oslc:shortTitle": "EPSD100242710",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "CO 1.3",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-06-20T16:00:00Z",
+      "cq:id": "EPSD100242710"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798449",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+      },
+      "dcterms:identifier": "33798449",
+      "dcterms:title": "SAA 1.1.2.81 eNovance - Nodes SCU utilization reads 'n/a' - node is in pinned mode - need a better Node state status",
+      "oslc:shortTitle": "EPSD100244017",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-27T16:00:00Z",
+      "cq:id": "EPSD100244017"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798459",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+      },
+      "dcterms:identifier": "33798459",
+      "dcterms:title": "SAA 1.1.2.81 eNovance - core utilization on nodes details utilization tab displays n/a",
+      "oslc:shortTitle": "EPSD100244027",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-27T16:00:00Z",
+      "cq:id": "EPSD100244027"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798439",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:identifier": "33798439",
+      "dcterms:title": "Add support to adjacent component to accept dynamic array",
+      "oslc:shortTitle": "EPSD100244007",
+      "oslc_cm:status": "Implemented",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P1",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-27T16:00:00Z",
+      "cq:id": "EPSD100244007"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798472",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+      },
+      "dcterms:identifier": "33798472",
+      "dcterms:title": "SAA 1.1.2.81 eNovance - VM memory size reads \"n/a\"",
+      "oslc:shortTitle": "EPSD100244040",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "High",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244040"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798433",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/ghoucheX"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mswynneX"
+      },
+      "dcterms:identifier": "33798433",
+      "dcterms:title": "SAA 1.1.2.81 eNovance - When creating an SLA, once the compute SLO template is selected it cannot be changed",
+      "oslc:shortTitle": "EPSD100244001",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-27T16:00:00Z",
+      "cq:id": "EPSD100244001"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798461",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/ghoucheX"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798461",
+      "dcterms:title": "SAA 1.1.2.81 - flavor create states minimum flavor core count is 1.97 - this is not valid",
+      "oslc:shortTitle": "EPSD100244029",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "High",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244029"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798463",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798463",
+      "dcterms:title": "1.1.2.81 - node details utilization tab lists n/a out of 46.98 SCU - the SCU selection should be altered or greyed out under pinned mode",
+      "oslc:shortTitle": "EPSD100244031",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244031"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798468",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798468",
+      "dcterms:title": "1.1.2.81 - monitored node VM are not displaying health status in cgroups tab whereas assured are",
+      "oslc:shortTitle": "EPSD100244036",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244036"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798469",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798469",
+      "dcterms:title": "1.1.2.81 - SLA status is displayed as unknown for all nodes in the cgroup tab",
+      "oslc:shortTitle": "EPSD100244037",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244037"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798470",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798470",
+      "dcterms:title": "1.1.2.81 - nodes contention tabs is listed as n/a for all nodes - this data is apeparing in cgroups tab for those with valid contention data",
+      "oslc:shortTitle": "EPSD100244038",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.2 eNovance",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244038"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33798460",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33798460",
+      "dcterms:title": "1.1.2.81 - vm's lists are not aligned properly - see snapshot - using FF specific",
+      "oslc:shortTitle": "EPSD100244028",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.1.5",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-08-28T16:00:00Z",
+      "cq:id": "EPSD100244028"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795798",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/shui"
+      },
+      "dcterms:identifier": "33795798",
+      "dcterms:title": "1.1.0.58: SAA UI requires manual refresh for nodes actions list to update after trust server is installed",
+      "oslc:shortTitle": "EPSD100241366",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-24T16:00:00Z",
+      "cq:id": "EPSD100241366"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793969",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33793969",
+      "dcterms:title": "1.0.4.389 - when user attempts to view hover over for Nodes at bottom or top of screen - the portlet drops off the screen / is truncated",
+      "oslc:shortTitle": "EPSD100239537",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-05T16:00:00Z",
+      "cq:id": "EPSD100239537"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793141",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/ewielicz"
+      },
+      "dcterms:identifier": "33793141",
+      "dcterms:title": "1.0.4.303 - Flavor is duplicated after being edited in GUI",
+      "oslc:shortTitle": "EPSD100238709",
+      "oslc_cm:status": "Rejected",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2013-12-16T17:00:00Z",
+      "cq:id": "EPSD100238709"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793775",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33793775",
+      "dcterms:title": "1.0.4.362 - when Flavor is edited and saved - both details appear in flavor page for a brief time - allowing for user interaction with flavor",
+      "oslc:shortTitle": "EPSD100239343",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Low",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P1",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-23T16:00:00Z",
+      "cq:id": "EPSD100239343"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793777",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33793777",
+      "dcterms:title": "1.0.4.362 - After clicking on link to vm exposed on node’s details/VMs tab, no vm list is shown",
+      "oslc:shortTitle": "EPSD100239345",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P4",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-23T16:00:00Z",
+      "cq:id": "EPSD100239345"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794016",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/ghoucheX"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/btvu"
+      },
+      "dcterms:identifier": "33794016",
+      "dcterms:title": "SAA1.0.0.1: Some node actions should be grey out when rebooting",
+      "oslc:shortTitle": "EPSD100239584",
+      "oslc_cm:status": "Rejected",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-10T16:00:00Z",
+      "cq:id": "EPSD100239584"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793912",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/ghoucheX"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/shui"
+      },
+      "dcterms:identifier": "33793912",
+      "dcterms:title": "1.0.4.374 - UI appears to not be updating the node Trust tab automatically, requires browser F5 refresh",
+      "oslc:shortTitle": "EPSD100239480",
+      "oslc_cm:status": "Rejected",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-30T16:00:00Z",
+      "cq:id": "EPSD100239480"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33792078",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/btvu"
+      },
+      "dcterms:identifier": "33792078",
+      "dcterms:title": "Sprint8-1.0.3.314: Contention hover info is clipped at top.",
+      "oslc:shortTitle": "EPSD100237646",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2013-10-31T17:00:00Z",
+      "cq:id": "EPSD100237646"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795548",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/akuriata"
+      },
+      "dcterms:identifier": "33795548",
+      "dcterms:title": "1.1.0.30: VM list paging issue during page refresh",
+      "oslc:shortTitle": "EPSD100241116",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-14T16:00:00Z",
+      "cq:id": "EPSD100241116"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795071",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795071",
+      "dcterms:title": "SAA 1.1.0.2 - UI is allowing invalid email address formatting and invalid outlook paths to be saved",
+      "oslc:shortTitle": "EPSD100240639",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-25T16:00:00Z",
+      "cq:id": "EPSD100240639"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795067",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jrozestw"
+      },
+      "dcterms:identifier": "33795067",
+      "dcterms:title": "1.0.5.449: Average SCU capabilities of nodes is not properly rounded",
+      "oslc:shortTitle": "EPSD100240635",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-24T16:00:00Z",
+      "cq:id": "EPSD100240635"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33792596",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33792596",
+      "dcterms:title": "Beta3 1.0.4.185 - Add cache killer for clean upgrades",
+      "oslc:shortTitle": "EPSD100238164",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2013-11-22T17:00:00Z",
+      "cq:id": "EPSD100238164"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794855",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jrozestw"
+      },
+      "dcterms:identifier": "33794855",
+      "dcterms:title": "1.0.5.404 - System health when unknown displays both unknown for nodes and VM's and the acual count",
+      "oslc:shortTitle": "EPSD100240423",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P4",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-17T16:00:00Z",
+      "cq:id": "EPSD100240423"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795166",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795166",
+      "dcterms:title": "SAA 1.1.0.2 - unsupported browsers do not display a banner message saying not supported and display a blank screen also",
+      "oslc:shortTitle": "EPSD100240734",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-31T16:00:00Z",
+      "cq:id": "EPSD100240734"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795200",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795200",
+      "dcterms:title": "1.1.0.11 - SLA create - selecting trusted platform = false saves as TRUE - this is not correct",
+      "oslc:shortTitle": "EPSD100240768",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-01T16:00:00Z",
+      "cq:id": "EPSD100240768"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795203",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795203",
+      "dcterms:title": "1.1.0.11 - creation of a flavor no longer auto expands the new flavor details - this is a regression",
+      "oslc:shortTitle": "EPSD100240771",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-01T16:00:00Z",
+      "cq:id": "EPSD100240771"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794185",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794185",
+      "dcterms:title": "1.0.0.11 - last VM at bottom of page does not display details tab when selected - FF works",
+      "oslc:shortTitle": "EPSD100239753",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-18T16:00:00Z",
+      "cq:id": "EPSD100239753"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794186",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794186",
+      "dcterms:title": "SAA 1.0.0.11 - no instantation report is made available for a failed VM",
+      "oslc:shortTitle": "EPSD100239754",
+      "oslc_cm:status": "Rejected",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-18T16:00:00Z",
+      "cq:id": "EPSD100239754"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794217",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794217",
+      "dcterms:title": "1.0.0.11 - SLA expanded view no longer contains data for Compute Range, vCPU cores, Trusted Platform in view",
+      "oslc:shortTitle": "EPSD100239785",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-19T16:00:00Z",
+      "cq:id": "EPSD100239785"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794224",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794224",
+      "dcterms:title": "1.0.0.11 - Node in Monitored Mode should not display Node actions that are trust related",
+      "oslc:shortTitle": "EPSD100239792",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-19T16:00:00Z",
+      "cq:id": "EPSD100239792"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794243",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794243",
+      "dcterms:title": "1.0.0.11 - FF - user selects node, expands graphs , note the checkbox gets unchecked",
+      "oslc:shortTitle": "EPSD100239811",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-20T16:00:00Z",
+      "cq:id": "EPSD100239811"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794244",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794244",
+      "dcterms:title": "1.0.0.11 - the controller node is disappearing from the nodes view for FF and chrome after intially appearing",
+      "oslc:shortTitle": "EPSD100239812",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-20T16:00:00Z",
+      "cq:id": "EPSD100239812"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33794049",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33794049",
+      "dcterms:title": "SAA 1.0.0.1 - VM Name sorting is not functioning - or - functions in some random chaotic fashion not readily visible to enduser",
+      "oslc:shortTitle": "EPSD100239617",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-02-11T16:00:00Z",
+      "cq:id": "EPSD100239617"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795386",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795386",
+      "dcterms:title": "SAA 1.1.0.23 - Horizon link is disappearing in both FF and chrome after loading a new build - and after auto disconnect",
+      "oslc:shortTitle": "EPSD100240954",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-09T16:00:00Z",
+      "cq:id": "EPSD100240954"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795406",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/akuriata"
+      },
+      "dcterms:identifier": "33795406",
+      "dcterms:title": "SAA1.1.0.30: Check if gateway is in the same network as IP address for static network configuration - GUI support",
+      "oslc:shortTitle": "EPSD100240974",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P1",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-09T16:00:00Z",
+      "cq:id": "EPSD100240974"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793596",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jrozestw"
+      },
+      "dcterms:identifier": "33793596",
+      "dcterms:title": "1.0.4.347: GUI is authorized only in one tab in web browser",
+      "oslc:shortTitle": "EPSD100239164",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P1",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-12T16:00:00Z",
+      "cq:id": "EPSD100239164"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793597",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jrozestw"
+      },
+      "dcterms:identifier": "33793597",
+      "dcterms:title": "1.0.4.347: Unauthorized error balloon is displayed 5 times",
+      "oslc:shortTitle": "EPSD100239165",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-12T16:00:00Z",
+      "cq:id": "EPSD100239165"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795410",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795410",
+      "dcterms:title": "1.1.0.35 - add in a HIDE action to the top right of the sidebar menu - leaving the current one in place -",
+      "oslc:shortTitle": "EPSD100240978",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-10T16:00:00Z",
+      "cq:id": "EPSD100240978"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33793586",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33793586",
+      "dcterms:title": "1.0.4.345 - dashboard events are not set to ascending dates and times - please reverse the order so the most recent are the top listed items",
+      "oslc:shortTitle": "EPSD100239154",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Low",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-01-10T16:00:00Z",
+      "cq:id": "EPSD100239154"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795599",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:identifier": "33795599",
+      "dcterms:title": "Bubble up config file errors to UI from start API",
+      "oslc:shortTitle": "EPSD100241167",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-16T16:00:00Z",
+      "cq:id": "EPSD100241167"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795593",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/akuriata"
+      },
+      "dcterms:identifier": "33795593",
+      "dcterms:title": "SAA 1.1.0.44: Escape message string in Actions tooltip to avoid HTML being interpreted and potentialy do something harmful",
+      "oslc:shortTitle": "EPSD100241161",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-16T16:00:00Z",
+      "cq:id": "EPSD100241161"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795633",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:identifier": "33795633",
+      "dcterms:title": "Don't hardcode protocol in graph URL",
+      "oslc:shortTitle": "EPSD100241201",
+      "oslc_cm:status": "Implemented",
+      "cq:Exposure": "Low",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P4",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-04-17T16:00:00Z",
+      "cq:id": "EPSD100241201"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33797882",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mblaszko"
+      },
+      "dcterms:identifier": "33797882",
+      "dcterms:title": "SAA 1.1.1.28 OSP5: selected nodes are not updated properly when switching between instantiation reports for different VMs.",
+      "oslc:shortTitle": "EPSD100243450",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-07-28T16:00:00Z",
+      "cq:id": "EPSD100243450"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795073",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/jstrode"
+      },
+      "dcterms:identifier": "33795073",
+      "dcterms:title": "SAA 1.1.0.2 - selecting reset controller results in two actions being reported to the actions dashboard view",
+      "oslc:shortTitle": "EPSD100240641",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P3",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-25T16:00:00Z",
+      "cq:id": "EPSD100240641"
+    },
+    {
+      "rdf:about": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777241-33795115",
+      "dcterms:type": "Defect",
+      "rdf:type": [
+        {
+          "rdf:resource": "http://open-services.net/ns/cm#ChangeRequest"
+        },
+        {
+          "rdf:resource": "http://www.ibm.com/xmlns/prod/rational/clearquest/1.0/Defect"
+        }
+      ],
+      "oslc:instanceShape": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/shape/16777241"
+      },
+      "dcterms:contributor": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/njward1X"
+      },
+      "dcterms:creator": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/user/mdulko"
+      },
+      "dcterms:identifier": "33795115",
+      "dcterms:title": "\"Reset Controller\" and \"Shutdown Controller\" buttons should be disabled when REST API status is not OK",
+      "oslc:shortTitle": "EPSD100240683",
+      "oslc_cm:status": "Assigned",
+      "cq:Exposure": "Medium",
+      "cq:Gate_To": "SAA 1.2",
+      "cq:Priority": "P2",
+      "cq:Product": {
+        "rdf:resource": "https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/record/16777245-46907194"
+      },
+      "cq:Submit_Date": "2014-03-26T16:00:00Z",
+      "cq:id": "EPSD100240683"
+    }
+  ]
+}
