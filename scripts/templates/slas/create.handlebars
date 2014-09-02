@@ -19,24 +19,20 @@
           </a>
         {{/if}}
       </p>
-      Test2: {{controllers.slos.test}}
-      {{#each slo in controllers.slos}}
-        Test: {{slo.test}}
-        {{slo}}
-      {{/each}}
+
       <br />
 
       {{#each slo in slos itemController="slo"}}
         <p class="slo-row separator-top">
-          CURRENT SLO TYPE:{{currentSloType}}
+
           {{view Ember.Select viewName="select" class="input-medium"
-            contentBinding="slo.sloTemplates"
+            contentBinding="sloTemplates"
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
-            optionGroupPath="group"
             selectionBinding="slo.sloTemplate"
             prompt="Select Template"
           }}
+
           {{#if allowedOperatorsGreaterThanOne}}
             {{view Ember.Select viewName="select" class="input-small"
               contentBinding="slo.sloTemplate.allowedOperators"

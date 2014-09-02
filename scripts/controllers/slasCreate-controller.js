@@ -1,57 +1,15 @@
 App.SlasCreateController = Ember.ObjectController.extend({
-  needs: ['nodes', 'slos'],
+  needs: ['nodes'],
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);
   }.property('bucketSloCount'),
-  sloTemplates: function() {
-    var self = this;
-    console.log('inside sloTemplates');
-    this.get('slos').forEach( function(item, index, enumerable){
-      console.log('item', item);
-      console.log('item.sloTemplate', item.get('sloTemplate'));
-    });
-    var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
-      var disabled = false;
-      switch(item.get('sloType')) {
-        case 'assured-scu-vcpu':
-          if (self.get('bucketSloCount') >= 1) {
-            disabled = true;
-          }
-          item.set('readableSloType', 'Assured SCUs (per-vCPU)');
-          item.set('group', 'Compute Modes');
-          break;
-        case 'assured-scu-vm':
-          if (self.get('bucketSloCount') >= 1) {
-            disabled = true;
-          }
-          item.set('readableSloType', 'Assured SCUs (per-VM)');
-          item.set('group', 'Compute Modes');
-          break;
-        case 'assured-cores-physical':
-          if (self.get('bucketSloCount') >= 1) {
-            disabled = true;
-          }
-          item.set('readableSloType', 'Assured physical cores');
-          item.set('group', 'Compute Modes');
-          break;
-        case 'trusted_platform':
-          if (self.get('trustSloCount') >= 1) {
-            disabled = true;
-            item.set('group', 'Trust');
-          }
-          item.set('readableSloType', 'Trusted platform');
-          break;
-        default:
-          disabled = false;
-          break;
-      }
-      item.disabled = disabled;
-      return item;
-    });
-    return returnArray.sortBy('readableSloType');
-  }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
-
+  /*
+  sloTemplateSelectionObserver: function() {
+    console.log('sloTemplateSelectionObserver triggered');
+    console.log('sloTemplateSelection model', this.get('sloTemplateSelection.model'));
+    //this.set('sloTemplate', this.get('sloTemplate.model'));
+  }.property('sloTemplate'),*/
   bucketSloCount: function() {
     var computeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');
