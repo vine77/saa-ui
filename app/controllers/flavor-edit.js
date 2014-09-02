@@ -9,6 +9,10 @@ export default Ember.ObjectController.extend({
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);
   }.property('bucketSloCount'),
+  sloTemplates: function () {
+    return this.store.all('sloTemplate');
+  }.property(),
+  /*
   sloTemplates: function() {
     var self = this;
     var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
@@ -51,6 +55,7 @@ export default Ember.ObjectController.extend({
     });
     return returnArray.sortBy('readableSloType');
   }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
+  */
   bucketSloCount: function() {
     var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x === 'assured-scu-vm'; }).get('length');

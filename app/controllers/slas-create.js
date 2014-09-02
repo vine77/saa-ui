@@ -7,6 +7,7 @@ import xhrError from '../utils/xhr-error';
 export default Ember.ObjectController.extend({
   needs: ['nodes'],
   isSlaCreating: false,
+  /*
   sloTemplates: function() {
     var self = this;
     var returnArray = this.store.all('sloTemplate').map(function(item, index, enumerable) {
@@ -49,6 +50,10 @@ export default Ember.ObjectController.extend({
     });
     return returnArray.sortBy('readableSloType');
   }.property('isAddSloAvailable', 'bucketSloCount', 'model.sla.sloTypesArray.@each'),
+  */
+  sloTemplates: function () {
+    return this.store.all('sloTemplate');
+  }.property(),
   actions: {
     addSlo: function() {
       this.get('model.slos').addObject(this.store.createRecord('slo', {id: uuid()}));
