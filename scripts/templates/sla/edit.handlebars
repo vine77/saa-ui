@@ -22,10 +22,9 @@
       {{#each slo in slos itemController="slo"}}
         <p class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
-            contentBinding="sloTemplates"
+            contentBinding="slo.sloTemplates"
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
-            optionGroupPath="group"
             selectionBinding="sloTemplate"
             prompt="Select Template"
           }}
