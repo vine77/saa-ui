@@ -10,16 +10,22 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   samControlled: Ember.computed.alias('status.mode'),
+  isAssuredScuVcpu: Ember.computed.equal('samControlled', Mode.ASSURED_SCU_VCPU),
+  isAssuredScuVm: Ember.computed.equal('samControlled', Mode.ASSURED_SCU_VM),
+  isAssuredCoresPhysical: Ember.computed.equal('samControlled', Mode.ASSURED_CORES_PHYSICAL),
   isAssured: function() {
     switch(this.get('samControlled')) {
       case '2':
       case 2:
+      case Mode.ASSURED_SCU_VCPU:
         return true;
        case '3':
        case 3:
+       case Mode.ASSURED_SCU_VM:
          return true;
        case '4':
        case 4:
+       case Mode.ASSURED_CORES_PHYSICAL:
          return true;
         default:
           return false;
