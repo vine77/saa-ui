@@ -1,6 +1,7 @@
 var XMLHttpRequest = require('xhr2');
 var RSVP = require('rsvp');
 var https = require('https');
+var DOMParser = require('xmldom').DOMParser;
 
 // Set Node.js options
 var agent = new https.Agent;
@@ -14,14 +15,14 @@ module.exports = function(url, headers) {
     xhr.onreadystatechange = function() {
       if (this.readyState === this.DONE) {
         if (this.status === 200) {
-          resolve(this.response);
+          var xmlObject = new DOMParser().parseFromString(this.response);
+          resolve(xmlObject);
         } else {
           reject(this);
         }
       }
     };
-    xhr.responseType = 'json';
-    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.responseType = 'text';
     if (headers) for (var name in headers) xhr.setRequestHeader(name, headers[name]);
     xhr.send();
   });

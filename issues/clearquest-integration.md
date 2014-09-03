@@ -40,18 +40,23 @@ Requirements
 API details
 -------------------------------------------------------------------------------
 
-### ClearQuest
+### ClearQuest API:
 
 * Documentation: https://jazz.net/wiki/bin/view/Main/CqOslcV2
 * API endpoint: https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1
 * Example query: https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594
 
 
-### GitHub Issues:
+### GitHub Issues API:
 
 * Documentation: https://developer.github.com/v3/issues/
-* API query example: GET https://api.github.com/repos/vine77/saa-ui/issues?state=open
+* Example query: GET https://api.github.com/repos/vine77/saa-ui/issues?state=open
 
+
+### QuickBuild API:
+
+* Documentation: http://wiki.pmease.com/display/QB51/RESTful+API
+* Example query: https://quickbuild.igk.intel.com/rest/latest_builds/4075
 
 Config File
 -------------------------------------------------------------------------------
