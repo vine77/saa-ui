@@ -288,6 +288,16 @@ Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
   }
 });
 
+Ember.Handlebars.registerBoundHelper('toFixed', function (number, digits) {
+  if (isNaN(parseFloat(number))) {
+    return null;
+  } else {
+    number = parseFloat(number);
+  }
+  if (digits === undefined) digits = 0;
+  return number.toFixed(digits);
+});
+
 Ember.Handlebars.registerBoundHelper('numberWithCommas', function (value) {
   return App.numberWithCommas(value);
 });

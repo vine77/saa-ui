@@ -116,23 +116,83 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     return Math.min(this.get('listView.pageSize'), this.get('length'));
   }.property('listView.pageSize', 'length'),
 
-  allScuCapabilities: function () {
-    return this.get('model').filterBy('isAssured').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
+  allScuVmCapabilities: function () {
+    return this.get('model').filterBy('isAssuredScuVm').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
+  }.property('model.@each'),
+  allScuVcpuCapabilities: function () {
+    return this.get('model').filterBy('isAssuredScuVcpu').filterBy('capabilities.max_scu_per_core').mapBy('capabilities.max_scu_per_core');
+  }.property('model.@each'),
+  allCoreCapabilities: function () {
+    return this.get('model').filterBy('isAssuredCoresPhysical').filterBy('utilization.cores.system.max').mapBy('utilization.cores.system.max');
   }.property('model.@each'),
 
+  maxScuVmCapabilities: function () {
+    if (this.get('allScuVmCapabilities.length') > 1) {
+      return Math.max.apply(null, this.get('allScuVmCapabilities'));
+    } else {
+      return 0;
+    }
+  }.property('allScuVmCapabilities'),
+  minScuVmCapabilities: function () {
+    if (this.get('allScuVmCapabilities.length') > 1) {
+      return Math.min.apply(null, this.get('allScuVmCapabilities'));
+    } else {
+      return 0;
+    }
+  }.property('allScuVmCapabilities'),
+  medianScuVmCapabilities: function () {
+    if (this.get('allScuVmCapabilities.length') > 1) {
+      return this.get('allScuVmCapabilities').reduce(function(previousValue, item, index, enumerable) {
+        return previousValue + item;
+      }, 0) / this.get('allScuVmCapabilities').get('length');
+    } else {
+      return 0;
+    }
+  }.property('allScuVmCapabilities'),
 
-  maxScuCapabilities: function () {
-    return Math.max.apply(null, this.get('allScuCapabilities'));
-  }.property('allScuCapabilities'),
-  minScuCapabilities: function () {
-    return Math.min.apply(null, this.get('allScuCapabilities'));
-  }.property('allScuCapabilities'),
-  medianScuCapabilities: function () {
-    return this.get('allScuCapabilities').reduce(function(previousValue, item, index, enumerable) {
-      return previousValue + item;
-    }, 0) / this.get('allScuCapabilities').get('length');
-  }.property('allScuCapabilities'),
+  maxScuVcpuCapabilities: function () {
+    if (this.get('allScuVcpuCapabilities.length') > 1) {
+      return Math.max.apply(null, this.get('allScuVcpuCapabilities'));
+    } else {
+      return 0;
+    }
+  }.property('allScuVcpuCapabilities'),
+  minScuVcpuCapabilities: function () {
+    if (this.get('allScuVcpuCapabilities.length') > 1) {
+      return Math.min.apply(null, this.get('allScuVcpuCapabilities'));
+    } else {
+      return 0;
+    }
+  }.property('allScuVcpuCapabilities'),
+  medianScuVcpuCapabilities: function () {
+    if (this.get('allScuVcpuCapabilities.length') > 1) {
+      return App.median(this.get('allScuVcpuCapabilities')).toFixed();
+    } else {
+      return 0;
+    }
+  }.property('allScuVcpuCapabilities'),
 
+  maxCoreCapabilities: function () {
+    if (this.get('allCoreCapabilities.length') > 1) {
+      return Math.max.apply(null, this.get('allCoreCapabilities')).toFixed();
+    } else {
+      return 0;
+    }
+  }.property('allCoreCapabilities'),
+  minCoreCapabilities: function () {
+    if (this.get('allCoreCapabilities.length') > 1) {
+      return Math.min.apply(null, this.get('allCoreCapabilities')).toFixed();
+    } else {
+      return 0;
+    }
+  }.property('allCoreCapabilities'),
+  medianCoreCapabilities: function () {
+    if (this.get('allCoreCapabilities.length') > 1) {
+      return App.median(this.get('allCoreCapabilities')).toFixed();
+    } else {
+      return 0;
+    }
+  }.property('allCoreCapabilities'),
 
   // Actions
   actions: {

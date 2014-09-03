@@ -16,14 +16,17 @@ App.Node = DS.Model.extend({
     switch(this.get('samControlled')) {
       case '2':
       case 2:
+      case App.ASSURED_SCU_VCPU:
         return true;
         break;
       case '3':
       case 3:
+      case App.ASSURED_SCU_VM:
         return true;
         break;
       case '4':
       case 4:
+      case App.ASSURED_CORES_PHYSICAL:
         return true;
         break;
       default:
@@ -31,6 +34,9 @@ App.Node = DS.Model.extend({
         break;
     }
   }.property('samControlled'),
+  isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
+  isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
+  isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
   samRegistered: function () {
     return this.get('status.mode') == App.MONITORED || this.get('isAssured');
   }.property('status.mode'),

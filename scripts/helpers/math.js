@@ -12,7 +12,7 @@ App.median = function(values) {
 };
 
 // Return the mean of values in an array
-App.median = function(values) {
+App.mean = function(values) {
   if (!Ember.isArray(values)) return NaN;
   var sum = values.reduce(function(previousValue, item) {
     return previousValue + item;
