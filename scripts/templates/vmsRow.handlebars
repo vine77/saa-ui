@@ -48,43 +48,51 @@
         {{/if}}
       </div></td>
       <td><div class="cell-container">
-        <div class="cpu-typography">
-          {{#if capabilities.cores}}
-            {{#if suRange}}
-              <div class="cores-and-allocation">
-                <div class="cores">{{na capabilities.cores}} vCPUs</div>
-                <div class="allocation">&times; {{na suRange}} SCU</div>
-              </div>
-              <div class="total-allocation">
-                <span class="operator">=</span>
-                {{suTotalRange}} SCU
-              </div>
+        {{#if isAssuredCoresPhysical}}
+          {{na capabilities.cores}} vCPUs
+        {{else}}
+          <div class="cpu-typography">
+            {{#if capabilities.cores}}
+              {{#if suRange}}
+                <div class="cores-and-allocation">
+                  <div class="cores">{{na capabilities.cores}} vCPUs</div>
+                  <div class="allocation">&times; {{na suRange}} SCU</div>
+                </div>
+                <div class="total-allocation">
+                  <span class="operator">=</span>
+                  {{suTotalRange}} SCU
+                </div>
+              {{else}}
+                {{na capabilities.cores}} vCPU
+              {{/if}}
             {{else}}
-              {{na capabilities.cores}} vCPUs
+              <span class="not-applicable">n/a</span>
             {{/if}}
-          {{else}}
-            <span class="not-applicable">n/a</span>
-          {{/if}}
-        </div>
+          </div>
+        {{/if}}
       </div></td>
       <td><div class="cell-container">
-        <div class="allocation">
-          {{#if hasCompute}}
-            {{#view App.TooltipView titleBinding="allocationMessage"}}
-              <div {{bind-attr class=":allocation-bar isRange"}}>
-                <div class="allocation-range"></div> {{! light orange dashed }}
-                <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
-                <div class="allocation-current">
-                  <div class="allocation-current-warning" {{bind-attr style="utilizationBurstStyle"}}></div> {{! orange }}
-                  <div class="allocation-current-success" {{bind-attr style="utilizationCurrentWidth"}}></div> {{! green }}
+        {{#if isAssuredCoresPhysical}}
+          {{utilization.cores.system.used.length}} vCPU
+        {{else}}
+          <div class="allocation">
+            {{#if hasCompute}}
+              {{#view App.TooltipView titleBinding="allocationMessage"}}
+                <div {{bind-attr class=":allocation-bar isRange"}}>
+                  <div class="allocation-range"></div> {{! light orange dashed }}
+                  <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}
+                  <div class="allocation-current">
+                    <div class="allocation-current-warning" {{bind-attr style="utilizationBurstStyle"}}></div> {{! orange }}
+                    <div class="allocation-current-success" {{bind-attr style="utilizationCurrentWidth"}}></div> {{! green }}
+                  </div>
                 </div>
-              </div>
+                {{na utilization.scu_total}}
+              {{/view}}
+            {{else}}
               {{na utilization.scu_total}}
-            {{/view}}
-          {{else}}
-            {{na utilization.scu_total}}
-          {{/if}}
-        </div>
+            {{/if}}
+          </div>
+        {{/if}}
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
       <td><div class="cell-container">{{readableSize utilization.memory}}</div></td>
