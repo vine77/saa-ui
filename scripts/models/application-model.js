@@ -1,5 +1,5 @@
 App.Application = Ember.Object.extend({
-  fullTitle: 'Intel® Datacenter Manager: Service Assurance Administrator',
+  fullTitle: 'Intel® Service Assurance Administrator',
   longTitle: 'Service Assurance Administrator',
   title: 'SAA',
   year: function () {
