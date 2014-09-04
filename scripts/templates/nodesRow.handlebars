@@ -45,7 +45,11 @@
       <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="nodeTypeMessage"}}
           {{#if isAssured}}
-            <i class="icon-large icon-trophy assured"></i>
+            {{#if isAssuredCoresPhysical}}
+              <i class="icon-large icon-pushpin assured"></i>
+            {{else}}
+              <i class="icon-large icon-trophy assured"></i>
+            {{/if}}
           {{else}}
             {{#if isMonitored}}
               <i class="icon-large icon-eye-open monitored"></i>

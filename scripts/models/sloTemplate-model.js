@@ -33,6 +33,6 @@ App.SloTemplate = DS.Model.extend({
     return this.get('allowedOperators.length') < 2;
   }.property('allowedOperators'),
   allowedOperators: function () {
-    return this.get('operators').mapBy('operator');
+    return (this.get('operators')) ? this.get('operators').mapBy('operator') : [];
   }.property('operators.@each')
 });

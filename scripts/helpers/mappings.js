@@ -70,13 +70,13 @@ App.codeToMode = function(code) {
   switch (code) {
     case App.NON_SAM:
     case App.NON_SAM.toString():
-      return 'Not Controlled';
+      return 'Non-SAA';
     case App.ASSURED_SCU_VCPU:
     case App.ASSURED_SCU_VCPU.toString():
-      return 'Assured SCU VCPU';
+      return 'Assured SCUs (per-vCPU)';
     case App.ASSURED_SCU_VM:
     case App.ASSURED_SCU_VM.toString():
-      return 'Assured SCU VCPU';
+      return 'Assured SCUs (per-VM)';
     case App.ASSURED_CORES_PHYSICAL:
     case App.ASSURED_CORES_PHYSICAL.toString():
       return 'Assured Physical Cores';
