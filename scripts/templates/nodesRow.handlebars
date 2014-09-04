@@ -92,6 +92,20 @@
           {{else}}
             <span class="not-applicable">n/a</span>
           {{/if}}
+          {{!--
+          {{#if computeExists}}
+            {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
+              <div class="contention-bar">
+                <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
+                  <div class="contention-gradient"></div>
+                </div>
+              </div>
+              {{na utilization.scu_current}}
+            {{/view}}
+          {{else}}
+            <span class="not-applicable">n/a</span>
+          {{/if}}
+          --}}
         </div>
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
@@ -120,6 +134,22 @@
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}
+        {{!--
+        {{#if hasContention}}
+          <div class="contention nowrap">
+            {{#view App.TooltipView titleBinding="contentionMessage"}}
+              <div class="contention-bar">
+                <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
+                  <div class="contention-gradient"></div>
+                </div>
+              </div>
+              {{na contentionFormatted}}
+            {{/view}}
+          </div>
+        {{else}}
+          <span class="not-applicable">n/a</span>
+        {{/if}}
+        --}}
       </div></td>
       <td>
         <div class="cell-container overflow-visible">

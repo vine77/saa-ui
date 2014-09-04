@@ -78,7 +78,7 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
   contentionVms: function() {
     return Ember.ArrayController.create({
       content: this.get('controllers.vms').filterBy('hasContention').toArray(),
-      sortProperties: ['contention.system.llc.value'],
+      sortProperties: ['contention.llc.system.value'],
       sortAscending: false
     }).slice(0, 4);
   }.property('controllers.vms.@each'),

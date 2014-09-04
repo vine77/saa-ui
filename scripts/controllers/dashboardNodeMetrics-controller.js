@@ -85,7 +85,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   contentionNodes: function() {
     return Ember.ArrayController.create({
       content: this.get('controllers.nodes').filterBy('hasContention').toArray(),
-      sortProperties: ['contention.system.llc.value'],
+      sortProperties: ['contention.llc.system.value'],
       sortAscending: false
     }).slice(0, 4);
   }.property('controllers.nodes.@each'),

@@ -37,7 +37,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
   }, {
     title: 'Contention',
     description: 'LLC cache contention',
-    sortBy: 'contention.system.llc.value'
+    sortBy: 'contention.llc.system.value'
   }, {
     title: 'Actions'
   }]

@@ -73,34 +73,34 @@ App.VmController = Ember.ObjectController.extend({
     }
   }.property('status.sla_messages'),
   hasContention: function() {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (App.isEmpty(this.get('contention.llc.system.value'))) {
       return false;
     } else {
       return true;
     }
-  }.property('contention.system.llc.value'),
+  }.property('contention.llc.system.value'),
   contentionFormatted: function () {
-    return Math.round(this.get('contention.system.llc.value') * 100) / 100;
-  }.property('contention.system.llc.value'),
+    return Math.round(this.get('contention.llc.system.value') * 100) / 100;
+  }.property('contention.llc.system.value'),
   contentionMessage: function () {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (App.isEmpty(this.get('contention.llc.system.value'))) {
       return '<strong>Contention Not Available</strong>';
     } else {
-      var message = 'Overall Cache Contention: ' + this.get('contention.system.llc.value');
+      var message = 'Overall Cache Contention: ' + this.get('contention.llc.system.value');
       return message;
     }
-  }.property('contention.system.llc.value'),
+  }.property('contention.llc.system.value'),
   contentionWidth: function () {
-    if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (this.get('contention.llc.system.value') === 0 || App.isEmpty(this.get('contention.llc.system.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
+      percent = App.rangeToPercentage(this.get('contention.llc.system.value'), 0, 50);
       return "width:"+percent+"%;";
     }
-  }.property('contention.system.llc.value'),
+  }.property('contention.llc.system.value'),
   contentionValueExists: function () {
-    return typeof this.get('contention.system.llc.value') !== 'undefined' && this.get('contention.system.llc.value') !== null;
-  }.property('contention.system.llc.value'),
+    return typeof this.get('contention.llc.system.value') !== 'undefined' && this.get('contention.llc.system.value') !== null;
+  }.property('contention.llc.system.value'),
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),

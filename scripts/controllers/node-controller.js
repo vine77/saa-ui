@@ -130,8 +130,8 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('utilization.scu.cgroups.@each'),
 
   contentionCgroups: function() {
-    return this.get('contention.cgroups');
-  }.property('contention.cgroups.@each'),
+    return this.get('contention.llc.cgroups');
+  }.property('contention.llc.cgroups.@each'),
   osContention: function() {
     return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'os');
   }.property('contentionCgroups'),
@@ -415,15 +415,15 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
   computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
-  hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
+  hasContention: Ember.computed.notEmpty('contention.llc.system.value'),
   contentionFormatted: function () {
-    return Math.round(this.get('contention.system.llc.value') * 100) / 100;
-  }.property('contention.system.llc.value'),
+    return Math.round(this.get('contention.llc.system.value') * 100) / 100;
+  }.property('contention.llc.system.value'),
   contentionMessage: function() {
-    if (App.isEmpty(this.get('contention.system.llc.value'))) {
-      return '<strong>System LLC Contention</strong>: N/A';
+    if (App.isEmpty(this.get('contention.llc.system.value'))) {
+      return '<strong>System LLC Cache Contention</strong>: N/A';
     } else {
-      var message = 'Overall LLC Contention: ' + this.get('contention.system.llc.value') + ' (' + this.get('contention.system.llc.label') + ')';
+      var message = '<strong>Overall LLC Cache Contention</strong>: ' + this.get('contention.llc.system.value');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
@@ -432,13 +432,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('contention'),
   contentionWidth: function () {
-    if (this.get('contention.system.llc.value') === 0 || App.isEmpty(this.get('contention.system.llc.value'))) {
+    if (this.get('contention.llc.system.value') === 0 || App.isEmpty(this.get('contention.llc.system.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.system.llc.value'), 0, 50);
+      percent = App.rangeToPercentage(this.get('contention.llc.system.value'), 0, 50);
       return 'width:' + percent + '%;';
     }
-  }.property('contention.system.llc.value'),
+  }.property('contention.llc.system.value'),
   socketsEnum: function () {
     var socketsEnum = [];
     for (var i = 0; i < this.get('capabilities.sockets'); i++) {
