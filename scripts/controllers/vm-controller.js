@@ -47,6 +47,10 @@ App.VmController = Ember.ObjectController.extend({
   isSlaMissing: function () {
     return Ember.isEmpty(this.get('sla')) && this.get('node.isAssured');
   }.property('sla', 'node.samControlled'),
+  isAssuredCoresPhysical: function() {
+    if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return false;
+    return !Ember.isEmpty(this.get('sla.slos').findBy('sloType', 'assured-cores-physical'));
+  }.property('sla.slos.@each.sloType'),
   slaMessage: function () {
     if (App.isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
