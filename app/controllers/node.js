@@ -173,7 +173,7 @@ export default Ember.ObjectController.extend({
     ((!!this.get('scuOsUtilization.max'))?'<strong>OS: </strong>' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
     ((!!this.get('scu6WindUtilization.max'))?'<strong> 6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
     ((!!this.get('scuVmUtilization.max'))?'<strong>VM: </strong>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuUnallocated'))?'<strong> Unallocated:</strong> ' + this.get('scuUnallocated'):'');
+    ((!!this.get('scuUnallocated'))?'<strong> Unallocated:</strong> ' + this.get('scuUnallocated').toFixed(2):'');
   }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
     return this.get('contentionMessage') + '<br>' +
@@ -197,8 +197,8 @@ export default Ember.ObjectController.extend({
       });
       returnArray.push({
         min: 0,
-        max: this.get('scuUnallocated'),
-        value: this.get('scuUnallocated'),
+        max: this.get('scuUnallocated').toFixed(2),
+        value: this.get('scuUnallocated').toFixed(2),
         color: "progress-neutral",
         sortOrder: 9999
       });
