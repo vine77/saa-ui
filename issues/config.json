@@ -1,3 +1,10 @@
 {
-  "release": "SAA 1.1.2 eNovance"
+  "phase": "SAA 1.1.2 eNovance",
+  "users": [{
+    "github": "vine77",
+    "clearquest": "njward1x"
+  }, {
+    "github": "ahouchens",
+    "clearquest": "ghouchex"
+  }]
 }
