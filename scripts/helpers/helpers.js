@@ -181,6 +181,15 @@ App.isCriticalityPlus = function(criticality) {
 
 // Handlebars helpers
 
+Ember.Handlebars.registerHelper('unlessEmpty', function(property, fn) {
+  var context = (fn.contexts && fn.contexts[0]) || this;
+  var func = function(value) {
+    if (typeof value === 'boolean') return value;
+    return !Ember.isEmpty(value);
+  };
+  return Ember.Handlebars.bind.call(context, property, fn, true, func, func);
+});
+
 Ember.Handlebars.registerBoundHelper('readableError', function (xhr) {
   return App.xhrErrorMessage(xhr);
 });
