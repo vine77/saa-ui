@@ -153,18 +153,22 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('scuUtilizationCgroups'),
 
   scuTooltip: function() {
-    return 'SCU Usage' + '<br>' +
-    'System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
-    ((!!this.get('scuOsUtilization.max'))?'OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
-    ((!!this.get('scu6WindUtilization.max'))?'6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuVmUtilization.max'))?'VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuUnallocated'))?'Unallocated: ' + this.get('scuUnallocated').toFixed(2):'');
+    var messages = [];
+    messages.push('SCU Usage');
+    messages.push('System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max'));
+    if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
+    if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }
+    if (!!this.get('scuVmUtilization.max')) { messages.push('VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max')); }
+    if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
+    return messages.join('<br>');
   }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
-    return this.get('contentionMessage') + '<br>' +
-    ((!!this.get('osContention.max'))?'OS Contention ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
-    ((!!this.get('vmContention.max'))?'VM Contention ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
-    ((!!this.get('sixWindContention.max'))?' 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
+    var messages = [];
+    messages.push(this.get('contentionMessage'));
+    if (!!this.get('osContention.max')) { messages.push('OS Contention ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
+    if (!!this.get('vmContention.max')) { messages.push('VM Contention ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    return messages.join('<br>');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   scuUnallocated: function() {
