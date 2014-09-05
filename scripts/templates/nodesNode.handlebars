@@ -155,12 +155,36 @@
           <tr>
             <th class="column-medium">Service Compute Units (SCU)</th>
             <td>
-              Total: {{na utilization.scu.system.value}} out of {{na utilization.scu.system.max}} SCU <br />
-              OS: {{na scuOsUtilization.value}} out of {{na scuOsUtilization.max}} SCU <br />
-              VM: {{na scuVmUtilization.value}} out of {{na scuVmUtilization.max}} SCU
+              {{#if computeExists}}
+                <div style="margin-left:10px">
+                  {{progress-bar-adjacent
+                    tooltip=scuTooltip
+                    values=scuValues
+                  }}
+                  {{{scuTooltip}}}
+                </div>
+              {{else}}
+                <span class="not-applicable">n/a</span>
+              {{/if}}
             </td>
           </tr>
         {{/unlessEmpty}}
+        <tr>
+          <th class="column-medium">Contention</th>
+          <td>
+            {{#if hasContention}}
+              <div style="margin-left:10px;">
+                {{progress-bar-adjacent
+                  tooltip=contentionTooltip
+                  values=contentionValues
+                }}
+                {{{contentionTooltip}}}
+              </div>
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
+          </td>
+        </tr>
         <tr>
           <th class="column-medium">CPU Throughput</th>
           <td>{{na utilization.ipc}}</td>

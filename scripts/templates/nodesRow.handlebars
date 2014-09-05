@@ -85,27 +85,17 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{progress-bar-adjacent
-              tooltip=scuTooltip
-              values=scuValues
-            }}
-          {{else}}
-            <span class="not-applicable">n/a</span>
-          {{/if}}
-          {{!--
-          {{#if computeExists}}
             {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
                 </div>
               </div>
-              {{na utilization.scu_current}}
+              {{na utilization.scu.system.value}}
             {{/view}}
           {{else}}
             <span class="not-applicable">n/a</span>
           {{/if}}
-          --}}
         </div>
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
@@ -127,15 +117,6 @@
       </div></td>
       <td><div class="cell-container">
         {{#if hasContention}}
-          {{progress-bar-adjacent
-            tooltip=contentionTooltip
-            values=contentionValues
-          }}
-        {{else}}
-          <span class="not-applicable">n/a</span>
-        {{/if}}
-        {{!--
-        {{#if hasContention}}
           <div class="contention nowrap">
             {{#view App.TooltipView titleBinding="contentionMessage"}}
               <div class="contention-bar">
@@ -149,7 +130,7 @@
         {{else}}
           <span class="not-applicable">n/a</span>
         {{/if}}
-        --}}
+
       </div></td>
       <td>
         <div class="cell-container overflow-visible">
