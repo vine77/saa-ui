@@ -168,18 +168,18 @@ export default Ember.ObjectController.extend({
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'os');
   }.property('scuUtilizationCgroups'),
   scuTooltip: function() {
-    return '<strong> SCU Usage </strong>' + '<br>' +
-    '<strong>System:</strong> ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
-    ((!!this.get('scuOsUtilization.max'))?'<strong>OS: </strong>' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
-    ((!!this.get('scu6WindUtilization.max'))?'<strong> 6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuVmUtilization.max'))?'<strong>VM: </strong>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuUnallocated'))?'<strong> Unallocated:</strong> ' + this.get('scuUnallocated').toFixed(2):'');
+    return 'SCU Usage' + '<br>' +
+    'System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
+    ((!!this.get('scuOsUtilization.max'))?'OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
+    ((!!this.get('scu6WindUtilization.max'))?'6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
+    ((!!this.get('scuVmUtilization.max'))?'VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
+    ((!!this.get('scuUnallocated'))?'Unallocated: ' + this.get('scuUnallocated').toFixed(2):'');
   }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
     return this.get('contentionMessage') + '<br>' +
-    ((!!this.get('osContention.max'))?'<strong> OS Contention </strong>' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
-    ((!!this.get('vmContention.max'))?'<strong> VM Contention </strong>' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
-    ((!!this.get('sixWindContention.max'))?'<strong> 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
+    ((!!this.get('osContention.max'))?'OS Contention ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
+    ((!!this.get('vmContention.max'))?'VM Contention ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
+    ((!!this.get('sixWindContention.max'))?' 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
   scuUnallocated: function() {
     return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
@@ -424,20 +424,20 @@ export default Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (isEmpty(this.get('utilization.scus.total.current'))) {
+    if (isEmpty(this.get('utilization.scu.system.value'))) {
       return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAA Compute Units: ' + this.get('utilization.scus.total.current') + ' out of ' + this.get('utilization.scus.total.max') + ' SCU';
+      return 'SAA Compute Units: ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
     }
-  }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
+  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
   computeWidth: function() {
-    if (this.get('utilization.scus.total.current') === 0 || isEmpty(this.get('utilization.scus.total.current'))) {
+    if (this.get('utilization.scu.system.value') === 0 || isEmpty(this.get('utilization.scu.system.value'))) {
       return 'display:none;';
     } else {
-      var percent = rangeToPercentage(this.get('utilization.scus.total.current'), 0, this.get('utilization.scus.total.max'));
+      var percent = rangeToPercentage(this.get('utilization.scu.system.value'), 0, this.get('utilization.scu.system.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.scus.total.current', 'utilization.scus.total.max'),
+  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
   computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
   hasContention: Ember.computed.notEmpty('contention.system.llc.value'),
@@ -448,7 +448,7 @@ export default Ember.ObjectController.extend({
     if (isEmpty(this.get('contention.system.llc.value'))) {
       return '<strong>System LLC Contention</strong>: N/A';
     } else {
-      var message = 'Overall LLC Contention: ' + this.get('contention.system.llc.value') + ' (' + this.get('contention.system.llc.label') + ')';
+      var message = 'Overall LLC Cache Contention: ' + this.get('contention.llc.system.value');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
