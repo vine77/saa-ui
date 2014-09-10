@@ -27,6 +27,7 @@ app.import('vendor/natural-sort/naturalSort.js');
 
 // Import static CSS
 app.import('vendor/pnotify/jquery.pnotify.default.css');
+app.import('vendor/hint.css/hint.css');
 
 // Import fonts
 app.import('vendor/font-awesome/font/fontawesome-webfont.woff', {
