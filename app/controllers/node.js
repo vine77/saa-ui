@@ -215,18 +215,14 @@ export default Ember.ObjectController.extend({
       case '2':
       case 2:
         return true;
-        break;
       case '3':
       case 3:
         return true;
-        break;
       case '4':
       case 4:
         return true;
-        break;
       default:
        return false;
-        break;
     }
   }.property('samControlled'),
   isSelectable: function() {
@@ -376,7 +372,7 @@ export default Ember.ObjectController.extend({
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
-        return 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')'
+        return 'Socket ' + socket.socket_number + ' Contention: ' + socket.llc.value + ' (' + socket.llc.label + ')';
       }).join('<br>');
     }
   }.property('contention'),

@@ -15,18 +15,14 @@ export default DS.Model.extend({
       case '2':
       case 2:
         return true;
-        break;
        case '3':
        case 3:
          return true;
-         break;
        case '4':
        case 4:
          return true;
-          break;
         default:
           return false;
-          break;
     }
   }.property('samControlled'),
   samRegistered: function() {

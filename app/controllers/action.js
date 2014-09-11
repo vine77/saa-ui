@@ -40,7 +40,7 @@ export default Ember.ObjectController.extend({
         });
       }
     }
-    if (this.get('method') == 'setAssured') {
+    if (this.get('method') === 'setAssured') {
       additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode "2"}}><i class="icon-magnet"></i> Set agent mode to Assured SCU vCPU</a></li>');
       additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode 3}}><i class="icon-magnet"></i> Set agent mode to Assured SCU VM</a></li>');
       additionalListItems.push('<li {{bind-attr class="isDisabled:disabled"}}><a {{action "performAction" method contextNode 4}}><i class="icon-magnet"></i> Set agent mode to Assured Physical Cores</a></li>');
@@ -56,7 +56,7 @@ export default Ember.ObjectController.extend({
   }.property('node.socketsEnum.@each', 'node.isScheduled'),
   actions: {
     performAction: function(method, contextNode, thirdArgument) {
-      if (method == 'schedule' || method == 'setAssured') {
+      if (method === 'schedule' || method === 'setAssured') {
         contextNode.get('parentController').send(method, contextNode, thirdArgument);
       } else {
         contextNode.get('parentController').send(method, contextNode);

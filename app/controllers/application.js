@@ -78,7 +78,7 @@ export default Ember.Controller.extend({
       this.store.find('flavor');
       var self = this;
       this.store.find('vm').then(function(vms) {
-        if (self.get('currentPath') == 'app.data.vms.vmsVm.index') {
+        if (self.get('currentPath') === 'app.data.vms.vmsVm.index') {
           var currentVm = self.get('controllers.vms').findBy('isExpanded', true) && self.get('controllers.vms').findBy('isExpanded', true).get('id');
           self.store.find('vm', currentVm).then(function(record) {
             record.reload();

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import Health from '../utils/mappings/health';
 import Operational from '../utils/mappings/operational';
 import Trust from '../utils/mappings/trust';
-import Mode from '../utils/mappings/mode';
+//import Mode from '../utils/mappings/mode';
 import priorityToType from '../utils/convert/priority-to-type';
 import codeToOperational from '../utils/convert/code-to-operational';
 import trustToString from '../utils/convert/trust-to-string';

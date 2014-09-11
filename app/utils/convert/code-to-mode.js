@@ -11,11 +11,11 @@ export default function(code) {
       return 'Assured SCU VCPU';
     case Mode.ASSURED_SCU_VM:
     case Mode.ASSURED_SCU_VM.toString():
-      return 'Assured SCU VCPU';    
+      return 'Assured SCU VCPU';
     case Mode.ASSURED_CORES_PHYSICAL:
     case Mode.ASSURED_CORES_PHYSICAL.toString():
       return 'Assured Physical Cores';
     default:
-      return 'Unknown'
+      return 'Unknown';
   }
 }
