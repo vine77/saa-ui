@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var RSVP = require('rsvp');
+var request = require('./utils/request');
 var getJSON = require('./utils/get-json');
 var postJSON = require('./utils/post-json');
 var putJSON = require('./utils/put-json');
@@ -8,8 +9,8 @@ var cqToGi = require('./utils/cq-to-gi');
 var getVersion = require('./utils/get-version');
 
 // Configuration variables
-var PROXY = 'http://proxy.jf.intel.com:911';
 var gates = require('./config.json').gates;
+var proxy = require('./config.json').proxy;
 var dryrun = require('./config.json').dryrun || false;
 
 // Authentication credentials
@@ -27,7 +28,8 @@ var clearquestUrl = 'https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.P
 var clearquestHeaders = {
   'OSLC-Core-Version': '2.0',
   'Authorization': 'Basic ' + new Buffer(clearquestUsername + ':' + clearquestPassword).toString('base64'),
-  'Content-Type': 'application/json; charset=utf-8'
+  'Content-Type': 'application/json; charset=utf-8;'
+};
 };
 var githubHeaders = {
   'Accept': 'application/vnd.github.v3+json',
@@ -40,9 +42,8 @@ console.log('Pulling issues from ClearQuest...');
 // Push unsynced records from ClearQuest to GitHub
 getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearquestResponse) {
   var cqRecords = clearquestResponse['rdfs:member'];
-  var promises = [];
-  var unsyncedRecords = cqRecords.filter(function(record) {
-    return !parseInt(record['cq:Customer_Support_ID']);
+  var clearquestPromises = [];
+
   var currentGateRecords = cqRecords.filter(function(record) {
     var isMatchForGate = false;
     gates.forEach(function(gate) {
@@ -61,11 +62,8 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
     // Get full ClearQuest record
     var clearquestRecordUrl = unsyncedRecord['rdf:about'];
     if (!clearquestRecordUrl) return;
-    // Get full ClearQuest record
-    console.log('clearquestRecordUrl: ' + clearquestRecordUrl);
-    var promise = getJSON({url: clearquestRecordUrl, headers: clearquestHeaders}).then(function(clearquestRecord) {
-      console.log('GitHub payload: ');
-      console.log(cqToGi(clearquestRecord));
+    console.log(unsyncedRecord['oslc:shortTitle'] + ': ' + clearquestRecordUrl);
+    var clearquestPromise = getJSON({url: clearquestRecordUrl, headers: clearquestHeaders}).then(function(clearquestRecord) {
       if (!!dryrun) return;  // Don't push anything to GitHub if a dry-run
       // Create new issue on GitHub
       console.log('Creating GitHub issue for ' + clearquestRecord['cq:id'] + '...');
@@ -73,7 +71,7 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
         url: 'https://api.github.com/repos/vine77/saa-ui/issues',
         body: cqToGi(clearquestRecord),
         headers: githubHeaders,
-        proxy: PROXY
+        proxy: proxy
       }).then(function(githubIssue) {
         console.log('Successfully created GitHub issue #' + githubIssue.number + ' for ' + clearquestRecord['cq:id']);
         // Update ClearQuest with GitHub issue number
@@ -94,9 +92,9 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
         console.log(error);
       });
     });
-    promises.push(promise);
+    clearquestPromises.push(clearquestPromise);
   });
-  return RSVP.all(promises);
+  return RSVP.all(clearquestPromises);
 }).catch(function(error) {
   console.log('An error occurred while attempting to get ClearQuest issues. ' + error.status + ' ' + error.statusText);
   console.log(error);
