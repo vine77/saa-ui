@@ -9,5 +9,7 @@
   }, {
     "github": "ahouchens",
     "clearquest": "ghouchex"
-  }]
+  }],
+  "proxy": "http://proxy.jf.intel.com:911",
+  "dryrun": true
 }

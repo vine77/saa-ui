@@ -10,10 +10,12 @@ var getVersion = require('./utils/get-version');
 // Configuration variables
 var PROXY = 'http://proxy.jf.intel.com:911';
 var gates = require('./config.json').gates;
+var dryrun = require('./config.json').dryrun || false;
 
 // Authentication credentials
 if (process.argv.length < 6) {
-  return console.log('Input your ClearQuest username, ClearQuest password, GitHub username, and GitHub password as command line arguments');
+  console.log('Input your ClearQuest username, ClearQuest password, GitHub username, and GitHub password as command line arguments (in single quotes)');
+  return process.exit(1);
 }
 var clearquestUsername = process.argv[2];
 var clearquestPassword = process.argv[3];
@@ -64,7 +66,9 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
     var promise = getJSON({url: clearquestRecordUrl, headers: clearquestHeaders}).then(function(clearquestRecord) {
       console.log('GitHub payload: ');
       console.log(cqToGi(clearquestRecord));
+      if (!!dryrun) return;  // Don't push anything to GitHub if a dry-run
       // Create new issue on GitHub
+      console.log('Creating GitHub issue for ' + clearquestRecord['cq:id'] + '...');
       return postJSON({
         url: 'https://api.github.com/repos/vine77/saa-ui/issues',
         body: cqToGi(clearquestRecord),
@@ -80,9 +84,9 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
           },
           headers: clearquestHeaders
         }).then(function() {
-          console.log('Successfully added GitHub issue #' + githubIssue.number + ' to ' + clearquestRecord['cq:id']);
+          console.log('Successfully marked ' + clearquestRecord['cq:id'] + ' as being associated with GitHub issue #' + githubIssue.number);
         }).catch(function(error) {
-          console.log('Failed to add GitHub issue #' + githubIssue.number + ' to ' + clearquestRecord['cq:id']);
+          console.log('Failed to mark ' + clearquestRecord['cq:id'] + ' as being associated with GitHub issue #' + githubIssue.number);
           console.log(error);
         });
       }).catch(function(error) {
@@ -96,4 +100,5 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
 }).catch(function(error) {
   console.log('An error occurred while attempting to get ClearQuest issues. ' + error.status + ' ' + error.statusText);
   console.log(error);
+  process.exit(1);
 });
