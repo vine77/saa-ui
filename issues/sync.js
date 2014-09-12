@@ -30,6 +30,10 @@ var clearquestHeaders = {
   'Authorization': 'Basic ' + new Buffer(clearquestUsername + ':' + clearquestPassword).toString('base64'),
   'Content-Type': 'application/json; charset=utf-8;'
 };
+var clearquestAttachmentHeaders = {
+  'OSLC-Core-Version': '1.0',
+  'Authorization': 'Basic ' + new Buffer(clearquestUsername + ':' + clearquestPassword).toString('base64'),
+  'Content-Type': 'application/json; charset=utf-8;'
 };
 var githubHeaders = {
   'Accept': 'application/vnd.github.v3+json',
@@ -64,6 +68,23 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
     if (!clearquestRecordUrl) return;
     console.log(unsyncedRecord['oslc:shortTitle'] + ': ' + clearquestRecordUrl);
     var clearquestPromise = getJSON({url: clearquestRecordUrl, headers: clearquestHeaders}).then(function(clearquestRecord) {
+      // Get attachments
+      var attachmentsUrl = clearquestRecord['cq:Attachments'][0]['rdf:resource'];
+      return getJSON({url: attachmentsUrl, headers: clearquestAttachmentHeaders}).then(function(attachmentsResponse) {
+        var attachmentResults = attachmentsResponse['oslc_cm:results'];
+        if (attachmentResults.length >= 1) {
+          var attachmentPromises = [];
+          clearquestRecord.attachments = attachmentResults.map(function(result) {
+            return {url: result['rdf:resource'], filename: result['oslc_cm:label']};
+          });
+          console.log(unsyncedRecord['oslc:shortTitle'] + ' has attachments');
+          console.log(clearquestRecord.attachments);
+        } else {
+          console.log(unsyncedRecord['oslc:shortTitle'] + ' had no attachments.');
+        }
+        return clearquestRecord;
+      });
+    }).then(function(clearquestRecord) {
       if (!!dryrun) return;  // Don't push anything to GitHub if a dry-run
       // Create new issue on GitHub
       console.log('Creating GitHub issue for ' + clearquestRecord['cq:id'] + '...');
