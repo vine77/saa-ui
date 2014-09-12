@@ -1,5 +1,8 @@
 {
-  "phase": "SAA 1.1.2 eNovance",
+  "gates": [
+    "SAA 1.1.5",
+    "CO 1.1"
+  ],
   "users": [{
     "github": "vine77",
     "clearquest": "njward1x"

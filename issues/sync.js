@@ -8,8 +8,8 @@ var cqToGi = require('./utils/cq-to-gi');
 var getVersion = require('./utils/get-version');
 
 // Configuration variables
-var GATE = 'SAA 1.1.2';
 var PROXY = 'http://proxy.jf.intel.com:911';
+var gates = require('./config.json').gates;
 
 // Authentication credentials
 if (process.argv.length < 6) {
@@ -41,12 +41,22 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
   var promises = [];
   var unsyncedRecords = cqRecords.filter(function(record) {
     return !parseInt(record['cq:Customer_Support_ID']);
+  var currentGateRecords = cqRecords.filter(function(record) {
+    var isMatchForGate = false;
+    gates.forEach(function(gate) {
+      if (record['cq:Gate_To'].indexOf(gate) !== -1) isMatchForGate = true;
+    });
+    return isMatchForGate;
   });
-  var unsyncedCurrentRecords = unsyncedRecords.filter(function(record) {
-    return record['cq:Gate_To'].indexOf(GATE) !== -1;
+
+  var unsyncedRecords = currentGateRecords.filter(function(record) {
+    return !parseInt(record['cq:Customer_Support_ID']);
   });
-  console.log('There are ' + unsyncedCurrentRecords.length + ' unsynced records out of ' + cqRecords.length + ' open front-end CQ issues.');
-  unsyncedCurrentRecords.forEach(function(unsyncedRecord) {
+
+  console.log('There are ' + unsyncedRecords.length + ' unsynced records out of ' + currentGateRecords.length + ' open front-end CQ issues (gated to current phase).');
+
+  unsyncedRecords.forEach(function(unsyncedRecord) {
+    // Get full ClearQuest record
     var clearquestRecordUrl = unsyncedRecord['rdf:about'];
     if (!clearquestRecordUrl) return;
     // Get full ClearQuest record
