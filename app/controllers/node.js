@@ -210,7 +210,7 @@ export default Ember.ObjectController.extend({
     }
   }.observes('isSelected'),
   maxMemory: function() {
-    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
+    return Math.round(100 * parseFloat(readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
   }.property('utilization.memory', 'maxMemory'),
   percentOfMemory: function() {
     return Math.round(100 * parseFloat(readableSizeToBytes(this.get('utilization.memory')) ) / parseFloat( readableSizeToBytes(this.get('capabilities.memory_size'))));
