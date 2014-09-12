@@ -79,6 +79,34 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
           });
           console.log(unsyncedRecord['oslc:shortTitle'] + ' has attachments');
           console.log(clearquestRecord.attachments);
+          clearquestRecord.attachments.forEach(function(attachment) {
+            // Download each attachment
+            var attachmentPromise = request({url: attachment.url}).then(function(attachmentResponse) {
+              // Upload attachment to Dropbox
+              var accessToken = 'sPxCBS90CYMAAAAAAAA9pXvit290_cyiNnTex7fMgvvHHP-pAI2QILWVzY_tpQ0P';
+              var dropboxFilename = unsyncedRecord['oslc:shortTitle'] + '-' + attachment.filename;
+              var dropboxUrl = 'https://api-content.dropbox.com/1/files_put/auto/' + dropboxFilename + '?access_token=' + accessToken + '&overwrite=false';
+              return request({
+                method: 'PUT',
+                url: dropboxUrl,
+                body: attachmentResponse,
+                proxy: proxy
+              }).then(function(dropboxResponse) {
+                console.log('Dropbox upload succeeded');
+                console.log(dropboxResponse);
+              }).catch(function() {
+                console.log('Dropbox upload failed');
+              });
+            }).then(function(uploadResponse) {
+              // Get shared Dropbox link for uploaded attachment
+              return postJSON({url: 'https://api.dropbox.com/1/shares/auto' + uploadResponse.path});
+            }).then(function(sharedResponse) {
+              var sharedUrl = sharedResponse.url;
+              console.log('Shared URL:', sharedUrl);
+            });
+            attachmentPromises.push(attachmentPromise);
+          });
+          return RSVP.all(attachmentPromises);
         } else {
           console.log(unsyncedRecord['oslc:shortTitle'] + ' had no attachments.');
         }
