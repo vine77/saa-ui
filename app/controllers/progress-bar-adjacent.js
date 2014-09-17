@@ -25,6 +25,7 @@ export default Ember.ObjectController.extend({
         //  return this.get('progressBarColors')[3];
         //}
       }
+    }
   }.property('progressBarColors', 'barCount', 'barColor', 'currentExceedsMax'),
 
   progressBarBackground: function() {
