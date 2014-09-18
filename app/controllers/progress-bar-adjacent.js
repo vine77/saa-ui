@@ -10,15 +10,15 @@ export default Ember.ObjectController.extend({
       return this.get('progressBarColors')[3];
     } else {
       if (!!this.get('barColor')) {
-        if (this.get('barColor') == 'progress-neutral') {
+        if (this.get('barColor') === 'progress-neutral') {
           return this.get('progressBarColors')[4];
         }
       } else {
-        if (this.get('barCount') == 1) {
+        if (this.get('barCount') === 1) {
           return this.get('progressBarColors')[0];
-        } else if (this.get('barCount') % 2 == 0) {
+        } else if (this.get('barCount') % 2 === 0) {
           return this.get('progressBarColors')[1];
-        } else if (this.get('barCount') % 3 == 0) {
+        } else if (this.get('barCount') % 3 === 0) {
           return this.get('progressBarColors')[2];
         }
         //} else if (this.get('barCount') % 4 == 0) {
@@ -30,17 +30,17 @@ export default Ember.ObjectController.extend({
 
   progressBarBackground: function() {
     if (!!this.get('barColor')) {
-     if (this.get('barColor') == 'progress-neutral') {
+     if (this.get('barColor') === 'progress-neutral') {
         return 'rgba(220, 220, 220, 0.25)';
       }
     } else {
-      if (this.get('barCount') == 1) {
+      if (this.get('barCount') === 1) {
         //info -> #4bb1cf -> rgba(75, 177, 207, 0.25)
         return 'rgba(75, 177, 207, 0.25)';
-      } else if (this.get('barCount') % 2 == 0) {
+      } else if (this.get('barCount') % 2 === 0) {
         // success -> #5eb95e -> rgba(94, 185, 94, 0.25)
         return 'rgba(94, 185, 94, 0.25)';
-      } else if (this.get('barCount') % 3 == 0) {
+      } else if (this.get('barCount') % 3 === 0) {
         // warning -> #faa732 -> rgba(250, 167, 50, 0.25)
         return 'rgba(250, 167, 50, 0.25)';
       }

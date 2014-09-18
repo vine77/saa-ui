@@ -3,6 +3,8 @@ import FilterableMixin from '../mixins/filterable';
 import SortableMixin from '../mixins/sortable';
 import Health from '../utils/mappings/health';
 import Mode from '../utils/mappings/mode';
+import Median from '../utils/mappings/mode';
+//import Median from '../utils/math/median';
 import event from '../utils/event';
 import readableSize from '../utils/readable-size';
 import pdfReport from '../utils/pdf-report';
@@ -133,7 +135,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   }.property('allScuVcpuCapabilities'),
   medianScuVcpuCapabilities: function () {
     if (this.get('allScuVcpuCapabilities.length') > 1) {
-      return App.median(this.get('allScuVcpuCapabilities')).toFixed();
+      return new Median(this.get('allScuVcpuCapabilities')).toFixed();
     } else {
       return 0;
     }
@@ -155,7 +157,7 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
   }.property('allCoreCapabilities'),
   medianCoreCapabilities: function () {
     if (this.get('allCoreCapabilities.length') > 1) {
-      return App.median(this.get('allCoreCapabilities')).toFixed();
+      return new Median(this.get('allCoreCapabilities')).toFixed();
     } else {
       return 0;
     }

@@ -87,7 +87,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 7,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Change agent mode to assured (per-vCPU SCUs)',
         method: 'setAssuredVcpu',
         icon: 'icon-trophy',
@@ -95,7 +95,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 8,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Change agent mode to assured (per-VM SCUs)',
         method: 'setAssuredVm',
         icon: 'icon-trophy',
@@ -103,7 +103,7 @@ export default Ember.ObjectController.extend({
         sortOrder: 9,
         node: this
       }),
-      App.ActionController.create({
+      ActionController.create({
         name: 'Change agent mode to assured (exclusive cores)',
         method: 'setAssuredCores',
         icon: 'icon-trophy',

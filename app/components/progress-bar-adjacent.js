@@ -21,10 +21,10 @@ export default Ember.Component.extend({
     if (!!this.get('values')) {
       var self = this;
       this.get('values').forEach( function(item, index, enumerable) {
-        if (typeof item.min != 'undefined') { self.set('barMin' + i, item.min); }
-        if (typeof item.max != 'undefined') { self.set('barMax' + i, item.max); }
-        if (typeof item.value != 'undefined') { self.set('barValue' + i, item.value); }
-        if (typeof item.color != 'undefined') { self.set('barColor' + i, item.color); }
+        if (typeof item.min !== 'undefined') { self.set('barMin' + i, item.min); }
+        if (typeof item.max !== 'undefined') { self.set('barMax' + i, item.max); }
+        if (typeof item.value !== 'undefined') { self.set('barValue' + i, item.value); }
+        if (typeof item.color !== 'undefined') { self.set('barColor' + i, item.color); }
          i++;
       });
      }

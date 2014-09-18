@@ -1,5 +1,3 @@
-import Ember from 'ember';
-
 export default function (number, digits) {
   if (isNaN(parseFloat(number))) {
     return null;

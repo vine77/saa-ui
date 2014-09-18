@@ -4,7 +4,7 @@ import Mode from '../utils/mappings/mode';
 
 export default Ember.ObjectController.extend({
   isDisabled: function() {
-    return this.get('node.isRebooting') && this.get('disabledWhileRebooting') || (this.get('method') == 'setAssuredVm');
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting') || (this.get('method') === 'setAssuredVm');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
