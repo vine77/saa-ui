@@ -294,6 +294,7 @@ export default Ember.ObjectController.extend({
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isMonitored: Ember.computed.equal('samControlled', Mode.MONITORED),
+
   isAssured: function() {
     switch(this.get('samControlled')) {
       case '2':
