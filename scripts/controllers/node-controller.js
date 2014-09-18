@@ -280,7 +280,6 @@ App.NodeController = Ember.ObjectController.extend({
   // Computed properties
   isAgentInstalled: Ember.computed.bool('samControlled'),
   isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
-  isAssured: Ember.computed.gte('samControlled', App.MONITORED),
   isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
   isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
   isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
