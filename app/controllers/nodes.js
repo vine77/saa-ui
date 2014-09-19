@@ -97,21 +97,21 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
    }.property('model.@each'),
 
   maxScuVmCapabilities: function () {
-    if (this.get('allScuVmCapabilities.length') > 1) {
+    if (this.get('allScuVmCapabilities.length') > 0) {
       return Math.max.apply(null, this.get('allScuVmCapabilities'));
     } else {
       return 0;
     }
   }.property('allScuVmCapabilities'),
   minScuVmCapabilities: function () {
-    if (this.get('allScuVmCapabilities.length') > 1) {
+    if (this.get('allScuVmCapabilities.length') > 0) {
       return Math.min.apply(null, this.get('allScuVmCapabilities'));
     } else {
       return 0;
     }
   }.property('allScuVmCapabilities'),
   medianScuVmCapabilities: function () {
-    if (this.get('allScuVmCapabilities.length') > 1) {
+    if (this.get('allScuVmCapabilities.length') > 0) {
       return this.get('allScuVmCapabilities').reduce(function(previousValue, item, index, enumerable) {
         return previousValue + item;
       }, 0) / this.get('allScuVmCapabilities').get('length');
@@ -120,21 +120,21 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
     }
   }.property('allScuVmCapabilities'),
   maxScuVcpuCapabilities: function () {
-    if (this.get('allScuVcpuCapabilities.length') > 1) {
+    if (this.get('allScuVcpuCapabilities.length') > 0) {
       return Math.max.apply(null, this.get('allScuVcpuCapabilities'));
     } else {
       return 0;
     }
   }.property('allScuVcpuCapabilities'),
   minScuVcpuCapabilities: function () {
-    if (this.get('allScuVcpuCapabilities.length') > 1) {
+    if (this.get('allScuVcpuCapabilities.length') > 0) {
       return Math.min.apply(null, this.get('allScuVcpuCapabilities'));
     } else {
       return 0;
     }
   }.property('allScuVcpuCapabilities'),
   medianScuVcpuCapabilities: function () {
-    if (this.get('allScuVcpuCapabilities.length') > 1) {
+    if (this.get('allScuVcpuCapabilities.length') > 0) {
       return new Median(this.get('allScuVcpuCapabilities')).toFixed();
     } else {
       return 0;
@@ -142,21 +142,21 @@ export default Ember.ArrayController.extend(FilterableMixin, SortableMixin, {
  }.property('allScuVcpuCapabilities'),
 
   maxCoreCapabilities: function () {
-    if (this.get('allCoreCapabilities.length') > 1) {
+    if (this.get('allCoreCapabilities.length') > 0) {
       return Math.max.apply(null, this.get('allCoreCapabilities')).toFixed();
     } else {
       return 0;
     }
   }.property('allCoreCapabilities'),
   minCoreCapabilities: function () {
-    if (this.get('allCoreCapabilities.length') > 1) {
+    if (this.get('allCoreCapabilities.length') > 0) {
       return Math.min.apply(null, this.get('allCoreCapabilities')).toFixed();
     } else {
       return 0;
     }
   }.property('allCoreCapabilities'),
   medianCoreCapabilities: function () {
-    if (this.get('allCoreCapabilities.length') > 1) {
+    if (this.get('allCoreCapabilities.length') > 0) {
       return new Median(this.get('allCoreCapabilities')).toFixed();
     } else {
       return 0;
