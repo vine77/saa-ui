@@ -362,9 +362,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   isTrustRegisteredMessage: function () {
     if (this.get('isTrustRegistered')) {
-      return 'Currently registered with Trust Server' + this.get('trustAgentMessage');
+      return '<div class="tooltip-title">Currently registered with Trust Server</div>' + this.get('trustAgentMessage');
     } else {
-      return 'Not registered with Trust Server' + this.get('trustAgentMessage');
+      return '<div class="tooltip-title">Not registered with Trust Server</div>' + this.get('trustAgentMessage');
     }
   }.property('isTrustRegistered'),
 
@@ -378,21 +378,17 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust'),
 
   trustAgentMessage: function() {
-    var message = '<hr style="margin:2px">';
-    message += '<ul class="hover-list">';
-      message += '<li>Trust Config = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '</li>';
-      message += '<ul class="hover-list">';
-        message += '<li> TPM Enabled = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
-        message += '<li> Tboot Measured Launch = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
-        message += '<li> Trust Agent </li>';
-        message += '<ul>'
-          message += '<li> Installed = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '</li>';
-          message += '<li> Running = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
-          message += '<li> Paired = ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
-          message += '<li> Actual Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + '</li>';
-          message += '<li> Expected Version = ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + '</li>';
+    var message = '<ul>';
+      message += '<li>&bull; Trust Config: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config')).capitalize() + '&nbsp;&nbsp;&nbsp;&nbsp; &bull; TPM Enabled: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tpm_enabled')).capitalize() + '</li>';
+      message += '<li>&bull; Tboot Measured Launch: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tboot_measured_launch')).capitalize() + '</li>';
+      message += '<li>&bull; Trust Agent </li>';
+      message += '<li>';
+        message += '<ul>';
+          message += '<li>&bull; Installed: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_installed')).capitalize() + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull; Running: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_running')).capitalize() + '</li>';
+          message += '<li>&bull; Paired: ' + App.codeToTrustConfig(this.get('status.trust_status.trust_config_details.tagent_paired')).capitalize() + '</li>';
+          message += '<li>&bull; Version: ' + App.na(this.get('status.trust_status.trust_config_details.tagent_actual_version')) + ' (Expected version: ' + App.na(this.get('status.trust_status.trust_config_details.tagent_expected_version')) + ')</li>';
         message += '</ul>';
-      message += '</ul>';
+      message += '</li>';
     message += '</ul>';
 
     if (!this.get('isTrustAgentInstalled')) { return message; } else { return ''; }

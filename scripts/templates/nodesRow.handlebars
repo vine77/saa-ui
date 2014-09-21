@@ -19,7 +19,7 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
-          {{#view App.TooltipView titleBinding="trustMessage"}}
+          {{#view App.TooltipRightView titleBinding="trustMessage"}}
             <span class="icon-stack">
               {{#if isTrustUnknown}}
                 <i class="icon-large icon-question-sign unknown"></i>
@@ -32,7 +32,7 @@
             </span>
           {{/view}}
         {{else}}
-          {{#view App.TooltipView titleBinding="isTrustRegisteredMessage"}}
+          {{#view App.TooltipRightView titleBinding="isTrustRegisteredMessage"}}
             <span class="icon-stack">
               <i class="icon-large icon-unlock unregistered"></i>
               {{#if isTrustAgentNotInstalledOrUnknown}}

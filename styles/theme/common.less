@@ -64,8 +64,14 @@
   }
 }
 
+// Pagination
 .pagination ul {
   background-color: white;
+}
+
+// Tooltips
+.tooltip-inner {
+  max-width: 275px;
 }
 
 // Tabs and tab-content
@@ -1264,12 +1270,30 @@ ul.comma-delimited {
   }
 }
 
-ul.hover-list {
-  margin-left:0px;
-  padding-left:0px;
-  li {
-    list-style-type: none;
+.tooltip {
+  .tooltip-title {
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid white;
     text-align: left;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+  }
+  ul {
+    margin: 0;
+    padding-left: 0;
+    text-align: left;
+    > li {
+      line-height: 16px;
+      list-style-type: none;
+      > ul {
+        margin-left: 16px;
+        > li {
+          line-height: 16px;
+          list-style-type: none;
+        }
+      }
+    }
   }
 }
 
