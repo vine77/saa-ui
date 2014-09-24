@@ -79,7 +79,7 @@ App.codeToMode = function(code) {
       return 'Assured SCUs (per-VM)';
     case App.ASSURED_CORES_PHYSICAL:
     case App.ASSURED_CORES_PHYSICAL.toString():
-      return 'Assured Physical Cores';
+      return 'Assured Exclusive Cores';
     default:
       return 'Unknown'
   }

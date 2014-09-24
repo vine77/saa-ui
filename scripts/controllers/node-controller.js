@@ -66,19 +66,11 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Change agent mode to assured (per-vCPU SCUs)',
-        method: 'setAssuredVcpu',
-        icon: 'icon-trophy',
-        disabledWhileRebooting: true,
-        sortOrder: 8,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Change agent mode to assured (per-VM SCUs)',
+        name: 'Change agent mode to assured (SCUs)',
         method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 9,
+        sortOrder: 8,
         node: this
       }),
       App.ActionController.create({
@@ -86,7 +78,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'setAssuredCores',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 10,
+        sortOrder: 9,
         node: this
       }),
       App.ActionController.create({
@@ -538,7 +530,7 @@ App.ServiceController = Ember.ObjectController.extend({
 
 App.ActionController = Ember.ObjectController.extend({
   isDisabled: function() {
-    return this.get('node.isRebooting') && this.get('disabledWhileRebooting') || (this.get('method') == 'setAssuredVm');
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
