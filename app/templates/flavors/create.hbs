@@ -135,18 +135,14 @@
               {{/each}}
             {{/if}}
             {{#if bucketSloCountGreaterThanOne}}
-              <span class="table-flat-header">
-                {{#if isComputeSloTable}} Max SCUs per vCPU {{/if}}
-               {{#if isComputeVmSloTable}} Max SCUs per VM {{/if}}
-                {{#if isExclusiveCoresSloTable}} Max Exclusive Cores per VM {{/if}}
-              </span>
-              <span class="help-tip">
-                <span class="hint--top" data-hint="The below table tells you the state of the current cloud and the&#10; number of SCUs/cores that are available for nodes in the cloud.&#10; All nodes in the cloud meets the minimum value, half of the nodes&#10; meet the median value, and X meet the maximum value.">
-                  <i class="icon-question-sign"></i>
-                </span>
-              </span>
               <div class="form-horizontal well-clean shadow-lifted">
                 {{#if isComputeSloTable}}
+                  <span class="table-flat-header"> Max SCUs per vCPU </span>
+                  <span class="help-tip">
+                    <span class="hint--top" data-hint="The below table tells you the state of the current cloud and the&#10; number of SCUs/cores that are available for nodes in the cloud.&#10; All nodes in the cloud meets the minimum value, half of the nodes&#10; meet the median value, and X meet the maximum value.">
+                      <i class="icon-question-sign"></i>
+                    </span>
+                  </span>
                   <table class="table">
                     <thead>
                       <th> </th>
@@ -156,23 +152,29 @@
                     <tbody>
                       <tr>
                         <td> Maximum </td>
-                        <td> {{to-fixed sloVcpuTableMaximumScus}} </td>
-                        <td> {{to-fixed sloVcpuTableNumberOfNodesMaximumScus}} </td>
+                        <td> {{sloVcpuTableMaximumScus}} </td>
+                        <td> {{sloVcpuTableNumberOfNodesMaximumScus}} </td>
                       </tr>
                       <tr>
                         <td> Median </td>
-                        <td> {{to-fixed sloVcpuTableMedianScus}} </td>
-                        <td> {{to-fixed sloVcpuTableNumberOfNodesMedianScus}} </td>
+                        <td> {{sloVcpuTableMedianScus}} </td>
+                        <td> {{sloVcpuTableNumberOfNodesMedianScus}} </td>
                       </tr>
                       <tr>
                         <td> Minimum </td>
-                        <td> {{to-fixed sloVcpuTableMinimumScus}} </td>
-                        <td> {{to-fixed sloVcpuTableNumberOfNodesMinimumScus}} </td>
+                        <td> {{sloVcpuTableMinimumScus}} </td>
+                        <td> {{sloVcpuTableNumberOfNodesMinimumScus}} </td>
                       </tr>
                     </tbody>
                   </table>
                 {{/if}}
                 {{#if isComputeVmSloTable}}
+                  <span class="table-flat-header"> Max SCUs per VM </span>
+                  <span class="help-tip">
+                    <span class="hint--top" data-hint="The below table tells you the state of the current cloud and the&#10; number of SCUs/cores that are available for nodes in the cloud.&#10; All nodes in the cloud meets the minimum value, half of the nodes&#10; meet the median value, and X meet the maximum value.">
+                      <i class="icon-question-sign"></i>
+                    </span>
+                  </span>
                   <table class="table">
                     <thead>
                       <th> </th>
@@ -182,23 +184,29 @@
                     <tbody>
                       <tr>
                         <td> Maximum </td>
-                        <td> {{to-fixed sloVmTableMaximumScus}} </td>
-                        <td> {{to-fixed sloVmTableNumberOfNodesMaximumScus}} </td>
+                        <td> {{sloVmTableMaximumScus}} </td>
+                        <td> {{sloVmTableNumberOfNodesMaximumScus}} </td>
                       </tr>
                       <tr>
                         <td> Median </td>
-                        <td> {{to-fixed sloVmTableMedianScus}} </td>
-                        <td> {{to-fixed sloVmTableNumberOfNodesMedianScus}} </td>
+                        <td> {{sloVmTableMedianScus}} </td>
+                        <td> {{sloVmTableNumberOfNodesMedianScus}} </td>
                       </tr>
                       <tr>
                         <td> Minimum </td>
-                        <td> {{to-fixed sloVmTableMinimumScus}} </td>
-                        <td> {{to-fixed sloVmTableNumberOfNodesMinimumScus}} </td>
+                        <td> {{sloVmTableMinimumScus}} </td>
+                        <td> {{sloVmTableNumberOfNodesMinimumScus}} </td>
                       </tr>
                     </tbody>
                   </table>
                 {{/if}}
                 {{#if isExclusiveCoresSloTable}}
+                  <span class="table-flat-header"> Max Exclusive Cores per VM </span>
+                  <span class="help-tip">
+                    <span class="hint--top" data-hint="The below table tells you the state of the current cloud and the&#10; number of SCUs/cores that are available for nodes in the cloud.&#10; All nodes in the cloud meets the minimum value, half of the nodes&#10; meet the median value, and X meet the maximum value.">
+                      <i class="icon-question-sign"></i>
+                    </span>
+                  </span>
                   <table class="table">
                     <thead>
                       <th> </th>
@@ -208,18 +216,18 @@
                     <tbody>
                       <tr>
                         <td> Maximum </td>
-                        <td> {{to-fixed sloExclusiveCoresTableMaximum}} </td>
-                        <td> {{to-fixed sloExclusiveCoresTableNumberOfNodesMaximum}} </td>
+                        <td> {{sloExclusiveCoresTableMaximum}} </td>
+                        <td> {{sloExclusiveCoresTableNumberOfNodesMaximum}} </td>
                       </tr>
                       <tr>
                         <td> Median </td>
-                        <td> {{to-fixed sloExclusiveCoresTableMedian}} </td>
-                        <td> {{to-fixed sloExclusiveCoresTableNumberOfNodesMedian}} </td>
+                        <td> {{sloExclusiveCoresTableMedian}} </td>
+                        <td> {{sloExclusiveCoresTableNumberOfNodesMedian}} </td>
                       </tr>
                       <tr>
                         <td> Minimum </td>
-                        <td> {{to-fixed sloExclusiveCoresTableMinimum}} </td>
-                        <td> {{to-fixed sloExclusiveCoresTableNumberOfNodesMinimum}} </td>
+                        <td> {{sloExclusiveCoresTableMinimum}} </td>
+                        <td> {{sloExclusiveCoresTableNumberOfNodesMinimum}} </td>
                       </tr>
                     </tbody>
                   </table>
