@@ -66,7 +66,7 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Change agent mode to assured (SCUs)',
+        name: 'Change agent mode to ' + App.codeToMode(App.ASSURED_SCU_VM),
         method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
@@ -74,7 +74,7 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Change agent mode to assured (exclusive cores)',
+        name: 'Change agent mode to ' + App.codeToMode(App.ASSURED_CORES_PHYSICAL),
         method: 'setAssuredCores',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
@@ -270,23 +270,23 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('percentOfMemory', 'maxMemory'),
 
   // Computed properties
-  isAgentInstalled: Ember.computed.bool('samControlled'),
-  isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
-  isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
-  isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
-  isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
+  isAgentInstalled: Ember.computed.bool('status.mode'),
+  isMonitored: Ember.computed.equal('status.mode', App.MONITORED),
+  isAssuredScuVcpu: Ember.computed.equal('status.mode', App.ASSURED_SCU_VCPU),
+  isAssuredScuVm: Ember.computed.equal('status.mode', App.ASSURED_SCU_VM),
+  isAssuredCoresPhysical: Ember.computed.equal('status.mode', App.ASSURED_CORES_PHYSICAL),
   isSelectable: function() {
     return this.get('isAgentInstalled');
   }.property('isAgentInstalled'),
   nodeTypeMessage: function () {
+    var nodeTypeMessage = 'This node is in ' + App.codeToMode(this.get('status.mode')) + ' mode.';
     if (this.get('isAssured')) {
-      return 'This is an assured node. Assured type: ' + App.codeToMode(this.get('samControlled'));
-    } else if (this.get('isMonitored')) {
-      return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
+      nodeTypeMessage += ' VMs with SLAs may be placed here.';
     } else {
-      return 'This is not an assured node. VMs with SLAs may not be placed here.';
+      nodeTypeMessage += ' VMs with SLAs may not be placed here.';
     }
-  }.property('samControlled'),
+    return nodeTypeMessage;
+  }.property('status.mode'),
   isOn: Ember.computed.equal('status.operational', App.ON),
   cpuFrequency: function () {
     // MHz to GHz conversion
@@ -551,13 +551,13 @@ App.ActionController = Ember.ObjectController.extend({
       case 'unregister':
         return this.get('node.samRegistered');
       case 'setMonitored':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.MONITORED));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.MONITORED));
       case 'setAssuredVcpu':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VCPU));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_SCU_VCPU));
       case 'setAssuredVm':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VM));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_SCU_VM));
       case 'setAssuredCores':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_CORES_PHYSICAL));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_CORES_PHYSICAL));
       default:
         return false;
     }

@@ -311,7 +311,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     setAssured: function (node, mode) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to assured?');
+      var confirmed = confirm('Warning: The node will be rebooted. Are you sure you want to set the agent mode of node "' + node.get('name') + '" to ' + App.codeToMode(mode) + '?');
       if (confirmed) {
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),

@@ -232,7 +232,7 @@
         },
         "long_message": "Unknown operational state of node.SAM agent is installed. ",
         "health": 4,
-        "mode": 2,
+        "mode": 3,
         "trust": 3,
         "short_message": "Unknown operational state of node."
       },
@@ -350,7 +350,7 @@
         },
         "long_message": "Unknown operational state of node.SAM agent is installed. ",
         "health": 4,
-        "mode": 2,
+        "mode": 4,
         "trust": 3,
         "short_message": "Unknown operational state of node."
       },
