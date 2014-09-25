@@ -81,13 +81,23 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-             {{#view "tooltip" titleBinding="computeMessage" barBinding="computeWidth"}}
+            {{#view "popover" title="SAA Compute Units"}}
                <div class="contention-bar">
                  <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                    <div class="contention-gradient"></div>
                  </div>
                </div>
               {{na utilization.scu.system.value}}
+              <div class="popover-content" style="display:none;">
+                <div style="width:400px;">
+                  {{progress-bar-adjacent
+                    values=scuValues
+                  }}
+                </div>
+                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
+                  {{{scuTooltip}}}
+                </div>
+              </div>
              {{/view}}
            {{else}}
              <span class="not-applicable">n/a</span>
