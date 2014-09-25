@@ -146,7 +146,6 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuTooltip: function() {
     var messages = [];
-    messages.push('SCU Usage');
     messages.push('System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max'));
     if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
     if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }

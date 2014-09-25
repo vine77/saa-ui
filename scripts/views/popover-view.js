@@ -6,8 +6,8 @@
 *      Hover over me.
 *      <div class="popover-content" style="display:none;">
 *        This is the contention popover content. View Id: {{view.elementId}}
-*      </div>
-*   {{/view}}
+*     </div>
+*  {{/view}}
 */
 
 App.PopoverView = Ember.View.extend({
