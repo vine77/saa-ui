@@ -27,12 +27,12 @@ module.exports = function(issue) {
   var gate = issue['cq:Gate_To'];  // From config.json
   var attachmentsUrl = issue['cq:Attachments'][0]['rdf:resource'];
 
-  var labels = ['clearquest', id];
+  var labels = ['clearquest'];
   if (classification === 'Defect') labels.push('bug');
   if (classification === 'Feature Request' || classification === 'Requirement') labels.push('enhancement');
   var githubPayload = {
     title: title,
-    body: description,
+    body: id + '\n\n' + description,
     labels: labels
   }
   if (contributor) {
