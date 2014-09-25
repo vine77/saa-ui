@@ -18,7 +18,6 @@ module.exports = function(options) {
       if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
         resolve(body);
       } else {
-        // reject(error ? error : response.statusCode);
         reject(error ? error : {response: response, body: body});
       }
     });

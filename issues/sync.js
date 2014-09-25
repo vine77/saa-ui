@@ -9,9 +9,11 @@ var cqToGi = require('./utils/cq-to-gi');
 var getVersion = require('./utils/get-version');
 
 // Configuration variables
+var users = require('./config.json').users;
 var gates = require('./config.json').gates;
 var proxy = require('./config.json').proxy;
-var dryrun = require('./config.json').dryrun || false;
+var isDryRun = require('./config.json').dryrun;
+var downloadAttachments = require('./config.json').attachments;
 
 // Authentication credentials
 if (process.argv.length < 6) {
@@ -24,7 +26,7 @@ var githubUsername = process.argv[4];
 var githubPassword = process.argv[5];
 
 // URLs and headers
-var clearquestUrl = 'https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594?oslc.pageSize=1000&oslc.properties=cq:Customer_Support_ID,cq:Gate_To';
+var clearquestUrl = 'https://pg.clearquest.intel.com/cqweb/oslc/repo/CQMS.EPSD.PG/db/EPSD1/query/49124594?oslc.pageSize=1000&oslc.properties=cq:Customer_Support_ID,cq:Gate_To,dcterms:contributor';
 var clearquestHeaders = {
   'OSLC-Core-Version': '2.0',
   'Authorization': 'Basic ' + new Buffer(clearquestUsername + ':' + clearquestPassword).toString('base64'),
@@ -43,7 +45,7 @@ var githubHeaders = {
 
 console.log('Pulling issues from ClearQuest...');
 
-// Push unsynced records from ClearQuest to GitHub
+// Get unsynced records from ClearQuest
 getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearquestResponse) {
   var cqRecords = clearquestResponse['rdfs:member'];
   var clearquestPromises = [];
@@ -57,9 +59,15 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
   });
 
   var unsyncedRecords = currentGateRecords.filter(function(record) {
-    return !parseInt(record['cq:Customer_Support_ID']);
+    if (parseInt(record['cq:Customer_Support_ID'])) return false;  // Exclude issues already synced
+    // Include if username matches that in config file (and user's "sync" flag is true)
+    var cqOwner = record['dcterms:contributor']['rdf:resource'].split('/').pop();
+    var includeRecord = false;
+    users.forEach(function(user) {
+      if (user.sync && user.clearquest.toLowerCase() === cqOwner.toLowerCase()) includeRecord = true;
+    });
+    return includeRecord;
   });
-
   console.log('There are ' + unsyncedRecords.length + ' unsynced records out of ' + currentGateRecords.length + ' open front-end CQ issues (gated to current phase).');
 
   unsyncedRecords.forEach(function(unsyncedRecord) {
@@ -68,16 +76,17 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
     if (!clearquestRecordUrl) return;
     console.log(unsyncedRecord['oslc:shortTitle'] + ': ' + clearquestRecordUrl);
     var clearquestPromise = getJSON({url: clearquestRecordUrl, headers: clearquestHeaders}).then(function(clearquestRecord) {
+      if (!downloadAttachments || isDryRun) return clearquestRecord;  // Don't download attachments if dryrun is true attachments is false
       // Get attachments
       var attachmentsUrl = clearquestRecord['cq:Attachments'][0]['rdf:resource'];
       return getJSON({url: attachmentsUrl, headers: clearquestAttachmentHeaders}).then(function(attachmentsResponse) {
         var attachmentResults = attachmentsResponse['oslc_cm:results'];
         if (attachmentResults.length >= 1) {
           var attachmentPromises = [];
+          console.log(unsyncedRecord['oslc:shortTitle'] + ' has attachments');
           clearquestRecord.attachments = attachmentResults.map(function(result) {
             return {url: result['rdf:resource'], filename: result['oslc_cm:label']};
           });
-          console.log(unsyncedRecord['oslc:shortTitle'] + ' has attachments');
           console.log(clearquestRecord.attachments);
           clearquestRecord.attachments.forEach(function(attachment) {
             // Download each attachment
@@ -108,12 +117,12 @@ getJSON({url: clearquestUrl, headers: clearquestHeaders}).then(function(clearque
           });
           return RSVP.all(attachmentPromises);
         } else {
-          console.log(unsyncedRecord['oslc:shortTitle'] + ' had no attachments.');
+          console.log(unsyncedRecord['oslc:shortTitle'] + ' has no attachments.');
         }
         return clearquestRecord;
       });
     }).then(function(clearquestRecord) {
-      if (!!dryrun) return;  // Don't push anything to GitHub if a dry-run
+      if (isDryRun) return;  // Don't push anything to GitHub if a dry-run
       // Create new issue on GitHub
       console.log('Creating GitHub issue for ' + clearquestRecord['cq:id'] + '...');
       return postJSON({

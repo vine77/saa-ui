@@ -5,11 +5,14 @@
   ],
   "users": [{
     "github": "vine77",
-    "clearquest": "njward1x"
+    "clearquest": "njward1x",
+    "sync": true
   }, {
     "github": "ahouchens",
-    "clearquest": "ghouchex"
+    "clearquest": "ghouchex",
+    "sync": true
   }],
   "proxy": "http://proxy.jf.intel.com:911",
-  "dryrun": true
+  "dryrun": true,
+  "attachments": false
 }

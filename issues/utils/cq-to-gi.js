@@ -29,7 +29,7 @@ module.exports = function(issue) {
 
   var labels = ['clearquest', id];
   if (classification === 'Defect') labels.push('bug');
-  if (classification === 'Feature Request') labels.push('enhancement');
+  if (classification === 'Feature Request' || classification === 'Requirement') labels.push('enhancement');
   var githubPayload = {
     title: title,
     body: description,
