@@ -89,7 +89,7 @@
                </div>
               {{na utilization.scu.system.value}}
               <div class="popover-content" style="display:none;">
-                <div style="width:400px;">
+                <div style="width:400px; margin-left:15px;">
                   {{progress-bar-adjacent
                     values=scuValues
                   }}
@@ -124,13 +124,24 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view "tooltip" titleBinding="contentionMessage"}}
+            {{#view App.PopoverView title="Contention" dataPlacement="left"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>
                 </div>
               </div>
               {{na contentionFormatted}}
+              <div class="popover-content" style="display:none;">
+                {{contentionMessage}}
+                <div style="width:400px; margin-left:15px;">
+                  {{progress-bar-adjacent
+                    values=contentionValues
+                  }}
+                </div>
+                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
+                  {{{contentionTooltip}}}
+                </div>
+              </div>
             {{/view}}
           </div>
         {{else}}
