@@ -155,10 +155,10 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
     var messages = [];
-    messages.push(this.get('contentionMessage'));
-    if (!!this.get('osContention.max')) { messages.push('OS Contention ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
-    if (!!this.get('vmContention.max')) { messages.push('VM Contention ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
-    if (!!this.get('sixWindContention.max')) { messages.push('6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    //messages.push(this.get('contentionMessage'));
+    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
+    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
     return messages.join('<br>');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
