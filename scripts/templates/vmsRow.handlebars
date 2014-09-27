@@ -22,11 +22,7 @@
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#view App.TooltipView titleBinding="slaMessage"}}
-          {{#if isAssuredCoresPhysical}}
-            <i {{bind-attr class=":icon-large slaUnknown:icon-pushpin slaUnknown:inset slaNotViolated:icon-pushpin slaNotViolated:success slaViolatedWarning:icon-warning-sign slaViolatedWarning:warning slaViolatedError:icon-remove-sign slaViolatedError:error"}}></i>
-          {{else}}
-            <i {{bind-attr class=":icon-large slaUnknown:icon-trophy slaUnknown:inset slaNotViolated:icon-trophy slaNotViolated:success slaViolatedWarning:icon-warning-sign slaViolatedWarning:warning slaViolatedError:icon-remove-sign slaViolatedError:error"}}></i>
-          {{/if}}
+          <i {{bind-attr class="slaIconClass"}}></i>
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">

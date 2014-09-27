@@ -51,7 +51,28 @@ App.VmController = Ember.ObjectController.extend({
     if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return false;
     return !Ember.isEmpty(this.get('sla.slos').findBy('sloType', 'assured-cores-physical'));
   }.property('sla.slos.@each.sloType'),
+  slaIconClass: function() {
+    var slaClasses = ['icon-large'];
+    if (this.get('sla.isDefault')) {
+      slaClasses.push('icon-info-sign', 'info');
+    } else {
+      if (this.get('slaUnknown') || this.get('slaNotViolated')) {
+        if (this.get('slaUnknown')) slaClasses.push('inset');
+        if (this.get('slaNotViolated')) slaClasses.push('success');
+        if (this.get('isAssuredCoresPhysical')) {
+          slaClasses.push('icon-pushpin');
+        } else {
+          slaClasses.push('icon-trophy');
+        }
+      } else {
+        if (this.get('slaViolatedWarning')) slaClasses.push('icon-warning-sign', 'warning');
+        if (this.get('slaViolatedError')) slaClasses.push('icon-remove-sign', 'error');
+      }
+    }
+    return slaClasses.join(' ');
+  }.property('status.sla_status', 'sla.slos.@each.sloType', 'sla.isDefault'),
   slaMessage: function () {
+    var slaMessages = [];
     if (App.isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
       if (this.get('slaNotViolated')) {
@@ -63,14 +84,18 @@ App.VmController = Ember.ObjectController.extend({
       } else {
         slaStatus = 'Unknown';
       }
-      return 'SLA Status: ' + slaStatus;
+      slaMessages.push('SLA Status: ' + slaStatus);
     } else {
       var messages = this.get('status.sla_messages').map(function (item, index, enumerable) {
         if (item.slice(-1) === '.') item = item.slice(0, -1);
         return item.capitalize();
       });
-      return messages.join('; ');
+      slaMessages.push(messages.join('; '));
     }
+    if (this.get('sla.isDefault')) {
+      slaMessages.push('This VM is using a default SLA');
+    }
+    return slaMessages.join('<br>');
   }.property('status.sla_messages'),
   hasContention: function() {
     if (App.isEmpty(this.get('contention.llc.system.value'))) {
