@@ -1,6 +1,6 @@
 App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
   host: App.getApiDomain(),
-  namespace: 'api/v1',
+  namespace: 'api/v2',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
   },
@@ -195,7 +195,7 @@ App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
 
 // RESTConfigAdapter for nested configuration namespace
 DS.RESTConfigAdapter = App.ApplicationAdapter.extend({
-  namespace: 'api/v1/configuration'
+  namespace: 'api/v2/configuration'
 });
 
 // RESTSingletonAdapter for singleton resources in primary namespace
@@ -208,7 +208,7 @@ DS.RESTSingletonAdapter = App.ApplicationAdapter.extend({
 
 // RESTSingletonConfigAdapter for singleton resources in configuration namespace
 DS.RESTSingletonConfigAdapter = DS.RESTSingletonAdapter.extend({
-  namespace: 'api/v1/configuration'
+  namespace: 'api/v2/configuration'
 });
 
 // RESTDefinitionsAdapter

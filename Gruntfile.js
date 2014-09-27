@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                 // Log requests to terminal
                 grunt.log.writeln(req.method, req.url);
 
-                if (req.url === '/api/v1/start' && req.method === 'PUT') {
+                if (req.url === '/api/v2/start' && req.method === 'PUT') {
                   res.writeHead(422, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'code': 422, 'errors': ['This is a test of the error reporting system.', 'This is only a test.']}));
                   return;
@@ -466,46 +466,46 @@ module.exports = function (grunt) {
 
     var server = grunt.option('server') || 'localhost';
     var apiEndpoints = [{
-      url: '/api/v1/statuses.json'
+      url: '/api/v2/statuses.json'
     }, {
-      url: '/api/v1/builds.json'
+      url: '/api/v2/builds.json'
     }, {
-      url: '/api/v1/quantumconfig'
+      url: '/api/v2/quantumconfig'
     }, {
-      url: '/api/v1/openrcconfig'
+      url: '/api/v2/openrcconfig'
     }, {
-      url: '/api/v1/novaconfig'
+      url: '/api/v2/novaconfig'
     }, {
-      url: '/api/v1/netconfig'
+      url: '/api/v2/netconfig'
     }, {
-      url: '/api/v1/logsettings'
+      url: '/api/v2/logsettings'
     }, {
-      url: '/api/v1/nodes.json',
+      url: '/api/v2/nodes.json',
       links: ['node_trust_report']
     }, {
-      url: '/api/v1/vms.json',
+      url: '/api/v2/vms.json',
       links: ['vm_trust_report', 'vm_instantiation_simple', 'vm_instantiation_detailed']
     }, {
-      url: '/api/v1/configuration/flavors.json'
+      url: '/api/v2/configuration/flavors.json'
     }, {
-      url: '/api/v1/configuration/slas.json'
+      url: '/api/v2/configuration/slas.json'
     }, {
-      url: '/api/v1/configuration/slos.json'
+      url: '/api/v2/configuration/slos.json'
     }, {
-      url: '/api/v1/configuration/slo_templates.json'
+      url: '/api/v2/configuration/slo_templates.json'
     }, {
-      url: '/api/v1/mtwilson/install'
+      url: '/api/v2/mtwilson/install'
     }, {
-      url: '/api/v1/trust_nodes.json'
+      url: '/api/v2/trust_nodes.json'
     }, {
-      url: '/api/v1/trust_mles.json'
+      url: '/api/v2/trust_mles.json'
     }
-    //'/api/v1/graphs.json'
-    //'/api/v1/override'
-    //'/api/v1/sessions/current_session.json'
-    //'/api/v1/sessions.json'
-    //'/api/v1/users.json'
-    //'/api/v1/mailservers/default.json'
+    //'/api/v2/graphs.json'
+    //'/api/v2/override'
+    //'/api/v2/sessions/current_session.json'
+    //'/api/v2/sessions.json'
+    //'/api/v2/users.json'
+    //'/api/v2/mailservers/default.json'
     ];
     var uncountable = ['vm_instantiation_simple', 'vm_instantiation_detailed'];
 
@@ -544,8 +544,8 @@ module.exports = function (grunt) {
                 var linkId = record[link + '_id'];
                 var pluralized = link + ((uncountable.indexOf(link) === -1) ? 's' : '');
                 individualRecords.push({
-                  url: 'http://' + server + '/api/v1/' + pluralized + '/' + linkId + '.json',
-                  path: __dirname + ('/api/v1/' + pluralized + '/' + linkId + '.json').split('/').join(path.sep)
+                  url: 'http://' + server + '/api/v2/' + pluralized + '/' + linkId + '.json',
+                  path: __dirname + ('/api/v2/' + pluralized + '/' + linkId + '.json').split('/').join(path.sep)
                 });
               }
             });

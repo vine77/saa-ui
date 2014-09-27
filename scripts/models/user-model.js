@@ -1,6 +1,6 @@
 App.UserAdapter = DS.ActiveModelAdapter.extend({
   host: App.getApiDomain(),
-  namespace: 'api/v1',
+  namespace: 'api/v2',
   buildURL: function(type, id) {
     return this._super(type, id) + '.json';
   }
