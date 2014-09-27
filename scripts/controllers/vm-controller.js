@@ -73,6 +73,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('status.sla_status', 'sla.slos.@each.sloType', 'sla.isDefault'),
   slaMessage: function () {
     var slaMessages = [];
+    if (this.get('slaName')) slaMessages.push('SLA: ' + this.get('slaName'));
     if (App.isEmpty(this.get('status.sla_messages'))) {
       var slaStatus = '';
       if (this.get('slaNotViolated')) {
