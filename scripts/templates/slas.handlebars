@@ -28,6 +28,13 @@
           {{#each}}
             <tr {{bind-attr class="isSelected isExpanded"}}>
               <td><a {{action "expand" this}}>{{name}}</a></td>
+              <td class="column-medium">
+                {{#if isDefault}}
+                  Default
+                {{else}}
+                  User-defined
+                {{/if}}
+              </td>
               <td class="column-medium">{{slos.length}}</td>
               <td class="column-large">{{sloTypes}}</td>
               <td class="column-medium">
