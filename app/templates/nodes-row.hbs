@@ -87,7 +87,11 @@
                    <div class="contention-gradient"></div>
                  </div>
                </div>
-              {{na systemScuUtilization}}
+              {{#if scuCurrentExceedsMax}}
+               <span style="color:red;"> {{na systemScuUtilization}} </span>
+              {{else}}
+               {{na systemScuUtilization}}
+              {{/if}}
               <div class="popover-content" style="display:none;">
                 <div style="width:400px; margin-left:15px;">
                   {{progress-bar-adjacent
@@ -130,7 +134,11 @@
                   <div class="contention-gradient"></div>
                 </div>
               </div>
-              {{na contentionFormatted}}
+              {{#if contentionCurrentExceedsMax}}
+               <span style="color:red;"> {{na contentionFormatted}} </span>
+              {{else}}
+               {{na contentionFormatted}}
+              {{/if}}
               <div class="popover-content" style="display:none;">
                 {{contentionMessage}}
                 <div style="width:400px; margin-left:15px;">

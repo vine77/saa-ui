@@ -142,7 +142,7 @@ export default Ember.ObjectController.extend({
     var contentionScu = 0;
     if (this.get('contentionCgroups')) {
       this.get('contentionCgroups').forEach( function(item, index, enumerable) {
-        systemContention = systemContention + item.value;
+        contentionScu = contentionScu + item.value;
       });
     }
     return contentionScu;
@@ -181,7 +181,15 @@ export default Ember.ObjectController.extend({
   sixWindContention: function() {
     return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', '6Wind');
   }.property('contentionCgroups'),
-
+  contentionCurrentExceedsMax: function() {
+    var returnVal = false;
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach(function(item, index, enumerable) {
+        if (Number(item.value) > Number(item.max)) { returnVal = true; }
+      });
+    }
+    return returnVal;
+  }.property('contentionCgroups'),
   scuOsUtilization: function() {
     return this.get('scuUtilizationCgroups') && this.get('scuUtilizationCgroups').findBy('type', 'os');
   }.property('scuUtilizationCgroups'),
@@ -226,12 +234,13 @@ export default Ember.ObjectController.extend({
     return returnArray.sortBy('sortOrder');
   }.property('scuUtilizationCgroups', 'scuUnallocated'),
   scuCurrentExceedsMax: function() {
+    var returnVal = false;
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
-        if (item.value > item.max) { return true; }
+        if (Number(item.value) > Number(item.max)) { returnVal = true; }
       });
     }
-    return false;
+    return returnVal;
   }.property('scuUtilizationCgroups'),
   contentionValues: function() {
     var returnArray = [];
