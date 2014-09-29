@@ -100,6 +100,27 @@ App.NodeController = Ember.ObjectController.extend({
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
+  systemScuUtilization: function() {
+    var systemScuUtilization = 0;
+    if (this.get('scuUtilizationCgroups')) {
+      this.get('scuUtilizationCgroups').forEach( function(item, index, enumerable) {
+        systemScuUtilization = systemScuUtilization + item.value;
+      });
+    }
+    return systemScuUtilization;
+  }.property('scuUtilizationCgroups.@each'),
+  systemContention: function() {
+    var contentionScu = 0;
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach( function(item, index, enumerable) {
+        systemContention = systemContention + item.value;
+      });
+    }
+    return systemContention;
+  }.property('contentionCgroups.@each'),
+
+// contention.llc.system.value
+
   utilizationCoresCgroups: function() {
     return this.get('utilization.cores.cgroups');
   }.property('utilization.cores.cgroups.@each'),
@@ -146,13 +167,13 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuTooltip: function() {
     var messages = [];
-    messages.push('System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max'));
+    messages.push('System:  ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
     if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
     if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }
     if (!!this.get('scuVmUtilization.max')) { messages.push('VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max')); }
     if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
     return messages.join('<br>');
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
+  }.property('systemScuUtilization', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
     var messages = [];
     //messages.push(this.get('contentionMessage'));
@@ -393,31 +414,31 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (App.isEmpty(this.get('systemScuUtilization'))) {
       return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAA Compute Units: ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
+      return 'SAA Compute Units: ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
     }
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
+  }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeWidth: function () {
-    if (this.get('utilization.scu.system.value') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (this.get('systemScuUtilization') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('utilization.scu.system.value'), 0, this.get('utilization.scu.system.max'));
+      percent = App.rangeToPercentage(this.get('systemScuUtilization'), 0, this.get('utilization.scu.system.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
+  }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
-  hasContention: Ember.computed.notEmpty('contention.llc.system.value'),
+  hasContention: Ember.computed.notEmpty('systemContention'),
   contentionFormatted: function () {
-    return Math.round(this.get('contention.llc.system.value') * 100) / 100;
+    return Math.round(this.get('systemContention') * 100) / 100;
   }.property('contention.llc.system.value'),
   contentionMessage: function() {
     if (App.isEmpty(this.get('contention.llc.system.value'))) {
       return '<strong>System LLC Cache Contention</strong>: N/A';
     } else {
-      var message = 'Overall LLC Cache Contention: ' + this.get('contention.llc.system.value');
+      var message = 'Overall LLC Cache Contention: ' + this.get('systemContention');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
@@ -426,13 +447,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('contention'),
   contentionWidth: function () {
-    if (this.get('contention.llc.system.value') === 0 || App.isEmpty(this.get('contention.llc.system.value'))) {
+    if (this.get('systemContention') === 0 || App.isEmpty(this.get('systemContention'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.llc.system.value'), 0, 50);
+      percent = App.rangeToPercentage(this.get('systemContention'), 0, 50);
       return 'width:' + percent + '%;';
     }
-  }.property('contention.llc.system.value'),
+  }.property('systemContention'),
   socketsEnum: function () {
     var socketsEnum = [];
     for (var i = 0; i < this.get('capabilities.sockets'); i++) {
