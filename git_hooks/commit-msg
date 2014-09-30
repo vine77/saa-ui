@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var commitMessage = require('fs').readFileSync(process.argv[2], {encoding: 'utf8'});
+var firstLine = commitMessage.split('\n')[0];
+if (firstLine.length > 70) {
+  console.log('Error: the git commit message summary line was longer than 70 characters');
+  process.exit(1);
+}

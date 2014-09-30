@@ -66,27 +66,19 @@ App.NodeController = Ember.ObjectController.extend({
         node: this
       }),
       App.ActionController.create({
-        name: 'Change agent mode to assured (per-vCPU SCUs)',
-        method: 'setAssuredVcpu',
+        name: 'Change agent mode to ' + App.codeToMode(App.ASSURED_SCU_VM),
+        method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
         sortOrder: 8,
         node: this
       }),
       App.ActionController.create({
-        name: 'Change agent mode to assured (per-VM SCUs)',
-        method: 'setAssuredVm',
-        icon: 'icon-trophy',
-        disabledWhileRebooting: true,
-        sortOrder: 9,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Change agent mode to assured (exclusive cores)',
+        name: 'Change agent mode to ' + App.codeToMode(App.ASSURED_CORES_PHYSICAL),
         method: 'setAssuredCores',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 10,
+        sortOrder: 9,
         node: this
       }),
       App.ActionController.create({
@@ -107,6 +99,27 @@ App.NodeController = Ember.ObjectController.extend({
       })
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
+
+  systemScuUtilization: function() {
+    var systemScuUtilization = 0;
+    if (this.get('scuUtilizationCgroups')) {
+      this.get('scuUtilizationCgroups').forEach( function(item, index, enumerable) {
+        systemScuUtilization = systemScuUtilization + item.value;
+      });
+    }
+    return systemScuUtilization;
+  }.property('scuUtilizationCgroups.@each'),
+  systemContention: function() {
+    var contentionScu = 0;
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach( function(item, index, enumerable) {
+        contentionScu = contentionScu + item.value;
+      });
+    }
+    return contentionScu;
+  }.property('contentionCgroups.@each'),
+
+// contention.llc.system.value
 
   utilizationCoresCgroups: function() {
     return this.get('utilization.cores.cgroups');
@@ -153,18 +166,21 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('scuUtilizationCgroups'),
 
   scuTooltip: function() {
-    return 'SCU Usage' + '<br>' +
-    'System:  ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + '<br>' +
-    ((!!this.get('scuOsUtilization.max'))?'OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'):'') + '<br>' +
-    ((!!this.get('scu6WindUtilization.max'))?'6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuVmUtilization.max'))?'VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'):'') + '<br>' +
-    ((!!this.get('scuUnallocated'))?'Unallocated: ' + this.get('scuUnallocated').toFixed(2):'');
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
+    var messages = [];
+    messages.push('System:  ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
+    if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
+    if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }
+    if (!!this.get('scuVmUtilization.max')) { messages.push('VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max')); }
+    if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
+    return messages.join('<br>');
+  }.property('systemScuUtilization', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   contentionTooltip: function() {
-    return this.get('contentionMessage') + '<br>' +
-    ((!!this.get('osContention.max'))?'OS Contention ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max'):'') + '<br>' +
-    ((!!this.get('vmContention.max'))?'VM Contention ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'):'') + '<br>' +
-    ((!!this.get('sixWindContention.max'))?' 6Wind Contention </strong>' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'):'');
+    var messages = [];
+    //messages.push(this.get('contentionMessage'));
+    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
+    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    return messages.join('<br>');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   scuUnallocated: function() {
@@ -192,6 +208,15 @@ App.NodeController = Ember.ObjectController.extend({
     }
     return returnArray.sortBy('sortOrder');
   }.property('scuUtilizationCgroups', 'scuUnallocated'),
+  scuCurrentExceedsMax: function() {
+    var returnVal = false;
+    if (this.get('scuUtilizationCgroups')) {
+      this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
+        if (Number(item.value) > Number(item.max)) { returnVal = true; }
+      });
+    }
+    return returnVal;
+  }.property('scuUtilizationCgroups'),
 
   contentionValues: function() {
     var returnArray = [];
@@ -206,6 +231,15 @@ App.NodeController = Ember.ObjectController.extend({
       });
     }
     return returnArray;
+  }.property('contentionCgroups'),
+  contentionCurrentExceedsMax: function() {
+    var returnVal = false;
+    if (this.get('contentionCgroups')) {
+      this.get('contentionCgroups').forEach(function(item, index, enumerable) {
+        if (Number(item.value) > Number(item.max)) { returnVal = true; }
+      });
+    }
+    return returnVal;
   }.property('contentionCgroups'),
 
   nodeActionsAreAvailable: function() {
@@ -274,24 +308,23 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('percentOfMemory', 'maxMemory'),
 
   // Computed properties
-  isAgentInstalled: Ember.computed.bool('samControlled'),
-  isMonitored: Ember.computed.equal('samControlled', App.MONITORED),
-  isAssured: Ember.computed.gte('samControlled', App.MONITORED),
-  isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
-  isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
-  isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
+  isAgentInstalled: Ember.computed.bool('status.mode'),
+  isMonitored: Ember.computed.equal('status.mode', App.MONITORED),
+  isAssuredScuVcpu: Ember.computed.equal('status.mode', App.ASSURED_SCU_VCPU),
+  isAssuredScuVm: Ember.computed.equal('status.mode', App.ASSURED_SCU_VM),
+  isAssuredCoresPhysical: Ember.computed.equal('status.mode', App.ASSURED_CORES_PHYSICAL),
   isSelectable: function() {
     return this.get('isAgentInstalled');
   }.property('isAgentInstalled'),
   nodeTypeMessage: function () {
+    var nodeTypeMessage = 'This node is in ' + App.codeToMode(this.get('status.mode')) + ' mode.';
     if (this.get('isAssured')) {
-      return 'This is an assured node. Assured type: ' + App.codeToMode(this.get('samControlled'));
-    } else if (this.get('isMonitored')) {
-      return 'This is a monitored node. SAA will monitor this node, but VMs with SLAs may not be placed here.';
+      nodeTypeMessage += ' VMs with SLAs may be placed here.';
     } else {
-      return 'This is not an assured node. VMs with SLAs may not be placed here.';
+      nodeTypeMessage += ' VMs with SLAs may not be placed here.';
     }
-  }.property('samControlled'),
+    return nodeTypeMessage;
+  }.property('status.mode'),
   isOn: Ember.computed.equal('status.operational', App.ON),
   cpuFrequency: function () {
     // MHz to GHz conversion
@@ -395,31 +428,31 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (App.isEmpty(this.get('systemScuUtilization'))) {
       return '<strong>SAA Compute Units</strong>: N/A';
     } else {
-      return 'SAA Compute Units: ' + this.get('utilization.scu.system.value') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
+      return 'SAA Compute Units: ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
     }
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
+  }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeWidth: function () {
-    if (this.get('utilization.scu.system.value') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (this.get('systemScuUtilization') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('utilization.scu.system.value'), 0, this.get('utilization.scu.system.max'));
+      percent = App.rangeToPercentage(this.get('systemScuUtilization'), 0, this.get('utilization.scu.system.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.scu.system.value', 'utilization.scu.system.max'),
+  }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
-  hasContention: Ember.computed.notEmpty('contention.llc.system.value'),
+  hasContention: Ember.computed.notEmpty('systemContention'),
   contentionFormatted: function () {
-    return Math.round(this.get('contention.llc.system.value') * 100) / 100;
+    return Math.round(this.get('systemContention') * 100) / 100;
   }.property('contention.llc.system.value'),
   contentionMessage: function() {
     if (App.isEmpty(this.get('contention.llc.system.value'))) {
       return '<strong>System LLC Cache Contention</strong>: N/A';
     } else {
-      var message = 'Overall LLC Cache Contention: ' + this.get('contention.llc.system.value');
+      var message = 'Overall LLC Cache Contention: ' + this.get('systemContention');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
@@ -428,13 +461,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('contention'),
   contentionWidth: function () {
-    if (this.get('contention.llc.system.value') === 0 || App.isEmpty(this.get('contention.llc.system.value'))) {
+    if (this.get('systemContention') === 0 || App.isEmpty(this.get('systemContention'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('contention.llc.system.value'), 0, 50);
+      percent = App.rangeToPercentage(this.get('systemContention'), 0, 50);
       return 'width:' + percent + '%;';
     }
-  }.property('contention.llc.system.value'),
+  }.property('systemContention'),
   socketsEnum: function () {
     var socketsEnum = [];
     for (var i = 0; i < this.get('capabilities.sockets'); i++) {
@@ -531,7 +564,7 @@ App.ServiceController = Ember.ObjectController.extend({
 
 App.ActionController = Ember.ObjectController.extend({
   isDisabled: function() {
-    return this.get('node.isRebooting') && this.get('disabledWhileRebooting') || (this.get('method') == 'setAssuredVm');
+    return this.get('node.isRebooting') && this.get('disabledWhileRebooting');
   }.property('node.@each', 'node.isRebooting'),
   isListItem: function() {
     switch (this.get('method')) {
@@ -552,13 +585,13 @@ App.ActionController = Ember.ObjectController.extend({
       case 'unregister':
         return this.get('node.samRegistered');
       case 'setMonitored':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.MONITORED));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.MONITORED));
       case 'setAssuredVcpu':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VCPU));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_SCU_VCPU));
       case 'setAssuredVm':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_SCU_VM));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_SCU_VM));
       case 'setAssuredCores':
-        return (this.get('node.isAgentInstalled') && (this.get('node.samControlled') !== App.ASSURED_CORES_PHYSICAL));
+        return (this.get('node.isAgentInstalled') && (this.get('node.status.mode') !== App.ASSURED_CORES_PHYSICAL));
       default:
         return false;
     }

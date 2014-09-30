@@ -25,11 +25,15 @@ module.exports = function(issue) {
   var operatingSystem = '';  // Prefilled
   var configuration = issue['cq:Configuration'];
   var gate = issue['cq:Gate_To'];  // From config.json
+  var attachmentsUrl = issue['cq:Attachments'][0]['rdf:resource'];
 
+  var labels = ['clearquest'];
+  if (classification === 'Defect') labels.push('bug');
+  if (classification === 'Feature Request' || classification === 'Requirement') labels.push('enhancement');
   var githubPayload = {
     title: title,
-    body: description,
-    labels: ["clearquest", id]
+    body: id + '\n\n' + description,
+    labels: labels
   }
   if (contributor) {
     var assignee = userMapping.filter(function(user) {

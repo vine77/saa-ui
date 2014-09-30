@@ -85,13 +85,27 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{#view App.TooltipView titleBinding="computeMessage" barBinding="computeWidth"}}
+            {{#view App.PopoverView title="SAA Compute Units"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
                 </div>
               </div>
-              {{na utilization.scu.system.value}}
+               {{#if scuCurrentExceedsMax}}
+                 <span style="color:red;"> {{na systemScuUtilization}} </span>
+               {{else}}
+                 {{na systemScuUtilization}}
+               {{/if}}
+              <div class="popover-content" style="display:none;">
+                <div style="width:400px; margin-left:15px;">
+                  {{progress-bar-adjacent
+                    values=scuValues
+                  }}
+                </div>
+                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
+                  {{{scuTooltip}}}
+                </div>
+              </div>
             {{/view}}
           {{else}}
             <span class="not-applicable">n/a</span>
@@ -118,13 +132,28 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view App.TooltipView titleBinding="contentionMessage"}}
+            {{#view App.PopoverView title="Contention" dataPlacement="left"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>
                 </div>
               </div>
-              {{na contentionFormatted}}
+               {{#if contentionCurrentExceedsMax}}
+                 <span style="color:red;"> {{na contentionFormatted}} </span>
+               {{else}}
+                 {{na contentionFormatted}}
+               {{/if}}
+              <div class="popover-content" style="display:none;">
+                {{contentionMessage}}
+                <div style="width:400px; margin-left:15px;">
+                  {{progress-bar-adjacent
+                    values=contentionValues
+                  }}
+                </div>
+                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
+                  {{{contentionTooltip}}}
+                </div>
+              </div>
             {{/view}}
           </div>
         {{else}}

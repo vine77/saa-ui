@@ -1,10 +1,18 @@
 {
-  "phase": "SAA 1.1.2 eNovance",
+  "gates": [
+    "SAA 1.1.5",
+    "CO 1.1"
+  ],
   "users": [{
     "github": "vine77",
-    "clearquest": "njward1x"
+    "clearquest": "njward1x",
+    "sync": true
   }, {
     "github": "ahouchens",
-    "clearquest": "ghouchex"
-  }]
+    "clearquest": "ghouchex",
+    "sync": true
+  }],
+  "proxy": "http://proxy.jf.intel.com:911",
+  "dryrun": true,
+  "attachments": false
 }

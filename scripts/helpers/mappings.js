@@ -69,19 +69,17 @@ App.codeToMode = function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
   switch (code) {
     case App.NON_SAM:
-    case App.NON_SAM.toString():
-      return 'Non-SAA';
+      return 'non-SAA';
+    case App.MONITORED:
+      return 'monitored';
     case App.ASSURED_SCU_VCPU:
-    case App.ASSURED_SCU_VCPU.toString():
-      return 'Assured SCUs (per-vCPU)';
+      return 'assured (per-vCPU SCUs)';
     case App.ASSURED_SCU_VM:
-    case App.ASSURED_SCU_VM.toString():
-      return 'Assured SCUs (per-VM)';
+      return 'assured (SCUs)';
     case App.ASSURED_CORES_PHYSICAL:
-    case App.ASSURED_CORES_PHYSICAL.toString():
-      return 'Assured Physical Cores';
+      return 'assured (exclusive cores)';
     default:
-      return 'Unknown'
+      return 'unknown'
   }
 }
 
