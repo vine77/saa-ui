@@ -17,6 +17,9 @@ App.Sla = DS.Model.extend({
   flavor: DS.belongsTo('flavor'),
 
   // Computed Properties
+  slaType: function() {
+    return this.get('slos').mapBy('elementName').get('firstObject');
+  }.property('slos.@each.elementName'),
   sloTypes: function () {
     //return this.get('slos').getEach('sloType').toString();
     return this.get('slos').map(function (item, index, enumerable) {

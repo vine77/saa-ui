@@ -4,6 +4,9 @@ App.SlasColumnsController = App.ColumnsController.extend({
     sortBy: 'name'
   }, {
     title: 'SLA Type',
+    sortBy: 'slaType'
+  }, {
+    title: 'Default',
     sortBy: 'isDefault'
   }, {
     title: '# of SLOs',
