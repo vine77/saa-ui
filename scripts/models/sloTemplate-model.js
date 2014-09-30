@@ -21,7 +21,7 @@ App.SloTemplate = DS.Model.extend({
   deleted: DS.attr('boolean'),
   operators: DS.attr(),  // Array of {operator: "", description: ""}
   valueType: DS.attr('string'),
-  elementName: DS.attr('string'),
+  elementName: DS.attr('string'),  // "vm", "application", "os"
   unit: DS.attr('string'),
   sloType: DS.attr('string'),
 

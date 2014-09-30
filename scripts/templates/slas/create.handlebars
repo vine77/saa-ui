@@ -3,8 +3,18 @@
   <h3>Create an SLA</h3>
 </div>
 <form id="slasForm" {{action "createSla" on="submit"}}>
-  <div class="modal-body modal-tall" >
-    <p>Create a new <abbr title="Service-Level Agreement">SLA</abbr>.</p>
+  <div class="modal-body modal-tall">
+    <div class="clearfix">
+      <div class="pull-right">
+        SLA Type:
+        {{view Ember.Select class="input-medium"
+          contentBinding="slaTypes"
+          selectionBinding="slaType"
+          prompt="Select SLA Type"
+        }}
+      </div>
+      <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
+    </div>
     <div class="form-horizontal well-clean shadow-lifted">
       <p>
         <label class="inline">SLA name:</label>

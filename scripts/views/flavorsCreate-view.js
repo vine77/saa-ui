@@ -1,3 +1,3 @@
 App.FlavorsCreateView = App.ModalView.extend({
-  classNames: ['modal', 'large', 'hide', 'fade'],
+  classNames: ['modal', 'large', 'hide', 'fade']
 });
