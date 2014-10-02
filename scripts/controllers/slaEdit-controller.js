@@ -1,12 +1,25 @@
 App.SlaEditController = Ember.ObjectController.extend({
   needs: ['nodes'],
 
-  bucketSloCountGreaterThanOne: function() {
-    return (this.get('bucketSloCount') >= 1);
-  }.property('bucketSloCount'),
   sloTemplates: function () {
     return this.store.all('sloTemplate');
   }.property(),
+  slaTypes: function() {
+    return this.get('sloTemplates').map(function(item) {
+      if (item) return item.get('elementName');
+    }).uniq();
+  }.property('sloTemplates.@each.elementName'),
+  slaType: Ember.computed.alias('model.slaType'),
+  possibleSloTemplates: function() {
+    return this.get('sloTemplates');
+    return this.get('sloTemplates').filter(function(sloTemplate) {
+      return sloTemplate.get('elementName') === slaType;
+    });
+  }.property('sloTemplates.@each', 'slaType', 'slos.@each'),
+
+  bucketSloCountGreaterThanOne: function() {
+    return (this.get('bucketSloCount') >= 1);
+  }.property('bucketSloCount'),
   bucketSloCount: function() {
     var computeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');

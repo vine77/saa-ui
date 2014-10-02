@@ -19,7 +19,7 @@
     <div class="form-horizontal well-clean shadow-lifted">
       <p>
         <label class="inline">SLA name:</label>
-        {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
+        {{view Ember.TextField valueBinding="model.name" autofocus="autofocus"}}
         {{#if isAddSloAvailable}}
           <a class="btn pull-right" {{action "addSlo"}}>
             <i class="icon-plus-sign"></i> Add SLO
