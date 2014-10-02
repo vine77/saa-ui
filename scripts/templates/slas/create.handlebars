@@ -33,7 +33,7 @@
       {{#each slo in slos itemController="slo"}}
         <p class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
-            contentBinding="slo.sloTemplates"
+            contentBinding="slo.possibleSloTemplates"
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
             selectionBinding="sloTemplate"

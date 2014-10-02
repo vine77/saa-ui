@@ -2,6 +2,9 @@ App.SloController = Ember.ObjectController.extend({
   sloTemplates: function() {
     return this.get('parentController.sloTemplates');
   }.property('parentController.sloTemplates.@each', 'parentController.isAddSloAvailable'),
+  possibleSloTemplates: function() {
+    return this.get('parentController.possibleSloTemplates');
+  }.property('parentController.possibleSloTemplates.@each', 'parentController.isAddSloAvailable'),
   allowedOperatorsGreaterThanOne: function() {
     return (this.get('model.sloTemplate.allowedOperators.length') > 1);
   }.property('model.sloTemplate.allowedOperators'),
