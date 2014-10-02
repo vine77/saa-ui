@@ -710,7 +710,8 @@
         "health": 0,
         "mode": 1,
         "trust": 3,
-        "short_message": "SAM Agent reports unknown. "
+        "short_message": "SAM Agent reports unknown. ",
+        "ipmi_sensors_in_error": ["System Fan 1B", "System Fan 2B", "System Fan 3B", "System Fan 4B", "System Fan 5B", "System Fan 6A", "System Fan 6B", "BB +5.0V", "BB +3.3V", "BB +5.0V STBY", "BB +3.3V AUX", "BB +1.05Vccp P1", "BB +1.5 P1MEM CD", "BB +1.5 P2MEM AB", "BB +1.5 P2MEM CD", "BB +1.1V STBY", "BB +3.3 RSR2 PGD"]
       },
       "trust_node_id": null,
       "contention": {

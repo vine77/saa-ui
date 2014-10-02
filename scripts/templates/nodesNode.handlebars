@@ -115,6 +115,12 @@
             {{/if}}
           </td>
         </tr>
+        {{#if status.ipmi_sensors_in_error}}
+          <tr>
+            <th class="column-medium">IPMI Sensors in Error</th>
+            <td>{{#each status.ipmi_sensors_in_error}}{{this}}, {{/each}}</td>
+          <tr>
+        {{/if}}
       </table>
     </div>
     <div class="tab-pane utilization">
