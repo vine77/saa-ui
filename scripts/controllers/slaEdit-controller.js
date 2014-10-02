@@ -11,7 +11,7 @@ App.SlaEditController = Ember.ObjectController.extend({
   }.property('sloTemplates.@each.elementName'),
   slaType: Ember.computed.alias('model.slaType'),
   possibleSloTemplates: function() {
-    return this.get('sloTemplates');
+    var slaType = this.get('slaType');
     return this.get('sloTemplates').filter(function(sloTemplate) {
       return sloTemplate.get('elementName') === slaType;
     });
@@ -30,8 +30,8 @@ App.SlaEditController = Ember.ObjectController.extend({
     return this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'trusted_platform'; }).get('length');
   }.property('sloTypesArray.@each', 'sloTypesArray'),
   isAddSloAvailable: function() {
-    return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1);
-  }.property('sloTypesArray.@each', 'sloTypesArray', 'bucketSloCount', 'trustSloCount'),
+    return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1)  && this.get('slaType');
+  }.property('sloTypesArray.@each', 'sloTypesArray', 'bucketSloCount', 'trustSloCount', 'slaType'),
 
   vcpuValues: [0, 1, 2, 3, 4],
   vcpus: 0,
