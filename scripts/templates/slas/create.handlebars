@@ -14,6 +14,7 @@
         }}
       </div>
       <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
+      <div class="hide">{{slaTypes}}</div>
     </div>
     <div class="form-horizontal well-clean shadow-lifted">
       <p>
@@ -47,25 +48,25 @@
             {{slo.sloTemplate.allowedOperators}}
           {{/if}}
 
-          {{#if isRange}}
-            {{view Ember.TextField class="input-tiny" value=rangeMin}} to
-            {{view Ember.TextField class="input-tiny" value=rangeMax}}
-          {{/if}}
-
-          {{#if isInteger}}
-            {{view Ember.TextField class="input-small" value=value}}
-          {{/if}}
-
           {{#if isBoolean}}
-            <label style="display:inline; margin-left:10px">
+            <label style="display:inline; margin-left:10px;">
               {{view Ember.RadioButton name="value" selection=value value="1"}}
               True
             </label>
-
-            <label style=" display:inline; margin-left:10px;">
+            <label style="display:inline; margin-left:10px;">
               {{view Ember.RadioButton name="value" selection=value value="0"}}
               False
             </label>
+          {{/if}}
+          {{#if isInteger}}
+            {{view Ember.TextField class="input-small" value=value}}
+          {{/if}}
+          {{#if isString}}
+            {{view Ember.TextField class="input-medium" value=value}}
+          {{/if}}
+          {{#if isRange}}
+            {{view Ember.TextField class="input-tiny" value=rangeMin}} to
+            {{view Ember.TextField class="input-tiny" value=rangeMax}}
           {{/if}}
 
           {{slo.sloTemplate.unit}}

@@ -18,7 +18,7 @@ App.Sla = DS.Model.extend({
 
   // Computed Properties
   slaType: function() {
-    return this.get('slos').mapBy('elementName').get('firstObject');
+    return this.get('slos.firstObject.elementName');
   }.property('slos.@each.elementName'),
   sloTypes: function () {
     //return this.get('slos').getEach('sloType').toString();

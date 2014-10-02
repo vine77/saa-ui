@@ -18,8 +18,9 @@ App.Slo = DS.Model.extend({
   valueType: Ember.computed.alias('sloTemplate.valueType'),
 
   // Computed properties
-  isInteger: Ember.computed.equal('valueType', 'integer'),
   isBoolean: Ember.computed.equal('valueType', 'boolean'),
+  isInteger: Ember.computed.equal('valueType', 'integer'),
+  isString: Ember.computed.equal('valueType', 'string'),
   isRange: Ember.computed.equal('valueType', 'range'),
 
   // Observers
