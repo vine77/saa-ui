@@ -92,7 +92,7 @@
                 </div>
               </div>
                {{#if scuCurrentExceedsMax}}
-                 <span style="color:red;"> {{na systemScuUtilization}} </span>
+                 <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
                {{else}}
                  {{na systemScuUtilization}}
                {{/if}}
@@ -105,7 +105,19 @@
                 </div>
                 <br />
                 <div>
-                  {{{scuPopoverCgroups}}}
+                  <dl class="dl-horizontal dl-compressed">
+                    {{#each scuCgroup in scuPopoverCgroups itemController="popoverCgroup"}}
+                      {{#if currentExceedsMax}}
+                        <span style="color:red;">
+                          <dt>{{scuCgroup.title}}:</dt>
+                          <dd>{{scuCgroup.value}}</dd>
+                        </span>
+                      {{else}}
+                        <dt>{{scuCgroup.title}}:</dt>
+                        <dd>{{scuCgroup.value}}</dd>
+                      {{/if}}
+                    {{/each}}
+                  </dl>
                 </div>
               </div>
             {{/view}}
@@ -141,7 +153,7 @@
                 </div>
               </div>
                {{#if contentionCurrentExceedsMax}}
-                 <span style="color:red;"> {{na contentionFormatted}} </span>
+                 <span style="color:red;"><strong>{{na contentionFormatted}}</strong></span>
                {{else}}
                  {{na contentionFormatted}}
                {{/if}}

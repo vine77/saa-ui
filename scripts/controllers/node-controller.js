@@ -174,6 +174,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
     return messages.join('<br>');
   }.property('systemScuUtilization', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
+  /*
   scuPopoverCgroups: function() {
     var messages = [];
     messages.push('<dl class="dl-horizontal dl-compressed">');
@@ -183,6 +184,36 @@ App.NodeController = Ember.ObjectController.extend({
     messages.push('</dl>');
     return messages.join('');
   }.property('scuVmUtilization.max', 'scu6WindUtilization.max', 'scuOsUtilization.max'),
+  */
+    scuPopoverCgroups: function() {
+    var messages = [];
+    if (!!this.get('scuOsUtilization.max')) {
+      messages.pushObject({
+        title: "OS",
+        value: this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max'),
+        current: this.get('scuOsUtilization.value'),
+        max: this.get('scuOsUtilization.max')
+      });
+    }
+    if (!!this.get('scu6WindUtilization.max')) {
+      messages.pushObject({
+        title: "6Wind",
+        value: this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max'),
+        current: this.get('scu6WindUtilization.value'),
+        max: this.get('scu6WindUtilization.max')
+      });
+    }
+    if (!!this.get('scuVmUtilization.max')) {
+      messages.pushObject({
+        title: "VM",
+        value: this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max'),
+        current: this.get('scuVmUtilization.value'),
+        max: this.get('scuVmUtilization.max')
+      });
+    }
+    return messages;
+  }.property('scuVmUtilization.max', 'scu6WindUtilization.max', 'scuOsUtilization.max'),
+
   scuPopoverTitle: function() {
     var messages = [];
     messages.push('<strong>Overall Node Total:</strong> &#9;&#9;' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
@@ -654,5 +685,11 @@ App.ActionController = Ember.ObjectController.extend({
     }
   }
 
+});
+
+App.PopoverCgroupController = Ember.ObjectController.extend({
+  currentExceedsMax: function() {
+    return (this.get('current') > this.get('max'));
+  }.property('current', 'max')
 });
 
