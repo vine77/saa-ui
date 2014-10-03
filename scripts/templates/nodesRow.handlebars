@@ -167,9 +167,19 @@
                   }}
                 </div>
                 <br />
-                <div>
-                  {{{contentionPopoverCgroups}}}
-                </div>
+                <dl class="dl-horizontal dl-compressed">
+                  {{#each contentionCgroup in contentionPopoverCgroups itemController="popoverCgroup"}}
+                    {{#if currentExceedsMax}}
+                      <span style="color:red;">
+                        <dt>{{contentionCgroup.title}}:</dt>
+                        <dd>{{contentionCgroup.value}}</dd>
+                      </span>
+                    {{else}}
+                      <dt>{{contentionCgroup.title}}:</dt>
+                      <dd>{{contentionCgroup.value}}</dd>
+                    {{/if}}
+                  {{/each}}
+                </dl>
               </div>
             {{/view}}
           </div>
