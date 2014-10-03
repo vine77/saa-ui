@@ -97,13 +97,15 @@
                  {{na systemScuUtilization}}
                {{/if}}
               <div class="popover-content" style="display:none;">
+                {{{scuPopoverTitle}}}
                 <div style="width:400px; margin-left:15px;">
                   {{progress-bar-adjacent
                     values=scuValues
                   }}
                 </div>
-                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
-                  {{{scuTooltip}}}
+                <br />
+                <div>
+                  {{{scuPopoverCgroups}}}
                 </div>
               </div>
             {{/view}}
@@ -144,14 +146,17 @@
                  {{na contentionFormatted}}
                {{/if}}
               <div class="popover-content" style="display:none;">
-                {{contentionMessage}}
+                <div>
+                  {{{contentionMessage}}}
+                </div>
                 <div style="width:400px; margin-left:15px;">
                   {{progress-bar-adjacent
                     values=contentionValues
                   }}
                 </div>
-                <div style="width: 350px; column-count:2; -webkit-column-count: 2;  -webkit-column-rule: 2px outset none; column-rule: 2px outset none;">
-                  {{{contentionTooltip}}}
+                <br />
+                <div>
+                  {{{contentionPopoverCgroups}}}
                 </div>
               </div>
             {{/view}}

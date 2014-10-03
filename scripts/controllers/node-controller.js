@@ -174,13 +174,41 @@ App.NodeController = Ember.ObjectController.extend({
     if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
     return messages.join('<br>');
   }.property('systemScuUtilization', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
+  scuPopoverCgroups: function() {
+    var messages = [];
+    messages.push('<dl class="dl-horizontal dl-compressed">');
+    if (!!this.get('scuOsUtilization.max')) { messages.push('<dt > OS:</dt> <dd> ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max') + '</dd>'); }
+    if (!!this.get('scu6WindUtilization.max')) { messages.push('<dt>6Wind:</dt> <dd>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max') + '</dd>'); }
+    if (!!this.get('scuVmUtilization.max')) { messages.push('<dt>VM:</dt> <dd>' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max') + '</dd>'); }
+    messages.push('</dl>');
+    return messages.join('');
+  }.property('scuVmUtilization.max', 'scu6WindUtilization.max', 'scuOsUtilization.max'),
+  scuPopoverTitle: function() {
+    var messages = [];
+    messages.push('<strong>Overall Node Total:</strong> &#9;&#9;' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
+    if (!!this.get('scuUnallocated')) { messages.push('<strong>Node Unallocated:</strong> &#9;&#9;' + this.get('scuUnallocated').toFixed(2) + ' out of ' + this.get('utilization.scu.system.max') ); }
+    return messages.join('<br />');
+  }.property('systemScuUtilization', 'scuUnallocated', 'utilization.scu.system.max'),
+
+  contentionPopoverCgroups: function() {
+    var messages = [];
+    //messages.push(this.get('contentionMessage'));
+    messages.push('<dl class="dl-horizontal dl-compressed">');
+    if (!!this.get('osContention.max')) { messages.push('<dt>OS:</dt><dd> ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max') + '</dd>'); }
+    if (!!this.get('vmContention.max')) { messages.push('<dt>VM:</dt><dd> ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max') + '</dd>'); }
+    if (!!this.get('sixWindContention.max')) { messages.push('<dt>6Wind:</dt><dd> ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max') + '</dd>'); }
+    messages.push('</dl>');
+    return messages.join('');
+    //return 'test';
+  }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
+
   contentionTooltip: function() {
     var messages = [];
     //messages.push(this.get('contentionMessage'));
     if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
     if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
     if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
-    return messages.join('<br>');
+    return messages.join('');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   scuUnallocated: function() {
@@ -452,7 +480,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (App.isEmpty(this.get('contention.llc.system.value'))) {
       return '<strong>System LLC Cache Contention</strong>: N/A';
     } else {
-      var message = 'Overall LLC Cache Contention: ' + this.get('systemContention');
+      var message = '<strong>Overall LLC Cache Contention:</strong> ' + this.get('systemContention');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
