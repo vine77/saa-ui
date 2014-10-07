@@ -47,7 +47,8 @@ App.InstantiationNode = DS.Model.extend({
   node: DS.belongsTo('node'),
   instantiationSlos: DS.hasMany('instantiationSlo'),
   internalFilters: DS.attr(),
-  freeCores: DS.attr()
+  freeCores: DS.attr(),
+  selectedSockets: DS.attr()
 });
 
 App.InstantiationSlo = DS.Model.extend({

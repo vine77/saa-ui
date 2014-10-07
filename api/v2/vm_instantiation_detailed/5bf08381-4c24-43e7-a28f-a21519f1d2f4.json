@@ -31,6 +31,18 @@
           "nodes": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
         },
         "selected": true,
+        "selected_sockets": [
+            {
+                "socket_number": 1,
+                "cores": [
+                    13,
+                    12,
+                    11,
+                    10
+                ],
+                "vcpus": 4
+            }
+        ],
         "instantiation_slos": [
           {
             "description": "Node`s Trust Server status.",

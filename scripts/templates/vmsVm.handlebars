@@ -345,12 +345,41 @@
                 {{#each instantiationNode in detailedInstantiationNodes itemController="instantiationDetailedNode"}}
                     <tr {{bind-attr class="instantiationNode.selected:success"}}>
                       <td class="column-medium">
+                        {{#if instantiationNode.selected}} <p> <em> (Selected) </em> </p> {{/if}}
                         <p class="break-word">
                           {{#link-to "nodesNode" instantiationNode.node}}
                             {{instantiationNode.node.name}}
                           {{/link-to}}
                         </p>
-                        {{#if instantiationNode.selected}} (Selected) {{/if}}
+
+                        {{#if instantiationNode.selectedSockets}}
+                          <br>
+                          <strong><em>  Selected Sockets </em></strong>
+                          <table class="table table-bordered nested-table">
+                            <thead>
+                              <tr>
+                                <th> Socket Number </th>
+                                <th> Cores </th>
+                                <th> Vcpus </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each selectedSocket in instantiationNode.selectedSockets}}
+                              <tr>
+                                <td>
+                                  {{selectedSocket.socket_number}}
+                                </td>
+                                <td>
+                                  {{selectedSocket.cores}}
+                                </td>
+                                <td>
+                                  {{selectedSocket.vcpus}}
+                                </td>
+                              </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+                        {{/if}}
                       </td>
                       <td class="nested-cell">
                         <table class="table table-bordered nested-table">
