@@ -10,7 +10,7 @@
         {{view Ember.Select class="input-medium"
           contentBinding="slaTypes"
           selectionBinding="slaType"
-          prompt="Select SLA Type"
+          prompt="Select SLA Type:"
         }}
       </div>
       <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
@@ -37,7 +37,7 @@
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
             selectionBinding="sloTemplate"
-            prompt="Select Template"
+            prompt="Select SLO:"
           }}
           {{#if allowedOperatorsGreaterThanOne}}
             {{view Ember.Select viewName="select" class="input-small"

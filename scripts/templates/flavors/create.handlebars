@@ -12,7 +12,7 @@
             <div class="control-group">
               <label class="control-label">Flavor name:</label>
               <div class="controls">
-                {{view Ember.TextField valueBinding="model.name" autofocus="autofocus"}}
+                {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
               </div>
             </div>
             <div class="control-group">
@@ -51,6 +51,15 @@
             </div>
           </div>
           <div class="span7 separate">
+            {{#if hasNewSla}}
+              <div class="pull-right">
+                {{view Ember.Select class="input-medium"
+                  contentBinding="slaTypes"
+                  selectionBinding="slaType"
+                  prompt="Select SLA Type:"
+                }}
+              </div>
+            {{/if}}
             <div class="nav control-group btn-group">
               <a {{bind-attr class=":btn hasNoSla:active"}} {{action "selectSlaType" undefined}}>No SLA</a>
               <a {{bind-attr class=":btn hasExistingSla:active"}} {{action "selectSlaType" "existing"}}>Existing SLA</a>
@@ -79,7 +88,7 @@
             {{#if hasNewSla}}
               <p>
                 <label class="inline">New SLA name:</label>
-                {{view Ember.TextField class="input-medium" valueBinding="model.sla.name" autofocus="autofocus"}}
+                {{view Ember.TextField valueBinding="model.sla.name" autofocus="autofocus"}}
                 {{#if isAddSloAvailable}}
                   <a class="btn pull-right" {{action "addSlo"}}>
                     <i class="icon-plus-sign"></i> Add SLO
@@ -94,11 +103,11 @@
               {{#each slo in model.sla.slos itemController="slo"}}
                 <p class="slo-row separator-top">
                   {{view Ember.Select viewName="select" class="input-medium"
-                    contentBinding="slo.sloTemplates"
+                    contentBinding="slo.possibleSloTemplates"
                     optionValuePath="content.id"
                     optionLabelPath="content.readableSloType"
                     selectionBinding="sloTemplate"
-                    prompt="Select Template"
+                    prompt="Select SLO:"
                   }}
                   {{#if sloTemplate}}
                     {{#if allowedOperatorsGreaterThanOne}}

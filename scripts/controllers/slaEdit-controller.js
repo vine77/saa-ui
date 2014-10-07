@@ -9,7 +9,7 @@ App.SlaEditController = Ember.ObjectController.extend({
       if (item) return item.get('elementName');
     }).uniq();
   }.property('sloTemplates.@each.elementName'),
-  slaType: Ember.computed.alias('model.slaType'),
+  slaType: Ember.computed.alias('model.type'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
     return this.get('sloTemplates').filter(function(sloTemplate) {

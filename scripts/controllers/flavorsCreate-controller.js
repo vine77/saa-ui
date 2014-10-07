@@ -1,12 +1,25 @@
 App.FlavorsCreateController = Ember.ObjectController.extend({
   needs: ['flavors', 'slas', 'nodes'],
 
-  bucketSloCountGreaterThanOne: function() {
-    return (this.get('bucketSloCount') >= 1);
-  }.property('bucketSloCount'),
   sloTemplates: function () {
     return this.store.all('sloTemplate');
   }.property(),
+  slaTypes: function() {
+    return this.get('sloTemplates').map(function(item) {
+      if (item) return item.get('elementName');
+    }).uniq();
+  }.property('sloTemplates.@each.elementName'),
+  slaType: Ember.computed.alias('model.sla.type'),
+  possibleSloTemplates: function() {
+    var slaType = this.get('slaType');
+    return this.get('sloTemplates').filter(function(sloTemplate) {
+      return sloTemplate.get('elementName') === slaType;
+    });
+  }.property('sloTemplates.@each', 'slaType'),
+
+  bucketSloCountGreaterThanOne: function() {
+    return (this.get('bucketSloCount') >= 1);
+  }.property('bucketSloCount'),
   bucketSloCount: function() {
     var computeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');
@@ -17,8 +30,8 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
     return this.get('model.sla.sloTypesArray') && this.get('model.sla.sloTypesArray').filter(function(x){ return x == 'trusted_platform'; }).get('length');
   }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray'),
   isAddSloAvailable: function() {
-    return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1);
-  }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray', 'bucketSloCount', 'trustSloCount'),
+    return !(this.get('bucketSloCount') >= 1 && this.get('trustSloCount') >= 1) && this.get('slaType');
+  }.property('model.sla.sloTypesArray.@each', 'model.sla.sloTypesArray', 'bucketSloCount', 'trustSloCount', 'slaType'),
 
   vcpusInteger: function() {
     return ((this.get('model.vcpus'))?this.get('model.vcpus'):0);

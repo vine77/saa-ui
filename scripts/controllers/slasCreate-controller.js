@@ -9,13 +9,13 @@ App.SlasCreateController = Ember.ObjectController.extend({
       if (item) return item.get('elementName');
     }).uniq();
   }.property('sloTemplates.@each.elementName'),
-  slaType: Ember.computed.alias('model.slaType'),
+  slaType: Ember.computed.alias('model.type'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
     return this.get('sloTemplates').filter(function(sloTemplate) {
       return sloTemplate.get('elementName') === slaType;
     });
-  }.property('sloTemplates.@each', 'slaType', 'slos.@each'),
+  }.property('sloTemplates.@each', 'slaType'),
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);

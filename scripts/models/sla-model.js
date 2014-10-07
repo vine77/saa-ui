@@ -8,7 +8,9 @@ App.SlaSerializer = App.ApplicationSerializer.extend({
 
 App.Sla = DS.Model.extend({
   name: DS.attr('string'),
+  type: DS.attr('string'),
   deleted: DS.attr('boolean'),
+  //enabled: DS.attr('boolean'),
   version: DS.attr('number'),
   isDefault: DS.attr('boolean'),
 
@@ -17,9 +19,6 @@ App.Sla = DS.Model.extend({
   flavor: DS.belongsTo('flavor'),
 
   // Computed Properties
-  slaType: function() {
-    return this.get('slos.firstObject.elementName');
-  }.property('slos.@each.elementName'),
   sloTypes: function () {
     //return this.get('slos').getEach('sloType').toString();
     return this.get('slos').map(function (item, index, enumerable) {
