@@ -16,6 +16,7 @@
       "class_id": "7e472ace-68c8-4244-9380-7265d467e4e9",
       "version": 1,
       "type": "vm",
+      "flavor_id": "3",
       "id": "c2b39b30-adeb-45ea-ab00-098cd8106368"
     },
     {

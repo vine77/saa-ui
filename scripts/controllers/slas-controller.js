@@ -37,7 +37,11 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
       this.store.find('sla');
     },
     deleteSla: function (sla) {
-      var confirmedDelete = confirm('Are you sure you want to delete SLA "' + sla.get('name') + '"?');
+      var confirmedDeleteAppend = '';
+      if (sla.get('flavor')) {
+        confirmedDeleteAppend = 'This action will delete the corresponding Flavor: ' + sla.get('flavor.name');
+      }
+      var confirmedDelete = confirm('Are you sure you want to delete SLA "' + sla.get('name') + '"? ' + confirmedDeleteAppend);
       if (confirmedDelete) {
         sla.deleteRecord();
         sla.save().then(function () {
