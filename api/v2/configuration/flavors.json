@@ -10,7 +10,7 @@
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": null,
+      "sla_id": "c2b39b30-adeb-45ea-ab00-098cd8106368",
       "vcpus": 2,
       "swap": 0,
       "memory": 4096,
