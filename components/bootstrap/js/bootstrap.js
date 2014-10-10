@@ -1074,6 +1074,11 @@
 
   var Tooltip = function (element, options) {
     this.init('tooltip', element, options)
+    $(element).on('show', function(e) {
+      e.stopPropagation();
+    }).on('hidden', function(e) {
+      e.stopPropagation();
+    });
   }
 
   Tooltip.prototype = {
@@ -1277,12 +1282,11 @@
           $tip.detach()
         })
       }
-
       $.support.transition && this.$tip.hasClass('fade') ?
         removeWithAnimation() :
         $tip.detach()
 
-      this.$element.trigger('hidden')
+        this.$element.trigger('hidden')
 
       return this
     }
@@ -1425,7 +1429,12 @@
   * =============================== */
 
   var Popover = function (element, options) {
-    this.init('popover', element, options)
+    this.init('popover', element, options);
+    $(element).on('show', function(e) {
+      e.stopPropagation();
+    }).on('hidden', function(e) {
+       e.stopPropagation();
+    });
   }
 
 
@@ -1859,18 +1868,18 @@
         this.url = this.source
         this.source = this.searchAjax
     }
-    
+
     if (element.nodeName == 'SELECT') this.replaceSelect()
 
     this.text = this.$element.val()
-    
+
     this.$element
       .attr('data-text', this.value)
       .attr('autocomplete', "off")
-      
+
     if (typeof this.$target != 'undefined') this.$element.attr('data-value', this.$target.val())
       else if (typeof this.$element.attr('data-value') == 'undefined') this.$element.attr('data-value', this.strict ? '' : this.value)
-    
+
     this.$menu.css('min-width', this.$element.width() + 12)
 
     this.listen()
@@ -1883,10 +1892,10 @@
   , replaceSelect: function () {
       this.$target = this.$element
       this.$element = $('<input type="text" />')
-      
+
       this.source = {}
       this.strict = true
-      
+
       var options = this.$target.find('option')
       var $option;
       for (var i=0; i<options.length; i++) {
@@ -1895,11 +1904,11 @@
           this.$element.attr('placeholder', $option.html());
           continue;
         }
-        
+
         this.source[$option.val()] = $option.html()
         if (this.$target.val() == $option.val()) this.$element.val($option.html())
       }
-      
+
       var attr = this.$target[0].attributes
       for (i=0; i<attr.length; i++) {
         if (attr[i].nodeName != 'type' && attr[i].nodeName != 'name' && attr[i].nodeName != 'id' && attr[i].nodeName != 'data-provide' && !attr[i].nodeName.match(/^on/)) {
@@ -1912,14 +1921,14 @@
       this.$target.attr('autofocus', false)
       this.$target.hide()
     }
-  
+
   , destroyReplacement: function () {
       // Detroy replacement element, so it doesn't mess up the browsers autofill on refresh
       if (typeof this.$target != 'undefined' && this.$target[0].nodeName == 'SELECT') {
         this.$element.replaceWith('');
       }
     }
-  
+
   , select: function () {
       var li = this.$menu.find('.active')
         , val = li.attr('data-value')
@@ -1931,17 +1940,17 @@
       this.$element
         .val(text)
         .attr('data-value', val)
-      
+
       this.text = text
-      
+
       if (typeof this.$target != 'undefined') {
         this.$target
           .val(val)
           .trigger('change')
       }
-      
+
       this.$element.trigger('change')
-      
+
       return this.hide()
     }
 
@@ -1982,14 +1991,14 @@
       }
 
       items = $.isFunction(this.source) ? this.source(this.query, $.proxy(this.process, this)) : this.source
-      
+
       return items ? this.process(items) : this
     }
 
   , process: function (items) {
       return $.isArray(items) ? this.processArray(items) : this.processObject(items)
     }
-    
+
   , processArray: function (items) {
       var that = this
 
@@ -2020,17 +2029,17 @@
       if ($.isEmptyObject(items)) {
         return this.shown ? this.hide() : this
       }
-      
+
       $.each(items, function(key, item) {
         if (i++ >= that.options.items) delete items[key]
       })
-      
+
       return this.render(items).show()
     }
 
   , searchAjax: function (query, process) {
       var that = this
-      
+
       if (this.ajaxTimeout) clearTimeout(this.ajaxTimeout)
 
       this.ajaxTimeout = setTimeout(function () {
@@ -2047,13 +2056,13 @@
         })
       }, this.options.ajaxdelay)
   }
-  
+
   , matcher: function (item) {
       return ~item.toLowerCase().indexOf(this.query.toLowerCase())
     }
 
   , sorter: function (items) {
-      return $.isArray(items) ? this.sortArray(items) : this.sortObject(items)  
+      return $.isArray(items) ? this.sortArray(items) : this.sortObject(items)
     }
 
   , sortArray: function (items) {
@@ -2074,14 +2083,14 @@
   , sortObject: function (items) {
       var sorted = {}
         , key;
-        
+
       for (key in items) {
         if (!items[key].toLowerCase().indexOf(this.query.toLowerCase())) {
           sorted[key] = items[key];
           delete items[key]
         }
       }
-      
+
       for (key in items) {
         if (~items[key].indexOf(this.query)) {
           sorted[key] = items[key];
@@ -2106,32 +2115,32 @@
   , render: function (items) {
       var that = this
         , list = $([])
-      
+
       $.map(items, function (item, value) {
         if (list.length >= that.options.items) return
-        
+
         var li
           , a
-        
+
         if ($.isArray(items)) value = item
-        
+
         li = $(that.options.item)
         a = li.find('a').length ? li.find('a') : li
         a.html(that.highlighter(item))
-        
+
         li.attr('data-value', value)
         if (li.find('a').length === 0) li.addClass('dropdown-header')
-        
+
         list.push(li[0])
       })
 
       list.not('.dropdown-header').first().addClass('active')
-      
+
       this.$menu.html(list)
-      
+
       return this
     }
-    
+
   , next: function (event) {
       var active = this.$menu.find('.active').removeClass('active')
         , next = active.nextAll('li:not(.dropdown-header)').first()
@@ -2170,7 +2179,7 @@
         .on('click', $.proxy(this.click, this))
         .on('mouseenter', 'li', $.proxy(this.mouseenter, this))
         .on('mouseleave', 'li', $.proxy(this.mouseleave, this))
-        
+
       $(window).on('unload', $.proxy(this.destroyReplacement, this))
     }
 
@@ -2197,7 +2206,7 @@
           e.preventDefault()
           this.prev()
           break
-          
+
         case 40: // down arrow
           e.preventDefault()
           this.next()
@@ -2247,10 +2256,10 @@
 
   , change: function (e) {
       var value
-      
+
       if (this.$element.val() != this.text) {
         value = this.$element.val() === '' || this.strict ? '' : this.$element.val()
-            
+
         this.$element.val(value)
         this.$element.attr('data-value', value)
         this.text = value
@@ -2261,7 +2270,7 @@
   , focus: function (e) {
       this.focused = true
     }
-    
+
   , blur: function (e) {
       this.focused = false
       if (!this.mousedover && this.shown) this.hide()
@@ -2328,7 +2337,7 @@
   * ================== */
 
   $(document)
-    .off('focus.typeahead.data-api')  // overwriting Twitter's typeahead 
+    .off('focus.typeahead.data-api')  // overwriting Twitter's typeahead
     .on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
       var $this = $(this)
       if ($this.data('typeahead')) return
@@ -2371,24 +2380,24 @@
 
   var Inputmask = function (element, options) {
     if (isAndroid) return // No support because caret positioning doesn't work on Android
-    
+
     this.$element = $(element)
     this.options = $.extend({}, $.fn.inputmask.defaults, options)
     this.mask = String(options.mask)
-    
+
     this.init()
     this.listen()
-        
+
     this.checkVal() //Perform initial check for existing values
   }
 
   Inputmask.prototype = {
-    
+
     init: function() {
       var defs = this.options.definitions
       var len = this.mask.length
 
-      this.tests = [] 
+      this.tests = []
       this.partialPosition = this.mask.length
       this.firstNonMaskPos = null
 
@@ -2408,7 +2417,7 @@
       this.buffer = $.map(this.mask.split(""), $.proxy(function(c, i) {
         if (c != '?') return defs[c] ? this.options.placeholder : c
       }, this))
-      
+
       this.focusText = this.$element.val()
 
       this.$element.data("rawMaskFn", $.proxy(function() {
@@ -2417,7 +2426,7 @@
         }).join('')
       }, this))
     },
-    
+
     listen: function() {
       if (this.$element.attr("readonly")) return
 
@@ -2425,10 +2434,10 @@
 
       this.$element
         .on("unmask", $.proxy(this.unmask, this))
-        
+
         .on("focus.mask", $.proxy(this.focusEvent, this))
         .on("blur.mask", $.proxy(this.blurEvent, this))
-        
+
         .on("keydown.mask", $.proxy(this.keydownEvent, this))
         .on("keypress.mask", $.proxy(this.keypressEvent, this))
 
@@ -2461,30 +2470,30 @@
           end = begin + range.text.length
         }
         return {
-          begin: begin, 
+          begin: begin,
           end: end
         }
       }
     },
-    
+
     seekNext: function(pos) {
       var len = this.mask.length
       while (++pos <= len && !this.tests[pos]);
-      
+
       return pos
     },
-    
+
     seekPrev: function(pos) {
       while (--pos >= 0 && !this.tests[pos]);
-      
+
       return pos
     },
 
     shiftL: function(begin,end) {
       var len = this.mask.length
-      
+
       if(begin<0) return
-      
+
       for (var i = begin,j = this.seekNext(end); i < len; i++) {
         if (this.tests[i]) {
           if (j < len && this.tests[i].test(this.buffer[j])) {
@@ -2501,7 +2510,7 @@
 
     shiftR: function(pos) {
       var len = this.mask.length
-      
+
       for (var i = pos, c = this.options.placeholder; i < len; i++) {
         if (this.tests[i]) {
           var j = this.seekNext(i)
@@ -2520,10 +2529,10 @@
         .unbind(".mask")
         .removeData("inputmask")
     },
-    
+
     focusEvent: function() {
       this.focusText = this.$element.val()
-      var len = this.mask.length 
+      var len = this.mask.length
       var pos = this.checkVal()
       this.writeBuffer()
 
@@ -2540,13 +2549,13 @@
       else
         setTimeout(moveCaret, 0)
     },
-    
+
     blurEvent: function() {
       this.checkVal()
       if (this.$element.val() != this.focusText)
         this.$element.trigger('change')
     },
-        
+
     keydownEvent: function(e) {
       var k=e.which
 
@@ -2555,7 +2564,7 @@
         var pos = this.caret(),
         begin = pos.begin,
         end = pos.end
-						
+
         if (end-begin === 0) {
           begin = k!=46 ? this.seekPrev(begin) : (end=this.seekNext(begin-1))
           end = k==46 ? this.seekNext(end) : end
@@ -2573,7 +2582,7 @@
 
     keypressEvent: function(e) {
       var len = this.mask.length
-      
+
       var k = e.which,
       pos = this.caret()
 
@@ -2602,15 +2611,15 @@
 
     pasteEvent: function() {
       var that = this
-      
+
       setTimeout(function() {
         that.caret(that.checkVal(true))
       }, 0)
     },
-    
+
     clearBuffer: function(start, end) {
       var len = this.mask.length
-      
+
       for (var i = start; i < end && i < len; i++) {
         if (this.tests[i])
           this.buffer[i] = this.options.placeholder
@@ -2626,7 +2635,7 @@
       //try to place characters where they belong
       var test = this.$element.val()
       var lastMatch = -1
-      
+
       for (var i = 0, pos = 0; i < len; i++) {
         if (this.tests[i]) {
           this.buffer[i] = this.options.placeholder
@@ -2656,7 +2665,7 @@
     }
   }
 
-  
+
  /* INPUTMASK PLUGIN DEFINITION
   * =========================== */
 
@@ -2713,17 +2722,17 @@
  * ============================================================ */
 
 !function ($) {
-  
+
   "use strict"; // jshint ;_;
 
   var Rowlink = function (element, options) {
     options = $.extend({}, $.fn.rowlink.defaults, options)
     var tr = element.nodeName.toLowerCase() == 'tr' ? $(element) : $(element).find('tr:has(td)')
-    
+
     tr.each(function() {
       var link = $(this).find(options.target).first()
       if (!link.length) return
-      
+
       var href = link.attr('href')
 
       $(this).find('td').not('.nolink').click(function() {
@@ -2735,7 +2744,7 @@
     })
   }
 
-  
+
  /* ROWLINK PLUGIN DEFINITION
   * =========================== */
 
@@ -2762,7 +2771,7 @@
       $(this).rowlink($(this).data())
     })
   })
-  
+
 }(window.jQuery);
 /* ===========================================================
  * bootstrap-fileupload.js j2
@@ -2793,7 +2802,7 @@
   var Fileupload = function (element, options) {
     this.$element = $(element)
     this.type = this.$element.data('uploadtype') || (this.$element.find('.thumbnail').length > 0 ? "image" : "file")
-      
+
     this.$input = this.$element.find(':file')
     if (this.$input.length === 0) return
 
@@ -2814,32 +2823,32 @@
       'preview': this.$preview.html(),
       'hiddenVal': this.$hidden.val()
     }
-    
+
     this.$remove = this.$element.find('[data-dismiss="fileupload"]')
 
     this.$element.find('[data-trigger="fileupload"]').on('click.fileupload', $.proxy(this.trigger, this))
 
     this.listen()
   }
-  
+
   Fileupload.prototype = {
-    
+
     listen: function() {
       this.$input.on('change.fileupload', $.proxy(this.change, this))
       $(this.$input[0].form).on('reset.fileupload', $.proxy(this.reset, this))
       if (this.$remove) this.$remove.on('click.fileupload', $.proxy(this.clear, this))
     },
-    
+
     change: function(e, invoked) {
       if (invoked === 'clear') return
-      
+
       var file = e.target.files !== undefined ? e.target.files[0] : (e.target.value ? { name: e.target.value.replace(/^.+\\/, '') } : null)
-      
+
       if (!file) {
         this.clear()
         return
       }
-      
+
       this.$hidden.val('')
       this.$hidden.attr('name', '')
       this.$input.attr('name', this.name)
@@ -2867,7 +2876,7 @@
       this.$input.attr('name', '')
 
       //ie8+ doesn't support changing the value of input with type=file so clone instead
-      if (navigator.userAgent.match(/msie/i)){ 
+      if (navigator.userAgent.match(/msie/i)){
           var inputClone = this.$input.clone(true);
           this.$input.after(inputClone);
           this.$input.remove();
@@ -2884,24 +2893,24 @@
         e.preventDefault()
       }
     },
-    
+
     reset: function(e) {
       this.clear()
-      
+
       this.$hidden.val(this.original.hiddenVal)
       this.$preview.html(this.original.preview)
-      
+
       if (this.original.exists) this.$element.addClass('fileupload-exists').removeClass('fileupload-new')
        else this.$element.addClass('fileupload-new').removeClass('fileupload-exists')
     },
-    
+
     trigger: function(e) {
       this.$input.trigger('click')
       e.preventDefault()
     }
   }
 
-  
+
  /* FILEUPLOAD PLUGIN DEFINITION
   * =========================== */
 
@@ -2924,7 +2933,7 @@
     var $this = $(this)
     if ($this.data('fileupload')) return
     $this.fileupload($this.data())
-      
+
     var $target = $(e.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]');
     if ($target.length > 0) {
       $target.trigger('click.fileupload')
