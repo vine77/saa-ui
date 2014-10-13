@@ -84,46 +84,58 @@
       </td>
       <td><div class="cell-container">
         <div class="contention">
-          {{#if computeExists}}
-            {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
-              <div class="contention-bar">
-                <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
-                  <div class="contention-gradient"></div>
+          {{#unless isAssuredCoresPhysical}}
+            {{#if computeExists}}
+              {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
+                <div class="contention-bar">
+                  <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
+                    <div class="contention-gradient"></div>
+                  </div>
                 </div>
-              </div>
-               {{#if scuCurrentExceedsMax}}
-                 <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
-               {{else}}
-                 {{na systemScuUtilization}}
-               {{/if}}
-              <div class="popover-content" style="display:none;">
-                {{{scuPopoverTitle}}}
-                <div style="width:400px; margin-left:15px;">
-                  {{progress-bar-adjacent
-                    values=scuValues
-                  }}
-                </div>
-                <br />
-                <div>
-                  <dl class="dl-horizontal dl-compressed">
-                    {{#each scuCgroup in scuPopoverCgroups itemController="popoverCgroup"}}
-                      {{#if currentExceedsMax}}
-                        <span style="color:red;">
+                 {{#if scuCurrentExceedsMax}}
+                   <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
+                 {{else}}
+                   {{na systemScuUtilization}}
+                 {{/if}}
+                <div class="popover-content" style="display:none;">
+                  {{{scuPopoverTitle}}}
+                  <div style="width:400px; margin-left:15px;">
+                    {{progress-bar-adjacent
+                      values=scuValues
+                    }}
+                  </div>
+                  <br />
+                  <div>
+                    <dl class="dl-horizontal dl-compressed">
+                      {{#each scuCgroup in scuPopoverCgroups itemController="popoverCgroup"}}
+                        {{#if currentExceedsMax}}
+                          <span style="color:red;">
+                            <dt>{{scuCgroup.title}}:</dt>
+                            <dd>{{scuCgroup.value}}</dd>
+                          </span>
+                        {{else}}
                           <dt>{{scuCgroup.title}}:</dt>
                           <dd>{{scuCgroup.value}}</dd>
-                        </span>
-                      {{else}}
-                        <dt>{{scuCgroup.title}}:</dt>
-                        <dd>{{scuCgroup.value}}</dd>
-                      {{/if}}
-                    {{/each}}
-                  </dl>
+                        {{/if}}
+                      {{/each}}
+                    </dl>
+                  </div>
                 </div>
-              </div>
-            {{/view}}
+              {{/view}}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/if}}
           {{else}}
-            <span class="not-applicable">n/a</span>
-          {{/if}}
+            {{#unlessEmpty utilization.cores.system.used}}
+              {{progress-bar-simple
+                value=utilization.cores.system.used
+                thresholdMax=utilization.cores.system.max
+                title="Cores"
+              }}
+            {{else}}
+              <span class="not-applicable">n/a</span>
+            {{/unlessEmpty}}
+          {{/unless}}
         </div>
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
