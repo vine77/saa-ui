@@ -7,7 +7,13 @@ App.SlasCreateController = Ember.ObjectController.extend({
   slaTypes: function() {
     return this.get('sloTemplates').map(function(item) {
       if (item) return item.get('elementName');
-    }).uniq();
+    }).uniq().map(function(item) {
+      return {
+        value: item,
+        label: item,
+        disabled: item === 'os'
+      };
+    });
   }.property('sloTemplates.@each.elementName'),
   slaType: Ember.computed.alias('model.type'),
   possibleSloTemplates: function() {

@@ -350,7 +350,7 @@ App.FlavorsCreateRoute = Ember.Route.extend({
     var flavor = this.get('currentModel');
     var sla = this.store.all('sla').findBy('isDirty');
     flavor.rollback();
-    if (sla) sla.rollback();
+    if (sla) sla.set('deleted', true);
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -405,7 +405,7 @@ App.SlasCreateRoute = Ember.Route.extend({
   },
   deactivate: function () {
     var sla = this.get('currentModel');
-    sla.rollback();
+    sla.set('deleted', true);
   }
 });
 App.SlaEditRoute = Ember.Route.extend({

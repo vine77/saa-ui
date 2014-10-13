@@ -15,8 +15,10 @@
         SLA Type:
         {{view Ember.Select class="input-medium"
           contentBinding="slaTypes"
-          selectionBinding="slaType"
+          valueBinding="slaType"
           prompt="Select SLA Type:"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
         }}
         <div class="hide">{{slaTypes}}</div>
       </div>

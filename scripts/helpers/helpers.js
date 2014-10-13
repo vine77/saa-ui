@@ -88,6 +88,13 @@ $.pnotify.defaults.history = false;
 Ember.TextSupport.reopen({
   attributeBindings: ['required', 'autofocus']
 });
+Ember.SelectOption.reopen({
+  attributeBindings: ['value', 'selected', 'disabled'],
+  disabled: function() {
+    var content = this.get('content');
+    return content.disabled || false;
+  }.property('content')
+});
 
 
 // View helpers
