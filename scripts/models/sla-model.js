@@ -10,7 +10,9 @@ App.Sla = DS.Model.extend({
   name: DS.attr('string'),
   type: DS.attr('string'),
   deleted: DS.attr('boolean'),
-  //enabled: DS.attr('boolean'),
+  enabled: DS.attr('boolean', {
+    defaultValue: true
+  }),
   version: DS.attr('number'),
   isDefault: DS.attr('boolean'),
 

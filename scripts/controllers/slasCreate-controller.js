@@ -16,6 +16,7 @@ App.SlasCreateController = Ember.ObjectController.extend({
       return sloTemplate.get('elementName') === slaType;
     });
   }.property('sloTemplates.@each', 'slaType'),
+  isApplicationSla: Ember.computed.equal('slaType', 'application'),
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);

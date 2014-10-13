@@ -27,6 +27,7 @@
         <tbody>
           {{#each}}
             <tr {{bind-attr class="isSelected isExpanded"}}>
+              <td class="column-small">{{input type="checkbox" checked=enabled disabled="disabled"}}</td>
               <td><a {{action "expand" this}}>{{name}}</a></td>
               <td class="column-medium">{{type}}</td>
               <td class="column-medium">{{#if isDefault}}Default{{else}}User-defined{{/if}}</td>

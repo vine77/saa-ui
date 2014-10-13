@@ -4,18 +4,24 @@
 </div>
 <form id="slasForm" {{action "createSla" on="submit"}}>
   <div class="modal-body modal-tall">
-    <div class="clearfix">
-      <div class="pull-right">
+    <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
+    <div class="row-fluid">
+      <div class="span6">
+        {{#if isApplicationSla}}
+          <label>Enabled: {{input type="checkbox" checked=enabled}}</label>
+        {{/if}}
+      </div>
+      <div class="span6 align-right">
         SLA Type:
         {{view Ember.Select class="input-medium"
           contentBinding="slaTypes"
           selectionBinding="slaType"
           prompt="Select SLA Type:"
         }}
+        <div class="hide">{{slaTypes}}</div>
       </div>
-      <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
-      <div class="hide">{{slaTypes}}</div>
     </div>
+    <div class="hide">{{slaTypes}}</div>
     <div class="form-horizontal well-clean shadow-lifted">
       <p>
         <label class="inline">SLA name:</label>

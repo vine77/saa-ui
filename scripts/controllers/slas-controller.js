@@ -1,5 +1,9 @@
 App.SlasColumnsController = App.ColumnsController.extend({
   content: [{
+    sortBy: 'enabled',
+    icon: 'icon-check',
+    description: 'Enabled/Disabled'
+  }, {
     title: 'SLA Name',
     sortBy: 'name'
   }, {
