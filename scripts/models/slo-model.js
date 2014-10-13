@@ -23,11 +23,6 @@ App.Slo = DS.Model.extend({
   isString: Ember.computed.equal('valueType', 'string'),
   isRange: Ember.computed.equal('valueType', 'range'),
 
-  // Observers
-  sloTemplateObserver: function () {
-    this.set('operator', this.get('sloTemplate.allowedOperators.firstObject'));
-  }.observes('sloTemplate'),
-
   // Relationships
   sla: DS.belongsTo('sla'),
   sloTemplate: DS.belongsTo('sloTemplate')
