@@ -8,26 +8,46 @@
 *        This is the contention popover content. View Id: {{view.elementId}}
 *     </div>
 *  {{/view}}
+*
+* You may also specify the parameter dataTrigger as being 'hover', 'click' is default:
+* {{#view App.PopoverView title="Test Title" dataTrigger="hover"}}
+*
 */
 
 App.PopoverView = Ember.View.extend({
+  //classNames: ['inline-block', 'tooltip-container'],
   classNames: ['inline-block', 'tooltip-container'],
-  attributeBindings: ['title', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger'],
-  mouseEnter: function (event) {
+  tagName: 'span',
+  attributeBindings: ['title', 'dataTrigger:data-trigger', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger'],
+  toggle: false,
+  dataTrigger: 'click',
+  popoverContent: function() {
     var self = this;
-    $('#' + this.get('elementId')).popover({
-      container: 'body',
-      html: true,
-      content: function() {
-        var $content = $('#' + self.get('elementId') + ' > ' + '.popover-content');
-        return $content.html();
-      }
-    }).popover('show');
+    return function() {
+      var $content = $('#' + self.get('elementId') + ' > ' + '.popover-content');
+      return $content.html();
+    }
+  }.property('elementId'),
+  mouseEnter: function (event) {
+    if (this.get('dataTrigger') == 'hover') {
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('show');
+    }
   },
   mouseLeave: function (event) {
-    $('#' + this.get('elementId')).popover('hide');
+    if (this.get('dataTrigger') == 'hover') {
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('hide');
+    }
   },
-  willDestroyElement: function () {
-    $('#' + this.get('elementId')).popover('hide');
+  click: function(event) {
+    if (this.get('dataTrigger') == 'click') {
+      if (this.get('toggle')) {
+        $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('hide');
+        this.set('toggle', false);
+      } else {
+        $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('show');
+        this.set('toggle', true);
+      }
+    }
   }
 });
+

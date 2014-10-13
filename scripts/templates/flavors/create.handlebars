@@ -102,6 +102,7 @@
 
               {{#each slo in model.sla.slos itemController="slo"}}
                 <p class="slo-row separator-top">
+                  test
                   {{view Ember.Select viewName="select" class="input-medium"
                     contentBinding="slo.possibleSloTemplates"
                     optionValuePath="content.id"

@@ -18,12 +18,16 @@ App.SlasCreateController = Ember.ObjectController.extend({
   }.property('sloTemplates.@each', 'slaType'),
 
   bucketSloCountGreaterThanOne: function() {
+    console.log('inside');
+    console.log('bucketSloCount', (this.get('bucketSloCount') >= 1));
     return (this.get('bucketSloCount') >= 1);
-  }.property('bucketSloCount'),
+  //}.property('bucketSloCount'),
+  }.property('sloTypesArray.@each', 'sloTypesArray'),
   bucketSloCount: function() {
     var computeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');
     var vmCoresCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-cores-physical'; }).get('length');
+    console.log('count', computeCount + vmComputeCount + vmCoresCount);
     return computeCount + vmComputeCount + vmCoresCount;
   }.property('sloTypesArray.@each', 'sloTypesArray'),
   trustSloCount: function () {
@@ -102,34 +106,6 @@ App.SlasCreateController = Ember.ObjectController.extend({
     var self = this;
     return this.get('controllers.nodes.model').filterBy('isAssuredScuVm').filterBy('utilization.cores.system.max').reduce( function(previousValue, item, index, enumerable) {
       return previousValue + (item.get('utilization.cores.system.max') >= self.get('controllers.nodes.minScuVmCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
-
-  sloExclusiveCoresTableMaximum: function() {
-    return this.get('controllers.nodes.maxCoreCapabilities');
-  }.property('controllers.nodes.maxCoreCapabilities', 'vcpus', 'isExclusiveCoresSloTable'),
-  sloExclusiveCoresTableNumberOfNodesMaximum: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredCoresPhysical').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('utilization.cores.system.max') >= self.get('controllers.nodes.maxCoreCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each', 'controllers.nodes'),
-  sloExclusiveCoresTableMedian: function() {
-    return this.get('controllers.nodes.medianCoreCapabilities');
-  }.property('controllers.nodes.medianCoreCapabilities', 'vcpus'),
-  sloExclusiveCoresTableNumberOfNodesMedian: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredCoresPhysical').filterBy('utilization.cores.system.max').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('utilization.cores.system.max') >= self.get('controllers.nodes.medianCoreCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
-  sloExclusiveCoresTableMinimum: function() {
-    return this.get('controllers.nodes.minCoreCapabilities');
-  }.property('controllers.nodes.minCoreCapabilities', 'vcpus'),
-  sloExclusiveCoresTableNumberOfNodesMinimum: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredCoresPhysical').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.cores_per_socket') >= self.get('controllers.nodes.minCoreCapabilities'));
     }, 0);
   }.property('controllers.nodes.model.@each'),
 
