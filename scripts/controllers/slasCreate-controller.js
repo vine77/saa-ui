@@ -18,16 +18,12 @@ App.SlasCreateController = Ember.ObjectController.extend({
   }.property('sloTemplates.@each', 'slaType'),
 
   bucketSloCountGreaterThanOne: function() {
-    console.log('inside');
-    console.log('bucketSloCount', (this.get('bucketSloCount') >= 1));
     return (this.get('bucketSloCount') >= 1);
-  //}.property('bucketSloCount'),
   }.property('sloTypesArray.@each', 'sloTypesArray'),
   bucketSloCount: function() {
     var computeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');
     var vmCoresCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-cores-physical'; }).get('length');
-    console.log('count', computeCount + vmComputeCount + vmCoresCount);
     return computeCount + vmComputeCount + vmCoresCount;
   }.property('sloTypesArray.@each', 'sloTypesArray'),
   trustSloCount: function () {

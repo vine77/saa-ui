@@ -70,7 +70,8 @@
           {{/if}}
 
           {{slo.sloTemplate.unit}}
-          {{#if slo.bucketSloCountGreaterThanOne}}
+
+          {{#if slo.sloInfoExists}}
             {{#view App.PopoverView title="SLO Information"}}
               <span class="help-tip"> <i class="icon-question-sign"></i> </span>
               <span class="popover-content" style="display:none;">
@@ -203,7 +204,6 @@
               </span>
             {{/view}}
           {{/if}}
-
           <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
           <small class="block">{{slo.sloTemplate.description}}</small>
         </p>

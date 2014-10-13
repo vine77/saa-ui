@@ -53,7 +53,9 @@ App.SloController = Ember.ObjectController.extend({
   isComputeSloTable: function() {
     return (this.get('sloTemplate.sloType') == 'assured-scu-vcpu');
   }.property('sloTemplate'),
-
+  sloInfoExists: function () {
+    return (this.get('isExclusiveCoresSloTable') || this.get('isComputeSloTable') || this.get('isComputeVmSloTable'));
+  }.property('isExclusiveCoresSloTable', 'isComputeSloTable', 'isComputeVmSloTable'),
   sloExclusiveCoresTableMaximum: function() {
     return this.get('controllers.nodes.maxCoreCapabilities');
   }.property('controllers.nodes.maxCoreCapabilities', 'vcpus', 'isExclusiveCoresSloTable'),
