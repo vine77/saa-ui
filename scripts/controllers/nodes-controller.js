@@ -22,7 +22,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'Capacity',
     sortBy: 'cpuSort'
   }, {
-    title: 'Utilization (SCU)',
+    title: 'Allocation',
     description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
     sortBy: 'utilization.scus.total.current'
   }, {
