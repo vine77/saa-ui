@@ -15,9 +15,8 @@
 */
 
 App.PopoverView = Ember.View.extend({
-  //classNames: ['inline-block', 'tooltip-container'],
   classNames: ['inline-block', 'tooltip-container'],
-  tagName: 'span',
+  tagName: 'div',
   attributeBindings: ['title', 'dataTrigger:data-trigger', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger'],
   toggle: false,
   dataTrigger: 'click',
@@ -28,6 +27,7 @@ App.PopoverView = Ember.View.extend({
       return $content.html();
     }
   }.property('elementId'),
+
   mouseEnter: function (event) {
     if (this.get('dataTrigger') == 'hover') {
       $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('show');

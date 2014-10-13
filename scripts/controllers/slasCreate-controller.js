@@ -36,74 +36,9 @@ App.SlasCreateController = Ember.ObjectController.extend({
   vcpuValues: [0, 1, 2, 3, 4],
   vcpus: 0,
 
-  isComputeSloTable: function() {
-    return this.get('sloTypesArray') && this.get('sloTypesArray').contains('assured-scu-vcpu');
-  }.property('sloTypesArray.@each'),
-  isComputeVmSloTable: function() {
-    return this.get('sloTypesArray') && this.get('sloTypesArray').contains('assured-scu-vm');
-  }.property('sloTypesArray.@each'),
-  isExclusiveCoresSloTable: function() {
-    return this.get('sloTypesArray') && this.get('sloTypesArray').contains('assured-cores-physical');
-  }.property('sloTypesArray.@each'),
   isSloTableVisible: function() {
     return (!!this.get('isComputeSloTable') || !!this.get('isComputeVmSloTable') || !!this.get('isExclusiveCoresSloTable'));
   }.property('isComputeSloTable', 'isComputeVmSloTable', 'isExclusiveCoresSloTable'),
-
-  sloVcpuTableMaximumScus: function() {
-    return this.get('controllers.nodes.maxScuVcpuCapabilities');
-  }.property('controllers.nodes.maxScuVcpuCapabilities', 'vcpus', 'isComputeVmSloTable'),
-  sloVcpuTableNumberOfNodesMaximumScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVcpu').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.max_scu_per_core') >= self.get('controllers.nodes.maxScuVcpuCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each', 'controllers.nodes'),
-  sloVcpuTableMedianScus: function() {
-    return this.get('controllers.nodes.medianScuVcpuCapabilities');
-  }.property('controllers.nodes.medianScuVcpuCapabilities', 'vcpus'),
-  sloVcpuTableNumberOfNodesMedianScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVcpu').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.max_scu_per_core') >= self.get('controllers.nodes.medianScuVcpuCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
-  sloVcpuTableMinimumScus: function() {
-    return this.get('controllers.nodes.minScuVcpuCapabilities');
-  }.property('controllers.nodes.minScuVcpuCapabilities', 'vcpus'),
-  sloVcpuTableNumberOfNodesMinimumScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVcpu').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.max_scu_per_core') >= self.get('controllers.nodes.minScuVcpuCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
-
-  sloVmTableMaximumScus: function() {
-    return this.get('controllers.nodes.maxScuVmCapabilities') * this.get('vcpus');
-  }.property('controllers.nodes.maxScuVmCapabilities', 'vcpus', 'isComputeVmSloTable'),
-  sloVmTableNumberOfNodesMaximumScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVm').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.max_scu_per_core') >= self.get('controllers.nodes.maxScuVmCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each', 'controllers.nodes'),
-  sloVmTableMedianScus: function() {
-    return this.get('controllers.nodes.medianScuVmCapabilities') * this.get('vcpus');
-  }.property('controllers.nodes.medianScuVmCapabilities', 'vcpus'),
-  sloVmTableNumberOfNodesMedianScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVm').filterBy('capabilities.max_scu_per_core').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('capabilities.max_scu_per_core') >= self.get('controllers.nodes.maxScuVmCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
-  sloVmTableMinimumScus: function() {
-    return this.get('controllers.nodes.minScuVmCapabilities') * this.get('vcpus');
-  }.property('controllers.nodes.minScuVmCapabilities', 'vcpus'),
-  sloVmTableNumberOfNodesMinimumScus: function() {
-    var self = this;
-    return this.get('controllers.nodes.model').filterBy('isAssuredScuVm').filterBy('utilization.cores.system.max').reduce( function(previousValue, item, index, enumerable) {
-      return previousValue + (item.get('utilization.cores.system.max') >= self.get('controllers.nodes.minScuVmCapabilities'));
-    }, 0);
-  }.property('controllers.nodes.model.@each'),
 
   isSlaCreating: false,
   actions: {

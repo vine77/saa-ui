@@ -3,10 +3,6 @@ App.SloController = Ember.ObjectController.extend({
   vcpuValues: [0, 1, 2, 3, 4],
   vcpus: 0,
 
-  bucketSloCountGreaterThanOne: function() {
-    return this.get('parentController.bucketSloCountGreaterThanOne');
-  }.property('bucketSloCountGreaterThanOne'),
-
   sloTemplates: function() {
     return this.get('parentController.sloTemplates');
   }.property('parentController.sloTemplates.@each', 'parentController.isAddSloAvailable'),
