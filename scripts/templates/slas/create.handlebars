@@ -31,7 +31,7 @@
         {{/if}}
       </p>
       {{#each slo in slos itemController="slo"}}
-        <p class="slo-row separator-top">
+        <div class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
             contentBinding="slo.possibleSloTemplates"
             optionValuePath="content.id"
@@ -206,7 +206,7 @@
           {{/if}}
           <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
           <small class="block">{{slo.sloTemplate.description}}</small>
-        </p>
+        </div>
       {{/each}}
     </div>
   </div>

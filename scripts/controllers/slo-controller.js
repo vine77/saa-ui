@@ -1,7 +1,9 @@
 App.SloController = Ember.ObjectController.extend({
   needs: ['nodes'],
   vcpuValues: [0, 1, 2, 3, 4],
-  vcpus: 0,
+  vcpus: function() {
+    return this.get('parentController.vcpusInteger');
+  }.property('parentController.vcpusInteger'),
 
   sloTemplates: function() {
     return this.get('parentController.sloTemplates');
@@ -80,6 +82,13 @@ App.SloController = Ember.ObjectController.extend({
     }, 0);
   }.property('controllers.nodes.model.@each'),
   sloVmTableMaximumScus: function() {
+    var maxScuVmCapabilities = this.get('controllers.nodes.maxScuVmCapabilities');
+    var vcpus = this.get('vcpus');
+    /*
+    console.log('controllers.nodes.maxScuVmCapabilities', maxScuVmCapabilities);
+    console.log('vcpus', vcpus);
+    console.log('maxScuVmCapabilities * vcpus', maxScuVmCapabilities * vcpus);
+    */
     return this.get('controllers.nodes.maxScuVmCapabilities') * this.get('vcpus');
   }.property('controllers.nodes.maxScuVmCapabilities', 'vcpus', 'isComputeVmSloTable'),
   sloVmTableNumberOfNodesMaximumScus: function() {
