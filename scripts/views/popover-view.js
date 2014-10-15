@@ -15,9 +15,9 @@
 */
 
 App.PopoverView = Ember.View.extend({
-  classNames: ['inline-block', 'tooltip-container'],
+  classNames: ['inline-block', 'tooltip-container', 'popover-container'],
   tagName: 'div',
-  attributeBindings: ['title', 'dataTrigger:data-trigger', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger'],
+  attributeBindings: ['title', 'dataTrigger:data-trigger', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger', 'dataToggle:data-toggle'],
   toggle: false,
   dataTrigger: 'click',
   popoverContent: function() {
@@ -29,43 +29,57 @@ App.PopoverView = Ember.View.extend({
       }
     });
   }.property('elementId'),
+  popoverArguments: function() {
+    return {
+      container: 'body',
+      html: true,
+      trigger: 'manual',
+      content: this.get('popoverContent')
+      //template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title">   </h3> <div class="popover-close"> <button type="button" class="close" {{action \'expand\'}}>×</button> </div> <div class="popover-content"><p></p></div></div></div>'
+      //template: Ember.Handlebars.compile('<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title">   </h3> <div class="popover-close"> <button type="button" class="close" {{action \'expand\'}}>×</button> </div> <div class="popover-content"><p></p></div></div></div>')
+    }
+  }.property('popoverContent'),
   mouseEnter: function (event) {
     if (this.get('dataTrigger') == 'hover') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+      $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('show');
       this.set('toggle', true);
     }
     if (this.get('dataTrigger') == 'mixed') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+      $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('show');
       this.set('toggle', true);
     }
   },
   mouseLeave: function (event) {
     if (this.get('dataTrigger') == 'hover') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
+      $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('hide');
       this.set('toggle', false);
     }
   },
   click: function(event) {
     if (this.get('dataTrigger') == 'click') {
       if (this.get('toggle')) {
-        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
+        $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('hide');
         this.set('toggle', false);
       } else {
-        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+        $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('show');
         this.set('toggle', true);
       }
     }
     if (this.get('dataTrigger') == 'mixed') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
+      $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('hide');
       this.set('toggle', false);
     }
   },
   reloadObserver: function(event) {
     if (this.get('toggle')) {
       Ember.run.scheduleOnce('afterRender', this, function() {
-        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+        $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('show');
       });
     }
   }.observes('controller.vcpus')
+});
+
+$('body').on('click', function (e) {
+  $('.popover-container').popover('hide');
 });
 
