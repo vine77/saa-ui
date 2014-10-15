@@ -85,7 +85,7 @@
       <td><div class="cell-container">
         <div class="contention">
           {{#if computeExists}}
-            {{#view App.PopoverView title="SAA Compute Units"}}
+            {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                   <div class="contention-gradient"></div>
@@ -146,7 +146,7 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view App.PopoverView title="Contention" dataPlacement="left"}}
+            {{#view App.PopoverView title="Contention" dataPlacement="left" dataTrigger="hover"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>
