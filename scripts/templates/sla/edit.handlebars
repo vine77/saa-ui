@@ -72,7 +72,7 @@
           {{slo.sloTemplate.unit}}
 
           {{#if slo.sloInfoExists}}
-            {{#view App.PopoverView title="SLO Information"}}
+            {{#view App.PopoverView title="SLO Information" dataTrigger="mixed"}}
               <span class="help-tip"> <i class="icon-question-sign"></i> </span>
               <span class="popover-content" style="display:none;">
                 {{#if slo.isComputeSloTable}}
