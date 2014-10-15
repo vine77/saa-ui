@@ -34,6 +34,10 @@ App.PopoverView = Ember.View.extend({
       $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
       this.set('toggle', true);
     }
+    if (this.get('dataTrigger') == 'mixed') {
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+      this.set('toggle', true);
+    }
   },
   mouseLeave: function (event) {
     if (this.get('dataTrigger') == 'hover') {
@@ -50,6 +54,10 @@ App.PopoverView = Ember.View.extend({
         $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
         this.set('toggle', true);
       }
+    }
+    if (this.get('dataTrigger') == 'mixed') {
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
+      this.set('toggle', false);
     }
   },
   reloadObserver: function(event) {
