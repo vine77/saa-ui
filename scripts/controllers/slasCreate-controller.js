@@ -34,7 +34,7 @@ App.SlasCreateController = Ember.ObjectController.extend({
   }.property('sloTypesArray.@each', 'sloTypesArray', 'bucketSloCount', 'trustSloCount', 'slaType'),
 
   vcpuValues: [0, 1, 2, 3, 4],
-  vcpus: 0,
+  vcpusInteger: 0,
 
   isSloTableVisible: function() {
     return (!!this.get('isComputeSloTable') || !!this.get('isComputeVmSloTable') || !!this.get('isExclusiveCoresSloTable'));

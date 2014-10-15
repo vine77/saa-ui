@@ -22,32 +22,42 @@ App.PopoverView = Ember.View.extend({
   dataTrigger: 'click',
   popoverContent: function() {
     var self = this;
-    return function() {
-      var $content = $('#' + self.get('elementId') + ' > ' + '.popover-content');
-      return $content.html();
-    }
+    return Ember.run(function() {
+      return function() {
+        var $content = $('#' + self.get('elementId') + ' > ' + '.popover-content');
+        return $content.html();
+      }
+    });
   }.property('elementId'),
-
   mouseEnter: function (event) {
     if (this.get('dataTrigger') == 'hover') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('show');
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+      this.set('toggle', true);
     }
   },
   mouseLeave: function (event) {
     if (this.get('dataTrigger') == 'hover') {
-      $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('hide');
+      $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
+      this.set('toggle', false);
     }
   },
   click: function(event) {
     if (this.get('dataTrigger') == 'click') {
       if (this.get('toggle')) {
-        $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('hide');
+        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('hide');
         this.set('toggle', false);
       } else {
-        $('#' + this.get('elementId')).popover({ container: 'body', html: true, content: this.get('popoverContent') }).popover('show');
+        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
         this.set('toggle', true);
       }
     }
-  }
+  },
+  reloadObserver: function(event) {
+    if (this.get('toggle')) {
+      Ember.run.scheduleOnce('afterRender', this, function() {
+        $('#' + this.get('elementId')).popover({ container: 'body', html: true, trigger: 'manual', content: this.get('popoverContent') }).popover('show');
+      });
+    }
+  }.observes('controller.vcpus')
 });
 
