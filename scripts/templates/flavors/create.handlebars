@@ -144,6 +144,7 @@
 
                   {{#if slo.sloInfoExists}}
                     {{#view App.PopoverView title="SLO Information" dataTrigger="mixed"}}
+
                       <span class="help-tip"> <i class="icon-question-sign"></i> </span>
                       <span class="popover-content" style="display:none;">
                         {{#if slo.isComputeSloTable}}
@@ -245,7 +246,6 @@
                       </span>
                     {{/view}}
                   {{/if}}
-
                   <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
                   <small class="block">{{slo.sloTemplate.description}}</small>
                 </div>
