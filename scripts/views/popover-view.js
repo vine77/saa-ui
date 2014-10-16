@@ -79,11 +79,15 @@ App.PopoverView = Ember.View.extend({
 });
 
 $('body').on('click', function (e) {
-  $('.popover-container').popover('hide');
+  if (!$(e.target).hasClass('popover-content')) {
+    $('.popover-container').popover('hide');
+  }
 });
 
 $('.popover-close').on('click', function (e) {
-  $('.popover-container').popover('hide');
+  if (!$(e.target).hasClass('popover-content')) {
+    $('.popover-container').popover('hide');
+  }
 });
 
 
