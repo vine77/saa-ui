@@ -34,9 +34,8 @@ App.PopoverView = Ember.View.extend({
       container: 'body',
       html: true,
       trigger: 'manual',
-      content: this.get('popoverContent')
-      //template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title">   </h3> <div class="popover-close"> <button type="button" class="close" {{action \'expand\'}}>×</button> </div> <div class="popover-content"><p></p></div></div></div>'
-      //template: Ember.Handlebars.compile('<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title">   </h3> <div class="popover-close"> <button type="button" class="close" {{action \'expand\'}}>×</button> </div> <div class="popover-content"><p></p></div></div></div>')
+      content: this.get('popoverContent'),
+      template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title">   </h3> <div class="popover-close"> <button type="button" class="close">×</button> </div> <div class="popover-content"><p></p></div></div></div>'
     }
   }.property('popoverContent'),
   mouseEnter: function (event) {
@@ -82,4 +81,10 @@ App.PopoverView = Ember.View.extend({
 $('body').on('click', function (e) {
   $('.popover-container').popover('hide');
 });
+
+$('.popover-close').on('click', function (e) {
+  $('.popover-container').popover('hide');
+});
+
+
 
