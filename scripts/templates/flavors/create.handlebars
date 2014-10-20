@@ -55,8 +55,10 @@
               <div class="pull-right">
                 {{view Ember.Select class="input-medium"
                   contentBinding="slaTypes"
-                  selectionBinding="slaType"
+                  valueBinding="slaType"
                   prompt="Select SLA Type:"
+                  optionValuePath="content.value"
+                  optionLabelPath="content.label"
                 }}
               </div>
             {{/if}}

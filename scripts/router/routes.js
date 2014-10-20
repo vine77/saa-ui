@@ -374,7 +374,7 @@ App.FlavorEditRoute = Ember.Route.extend({
     flavor.set('isEditing', false);
     flavor.rollback();  // Rollback record properties
     flavor.reload();  // Reload record relationships
-    if (sla) sla.rollback();
+    if (sla) sla.set('deleted', true);
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -425,7 +425,7 @@ App.SlaEditRoute = Ember.Route.extend({
   deactivate: function () {
     var sla = this.get('currentModel');
     sla.set('isEditing', false);
-    sla.rollback();  // Rollback record properties
+    sla.set('deleted', true);
     // Reload record relationships, then rollback relationships
     sla.reload().then(function (model) {
       model.relatedRecords().forEach(function (item) {
