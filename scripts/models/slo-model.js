@@ -23,6 +23,14 @@ App.Slo = DS.Model.extend({
   isString: Ember.computed.equal('valueType', 'string'),
   isRange: Ember.computed.equal('valueType', 'range'),
 
+  // Observers
+  sloTemplateObserver: function () {
+    // Set initial operator when sloTemplate for an SLO is changed
+    if (Ember.isEmpty(this.get('operator'))) {
+      this.set('operator', this.get('sloTemplate.allowedOperators.firstObject'));
+    }
+  }.observes('sloTemplate'),
+
   // Relationships
   sla: DS.belongsTo('sla'),
   sloTemplate: DS.belongsTo('sloTemplate')
