@@ -197,6 +197,28 @@ Ember.Handlebars.registerHelper('unlessEmpty', function(property, fn) {
   return Ember.Handlebars.bind.call(context, property, fn, true, func, func);
 });
 
+Ember.Handlebars.registerHelper('isNonNegativeNumber', function(property, fn) {
+  var context = (fn.contexts && fn.contexts[0]) || this;
+  var func = function(value) {
+    if (isNaN(value)) {
+      return false;
+    } else {
+      switch (parseInt(value)) {
+        case '0':
+        case 0:
+          return true;
+        case (value > 0):
+          return true;
+        default:
+          return false;
+      }
+    }
+  }
+  return Ember.Handlebars.bind.call(context, property, fn, true, func, func);
+});
+
+
+
 Ember.Handlebars.registerBoundHelper('readableError', function (xhr) {
   return App.xhrErrorMessage(xhr);
 });
