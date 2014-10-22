@@ -108,8 +108,25 @@
     <div class="tab-pane utilization">
       <table class="table table-bordered">
         <tr>
-          <th class="column-medium">Cores</th>
+          <th class="column-medium">Number of Cores</th>
           <td> {{na cores}} </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cores & Sockets</th>
+          <td>
+            <ul>
+                {{#each used in utilization.cores.system.used}}
+                  <li>
+                    {{#isNonNegativeNumber used.core}}
+                      Core: {{used.core}}
+                    {{/isNonNegativeNumber}}
+                    {{#isNonNegativeNumber used.socket}}
+                      Socket: {{used.socket}}
+                    {{/isNonNegativeNumber}}
+                  </li>
+                {{/each}}
+            </ul>
+          </td>
         </tr>
         <tr>
           <th class="column-medium">Utilization (SCUs)</th>

@@ -33,7 +33,6 @@ App.PopoverView = Ember.View.extend({
 */
   }.property('elementId'),
   popoverArguments: function() {
-    console.log('popoverContent', this.get('popoverContent'));
     return {
       container: 'body',
       html: true,
