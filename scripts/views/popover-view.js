@@ -83,26 +83,30 @@ App.PopoverView = Ember.View.extend({
         $('#' + this.get('elementId')).popover(this.get('popoverArguments')).popover('show');
       });
     }
-  }.observes('controller.vcpus')
-});
-
-$('body').on('click', function (e) {
-  if (!$(e.target).hasClass('popover-content') && !($(e.target).parents().hasClass('popover-content')) ) {
-    var isVisible = $('.popover-container').is(":visible");
-    if (isVisible) {
-      $('.popover-container').popover('hide');
-    }
-  }
-});
-
-$('.popover-close').on('click', function (e) {
-  if (!$(e.target).hasClass('popover-content')) {
-      var isVisible = $('.popover-container').is(":visible");
-      if (isVisible) {
-        $('.popover-container').popover('hide');
+  }.observes('controller.vcpus'),
+  init: function() {
+    var self = this;
+    $('body').on('click', function (e) {
+      if (!$(e.target).hasClass('popover-content') && !($(e.target).parents().hasClass('popover-content')) ) {
+        var isVisible = $('.popover-container').is(":visible");
+        if (isVisible) {
+          $('#' + self.get('elementId')).popover('hide');
+        }
       }
+    });
+    $('.popover-close').on('click', function (e) {
+      if (!$(e.target).hasClass('popover-content')) {
+        var isVisible = $('.popover-container').is(":visible");
+        if (isVisible) {
+          $('#' + self.get('elementId')).popover('hide');
+        }
+      }
+    });
+    this._super();
   }
 });
+
+
 
 
 
