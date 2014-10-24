@@ -1674,7 +1674,7 @@
           "system": {
             "used": [
               {
-                "core": "-1",
+                "core": "1",
                 "socket": "2"
               }
             ]

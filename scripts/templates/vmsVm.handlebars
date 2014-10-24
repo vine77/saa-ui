@@ -112,16 +112,16 @@
           <td> {{na cores}} </td>
         </tr>
         <tr>
-          <th class="column-medium">Cores & Sockets</th>
+          <th class="column-medium">Socket/Core Pinning</th>
           <td>
             <ul>
                 {{#each used in utilization.cores.system.used}}
                   <li>
+                    {{#isNonNegativeNumber used.socket}}
+                      Socket: {{used.socket}}{{#isNonNegativeNumber used.core}},{{/isNonNegativeNumber}}
+                    {{/isNonNegativeNumber}}
                     {{#isNonNegativeNumber used.core}}
                       Core: {{used.core}}
-                    {{/isNonNegativeNumber}}
-                    {{#isNonNegativeNumber used.socket}}
-                      Socket: {{used.socket}}
                     {{/isNonNegativeNumber}}
                   </li>
                 {{/each}}
