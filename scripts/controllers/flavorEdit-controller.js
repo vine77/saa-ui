@@ -79,7 +79,12 @@ App.FlavorEditController = Ember.ObjectController.extend({
         this.set('model.sla', selectedExistingSla);
       } else if (slaType === 'new') {  // New SLA button
         var newSla = this.store.all('sla').findBy('isDirty');
-        if (!newSla) newSla = this.store.createRecord('sla', {deleted: false});
+        if (!newSla) {
+          newSla = this.store.createRecord('sla', {
+            type: 'vm',
+            deleted: false
+          });
+        }
         this.set('model.sla', newSla);
       }
     },
