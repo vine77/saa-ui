@@ -143,8 +143,8 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('utilization.scu.cgroups.@each'),
 
   contentionCgroups: function() {
-    return this.get('contention.llc.cgroups');
-  }.property('contention.llc.cgroups.@each'),
+    return this.get('contention.cgroups');
+  }.property('contention.cgroups.@each'),
   osContention: function() {
     return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'os');
   }.property('contentionCgroups'),
@@ -247,8 +247,24 @@ App.NodeController = Ember.ObjectController.extend({
     return messages.join('');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
+  contentionDetailsMessage: function() {
+    var messages = [];
+    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
+    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    if (messages.length > 0) {
+      return messages.join('<br>');
+    } else {
+      return 'No contention data available.'
+    }
+  }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
+
   scuUnallocated: function() {
-    return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
+    if (!App.isEmpty(this.get('utilization.scu.system.max')) && !App.isEmpty(this.get('utilization.scu.cgroups'))) {
+      return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
+    } else {
+      return false;
+    }
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
   scuValues: function() {
