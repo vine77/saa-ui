@@ -355,14 +355,14 @@ App.NodeController = Ember.ObjectController.extend({
     return parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size')));
   }.property('capabilities.memory_size'),
   percentOfMemory: function () {
-    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory')) ) / this.get('maxMemory'));
-  }.property('utilization.memory', 'maxMemory'),
+    return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory.used')) ) / this.get('maxMemory'));
+  }.property('utilization.memory.used', 'maxMemory'),
   percentOfMemoryWidth: function () {
     return 'width:'+this.get('percentOfMemory')+'%';
   }.property('percentOfMemory'),
   percentOfMemoryMessage: function() {
-    return App.readableSize(this.get('utilization.memory')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
-  }.property('utilization.memory', 'capabilities.memory_size'),
+    return App.readableSize(this.get('utilization.memory.used')) + ' used out of ' + App.readableSize(this.get('capabilities.memory_size'));
+  }.property('utilization.memory.used', 'capabilities.memory_size'),
   percentOfMemoryAvailable: function () {
     if (isNaN(this.get('percentOfMemory')) || this.get('maxMemory') <= 0) {
       return false;

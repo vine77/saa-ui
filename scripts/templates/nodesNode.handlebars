@@ -201,7 +201,13 @@
         </tr>
         <tr>
           <th class="column-medium">Memory</th>
-          <td>{{readableSize utilization.memory}} out of {{readableSize capabilities.memory_size}}</td>
+          <td>
+            {{readableSize utilization.memory.used}} out of {{readableSize capabilities.memory_size}}
+            {{#unlessEmpty utilization.memory.ksm_sharing}}
+              <br>Memory saved due to Kernel Samepage Merging (KSM):
+              {{readableSize utilization.memory.ksm_sharing}}
+            {{/unlessEmpty}}
+          </td>
         </tr>
         <tr>
           <th class="column-medium">CPU Idle</th>

@@ -144,7 +144,7 @@
           {{#if percentOfMemoryAvailable}}
             {{progress-bar width=percentOfMemoryWidth containerWidth="width:60%;" percent=percentOfMemory message=percentOfMemoryMessage}}
           {{else}}
-            {{readableSize utilization.memory}}
+            {{readableSize utilization.memory.used}}
           {{/if}}
         </div>
       </td>

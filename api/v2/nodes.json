@@ -61,7 +61,10 @@
         "normalized_load": 0.03,
         "scu_current": 2.47,
         "io": null,
-        "memory": "4020696 KB",
+        "memory": {
+          "used": "4020696 KB",
+          "ksm_sharing": null
+        },
         "cpu": {
           "iowait": 924.96,
           "idle": 23697998.4,
@@ -709,7 +712,10 @@
         "ipc": 0.32,
         "cpu_frequency_current": null,
         "io": null,
-        "memory": "3042272 KB",
+        "memory": {
+          "used": "3042272 KB",
+          "ksm_sharing": null
+        },
         "cpu": {
           "iowait": 2015.36,
           "idle": 54822728.16,
