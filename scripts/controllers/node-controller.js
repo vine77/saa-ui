@@ -107,7 +107,7 @@ App.NodeController = Ember.ObjectController.extend({
         systemScuUtilization = systemScuUtilization + item.value;
       });
     }
-    return systemScuUtilization;
+    return systemScuUtilization.toFixed();
   }.property('scuUtilizationCgroups.@each'),
   systemContention: function() {
     var contentionScu = 0;
