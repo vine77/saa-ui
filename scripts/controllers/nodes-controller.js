@@ -164,6 +164,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       return 0;
     }
   }.property('allScuVcpuCapabilities'),
+
   medianScuVcpuCapabilities: function () {
     if (this.get('allScuVcpuCapabilities.length') > 0) {
       return App.median(this.get('allScuVcpuCapabilities')).toFixed();
