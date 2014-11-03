@@ -1,5 +1,7 @@
 App.SloController = Ember.ObjectController.extend({
   needs: ['nodes'],
+
+  isSelected: Ember.computed.notEmpty('sloTemplate'),
   vcpuValues: [0, 1, 2, 3, 4],
   vcpus: function() {
     return this.get('parentController.vcpusInteger');

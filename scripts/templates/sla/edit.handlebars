@@ -40,11 +40,12 @@
       {{#each slo in slos itemController="slo"}}
         <div class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
-            contentBinding="slo.possibleSloTemplates"
+            content=slo.possibleSloTemplates
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
-            selectionBinding="sloTemplate"
+            selection=sloTemplate
             prompt="Select SLO:"
+            disabled=isSelected
           }}
           {{#if allowedOperatorsGreaterThanOne}}
             {{view Ember.Select viewName="select" class="input-small"
