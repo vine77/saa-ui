@@ -635,28 +635,28 @@
       "utilization": {
         "scu": {
           "system": {
-            "value": 634.0,
+            "value": 30.0,
             "min": 0,
-            "max": 2024.0
+            "max": 800.0
           },
           "cgroups": [
             {
               "type": "vm",
-              "value": 530,
+              "value": 12,
               "min": 0,
-              "max": 530.0
+              "max": 12.0
             },
             {
               "type": "os",
-              "value": 129,
+              "value": 13,
               "min": 0,
-              "max": 128.0
+              "max": 13.0
             },
             {
               "type": "6wind",
-              "value": 500.0,
+              "value": 14.0,
               "min": 0,
-              "max": 500
+              "max": 14
             }
           ]
         },

@@ -58,7 +58,8 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
           barCount: i,
           barColor: color,
           label: label,
-          title: title
+          title: title,
+          parent: this
         })
       );
       this.addObserver('barValue' + i, this, this.notifyBars);
@@ -74,11 +75,47 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
   }.property('tooltip'),
   notifyBars: function() {
     this.notifyPropertyChange('bars');
+  },
+  barsObserver: function() {
+    this.adjustBarWidths();
+  }.observes('bars', 'bars.@each'),
+  init: function() {
+    this.adjustBarWidths();
+    this._super();
+  },
+  didInsertElement: function() {
+    this.adjustBarWidths();
+  },
+  adjustBarWidths: function() {
+    var tinyPercentageSum = 0;
+    var nonTinyBars = [];
+    this.get('bars').forEach( function(item, index, enumerable) {
+      if (!!item.get('isTinyPercentage')) {
+        tinyPercentageSum = tinyPercentageSum + item.get('minBarTotalWidth');
+        item.set('totalWidth', item.get('minBarTotalWidth'));
+      } else {
+        nonTinyBars.push(item);
+        item.set('totalWidth', item.get('totalWidthProxy'));
+      }
+    });
+    var removalAmount = 0;
+    if (nonTinyBars.length > 0 && tinyPercentageSum > 0) {
+      removalAmount = parseInt(tinyPercentageSum).toFixed() / parseInt(nonTinyBars.length).toFixed();
+    }
+    nonTinyBars.forEach( function(item, index, enumerable) {
+      if (removalAmount > 0) {
+        var subtractionResult = parseInt(item.get('totalWidthProxy')) - removalAmount;
+        item.set('totalWidth', subtractionResult);
+      } else {
+       item.set('totalWidth', item.get('totalWidthProxy'));
+      }
+    });
   }
 });
 
 App.ProgressBarAdjacentController = Ember.ObjectController.extend({
   progressBarColors: ['progress-info', 'progress-success', 'progress-warning', 'progress-danger', 'progress-neutral'],
+  totalWidth: 0,
   currentExceedsMax: function() {
     return (this.get('current') > this.get('max'));
   }.property('max', 'current'),
@@ -126,9 +163,15 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
         //}
     }
   }.property('barCount', 'barColor'),
-  totalWidth: function() {
-    return (parseInt(this.get('max')) / parseInt(this.get('maxTotal'))) * 100;
+  totalWidthProxy: function() {
+    return Math.min(Math.max(100 * this.get('max') / this.get('maxTotal'), 0), 100);
   }.property('max', 'maxTotal'),
+  minBarTotalWidth: function() {
+    return 4;
+  }.property(),
+  isTinyPercentage: function() {
+    return (this.get('totalWidthProxy') < this.get('minBarTotalWidth'));
+  }.property('totalWidthProxy'),
   currentPercentage: function() {
     return (this.get('current') - this.get('min')) / (this.get('max') - this.get('min')) * 100;
   }.property('current', 'max', 'min'),
@@ -181,5 +224,3 @@ App.ProgressBarAdjacentController = Ember.ObjectController.extend({
     }
   }.property('isCurrentValueVisible')
 });
-
-
