@@ -260,11 +260,8 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   scuUnallocated: function() {
-    if (!App.isEmpty(this.get('utilization.scu.system.max')) && !App.isEmpty(this.get('utilization.scu.cgroups'))) {
-      return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
-    } else {
-      return false;
-    }
+    if (App.isEmpty(this.get('utilization.scu.system.max')) || App.isEmpty(this.get('utilization.scu.cgroups'))) return 0;
+    return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
   scuValues: function() {
