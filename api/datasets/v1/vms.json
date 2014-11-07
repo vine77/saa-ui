@@ -1,0 +1,3465 @@
+{
+  "vms": [
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered on. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/8077AAA4-BB46-E211-BD64-001E673931BC",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/00bee174-a553-4d30-8078-e81e5c272677",
+        "uri": "/api/v2/vms/00bee174-a553-4d30-8078-e81e5c272677",
+        "logs": "/api/v2/logs?vm=00bee174-a553-4d30-8078-e81e5c272677"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "00bee174-a553-4d30-8078-e81e5c272677",
+      "victim_ids": [],
+      "cloud_id": "00bee174-a553-4d30-8078-e81e5c272677",
+      "utilization": {
+        "ipc": 0.36,
+        "uptime": 1156542,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": []
+          }
+        },
+        "threads": [
+          {
+            "scu_current": 0.0,
+            "id": 72440
+          },
+          {
+            "scu_current": 0.0,
+            "id": 72439
+          }
+        ],
+        "io": null,
+        "memory": "2097152 KB",
+        "scu_burst": 0.0,
+        "cpu": 0.0833386142235213,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.24"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2097152 KB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "sdfsdf",
+      "macs": [
+        "fa:16:3e:65:48:3b"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 0.68,
+              "label": "LOW"
+            },
+            "id": 72440
+          },
+          {
+            "llc": {
+              "value": 0.74,
+              "label": "LOW"
+            },
+            "id": 72439
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.71,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "00bee174-a553-4d30-8078-e81e5c272677",
+      "node_id": "8077AAA4-BB46-E211-BD64-001E673931BC",
+      "node_name": "novamgmt95",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/0349a53c-b062-4a5a-a1ce-3b384f43528a",
+        "uri": "/api/v2/vms/0349a53c-b062-4a5a-a1ce-3b384f43528a",
+        "logs": "/api/v2/logs?vm=0349a53c-b062-4a5a-a1ce-3b384f43528a"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "0349a53c-b062-4a5a-a1ce-3b384f43528a",
+      "victim_ids": [],
+      "cloud_id": "0349a53c-b062-4a5a-a1ce-3b384f43528a",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest3noisy-0349a53c-b062-4a5a-a1ce-3b384f43528a",
+      "macs": [
+        "fa:16:3e:11:ad:e8"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "0349a53c-b062-4a5a-a1ce-3b384f43528a",
+      "node_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "node_name": "novamgmt33",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/071effaa-90bd-4ef3-ac52-65031970c422",
+        "uri": "/api/v2/vms/071effaa-90bd-4ef3-ac52-65031970c422",
+        "logs": "/api/v2/logs?vm=071effaa-90bd-4ef3-ac52-65031970c422"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "071effaa-90bd-4ef3-ac52-65031970c422",
+      "victim_ids": [],
+      "cloud_id": "071effaa-90bd-4ef3-ac52-65031970c422",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.17"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-071effaa-90bd-4ef3-ac52-65031970c422",
+      "macs": [
+        "fa:16:3e:c2:02:86"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "071effaa-90bd-4ef3-ac52-65031970c422",
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/1",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/07acdf4a-41b2-4fec-8f8c-ade78d95446f",
+        "logs": "/api/v2/logs?vm=07acdf4a-41b2-4fec-8f8c-ade78d95446f"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "07acdf4a-41b2-4fec-8f8c-ade78d95446f",
+      "victim_ids": [],
+      "cloud_id": "07acdf4a-41b2-4fec-8f8c-ade78d95446f",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "512 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "steve",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "1"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/8077AAA4-BB46-E211-BD64-001E673931BC",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/1c1232b3-92ed-484c-ba45-1dba530ed60f",
+        "uri": "/api/v2/vms/1c1232b3-92ed-484c-ba45-1dba530ed60f",
+        "logs": "/api/v2/logs?vm=1c1232b3-92ed-484c-ba45-1dba530ed60f"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "1c1232b3-92ed-484c-ba45-1dba530ed60f",
+      "victim_ids": [],
+      "cloud_id": "1c1232b3-92ed-484c-ba45-1dba530ed60f",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.19"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-paa-test-1c1232b3-92ed-484c-ba45-1dba530ed60f",
+      "macs": [
+        "fa:16:3e:7f:a6:77"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "1c1232b3-92ed-484c-ba45-1dba530ed60f",
+      "node_id": "8077AAA4-BB46-E211-BD64-001E673931BC",
+      "node_name": "novamgmt95",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/A7A47894-E698-E111-BD1D-001E6747F6A2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+        "uri": "/api/v2/vms/2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+        "logs": "/api/v2/logs?vm=2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+      "victim_ids": [],
+      "cloud_id": "2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.15"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+      "macs": [
+        "fa:16:3e:a7:92:66"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "2f6f02d7-76e3-4f97-a2b0-cd5629f9cd36",
+      "node_id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "node_name": "novamgmt51",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered on. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/5385D478-D295-E111-BD1D-001E6747F6F2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/33ca0931-a00e-4780-88fb-a67420c6dd1d",
+        "uri": "/api/v2/vms/33ca0931-a00e-4780-88fb-a67420c6dd1d",
+        "logs": "/api/v2/logs?vm=33ca0931-a00e-4780-88fb-a67420c6dd1d"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "33ca0931-a00e-4780-88fb-a67420c6dd1d",
+      "victim_ids": [],
+      "cloud_id": "33ca0931-a00e-4780-88fb-a67420c6dd1d",
+      "utilization": {
+        "ipc": 0.51,
+        "uptime": 1436865,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": []
+          }
+        },
+        "threads": [
+          {
+            "scu_current": 0.0,
+            "id": 96214
+          },
+          {
+            "scu_current": 0.0,
+            "id": 96213
+          }
+        ],
+        "io": null,
+        "memory": "2097152 KB",
+        "scu_burst": 0.0,
+        "cpu": 0.06670077966874859,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.23"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2097152 KB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "terry-pin32",
+      "macs": [
+        "fa:16:3e:84:8b:ba"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 3.46,
+              "label": "MEDIUM"
+            },
+            "id": 96214
+          },
+          {
+            "llc": {
+              "value": 10.51,
+              "label": "MEDIUM"
+            },
+            "id": 96213
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 5.0,
+            "label": "MEDIUM"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "33ca0931-a00e-4780-88fb-a67420c6dd1d",
+      "node_id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "node_name": "novamgmt32",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/375addd5-2e88-43ad-8bae-590e9bf9ffbd",
+        "uri": "/api/v2/vms/375addd5-2e88-43ad-8bae-590e9bf9ffbd",
+        "logs": "/api/v2/logs?vm=375addd5-2e88-43ad-8bae-590e9bf9ffbd"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "375addd5-2e88-43ad-8bae-590e9bf9ffbd",
+      "victim_ids": [],
+      "cloud_id": "375addd5-2e88-43ad-8bae-590e9bf9ffbd",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.10"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-test",
+      "macs": [
+        "fa:16:3e:00:61:0e",
+        "fa:16:3e:5a:2b:38"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "375addd5-2e88-43ad-8bae-590e9bf9ffbd",
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM is powered on. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/7e67b45b-2eff-4406-bd28-9000a68645e4",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/3a921c1c-ad0f-48e9-b73a-64ff404df694",
+        "logs": "/api/v2/logs?vm=3a921c1c-ad0f-48e9-b73a-64ff404df694"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "3a921c1c-ad0f-48e9-b73a-64ff404df694",
+      "victim_ids": [],
+      "cloud_id": "3a921c1c-ad0f-48e9-b73a-64ff404df694",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "test-sunil",
+      "macs": [
+        "fa:16:3e:ba:e8:da"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "7e67b45b-2eff-4406-bd28-9000a68645e4"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "uri": "/api/v2/vms/4037c3ad-4f80-406c-8b92-781ffc50f36d",
+        "logs": "/api/v2/logs?vm=4037c3ad-4f80-406c-8b92-781ffc50f36d"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "4037c3ad-4f80-406c-8b92-781ffc50f36d",
+      "victim_ids": [],
+      "cloud_id": "4037c3ad-4f80-406c-8b92-781ffc50f36d",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "tws",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/3184A832-DB98-E111-BD1D-001E6747F64A",
+        "uri": "/api/v2/vms/4965a77f-3a9b-4a12-81b6-aab673f7b2f0",
+        "logs": "/api/v2/logs?vm=4965a77f-3a9b-4a12-81b6-aab673f7b2f0"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "4965a77f-3a9b-4a12-81b6-aab673f7b2f0",
+      "victim_ids": [],
+      "cloud_id": "4965a77f-3a9b-4a12-81b6-aab673f7b2f0",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "terrt",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+      "node_name": "novamgmt31",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/8077AAA4-BB46-E211-BD64-001E673931BC",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+        "uri": "/api/v2/vms/49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+        "logs": "/api/v2/logs?vm=49d6e6ac-c3e0-4949-ba48-fa94aa049298"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+      "victim_ids": [],
+      "cloud_id": "49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest2-49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+      "macs": [
+        "fa:16:3e:f1:33:38"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+      "node_id": "8077AAA4-BB46-E211-BD64-001E673931BC",
+      "node_name": "novamgmt95",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/5385D478-D295-E111-BD1D-001E6747F6F2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+        "uri": "/api/v2/vms/4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+        "logs": "/api/v2/logs?vm=4ece722e-9bf3-4e22-9565-79c7dd69e8a4"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+      "victim_ids": [],
+      "cloud_id": "4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.18"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-paa-test-4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+      "macs": [
+        "fa:16:3e:4c:6a:67"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "4ece722e-9bf3-4e22-9565-79c7dd69e8a4",
+      "node_id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "node_name": "novamgmt32",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Healthy"
+        ],
+        "locked": false,
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/A8B8050E-F644-5B3C-A45C-72057685A709",
+        "uri": "/api/v2/vms/5953581f-fc4f-49b9-a124-1ee0cc944fe5",
+        "logs": "/api/v2/logs?vm=5953581f-fc4f-49b9-a124-1ee0cc944fe5"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "5953581f-fc4f-49b9-a124-1ee0cc944fe5",
+      "victim_ids": [],
+      "cloud_id": "5953581f-fc4f-49b9-a124-1ee0cc944fe5",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": "3a848574-63ea-4023-8b34-5d4f9bef2c65",
+      "vm_name": "michael-nnag-image2",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": "1 Core assured secure",
+      "vm_trust_report_id": null,
+      "node_id": "A8B8050E-F644-5B3C-A45C-72057685A709",
+      "node_name": "novamgmt34",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/5accdd98-4d47-422a-a06c-78f74bee206d",
+        "logs": "/api/v2/logs?vm=5accdd98-4d47-422a-a06c-78f74bee206d"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "5accdd98-4d47-422a-a06c-78f74bee206d",
+      "victim_ids": [],
+      "cloud_id": "5accdd98-4d47-422a-a06c-78f74bee206d",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "msw-test",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/5ba41933-80e3-49f9-9737-87d6b0a7f8bb",
+        "logs": "/api/v2/logs?vm=5ba41933-80e3-49f9-9737-87d6b0a7f8bb"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "5ba41933-80e3-49f9-9737-87d6b0a7f8bb",
+      "victim_ids": [],
+      "cloud_id": "5ba41933-80e3-49f9-9737-87d6b0a7f8bb",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "steve_medium",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "uri": "/api/v2/vms/5baf60a1-7798-41e7-ae4e-59c105d426fa",
+        "logs": "/api/v2/logs?vm=5baf60a1-7798-41e7-ae4e-59c105d426fa"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "5baf60a1-7798-41e7-ae4e-59c105d426fa",
+      "victim_ids": [],
+      "cloud_id": "5baf60a1-7798-41e7-ae4e-59c105d426fa",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "terry-unsec-br-ub1210",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": null,
+      "node_name": null,
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Healthy"
+        ],
+        "locked": false,
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/64EC022B-7294-E111-BD1D-001E6747F342",
+        "uri": "/api/v2/vms/61b80f12-819e-4c12-8335-322fb31e3dd1",
+        "logs": "/api/v2/logs?vm=61b80f12-819e-4c12-8335-322fb31e3dd1"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "61b80f12-819e-4c12-8335-322fb31e3dd1",
+      "victim_ids": [],
+      "cloud_id": "61b80f12-819e-4c12-8335-322fb31e3dd1",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": "1",
+                "socket": "2"
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": "74c6bf71-9c90-429a-b8da-3e45ca3335e5",
+      "vm_name": "michael-nnag-image",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": "1 Core assured secure",
+      "vm_trust_report_id": null,
+      "node_id": "64EC022B-7294-E111-BD1D-001E6747F342",
+      "node_name": "novamgmt35",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/27CEF401-E03F-11DF-ABB3-001517FB47DC",
+        "uri": "/api/v2/vms/75663268-0f28-455b-9073-a0b1bd9d1b61",
+        "logs": "/api/v2/logs?vm=75663268-0f28-455b-9073-a0b1bd9d1b61"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "75663268-0f28-455b-9073-a0b1bd9d1b61",
+      "victim_ids": [],
+      "cloud_id": "75663268-0f28-455b-9073-a0b1bd9d1b61",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.2"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-paa-test-75663268-0f28-455b-9073-a0b1bd9d1b61",
+      "macs": [
+        "fa:16:3e:31:bb:eb"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "27CEF401-E03F-11DF-ABB3-001517FB47DC",
+      "node_name": "novamgmt73",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/77b73ec5-fade-4e80-9946-34a5ded214ea",
+        "uri": "/api/v2/vms/77b73ec5-fade-4e80-9946-34a5ded214ea",
+        "logs": "/api/v2/logs?vm=77b73ec5-fade-4e80-9946-34a5ded214ea"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "77b73ec5-fade-4e80-9946-34a5ded214ea",
+      "victim_ids": [],
+      "cloud_id": "77b73ec5-fade-4e80-9946-34a5ded214ea",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.14"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-77b73ec5-fade-4e80-9946-34a5ded214ea",
+      "macs": [
+        "fa:16:3e:8c:64:5f"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "77b73ec5-fade-4e80-9946-34a5ded214ea",
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/5385D478-D295-E111-BD1D-001E6747F6F2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+        "uri": "/api/v2/vms/77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+        "logs": "/api/v2/logs?vm=77c2be08-07ff-4a28-a3d0-d773cf5340e2"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+      "victim_ids": [],
+      "cloud_id": "77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest2-77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+      "macs": [
+        "fa:16:3e:e9:b0:35"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+      "node_id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "node_name": "novamgmt32",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/1",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/7b8eb7b0-24f3-409e-a5ea-8395092d4015",
+        "logs": "/api/v2/logs?vm=7b8eb7b0-24f3-409e-a5ea-8395092d4015"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "7b8eb7b0-24f3-409e-a5ea-8395092d4015",
+      "victim_ids": [],
+      "cloud_id": "7b8eb7b0-24f3-409e-a5ea-8395092d4015",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "512 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svestisnoisy",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "1"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+        "uri": "/api/v2/vms/8a0f6100-e796-4bb6-8b07-fe52894cdf9e",
+        "logs": "/api/v2/logs?vm=8a0f6100-e796-4bb6-8b07-fe52894cdf9e"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "8a0f6100-e796-4bb6-8b07-fe52894cdf9e",
+      "victim_ids": [],
+      "cloud_id": "8a0f6100-e796-4bb6-8b07-fe52894cdf9e",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "terry-test-ub-ub1210",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "33B2F58C-8C94-E111-BD1D-001E6747F3DE",
+      "node_name": "novamgmt33",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered on. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/5385D478-D295-E111-BD1D-001E6747F6F2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/9a0369a1-08b8-44e7-bb27-c3583513f086",
+        "uri": "/api/v2/vms/9a0369a1-08b8-44e7-bb27-c3583513f086",
+        "logs": "/api/v2/logs?vm=9a0369a1-08b8-44e7-bb27-c3583513f086"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "9a0369a1-08b8-44e7-bb27-c3583513f086",
+      "victim_ids": [],
+      "cloud_id": "9a0369a1-08b8-44e7-bb27-c3583513f086",
+      "utilization": {
+        "ipc": 0.35,
+        "uptime": 1503341,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": []
+          }
+        },
+        "threads": [
+          {
+            "scu_current": 0.0,
+            "id": 23958
+          },
+          {
+            "scu_current": 0.0,
+            "id": 23959
+          }
+        ],
+        "io": null,
+        "memory": "2097152 KB",
+        "scu_burst": 0.0,
+        "cpu": 0.06670102658883012,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.22"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2097152 KB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "sdfasdf",
+      "macs": [
+        "fa:16:3e:35:02:17"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 10.72,
+              "label": "MEDIUM"
+            },
+            "id": 23958
+          },
+          {
+            "llc": {
+              "value": 5.2,
+              "label": "MEDIUM"
+            },
+            "id": 23959
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 7.96,
+            "label": "MEDIUM"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "9a0369a1-08b8-44e7-bb27-c3583513f086",
+      "node_id": "5385D478-D295-E111-BD1D-001E6747F6F2",
+      "node_name": "novamgmt32",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/ab143ca5-ab79-4372-b41e-45a12c6911a2",
+        "uri": "/api/v2/vms/ab143ca5-ab79-4372-b41e-45a12c6911a2",
+        "logs": "/api/v2/logs?vm=ab143ca5-ab79-4372-b41e-45a12c6911a2"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "ab143ca5-ab79-4372-b41e-45a12c6911a2",
+      "victim_ids": [],
+      "cloud_id": "ab143ca5-ab79-4372-b41e-45a12c6911a2",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.16"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-ab143ca5-ab79-4372-b41e-45a12c6911a2",
+      "macs": [
+        "fa:16:3e:61:e9:75"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "ab143ca5-ab79-4372-b41e-45a12c6911a2",
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/64EC022B-7294-E111-BD1D-001E6747F342",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+        "uri": "/api/v2/vms/ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+        "logs": "/api/v2/logs?vm=ad17ddc2-0d6e-4c7f-adcb-cde8bf692907"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+      "victim_ids": [],
+      "cloud_id": "ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest2-ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+      "macs": [
+        "fa:16:3e:85:12:69"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+      "node_id": "64EC022B-7294-E111-BD1D-001E6747F342",
+      "node_name": "novamgmt35",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/A8B8050E-F644-5B3C-A45C-72057685A709",
+        "uri": "/api/v2/vms/be07e90a-0402-471e-ac4e-a1209be42ab3",
+        "logs": "/api/v2/logs?vm=be07e90a-0402-471e-ac4e-a1209be42ab3"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "be07e90a-0402-471e-ac4e-a1209be42ab3",
+      "victim_ids": [],
+      "cloud_id": "be07e90a-0402-471e-ac4e-a1209be42ab3",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest3noisy-be07e90a-0402-471e-ac4e-a1209be42ab3",
+      "macs": [
+        "fa:16:3e:b4:a5:c8"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "A8B8050E-F644-5B3C-A45C-72057685A709",
+      "node_name": "novamgmt34",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAA node. SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAA node."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/2",
+        "nodes": "/api/v2/nodes/344531E6-BDF0-5973-854C-55E71BDDB850",
+        "uri": "/api/v2/vms/c0cd7123-3e84-41bc-a169-17a39819a693",
+        "logs": "/api/v2/logs?vm=c0cd7123-3e84-41bc-a169-17a39819a693"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "c0cd7123-3e84-41bc-a169-17a39819a693",
+      "victim_ids": [],
+      "cloud_id": "c0cd7123-3e84-41bc-a169-17a39819a693",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-test1",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "344531E6-BDF0-5973-854C-55E71BDDB850",
+      "node_name": "novamgmt116",
+      "aggressor_ids": [],
+      "flavor_id": "2"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/3184A832-DB98-E111-BD1D-001E6747F64A",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+        "uri": "/api/v2/vms/c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+        "logs": "/api/v2/logs?vm=c79407e0-a285-4d03-90b8-5e0fa04d1dc3"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+      "victim_ids": [],
+      "cloud_id": "c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest3noisy-c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+      "macs": [
+        "fa:16:3e:97:ea:45"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+      "node_id": "3184A832-DB98-E111-BD1D-001E6747F64A",
+      "node_name": "novamgmt31",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/61AF1458-9295-E111-BD1D-001E6747F0BA",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/d5c2183f-a36f-41dc-9071-02748aa8262b",
+        "uri": "/api/v2/vms/d5c2183f-a36f-41dc-9071-02748aa8262b",
+        "logs": "/api/v2/logs?vm=d5c2183f-a36f-41dc-9071-02748aa8262b"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "d5c2183f-a36f-41dc-9071-02748aa8262b",
+      "victim_ids": [],
+      "cloud_id": "d5c2183f-a36f-41dc-9071-02748aa8262b",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.20"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-paa-test-d5c2183f-a36f-41dc-9071-02748aa8262b",
+      "macs": [
+        "fa:16:3e:70:a9:75"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "d5c2183f-a36f-41dc-9071-02748aa8262b",
+      "node_id": "61AF1458-9295-E111-BD1D-001E6747F0BA",
+      "node_name": "novamgmt64",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "uri": "/api/v2/vms/d79d0513-948f-47f4-bd92-33cdcef6b4f1",
+        "logs": "/api/v2/logs?vm=d79d0513-948f-47f4-bd92-33cdcef6b4f1"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "d79d0513-948f-47f4-bd92-33cdcef6b4f1",
+      "victim_ids": [],
+      "cloud_id": "d79d0513-948f-47f4-bd92-33cdcef6b4f1",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "msw-test2",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": null,
+      "node_name": null,
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/00891562-1547-E211-A90E-001E673931D8",
+        "uri": "/api/v2/vms/da21e435-f551-45cc-8712-39b1be135355",
+        "logs": "/api/v2/logs?vm=da21e435-f551-45cc-8712-39b1be135355"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "da21e435-f551-45cc-8712-39b1be135355",
+      "victim_ids": [],
+      "cloud_id": "da21e435-f551-45cc-8712-39b1be135355",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "stsdf",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": "00891562-1547-E211-A90E-001E673931D8",
+      "node_name": "novamgmt63",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/00891562-1547-E211-A90E-001E673931D8",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/dafc0652-9628-4162-b16d-d05d1efa7577",
+        "uri": "/api/v2/vms/dafc0652-9628-4162-b16d-d05d1efa7577",
+        "logs": "/api/v2/logs?vm=dafc0652-9628-4162-b16d-d05d1efa7577"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "dafc0652-9628-4162-b16d-d05d1efa7577",
+      "victim_ids": [],
+      "cloud_id": "dafc0652-9628-4162-b16d-d05d1efa7577",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.21"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-paa-test-dafc0652-9628-4162-b16d-d05d1efa7577",
+      "macs": [
+        "fa:16:3e:c4:c0:00"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "dafc0652-9628-4162-b16d-d05d1efa7577",
+      "node_id": "00891562-1547-E211-A90E-001E673931D8",
+      "node_name": "novamgmt63",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/3",
+        "nodes": "/api/v2/nodes/00891562-1547-E211-A90E-001E673931D8",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/e446ef2d-984a-47db-ad82-2547ef661727",
+        "uri": "/api/v2/vms/e446ef2d-984a-47db-ad82-2547ef661727",
+        "logs": "/api/v2/logs?vm=e446ef2d-984a-47db-ad82-2547ef661727"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "e446ef2d-984a-47db-ad82-2547ef661727",
+      "victim_ids": [],
+      "cloud_id": "e446ef2d-984a-47db-ad82-2547ef661727",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "4096 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "4096 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "svest2-e446ef2d-984a-47db-ad82-2547ef661727",
+      "macs": [
+        "fa:16:3e:bd:43:bc"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "e446ef2d-984a-47db-ad82-2547ef661727",
+      "node_id": "00891562-1547-E211-A90E-001E673931D8",
+      "node_name": "novamgmt63",
+      "aggressor_ids": [],
+      "flavor_id": "3"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/A7A47894-E698-E111-BD1D-001E6747F6A2",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+        "uri": "/api/v2/vms/f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+        "logs": "/api/v2/logs?vm=f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+      "victim_ids": [],
+      "cloud_id": "f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.13"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+      "macs": [
+        "fa:16:3e:19:db:9e"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "f3cf0e5f-9f5c-4200-aafc-42d3e78b09c1",
+      "node_id": "A7A47894-E698-E111-BD1D-001E6747F6A2",
+      "node_name": "novamgmt51",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 1,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM is powered off. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/44553e7a-0da1-4520-815c-63b01bd9ab98",
+        "nodes": "/api/v2/nodes/EACD2671-A095-E111-BD1D-001E6747F68E",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+        "uri": "/api/v2/vms/f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+        "logs": "/api/v2/logs?vm=f45c97e0-c41f-49b2-a3d1-964e74e352a4"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+      "victim_ids": [],
+      "cloud_id": "f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "1024 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": [
+        "192.168.122.12"
+      ],
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": "1024 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "vm_name": "michael-pac-f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+      "macs": [
+        "fa:16:3e:db:30:75"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": null,
+      "vm_trust_report_id": "f45c97e0-c41f-49b2-a3d1-964e74e352a4",
+      "node_id": "EACD2671-A095-E111-BD1D-001E6747F68E",
+      "node_name": "novamgmt36",
+      "aggressor_ids": [],
+      "flavor_id": "44553e7a-0da1-4520-815c-63b01bd9ab98"
+    }
+  ]
+}

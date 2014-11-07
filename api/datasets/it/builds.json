@@ -1,0 +1,13 @@
+{
+  "builds": [
+    {
+      "readycloud_version": null,
+      "hostname": "prd1intfm1saa01",
+      "is_master": true,
+      "is_readycloud": false,
+      "version": "1.1.0.132",
+      "date": "2014-07-11T10:50:15+0200",
+      "id": "current"
+    }
+  ]
+}

@@ -2,111 +2,190 @@
   "actions": [
     {
       "status": 1,
-      "name": "trust_agent_config",
+      "name": "set_agent_mode",
       "links": {
-        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
       },
-      "started": "2014-02-06T19:17:46+00:00",
-      "id": 1,
-      "node_id": "00000000-0000-0000-0000-002590C98B9C",
-      "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Trust agent config action for node \"node-24.domain.tld\" has been executed.  IPM mgmt IP is \"192.168.0.252\".",
-      "last_update": "2014-02-06T19:17:46+00:00",
-      "vm_id": null,
-      "options": {}
-    },
-    {
-      "status": 1,
-      "name": "trust_agent_config",
-      "links": {
-        "nodes": "/api/v1/nodes/009F695B-EC0C-E211-A2C5-001E67329FEA"
-      },
-      "started": "2014-02-06T19:18:01+00:00",
-      "id": 2,
-      "node_id": "009F695B-EC0C-E211-A2C5-001E67329FEA",
-      "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Trust agent config action for node \"node-17.domain.tld\" has been executed.  IPM mgmt IP is \"192.168.0.252\".",
-      "last_update": "2014-02-06T19:18:01+00:00",
-      "vm_id": null,
-      "options": {}
-    },
-    {
-      "status": 1,
-      "name": "scheduler_mark",
-      "links": {
-        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
-      },
-      "started": "2014-02-06T19:20:45+00:00",
-      "id": 3,
-      "node_id": "00000000-0000-0000-0000-002590C98B9C",
-      "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Socket 0 of \"node-24.domain.tld\" node has been preselected for VMs placement.",
-      "last_update": "2014-02-06T19:20:45+00:00",
-      "vm_id": null,
+      "started": "2014-11-08T08:28:28+00:00",
       "options": {
-        "scheduler_mark": 0,
-        "scheduler_persistent": true
-      }
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T08:28:28+00:00",
+      "vm_id": null,
+      "id": 9,
+      "user": null
     },
     {
       "status": 1,
-      "name": "scheduler_unmark",
+      "name": "set_agent_mode",
       "links": {
-        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
       },
-      "started": "2014-02-06T19:28:50+00:00",
-      "id": 4,
-      "node_id": "00000000-0000-0000-0000-002590C98B9C",
-      "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Node \"node-24.domain.tld\" preselection for VM placement has been removed.",
-      "last_update": "2014-02-06T19:28:50+00:00",
-      "vm_id": null,
-      "options": {}
-    },
-    {
-      "status": 1,
-      "name": "scheduler_mark",
-      "links": {
-        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
-      },
-      "started": "2014-02-06T19:28:57+00:00",
-      "id": 5,
-      "node_id": "00000000-0000-0000-0000-002590C98B9C",
-      "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Socket 1 of \"node-24.domain.tld\" node has been preselected for VMs placement.",
-      "last_update": "2014-02-06T19:28:57+00:00",
-      "vm_id": null,
+      "started": "2014-11-08T08:10:31+00:00",
       "options": {
-        "scheduler_mark": 1,
-        "scheduler_persistent": true
-      }
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T08:10:31+00:00",
+      "vm_id": null,
+      "id": 8,
+      "user": null
     },
     {
       "status": 1,
-      "name": "scheduler_unmark",
+      "name": "set_agent_mode",
       "links": {
-        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
       },
-      "started": "2014-02-06T19:31:50+00:00",
+      "started": "2014-11-08T06:24:32+00:00",
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T06:24:41+00:00",
+      "vm_id": null,
+      "id": 7,
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
+      },
+      "started": "2014-11-08T06:21:53+00:00",
+      "options": {
+        "agent_mode": 3
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T06:21:53+00:00",
+      "vm_id": null,
       "id": 6,
-      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
+      },
+      "started": "2014-11-08T06:17:43+00:00",
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
       "done": true,
-      "user": null,
-      "blocking": "false",
-      "message": "Node \"node-24.domain.tld\" preselection for VM placement has been removed.",
-      "last_update": "2014-02-06T19:31:51+00:00",
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T06:17:43+00:00",
       "vm_id": null,
-      "options": {}
+      "id": 5,
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
+      },
+      "started": "2014-11-08T04:40:13+00:00",
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T04:40:13+00:00",
+      "vm_id": null,
+      "id": 4,
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v2/nodes/00000000-0000-0000-0000-002590A349A6"
+      },
+      "started": "2014-11-08T01:33:04+00:00",
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "00000000-0000-0000-0000-002590A349A6",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'd00-25-90-a3-49-a6.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T01:33:04+00:00",
+      "vm_id": null,
+      "id": 3,
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/D8B44B36-096E-4804-ABAC-58BB24273CB6"
+      },
+      "started": "2014-11-08T01:24:42+00:00",
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "D8B44B36-096E-4804-ABAC-58BB24273CB6",
+      "blocking": false,
+      "message": "Creation of flavor \"bv-1core-unsec\" succeeded.",
+      "last_update": "2014-11-08T01:25:13+00:00",
+      "vm_id": null,
+      "id": 2,
+      "user": null
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E54"
+      },
+      "started": "2014-11-08T01:20:28+00:00",
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "36353430-3831-4D58-5134-313530304E54",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node 'da0-d3-c1-01-a8-40.slescloud.tld' has been executed.",
+      "last_update": "2014-11-08T01:20:28+00:00",
+      "vm_id": null,
+      "id": 1,
+      "user": null
     }
   ]
 }

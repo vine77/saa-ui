@@ -3,34 +3,23 @@
     {
       "name": "m1.medium",
       "links": {
-        "vms": "/api/v2/vms?ids=e446ef2d-984a-47db-ad82-2547ef661727,77c2be08-07ff-4a28-a3d0-d773cf5340e2,49d6e6ac-c3e0-4949-ba48-fa94aa049298,ad17ddc2-0d6e-4c7f-adcb-cde8bf692907,c79407e0-a285-4d03-90b8-5e0fa04d1dc3,0349a53c-b062-4a5a-a1ce-3b384f43528a,be07e90a-0402-471e-ac4e-a1209be42ab3,5ba41933-80e3-49f9-9737-87d6b0a7f8bb",
         "uri": "/api/v2/configuration/flavors/3"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": "c2b39b30-adeb-45ea-ab00-098cd8106368",
+      "sla_id": null,
       "vcpus": 2,
       "swap": 0,
       "memory": 4096,
       "root": 40,
       "id": "3",
-      "vm_ids": [
-        "e446ef2d-984a-47db-ad82-2547ef661727",
-        "77c2be08-07ff-4a28-a3d0-d773cf5340e2",
-        "49d6e6ac-c3e0-4949-ba48-fa94aa049298",
-        "ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
-        "c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
-        "0349a53c-b062-4a5a-a1ce-3b384f43528a",
-        "be07e90a-0402-471e-ac4e-a1209be42ab3",
-        "5ba41933-80e3-49f9-9737-87d6b0a7f8bb"
-      ]
+      "vm_ids": []
     },
     {
       "name": "m1.tiny",
       "links": {
-        "vms": "/api/v2/vms?ids=7b8eb7b0-24f3-409e-a5ea-8395092d4015,07acdf4a-41b2-4fec-8f8c-ade78d95446f",
         "uri": "/api/v2/configuration/flavors/1"
       },
       "deleted": false,
@@ -41,12 +30,9 @@
       "vcpus": 1,
       "swap": 0,
       "memory": 512,
-      "root": 0,
+      "root": 1,
       "id": "1",
-      "vm_ids": [
-        "7b8eb7b0-24f3-409e-a5ea-8395092d4015",
-        "07acdf4a-41b2-4fec-8f8c-ade78d95446f"
-      ]
+      "vm_ids": []
     },
     {
       "name": "m1.large",
@@ -85,7 +71,6 @@
     {
       "name": "m1.small",
       "links": {
-        "vms": "/api/v2/vms?ids=c0cd7123-3e84-41bc-a169-17a39819a693",
         "uri": "/api/v2/configuration/flavors/2"
       },
       "deleted": false,
@@ -98,58 +83,109 @@
       "memory": 2048,
       "root": 20,
       "id": "2",
-      "vm_ids": [
-        "c0cd7123-3e84-41bc-a169-17a39819a693"
-      ]
+      "vm_ids": []
     },
     {
-      "name": "sunil-test",
+      "name": "bv-unsec-sladefault",
       "links": {
-        "vms": "/api/v2/vms?ids=3a921c1c-ad0f-48e9-b73a-64ff404df694",
-        "uri": "/api/v2/configuration/flavors/7e67b45b-2eff-4406-bd28-9000a68645e4"
+        "slas": "/api/v2/configuration/slas/b8d25428-f97a-4bd5-9962-9c7cfa2ef01f",
+        "uri": "/api/v2/configuration/flavors/911a7180-0649-4d1b-88d5-b2f77bfbddb1"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": null,
+      "sla_id": "b8d25428-f97a-4bd5-9962-9c7cfa2ef01f",
       "vcpus": 2,
       "swap": 0,
       "memory": 1024,
-      "root": 0,
-      "id": "7e67b45b-2eff-4406-bd28-9000a68645e4",
-      "vm_ids": [
-        "3a921c1c-ad0f-48e9-b73a-64ff404df694"
-      ]
+      "root": 20,
+      "id": "911a7180-0649-4d1b-88d5-b2f77bfbddb1",
+      "vm_ids": []
     },
     {
-      "name": "terry-unsec-bronze",
+      "name": "1vcpu-unsec-bronze",
       "links": {
-        "vms": "/api/v2/vms?ids=8a0f6100-e796-4bb6-8b07-fe52894cdf9e,5953581f-fc4f-49b9-a124-1ee0cc944fe5,61b80f12-819e-4c12-8335-322fb31e3dd1,4965a77f-3a9b-4a12-81b6-aab673f7b2f0,4037c3ad-4f80-406c-8b92-781ffc50f36d,da21e435-f551-45cc-8712-39b1be135355,9a0369a1-08b8-44e7-bb27-c3583513f086,33ca0931-a00e-4780-88fb-a67420c6dd1d,00bee174-a553-4d30-8078-e81e5c272677,5baf60a1-7798-41e7-ae4e-59c105d426fa",
-        "uri": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18"
+        "slas": "/api/v2/configuration/slas/c1dccaa0-6fb2-4cf6-ab1d-2f5c2fbfeb5e",
+        "uri": "/api/v2/configuration/flavors/dcee354e-1d61-41e8-baaa-6130d28cb2d7"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": null,
+      "sla_id": "c1dccaa0-6fb2-4cf6-ab1d-2f5c2fbfeb5e",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "dcee354e-1d61-41e8-baaa-6130d28cb2d7",
+      "vm_ids": []
+    },
+    {
+      "name": "1vcpu-unsec-1core",
+      "links": {
+        "slas": "/api/v2/configuration/slas/e4fdac1f-9e6d-4194-8e54-7652463d02f6",
+        "uri": "/api/v2/configuration/flavors/97e26831-4f8d-4ea3-8a9f-39608d8fabe1"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "e4fdac1f-9e6d-4194-8e54-7652463d02f6",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "97e26831-4f8d-4ea3-8a9f-39608d8fabe1",
+      "vm_ids": []
+    },
+    {
+      "name": "bv-unsec-silver",
+      "links": {
+        "uri": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
+        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
+        "vms": "/api/v2/vms?ids=55031260-021c-440c-b849-df16f6dd12a7,5373657e-ee7b-43ba-af6e-6b3a26a4b1b0,446b3180-3fef-42cb-af30-502c913a4e17,6e0ebaac-1548-4f96-b71b-24a472e23c03,8252c6b2-afe4-441d-8556-72566052b2fd,81c94937-43f9-4759-aceb-bf264e8b00fe,b6769181-f7fc-4ce0-8927-1f69347eb09b,40d82778-8efa-4dee-bfa9-234d5e991eda,a414f887-a031-469b-952d-a779227129cf,6acf3500-6da9-4b83-9827-aae98225675f"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
       "vcpus": 2,
       "swap": 0,
-      "memory": 2048,
-      "root": 30,
-      "id": "4ad7488a-6c96-471c-945c-17d96958bc18",
+      "memory": 1024,
+      "root": 20,
+      "id": "694dc2bf-285e-4865-b45d-e9f3124fe2db",
       "vm_ids": [
-        "8a0f6100-e796-4bb6-8b07-fe52894cdf9e",
-        "5953581f-fc4f-49b9-a124-1ee0cc944fe5",
-        "61b80f12-819e-4c12-8335-322fb31e3dd1",
-        "4965a77f-3a9b-4a12-81b6-aab673f7b2f0",
-        "4037c3ad-4f80-406c-8b92-781ffc50f36d",
-        "da21e435-f551-45cc-8712-39b1be135355",
-        "9a0369a1-08b8-44e7-bb27-c3583513f086",
-        "33ca0931-a00e-4780-88fb-a67420c6dd1d",
-        "00bee174-a553-4d30-8078-e81e5c272677",
-        "5baf60a1-7798-41e7-ae4e-59c105d426fa"
+        "55031260-021c-440c-b849-df16f6dd12a7",
+        "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
+        "446b3180-3fef-42cb-af30-502c913a4e17",
+        "6e0ebaac-1548-4f96-b71b-24a472e23c03",
+        "8252c6b2-afe4-441d-8556-72566052b2fd",
+        "81c94937-43f9-4759-aceb-bf264e8b00fe",
+        "b6769181-f7fc-4ce0-8927-1f69347eb09b",
+        "40d82778-8efa-4dee-bfa9-234d5e991eda",
+        "a414f887-a031-469b-952d-a779227129cf",
+        "6acf3500-6da9-4b83-9827-aae98225675f"
       ]
+    },
+    {
+      "name": "bv-1core-unsec",
+      "links": {
+        "slas": "/api/v2/configuration/slas/e4fdac1f-9e6d-4194-8e54-7652463d02f6",
+        "uri": "/api/v2/configuration/flavors/d8b44b36-096e-4804-abac-58bb24273cb6"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "e4fdac1f-9e6d-4194-8e54-7652463d02f6",
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 5,
+      "id": "d8b44b36-096e-4804-abac-58bb24273cb6",
+      "vm_ids": []
     }
   ]
 }
