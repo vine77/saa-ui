@@ -35,11 +35,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         allFilesSpecified = isNovaSpecified && isOpenrcSpecified;
       }
       if (!allFilesSpecified) {
-        if (this.get('isNeutronConfigRequired')) {
-          App.event('You must upload all 4 configuration files at the same time.');
-        } else {
-          App.event('You must upload all two configuration files at the same time.');
-        }
+        App.event('You must upload all required configuration files at the same time.');
         return;
       }
       // Prompt user with confirmation dialog if app is already configured
