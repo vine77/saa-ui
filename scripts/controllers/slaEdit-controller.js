@@ -75,8 +75,10 @@ App.SlaEditController = Ember.ObjectController.extend({
         $('.modal:visible').modal('hide');
         self.set('isSlaEditing', false);
       }, function (xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to modify SLA "' + sla.get('name') + '".');
         self.set('isSlaEditing', false);
+        sla.transitionTo('loaded.saved');
+        sla.rollback();
+        App.xhrError(xhr, 'An error occurred while attempting to modify SLA "' + sla.get('name') + '".');
       });
       // TODO: Manually set SLO records to saved to clear isDirty
     }

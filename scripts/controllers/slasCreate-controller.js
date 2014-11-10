@@ -66,8 +66,11 @@ App.SlasCreateController = Ember.ObjectController.extend({
         $('.modal:visible').modal('hide');
         self.set('isSlaCreating', false);
       }, function (xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to create SLA "' + sla.get('name') + '".');
+        console.log('We are inside here!!!');
         self.set('isSlaCreating', false);
+        sla.transitionTo('loaded.saved');
+        sla.rollback();
+        App.xhrError(xhr, 'An error occurred while attempting to create SLA "' + sla.get('name') + '".');
       });
     }
   }
