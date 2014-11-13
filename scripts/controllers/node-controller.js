@@ -147,7 +147,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('utilization.scu.cgroups.@each'),
 
   contentionCgroups: function() {
-    return this.get('contention.cgroups');
+    return this.get('contention.llc.cgroups');
   }.property('contention.cgroups.@each'),
   osContention: function() {
     return this.get('contentionCgroups') && this.get('contentionCgroups').findBy('type', 'os');
