@@ -180,10 +180,24 @@
           <td>
             {{#if hasContention}}
               <div style="margin-left:10px;">
-                {{progress-bar-adjacent
-                  tooltip=contentionTooltip
-                  values=contentionValues
-                }}
+                {{#each contentionValues}}
+                    <div style="margin-bottom:20px; margin-top:20px;">
+                      {{#if currentExceedsMax}}
+                        {{progress-bar-simple
+                          value=value
+                          thresholdMax=max
+                          title=type
+                          progressBarColor="bar-danger"
+                        }}
+                      {{else}}
+                        {{progress-bar-simple
+                          value=value
+                          thresholdMax=max
+                          title=type
+                        }}
+                      {{/if}}
+                    </div>
+                  {{/each}}
               </div>
               <div style="margin:8px">
                 {{{contentionDetailsMessage}}}

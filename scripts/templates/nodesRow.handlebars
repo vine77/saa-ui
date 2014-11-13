@@ -174,11 +174,25 @@
                   {{{contentionMessage}}}
                 </div>
                 <div style="width:400px; margin-left:15px;">
-                  {{progress-bar-adjacent
-                    values=contentionValues
-                  }}
+                  {{#each contentionValues}}
+                    <div style="margin-bottom:20px; margin-top:20px;">
+                      {{#if currentExceedsMax}}
+                        {{progress-bar-simple
+                          value=value
+                          thresholdMax=max
+                          title=type
+                          progressBarColor="bar-danger"
+                        }}
+                      {{else}}
+                        {{progress-bar-simple
+                          value=value
+                          thresholdMax=max
+                          title=type
+                        }}
+                      {{/if}}
+                    </div>
+                  {{/each}}
                 </div>
-                <br />
                 <dl class="dl-horizontal dl-compressed">
                   {{#each contentionCgroup in contentionPopoverCgroups itemController="popoverCgroup"}}
                     {{#if currentExceedsMax}}

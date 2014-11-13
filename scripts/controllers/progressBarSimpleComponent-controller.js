@@ -1,6 +1,7 @@
 App.ProgressBarSimpleComponent = Ember.Component.extend({
   thresholdOne: null,
   thresholdMax: null,
+  progressBarColor: 'bar-success',
   progressStyle: function() {
     return 'overflow:visible;'+
       'position:relative;'+

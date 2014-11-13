@@ -110,6 +110,8 @@ App.NodeController = Ember.ObjectController.extend({
     return systemScuUtilization.toFixed();
   }.property('scuUtilizationCgroups.@each'),
   systemContention: function() {
+    return this.get('contention.system.llc.value');
+    /*
     var contentionScu = 0;
     if (this.get('contentionCgroups')) {
       this.get('contentionCgroups').forEach( function(item, index, enumerable) {
@@ -117,7 +119,9 @@ App.NodeController = Ember.ObjectController.extend({
       });
     }
     return contentionScu;
-  }.property('contentionCgroups.@each'),
+    */
+  //}.property('contentionCgroups.@each'),
+  }.property('contention.llc.system.value'),
 
 // contention.llc.system.value
 
@@ -303,7 +307,9 @@ App.NodeController = Ember.ObjectController.extend({
           min: item.min,
           max: item.max,
           value: item.value,
-          sortOrder: App.typeToSortOrder(item.type)
+          sortOrder: App.typeToSortOrder(item.type),
+          type: item.type.toUpperCase(),
+          currentExceedsMax: ((item.value > item.max)?true:false)
         });
       });
     }

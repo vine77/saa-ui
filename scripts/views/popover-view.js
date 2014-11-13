@@ -43,7 +43,10 @@ App.PopoverView = Ember.View.extend({
     }
   }.property('popoverContent', 'customId'),
   mouseEnter: function (event) {
+    //hide all other popovers
+    $(".popover").remove();
     this.set('toggle', true);
+
     $('.' + this.get('customId')).popover(this.get('popoverArguments')).popover('show');
   },
   reloadObserver: function(event) {
@@ -63,6 +66,7 @@ App.PopoverView = Ember.View.extend({
           $('.' + self.get('customId')).popover(self.get('popoverArguments')).popover('hide');
         }
       });
+
       $('.popover-close').on('click', function (e) {
         $('.' + self.get('customId')).popover(self.get('popoverArguments')).popover('hide');
       });

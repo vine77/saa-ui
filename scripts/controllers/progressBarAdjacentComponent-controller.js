@@ -98,7 +98,7 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
         item.set('totalWidth', item.get('totalWidthProxy'));
       }
     });
-    var removalAmount = 0;
+    var removalAmount = 1;
     if (nonTinyBars.length > 0 && tinyPercentageSum > 0) {
       removalAmount = parseInt(tinyPercentageSum).toFixed() / parseInt(nonTinyBars.length).toFixed();
     }
