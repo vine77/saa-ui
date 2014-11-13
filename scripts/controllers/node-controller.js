@@ -110,7 +110,7 @@ App.NodeController = Ember.ObjectController.extend({
     return systemScuUtilization.toFixed();
   }.property('scuUtilizationCgroups.@each'),
   systemContention: function() {
-    return this.get('contention.system.llc.value');
+    return this.get('contention.llc.system.value');
     /*
     var contentionScu = 0;
     if (this.get('contentionCgroups')) {
