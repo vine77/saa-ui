@@ -46,8 +46,11 @@ App.PopoverView = Ember.View.extend({
     //hide all other popovers
     $(".popover").remove();
     this.set('toggle', true);
-
     $('.' + this.get('customId')).popover(this.get('popoverArguments')).popover('show');
+
+    $('.popover-close').on('click', function (e) {
+      $(".popover").remove();
+    });
   },
   reloadObserver: function(event) {
     if (this.get('toggle')) {
@@ -60,17 +63,14 @@ App.PopoverView = Ember.View.extend({
     this.set('customId', App.uuid());
     var self = this;
 
-    Ember.run.scheduleOnce('afterRender', this, function() {
+    Ember.run.schedule('afterRender', this, function() {
       $('body').on('click', function (e) {
         if (!$(e.target).hasClass('popover-content') && !($(e.target).parents().hasClass('popover-content')) ) {
           $('.' + self.get('customId')).popover(self.get('popoverArguments')).popover('hide');
         }
       });
-
-      $('.popover-close').on('click', function (e) {
-        $('.' + self.get('customId')).popover(self.get('popoverArguments')).popover('hide');
-      });
     });
+
     this._super();
   }
 });
