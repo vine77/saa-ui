@@ -1,7 +1,8 @@
 {
   "gates": [
     "SAA 1.1.5",
-    "CO 1.1"
+    "CO 1.1",
+    "SUSE Cloud 4"
   ],
   "users": [{
     "github": "vine77",
@@ -13,6 +14,6 @@
     "sync": true
   }],
   "proxy": "http://proxy.jf.intel.com:911",
-  "dryrun": true,
+  "dryrun": false,
   "attachments": false
 }
