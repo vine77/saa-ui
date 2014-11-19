@@ -261,6 +261,9 @@ Ember.SelectOption.reopen({
   attributeBindings: ['value', 'selected', 'disabled'],
   disabled: function() {
     var content = this.get('content');
-    return content.disabled || false;
+    if (content) {
+      return content.disabled || false;
+    }
+
   }.property('content')
 });
