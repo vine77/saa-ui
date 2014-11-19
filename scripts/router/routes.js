@@ -350,7 +350,11 @@ App.FlavorsCreateRoute = Ember.Route.extend({
     var flavor = this.get('currentModel');
     var sla = this.store.all('sla').findBy('isDirty');
     flavor.rollback();
-    if (sla) sla.rollback();
+    if (sla) {
+      Ember.run.later(this, function() {
+        sla.rollback();
+      }, 50);
+    }
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -374,7 +378,11 @@ App.FlavorEditRoute = Ember.Route.extend({
     flavor.set('isEditing', false);
     flavor.rollback();  // Rollback record properties
     flavor.reload();  // Reload record relationships
-    if (sla) sla.rollback();
+    if (sla) {
+      Ember.run.later(this, function() {
+        sla.rollback();
+      }, 50);
+    }
     this.controllerFor('flavorsCreate').set('selectedExistingSla', null);
   }
 });
@@ -405,7 +413,9 @@ App.SlasCreateRoute = Ember.Route.extend({
   },
   deactivate: function () {
     var sla = this.get('currentModel');
-    sla.rollback();
+    Ember.run.later(this, function() {
+      sla.rollback();
+    }, 50);
   }
 });
 App.SlaEditRoute = Ember.Route.extend({
@@ -425,7 +435,9 @@ App.SlaEditRoute = Ember.Route.extend({
   deactivate: function () {
     var sla = this.get('currentModel');
     sla.set('isEditing', false);
-    sla.rollback();
+    Ember.run.later(this, function() {
+      sla.rollback();
+    }, 50);
     // Reload record relationships, then rollback relationships
     sla.reload().then(function (model) {
       model.relatedRecords().forEach(function (item) {
