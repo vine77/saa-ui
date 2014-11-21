@@ -69,7 +69,6 @@ App.SlasCreateController = Ember.ObjectController.extend({
         $('.modal:visible').modal('hide');
         self.set('isSlaCreating', false);
       }, function (xhr) {
-        console.log('We are inside here!!!');
         self.set('isSlaCreating', false);
         sla.transitionTo('loaded.saved');
         sla.rollback();

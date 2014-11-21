@@ -162,13 +162,33 @@
             <th class="column-medium">Service Compute Units (SCU)</th>
             <td>
               {{#if computeExists}}
-                <div style="margin-left:10px">
-                  {{progress-bar-adjacent
-                    tooltip=scuTooltip
-                    values=scuValues
-                  }}
-                  {{{scuTooltip}}}
-                </div>
+                <table style="width:100%;" class="table-borderless">
+                  <tr>
+                    <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
+                    <td>
+                      {{progress-bar-simple
+                        value=systemScuUtilization
+                        thresholdMax=utilization.scu.system.max
+                      }}
+                    </td>
+                  </tr>
+                  {{#each scuValues}}
+                    <tr>
+                      <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
+                      <td>
+                        <div style="margin-bottom:25px; margin-top:20px;">
+                          {{progress-bar-simple
+                            value=value
+                            thresholdMax=max
+                          }}
+                        </div>
+                      </td>
+                    </tr>
+                  {{/each}}
+                  <tr>
+                    <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
+                  </tr>
+                </table>
               {{else}}
                 <span class="not-applicable">n/a</span>
               {{/if}}

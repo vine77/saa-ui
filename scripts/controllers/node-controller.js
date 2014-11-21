@@ -276,16 +276,20 @@ App.NodeController = Ember.ObjectController.extend({
           min: item.min,
           max: item.max,
           value: item.value,
-          sortOrder: App.typeToSortOrder(item.type)
+          sortOrder: App.typeToSortOrder(item.type),
+          type: item.type.toUpperCase()
         });
       });
+      /*
       returnArray.push({
         min: 0,
         max: this.get('scuUnallocated').toFixed(2),
         value: this.get('scuUnallocated').toFixed(2),
-        color: "progress-neutral",
-        sortOrder: 9999
+        sortOrder: 9999,
+        type: 'Unallocated',
+        color: "progress-neutral"
       });
+      */
     }
     return returnArray.sortBy('sortOrder');
   }.property('scuUtilizationCgroups', 'scuUnallocated'),

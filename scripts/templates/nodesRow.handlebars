@@ -98,28 +98,33 @@
                    {{na systemScuUtilization}}
                  {{/if}}
                 <div class="popover-content" style="display:none;">
-                  {{{scuPopoverTitle}}}
-                  <div style="width:400px; margin-left:15px;">
-                    {{progress-bar-adjacent
-                      values=scuValues
-                    }}
-                  </div>
-                  <br />
-                  <div>
-                    <dl class="dl-horizontal dl-compressed">
-                      {{#each scuCgroup in scuPopoverCgroups itemController="popoverCgroup"}}
-                        {{#if currentExceedsMax}}
-                          <span style="color:red;">
-                            <dt>{{scuCgroup.title}}:</dt>
-                            <dd>{{scuCgroup.value}}</dd>
-                          </span>
-                        {{else}}
-                          <dt>{{scuCgroup.title}}:</dt>
-                          <dd>{{scuCgroup.value}}</dd>
-                        {{/if}}
-                      {{/each}}
-                    </dl>
-                  </div>
+                <table style="width:100%;" class="table-borderless">
+                  <tr>
+                    <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
+                    <td>
+                      {{progress-bar-simple
+                        value=systemScuUtilization
+                        thresholdMax=utilization.scu.system.max
+                      }}
+                    </td>
+                  </tr>
+                  {{#each scuValues}}
+                    <tr>
+                      <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
+                      <td>
+                        <div style="margin-bottom:25px; margin-top:20px;">
+                          {{progress-bar-simple
+                            value=value
+                            thresholdMax=max
+                          }}
+                        </div>
+                      </td>
+                    </tr>
+                  {{/each}}
+                  <tr>
+                    <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
+                  </tr>
+                </table>
                 </div>
               {{/view}}
             {{else}}
