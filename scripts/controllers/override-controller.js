@@ -12,7 +12,12 @@ App.OverrideController = Ember.ObjectController.extend({
   isDefault: null,
   isDefaultObserver: function() {
     if (!this.get('isDefault')) {
-      this.set('model.value', this.get('model.default_value'));
+      if (Ember.isEmpty(this.get('model.default_value'))) {
+        this.set('model.value', "Enter Value");
+      } else {
+        this.set('model.value', this.get('model.default_value'));
+      }
+      //this.set('model.value', this.get('model.default_value'));
     } else {
       this.set('model.value', null);
     }
