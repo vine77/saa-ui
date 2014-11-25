@@ -54,6 +54,7 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
   slas: function () {
     return this.get('controllers.slas').filterBy('deleted', false).filterBy('isDirty', false).filterBy('type', 'vm');
   }.property('controllers.slas.@each', 'controllers.slas.@each.deleted'),
+  userSlas: Ember.computed.filterBy('slas', 'isDefault', false),
   hasNoSla: function () {
     return this.get('model.sla') === null;
   }.property('model.sla'),

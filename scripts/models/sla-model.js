@@ -14,7 +14,9 @@ App.Sla = DS.Model.extend({
     defaultValue: true
   }),
   version: DS.attr('number'),
-  isDefault: DS.attr('boolean'),
+  isDefault: DS.attr('boolean', {
+    defaultValue: false
+  }),
 
   // Relationships
   slos: DS.hasMany('slo', {async: true}),

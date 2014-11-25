@@ -53,6 +53,9 @@ App.FlavorEditController = Ember.ObjectController.extend({
   slas: function () {
     return this.get('controllers.slas').filterBy('deleted', false).filterBy('isDirty', false).filterBy('type', 'vm');
   }.property('controllers.slas.@each', 'controllers.slas.@each.deleted'),
+  availableSlas: function() {
+    return this.get('slas').filterBy('isDefault', false).addObject(this.get('sla'));
+  }.property('slas', 'sla'),
   hasNoSla: function () {
     return this.get('model.sla') === null;
   }.property('model.sla'),
