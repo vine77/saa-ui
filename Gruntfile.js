@@ -55,8 +55,9 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           middleware: function (connect, options) {
+            var bodyParser = require('body-parser');
             return [
-              function (req, res, next) {
+              connect().use(bodyParser.json()).use(function (req, res, next) {
                 // Add CORS
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Methods', '*');
@@ -65,11 +66,24 @@ module.exports = function (grunt) {
                 // Log requests to terminal
                 grunt.log.writeln(req.method, req.url);
 
+                if (req.url === '/api/v2/actions.json' && req.method === 'POST') {
+                  grunt.log.writeln('req.body', req.body);
+                }
+
                 if (req.url === '/api/v2/start' && req.method === 'PUT') {
                   res.writeHead(422, {'Content-Type': 'application/json'});
                   res.end(JSON.stringify({'code': 422, 'errors': ['This is a test of the error reporting system.', 'This is only a test.']}));
                   return;
                 }
+
+                /*
+                if (req.url === '/api/v2/start' && req.method === 'PUT') {
+                  res.writeHead(422, {'Content-Type': 'application/json'});
+                  res.end(JSON.stringify({'code': 422, 'errors': ['This is a test of the error reporting system.', 'This is only a test.']}));
+                  return;
+                }
+                */
+
                 if (req.method === 'PUT') req.method = 'GET';
 
                 // Serve API requests
@@ -113,7 +127,7 @@ module.exports = function (grunt) {
                   }
                 }
                 next();
-              },
+              }),
               lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, pathsConfig.source),
