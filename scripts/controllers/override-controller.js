@@ -9,7 +9,7 @@ App.OverridesController = Ember.ArrayController.extend({
 });
 
 App.OverrideController = Ember.ObjectController.extend({
-  isDefault: null,
+  isDefault: false,
   isDefaultObserver: function() {
     if (!this.get('isDefault')) {
       if (Ember.isEmpty(this.get('model.default_value'))) {
@@ -23,7 +23,8 @@ App.OverrideController = Ember.ObjectController.extend({
     }
   }.observes('isDefault'),
   isDisabled: function() {
-    return Ember.isEmpty(this.get('model.value'));
+    //return Ember.isEmpty(this.get('model.value'));
+    return this.get('isDefault');
   }.property('model.@each', 'model.value'),
   isIP: function() {
     var ipValue = this.get('model.default_value');
