@@ -422,11 +422,6 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
-          // Unset all other nodes
-          parentController.filterBy('isScheduled').setEach('schedulerMark', null);
-          // Set this node for VM placement
-          node.set('schedulerMark', socketNumber);
-          node.set('schedulerPersistent', true);
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
