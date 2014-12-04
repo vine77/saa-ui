@@ -341,7 +341,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         }).save().then(function () {
           node.set('isActionPending', false);
           App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
-          node.set('schedulerMark', null);
+          //node.set('schedulerMark', null);
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
