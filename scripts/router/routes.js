@@ -71,6 +71,9 @@ App.ApplicationRoute = Ember.Route.extend({
     },
     error: function () {
       console.log('ApplicationRoute error');
+    },
+    willTransition: function (transition) {
+      $(".popover").remove();
     }
   }
 });

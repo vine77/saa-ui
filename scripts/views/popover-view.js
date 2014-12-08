@@ -51,6 +51,10 @@ App.PopoverView = Ember.View.extend({
     $('.popover-close').on('click', function (e) {
       $(".popover").remove();
     });
+
+    $('.popover-close').on('mouseleave', function (e) {
+      $(".popover").remove();
+    });
   },
   reloadObserver: function(event) {
     if (this.get('toggle')) {
