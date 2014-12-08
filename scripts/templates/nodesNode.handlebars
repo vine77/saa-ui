@@ -404,10 +404,15 @@
             <tr>
               <td class="column-small">
                 <i {{bind-attr class=":icon-large log.truststatus:icon-lock:icon-unlock log.truststatus:trusted:untrusted"}}></i>
+                {{#if log.truststatus}}
+                  Trusted
+                {{else}}
+                  Not Trusted
+                {{/if}}
               </td>
               <td>{{na log.name}}</td>
-              <td class="monospace break-word">{{na log.value}}</td>
-              <td class="monospace break-word">{{na log.whitelistvalue}}</td>
+              <td class="monospace break-word uppercase">{{na log.value}}</td>
+              <td class="monospace break-word uppercase">{{na log.whitelistvalue}}</td>
               <td>
                 {{#if log.modulelogs}}
                   {{#each modulelog in log.modulelogs}}
@@ -419,7 +424,7 @@
                     </ul>
                   {{/each}}
                 {{else}}
-                  False
+                  <span class="not-applicable">N/A</span>
                 {{/if}}
               </td>
             </tr>
