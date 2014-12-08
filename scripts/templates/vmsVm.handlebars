@@ -85,7 +85,13 @@
             <td>
               <ul>
                 {{#each vm in aggressors}}
-                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                  <li>
+                    {{#if vm.name}}
+                      {{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}
+                    {{else}}
+                      {{vm.id}}
+                    {{/if}}
+                  </li>
                 {{/each}}
               </ul>
             </td>
@@ -97,7 +103,13 @@
             <td>
               <ul>
                 {{#each vm in victims}}
-                  <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</a></li>
+                  <li>
+                    {{#if vm.name}}
+                      {{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}
+                    {{else}}
+                      {{vm.id}}
+                    {{/if}}
+                  </li>
                 {{/each}}
               </ul>
             </td>
