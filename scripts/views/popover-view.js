@@ -52,7 +52,7 @@ App.PopoverView = Ember.View.extend({
       $(".popover").remove();
     });
 
-    $('.popover-close').on('mouseleave', function (e) {
+    $('.popover-content').on('mouseleave', function (e) {
       $(".popover").remove();
     });
   },
