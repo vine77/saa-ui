@@ -1,5 +1,5 @@
 App.ApplicationController = Ember.Controller.extend({
-  needs: ['statuses', 'build', 'login', 'vms'],
+  needs: ['statuses', 'build', 'login', 'vms', 'trustMles'],
   isAutoRefreshEnabled: true,
   loggedIn: Ember.computed.alias('controllers.login.loggedIn'),
   isReadycloud: Ember.computed.alias('controllers.build.isReadycloud'),
@@ -84,8 +84,15 @@ App.ApplicationController = Ember.Controller.extend({
         }
       });
       if (App.mtWilson.get('isInstalled')) {
-        this.store.find('trustMle');
         this.store.find('trustNode');
+        this.store.find('trustMle').then(function(trustMles) {
+          if (self.get('currentPath') == 'app.data.trust.mles.trust.mle') {
+            var currentMle = self.get('controllers.trustMles').findBy('isExpanded', true) && self.get('controllers.trustMles').findBy('isExpanded', true).get('id');
+            self.store.find('trustMle', currentMle).then(function(record) {
+              record.reload();
+            });
+          }
+        });
       }
       this.store.find('node');
       this.store.find('action');
