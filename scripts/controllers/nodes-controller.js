@@ -397,7 +397,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node: this.store.getById('node', node.get('id'))
         }).save().then(function () {
           node.set('isActionPending', false);
-          App.event('Successfully configured the trust agent for node "' + node.get('name') + '".', App.SUCCESS);
+          App.event('Successfully started trust agent configuration for node "' + node.get('name') + '".', App.SUCCESS);
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
