@@ -218,7 +218,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (!!this.get('osContention.max')) {
       messages.pushObject({
         title: "OS",
-        value: this.get('osContention.value') + ' out of ' + this.get('osContention.max'),
+        value: this.get('osContention.value'),
         current: this.get('osContention.value'),
         max: this.get('osContention.max')
       });
@@ -226,7 +226,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (!!this.get('vmContention.max')) {
       messages.pushObject({
         title: "VM",
-        value: this.get('vmContention.value') + ' out of ' + this.get('vmContention.max'),
+        value: this.get('vmContention.value'),
         current: this.get('vmContention.value'),
         max: this.get('vmContention.max')
       });
@@ -234,7 +234,7 @@ App.NodeController = Ember.ObjectController.extend({
     if (!!this.get('sixWindContention.max')) {
       messages.pushObject({
         title: "6Wind",
-        value: this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max'),
+        value: this.get('sixWindContention.value'),
         current: this.get('sixWindContention.value'),
         max: this.get('sixWindContention.max')
       });
@@ -245,17 +245,17 @@ App.NodeController = Ember.ObjectController.extend({
   contentionTooltip: function() {
     var messages = [];
     //messages.push(this.get('contentionMessage'));
-    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
-    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
-    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') ); }
+    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') ); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') ); }
     return messages.join('');
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   contentionDetailsMessage: function() {
     var messages = [];
-    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value') + ' out of ' + this.get('osContention.max')); }
-    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value') + ' out of ' + this.get('vmContention.max')); }
-    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value') + ' out of ' + this.get('sixWindContention.max')); }
+    if (!!this.get('osContention.max')) { messages.push('OS: ' + this.get('osContention.value')); }
+    if (!!this.get('vmContention.max')) { messages.push('VM: ' + this.get('vmContention.value')); }
+    if (!!this.get('sixWindContention.max')) { messages.push('6Wind: ' + this.get('sixWindContention.value')); }
     if (messages.length > 0) {
       return messages.join('<br>');
     } else {
