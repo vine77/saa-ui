@@ -5,14 +5,14 @@
         <div class="span7">
           <div class="row-fluid">
             <div class="span6">
-              <small>Used of Available vCPUs ({{totalVcpusMessage}})</small>
+              <small class="hint--top" data-hint="Allocated vCPUs out of maximum vCPUs from OpenStack">Allocated vCPUs out of max: {{totalVcpusMessage}}</small>
               <div class="progress progress-success">
                 <div class="bar" {{bind-attr style="totalVcpusWidth"}}></div>
               </div>
             </div>
             {{#if maxRam}}
               <div class="span6">
-                <small>Used of Available RAM ({{totalRamMessage}})</small>
+                <small class="hint--top" data-hint="Allocated memory out of maximum memory from OpenStack">Allocated memory out of max: {{totalRamMessage}}</small>
                 <div class="progress progress-success">
                   <div class="bar" {{bind-attr style="totalRamWidth"}}></div>
                 </div>
