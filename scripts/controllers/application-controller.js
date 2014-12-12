@@ -60,42 +60,44 @@ App.ApplicationController = Ember.Controller.extend({
   isDrawerExpanded: false,
   autoRefresh: function () {
     Ember.run.later(this, 'autoRefresh', 20000);
-    if (this.get('loggedIn') && this.get('isEnabled') && this.get('isAutoRefreshEnabled')) {
+    if (this.get('isAutoRefreshEnabled') && this.get('loggedIn')) {
       App.nova.check();
       App.openrc.check();
       App.quantum.check();
       App.keystone.check();
-      this.store.find('slo');
-      this.store.find('sla');
-      this.store.find('flavor');
-      var self = this;
-      this.store.find('vm').then(function(vms) {
-        if (self.get('currentPath') == 'app.data.vms.vmsVm.index') {
-          var currentVm = self.get('controllers.vms').findBy('isExpanded', true) && self.get('controllers.vms').findBy('isExpanded', true).get('id');
-          self.store.find('vm', currentVm).then(function(record) {
-            record.reload();
-          });
-          self.store.find('vmInstantiationDetailed', currentVm).then(function(record) {
-            record.reload();
-          });
-          self.store.find('vmInstantiationSimple', currentVm).then(function(record) {
-            record.reload();
-          });
-        }
-      });
-      if (App.mtWilson.get('isInstalled')) {
-        this.store.find('trustNode');
-        this.store.find('trustMle').then(function(trustMles) {
-          if (self.get('currentPath') == 'app.data.trust.mles.trust.mle') {
-            var currentMle = self.get('controllers.trustMles').findBy('isExpanded', true) && self.get('controllers.trustMles').findBy('isExpanded', true).get('id');
-            self.store.find('trustMle', currentMle).then(function(record) {
+      if (this.get('isEnabled')) {
+        this.store.find('slo');
+        this.store.find('sla');
+        this.store.find('flavor');
+        var self = this;
+        this.store.find('vm').then(function(vms) {
+          if (self.get('currentPath') == 'app.data.vms.vmsVm.index') {
+            var currentVm = self.get('controllers.vms').findBy('isExpanded', true) && self.get('controllers.vms').findBy('isExpanded', true).get('id');
+            self.store.find('vm', currentVm).then(function(record) {
+              record.reload();
+            });
+            self.store.find('vmInstantiationDetailed', currentVm).then(function(record) {
+              record.reload();
+            });
+            self.store.find('vmInstantiationSimple', currentVm).then(function(record) {
               record.reload();
             });
           }
         });
+        if (App.mtWilson.get('isInstalled')) {
+          this.store.find('trustNode');
+          this.store.find('trustMle').then(function(trustMles) {
+            if (self.get('currentPath') == 'app.data.trust.mles.trust.mle') {
+              var currentMle = self.get('controllers.trustMles').findBy('isExpanded', true) && self.get('controllers.trustMles').findBy('isExpanded', true).get('id');
+              self.store.find('trustMle', currentMle).then(function(record) {
+                record.reload();
+              });
+            }
+          });
+        }
+        this.store.find('node');
+        this.store.find('action');
       }
-      this.store.find('node');
-      this.store.find('action');
     }
   },
 
