@@ -32,7 +32,7 @@ App.VmsColumnsController = App.ColumnsController.extend({
     sortBy: 'utilization.scu_total'
   }, {
     title: 'Memory',
-    description: 'Memory utilization',
+    description: 'Percentage of memory allocated',
     sortBy: 'utilization.memory'
   }, {
     title: 'Contention',
