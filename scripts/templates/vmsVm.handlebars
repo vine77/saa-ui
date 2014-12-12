@@ -62,10 +62,12 @@
           <th class="column-medium">Fixed IP Addresses</th>
           <td>{{concatenate fixedIps}}</td>
         </tr>
-        <tr>
-          <th class="column-medium">Floating IP Addresses</th>
-          <td>{{concatenate floatingIps}}</td>
-        </tr>
+        {{#if floatingIps}}
+          <tr>
+            <th class="column-medium">Floating IP Addresses</th>
+            <td>{{concatenate floatingIps}}</td>
+          </tr>
+        {{/if}}
         {{#unless notNoisy}}
           <tr>
             <th class="column-medium">Noisy Neighbor</th>
