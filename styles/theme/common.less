@@ -490,6 +490,25 @@ input[type="checkbox"] {
   .box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
 }
 
+
+// Lists
+ul.list-style-none {
+  margin: 0;
+  list-style-type: none;
+}
+ul.comma-separated {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline;
+    &:not(:last-of-type)::after {
+      content: ", "
+    }
+  }
+}
+
+
 // Icons
 a:hover > i[class^="icon-"],
 a:focus > i[class^="icon-"] {

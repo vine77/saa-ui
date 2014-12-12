@@ -150,32 +150,10 @@ App.VmController = Ember.ObjectController.extend({
   hasCompute: function () {
     return !Ember.isEmpty(this.get('utilization.scu_total')) && !Ember.isEmpty(this.get('suFloor'));
   }.property('utilization.scu_total', 'suFloor'),
-  suFloor: function () {
-    if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
-    var suRange = computeSlo && computeSlo.get('value');
-    if (Ember.isEmpty(suRange)) {
-      return null;
-    } else if (suRange.indexOf(';') === -1) {
-      return suRange;
-    } else {
-      return suRange.split(';')[0];
-    }
-  }.property('sla.slos.@each'),
-  suCeiling: function () {
-    if (Ember.isEmpty(this.get('sla')) || Ember.isEmpty(this.get('sla.slos'))) return null;
-    var computeSlo = this.get('sla.slos').findBy('sloType', 'assured-scu-vcpu');
-    var suRange = computeSlo && computeSlo.get('value');
-    if (Ember.isEmpty(suRange)) {
-      return null;
-    } else if (suRange.indexOf(';') === -1) {
-      return suRange;
-    } else {
-      return suRange.split(';')[1];
-    }
-  }.property('sla.slos.@each'),
+  suFloor: Ember.computed.alias('capabilities.scu_allocated_min'),
+  suCeiling: Ember.computed.alias('capabilities.scu_allocated_max'),
   isRange: function () {
-    if (Ember.isEmpty(this.get('suFloor'))) return false;
+    if (Ember.isEmpty(this.get('suFloor')) || Ember.isEmpty(this.get('suCeiling'))) return false;
     return this.get('suFloor') !== this.get('suCeiling');
   }.property('suFloor', 'suCeiling'),
   suRange: function () {

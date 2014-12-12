@@ -145,8 +145,12 @@
         <tr>
           <th class="column-medium">Utilization (SCUs)</th>
           <td>
-            {{na utilization.scu_total}} out of {{na suTotalRange}} SCU(s) allocated.<br>
-            (SCU overhead is {{na utilization.scu_overload}} SCU(s).)
+            {{na utilization.scu_total}} SCUs
+            {{#if suTotalRange}}out of {{suTotalRange}} allocated{{/if}}
+            {{#unlessEmpty utilization.scu_overload}}
+              <br>
+              SCU overhead is {{utilization.scu_overload}} SCUs
+            {{/unlessEmpty}}
           </td>
         </tr>
         <tr>
