@@ -23,7 +23,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     sortBy: 'cpuSort'
   }, {
     title: 'Allocation',
-    description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',
+    description: 'Maximum measured capacity is in SCUs (Service Compute Units) or cores (depending on node mode), while the chart indicates how much of that capacity is used.',
     sortBy: 'utilization.scus.total.current'
   }, {
     title: 'Memory',
