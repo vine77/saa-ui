@@ -18,10 +18,21 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
   slaType: Ember.computed.alias('model.sla.type'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
+    var self = this;
     return this.get('sloTemplates').filter(function(sloTemplate) {
       return sloTemplate.get('elementName') === slaType;
+    }).uniq().map(function(item) {
+      if (App.isComputeSlo(item.get('sloType'))) {
+        var isDisabled = self.get('bucketSloCountGreaterThanOne');
+      } else if (App.isTrustSlo(item.get('sloType'))) {
+        var isDisabled = (self.get('trustSloCount') >= 1);
+      } else {
+        var isDisabled = false;
+      }
+      item.disabled = isDisabled;
+      return item;
     });
-  }.property('sloTemplates.@each', 'slaType'),
+  }.property('sloTemplates.@each', 'slaType', 'isAddSloAvailable'),
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);

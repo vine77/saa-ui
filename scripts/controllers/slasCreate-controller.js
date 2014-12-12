@@ -21,15 +21,26 @@ App.SlasCreateController = Ember.ObjectController.extend({
   slaType: Ember.computed.alias('model.type'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
+    var self = this;
     return this.get('sloTemplates').filter(function(sloTemplate) {
       return sloTemplate.get('elementName') === slaType;
+    }).uniq().map(function(item) {
+      if (App.isComputeSlo(item.get('sloType'))) {
+        var isDisabled = self.get('bucketSloCountGreaterThanOne');
+      } else if (App.isTrustSlo(item.get('sloType'))) {
+        var isDisabled = (self.get('trustSloCount') >= 1);
+      } else {
+        var isDisabled = false;
+      }
+      item.disabled = isDisabled;
+      return item;
     });
-  }.property('sloTemplates.@each', 'slaType'),
+  }.property('sloTemplates.@each', 'slaType', 'isAddSloAvailable'),
   isApplicationSla: Ember.computed.equal('slaType', 'application'),
 
   bucketSloCountGreaterThanOne: function() {
     return (this.get('bucketSloCount') >= 1);
-  }.property('sloTypesArray.@each', 'sloTypesArray'),
+  }.property('bucketSloCount', 'sloTypesArray.@each', 'sloTypesArray'),
   bucketSloCount: function() {
     var computeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vcpu'; }).get('length');
     var vmComputeCount = this.get('sloTypesArray') && this.get('sloTypesArray').filter(function(x){ return x == 'assured-scu-vm'; }).get('length');

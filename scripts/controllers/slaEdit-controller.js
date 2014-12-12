@@ -21,10 +21,21 @@ App.SlaEditController = Ember.ObjectController.extend({
   slaType: Ember.computed.alias('model.type'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
+    var self = this;
     return this.get('sloTemplates').filter(function(sloTemplate) {
       return sloTemplate.get('elementName') === slaType;
+    }).uniq().map(function(item) {
+      if (App.isComputeSlo(item.get('sloType'))) {
+        var isDisabled = self.get('bucketSloCountGreaterThanOne');
+      } else if (App.isTrustSlo(item.get('sloType'))) {
+        var isDisabled = (self.get('trustSloCount') >= 1);
+      } else {
+        var isDisabled = false;
+      }
+      item.disabled = isDisabled;
+      return item;
     });
-  }.property('sloTemplates.@each', 'slaType', 'slos.@each'),
+  }.property('sloTemplates.@each', 'slaType', 'isAddSloAvailable'),
   isApplicationSla: Ember.computed.equal('slaType', 'application'),
 
   bucketSloCountGreaterThanOne: function() {

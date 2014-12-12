@@ -507,3 +507,23 @@ App.na = function(value) {
     return value;
   }
 }
+
+App.isComputeSlo = function(sloType) {
+  switch(sloType) {
+    case 'assured-cores-physical':
+    case 'assured-scu-vm':
+    case 'assured-scu-vcpu':
+      return true;
+    default:
+      return false;
+  }
+}
+
+App.isTrustSlo = function(sloType) {
+  switch(sloType) {
+    case 'trusted_platform':
+      return true;
+    default:
+      false;
+  }
+}
