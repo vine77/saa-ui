@@ -30,8 +30,13 @@ App.NodesColumnsController = App.ColumnsController.extend({
     description: 'Memory utilization',
     sortBy: 'utilization.memory.used'
   },{
-    title: 'Load',
-    description: 'Normalized Load',
+    title: 'N. Load',
+    description: '<strong>Normalized load</strong> is Linux load average divided by the number of CPUs visible to OS (including hyperthreading).' +
+      '<ul>' +
+        '<li><strong>Green (0-1)</strong> indicates there is no contention for CPU resources.</li>' +
+        '<li><strong>Orange (1-2)</strong> indicates there is some contention for CPU resources, but the system may still be operating within acceptable range.</li>' +
+        '<li><strong>Red (2+)</strong> indicates that there is considerable contention for CPU resources and the system may be operating sub-optimally and action should be taken by the system administrator.</li>' +
+      '</ul>',
     sortBy: 'utilization.normalized_load'
   }, {
     title: 'Contention',
