@@ -126,17 +126,19 @@
         <tr>
           <th class="column-medium">Socket/Core Pinning</th>
           <td>
-            <ul>
-                {{#each used in utilization.cores.system.used}}
-                  <li>
+            <ul class="list-style-none">
+              {{#each used in utilization.cores.system.used}}
+                <li>
+                  <ul class="comma-separated">
                     {{#isNonNegativeNumber used.socket}}
-                      Socket: {{used.socket}}{{#isNonNegativeNumber used.core}},{{/isNonNegativeNumber}}
+                      <li>Socket #{{used.socket}}</li>
                     {{/isNonNegativeNumber}}
                     {{#isNonNegativeNumber used.core}}
-                      Core: {{used.core}}
+                      <li>Core #{{used.core}}</li>
                     {{/isNonNegativeNumber}}
-                  </li>
-                {{/each}}
+                  </ul>
+                </li>
+              {{/each}}
             </ul>
           </td>
         </tr>
@@ -380,16 +382,15 @@
                             {{instantiationNode.node.name}}
                           {{/link-to}}
                         </p>
-
                         {{#if instantiationNode.selectedSockets}}
                           <br>
-                          <strong><em>  Selected Sockets </em></strong>
+                          <strong><em>Selected Sockets</em></strong>
                           <table class="table table-bordered nested-table">
                             <thead>
                               <tr>
-                                <th> Socket Number </th>
-                                <th> Cores </th>
-                                <th> Vcpus </th>
+                                <th>Socket Number</th>
+                                <th>Cores</th>
+                                <th>vCPUs</th>
                               </tr>
                             </thead>
                             <tbody>
