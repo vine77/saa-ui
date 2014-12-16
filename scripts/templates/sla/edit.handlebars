@@ -126,17 +126,7 @@
                 {{#if slo.isExclusiveCoresSloTable}}
                   <span class="table-flat-header"> Max Exclusive Cores per VM </span>
                   <div class="alert alert-info">
-                    The below table tells you the state of the current cloud and the number of SCUs/cores that are available for nodes in the cloud. All nodes in the cloud meets the minimum value, half of the nodes meet the median value, and X meet the maximum value.
-                  </div>
-                  <div class="alert alert-info">
-                    Please select vCPUs to update the table hypothetical values.
-                  </div>
-                  <div class="control-group">
-                    <label class="inline">vCPUs:</label>
-                      {{view Ember.Select
-                        content=slo.vcpuValues
-                        value=slo.vcpus
-                      }}
+                    The below table tells you the state of the current cloud and the number of cores that are available for nodes in the cloud. All nodes in the cloud meets the minimum value, half of the nodes meet the median value, and X meet the maximum value.
                   </div>
                   <table class="table">
                     <thead>
