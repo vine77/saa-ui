@@ -1,5 +1,5 @@
 App.SlasCreateController = Ember.ObjectController.extend({
-  needs: ['nodes'],
+  needs: ['nodes', 'slos'],
 
   sloTemplates: function () {
     return this.store.all('sloTemplate');
@@ -56,6 +56,8 @@ App.SlasCreateController = Ember.ObjectController.extend({
 
   vcpuValues: [0, 1, 2, 3, 4],
   vcpusInteger: 0,
+  vcpus: 0,
+  test:0,
 
   isSloTableVisible: function() {
     return (!!this.get('isComputeSloTable') || !!this.get('isComputeVmSloTable') || !!this.get('isExclusiveCoresSloTable'));
@@ -64,7 +66,8 @@ App.SlasCreateController = Ember.ObjectController.extend({
   isSlaCreating: false,
   actions: {
     addSlo: function () {
-      this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      //this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      this.get('controllers.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.clearInverseRelationships();

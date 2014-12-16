@@ -1,15 +1,25 @@
+App.SlosController = Ember.ArrayController.extend({
+  itemController: 'slo'
+})
+
+
 App.SloController = Ember.ObjectController.extend({
   needs: ['nodes'],
 
   isSelected: Ember.computed.notEmpty('sloTemplate'),
   vcpuValues: [0, 1, 2, 3, 4],
+  /*
   vcpus: function() {
     return this.get('parentController.vcpusInteger');
   }.property('parentController.vcpusInteger'),
+  */
+  testObserver: function() {
+    console.log('testObserver triggered!', this.get('parentController.test'));
+  }.observes('testController.test'),
 
   sloTemplates: function() {
-    return this.get('parentController.sloTemplates');
-  }.property('parentController.sloTemplates.@each', 'parentController.isAddSloAvailable'),
+    return this.store.all('sloTemplate');
+  }.property(),
   possibleSloTemplates: function() {
     return this.get('parentController.possibleSloTemplates');
   }.property('parentController.possibleSloTemplates.@each', 'parentController.isAddSloAvailable'),

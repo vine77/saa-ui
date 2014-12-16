@@ -21,10 +21,15 @@ App.PopoverView = Ember.View.extend({
   attributeBindings: ['title', 'dataTrigger:data-trigger', 'dataHtml:data-html','dataSelector:data-selector', 'dataContainer:data-container', 'dataPlacement:data-placement', 'dataContent:data-content', 'displayFlag', 'trigger', 'dataToggle:data-toggle'],
   toggle: false,
   dataTrigger: 'click',
+  didInsertElement: function() {
+    //var $content = $('.' + self.get('customId') + ' > ' + '.popover-content');
+    //this.set('contentStored', $content.html());
+    //$content.remove();
+  },
   popoverContent: function() {
-    var self = this;
-    var $content = $('.' + self.get('customId') + ' > ' + '.popover-content');
-    return $content.html();
+
+    return this.get('contentStored');
+
 /*
       return function() {
         var $content = $('#' + self.get('elementId') + ' > ' + '.popover-content');
@@ -75,6 +80,9 @@ App.PopoverView = Ember.View.extend({
     var self = this;
 
     Ember.run.schedule('afterRender', this, function() {
+      self.set('contentStored', $('.' + self.get('customId') + ' > ' + '.popover-content').html() );
+      $('.' + self.get('customId') + ' > ' + '.popover-content').remove();
+
       $('body').on('click', function (e) {
         if (!$(e.target).hasClass('popover-content') && !($(e.target).parents().hasClass('popover-content')) ) {
           $('.' + self.get('customId')).popover(self.get('popoverArguments')).popover('hide');
@@ -84,4 +92,58 @@ App.PopoverView = Ember.View.extend({
 
     this._super();
   }
+});
+
+App.PopoverContentView = Ember.View.extend({
+  classNames: ['inline-block', 'tooltip-container', 'popover-container'],
+  templateName: 'popover-content',
+  parentSelector: '',
+  placement: 'right',
+  customHandleId: null,
+  didInsertElement: function () {
+    var self = this;
+    $('.'+self.get('customHandleId')).popover({
+        html: true,
+        title: self.title,
+        placement: self.get('placement'),
+        trigger: 'manual',
+        content: function() {
+          var $content = $('#popover-content');
+          return $content.html();
+        }
+    }).popover('show');
+  },
+  reloadObserver: function() {
+    console.log('inside of reloadObserver');
+  }.observes('controller.@each')
+});
+
+App.PopoverHandleView = Ember.View.extend({
+  placement: 'right',
+  handleTemplateName: 'popover-content',
+  customHandleId: null,
+  testController: null,
+  mouseEnter: function() {
+    var self = this;
+    if(!$('.popover').is(':visible')) {
+      var view = App.PopoverContentView.create({});
+      view.set("context", this.get("context"));
+      view.set('customHandleId', self.get('customHandleId'));
+      view.set('placement', self.get('placement'));
+      view.set('templateName', self.get('handleTemplateName'));
+      view.set('testController', self.get('testController'))
+      this.get("popover-container").pushObject(view);
+    }
+  },
+  mouseLeave: function() {
+    this.get('popover-container').removeAllChildren();
+    $(".popover").remove();
+  },
+  init: function() {
+    this._super();
+    this.set('customHandleId', App.uuid());
+  },
+  reloadObserver: function() {
+
+  }.observes('')
 });
