@@ -8,7 +8,8 @@ App.StatusesController = Ember.Controller.extend({
   isUpdating: false,
   loggedIn: Ember.computed.alias('controllers.application.loggedIn'),
   loggingStatus: function () {
-    return this.store.getById('status', 'logging_storage');
+    // TODO: logging_storage may be removed post-v1.1.6
+    return this.store.getById('status', 'logging_storage') || this.store.getById('status', 'log_database');
   }.property('model.@each'),
   logsAreVisible: function() {
     var loggingStatus = this.get('loggingStatus.health');
