@@ -1,98 +1,6 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3>Create an SLA</h3>
-</div>
-<form id="slasForm" {{action "createSla" on="submit"}}>
-  <div class="modal-body modal-tall">
-    <p>Create a new {{slaType}} <abbr title="Service-Level Agreement">SLA</abbr>.</p>
-    <div class="row-fluid">
-      <div class="span6">
-        {{#if isApplicationSla}}
-          <label>Enabled: {{input type="checkbox" checked=enabled}}</label>
-        {{/if}}
-      </div>
-      <div class="span6 align-right">
-        SLA Type:
-        {{view Ember.Select class="input-medium"
-          contentBinding="slaTypes"
-          valueBinding="slaType"
-          prompt="Select SLA Type:"
-          optionValuePath="content.value"
-          optionLabelPath="content.label"
-          disabled=isSlaTypeSelected
-        }}
-        <div class="hide">{{slaTypes}}</div>
-      </div>
-    </div>
-    <div class="hide">{{slaTypes}}</div>
-    <div class="form-horizontal well-clean shadow-lifted">
-      <p>
-        <label class="inline">SLA name:</label>
-        {{view Ember.TextField valueBinding="model.name" autofocus="autofocus"}}
-        {{#if isAddSloAvailable}}
-          <a class="btn pull-right" {{action "addSlo"}}>
-            <i class="icon-plus-sign"></i> Add SLO
-          </a>
-        {{else}}
-          <a {{bind-attr class="isAddSloAvailable::disabled :btn :pull-right"}}>
-            <i class="icon-plus-sign"></i> Add SLO
-          </a>
-        {{/if}}
-      </p>
-      {{#each slo in controllers.slos}}
-        <div class="slo-row separator-top">
-          {{view Ember.Select viewName="select" class="input-medium"
-            content=slo.possibleSloTemplates
-            optionValuePath="content.id"
-            optionLabelPath="content.readableSloType"
-            selection=sloTemplate
-            prompt="Select SLO:"
-            disabled=isSelected
-          }}
-          {{#if allowedOperatorsGreaterThanOne}}
-            {{view Ember.Select viewName="select" class="input-small"
-              contentBinding="slo.sloTemplate.allowedOperators"
-              valueBinding="slo.operator"
-            }}
-          {{else}}
-            {{slo.sloTemplate.allowedOperators}}
-          {{/if}}
-
-          {{#if isBoolean}}
-            <label style="display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="value" selection=value value="1"}}
-              True
-            </label>
-            <label style="display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="value" selection=value value="0"}}
-              False
-            </label>
-          {{/if}}
-          {{#if isInteger}}
-            {{view Ember.TextField class="input-small" value=value}}
-          {{/if}}
-          {{#if isString}}
-            {{view Ember.TextField class="input-medium" value=value}}
-          {{/if}}
-          {{#if isRange}}
-            {{view Ember.TextField class="input-tiny" value=rangeMin}} to
-            {{view Ember.TextField class="input-tiny" value=rangeMax}}
-          {{/if}}
-
-          {{slo.sloTemplate.unit}}
-
-          {{#if slo.sloInfoExists}}
-          {{view Ember.TextField class="input-tiny" value=controller.test}}
-          {{#view App.PopoverHandleView placement="right" handleTemplateName="sla-popover" testController=slo}}
-            <span {{bind-attr class="view.customHandleId :help-tip"}}>
-              <i class="icon-question-sign"></i>
-            </span>
-            {{view Ember.ContainerView viewName="popover-container"}}
-          {{/view}}
-
-            {{#view App.PopoverView title="SLO Information" dataTrigger="mixed"}}
-              <span class="help-tip"> <i class="icon-question-sign"></i> </span>
-              <span class="popover-content" style="display:none;">
+              <span id="popover-content" style="display:none;">
+                testController: {{view.testController}} <br>
+                testController.sloVmTableMaximumScus {{testController.sloVmTableMaximumScus}}<br>
                 {{#if slo.isComputeSloTable}}
                   <span class="table-flat-header"> Max SCUs per vCPU </span>
                   <div class="alert alert-info">
@@ -136,7 +44,17 @@
                 {{#if slo.isExclusiveCoresSloTable}}
                   <span class="table-flat-header"> Max Exclusive Cores per VM </span>
                   <div class="alert alert-info">
-                    The below table tells you the state of the current cloud and the number of cores that are available for nodes in the cloud. All nodes in the cloud meets the minimum value, half of the nodes meet the median value, and X meet the maximum value.
+                    The below table tells you the state of the current cloud and the number of SCUs/cores that are available for nodes in the cloud. All nodes in the cloud meets the minimum value, half of the nodes meet the median value, and X meet the maximum value.
+                  </div>
+                  <div class="alert alert-info">
+                    Please select vCPUs to update the table hypothetical values.
+                  </div>
+                  <div class="control-group">
+                    <label class="inline">vCPUs:</label>
+                      {{view Ember.Select
+                        content=slo.vcpuValues
+                        value=slo.vcpus
+                      }}
                   </div>
                   <table class="table">
                     <thead>
@@ -175,7 +93,7 @@
                     <label class="inline">vCPUs:</label>
                     {{view Ember.Select
                       content=slo.vcpuValues
-                      value=slo.vcpus
+                      value=controller.test
                     }}
                   </div>
                   <table class="table">
@@ -204,20 +122,3 @@
                   </table>
                 {{/if}}
               </span>
-            {{/view}}
-          {{/if}}
-          <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
-          <small class="block">{{slo.sloTemplate.description}}</small>
-        </div>
-      {{/each}}
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a class="btn" data-dismiss="modal">Cancel</a>
-    {{#if isSlaCreating}}
-      <a class="btn btn-primary" disabled>Save</a>
-    {{else}}
-      <input class="btn btn-primary" type="submit" value="Save">
-    {{/if}}
-  </div>
-</form>
