@@ -24,8 +24,11 @@ App.VmsColumnsController = App.ColumnsController.extend({
     sortBy: 'nodeName',
     sortAscending: true
   }, {
-    title: 'Capacity',
-    sortBy: 'vcpusTimesSu'
+    title: 'vCPU',
+    sortBy: 'capabilities.cores'
+  }, {
+    title: 'Allocation',
+    sortBy: 'sortScuRange'
   }, {
     title: 'Utilization',
     description: 'The Service Compute Unit (SCU) is a measure of compute consumption on the host server',

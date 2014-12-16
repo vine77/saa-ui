@@ -67,7 +67,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   }.property('controllers.nodes.@each.suCeiling'),
   usedOfAvailableSuPercent: function() {
     return Math.round(100 * parseFloat(this.get('totalCurrentSu')) / parseFloat(this.get('totalSuMax')));
-  }.property('totalSuCeiling', 'totalCurrentSu'),
+  }.property('totalSuMax', 'totalCurrentSu'),
   usedOfAvailableSuWidth: function() {
      return 'width:'+this.get('usedOfAvailableSuPercent')+'%';
   }.property('usedOfAvailableSuPercent'),

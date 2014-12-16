@@ -41,12 +41,12 @@
           </td>
         </tr>
         <tr>
-          <th class="column-medium">vCPU Cores</th>
-          <td>{{capitalize capabilities.cores}}</td>
-        </tr>
-        <tr>
           <th class="column-medium">Memory Size</th>
           <td>{{readableSize capabilities.memory_size}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">vCPU</th>
+          <td>{{capitalize capabilities.cores}} vCPU</td>
         </tr>
         <tr>
           <th class="column-medium">MAC Addresses</th>
@@ -145,13 +145,13 @@
           </td>
         </tr>
         <tr>
-          <th class="column-medium">Utilization (SCUs)</th>
+          <th class="column-medium">Utilization</th>
           <td>
-            {{na utilization.scu_total}} SCUs
-            {{#if suTotalRange}}out of {{suTotalRange}} allocated{{/if}}
+            {{na utilization.scu_total}} SCU
+            {{#if suRange}}out of {{suRange}} SCU allocated{{/if}}
             {{#unlessEmpty utilization.scu_overload}}
               <br>
-              SCU overhead is {{utilization.scu_overload}} SCUs
+              SCU overhead is {{utilization.scu_overload}} SCU
             {{/unlessEmpty}}
           </td>
         </tr>

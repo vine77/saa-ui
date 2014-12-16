@@ -44,28 +44,10 @@
         {{/if}}
       </div></td>
       <td><div class="cell-container">
-        {{#if isAssuredCoresPhysical}}
-          {{na capabilities.cores}} vCPUs
-        {{else}}
-          <div class="cpu-typography">
-            {{#if capabilities.cores}}
-              {{#if suRange}}
-                <div class="cores-and-allocation">
-                  <div class="cores">{{na capabilities.cores}} vCPUs</div>
-                  <div class="allocation">&times; {{na suRange}} SCU</div>
-                </div>
-                <div class="total-allocation">
-                  <span class="operator">=</span>
-                  {{suTotalRange}} SCU
-                </div>
-              {{else}}
-                {{na capabilities.cores}} vCPU
-              {{/if}}
-            {{else}}
-              <span class="not-applicable">n/a</span>
-            {{/if}}
-          </div>
-        {{/if}}
+        {{na capabilities.cores}} vCPU
+      </div></td>
+      <td><div class="cell-container">
+        {{na suRange}} SCU
       </div></td>
       <td><div class="cell-container">
         {{#if isAssuredCoresPhysical}}

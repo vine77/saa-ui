@@ -165,15 +165,6 @@ App.VmController = Ember.ObjectController.extend({
       return parseFloat(this.get('suFloor')).toFixed(1) + '-' + parseFloat(this.get('suCeiling')).toFixed(1);
     }
   }.property('suFloor', 'suCeiling'),
-  suTotalRange: function () {
-    if (Ember.isEmpty(this.get('suFloor'))) {
-      return null;
-    } else if (this.get('suFloor') === this.get('suCeiling')) {
-      return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
-    } else {
-      return (parseFloat(this.get('suFloor')) * parseInt(this.get('capabilities.cores'))).toFixed(1) + '-' + (parseFloat(this.get('suCeiling')) * parseInt(this.get('capabilities.cores'))).toFixed(1);
-    }
-  }.property('suFloor', 'suCeiling', 'capabilities.cores'),
   allocationMin: function () {
     if (Ember.isEmpty(this.get('capabilities.scu_allocated_min'))) return 0;
     return 100 * parseFloat(this.get('capabilities.scu_allocated_min')) / parseFloat(this.get('capabilities.scu_allocated_max'));
