@@ -5,7 +5,7 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
   }.property('controllers.nodes.@each'),
 
   numberOfTrusted: function() {
-    return this.get('controllers.nodes').filterBy('status.trust_status.trust', 2).get('length');
+    return this.get('controllers.nodes').filterBy('status.trust_status.trust', App.TRUSTED).get('length');
   }.property('controllers.nodes.@each'),
   percentOfTrusted: function () {
     return Math.round(100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfNodes')));

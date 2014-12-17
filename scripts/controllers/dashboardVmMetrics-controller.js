@@ -8,15 +8,11 @@ App.DashboardVmMetricsController = Ember.Controller.extend({
     return Math.round(100 * parseFloat(this.get('controllers.nodes.totalVcpus')) / parseFloat(this.get('controllers.nodes.maxVcpus')));
   }.property('controllers.nodes.@each.vcpus'),
   isTotalVcpusPercentAvailable: function () {
-    if (isNaN(this.get('totalVcpusPercent'))) {
-      return false;
-    } else {
-      return true;
-    }
+    return !isNaN(this.get('totalVcpusPercent'));
   }.property('totalVcpusPercent'),
 
   numberOfTrusted: function() {
-    return this.get('controllers.vms').filterBy('status.trust_status.trust', 2).get('length');
+    return this.get('controllers.vms').filterBy('status.trust', App.TRUSTED).get('length');
   }.property('controllers.vms.@each'),
   percentOfTrusted: function () {
     return Math.round(100 * parseFloat(this.get('numberOfTrusted')) / parseFloat(this.get('totalNumberOfVms')));
