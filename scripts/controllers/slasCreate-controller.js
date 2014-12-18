@@ -19,6 +19,7 @@ App.SlasCreateController = Ember.ObjectController.extend({
     });
   }.property('sloTemplates.@each.elementName'),
   slaType: Ember.computed.alias('model.type'),
+  isSlaTypeSelected: Ember.computed.notEmpty('slaType'),
   possibleSloTemplates: function() {
     var slaType = this.get('slaType');
     var self = this;
