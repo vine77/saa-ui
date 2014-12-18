@@ -13,12 +13,18 @@
       <label class="control-label">Hostname</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
+        {{#if errors.hostname}}
+          <span class="text-error">{{errors.hostname}}</span>
+        {{/if}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Port</label>
       <div class="controls">
         {{view Ember.TextField valueBinding="port" id="mailserver-port" placeholder="Port"}}
+        {{#if errors.port}}
+          <span class="text-error">{{errors.port}}</span>
+        {{/if}}
       </div>
     </div>
     <div class="control-group">
@@ -35,20 +41,23 @@
     </div>
     <div class="control-group">
       <label class="control-label">Email
-        {{#view App.TooltipView title="This email address will be the 'from' address as sent to recipents from the mail server"}}
+        {{#view App.TooltipView title="Recipient's Email"}}
           <a> <i class="icon-question-sign"></i> </a>
         {{/view}}
       </label>
 
       <div class="controls">
         {{view Ember.TextField valueBinding="sender_email" placeholder="Email Address"}}
+        {{#if errors.sender_email}}
+          <span class="text-error">{{errors.sender_email}}</span>
+        {{/if}}
       </div>
     </div>
     <div class="control-group">
       <div class="controls">
         {{#unless isTestEmailActionPending}}
           <button class="btn btn-primary" type="button" {{action "testEmail"}}>Send Test Email</button>
-          {{#view App.TooltipView title="This will send a test email to the 'From' address above"}}
+          {{#view App.TooltipView title="This will send a test email to recipient in the Email field above"}}
             <a> <i class="icon-question-sign"></i> </a>
           {{/view}}
         {{else}}
