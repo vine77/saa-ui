@@ -1,6 +1,19 @@
 App.SlasCreateController = Ember.ObjectController.extend({
-  needs: ['nodes', 'slos'],
+  needs: ['nodes'],
 
+  slos: function() {
+    var self = this;
+    var slos = App.SlosController.create({
+      container: this.container,
+      parentController: self
+    });
+    this.get('model.slos').forEach( function(item, index, enumerable) {
+      slos.pushObject(item);
+    });
+    return slos;
+  }.property('model.slos.@each', 'model', 'model.@each'),
+
+  testerProp: 'FOX JUMPS',
   sloTemplates: function () {
     return this.store.all('sloTemplate');
   }.property(),
@@ -67,8 +80,8 @@ App.SlasCreateController = Ember.ObjectController.extend({
   isSlaCreating: false,
   actions: {
     addSlo: function () {
-      //this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
-      this.get('controllers.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      this.get('model.slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
+      //this.get('slos').addObject(this.store.createRecord('slo', {id: App.uuid()}));
     },
     deleteSlo: function (slo) {
       slo.clearInverseRelationships();

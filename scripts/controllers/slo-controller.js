@@ -1,6 +1,6 @@
 App.SlosController = Ember.ArrayController.extend({
   itemController: 'slo'
-})
+});
 
 
 App.SloController = Ember.ObjectController.extend({
@@ -8,15 +8,15 @@ App.SloController = Ember.ObjectController.extend({
 
   isSelected: Ember.computed.notEmpty('sloTemplate'),
   vcpuValues: [0, 1, 2, 3, 4],
-  /*
+
   vcpus: function() {
     return this.get('parentController.vcpusInteger');
   }.property('parentController.vcpusInteger'),
-  */
+ /*
   testObserver: function() {
     console.log('testObserver triggered!', this.get('parentController.test'));
   }.observes('testController.test'),
-
+  */
   sloTemplates: function() {
     return this.store.all('sloTemplate');
   }.property(),

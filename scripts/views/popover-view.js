@@ -112,13 +112,11 @@ App.PopoverContentView = Ember.View.extend({
           return $content.html();
         }
     }).popover('show');
-  },
-  reloadObserver: function() {
-    console.log('inside of reloadObserver');
-  }.observes('controller.@each')
+  }
 });
 
 App.PopoverHandleView = Ember.View.extend({
+  classNames: ['inline-block'],
   placement: 'right',
   handleTemplateName: 'popover-content',
   customHandleId: null,
@@ -142,8 +140,5 @@ App.PopoverHandleView = Ember.View.extend({
   init: function() {
     this._super();
     this.set('customHandleId', App.uuid());
-  },
-  reloadObserver: function() {
-
-  }.observes('')
+  }
 });
