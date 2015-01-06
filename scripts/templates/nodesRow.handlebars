@@ -84,62 +84,66 @@
       </td>
       <td><div class="cell-container">
         <div class="contention">
-          {{#unless isAssuredCoresPhysical}}
-            {{#if computeExists}}
-              {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
-                <div class="contention-bar">
-                  <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
-                    <div class="contention-gradient"></div>
+          {{#unless isMonitored}}
+            {{#unless isAssuredCoresPhysical}}
+              {{#if computeExists}}
+                {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
+                  <div class="contention-bar">
+                    <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
+                      <div class="contention-gradient"></div>
+                    </div>
                   </div>
-                </div>
-                 {{#if scuCurrentExceedsMax}}
-                   <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
-                 {{else}}
-                   {{na systemScuUtilization}}
-                 {{/if}}
-                <div class="popover-content" style="display:none;">
-                <table style="width:100%;" class="table-borderless">
-                  <tr>
-                    <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
-                    <td>
-                      {{progress-bar-simple
-                        value=systemScuUtilization
-                        thresholdMax=utilization.scu.system.max
-                      }}
-                    </td>
-                  </tr>
-                  {{#each scuValues}}
+                   {{#if scuCurrentExceedsMax}}
+                     <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
+                   {{else}}
+                     {{na systemScuUtilization}}
+                   {{/if}}
+                  <div class="popover-content" style="display:none;">
+                  <table style="width:100%;" class="table-borderless">
                     <tr>
-                      <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
+                      <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
                       <td>
-                        <div style="margin-bottom:25px; margin-top:20px;">
-                          {{progress-bar-simple
-                            value=value
-                            thresholdMax=max
-                          }}
-                        </div>
+                        {{progress-bar-simple
+                          value=systemScuUtilization
+                          thresholdMax=utilization.scu.system.max
+                        }}
                       </td>
                     </tr>
-                  {{/each}}
-                  <tr>
-                    <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
-                  </tr>
-                </table>
-                </div>
-              {{/view}}
+                    {{#each scuValues}}
+                      <tr>
+                        <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
+                        <td>
+                          <div style="margin-bottom:25px; margin-top:20px;">
+                            {{progress-bar-simple
+                              value=value
+                              thresholdMax=max
+                            }}
+                          </div>
+                        </td>
+                      </tr>
+                    {{/each}}
+                    <tr>
+                      <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
+                    </tr>
+                  </table>
+                  </div>
+                {{/view}}
+              {{else}}
+                <span class="not-applicable">n/a</span>
+              {{/if}}
             {{else}}
-              <span class="not-applicable">n/a</span>
-            {{/if}}
+              {{#unlessEmpty utilization.cores.system.used}}
+                {{progress-bar-simple
+                  value=utilization.cores.system.used
+                  thresholdMax=utilization.cores.system.max
+                  title="Cores"
+                }}
+              {{else}}
+                <span class="not-applicable">n/a</span>
+              {{/unlessEmpty}}
+            {{/unless}}
           {{else}}
-            {{#unlessEmpty utilization.cores.system.used}}
-              {{progress-bar-simple
-                value=utilization.cores.system.used
-                thresholdMax=utilization.cores.system.max
-                title="Cores"
-              }}
-            {{else}}
-              <span class="not-applicable">n/a</span>
-            {{/unlessEmpty}}
+            <span class="not-applicable">n/a</span>
           {{/unless}}
         </div>
       </div></td>

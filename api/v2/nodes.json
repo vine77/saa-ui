@@ -1085,7 +1085,7 @@
         },
         "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
         "health": 1,
-        "mode": 3,
+        "mode": 1,
         "ipmi": true,
         "operational": 2,
         "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
@@ -1249,7 +1249,7 @@
           "system": {
             "max": 50.0,
             "label": "MEDIUM",
-            "value": 4.31,
+            "value": 0,
             "min": 0.0
           }
         }
