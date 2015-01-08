@@ -42,8 +42,8 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
 
   barLabel1Style: function() {
     var right = ~~this.get('progressBarTwoPercent') + ~~this.get('progressBarThreePercent');
-    return 'position:absolute; bottom:7px; right:'+right+'%';
-  }.property('value'),
+    return 'position:absolute; bottom:6px; right:'+right+'%';
+  }.property('value', 'progressBarTwoPercent', 'progressBarThreePercent'),
 
   progressBarOnePercent: function() {
     return 100 * this.get('thresholdOne') / this.get('thresholdMax');
