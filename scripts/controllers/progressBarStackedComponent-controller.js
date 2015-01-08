@@ -4,6 +4,7 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
   thresholdTwo: null,
   thresholdThree: null,
   thresholdMax: Ember.computed.alias('thresholdThree'),
+  barLabel1: false,
   backgroundWidths: function() {
     var sum = Number(this.get('progressBarTwoPercent')) + Number(this.get('progressBarOnePercent'));
     return 'background-image:'+
@@ -39,6 +40,11 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
     return 'position:absolute; bottom:-14px; right:'+right+'%';
   }.property('value'),
 
+  barLabel1Style: function() {
+    var right = ~~this.get('progressBarTwoPercent') + ~~this.get('progressBarThreePercent');
+    return 'position:absolute; bottom:7px; right:'+right+'%';
+  }.property('value'),
+
   progressBarOnePercent: function() {
     return 100 * this.get('thresholdOne') / this.get('thresholdMax');
   }.property('thresholdOne', 'thresholdMax', 'value'),
@@ -66,12 +72,12 @@ App.ProgressBarStackedComponent = Ember.Component.extend({
   }.property('value', 'thresholdTwo','thresholdThree'),
 
   barRange1Style: function() {
-    return 'width:' + this.get('barRange1Percentage') + '%';
+    return 'width:' + this.get('barRange1Percentage') + '%; position:relative;';
   }.property('barRange1Percentage'),
   barRange2Style: function() {
-    return 'width:' + this.get('barRange2Percentage') + '%';
+    return 'width:' + this.get('barRange2Percentage') + '%; position:relative;';
   }.property('barRange2Percentage'),
   barRange3Style: function() {
-    return 'width:' + this.get('barRange3Percentage') + '%';
+    return 'width:' + this.get('barRange3Percentage') + '%; position:relative;';
   }.property('barRange3Percentage')
 });

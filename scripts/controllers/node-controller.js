@@ -108,7 +108,9 @@ App.NodeController = Ember.ObjectController.extend({
       });
     }
     return systemScuUtilization.toFixed();
+    //return this.get('utilization.scu.system.allocated');
   }.property('scuUtilizationCgroups.@each'),
+
   systemContention: function() {
     return this.get('contention.llc.system.value');
     /*
@@ -524,13 +526,13 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeWidth: function () {
-    if (this.get('systemScuUtilization') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (this.get('utilization.scu.system.allocated') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
       return 'display:none;';
     } else {
-      percent = App.rangeToPercentage(this.get('systemScuUtilization'), 0, this.get('utilization.scu.system.max'));
+      percent = App.rangeToPercentage(this.get('utilization.scu.system.allocated'), 0, this.get('utilization.scu.system.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('systemScuUtilization', 'utilization.scu.system.max'),
+  }.property('utilization.scu.system.allocated', 'utilization.scu.system.max'),
   computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
 
   hasContention: Ember.computed.notEmpty('systemContention'),
@@ -723,3 +725,8 @@ App.PopoverCgroupController = Ember.ObjectController.extend({
   }.property('current', 'max')
 });
 
+App.ScuValueController = Ember.ObjectController.extend({
+  hasBurst: function() {
+    return !(this.get('min') === this.get('max'));
+  }.property('min', 'max')
+});

@@ -94,38 +94,55 @@
                     </div>
                   </div>
                    {{#if scuCurrentExceedsMax}}
-                     <span style="color:red;"><strong>{{na systemScuUtilization}}</strong></span>
+                     <span style="color:red;"><strong>{{na utilization.scu.system.allocated}}</strong></span>
                    {{else}}
-                     {{na systemScuUtilization}}
+                     {{na utilization.scu.system.allocated}}
                    {{/if}}
                   <div class="popover-content" style="display:none;">
-                  <table style="width:100%;" class="table-borderless">
-                    <tr>
-                      <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
-                      <td>
-                        {{progress-bar-simple
-                          value=systemScuUtilization
-                          thresholdMax=utilization.scu.system.max
-                        }}
-                      </td>
-                    </tr>
-                    {{#each scuValues}}
-                      <tr>
-                        <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
-                        <td>
-                          <div style="margin-bottom:25px; margin-top:20px;">
-                            {{progress-bar-simple
-                              value=value
-                              thresholdMax=max
-                            }}
-                          </div>
-                        </td>
-                      </tr>
-                    {{/each}}
-                    <tr>
-                      <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
-                    </tr>
-                  </table>
+                    <div style="width:550px;">
+                      <h5> System </h5>
+                      <div style="border: 1px solid #ddd; padding:5px; background-color:#f0f0f1; margin-bottom:8px">
+                        <table style="width:100%;" class="table-borderless">
+                          <tr>
+                            <td class="column-compressed"> Allocation: {{utilization.scu.system.allocated}} SCUs allocated of {{utilization.scu.system.max}} total</td>
+                            <td>
+                              {{progress-bar-simple
+                                value=utilization.scu.system.allocated
+                                thresholdMax=utilization.scu.system.max
+                              }}
+                            </td>
+                          </tr>
+                                                    <tr>
+                            <td class="column-compressed" style="line-height:30px;"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
+                          </tr>
+                          <tr>
+                            <td class="column-compressed"> Utilization: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.allocated}} total</td>
+                            <td>
+                              {{progress-bar-simple
+                                value=systemScuUtilization
+                                thresholdMax=utilization.scu.system.allocated
+                              }}
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                      <table style="width:100%;" class="table-borderless">
+                        {{#each scuValues itemController="scuValue"}}
+                          <tr>
+                            <td class="column-compressed"> {{type}}: {{value}} SCUs utilized out of {{max}} SCUs.
+                              {{#if hasBurst}}
+                                <br>(Assured {{min}} SCUs allocated and burst up to {{max}} SCUs)
+                              {{/if}}
+                            </td>
+                            <td>
+                              <div>
+                                {{progress-bar-stacked value=value overallWidth="90%" thresholdOne=min thresholdTwo=max thresholdThree=max barLabel1Binding="hasBurst"}}
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </table>
+                    </div>
                   </div>
                 {{/view}}
               {{else}}

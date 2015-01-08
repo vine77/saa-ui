@@ -11,4 +11,9 @@
   <span {{bind-attr style=currentValueStyle}}>
     <span style="font-size:0.7em"> {{value}} </span>
   </span>
+  {{#if barLabel1}}
+    <span {{bind-attr style=barLabel1Style}}>
+      <span style="font-size:0.7em"> {{thresholdOne}} </span>
+    </span>
+  {{/if}}
 </div>
