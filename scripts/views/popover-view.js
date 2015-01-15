@@ -192,9 +192,12 @@ App.PopoverHandleView = Ember.View.extend({
       this.get("popover-container").pushObject(view);
     }
   },
-  mouseLeave: function() {
-    this.get('popover-container').removeAllChildren();
-    $(".popover").remove();
+  mouseLeave: function(event) {
+    var fromSelect = (event.relatedTarget === null || $(event.fromElement).is('select'));
+    if (!fromSelect) {
+      this.get('popover-container').removeAllChildren();
+      $(".popover").remove();
+    }
   },
   init: function() {
     this._super();
