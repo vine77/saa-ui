@@ -52,19 +52,21 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }
   }.property('controllers.nodes.percentOfRam'),
 
+
+
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.scus.total.current') > 0) ? item.get('utilization.scus.total.current') : 0;
+      var count = (item.get('utilization.scu.system.value') > 0) ? item.get('utilization.scu.system.value') : 0;
       return previousValue + count;
     }, 0);
-  }.property('controllers.nodes.@each.utilization'),
+  }.property('controllers.nodes.@each'),
   totalSuMax: function() {
     var totalSuMax = this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.scus.total.max') > 0) ? parseFloat(item.get('utilization.scus.total.max')) : 0;
+      var count = (item.get('utilization.scu.system.max') > 0) ? parseFloat(item.get('utilization.scu.system.max')) : 0;
       return previousValue + count;
     }, 0);
     return Math.round(totalSuMax);
-  }.property('controllers.nodes.@each.suCeiling'),
+  }.property('controllers.nodes.@each', 'totalNumberOfNodes'),
   usedOfAvailableSuPercent: function() {
     return Math.round(100 * parseFloat(this.get('totalCurrentSu')) / parseFloat(this.get('totalSuMax')));
   }.property('totalSuMax', 'totalCurrentSu'),
