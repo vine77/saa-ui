@@ -2,7 +2,8 @@
   "gates": [
     "SAA 1.1.5",
     "CO 1.1",
-    "SUSE Cloud 4"
+    "SUSE Cloud 4",
+    "SAA 15.1"
   ],
   "users": [{
     "github": "vine77",
