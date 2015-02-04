@@ -19,5 +19,8 @@ App.DashboardStatusController = Ember.ArrayController.extend({
       message: schedulerPluginVersionMessage
     });
     return messages;
-  }.property('controllers.statuses.@each')
+  }.property('controllers.statuses.@each'),
+
+
+
 });
