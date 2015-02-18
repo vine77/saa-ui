@@ -176,7 +176,8 @@ App.AppRoute = Ember.Route.extend({
         nova: App.nova.check(),
         openrc: App.openrc.check(),
         quantum: App.quantum.check(),
-        keystone: App.keystone.check()
+        keystone: App.keystone.check(),
+        keystoneConf: App.keystoneConf.check()
       }).then(function () {
         // SAA is configured
         self.store.find('sloTemplate');

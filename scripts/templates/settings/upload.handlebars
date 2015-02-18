@@ -16,6 +16,21 @@
       </div>
       <p class="instructions">Please upload your OpenStack Nova configuration file (<code>nova.conf</code>) from one of your compute nodes that SAA will be managing. This file can be found at the file path <code>/etc/nova/nova.conf</code>. <span class="text-warning"><strong>Note:</strong> Remember to update the "nova_url" value in nova.conf before uploading.</span></p>
     </form>
+    <form id="keystoneConfForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
+      <input type="hidden" name="app" value="sam">
+      <legend>Keystone Configuration</legend>
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Upload <code>keystone.conf</code> (required)</label>
+        <div class="controls">
+          <div {{bind-attr class=":fileupload keystoneConfExists:fileupload-exists:fileupload-new"}} data-provides="fileupload" data-name="keystoneConfFile">
+            <div class="input-append">
+              <div class="uneditable-input span3"><i {{bind-attr class="keystoneConf:icon-ok-circle:icon-file"}}></i> <span class="fileupload-preview">keystone.conf</span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="keystoneConfFile"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="instructions">Please upload your Keystone configuration file (<code>keystone.conf</code>) from one of your compute nodes that SAA will be managing. This file can be found at the file path <code>/etc/keystone/keystone.conf</code>. </p>
+    </form>
     <form id="openrcForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
       <legend>Credentials</legend>

@@ -4,6 +4,8 @@ App.SettingsUploadController = Ember.ArrayController.extend({
   isConfiguredBinding: 'controllers.application.isConfigured',
   novaExistsBinding: 'App.nova.exists',
   novaSuccessBinding: 'App.nova.success',
+  keystoneConfExistsBinding: 'App.keystoneConf.exists',
+  keystoneConfSuccessBinding: 'App.keystoneConf.success',
   openrcExistsBinding: 'App.openrc.exists',
   openrcSuccessBinding: 'App.openrc.success',
   quantumExistsBinding: 'App.quantum.exists',
@@ -28,6 +30,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       var isOpenrcSpecified = !!$('#openrcForm').find('input[type=file]').val();
       var isQuantumSpecified = !!$('#quantumForm').find('input[type=file]').val();
       var isKeystoneSpecified = !!$('#keystoneForm').find('input[type=file]').val();
+      var isKeystoneConfSpecified = !!$('#keystoneConfForm').find('input[type=file]').val();
       var allFilesSpecified = false;
       if (this.get('isNeutronConfigRequired')) {
         allFilesSpecified = isNovaSpecified && isOpenrcSpecified && isQuantumSpecified;
@@ -53,6 +56,8 @@ App.SettingsUploadController = Ember.ArrayController.extend({
         }).then(function () {
           if (isKeystoneSpecified) return App.keystone.upload();
         }).then(function () {
+          if (isKeystoneConfSpecified) return App.keystoneConf.upload();
+        }).then(function () {
           return App.nova.start();
         }).then(function () {
           self.set('isActionPending', false);
@@ -73,6 +78,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
           App.openrc.check();
           App.quantum.check();
           App.keystone.check();
+          App.keystoneConf.check();
         });
       }
     },
