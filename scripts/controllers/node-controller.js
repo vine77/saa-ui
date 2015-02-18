@@ -173,7 +173,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuTooltip: function() {
     var messages = [];
+
     messages.push('System:  ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
+
     if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
     if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }
     if (!!this.get('scuVmUtilization.max')) { messages.push('VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max')); }
@@ -272,16 +274,31 @@ App.NodeController = Ember.ObjectController.extend({
     return (this.get('utilization.scu.system.max') - this.get('utilization.scu.system.allocated')).toFixed(2);
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
+  scuValuesExist: function () {
+    return typeof this.get('scuValues') !== 'undefined' && this.get('scuValues') !== null && this.get('scuValues').length > 0;
+  }.property('scuValues.@each', 'scuValues'),
+
   scuValues: function() {
     var returnArray = [];
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
+        var utilizationCurrent = (+item.compute + +item.io_wait + +item.misc).toFixed(2);
+        var burst = (utilizationCurrent - item.min).toFixed(2);
+        var utilizationCurrent = (utilizationCurrent - burst).toFixed(2);
+        var notUtilized = (item.max - utilizationCurrent).toFixed(2);
+        var notUtilized = (notUtilized - burst).toFixed(2);
+
         returnArray.push({
           min: item.min,
           max: item.max,
-          value: item.value,
+          compute: item.compute,
+          ioWait: item.io_wait,
+          misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
-          type: item.type.toUpperCase()
+          type: item.type.toUpperCase(),
+          burst: burst,
+          utilizationCurrent: utilizationCurrent,
+          notUtilized: notUtilized
         });
       });
       /*
@@ -296,7 +313,91 @@ App.NodeController = Ember.ObjectController.extend({
       */
     }
     return returnArray.sortBy('sortOrder');
-  }.property('scuUtilizationCgroups', 'scuUnallocated'),
+  }.property('scuUtilizationCgroups.@each', 'scuUnallocated'),
+
+  scuCgroupSunburst: function() {
+    var layout = {
+      "name": "scu_chart",
+      "children": []
+    };
+    this.get('scuValues').forEach(function(item, index, enumerable) {
+      var segment = {
+        "name": item.type,
+        "fill_type": "blue",
+        "size": item.max,
+        "children": []
+      };
+
+      var utilizationCurrent = (+item.compute + +item.ioWait + +item.misc).toFixed(2);
+      var burst = (utilizationCurrent - item.min).toFixed(2);
+      var utilizationCurrent = (utilizationCurrent - burst).toFixed(2);
+      var notUtilized = (item.max - utilizationCurrent).toFixed(2);
+      var notUtilized = (notUtilized - burst).toFixed(2);
+
+      var detailsChildren = {
+        "name": "scu_chart_details",
+        children: [
+          {
+            "name": "Compute",
+            "fill_type": "dark-green",
+            "size": item.compute
+          },
+          {
+            "name": "Miscellaneous",
+            "fill_type": "yellow",
+            "size": item.misc
+          },
+          {
+            "name": "IO Wait",
+            "fill_type": "brown",
+            "size": item.misc
+          }
+        ]
+      };
+
+      var utilizedSegment = {
+        "name": "Utilized",
+        "fill_type": "light-green",
+        "size": utilizationCurrent,
+        "detailsChildren": detailsChildren
+      }
+
+      var burstSegment = {
+        "name": "Burst",
+        "fill_type": "red",
+        "size": burst,
+        "detailsChildren": detailsChildren
+      }
+
+      var notUtilizedSegment = {
+        "name": "Not Utilized",
+        "fill_type": "gray",
+        "size": Math.max(0, notUtilized)
+      }
+
+/*
+      for(var key in item) {
+        if (item.hasOwnProperty(key)) {
+          if (key != "min" && key != "max" && key != 'sortOrder') {
+            var utilizationSegment = {
+              "name": key,
+              "fill_type": "light-green",
+              "size": item[key]
+            }
+            segment.children.push(utilizationSegment);
+          }
+        }
+      }
+*/
+
+      segment.children.push(utilizedSegment);
+      segment.children.push(burstSegment);
+      segment.children.push(notUtilizedSegment);
+      layout.children.push(segment);
+    });
+    return layout;
+  }.property('scuValues.@each', 'scuValues'),
+
   scuCurrentExceedsMax: function() {
     var returnVal = false;
     if (this.get('scuUtilizationCgroups')) {

@@ -199,15 +199,16 @@ App.VmController = Ember.ObjectController.extend({
     return message;
   }.property('isRange', 'utilization.scu_total', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
-    var burst = this.get('utilization.scu_burst');
+    var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc') + this.get('utilization.scu.io_wait');
+    var burst =  this.get('capabilities.scu_allocated_min') - currentUtilization;
     if (Ember.isEmpty(burst)) burst = 0;
-    return this.get('utilization.scu_burst');
-  }.property('utilization.scu_burst'),
+    return burst;
+  }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'utilization.scu.compute', 'utilization.scu.misc', 'utilization.scu.io_wait'),
   utilizationCurrent: function() {
-    var total = this.get('utilization.scu_total');
+    var total = this.get('utilization.scu.compute') + this.get('utilization.scu.misc') + this.get('utilization.scu.io_wait');
     if (Ember.isEmpty(total)) total = 0;
-    return Math.max(0, total - this.get('utilizationBurst'));
-  }.property('utilization.scu_total', 'utilizationBurst'),
+    return Math.max(0, total).toFixed(2);
+  }.property('utilization.scu.compute','utilization.scu.misc','utilization.scu.io_wait', 'utilizationBurst'),
   utilizationBurstWidth: function() {
     if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
     var percent = 100 * parseFloat(this.get('utilizationBurst')) / parseFloat(this.get('capabilities.scu_allocated_max'));
@@ -234,6 +235,75 @@ App.VmController = Ember.ObjectController.extend({
   utilizationBurstStyle: function() {
     return this.get('utilizationBurstWidth') + this.get('utilizationBurstLeft');
   }.property('utilizationBurstWidth', 'utilizationBurstLeft'),
+
+  //utilizationSunburstExists: function() {
+    //return this.get
+  //}
+
+  utilizationSunburst: function () {
+    var self = this;
+    return  {
+     "name": "scu_chart",
+     "children": [
+      {
+       "name": "Allocated",
+       "fill_type": "blue",
+       "size": self.get('capabilities.scu_allocated_min'),
+       "description": "Minimum",
+       "children": [
+        {
+         "name": "Utilization",
+         "size": self.get('utilizationCurrent'),
+         "fill_type": "light-green",
+         "children": [
+          {
+            "name": "IO Wait",
+            "size": self.get('utilization.scu.io_wait'),
+            "fill_type": "orange",
+            "description": "Utilization"
+          },
+          {
+            "name": "Miscellaneous",
+            "size": self.get('utilization.scu.misc'),
+            "fill_type": "yellow",
+            "description": "Utilization"
+          },
+          {
+            "name": "Compute",
+            "size": self.get('utilization.scu.compute'),
+            "fill_type": "dark-green",
+            "description": "Utilization"
+          }
+         ]
+        },
+        {
+          "name": "Not Utilized",
+          "size": self.get('capabilities.scu_allocated_min') - self.get('utilizationCurrent'),
+          "fill_type": "gray"
+        }
+       ]
+      },
+      {
+        "name": "Allocated",
+        "fill_type": "blue",
+        "size": self.get('capabilities.scu_allocated_max'),
+        "description": "Maximum",
+        "children": [
+          {
+            "name": "Burst",
+            "fill_type": "red",
+            "size": self.get('utilizationBurst')
+          },
+          {
+            "name": "Not Bursting",
+            "fill_type": "gray",
+            "size": self.get('capabilities.scu_allocated_max') - self.get('utilizationBurst')
+          }
+        ]
+      }
+     ]
+    };
+  }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
 
   // Observers
   graphObserver: function () {

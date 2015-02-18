@@ -822,10 +822,15 @@
       "id": "6acf3500-6da9-4b83-9827-aae98225675f",
       "victim_ids": [],
       "cloud_id": "6acf3500-6da9-4b83-9827-aae98225675f",
+
       "utilization": {
         "ipc": 1.74,
         "uptime": 37661,
-        "scu_total": 1.67,
+        "scu": {
+          "compute": 1,
+          "misc": 1,
+          "io_wait": 1
+        },
         "cores": {
           "system": {
             "used": [
@@ -848,7 +853,6 @@
         ],
         "io": null,
         "memory": "1048576 KB",
-        "scu_burst": 0.67,
         "cpu": 36.93,
         "network": null
       },
@@ -860,9 +864,9 @@
       "capabilities": {
         "scu_allocated": 2.0,
         "cores": 2,
-        "scu_allocated_max": 4.0,
+        "scu_allocated_max": 6,
         "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
+        "scu_allocated_min": 4
       },
       "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
       "vm_name": "bv-10-gips-6acf3500-6da9-4b83-9827-aae98225675f",

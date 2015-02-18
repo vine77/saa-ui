@@ -694,16 +694,20 @@
         "scu": {
           "cgroups": [
             {
-              "max": 4.0,
+              "max": 8.0,
+              "min": 3,
               "type": "vm",
-              "value": 3.11,
-              "min": 0.0
+              "compute": 3,
+              "io_wait": 2,
+              "misc": 1
             },
             {
               "max": 5.21,
+              "min": 0.0,
               "type": "os",
-              "value": 2.16,
-              "min": 0.0
+              "compute": 2.16,
+              "io_wait": 2,
+              "misc": 1
             }
           ],
           "system": {
@@ -1120,12 +1124,7 @@
         },
         "scu": {
           "cgroups": [
-            {
-              "max": 4.68,
-              "type": "os",
-              "value": 0.17,
-              "min": 0.0
-            }
+
           ],
           "system": {
             "max": 56.16,

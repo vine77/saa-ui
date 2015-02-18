@@ -9,6 +9,7 @@
     <li><a onclick="App.selectTab(event)">Trust</a></li>
     <li><a onclick="App.selectTab(event)">MLEs</a></li>
     <li><a onclick="App.selectTab(event)">PCR Logs</a></li>
+    <li><a onclick="App.selectTab(event)">SCU</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active details">
@@ -435,6 +436,38 @@
           <div class="alert alert-info">No PCR Logs found.</div>
         {{/unless}}
       {{/if}}
+    </div>
+    <div class="tab-pane scu">
+      {{#if scuValuesExist}}
+        <div style="text-align:center;">
+          {{sunburst-chart dataSource=scuCgroupSunburst width=350 height=350}}
+        </div>
+        <table class="table table-bordered">
+          <tr>
+            <th>Type</th>
+            <th>Utilization</th>
+            <th>Burst</th>
+            <th>Minimum</th>
+            <th>Maximum</th>
+            <th>Compute</th>
+            <th>IO Wait</th>
+            <th>Miscellaneous</th>
+          </tr>
+          {{#each scuValue in scuValues}}
+            <tr>
+              <td> {{scuValue.type}} </td>
+              <td> {{scuValue.utilizationCurrent}} </td>
+              <td> {{scuValue.burst}} </td>
+              <td> {{scuValue.min}} </td>
+              <td> {{scuValue.max}} </td>
+              <td> {{scuValue.compute}} </td>
+              <td> {{scuValue.ioWait}} </td>
+              <td> {{scuValue.misc}} </td>
+            </tr>
+          {{/each}}
+        </table>
+      {{/if}}
+      {{partial "scu-definition"}}
     </div>
   </div>
 </div>

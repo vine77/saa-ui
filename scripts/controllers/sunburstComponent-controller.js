@@ -15,11 +15,18 @@ App.SunburstChartComponent = Ember.Component.extend({
   dataSource: null,
   legend: false,
   gCustomId: 'g' + this.get('elementId'),
-  customId: this.get('elementId'),
+
+  attributeBindings: ['getId:data-id'],
+  getId: function() {
+    return this.get('customId');
+  }.property('customId'),
+
   totalSize: 0,
   chartTitle: '',
   chartDescription: '',
   explanationStyle: 'visibility: hidden; width:'+this.get('width')+'px; height:'+this.get('height')+'px;',
+  percent: 15,
+  classNames: ['inline-block'],
 
   color: d3.scale.category20c(),
   colors: {
@@ -28,17 +35,74 @@ App.SunburstChartComponent = Ember.Component.extend({
     "dark-green": "#45924f",
     "blue": "rgb(86, 135, 209)",
     "orange": "rgb(222, 120, 59)",
-    "others": "#FFF79A"
+    "yellow": "#FFF79A",
+    "red": "rgb(128, 21, 21)",
+    "brown": "#4D3619"
   },
+
+  dataSourceExists: function () {
+    return typeof this.get('dataSource') !== 'undefined' && this.get('dataSource') !== null;
+    return typeof this.get('dataSource') !== 'undefined' && this.get('dataSource') !== null;
+  }.property('dataSource.@each', 'dataSource'),
 
   radius: function() {
     return Math.min(this.get('width'), this.get('height')) / 2;
   }.property('width', 'height'),
 
-  draw: function() {
+  drawDetailSunburst: function(dataSource) {
+    var percent = 25;
+    var width = (percent / 100) * this.get('width');
+    var height = (percent / 100) * this.get('height');
+    var radius = Math.min(width, height) / 2;
 
     var self = this;
-    var vis = d3.select("#" + this.get('elementId') + " .sunburst-svg-container").append("svg:svg")
+    var vis = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details').append("svg:svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("id", self.get('gCustomId') + 'details')
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var partition = d3.layout.partition()
+      .sort(null)
+      .size([2 * Math.PI, radius * radius])
+      .value(function(d) { return d.size; });
+
+    var arc = d3.svg.arc()
+      .startAngle(function(d) { return d.x; })
+      .endAngle(function(d) { return d.x + d.dx; })
+      .innerRadius(function(d) { return Math.sqrt(d.y); })
+      .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+    d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details').append("text")
+          .attr("r", radius)
+          .style("opacity", 0);
+
+    var path = vis.data([dataSource]).selectAll('[data-id="'+self.get('customId')+'"] .sunburst-details path')
+      .data(partition.nodes)
+      .enter().append("path")
+      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+      .attr("d", arc)
+      .style("stroke", "#fff")
+      .style("fill", function(d) {
+        if (d.fill_type) {
+          return self.get('colors')[d.fill_type];
+        } else {
+          return d3.scale.category20c(((d.children ? d : d.parent).name));
+        }
+      })
+      .style("fill-rule", "evenodd")
+      .style("opacity", 1);
+
+      dataSource.children.forEach( function(item, index, enumerable){
+        $('[data-id="'+self.get('customId')+'"] .sunburst-details').append('<div class="sunburst-details-item"> <div class="sunburst-details-swatch" style="background-color:'+self.get('colors')[item.fill_type]+';"> </div><span class="sunburst-details-label">' + item.name + ' ' + item.size + ' '+self.get('units')+'</span></div>');
+      });
+  },
+
+  draw: function() {
+    $('[data-id="'+this.get('customId')+'"] .sunburst-svg-container').empty();
+    var self = this;
+    var vis = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-svg-container').append("svg:svg")
     .attr("width", self.get('width'))
     .attr("height", self.get('height'))
     .append("g")
@@ -56,12 +120,12 @@ App.SunburstChartComponent = Ember.Component.extend({
       .innerRadius(function(d) { return Math.sqrt(d.y); })
       .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-    d3.select("#" + this.get('elementId') + " .sunburst-svg-container").append("text")
+    d3.select('[data-id="'+self.get('customId')+'"] .sunburst-svg-container').append("text")
       .attr("r", self.get('radius'))
       .style("opacity", 0);
 
     var self = this;
-    var path = vis.data([this.get('dataSource')]).selectAll("path")
+    var path = vis.data([this.get('dataSource')]).selectAll('[data-id="'+self.get('customId')+'"] .sunburst-svg-container path')
       .data(partition.nodes)
       .enter().append("path")
       .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
@@ -69,73 +133,84 @@ App.SunburstChartComponent = Ember.Component.extend({
       .style("stroke", "#fff")
       .style("fill", function(d) {
         if (d.fill_type) {
-          console.log('d fill type', self.get('colors')[d.fill_type]);
           return self.get('colors')[d.fill_type];
         } else {
-          console.log('no fill type!');
           return d3.scale.category20c(((d.children ? d : d.parent).name));
         }
       })
       .style("fill-rule", "evenodd")
       .style("opacity", 1)
-      .on("mouseover", mouseover);
+      .on("mouseover", mouseover, true);
 
-      d3.select('#'+this.get('elementId')).on("mouseleave", mouseleave);
+      d3.select('[data-id="'+self.get('customId')+'"').on("mouseleave", mouseleave);
       this.set('totalSize', path.node().__data__.value);
 
-      function mouseover(d) {
+      function mouseover(d, i) {
+          var percentage =  (100 * d.value / self.get('totalSize').toPrecision(3));
+          var percentageString = percentage.toFixed(2) + "%";
+          if (percentage < 0.1) {
+            percentageString = "< 0.1%";
+          }
 
-        var percentage = (100 * d.value / self.get('totalSize').toPrecision(3));
-        var percentageString = percentage.toFixed(2) + "%";
-        if (percentage < 0.1) {
-          percentageString = "< 0.1%";
-        }
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-percentage')
+            .text(percentageString);
 
-        d3.select("#" + self.get('elementId') + "  .sunburst-percentage")
-          .text(percentageString);
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
+            .text(d.name);
 
-        d3.select("#" + self.get('elementId') + "  .sunburst-title")
-          .text(d.name);
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
+            .text(d.size + " " + self.get('units'));
 
-        d3.select("#" + self.get('elementId') + "  .sunburst-description")
-          .text(d.size + " " + self.get('units'));
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-fill_type')
+            .text(d.description);
 
-        d3.select("#" + self.get('elementId') + "  .sunburst-fill_type")
-          .text(d.description);
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
 
-        self.set('explanationStyle', 'visibility: visible; width:'+self.get('width')+'px; height:'+self.get('height')+'px;');
-        var sequenceArray = getAncestors(d);
-        //updateBreadcrumbs(sequenceArray, percentageString);
+          self.set('explanationStyle', 'visibility: visible; width:'+self.get('width')+'px; height:'+self.get('height')+'px;');
 
-        // Fade all the segments.
-        d3.selectAll("path")
-          .style("opacity", 0.3);
+          // Empty details
+          $('[data-id="'+self.get('customId')+'"] .sunburst-details').empty();
+          // Draw Details
+          if (typeof d.detailsChildren != "undefined") {
+            self.drawDetailSunburst(d.detailsChildren);
+          }
 
-        // Then highlight only those that are an ancestor of the current segment.
-        vis.selectAll("path")
-          .filter(function(node) {
-            return (sequenceArray.indexOf(node) >= 0);
-          })
-          .style("opacity", 1);
+          var sequenceArray = getAncestors(d);
+          //updateBreadcrumbs(sequenceArray, percentageString);
+
+          // Fade all the segments.
+          d3.selectAll('[data-id="'+self.get('customId')+'"] .sunburst-svg-container path')
+            .style("opacity", 0.3);
+
+          // Then highlight only those that are an ancestor of the current segment.
+          vis.selectAll('[data-id="'+self.get("customId")+'"] .sunburst-svg-container path')
+            .filter(function(node) {
+              return (sequenceArray.indexOf(node) >= 0);
+            })
+            .style("opacity", 1);
       }
 
       function mouseleave(d) {
-        // Hide the breadcrumb trail
-        //d3.select("#trail").style("visibility", "hidden");
 
-        // Deactivate all segments during transition.
-        d3.selectAll("path").on("mouseover", null);
+          // Hide the breadcrumb trail
+          //d3.select("#trail").style("visibility", "hidden");
 
-        // Transition each segment to full opacity and then reactivate it.
-        d3.selectAll("path")
-          .transition()
-          .duration(500)
-          .style("opacity", 1)
-          .each("end", function() {
-            d3.select(this).on("mouseover", mouseover);
-          });
+          //Empty details
+          $("[data-id="+self.get('customId')+"] .sunburst-details").empty();
 
-        self.set('explanationStyle', 'visibility: hidden; width:'+self.get('width')+'px; height:'+self.get('height')+'px;')
+          // Deactivate all segments during transition.
+          d3.selectAll('[data-id="'+self.get('customId')+'"] .sunburst-svg-container path').on("mouseover", null);
+
+          // Transition each segment to full opacity and then reactivate it.
+          d3.selectAll('[data-id="'+self.get('customId')+'"] .sunburst-svg-container path')
+            .transition()
+            .duration(500)
+            .style("opacity", 1)
+            .each("end", function() {
+              d3.select(this).on("mouseover", mouseover);
+            });
+
+          self.set('explanationStyle', 'visibility: hidden; width:'+self.get('width')+'px; height:'+self.get('height')+'px;')
       }
 
       function getAncestors(node) {
@@ -155,7 +230,7 @@ App.SunburstChartComponent = Ember.Component.extend({
           w: 75, h: 30, s: 3, r: 3
         };
 
-        var legend = d3.select("#" +self.get('elementId') +" .sunburst-legend").append("svg:svg")
+        var legend = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-legend').append("svg:svg")
             .attr("width", li.w)
             .attr("height", d3.keys(self.get('colors')).length * (li.h + li.s));
 
@@ -181,6 +256,7 @@ App.SunburstChartComponent = Ember.Component.extend({
             .text(function(d) { return d.key; });
       }
 
+
       /* TODO: Finish dynamic generation of legend instead of having to pass in a legend array.
       var unique = self.get('dataSource').children.map(function(obj) { return obj.name; });
       unique = unique.filter(function(v,i) { return ages.indexOf(v) == i; });
@@ -193,10 +269,19 @@ App.SunburstChartComponent = Ember.Component.extend({
     return 'width:'+this.get('width')+'px; height:'+this.get('height')+'px;';
   }.property('width', 'height'),
 
+  dataSourceObserver: function() {
+    this.draw();
+  }.observes('dataSource.@each'),
+
   didInsertElement: function() {
-    this.set('customId', App.uuid());
     this.set('gCustomId', App.uuid());
     this.draw();
+  },
+  init: function() {
+    this.set('customId', App.uuid());
+    this._super();
   }
 
 });
+
+

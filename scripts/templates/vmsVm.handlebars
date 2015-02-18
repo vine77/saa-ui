@@ -7,6 +7,7 @@
     <li><a onclick="App.selectTab(event)">Graphs</a></li>
     <li><a onclick="App.selectTab(event)">Trust</a></li>
     <li><a onclick="App.selectTab(event)">Instantiation</a></li>
+    <li><a onclick="App.selectTab(event)">SCU</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active details">
@@ -500,11 +501,18 @@
               <div class="alert alert-info">The detailed instantiation report is not available.</div>
             {{/if}}
           </div>
+
         </div>
 
       {{else}}
         <div class="alert alert-info">The VM instantiation report is not available.</div>
       {{/if}}
+    </div>
+    <div class="tab-pane scu">
+      <div style="text-align:center">
+        {{sunburst-chart dataSource=utilizationSunburst width=400 height=400}}
+      </div>
+      {{partial "scu-definition"}}
     </div>
   </div>
 </div>
