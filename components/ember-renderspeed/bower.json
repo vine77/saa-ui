@@ -1,8 +1,0 @@
-{
-  "name": "ember-renderspeed",
-  "version": "1.0.0-beta",
-  "main": "./ember-renderspeed.js",
-  "dependencies": {
-    "ember": ">=1.0.0"
-  }
-}
