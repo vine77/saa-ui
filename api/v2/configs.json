@@ -13,6 +13,10 @@
       "exists": true
     },
     {
+      "id": "keystoneFile",
+      "exists": true
+    },
+    {
       "id": "KeystoneCaCertFile",
       "exists": false
     }
