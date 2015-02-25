@@ -22,9 +22,11 @@ App.SunburstChartComponent = Ember.Component.extend({
   }.property('customId'),
 
   totalSize: 0,
-  chartTitle: '',
+  chartTitle: 'SCU Metrics',
   chartDescription: '',
-  explanationStyle: 'visibility: hidden; width:'+this.get('width')+'px; height:'+this.get('height')+'px;',
+  explanationStyle: function() {
+    return 'width:'+this.get('width')+'px; height:'+this.get('height')+'px;';
+  }.property('width', 'height'),
   percent: 15,
   classNames: ['inline-block'],
 
@@ -100,7 +102,10 @@ App.SunburstChartComponent = Ember.Component.extend({
   },
 
   draw: function() {
+    var isHovered = $('[data-id="'+this.get('customId')+'"] .sunburst-svg-container').is(":hover");
+    if (isHovered) { return; }
     $('[data-id="'+this.get('customId')+'"] .sunburst-svg-container').empty();
+
     var self = this;
     var vis = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-svg-container').append("svg:svg")
     .attr("width", self.get('width'))
@@ -144,6 +149,8 @@ App.SunburstChartComponent = Ember.Component.extend({
 
       d3.select('[data-id="'+self.get('customId')+'"').on("mouseleave", mouseleave);
       this.set('totalSize', path.node().__data__.value);
+      defaultExplanation();
+
 
       function mouseover(d, i) {
           var percentage =  (100 * d.value / self.get('totalSize').toPrecision(3));
@@ -154,16 +161,12 @@ App.SunburstChartComponent = Ember.Component.extend({
 
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-percentage')
             .text(percentageString);
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
             .text(d.name);
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
             .text(d.size + " " + self.get('units'));
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-fill_type')
             .text(d.description);
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
 
           self.set('explanationStyle', 'visibility: visible; width:'+self.get('width')+'px; height:'+self.get('height')+'px;');
@@ -189,10 +192,10 @@ App.SunburstChartComponent = Ember.Component.extend({
             })
             .style("opacity", 1);
 
-          //"eventSiblingId": "VM"
+          // Highlight event siblings
           vis.selectAll('[data-id="'+self.get("customId")+'"] .sunburst-svg-container path')
-           .filter(function(node) {
-              return (node.eventSiblingId !== undefined && node.eventSiblingId == node.eventSiblingId);
+            .filter(function(node) {
+              return (node.eventSiblingId !== undefined && node.eventSiblingId == d.eventSiblingId);
             })
             .style("opacity", 1);
 
@@ -218,7 +221,21 @@ App.SunburstChartComponent = Ember.Component.extend({
               d3.select(this).on("mouseover", mouseover);
             });
 
-          self.set('explanationStyle', 'visibility: hidden; width:'+self.get('width')+'px; height:'+self.get('height')+'px;')
+          self.set('explanationStyle', 'width:'+self.get('width')+'px; height:'+self.get('height')+'px;')
+          defaultExplanation();
+      }
+      function defaultExplanation() {
+
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-percentage')
+            .text(self.get('chartTitle'));
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
+            .text('');
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
+            .text("Hover to see details.");
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-fill_type')
+            .text('');
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
+          .text('');
       }
 
       function getAncestors(node) {
