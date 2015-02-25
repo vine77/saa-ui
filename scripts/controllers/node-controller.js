@@ -283,57 +283,73 @@ App.NodeController = Ember.ObjectController.extend({
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
         var utilizationCurrent = (+item.compute + +item.io_wait + +item.misc).toFixed(2);
-        var burst = (utilizationCurrent - item.min).toFixed(2);
-        var utilizationCurrent = (utilizationCurrent - burst).toFixed(2);
-        var notUtilized = (item.max - utilizationCurrent).toFixed(2);
-        var notUtilized = (notUtilized - burst).toFixed(2);
+        var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
+
+        if (item.type == 'vm') {
+          var notUtilized = Math.max(0, (item.min - utilizationCurrent).toFixed(2));
+        } else {
+          var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
+        }
 
         returnArray.push({
+          type: item.type.toUpperCase(),
           min: item.min,
           max: item.max,
           compute: item.compute,
           ioWait: item.io_wait,
           misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
-          type: item.type.toUpperCase(),
-          burst: burst,
           utilizationCurrent: utilizationCurrent,
           notUtilized: notUtilized
         });
       });
-      /*
-      returnArray.push({
-        min: 0,
-        max: this.get('scuUnallocated').toFixed(2),
-        value: this.get('scuUnallocated').toFixed(2),
-        sortOrder: 9999,
-        type: 'Unallocated',
-        color: "progress-neutral"
-      });
-      */
     }
     return returnArray.sortBy('sortOrder');
   }.property('scuUtilizationCgroups.@each', 'scuUnallocated'),
 
+  vmUtilization: function() {
+    var vm = this.get('scuValues').findBy('type', 'VM');
+    return Math.min(vm.utilizationCurrent, vm.min);
+  }.property('scuValues.@each'),
+  vmNotUtilized: function() {
+    var vm = this.get('scuValues').findBy('type', 'VM');
+    return Math.max(0, (vm.min - this.get('vmUtilization')).toFixed(2) );
+  }.property('scuValues.@each', 'vmUtilization'),
+  vmBestEffortAllocation: function() {
+    var vm = this.get('scuValues').findBy('type', 'VM');
+    return Math.max(0, (vm.max - vm.min).toFixed(2));
+  }.property('scuValues.@each'),
+  vmBestEffortUtilization: function() {
+    var vm = this.get('scuValues').findBy('type', 'VM');
+    return Math.max(0, vm.utilizationCurrent - vm.min);;
+  }.property('scuValues.@each'),
+  vmBestEffortNotUtilized: function() {
+    var vm = this.get('scuValues').findBy('type', 'VM');
+    return Math.max(0, (this.get('vmBestEffortAllocation') - this.get('vmBestEffortUtilization')));
+  }.property('scuValues.@each', 'vmBestEffortUtilization', 'vmBestEffortAllocation'),
+  scuValuesGuaranteedSum: function() {
+    return this.get('scuValues').reduce(function(previousValue, item, index, enumerable) {
+      if (item.type == "VM") { return previousValue + item.min; }
+      return previousValue + item.max;
+    }, 0).toFixed(2);
+  }.property('scuValues.@each'),
+  scuValuesUnallocated: function() {
+    return Math.max(0, (this.get('utilization.scu.system.max') - this.get('scuValuesGuaranteedSum') - this.get('vmBestEffortAllocation')).toFixed(2));
+  }.property('utilization.scu.system.max', 'scuValuesGuaranteedSum', 'vmBestEffortAllocation'),
   scuCgroupSunburst: function() {
+    var self = this;
     var layout = {
       "name": "scu_chart",
       "children": []
     };
+    var unallocatedSegment = {
+      "name": "Unallocated",
+      "fill_type": "gray",
+      "size": self.get('scuValuesUnallocated')
+    }
+    layout.children.push(unallocatedSegment);
+
     this.get('scuValues').forEach(function(item, index, enumerable) {
-      var segment = {
-        "name": item.type,
-        "fill_type": "blue",
-        "size": item.max,
-        "children": []
-      };
-
-      var utilizationCurrent = (+item.compute + +item.ioWait + +item.misc).toFixed(2);
-      var burst = (utilizationCurrent - item.min).toFixed(2);
-      var utilizationCurrent = (utilizationCurrent - burst).toFixed(2);
-      var notUtilized = (item.max - utilizationCurrent).toFixed(2);
-      var notUtilized = (notUtilized - burst).toFixed(2);
-
       var detailsChildren = {
         "name": "scu_chart_details",
         children: [
@@ -355,45 +371,70 @@ App.NodeController = Ember.ObjectController.extend({
         ]
       };
 
-      var utilizedSegment = {
-        "name": "Utilized",
-        "fill_type": "light-green",
-        "size": utilizationCurrent,
-        "detailsChildren": detailsChildren
-      }
-
-      var burstSegment = {
-        "name": "Burst",
-        "fill_type": "red",
-        "size": burst,
-        "detailsChildren": detailsChildren
-      }
-
-      var notUtilizedSegment = {
-        "name": "Not Utilized",
-        "fill_type": "gray",
-        "size": Math.max(0, notUtilized)
-      }
-
-/*
-      for(var key in item) {
-        if (item.hasOwnProperty(key)) {
-          if (key != "min" && key != "max" && key != 'sortOrder') {
-            var utilizationSegment = {
-              "name": key,
+      if (item.type == "VM") {
+        var vmUtilizationSegment = {
+          "name": "VM Guaranteed",
+          "description": "Allocation",
+          "fill_type": "blue",
+          "size": item.min,
+          "children": [
+            {
+              "name": "VM Utilization",
               "fill_type": "light-green",
-              "size": item[key]
+              "size": self.get('vmUtilization'),
+              "detailsChildren": detailsChildren
+            },
+            {
+              "name": "Not Utilized",
+              "fill_type": "gray",
+              "size": self.get('vmNotUtilized')
             }
-            segment.children.push(utilizationSegment);
-          }
-        }
-      }
-*/
+          ]
+        };
 
-      segment.children.push(utilizedSegment);
-      segment.children.push(burstSegment);
-      segment.children.push(notUtilizedSegment);
-      layout.children.push(segment);
+        var vmBestEffortSegment = {
+          "name": "VM Best Effort",
+          "fill_type": "gray",
+          "size": self.get('vmBestEffortAllocation'),
+          "children": [
+            {
+              "name": "VM Utilization",
+              "fill_type": "light-green",
+              "size": self.get('vmBestEffortUtilization'),
+              "detailsChildren": detailsChildren
+            },
+            {
+              "name": "Not Utilized",
+              "fill_type": "gray",
+              "size": self.get('vmBestEffortNotUtilized')
+            }
+          ]
+        };
+        layout.children.push(vmUtilizationSegment);
+        layout.children.push(vmBestEffortSegment);
+
+      } else {
+        var segment = {
+          "name": item.type,
+          "fill_type": "blue",
+          "size": item.max,
+          "children": [
+            {
+              "name": "Utilization",
+              "fill_type": "light-green",
+              "size": item.utilizationCurrent,
+              "detailsChildren": detailsChildren
+            },
+            {
+              "name": "Not Utilized",
+              "fill_type": "gray",
+              "size": item.notUtilized
+            }
+          ]
+        };
+        layout.children.push(segment);
+      }
+
     });
     return layout;
   }.property('scuValues.@each', 'scuValues'),

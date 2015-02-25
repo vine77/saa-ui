@@ -697,7 +697,7 @@
               "max": 8.0,
               "min": 3,
               "type": "vm",
-              "compute": 3,
+              "compute": 1,
               "io_wait": 2,
               "misc": 1
             },
@@ -705,13 +705,13 @@
               "max": 5.21,
               "min": 0.0,
               "type": "os",
-              "compute": 2.16,
+              "compute": 0,
               "io_wait": 2,
               "misc": 1
             }
           ],
           "system": {
-            "max": 83.36,
+            "max": 100,
             "allocated": 7.21,
             "value": 5.27,
             "min": 0.0
