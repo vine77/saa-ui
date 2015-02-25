@@ -1,14 +1,22 @@
 {
   "name": "saa-ui",
   "version": "1.1.6",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/vine77/saa-ui.git"
   },
+  "scripts": {
+    "start": "grunt server",
+    "build": "grunt build"
+  },
+  "engines": {
+    "node": "~0.10.0"
+  },
   "devDependencies": {
     "body-parser": "1.12.0",
     "bytes": "1.0.0",
-    "grunt": "0.4.4",
+    "grunt": "0.4.5",
     "grunt-bower-requirejs": "1.0.0",
     "grunt-cli": "0.1.13",
     "grunt-contrib-clean": "0.4.0",
@@ -18,7 +26,7 @@
     "grunt-contrib-htmlmin": "0.1.1",
     "grunt-contrib-imagemin": "0.1.4",
     "grunt-contrib-jshint": "0.1.1",
-    "grunt-contrib-less": "*",
+    "grunt-contrib-less": "0.12.0",
     "grunt-contrib-livereload": "0.1.1",
     "grunt-contrib-uglify": "0.1.1",
     "grunt-contrib-watch": "0.2.0",
@@ -33,14 +41,5 @@
     "moment": "2.8.1",
     "pause": "0.0.1",
     "request": "2.27.0"
-  },
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "scripts": {
-    "start": "grunt server",
-    "server": "grunt server",
-    "build": "grunt build",
-    "build-lite": "grunt build-lite"
   }
 }
