@@ -94,7 +94,7 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       if (type == 'keystone') {
         //$('i.loading').removeClass('hide');
         return Ember.$.ajax({
-          url: (App.getApiDomain()) + '/api/v2/configs/KeystoneCaCertFile',
+          url: (App.getApiDomain()) + '/api/v3/configs/KeystoneCaCertFile',
           type: 'DELETE',
           success: function (data) {
             //$('i.loading').addClass('hide');
