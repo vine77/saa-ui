@@ -139,6 +139,8 @@ App.SunburstChartComponent = Ember.Component.extend({
       .style("fill", function(d) {
         if (d.fill_type) {
           return self.get('colors')[d.fill_type];
+        } else if (d.dynamic_color) {
+          return d.dynamic_color;
         } else {
           return d3.scale.category20c(((d.children ? d : d.parent).name));
         }

@@ -290,6 +290,9 @@
       </table>
     </div>
     <div class="tab-pane vms">
+      <div style="text-align:center;">
+          {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB"}}
+      </div>
       <ul>
         {{#each vm in vms}}
           <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>

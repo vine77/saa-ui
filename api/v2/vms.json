@@ -101,6 +101,7 @@
         "system": {
           "llc": {
             "value": 0.03,
+            "cache_occupancy": 10,
             "label": "LOW"
           }
         }
@@ -776,6 +777,7 @@
         "system": {
           "llc": {
             "value": 0.04,
+            "cache_occupancy": 5,
             "label": "LOW"
           }
         }
@@ -893,6 +895,7 @@
         "system": {
           "llc": {
             "value": 0.04,
+            "cache_occupancy": 3,
             "label": "LOW"
           }
         }
@@ -1008,6 +1011,7 @@
         "system": {
           "llc": {
             "value": 0.03,
+            "cache_occupancy": 2,
             "label": "LOW"
           }
         }
@@ -1102,6 +1106,7 @@
         "system": {
           "llc": {
             "value": 0.0,
+            "cache_occupancy": 1,
             "label": "LOW"
           }
         }

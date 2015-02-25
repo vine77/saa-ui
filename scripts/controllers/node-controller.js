@@ -445,6 +445,23 @@ App.NodeController = Ember.ObjectController.extend({
     return layout;
   }.property('scuValues.@each', 'scuValues'),
 
+  vmsCacheSunburst: function() {
+    var layout = {
+      "name": "scu_chart",
+      "children": []
+    };
+    this.get('vms').forEach( function(item, index, enumerable) {
+      var segment = {
+        "name": "Cache Occupancy",
+        "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
+        "description": 'Contention: '+item.get('contention.system.llc.value'),
+        "size": item.get('contention.system.llc.cache_occupancy')
+      }
+      layout.children.push(segment)
+    });
+    return layout;
+  }.property('vms.@each'),
+
   scuCurrentExceedsMax: function() {
     var returnVal = false;
     if (this.get('scuUtilizationCgroups')) {
