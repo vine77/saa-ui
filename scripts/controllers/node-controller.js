@@ -382,7 +382,8 @@ App.NodeController = Ember.ObjectController.extend({
               "name": "VM Utilization",
               "fill_type": "light-green",
               "size": self.get('vmUtilization'),
-              "detailsChildren": detailsChildren
+              "detailsChildren": detailsChildren,
+              "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",
@@ -401,7 +402,8 @@ App.NodeController = Ember.ObjectController.extend({
               "name": "VM Utilization",
               "fill_type": "light-green",
               "size": self.get('vmBestEffortUtilization'),
-              "detailsChildren": detailsChildren
+              "detailsChildren": detailsChildren,
+              "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",

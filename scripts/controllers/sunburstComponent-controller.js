@@ -188,6 +188,14 @@ App.SunburstChartComponent = Ember.Component.extend({
               return (sequenceArray.indexOf(node) >= 0);
             })
             .style("opacity", 1);
+
+          //"eventSiblingId": "VM"
+          vis.selectAll('[data-id="'+self.get("customId")+'"] .sunburst-svg-container path')
+           .filter(function(node) {
+              return (node.eventSiblingId !== undefined && node.eventSiblingId == node.eventSiblingId);
+            })
+            .style("opacity", 1);
+
       }
 
       function mouseleave(d) {
