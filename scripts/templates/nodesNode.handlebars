@@ -446,23 +446,21 @@
           <tr>
             <th>Type</th>
             <th>Utilization</th>
-            <th>Burst</th>
-            <th>Minimum</th>
-            <th>Maximum</th>
-            <th>Compute</th>
-            <th>IO Wait</th>
-            <th>Miscellaneous</th>
+            <th>Range</th>
+            <th>Guaranteed</th>
           </tr>
           {{#each scuValue in scuValues}}
             <tr>
               <td> {{scuValue.type}} </td>
-              <td> {{scuValue.utilizationCurrent}} </td>
-              <td> {{scuValue.burst}} </td>
-              <td> {{scuValue.min}} </td>
-              <td> {{scuValue.max}} </td>
-              <td> {{scuValue.compute}} </td>
-              <td> {{scuValue.ioWait}} </td>
-              <td> {{scuValue.misc}} </td>
+              <td>
+                <ul>
+                  <li> Compute: {{scuValue.compute}}</li>
+                  <li> IO Wait: {{scuValue.io_wait}}</li>
+                  <li> Miscellaneous: {{scuValue.misc}}</li>
+                </ul>
+              </td>
+              <td> {{scuValue.min}} to {{scuValue.max}} </td>
+              <td> {{scuValue.guaranteed}} </td>
             </tr>
           {{/each}}
         </table>

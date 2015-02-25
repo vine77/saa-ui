@@ -259,7 +259,7 @@ App.VmController = Ember.ObjectController.extend({
           {
             "name": "IO Wait",
             "size": self.get('utilization.scu.io_wait'),
-            "fill_type": "orange",
+            "fill_type": "brown",
             "description": "Utilization"
           },
           {

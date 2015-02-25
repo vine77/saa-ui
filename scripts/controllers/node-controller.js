@@ -286,8 +286,10 @@ App.NodeController = Ember.ObjectController.extend({
         var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
 
         if (item.type == 'vm') {
+          var guaranteed = item.min;
           var notUtilized = Math.max(0, (item.min - utilizationCurrent).toFixed(2));
         } else {
+          var guaranteed = item.max;
           var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
         }
 
@@ -300,7 +302,8 @@ App.NodeController = Ember.ObjectController.extend({
           misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
           utilizationCurrent: utilizationCurrent,
-          notUtilized: notUtilized
+          notUtilized: notUtilized,
+          guaranteed: guaranteed
         });
       });
     }
@@ -419,6 +422,7 @@ App.NodeController = Ember.ObjectController.extend({
         var segment = {
           "name": item.type,
           "fill_type": "blue",
+          "description": "Allocation",
           "size": item.max,
           "children": [
             {
