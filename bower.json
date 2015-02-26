@@ -9,8 +9,8 @@
   "dependencies": {
     "jquery": "components/jquery#1.10.2",
     "handlebars": "components/handlebars.js#1.3.0",
-    "ember": "components/ember#1.3.1",
-    "ember-data": "components/ember-data#1.0.0-beta.3",
+    "ember": "components/ember#1.8.1",
+    "ember-data": "components/ember-data#1.0.0-beta.15",
     "bootstrap": "vine77/bootstrap#4aecffb",
     "bootstrap-datepicker": "eternicode/bootstrap-datepicker#1.2.0",
     "font-awesome": "components/font-awesome#3.2.1",
@@ -23,7 +23,7 @@
     "mousetrap": "ccampbell/mousetrap#1.4.6",
     "ember-renderspeed": "eviltrout/ember-renderspeed#1.0.0-beta",
     "group-helper": "emberjs/group-helper#a95ba0e",
-    "list-view": "emberjs/list-view#aa2d5fe",
+    "list-view": "vine77/list-view#4b3a8b1",
     "ember-json-api": "daliwali/ember-json-api#b2510131",
     "modernizr": "Modernizr/Modernizr#2.7.1",
     "zynga-scroller": "zynga/scroller#dadd850",
@@ -33,8 +33,8 @@
   },
   "resolutions": {
     "jquery": "1.10.2",
-    "ember": "1.3.1",
-    "ember-data": "1.0.0-beta.3",
+    "ember": "1.8.1",
+    "ember-data": "1.0.0-beta.15",
     "bootstrap": "4aecffb",
     "handlebars": "1.3.0"
   }
