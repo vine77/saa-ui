@@ -14,7 +14,7 @@
     <div class="panel">
       {{#each status in this.controllers.newStatus.model itemViewClass="App.DashboardNewStatusView"}}
         {{#if status.component}}
-          <a {{action "toggleChildren" view.elementId view.content.name}} {{bind-attr id=view.selectorId}}> 
+          <a {{action "toggleChildren" view.elementId view.content.name}} {{bind-attr id=view.selectorId}}>
             {{status.name}}
           </a>
         {{else}}
@@ -24,12 +24,12 @@
         {{#if status.component}}
           <div class="panel" {{bind-attr id=view.childrenId}} style="left:300px; top: 70px; position: absolute; display:none">
             {{#each component in status.component}}
-              {{view App.StatusPanelView content=component level=2}}
+              {{view "status-panel-view" content=component level=2}}
             {{/each}}
           </div>
         {{/if}}
 
-        <br /><br />
+        <br><br>
       {{/each}}
     </div>
 

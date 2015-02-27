@@ -14,16 +14,16 @@
         <label for="inputUsername"><small>Username</small></label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-user"></i></span>
-          {{view Ember.TextField valueBinding="username" id="login-username" placeholder="Username" autofocus="autofocus"}}
+          {{input value=username id="login-username" placeholder="Username" autofocus="autofocus"}}
         </div>
       </section>
       <section>
         <label for="inputPassword"><small>Password</small>
-          {{#view App.TooltipView title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
+          {{#view "tooltip" title="Case sensitive"}}<i class="icon-info-sign icon-info-blue"></i>{{/view}}
         </label>
         <div class="input-prepend">
           <span class="add-on"><i class="icon-lock"></i></span>
-          {{view Ember.TextField valueBinding="password" id="login-password" placeholder="Password" type="password"}}
+          {{input value=password id="login-password" placeholder="Password" type="password"}}
         </div>
         <p class="forgot-password">
           <a class="tooltip-left" rel="tooltip" data-original-title="Click here to reset your password.">
@@ -34,13 +34,13 @@
 {{!--       <section>
         <label><small>Tenant</small></label>
         <div class="tenant">
-          <label>{{view Ember.RadioButton selection=tenantType value="default"}} Default</label>
-          <label>{{view Ember.RadioButton selection=tenantType value="custom"}} Custom</label>
+          <label>{{view "radio-button" selection=tenantType value="default"}} Default</label>
+          <label>{{view "radio-button" selection=tenantType value="custom"}} Custom</label>
         </div>
         {{#unless isDefaultTenant}}
           <div class="input-prepend">
             <span class="add-on"><i class="icon-group"></i></span>
-            {{view Ember.TextField type="text" id="login-tenantName" value=tenantName placeholder="Tenant name"}}
+            {{input type="text" id="login-tenantName" value=tenantName placeholder="Tenant name"}}
           </div>
         {{/unless}}
       </section> --}}

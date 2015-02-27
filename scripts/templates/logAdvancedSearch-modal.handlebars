@@ -6,38 +6,23 @@
   <div class="modal-body">
     <ul class="nav nav-tabs" id="logAdvancedSearchTabs">
       <li class="active"><a onclick="App.selectTab(event)">Nodes</a></li>
-      {{!-- <li><a onclick="App.selectTab(event)">VMs</a></li> --}}
       <li><a onclick="App.selectTab(event)">Severities</a></li>
       <li><a onclick="App.selectTab(event)">Categories</a></li>
     </ul>
-
     <div class="tab-content">
       <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-list-style">
           {{#each node in controllers.nodes}}
-            <li><label>{{view Ember.Checkbox checkedBinding="node.isSelected"}} {{node.name}} </label></li>
+            <li><label>{{input type="checkbox" checkedBinding="node.isSelected"}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
-      {{!--
-      <div class="tab-pane modal-overflow vms">
-        <ul class="three-columns no-list-style">
-          {{#each vm in controllers.vms}}
-            <li>
-              <label {{bind-attr title="vm.name"}}>
-                {{view Ember.Checkbox checkedBinding="vm.isSelected"}} {{vm.name}}
-              </label>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-      --}}
       <div class="tab-pane modal-overflow severities">
         <ul class="no-list-style">
           {{#each criticality in criticalitiesFiltered}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="criticality.isSelected"}} {{criticality.label}}
+                {{input type="checkbox" checkedBinding="criticality.isSelected"}} {{criticality.label}}
               </label>
             </li>
           {{/each}}
@@ -48,7 +33,7 @@
           {{#each logCategory in controllers.logcategories}}
             <li>
               <label>
-                {{view Ember.Checkbox checkedBinding="logCategory.isSelected"}} {{logCategory.name}}
+                {{input type="checkbox" checkedBinding="logCategory.isSelected"}} {{logCategory.name}}
               </label>
             </li>
           {{/each}}

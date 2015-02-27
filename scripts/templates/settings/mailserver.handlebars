@@ -12,7 +12,7 @@
     <div class="control-group">
       <label class="control-label">Hostname</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="hostname" id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
+        {{input value=hostname id="mailserver-hostname" placeholder="Hostname or IP Address" autofocusBinding="standalone"}}
         {{#if errors.hostname}}
           <span class="text-error">{{errors.hostname}}</span>
         {{/if}}
@@ -21,7 +21,7 @@
     <div class="control-group">
       <label class="control-label">Port</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="port" id="mailserver-port" placeholder="Port"}}
+        {{input value=port id="mailserver-port" placeholder="Port"}}
         {{#if errors.port}}
           <span class="text-error">{{errors.port}}</span>
         {{/if}}
@@ -30,24 +30,24 @@
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="username" id="mailserver-username" placeholder="Username"}}
+        {{input value=username id="mailserver-username" placeholder="Username"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Password</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="password" id="mailserver-password" placeholder="Password" type="password"}}
+        {{input value=password id="mailserver-password" placeholder="Password" type="password"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Email
-        {{#view App.TooltipView title="Recipient's Email" style="width:10%"}}
+        {{#view "tooltip" title="Recipient's Email" style="width:10%"}}
           <a> <i class="icon-question-sign"></i> </a>
         {{/view}}
       </label>
 
       <div class="controls">
-        {{view Ember.TextField valueBinding="sender_email" placeholder="Email Address"}}
+        {{input value=sender_email placeholder="Email Address"}}
         {{#if errors.sender_email}}
           <span class="text-error">{{errors.sender_email}}</span>
         {{/if}}
@@ -57,7 +57,7 @@
       <div class="controls">
         {{#unless isTestEmailActionPending}}
           <button class="btn btn-primary" type="button" {{action "testEmail"}}>Send Test Email</button>
-          {{#view App.TooltipView style="width:10%" title="This will send a test email to recipient in the Email field above"}}
+          {{#view "tooltip" style="width:10%" title="This will send a test email to recipient in the Email field above"}}
             <a> <i class="icon-question-sign"></i> </a>
           {{/view}}
         {{else}}

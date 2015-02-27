@@ -11,16 +11,16 @@
             <tr>
               <td class="column-medium"><strong>Trusted Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                {{#view "tooltip" titleBinding="totalTrustedMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                        {{#link-to "nodes"}}
-                          {{percentOfTrusted}}%
-                        {{/link-to}}
-                        <a> <i class="icon-question-sign"></i> </a>
+                      {{#link-to "nodes"}}
+                        {{percentOfTrusted}}%
+                      {{/link-to}}
+                      <a><i class="icon-question-sign"></i></a>
                     </small>
                   </div>
                 {{/view}}
@@ -31,12 +31,16 @@
             <tr>
               <td class="column-medium"><strong>SAA Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalControlledMessage"}}
+                {{#view "tooltip" titleBinding="totalControlledMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
+<<<<<<< HEAD
+=======
+                      {{#view "tooltip" titleBinding="totalControlledMessage"}}
+>>>>>>> Use view name strings instead of global context
                         {{#link-to "nodes"}}
                           {{percentOfControlled}}%
                         {{/link-to}}
@@ -51,12 +55,13 @@
             <tr>
               <td class="column-medium"><strong>Memory reserved for VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                {{#view "tooltip" titleBinding="controllers.nodes.totalRamMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
+<<<<<<< HEAD
                       {{#link-to "nodes"}}
                         {{controllers.nodes.percentOfRam}}%
                       {{/link-to}}
@@ -71,7 +76,7 @@
             <tr>
               <td class="column-medium"> <strong> Physical memory </strong> </td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
+                {{#view "tooltip" titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
                   </div>
@@ -81,6 +86,13 @@
                         {{controllers.nodes.percentOfPhysicalMemory}}%
                       {{/link-to}}
                       <a> <i class="icon-question-sign"></i> </a>
+=======
+                      {{#view "tooltip" titleBinding="controllers.nodes.totalRamMessage"}}
+                        {{#link-to "nodes"}}
+                          {{controllers.nodes.percentOfRam}}%
+                        {{/link-to}}
+                      {{/view}}
+>>>>>>> Use view name strings instead of global context
                     </small>
                   </div>
                 {{/view}}
@@ -91,12 +103,21 @@
             <tr>
               <td class="column-medium"><strong>Total SCU Usage</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+<<<<<<< HEAD
+                {{#view "tooltip" titleBinding="usedOfAvailableSuMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
+=======
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small>
+                    {{#view "tooltip" titleBinding="usedOfAvailableSuMessage"}}
+>>>>>>> Use view name strings instead of global context
                       {{#link-to "nodes"}}
                         {{usedOfAvailableSuPercent}}%
                       {{/link-to}}
@@ -122,7 +143,7 @@
               <td>
                 {{#if contentionNode.hasContention}}
                   <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage"}}
+                    {{#view "tooltip" titleBinding="contentionNode.contentionMessage"}}
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionNode.contentionWidth"}}>
                           <div class="contention-gradient"></div>

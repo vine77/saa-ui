@@ -1,4 +1,4 @@
-Ember.RadioButton = Ember.View.extend({
+App.RadioButtonView = Ember.View.extend({
   tagName: 'input',
   type: 'radio',
   attributeBindings: ['name', 'type', 'value', 'checked:checked:'],

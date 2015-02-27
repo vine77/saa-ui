@@ -13,9 +13,9 @@
       </div>
       <div class="span6 align-right">
         SLA Type:
-        {{view Ember.Select class="input-medium"
+        {{view "select" class="input-medium"
           contentBinding="slaTypes"
-          valueBinding="slaType"
+          value=slaType
           prompt="Select SLA Type:"
           optionValuePath="content.value"
           optionLabelPath="content.label"
@@ -28,7 +28,7 @@
     <div class="form-horizontal well-clean shadow-lifted">
       <p>
         <label class="inline">SLA name:</label>
-        {{view Ember.TextField valueBinding="model.name" autofocus="autofocus"}}
+        {{input value=model.name autofocus="autofocus"}}
         {{#if isAddSloAvailable}}
           <a class="btn pull-right" {{action "addSlo"}}>
             <i class="icon-plus-sign"></i> Add SLO
@@ -42,7 +42,7 @@
 
       {{#each slo in slos itemController="slo"}}
         <div class="slo-row separator-top">
-          {{view Ember.Select viewName="select" class="input-medium"
+          {{view "select" viewName="select" class="input-medium"
             content=slo.possibleSloTemplates
             optionValuePath="content.id"
             optionLabelPath="content.readableSloType"
@@ -51,9 +51,9 @@
             disabled=isSelected
           }}
           {{#if allowedOperatorsGreaterThanOne}}
-            {{view Ember.Select viewName="select" class="input-small"
+            {{view "select" viewName="select" class="input-small"
               contentBinding="slo.sloTemplate.allowedOperators"
-              valueBinding="slo.operator"
+              value=slo.operator
             }}
           {{else}}
             {{slo.sloTemplate.allowedOperators}}
@@ -61,33 +61,33 @@
 
           {{#if isBoolean}}
             <label style="display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="value" selection=value value="1"}}
+              {{view "radio-button" name="value" selection=value value="1"}}
               True
             </label>
             <label style="display:inline; margin-left:10px;">
-              {{view Ember.RadioButton name="value" selection=value value="0"}}
+              {{view "radio-button" name="value" selection=value value="0"}}
               False
             </label>
           {{/if}}
           {{#if isInteger}}
-            {{view Ember.TextField class="input-small" value=value}}
+            {{input class="input-small" value=value}}
           {{/if}}
           {{#if isString}}
-            {{view Ember.TextField class="input-medium" value=value}}
+            {{input class="input-medium" value=value}}
           {{/if}}
           {{#if isRange}}
-            {{view Ember.TextField class="input-tiny" value=rangeMin}} to
-            {{view Ember.TextField class="input-tiny" value=rangeMax}}
+            {{input class="input-tiny" value=rangeMin}} to
+            {{input class="input-tiny" value=rangeMax}}
           {{/if}}
 
           {{slo.sloTemplate.unit}}
 
           {{#if slo.sloInfoExists}}
-            {{#view App.PopoverHandleView placement="right" handleTemplateName="sla-popover"}}
+            {{#view "popover-handle" placement="right" handleTemplateName="sla-popover"}}
               <span {{bind-attr class="view.customHandleId :help-tip"}}>
                 <i class="icon-question-sign"></i>
               </span>
-              {{view Ember.ContainerView viewName="popover-container" classNames="inline-block"}}
+              {{view "container" viewName="popover-container" classNames="inline-block"}}
             {{/view}}
           {{/if}}
 

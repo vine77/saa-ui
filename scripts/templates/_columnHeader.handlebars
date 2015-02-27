@@ -1,6 +1,6 @@
 <th {{bind-attr class="sortBy:sortable isSorted:sorted parentController.tableController.sortAscending"}}>
   {{#if description}}
-    {{#view App.TooltipView dataHtml=true titleBinding="description"}}
+    {{#view "tooltip" dataHtml=true titleBinding="description"}}
       {{#if sortBy}}
         <a {{action "sort" sortBy sortAscending}}>
           {{#if icon}}<i {{bind-attr class="icon :icon-large"}}></i>{{/if}}

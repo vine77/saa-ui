@@ -2,7 +2,7 @@
 * Popover View Usage Example
 * This is a block helper so it can be used like so:
 *
-*    {{#view App.PopoverView title="Test Title"}}
+*    {{#view "popover" title="Test Title"}}
 *      Hover over me.
 *      <div class="popover-content" style="display:none;">
 *        This is the contention popover content. View Id: {{view.elementId}}
@@ -10,7 +10,7 @@
 *  {{/view}}
 *
 * You may also specify the parameter dataTrigger as being 'hover', 'click' is default:
-* {{#view App.PopoverView title="Test Title" dataTrigger="hover"}}
+* {{#view "popover" title="Test Title" dataTrigger="hover"}}
 *
 */
 
@@ -18,7 +18,7 @@
 * Popover View Usage Example
 * This is a block helper so it can be used like so:
 *
-*    {{#view App.PopoverView title="Test Title"}}
+*    {{#view "popover" title="Test Title"}}
 *      Hover over me.
 *      <div class="popover-content" style="display:none;">
 *        This is the contention popover content. View Id: {{view.elementId}}
@@ -26,7 +26,7 @@
 *  {{/view}}
 *
 * You may also specify the parameter dataTrigger as being 'hover', 'click' is default:
-* {{#view App.PopoverView title="Test Title" dataTrigger="hover"}}
+* {{#view "popover" title="Test Title" dataTrigger="hover"}}
 *
 */
 

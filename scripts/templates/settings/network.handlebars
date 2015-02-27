@@ -10,13 +10,13 @@
     <div class="control-group">
       <label class="control-label">Gateway:</label>
       <div class="controls">
-        {{view Ember.TextField placeholder="Gateway" valueBinding="App.network.route.gateway"}}
+        {{input placeholder="Gateway" value=App.network.route.gateway}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Hostname:</label>
       <div class="controls">
-        {{view Ember.TextField placeholder="Hostname" valueBinding="App.network.other.hostname"}}
+        {{input placeholder="Hostname" value=App.network.other.hostname}}
       </div>
     </div>
     <section>
@@ -31,7 +31,7 @@
         <label class="control-label">Configure IPv4:</label>
         <div class="controls">
           <label class="checkbox">
-            {{view Ember.Checkbox class="dhcp" checkedBinding="App.network.external.dhcp"}}
+            {{input type="checkbox" class="dhcp" checkedBinding="App.network.external.dhcp"}}
             Using DHCP
           </label>
         </div>
@@ -39,21 +39,21 @@
       <div class="control-group">
         <label class="control-label">DNS Servers:</label>
         <div class="controls">
-          {{view Ember.TextField class="input-medium" placeholder="Name server 1" valueBinding="App.network.dns.ns1" disabledBinding="App.network.external.dhcp"}}
-          {{view Ember.TextField class="input-medium" placeholder="Name server 2" valueBinding="App.network.dns.ns2" disabledBinding="App.network.external.dhcp"}}
-          {{view Ember.TextField class="input-medium" placeholder="Name server 3" valueBinding="App.network.dns.ns3" disabledBinding="App.network.external.dhcp"}}
+          {{input class="input-medium" placeholder="Name server 1" value=App.network.dns.ns1 disabledBinding="App.network.external.dhcp"}}
+          {{input class="input-medium" placeholder="Name server 2" value=App.network.dns.ns2 disabledBinding="App.network.external.dhcp"}}
+          {{input class="input-medium" placeholder="Name server 3" value=App.network.dns.ns3 disabledBinding="App.network.external.dhcp"}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">IPv4 Address:</label>
         <div class="controls">
-          {{view Ember.TextField class="address" placeholder="IP address" valueBinding="App.network.external.address" disabledBinding="App.network.external.dhcp"}}
+          {{input class="address" placeholder="IP address" value=App.network.external.address disabledBinding="App.network.external.dhcp"}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Subnet Mask:</label>
         <div class="controls">
-          {{view Ember.TextField class="netmask" placeholder="Netmask" valueBinding="App.network.external.netmask" disabledBinding="App.network.external.dhcp"}}
+          {{input class="netmask" placeholder="Netmask" value=App.network.external.netmask disabledBinding="App.network.external.dhcp"}}
         </div>
       </div>
     </section>
@@ -69,7 +69,7 @@
         <label class="control-label">Configure IPv4:</label>
         <div class="controls">
           <label class="checkbox">
-            {{view Ember.Checkbox class="dhcp" checkedBinding="App.network.management.dhcp"}}
+            {{input type="checkbox" class="dhcp" checkedBinding="App.network.management.dhcp"}}
             Using DHCP
           </label>
         </div>
@@ -77,13 +77,13 @@
       <div class="control-group">
         <label class="control-label">IPv4 Address:</label>
         <div class="controls">
-          {{view Ember.TextField class="address" placeholder="IP adress" valueBinding="App.network.management.address" disabledBinding="App.network.management.dhcp"}}
+          {{input class="address" placeholder="IP adress" value=App.network.management.address disabledBinding="App.network.management.dhcp"}}
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Subnet Mask:</label>
         <div class="controls">
-          {{view Ember.TextField class="netmask" placeholder="Netmask" valueBinding="App.network.management.netmask" disabledBinding="App.network.management.dhcp"}}
+          {{input class="netmask" placeholder="Netmask" value=App.network.management.netmask disabledBinding="App.network.management.dhcp"}}
         </div>
       </div>
     </section>

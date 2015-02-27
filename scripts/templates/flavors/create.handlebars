@@ -12,40 +12,40 @@
             <div class="control-group">
               <label class="control-label">Flavor name:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-medium" valueBinding="model.name" autofocus="autofocus"}}
+                {{input class="input-medium" value=model.name autofocus="autofocus"}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">vCPUs:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.vcpus"}}
+                {{input class="input-small" value=model.vcpus}}
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">RAM:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.memory"}}
+                {{input class="input-small" value=model.memory}}
                 MiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Root Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.root"}}
+                {{input class="input-small" value=model.root}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Ephemeral Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.ephemeral"}}
+                {{input class="input-small" value=model.ephemeral}}
                 GiB
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Swap Disk:</label>
               <div class="controls">
-                {{view Ember.TextField class="input-small" valueBinding="model.swap"}}
+                {{input class="input-small" value=model.swap}}
                 MiB
               </div>
             </div>
@@ -62,7 +62,7 @@
             {{#if hasExistingSla}}
               <div class="control-group">
                 <label class="inline">SLA:</label>
-                {{view Ember.Select viewName="select"
+                {{view "select" viewName="select"
                   contentBinding="userSlas"
                   optionValuePath="content.id"
                   optionLabelPath="content.name"
@@ -79,7 +79,7 @@
             {{#if hasNewSla}}
               <p>
                 <label class="inline">New SLA name:</label>
-                {{view Ember.TextField valueBinding="model.sla.name" autofocus="autofocus"}}
+                {{input value=model.sla.name autofocus="autofocus"}}
                 {{#if isAddSloAvailable}}
                   <a class="btn pull-right" {{action "addSlo"}}>
                     <i class="icon-plus-sign"></i> Add SLO
@@ -93,7 +93,7 @@
 
               {{#each slo in model.sla.slos itemController="slo"}}
                 <div class="slo-row separator-top">
-                  {{view Ember.Select viewName="select" class="input-medium"
+                  {{view "select" viewName="select" class="input-medium"
                     content=slo.possibleSloTemplates
                     optionValuePath="content.id"
                     optionLabelPath="content.readableSloType"
@@ -103,9 +103,9 @@
                   }}
                   {{#if sloTemplate}}
                     {{#if allowedOperatorsGreaterThanOne}}
-                      {{view Ember.Select viewName="select" class="input-small"
+                      {{view "select" viewName="select" class="input-small"
                         contentBinding="slo.sloTemplate.allowedOperators"
-                        valueBinding="slo.operator"
+                        value=slo.operator
                       }}
                     {{else}}
                       {{slo.sloTemplate.allowedOperators}}
@@ -113,35 +113,36 @@
                   {{/if}}
                   {{#if isBoolean}}
                     <label style="display:inline; margin-left:10px;">
-                      {{view Ember.RadioButton name="value" selection=value value="1"}}
+                      {{view "radio-button" name="value" selection=value value="1"}}
                       True
                     </label>
                     <label style="display:inline; margin-left:10px;">
-                      {{view Ember.RadioButton name="value" selection=value value="0"}}
+                      {{view "radio-button" name="value" selection=value value="0"}}
                       False
                     </label>
                   {{/if}}
                   {{#if isInteger}}
-                    {{view Ember.TextField class="input-small" value=value}}
+                    {{input class="input-small" value=value}}
                   {{/if}}
                   {{#if isString}}
-                    {{view Ember.TextField class="input-medium" value=value}}
+                    {{input class="input-medium" value=value}}
                   {{/if}}
                   {{#if isRange}}
-                    {{view Ember.TextField class="input-tiny" value=rangeMin}} to
-                    {{view Ember.TextField class="input-tiny" value=rangeMax}}
+                    {{input class="input-tiny" value=rangeMin}} to
+                    {{input class="input-tiny" value=rangeMax}}
                   {{/if}}
 
                   {{slo.sloTemplate.unit}}
 
                   {{#if slo.sloInfoExists}}
-                    {{#view App.PopoverHandleView placement="right" handleTemplateName="sla-popover-alt"}}
+                    {{#view "popover-handle" placement="right" handleTemplateName="sla-popover-alt"}}
                       <span {{bind-attr class="view.customHandleId :help-tip"}}>
                         <i class="icon-question-sign"></i>
                       </span>
-                      {{view Ember.ContainerView viewName="popover-container" classNames="inline-block"}}
+                      {{view "container" viewName="popover-container" classNames="inline-block"}}
                     {{/view}}
                   {{/if}}
+
                   <a class="btn pull-right" {{action "deleteSlo" slo}}><i class="icon-remove-sign"></i></a>
                   <small class="block">{{slo.sloTemplate.description}}</small>
                 </div>

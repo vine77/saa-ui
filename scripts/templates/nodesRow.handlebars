@@ -3,23 +3,23 @@
     <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
       <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}
-          {{view Ember.Checkbox checkedBinding="isSelected"}}
+          {{input type="checkbox" checkedBinding="isSelected"}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
-          {{#view App.TooltipView titleBinding="healthMessage"}}
+          {{#view "tooltip" titleBinding="healthMessage"}}
             {{healthIcon status.health}}
           {{/view}}
         {{else}}
-          {{#view App.TooltipView titleBinding="operationalMessage"}}
+          {{#view "tooltip" titleBinding="operationalMessage"}}
             {{operationalIcon status.operational}}
           {{/view}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isTrustRegistered}}
-          {{#view App.TooltipView placement="right" dataHtml=true titleBinding="trustMessage"}}
+          {{#view "tooltip" placement="right" dataHtml=true titleBinding="trustMessage"}}
             <span class="icon-stack">
               {{#if isTrustUnknown}}
                 <i class="icon-large icon-question-sign unknown"></i>
@@ -32,7 +32,7 @@
             </span>
           {{/view}}
         {{else}}
-          {{#view App.TooltipView placement="right" dataHtml=true titleBinding="isTrustRegisteredMessage"}}
+          {{#view "tooltip" placement="right" dataHtml=true titleBinding="isTrustRegisteredMessage"}}
             <span class="icon-stack">
               <i class="icon-large icon-unlock unregistered"></i>
               {{#if isTrustAgentNotInstalledOrUnknown}}
@@ -43,7 +43,7 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="nodeTypeMessage"}}
+        {{#view "tooltip" titleBinding="nodeTypeMessage"}}
           {{#if isAssured}}
             {{#if isAssuredCoresPhysical}}
               <i class="icon-large icon-pushpin assured"></i>
@@ -86,7 +86,7 @@
         <div class="contention">
             {{#unless isAssuredCoresPhysical}}
               {{#if computeExists}}
-                {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
+                {{#view "popover" title="SAA Compute Units" dataTrigger="hover"}}
                   <div class="contention-bar">
                     <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
                       <div class="contention-gradient"></div>
@@ -186,7 +186,7 @@
       <td><div class="cell-container">
         {{#if hasContention}}
           <div class="contention nowrap">
-            {{#view App.PopoverView title="Contention" dataPlacement="left" dataTrigger="hover"}}
+            {{#view "popover" title="Contention" dataPlacement="left" dataTrigger="hover"}}
               <div class="contention-bar">
                 <div class="contention-bar-width" {{bind-attr style="contentionWidth"}}>
                   <div class="contention-gradient"></div>

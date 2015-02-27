@@ -12,31 +12,31 @@
     <div class="control-group">
       <label class="control-label">Username</label>
       <div class="controls">
-        {{view Ember.TextField valueBinding="username" id="profile-username" placeholder="Username" disabled="disabled"}}
+        {{input value=username id="profile-username" placeholder="Username" disabled="disabled"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Email Address</label>
       <div class="controls">
-        {{view Ember.TextField id="profile-email" valueBinding="email" placeholder="Email address" autofocus="autofocus"}}
+        {{input id="profile-email" value=email placeholder="Email address" autofocus="autofocus"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Current Password</label>
       <div class="controls">
-        {{view Ember.TextField type="password" id="profile-oldPassword" valueBinding="oldPassword" placeholder="Enter existing password"}}
+        {{input type="password" id="profile-oldPassword" value=oldPassword placeholder="Enter existing password"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">New Password</label>
       <div class="controls">
-        {{view Ember.TextField type="password" id="profile-newPassword1" valueBinding="newPassword1" placeholder="Enter new password"}}
+        {{input type="password" id="profile-newPassword1" value=newPassword1 placeholder="Enter new password"}}
       </div>
     </div>
     <div class="control-group">
       <label class="control-label">Confirm Password</label>
       <div class="controls">
-        {{view Ember.TextField type="password" id="profile-newPassword2" valueBinding="newPassword2" placeholder="Repeat new password"}}
+        {{input type="password" id="profile-newPassword2" value=newPassword2 placeholder="Repeat new password"}}
       </div>
     </div>
     <div class="form-actions">
