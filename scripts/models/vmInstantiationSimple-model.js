@@ -27,26 +27,26 @@ App.VmInstantiationSimpleSerializer = App.ApplicationSerializer.extend({
 });
 
 App.SloGate = DS.Model.extend({
-  slo: DS.belongsTo('slo'),
-  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),
+  slo: DS.belongsTo('slo', { async: true }),
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple', { async: true }),
   description: DS.attr('string'),
   nodesCount: DS.attr('string')
 });
 
 App.RankedNode = DS.Model.extend({
-  node: DS.belongsTo('node'),
+  node: DS.belongsTo('node', { async: true }),
   selected: DS.attr('boolean'),
-  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple')
+  vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple', { async: true })
 });
 
 App.VmInstantiationSimple = DS.Model.extend({
   scheduleTime: DS.attr('string'),
   generationTime: DS.attr('string'),
   nodesCount: DS.attr(),
-  rankedNodes: DS.hasMany('rankedNode'),
+  rankedNodes: DS.hasMany('rankedNode', { async: true }),
   scheduleTime: DS.attr('string'),
   slaName: DS.attr('string'),
-  sloGates: DS.hasMany('sloGate'),
+  sloGates: DS.hasMany('sloGate', { async: true }),
   vmName: DS.attr('string'),
   vmTrustStatus: DS.attr('boolean'),
 
@@ -58,8 +58,8 @@ App.VmInstantiationSimple = DS.Model.extend({
   }.property('rankedNodes'),
 
   // Full Relationships
-  vm: DS.belongsTo('vm'),
-  sla: DS.belongsTo('sla')
+  vm: DS.belongsTo('vm', { async: true }),
+  sla: DS.belongsTo('sla', { async: true })
 });
 
 

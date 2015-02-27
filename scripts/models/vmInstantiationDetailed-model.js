@@ -29,13 +29,13 @@ App.VmInstantiationDetailedSerializer = App.ApplicationSerializer.extend({
 
 App.VmInstantiationDetailed = DS.Model.extend({
   generation_time: DS.attr('string'),
-  instantiationNodes: DS.hasMany('instantiationNode'),
+  instantiationNodes: DS.hasMany('instantiationNode', { async: true }),
   nodesCount: DS.attr(),
   schedule_time: DS.attr('string'),
   vmTrustStatus: DS.attr('boolean'),
 
   // Full Relationships
-  vm: DS.belongsTo('vm')
+  vm: DS.belongsTo('vm', { async: true })
 });
 
 // Embedded models (extracted by serializer)
@@ -43,9 +43,9 @@ App.VmInstantiationDetailed = DS.Model.extend({
 App.InstantiationNode = DS.Model.extend({
   selected: DS.attr('boolean'),
   contention: DS.attr(),
-  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
-  node: DS.belongsTo('node'),
-  instantiationSlos: DS.hasMany('instantiationSlo'),
+  vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed', { async: true }),
+  node: DS.belongsTo('node', { async: true }),
+  instantiationSlos: DS.hasMany('instantiationSlo', { async: true }),
   internalFilters: DS.attr(),
   freeCores: DS.attr(),
   selectedSockets: DS.attr()
@@ -53,7 +53,7 @@ App.InstantiationNode = DS.Model.extend({
 
 App.InstantiationSlo = DS.Model.extend({
   slo: DS.belongsTo('slo'),
-  instantiationNode: DS.belongsTo('instantiationNode'),
+  instantiationNode: DS.belongsTo('instantiationNode', { async: true }),
   description: DS.attr('string'),
   value: DS.attr('string'),
   readableValue: function () {

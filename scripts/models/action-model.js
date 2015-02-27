@@ -15,6 +15,6 @@ App.Action = DS.Model.extend({
   }.property('status', 'severity'),
 
   // Relationships
-  node: DS.belongsTo('node'),
-  vm: DS.belongsTo('vm')
+  node: DS.belongsTo('node', { async: true }),
+  vm: DS.belongsTo('vm', { async: true })
 });

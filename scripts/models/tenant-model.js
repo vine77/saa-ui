@@ -3,6 +3,6 @@ App.Tenant = DS.Model.extend({
   enabled: DS.attr('boolean'),
 
   // Relationships
-  nodes: DS.hasMany('node', {async: true}),
-  vms: DS.hasMany('vm', {async: true})
+  nodes: DS.hasMany('node', { async: true }),
+  vms: DS.hasMany('vm', { async: true })
 });

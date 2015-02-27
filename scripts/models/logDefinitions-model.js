@@ -7,7 +7,7 @@ App.LogSerializer = App.ApplicationSerializer.extend({
 });
 
 App.Log = DS.Model.extend({
-  categories: DS.hasMany('logCategory')
+  categories: DS.hasMany('logCategory', { async: true })
 });
 
 App.LogCategory = DS.Model.extend({

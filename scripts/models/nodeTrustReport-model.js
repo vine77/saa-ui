@@ -17,7 +17,7 @@ App.NodeTrustReportSerializer = App.ApplicationSerializer.extend({
 });
 
 App.Attestation = DS.Model.extend({
-  nodeTrustReport: DS.belongsTo('nodeTrustReport'),
+  nodeTrustReport: DS.belongsTo('nodeTrustReport', { async: true }),
   attestation_time: DS.attr('date'),
   attestation_time_formatted: function () {
     return moment(this.get('attestation_time')).format('LLL');
@@ -34,5 +34,5 @@ App.Attestation = DS.Model.extend({
 
 App.NodeTrustReport = DS.Model.extend({
   generationaTime: DS.attr('date'),
-  attestations: DS.hasMany('attestation')
+  attestations: DS.hasMany('attestation', { async: true })
 });

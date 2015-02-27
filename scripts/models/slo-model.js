@@ -32,6 +32,6 @@ App.Slo = DS.Model.extend({
   }.observes('sloTemplate'),
 
   // Relationships
-  sla: DS.belongsTo('sla'),
-  sloTemplate: DS.belongsTo('sloTemplate')
+  sla: DS.belongsTo('sla', { async: true }),
+  sloTemplate: DS.belongsTo('sloTemplate', { async: true })
 });

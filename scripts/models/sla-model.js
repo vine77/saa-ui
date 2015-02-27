@@ -19,8 +19,9 @@ App.Sla = DS.Model.extend({
   }),
 
   // Relationships
-  slos: DS.hasMany('slo', {async: true}),
-  flavors: DS.hasMany('flavor', {async: true}),
+
+  slos: DS.hasMany('slo', { async: true }),
+  flavors: DS.hasMany('flavor', { async: true }),
 
   // Computed Properties
   sloTypes: function () {

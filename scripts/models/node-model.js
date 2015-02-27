@@ -60,9 +60,9 @@ App.Node = DS.Model.extend({
   }.property('capabilities.cpu_frequency', 'capabilities.cores_per_socket', 'capabilities.sockets'),
 
   // Relationships
-  nodeTrustReport: DS.belongsTo('nodeTrustReport'),
-  trustNode: DS.belongsTo('trustNode'),
-  vms: DS.hasMany('vm', {async: true}),
-  tenants: DS.hasMany('tenant', {async: true}),
-  cgroups: DS.hasMany('cgroup', {async: true})
+  nodeTrustReport: DS.belongsTo('nodeTrustReport', { async: true }),
+  trustNode: DS.belongsTo('trustNode', { async: true }),
+  vms: DS.hasMany('vm', { async: true }),
+  tenant: DS.belongsTo('tenant', { async: true }),
+  cgroups: DS.hasMany('cgroup', { async: true })
 });

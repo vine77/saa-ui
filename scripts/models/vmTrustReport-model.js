@@ -22,8 +22,8 @@ App.VmTrustReportSerializer = App.ApplicationSerializer.extend({
 });
 
 App.VmAttestationNode = DS.Model.extend({
-  node: DS.belongsTo('node'),
-  vmAttestation: DS.belongsTo('vmAttestation'),
+  node: DS.belongsTo('node', { async: true }),
+  vmAttestation: DS.belongsTo('vmAttestation', { async: true }),
   nodeName: DS.attr('string'),
   ipAddress: DS.attr('string'),
   attestationTime: DS.attr('string'),
@@ -42,13 +42,13 @@ App.VmAttestationNode = DS.Model.extend({
 
 App.VmAttestation = DS.Model.extend({
   vmStart:DS.attr('date'),
-  vmAttestationNode: DS.belongsTo('vmAttestationNode'),
-  vmTrustReport: DS.belongsTo('vmTrustReport')
+  vmAttestationNode: DS.belongsTo('vmAttestationNode', { async: true }),
+  vmTrustReport: DS.belongsTo('vmTrustReport', { async: true })
 });
 
 App.VmTrustReport = DS.Model.extend({
   generationTime: DS.attr('date'),
   vmName: DS.attr('string'),
-  vm: DS.belongsTo('vm'),
-  vmAttestations: DS.hasMany('vmAttestation')
+  vm: DS.belongsTo('vm', { async: true }),
+  vmAttestations: DS.hasMany('vmAttestation', { async: true })
 });
