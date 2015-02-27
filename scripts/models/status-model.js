@@ -13,8 +13,8 @@ App.Status = DS.Model.extend({
   message: DS.attr('string'),
   health: DS.attr('number'),
   isNotification: DS.attr('boolean'),
-  parent: DS.hasMany('status'),
-  offspring: DS.hasMany('status'),
+  parent: DS.hasMany('status', {inverse: 'offspring'}),
+  offspring: DS.hasMany('status', {inverse: 'parent'}),
 
   // Computed properties
   colorClass: function () {
