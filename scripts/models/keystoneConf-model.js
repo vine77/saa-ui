@@ -10,7 +10,7 @@ App.KeystoneConf = Ember.Object.extend({
       complete: function (xhr) {
         switch (xhr.status) {
           case 200:
-            var exists = xhr.responseJSON.configs.findBy('id', 'KeystoneConfFile') && xhr.responseJSON.configs.findBy('id', 'KeystoneConfFile').exists;
+            var exists = xhr.responseJSON.configs.findBy('id', 'keystoneFile') && xhr.responseJSON.configs.findBy('id', 'keystoneFile').exists;
             App.keystoneConf.set('exists', exists);
             break;
           default:

@@ -33,9 +33,9 @@ App.SettingsUploadController = Ember.ArrayController.extend({
       var isKeystoneConfSpecified = !!$('#keystoneConfForm').find('input[type=file]').val();
       var allFilesSpecified = false;
       if (this.get('isNeutronConfigRequired')) {
-        allFilesSpecified = isNovaSpecified && isOpenrcSpecified && isQuantumSpecified;
+        allFilesSpecified = isNovaSpecified && isOpenrcSpecified && isQuantumSpecified && isKeystoneConfSpecified;
       } else {
-        allFilesSpecified = isNovaSpecified && isOpenrcSpecified;
+        allFilesSpecified = isNovaSpecified && isOpenrcSpecified && isKeystoneConfSpecified;
       }
       if (!allFilesSpecified) {
         App.event('You must upload all required configuration files at the same time.');
