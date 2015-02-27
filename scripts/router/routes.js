@@ -1,6 +1,7 @@
 // Application
 App.ApplicationRoute = Ember.Route.extend({
   init: function () {
+    this._super();
     App.store = this.store;
     App.route = this;
   },

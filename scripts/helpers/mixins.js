@@ -102,8 +102,8 @@ App.Sortable = Ember.Mixin.create({
  */
 App.ColumnsController = Ember.ArrayController.extend({
   init: function () {
-    this._super();
     var self = this;
+    this._super();
     // Generate an itemController for this ArrayController using conventional naming
     App[self.get('parent').capitalize() + 'ColumnController'] = Ember.ObjectController.extend({
       needs: [self.get('parent')],

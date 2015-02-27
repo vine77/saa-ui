@@ -24,6 +24,7 @@ App.OverrideController = Ember.ObjectController.extend({
     }
   }.property('model.@each', 'isDisabled'),
   init: function() {
+    this._super();
     if (Ember.isEmpty(this.get('model.value'))) {
       this.set('isDefault', true);
     } else {

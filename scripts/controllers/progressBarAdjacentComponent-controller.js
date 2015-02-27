@@ -80,8 +80,8 @@ App.ProgressBarAdjacentComponent = Ember.Component.extend({
     this.adjustBarWidths();
   }.observes('bars', 'bars.@each'),
   init: function() {
-    this.adjustBarWidths();
     this._super();
+    this.adjustBarWidths();
   },
   didInsertElement: function() {
     this.adjustBarWidths();

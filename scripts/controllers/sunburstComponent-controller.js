@@ -362,8 +362,8 @@ App.SunburstChartComponent = Ember.Component.extend({
     this.draw();
   },
   init: function() {
-    this.set('customId', App.uuid());
     this._super();
+    this.set('customId', App.uuid());
   }
 
 });

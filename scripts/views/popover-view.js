@@ -87,9 +87,9 @@ App.PopoverView = Ember.View.extend({
     }
   }.observes('controller.vcpus'),
   init: function() {
-    this.set('customId', App.uuid());
     var self = this;
-
+    this._super();
+    this.set('customId', App.uuid());
     Ember.run.schedule('afterRender', this, function() {
       $('body').on('click', function (e) {
         if (!$(e.target).hasClass('popover-content') && !($(e.target).parents().hasClass('popover-content')) ) {
@@ -97,8 +97,6 @@ App.PopoverView = Ember.View.extend({
         }
       });
     });
-
-    this._super();
   }
 });
 

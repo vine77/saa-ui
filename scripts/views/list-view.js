@@ -2,7 +2,6 @@ App.ListView = Ember.VirtualListView.extend({
   init: function () {
     this._super();
     this.get('controller').set('listView', this);
-    //this.currentPage();
   },
   height: function () {
     var listViewHeight = this.get('controller.controllers.application.height') - 205;
