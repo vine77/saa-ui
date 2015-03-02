@@ -126,3 +126,21 @@ App.ColumnsController = Ember.ArrayController.extend({
     }
   }
 });
+
+/**
+ * Mixin for fetching meta information about a model
+ */
+App.ModelMetaMixin = Ember.Mixin.create({
+    _modelProperty: 'content', // the property on the controller to find the bound reference to the model (typically found at 'content')
+    modelRef: function() {
+        var property = this._modelProperty;
+        return this.get(property + '.constructor');
+    }.property(this._modelProperty),
+    modelName: function() {
+        return String(this.get('modelRef'));
+    }.property(this._modelProperty),
+    modelType: function() {
+        var name = this.get('modelName').split('.');
+        return Ember.String.camelize(name.pop());
+    }.property(this._modelProperty)
+});

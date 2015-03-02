@@ -14,6 +14,14 @@
       <svg width="100%" height="8%" viewBox="0 0 8 25" style="position:relative">
         <text x="0" y="15" text-anchor="middle" class="sunburst-fill_type"></text>
       </svg>
+
+      <svg width="30%" height="8%" viewBox="0 0 8 35" style="position:relative; z-index:999999;">
+        <a {{action "changeRoute" linkRoute linkRouteId}}>
+          <text x="0" y="15" text-anchor="middle" class="sunburst-link">
+            {{linkRouteLabel}}
+          </text>
+        </a>
+      </svg>
       <svg width="100%" height="36%"> </svg>
     </div>
   </div>

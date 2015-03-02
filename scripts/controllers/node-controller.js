@@ -1,3 +1,52 @@
+App.NodesColumnsController = App.ColumnsController.extend({
+  content: [{
+    description: 'State (Health/Operational State)',
+    sortBy: 'state',
+    icon: 'icon-off'
+  }, {
+    description: 'Trust Status',
+    sortBy: 'isTrusted',
+    icon: 'icon-lock'
+  }, {
+    description: 'Node Type (Assured, Monitored, Non-SAA)',
+    sortBy: 'samControlled',
+    icon: 'icon-trophy'
+  }, {
+    title: 'Hostname',
+    sortBy: 'name',
+    sortAscending: true
+  }, {
+    title: 'VMs',
+    sortBy: 'vmInfo.count'
+  }, {
+    title: 'Capacity',
+    sortBy: 'cpuSort'
+  }, {
+    title: 'Allocation',
+    description: 'Maximum measured capacity is in SCUs (Service Compute Units) or cores (depending on node mode), while the chart indicates how much of that capacity is used.',
+    sortBy: 'utilization.scus.total.current'
+  }, {
+    title: 'Memory',
+    description: 'Memory utilization',
+    sortBy: 'utilization.memory.used'
+  },{
+    title: 'N. Load',
+    description: '<strong>Normalized load</strong> is Linux load average divided by the number of CPUs visible to OS (including hyperthreading).' +
+      '<ul>' +
+        '<li><strong>Green (0-1)</strong> indicates there is no contention for CPU resources.</li>' +
+        '<li><strong>Orange (1-2)</strong> indicates there is some contention for CPU resources, but the system may still be operating within acceptable range.</li>' +
+        '<li><strong>Red (2+)</strong> indicates that there is considerable contention for CPU resources and the system may be operating sub-optimally and action should be taken by the system administrator.</li>' +
+      '</ul>',
+    sortBy: 'utilization.normalized_load'
+  }, {
+    title: 'Contention',
+    description: 'LLC cache contention',
+    sortBy: 'contention.llc.system.value'
+  }, {
+    title: 'Actions'
+  }]
+});
+
 App.NodeController = Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
   // Controller Properties
@@ -455,7 +504,10 @@ App.NodeController = Ember.ObjectController.extend({
         "name": "Cache Occupancy",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": item.get('contention.system.llc.cache_occupancy')
+        "size": item.get('contention.system.llc.cache_occupancy'),
+        "route": "vmsVm",
+        "routeId": item.get('id'),
+        "routeLabel": item.get('id')
       }
       layout.children.push(segment)
     });
@@ -786,6 +838,9 @@ App.NodeController = Ember.ObjectController.extend({
     graphTimeAgo: function(timeAgo) {
       this.set('graphTimeAgoValue', timeAgo);
       App.graphs.graph(this.get('id'), this.get('name'), 'node', this.get('capabilities.sockets'), timeAgo);
+    },
+    changeRoute: function(route, routeId) {
+      this.transitionToRoute(route, routeId);
     }
   }
 

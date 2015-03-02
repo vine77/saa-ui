@@ -14,6 +14,7 @@ App.SunburstChartComponent = Ember.Component.extend({
   units: 'SCUs',
   dataSource: null,
   legend: false,
+  action: false,
   gCustomId: 'g' + this.get('elementId'),
 
   attributeBindings: ['getId:data-id'],
@@ -24,6 +25,8 @@ App.SunburstChartComponent = Ember.Component.extend({
   totalSize: 0,
   chartTitle: 'SCU Metrics',
   chartDescription: '',
+
+
   explanationStyle: function() {
     return 'width:'+this.get('width')+'px; height:'+this.get('height')+'px;';
   }.property('width', 'height'),
@@ -153,7 +156,6 @@ App.SunburstChartComponent = Ember.Component.extend({
       this.set('totalSize', path.node().__data__.value);
       defaultExplanation();
 
-
       function mouseover(d, i) {
           var percentage =  (100 * d.value / self.get('totalSize').toPrecision(3));
           var percentageString = percentage.toFixed(2) + "%";
@@ -201,6 +203,18 @@ App.SunburstChartComponent = Ember.Component.extend({
             })
             .style("opacity", 1);
 
+          // Update link values
+          if (!Ember.isEmpty(self.get('action'))) {
+            if (!Ember.isEmpty(d.route)) {
+              self.set('linkRoute', d.route);
+            }
+            if (!Ember.isEmpty(d.routeId)) {
+              self.set('linkRouteId', d.routeId);
+            }
+            if (!Ember.isEmpty(d.routeLabel)) {
+              self.set('linkRouteLabel', d.routeLabel);
+            }
+          }
       }
 
       function mouseleave(d) {
@@ -227,7 +241,6 @@ App.SunburstChartComponent = Ember.Component.extend({
           defaultExplanation();
       }
       function defaultExplanation() {
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-percentage')
             .text(self.get('chartTitle'));
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
@@ -238,6 +251,9 @@ App.SunburstChartComponent = Ember.Component.extend({
             .text('');
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
           .text('');
+          self.set('linkRoute', '');
+          self.set('linkRouteId', '');
+          self.set('linkRouteLabel', '');
       }
 
       function getAncestors(node) {
@@ -290,6 +306,11 @@ App.SunburstChartComponent = Ember.Component.extend({
       */
 
       if (self.get('legend')) { drawLegend(); }
+  },
+  actions: {
+    changeRoute: function(route, routeId) {
+      this.sendAction('action', route, routeId);
+    }
   },
 
   customStyle: function() {

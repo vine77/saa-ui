@@ -291,7 +291,7 @@
     </div>
     <div class="tab-pane vms">
       <div style="text-align:center;">
-          {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB"}}
+          {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute" }}
       </div>
       <ul>
         {{#each vm in vms}}
