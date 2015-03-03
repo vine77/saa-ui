@@ -493,18 +493,25 @@ App.NodeController = Ember.ObjectController.extend({
     });
     return layout;
   }.property('scuValues.@each', 'scuValues'),
-
+  sunburstCacheValues: [
+    { "value": "contention.system.llc.cache_occupancy", "label": "LLC Cache Occupancy" },
+    { "value": "contention.system.llc.value", "label": "LLC Cache Contention" },
+    { "value": "contention.system.llc.cache_usage.normalized", "label": "Cache Usage: Normalized" },
+    { "value": "contention.system.llc.cache_usage.used", "label": "Cache Usage: Used" }
+  ],
+  currentSunburstCacheValue: null,
   vmsCacheSunburst: function() {
     var layout = {
       "name": "scu_chart",
       "children": []
     };
+    var self = this;
     this.get('vms').forEach( function(item, index, enumerable) {
       var segment = {
         "name": "Cache Occupancy",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": item.get('contention.system.llc.cache_occupancy'),
+        "size": item.get(self.get('currentSunburstCacheValue')),
         "route": "vmsVm",
         "routeId": item.get('id'),
         "routeLabel": item.get('id')
@@ -512,7 +519,7 @@ App.NodeController = Ember.ObjectController.extend({
       layout.children.push(segment)
     });
     return layout;
-  }.property('vms.@each'),
+  }.property('vms.@each', 'currentSunburstCacheValue'),
 
   scuCurrentExceedsMax: function() {
     var returnVal = false;

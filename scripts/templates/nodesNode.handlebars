@@ -290,6 +290,11 @@
       </table>
     </div>
     <div class="tab-pane vms">
+          {{view Ember.Select viewName="select"
+           content=sunburstCacheValues
+           optionValuePath="content.value"
+           optionLabelPath="content.label"
+          value=currentSunburstCacheValue}}
       <div style="text-align:center;">
           {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute" }}
       </div>

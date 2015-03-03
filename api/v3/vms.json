@@ -776,6 +776,10 @@
         ],
         "system": {
           "llc": {
+            "cache_usage": {
+              "used": 200,
+              "normalized": 0.12
+            },
             "value": 0.04,
             "cache_occupancy": 5,
             "label": "LOW"
