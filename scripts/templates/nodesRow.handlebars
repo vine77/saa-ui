@@ -3,7 +3,7 @@
     <tr {{bind-attr class="isSelected isExpanded isAgentInstalled isScheduled"}}>
       <td class="column-small"><div class="cell-container">
         {{#if isAgentInstalled}}
-          {{input type="checkbox" checkedBinding="isSelected"}}
+          {{input type="checkbox" checked=isSelected}}
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
@@ -147,7 +147,7 @@
                       </table>
                     </div>
                   </div>
-                  <a> <i class="icon-question-sign"></i> </a>
+                  <a><i class="icon-question-sign"></i></a>
                 {{/view}}
               {{/if}}
             {{else}}
@@ -197,7 +197,7 @@
                {{else}}
                  {{na contentionFormatted}}
                {{/if}}
-              <a> <i class="icon-question-sign"></i> </a>
+              <a><i class="icon-question-sign"></i></a>
               <div class="popover-content" style="display:none;">
                 <div>
                   {{{contentionMessage}}}

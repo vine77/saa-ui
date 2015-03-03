@@ -2,7 +2,7 @@
   <tbody>
     <tr {{bind-attr class="isSelected isExpanded isSlaMissing"}}>
       <td class="column-small"><div class="cell-container">
-        {{input type="checkbox" checkedBinding="isSelected"}}
+        {{input type="checkbox" checked=isSelected}}
       </div></td>
       <td class="column-small"><div class="cell-container">
         {{#if isUnhealthy}}
@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 {{na scuTotal}}
-                <a> <i class="icon-question-sign"></i> </a>
+                <a><i class="icon-question-sign"></i></a>
               {{/view}}
             {{else}}
               {{na scuTotal}}

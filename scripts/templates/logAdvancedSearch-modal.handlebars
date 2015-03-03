@@ -13,7 +13,7 @@
       <div class="tab-pane active modal-overflow nodes">
         <ul class="three-columns no-list-style">
           {{#each node in controllers.nodes}}
-            <li><label>{{input type="checkbox" checkedBinding="node.isSelected"}} {{node.name}} </label></li>
+            <li><label>{{input type="checkbox" checked=node.isSelected}} {{node.name}} </label></li>
           {{/each}}
         </ul>
       </div>
@@ -22,7 +22,7 @@
           {{#each criticality in criticalitiesFiltered}}
             <li>
               <label>
-                {{input type="checkbox" checkedBinding="criticality.isSelected"}} {{criticality.label}}
+                {{input type="checkbox" checked=criticality.isSelected}} {{criticality.label}}
               </label>
             </li>
           {{/each}}
@@ -33,7 +33,7 @@
           {{#each logCategory in controllers.logcategories}}
             <li>
               <label>
-                {{input type="checkbox" checkedBinding="logCategory.isSelected"}} {{logCategory.name}}
+                {{input type="checkbox" checked=logCategory.isSelected}} {{logCategory.name}}
               </label>
             </li>
           {{/each}}
