@@ -203,7 +203,9 @@ App.SunburstChartComponent = Ember.Component.extend({
             })
             .style("opacity", 1);
 
+
           // Update link values
+
           if (!Ember.isEmpty(self.get('action'))) {
             if (!Ember.isEmpty(d.route)) {
               self.set('linkRoute', d.route);
@@ -212,7 +214,31 @@ App.SunburstChartComponent = Ember.Component.extend({
               self.set('linkRouteId', d.routeId);
             }
             if (!Ember.isEmpty(d.routeLabel)) {
-              self.set('linkRouteLabel', d.routeLabel);
+              var widthOfTextContainer = (30 / 100) * self.get('width');
+              var d3SvgSelector = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-link-container');
+              d3.select('[data-id="'+self.get("customId")+'"] .sunburst-link')
+                .text(d.routeLabel).call(svgTextEllipsis, d.routeLabel, widthOfTextContainer, d3SvgSelector);
+            }
+          }
+
+          function svgTextEllipsis(selection, textString, widthOfTextContainer, d3SvgSelector) {
+            var widthOfText = this.node().getComputedTextLength();
+            if (widthOfText > widthOfTextContainer) {
+              for (var x=textString.length-3;x>0;x-=3) {
+                $('.ellipsisSandbox').remove();
+                var text = d3SvgSelector.append("svg:text")
+                  .attr("x",  this.attr("x"))
+                  .attr("y", this.attr("y"))
+                  .attr("text-anchor", this.attr("text-anchor"))
+                  .attr("class", "ellipsisSandbox")
+                  .attr("visibility", "hidden")
+                  .text(textString.substring(0,x)+"...");
+                var sandboxWidth = text.node().getBBox().width;
+                if (sandboxWidth <= widthOfTextContainer) {
+                  selection.text(textString.substring(0,x)+"...");
+                  return;
+                }
+              }
             }
           }
       }
@@ -251,9 +277,10 @@ App.SunburstChartComponent = Ember.Component.extend({
             .text('');
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
           .text('');
+          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-link')
+          .text('');
           self.set('linkRoute', '');
           self.set('linkRouteId', '');
-          self.set('linkRouteLabel', '');
       }
 
       function getAncestors(node) {

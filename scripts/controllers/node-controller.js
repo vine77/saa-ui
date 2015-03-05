@@ -519,7 +519,7 @@ App.NodeController = Ember.ObjectController.extend({
       layout.children.push(segment)
     });
     return layout;
-  }.property('vms.@each', 'currentSunburstCacheValue'),
+  }.property('vms.@each', 'vms','currentSunburstCacheValue'),
 
   scuCurrentExceedsMax: function() {
     var returnVal = false;
