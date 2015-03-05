@@ -158,44 +158,6 @@
             </td>
           </tr>
         {{/unlessEmpty}}
-        {{#unlessEmpty systemScuUtilization}}
-          <tr>
-            <th class="column-medium">Service Compute Units (SCU)</th>
-            <td>
-              {{#if computeExists}}
-                <table style="width:100%;" class="table-borderless">
-                  <tr>
-                    <td class="column-compressed"> System: {{systemScuUtilization}} SCUs utilized of {{utilization.scu.system.max}} total</td>
-                    <td>
-                      {{progress-bar-simple
-                        value=systemScuUtilization
-                        thresholdMax=utilization.scu.system.max
-                      }}
-                    </td>
-                  </tr>
-                  {{#each scuValues}}
-                    <tr>
-                      <td class="column-compressed"> {{type}}: {{value}} SCUs utilized of {{max}} total </td>
-                      <td>
-                        <div style="margin-bottom:25px; margin-top:20px;">
-                          {{progress-bar-simple
-                            value=value
-                            thresholdMax=max
-                          }}
-                        </div>
-                      </td>
-                    </tr>
-                  {{/each}}
-                  <tr>
-                    <td class="column-compressed" colspan="2"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
-                  </tr>
-                </table>
-              {{else}}
-                <span class="not-applicable">n/a</span>
-              {{/if}}
-            </td>
-          </tr>
-        {{/unlessEmpty}}
         <tr>
           <th class="column-medium">Contention</th>
           <td>
@@ -290,14 +252,18 @@
       </table>
     </div>
     <div class="tab-pane vms">
+      {{#if vmsExist}}
+        {{#if vmCacheSunburstAvailable}}
           {{view Ember.Select viewName="select"
-           content=sunburstCacheValues
-           optionValuePath="content.value"
-           optionLabelPath="content.label"
+          content=sunburstCacheValues
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
           value=currentSunburstCacheValue}}
-      <div style="text-align:center;">
-          {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute" }}
-      </div>
+          <div style="text-align:center;">
+            {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute"}}
+          </div>
+        {{/if}}
+      {{/if}}
       <ul>
         {{#each vm in vms}}
           <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>

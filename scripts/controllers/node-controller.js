@@ -184,13 +184,22 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('osCores'),
 
   osCores: function() {
-    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'os').used.length;
+    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', 'os')) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', 'os').used) return 0;
+    return this.get('utilization.cores.cgroups').findBy('type', 'os').used.length;
   }.property('utilizationCoresCgroups.@each'),
   vmCores: function() {
-    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', 'vm').used.length;
+    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', 'vm')) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', 'vm').used) return 0;
+    return this.get('utilization.cores.cgroups').findBy('type', 'vm').used.length;
   }.property('utilizationCoresCgroups.@each'),
   sixWindCores: function() {
-    return this.get('utilizationCoresCgroups') && this.get('utilizationCoresCgroups').findBy('type', '6Wind').used.length;
+    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', '6Wind')) return 0;
+    if (!this.get('utilization.cores.cgroups').findBy('type', '6Wind').used) return 0;
+    return this.get('utilization.cores.cgroups').findBy('type', '6Wind').used.length;
   }.property('utilizationCoresCgroups.@each'),
 
   scuUtilizationCgroups: function() {
@@ -369,15 +378,15 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('scuValues.@each', 'vmUtilization'),
   vmBestEffortAllocation: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
-    return Math.max(0, (vm.max - vm.min).toFixed(2));
+    return vm && Math.max(0, (vm.max - vm.min).toFixed(2));
   }.property('scuValues.@each'),
   vmBestEffortUtilization: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
-    return Math.max(0, vm.utilizationCurrent - vm.min);;
+    return vm && Math.max(0, vm.utilizationCurrent - vm.min);
   }.property('scuValues.@each'),
   vmBestEffortNotUtilized: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
-    return Math.max(0, (this.get('vmBestEffortAllocation') - this.get('vmBestEffortUtilization')));
+    return vm && Math.max(0, (this.get('vmBestEffortAllocation') - this.get('vmBestEffortUtilization')));
   }.property('scuValues.@each', 'vmBestEffortUtilization', 'vmBestEffortAllocation'),
   scuValuesGuaranteedSum: function() {
     return this.get('scuValues').reduce(function(previousValue, item, index, enumerable) {
@@ -499,7 +508,19 @@ App.NodeController = Ember.ObjectController.extend({
     { "value": "contention.system.llc.cache_usage.normalized", "label": "Cache Usage: Normalized" },
     { "value": "contention.system.llc.cache_usage.used", "label": "Cache Usage: Used" }
   ],
-  currentSunburstCacheValue: null,
+  currentSunburstCacheValue: 'contention.system.llc.cache_occupancy',
+  vmsExist: function() {
+    return (this.get('vms') && !App.isEmpty(this.get('vms')));
+  }.property('vms.@each', 'vms'),
+  vmCacheSunburstAvailable: function() {
+    var self = this;
+    var data = this.get('vms').filter(function(item, index, enumerable) {
+      if (item.get(self.get('currentSunburstCacheValue')) >= 0) {
+        return item.get(self.get('currentSunburstCacheValue'));
+      }
+    });
+    return (data.length > 0);
+  }.property('vms', 'vms.@each', 'currentSunburstCacheValue'),
   vmsCacheSunburst: function() {
     var layout = {
       "name": "scu_chart",
@@ -511,7 +532,7 @@ App.NodeController = Ember.ObjectController.extend({
         "name": "Cache Occupancy",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": item.get(self.get('currentSunburstCacheValue')),
+        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0)?item.get(self.get('currentSunburstCacheValue')):0),
         "route": "vmsVm",
         "routeId": item.get('id'),
         "routeLabel": item.get('id')

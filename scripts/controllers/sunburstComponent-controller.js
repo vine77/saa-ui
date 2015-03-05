@@ -205,7 +205,6 @@ App.SunburstChartComponent = Ember.Component.extend({
 
 
           // Update link values
-
           if (!Ember.isEmpty(self.get('action'))) {
             if (!Ember.isEmpty(d.route)) {
               self.set('linkRoute', d.route);
