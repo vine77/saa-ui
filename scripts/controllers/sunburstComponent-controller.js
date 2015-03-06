@@ -108,7 +108,6 @@ App.SunburstChartComponent = Ember.Component.extend({
     var isHovered = $('[data-id="'+this.get('customId')+'"] .sunburst-svg-container').is(":hover");
     if (isHovered) { return; }
     $('[data-id="'+this.get('customId')+'"] .sunburst-svg-container').empty();
-
     var self = this;
     var vis = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-svg-container').append("svg:svg")
     .attr("width", self.get('width'))
@@ -116,22 +115,18 @@ App.SunburstChartComponent = Ember.Component.extend({
     .append("g")
     .attr("id", self.get('gCustomId'))
     .attr("transform", "translate(" + self.get('width') / 2 + "," + self.get('height') / 2 + ")");
-
     var partition = d3.layout.partition()
       .sort(null)
       .size([2 * Math.PI, self.get('radius') * self.get('radius')])
       .value(function(d) { return d.size; });
-
     var arc = d3.svg.arc()
       .startAngle(function(d) { return d.x; })
       .endAngle(function(d) { return d.x + d.dx; })
       .innerRadius(function(d) { return Math.sqrt(d.y); })
       .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
-
     d3.select('[data-id="'+self.get('customId')+'"] .sunburst-svg-container').append("text")
       .attr("r", self.get('radius'))
       .style("opacity", 0);
-
     var self = this;
     var path = vis.data([this.get('dataSource')]).selectAll('[data-id="'+self.get('customId')+'"] .sunburst-svg-container path')
       .data(partition.nodes)
@@ -152,17 +147,15 @@ App.SunburstChartComponent = Ember.Component.extend({
       .style("opacity", 1)
       .on("mouseover", mouseover, true);
 
-      d3.select('[data-id="'+self.get('customId')+'"').on("mouseleave", mouseleave);
+      d3.select('[data-id="'+self.get('customId')+'"]').on("mouseleave", mouseleave);
       this.set('totalSize', path.node().__data__.value);
       defaultExplanation();
-
       function mouseover(d, i) {
           var percentage =  (100 * d.value / self.get('totalSize').toPrecision(3));
           var percentageString = percentage.toFixed(2) + "%";
           if (percentage < 0.1) {
             percentageString = "< 0.1%";
           }
-
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-percentage')
             .text(percentageString);
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
