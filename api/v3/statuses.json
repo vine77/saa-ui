@@ -6,46 +6,60 @@
         "cloud_communication",
         "agent_communication",
         "configuration",
-        "logging"
+        "storage"
       ],
-      "exposed_health": 2,
+      "exposed_health": 1,
       "name": "System",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [],
-      "health": 2,
-      "message": "Health status: Info",
+      "health": 1,
+      "message": "Health status: Ok",
       "id": "system"
     },
     {
       "children_ids": [
         "configuration_process",
         "sam_config_files",
+        "ntp_status",
         "mw_installation"
       ],
-      "exposed_health": 2,
+      "exposed_health": 1,
       "name": "Configuration",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "system"
       ],
-      "health": 2,
-      "message": "Health status: Info",
+      "health": 1,
+      "message": "Health status: Ok",
       "id": "configuration"
     },
     {
       "children_ids": [],
-      "exposed_health": 2,
+      "exposed_health": 1,
       "name": "Trust server",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
         "configuration"
       ],
-      "health": 2,
-      "message": "Not installed",
+      "health": 1,
+      "message": "Health status: Ok",
       "id": "mw_installation"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "NTP Status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "configuration"
+      ],
+      "health": 1,
+      "message": "Last updated on Mar  9 2015 15:23:49 UTC (Host: 10.22.226.104)",
+      "id": "ntp_status"
     },
     {
       "children_ids": [
@@ -139,12 +153,14 @@
     },
     {
       "children_ids": [
-        "logging_disk_space",
+        "disk_mount",
+        "disk_space",
+        "nodes_data_storage",
         "logging_communication",
-        "logging_storage"
+        "log_database"
       ],
       "exposed_health": 1,
-      "name": "Logs engine",
+      "name": "Storage",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
@@ -152,7 +168,7 @@
       ],
       "health": 1,
       "message": "Health status: Ok",
-      "id": "logging"
+      "id": "storage"
     },
     {
       "children_ids": [],
@@ -171,6 +187,7 @@
     {
       "children_ids": [
         "persistent_db",
+        "ramfs",
         "volatile_db"
       ],
       "exposed_health": 1,
@@ -178,7 +195,8 @@
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "scheduler"
+        "scheduler",
+        "storage"
       ],
       "health": 1,
       "message": "Health status: Ok",
@@ -231,6 +249,7 @@
       "children_ids": [
         "nova_db",
         "network_db",
+        "keystone_db",
         "data_synchronization_engine"
       ],
       "exposed_health": 1,
@@ -299,6 +318,19 @@
     {
       "children_ids": [],
       "exposed_health": 1,
+      "name": "Keystone database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Keystone Database.",
+      "id": "keystone_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
       "name": "Network database",
       "is_notification": false,
       "action_name": [],
@@ -306,7 +338,7 @@
         "cloud_database"
       ],
       "health": 1,
-      "message": "Connected to Network database.",
+      "message": "Connected to Network Database.",
       "id": "network_db"
     },
     {
@@ -364,40 +396,66 @@
     {
       "children_ids": [],
       "exposed_health": 1,
+      "name": "Disk mount",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "storage"
+      ],
+      "health": 1,
+      "message": "/data mounted successfully",
+      "id": "disk_mount"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "RAMFS usage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "RAMFS data usage: 13.81%",
+      "id": "ramfs"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
       "name": "Disk usage",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "logging"
+        "storage"
       ],
       "health": 1,
-      "message": "Disk usage: 2%",
-      "id": "logging_disk_space"
+      "message": "Disk usage: 1%",
+      "id": "disk_space"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Log storage status",
+      "name": "Log database",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "logging"
+        "storage"
       ],
       "health": 1,
       "message": "Database not redundant",
-      "id": "logging_storage"
+      "id": "log_database"
     },
     {
       "children_ids": [],
       "exposed_health": 1,
-      "name": "Communication status",
+      "name": "Logging Communications",
       "is_notification": false,
       "action_name": [],
       "parent_ids": [
-        "logging"
+        "storage"
       ],
       "health": 1,
-      "message": "Log communications active.",
+      "message": "Receiving logs",
       "id": "logging_communication"
     }
   ]

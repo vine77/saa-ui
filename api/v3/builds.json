@@ -1,12 +1,12 @@
 {
   "builds": [
     {
-      "readycloud_version": "1.0.0",
+      "readycloud_version": null,
       "hostname": "samappliance",
       "is_master": true,
       "is_readycloud": false,
-      "version": "1.0.4.322",
-      "date": "2013-12-20T19:37:29+0100",
+      "version": "1.1.7.470",
+      "date": "2015-03-03T17:05:47+0000",
       "id": "current"
     }
   ]

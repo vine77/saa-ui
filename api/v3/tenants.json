@@ -1,61 +1,28 @@
 {
   "tenants": [
     {
-      "node_ids": [],
+      "node_ids": null,
       "enabled": true,
-      "name": "demo",
-      "vm_ids": [],
-      "id": "46e53e6862f0471bbef1144aba045f7b"
-    },
-    {
-      "node_ids": [],
-      "enabled": true,
-      "name": "invisible_to_admin",
-      "vm_ids": [],
-      "id": "64d636ecdc544f2cafb5adf1787f407b"
+      "name": "services",
+      "vm_ids": null,
+      "id": "52724a1e1b274a0bb9fb471fc5cec64d"
     },
     {
       "node_ids": [
-        "novamgmt116"
-      ],
-      "enabled": true,
-      "name": "service",
-      "vm_ids": [
-        "5accdd98-4d47-422a-a06c-78f74bee206d"
-      ],
-      "id": "8ac8ce6379db4e9fabbdf07787ea2ca1"
-    },
-    {
-      "node_ids": [
-        "44454C4C-3700-1048-8037-C2C04F513232",
-        "36353430-3831-4D58-5134-313530304E4C",
-        "44454C4C-3500-1039-805A-C3C04F445A31"
+        "B7E1E400-0000-E400-E1B7-000000E4E1B7",
+        "B7E1E400-0000-E400-E1B7-000000E4E1B7"
       ],
       "enabled": true,
       "name": "admin",
       "vm_ids": [
-        "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "8252c6b2-afe4-441d-8556-72566052b2fd",
-        "81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "a414f887-a031-469b-952d-a779227129cf",
-        "6acf3500-6da9-4b83-9827-aae98225675f"
+        "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+        "1b6dd918-f403-4284-b53a-f43d8f5f4c6d",
+        "adbe5077-6f41-49a7-9f74-b45aec68c961",
+        "7f0f969b-cab2-48da-a010-9fa52ace6cda",
+        "ab2976d9-ab87-49f4-aaee-bc3202c1f53c",
+        "978d2831-3058-4a20-b99b-03ea79bc5de7"
       ],
-      "id": "8b6baa3437e6408aafa395af3757ef28"
-    },
-    {
-      "node_ids": [
-        "00000000-0000-0000-0000-002590A349A6"
-      ],
-      "enabled": true,
-      "name": "test-tenant",
-      "vm_ids": [
-        "55031260-021c-440c-b849-df16f6dd12a7",
-        "446b3180-3fef-42cb-af30-502c913a4e17"
-      ],
-      "id": "af24416ef88849fa9cd767a077b04e58"
+      "id": "74fb550455354c6b8815d6b0f5d3ac6f"
     }
   ]
 }

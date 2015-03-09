@@ -1,190 +1,117 @@
 {
   "flavors": [
     {
-      "name": "m1.medium",
+      "name": "IAmUpdated978",
       "links": {
-        "uri": "/api/v2/configuration/flavors/3"
+        "slas": "/api/v2/configuration/slas/5656b9a7-4c72-4049-bf26-deb11524918b",
+        "uri": "/api/v2/configuration/flavors/232fdd82-42df-4c8e-895d-b6a0a26e5f8b"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": null,
-      "vcpus": 2,
-      "swap": 0,
-      "memory": 4096,
-      "root": 40,
-      "id": "3",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.tiny",
-      "links": {
-        "uri": "/api/v2/configuration/flavors/1"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": null,
+      "sla_id": "5656b9a7-4c72-4049-bf26-deb11524918b",
       "vcpus": 1,
-      "swap": 0,
-      "memory": 512,
-      "root": 1,
-      "id": "1",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.large",
-      "links": {
-        "uri": "/api/v2/configuration/flavors/4"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": null,
-      "vcpus": 4,
-      "swap": 0,
-      "memory": 8192,
-      "root": 80,
-      "id": "4",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.xlarge",
-      "links": {
-        "uri": "/api/v2/configuration/flavors/5"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": null,
-      "vcpus": 8,
-      "swap": 0,
-      "memory": 16384,
-      "root": 160,
-      "id": "5",
-      "vm_ids": []
-    },
-    {
-      "name": "m1.small",
-      "links": {
-        "uri": "/api/v2/configuration/flavors/2"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": null,
-      "vcpus": 1,
-      "swap": 0,
-      "memory": 2048,
+      "swap": 2,
+      "memory": 2,
       "root": 20,
-      "id": "2",
+      "id": "232fdd82-42df-4c8e-895d-b6a0a26e5f8b",
       "vm_ids": []
     },
     {
-      "name": "bv-unsec-sladefault",
+      "name": "test space in flavor name535",
       "links": {
-        "slas": "/api/v2/configuration/slas/b8d25428-f97a-4bd5-9962-9c7cfa2ef01f",
-        "uri": "/api/v2/configuration/flavors/911a7180-0649-4d1b-88d5-b2f77bfbddb1"
+        "slas": "/api/v2/configuration/slas/5656b9a7-4c72-4049-bf26-deb11524918b",
+        "uri": "/api/v2/configuration/flavors/1033f795-8063-4578-b83a-b25aba0141ad"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": "b8d25428-f97a-4bd5-9962-9c7cfa2ef01f",
-      "vcpus": 2,
-      "swap": 0,
-      "memory": 1024,
-      "root": 20,
-      "id": "911a7180-0649-4d1b-88d5-b2f77bfbddb1",
-      "vm_ids": []
-    },
-    {
-      "name": "1vcpu-unsec-bronze",
-      "links": {
-        "slas": "/api/v2/configuration/slas/c1dccaa0-6fb2-4cf6-ab1d-2f5c2fbfeb5e",
-        "uri": "/api/v2/configuration/flavors/dcee354e-1d61-41e8-baaa-6130d28cb2d7"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": "c1dccaa0-6fb2-4cf6-ab1d-2f5c2fbfeb5e",
+      "sla_id": "5656b9a7-4c72-4049-bf26-deb11524918b",
       "vcpus": 1,
-      "swap": 0,
-      "memory": 512,
-      "root": 0,
-      "id": "dcee354e-1d61-41e8-baaa-6130d28cb2d7",
-      "vm_ids": []
-    },
-    {
-      "name": "1vcpu-unsec-1core",
-      "links": {
-        "slas": "/api/v2/configuration/slas/e4fdac1f-9e6d-4194-8e54-7652463d02f6",
-        "uri": "/api/v2/configuration/flavors/97e26831-4f8d-4ea3-8a9f-39608d8fabe1"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": "e4fdac1f-9e6d-4194-8e54-7652463d02f6",
-      "vcpus": 1,
-      "swap": 0,
-      "memory": 512,
-      "root": 0,
-      "id": "97e26831-4f8d-4ea3-8a9f-39608d8fabe1",
-      "vm_ids": []
-    },
-    {
-      "name": "bv-unsec-silver",
-      "links": {
-        "uri": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "vms": "/api/v2/vms?ids=55031260-021c-440c-b849-df16f6dd12a7,5373657e-ee7b-43ba-af6e-6b3a26a4b1b0,446b3180-3fef-42cb-af30-502c913a4e17,6e0ebaac-1548-4f96-b71b-24a472e23c03,8252c6b2-afe4-441d-8556-72566052b2fd,81c94937-43f9-4759-aceb-bf264e8b00fe,b6769181-f7fc-4ce0-8927-1f69347eb09b,40d82778-8efa-4dee-bfa9-234d5e991eda,a414f887-a031-469b-952d-a779227129cf,6acf3500-6da9-4b83-9827-aae98225675f"
-      },
-      "deleted": false,
-      "rxtx_factor": 1.0,
-      "ephemeral": 0,
-      "public": 1,
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vcpus": 2,
-      "swap": 0,
-      "memory": 1024,
+      "swap": 2,
+      "memory": 2,
       "root": 20,
-      "id": "694dc2bf-285e-4865-b45d-e9f3124fe2db",
+      "id": "1033f795-8063-4578-b83a-b25aba0141ad",
+      "vm_ids": []
+    },
+    {
+      "name": "flavorWithNewSla516",
+      "links": {
+        "slas": "/api/v2/configuration/slas/8368cd2a-00cd-4108-a635-cb0c812f0bd2",
+        "uri": "/api/v2/configuration/flavors/378f223c-fc13-443b-ad3e-e80e1a90fa99"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "8368cd2a-00cd-4108-a635-cb0c812f0bd2",
+      "vcpus": 1,
+      "swap": 2,
+      "memory": 2,
+      "root": 20,
+      "id": "378f223c-fc13-443b-ad3e-e80e1a90fa99",
+      "vm_ids": []
+    },
+    {
+      "name": "MS1",
+      "links": {
+        "uri": "/api/v2/configuration/flavors/d48aae34-d8d4-44e3-a374-3451beb6b77e",
+        "slas": "/api/v2/configuration/slas/20e8f28b-24e5-4907-b020-5ddbbde45e35",
+        "vms": "/api/v2/vms?ids=7f0f969b-cab2-48da-a010-9fa52ace6cda,ab2976d9-ab87-49f4-aaee-bc3202c1f53c"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "20e8f28b-24e5-4907-b020-5ddbbde45e35",
+      "vcpus": 1,
+      "swap": 2,
+      "memory": 512,
+      "root": 5,
+      "id": "d48aae34-d8d4-44e3-a374-3451beb6b77e",
       "vm_ids": [
-        "55031260-021c-440c-b849-df16f6dd12a7",
-        "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "446b3180-3fef-42cb-af30-502c913a4e17",
-        "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "8252c6b2-afe4-441d-8556-72566052b2fd",
-        "81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "a414f887-a031-469b-952d-a779227129cf",
-        "6acf3500-6da9-4b83-9827-aae98225675f"
+        "7f0f969b-cab2-48da-a010-9fa52ace6cda",
+        "ab2976d9-ab87-49f4-aaee-bc3202c1f53c"
       ]
     },
     {
-      "name": "bv-1core-unsec",
+      "name": "mathi",
       "links": {
-        "slas": "/api/v2/configuration/slas/e4fdac1f-9e6d-4194-8e54-7652463d02f6",
-        "uri": "/api/v2/configuration/flavors/d8b44b36-096e-4804-abac-58bb24273cb6"
+        "uri": "/api/v2/configuration/flavors/6d1c1351-1e70-4ee2-b116-460a8244d237",
+        "slas": "/api/v2/configuration/slas/698c3f70-79ce-4e9d-83c9-37c56933a724",
+        "vms": "/api/v2/vms?ids=978d2831-3058-4a20-b99b-03ea79bc5de7"
       },
       "deleted": false,
       "rxtx_factor": 1.0,
       "ephemeral": 0,
       "public": 1,
-      "sla_id": "e4fdac1f-9e6d-4194-8e54-7652463d02f6",
+      "sla_id": "698c3f70-79ce-4e9d-83c9-37c56933a724",
       "vcpus": 1,
-      "swap": 0,
+      "swap": 2,
       "memory": 512,
       "root": 5,
-      "id": "d8b44b36-096e-4804-abac-58bb24273cb6",
+      "id": "6d1c1351-1e70-4ee2-b116-460a8244d237",
+      "vm_ids": [
+        "978d2831-3058-4a20-b99b-03ea79bc5de7"
+      ]
+    },
+    {
+      "name": "testFlavor484",
+      "links": {
+        "uri": "/api/v2/configuration/flavors/4f68b161-8bc0-49dd-b824-f5a11a8d5e31"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 1,
+      "swap": 2,
+      "memory": 2,
+      "root": 20,
+      "id": "4f68b161-8bc0-49dd-b824-f5a11a8d5e31",
       "vm_ids": []
     }
   ]

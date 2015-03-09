@@ -3,1031 +3,210 @@
     {
       "status": {
         "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
+          "SLA status: Unknown"
         ],
         "locked": false,
-        "sla_status": 1,
+        "sla_status": 0,
         "aggressor": 1,
-        "operational": 2,
+        "operational": 0,
         "trust_details": {
           "bios": 3,
           "vmm": 3
         },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
         "victim": 1,
         "trust": 3,
-        "short_message": "VM is healthy."
+        "short_message": "SLA definition for VM is not available. "
       },
       "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=446b3180-3fef-42cb-af30-502c913a4e17",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/446b3180-3fef-42cb-af30-502c913a4e17",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/446b3180-3fef-42cb-af30-502c913a4e17",
-        "nodes": "/api/v2/nodes/00000000-0000-0000-0000-002590A349A6",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/446b3180-3fef-42cb-af30-502c913a4e17",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/446b3180-3fef-42cb-af30-502c913a4e17"
+        "flavors": "/api/v2/configuration/flavors/bcce2695-6125-4035-8d81-b2743e0784db",
+        "uri": "/api/v2/vms/1b6dd918-f403-4284-b53a-f43d8f5f4c6d",
+        "logs": "/api/v2/logs?vm=1b6dd918-f403-4284-b53a-f43d8f5f4c6d"
       },
-      "vm_instantiation_detailed_id": "446b3180-3fef-42cb-af30-502c913a4e17",
-      "vm_instantiation_simple_id": "446b3180-3fef-42cb-af30-502c913a4e17",
-      "id": "446b3180-3fef-42cb-af30-502c913a4e17",
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": null,
+      "fixed_ips": null,
+      "id": "1b6dd918-f403-4284-b53a-f43d8f5f4c6d",
       "victim_ids": [],
-      "cloud_id": "446b3180-3fef-42cb-af30-502c913a4e17",
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "1b6dd918-f403-4284-b53a-f43d8f5f4c6d",
       "utilization": {
-        "ipc": 1.59,
-        "uptime": 37656,
-        "scu_total": 1.57,
+        "ipc": 0.0,
+        "uptime": null,
+        "network": null,
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
+        "scu": {
+          "compute": null,
+          "io_wait": null,
+          "misc": null
+        },
         "cores": {
           "system": {
             "used": [
               {
-                "core": "-1",
-                "socket": "0"
+                "core": null,
+                "socket": null
               }
             ]
           }
         },
-        "threads": [
-          {
-            "scu_current": 1.57,
-            "id": 5137
-          },
-          {
-            "scu_current": 0.0,
-            "id": 5126
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.57,
-        "cpu": 38.11,
-        "network": null
+        "cpu": 0.0
       },
-      "fixed_ips": [
-        "192.168.123.56"
-      ],
       "graphite_url": "/render?target=stats.SAM",
       "floating_ips": null,
       "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": null,
+        "scu_allocated_min": null
       },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-446b3180-3fef-42cb-af30-502c913a4e17",
-      "macs": [
-        "fa:16:3e:42:7b:4f"
-      ],
+      "sla_id": null,
+      "user_name": "admin",
+      "vm_name": "msw-test",
+      "macs": null,
       "contention": {
         "threads": [
           {
             "llc": {
-              "value": 0.03,
-              "label": "LOW"
+              "value": null,
+              "label": null
             },
-            "id": 5137
-          },
-          {
-            "llc": {
-              "value": 4.67,
-              "label": "MEDIUM"
-            },
-            "id": 5126
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.03,
-            "cache_occupancy": 10,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "446b3180-3fef-42cb-af30-502c913a4e17",
-      "node_id": "00000000-0000-0000-0000-002590A349A6",
-      "node_name": "d00-25-90-a3-49-a6.slescloud.tld",
-      "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 1,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "nodes": "/api/v2/nodes/44454C4C-3700-1048-8037-C2C04F513232",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/5373657e-ee7b-43ba-af6e-6b3a26a4b1b0"
-      },
-      "vm_instantiation_detailed_id": "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "vm_instantiation_simple_id": "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "id": "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "victim_ids": [],
-      "cloud_id": "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "utilization": {
-        "ipc": 1.83,
-        "uptime": 37651,
-        "scu_total": 1.5,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "1"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 1.5,
-            "id": 15590
-          },
-          {
-            "scu_current": 0.0,
-            "id": 15600
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.5,
-        "cpu": 31.46,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.52"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "macs": [
-        "fa:16:3e:01:f4:4c"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 15590
-          },
-          {
-            "llc": {
-              "value": 19.54,
-              "label": "MEDIUM"
-            },
-            "id": 15600
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.05,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "5373657e-ee7b-43ba-af6e-6b3a26a4b1b0",
-      "node_id": "44454C4C-3700-1048-8037-C2C04F513232",
-      "node_name": "df8-bc-12-55-42-70.slescloud.tld",
-      "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 3,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "aggressors": "/api/v2/vms?ids=6751dd16-e53e-4479-b220-35b0ec09915e",
-        "nodes": "/api/v2/nodes/44454C4C-3500-1039-805A-C3C04F445A31",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/6e0ebaac-1548-4f96-b71b-24a472e23c03",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/6e0ebaac-1548-4f96-b71b-24a472e23c03"
-      },
-      "vm_instantiation_detailed_id": "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "vm_instantiation_simple_id": "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "id": "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "victim_ids": [],
-      "cloud_id": "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "utilization": {
-        "ipc": 1.75,
-        "uptime": 37660,
-        "scu_total": 1.68,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "1"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 0.39,
-            "id": 22682
-          },
-          {
-            "scu_current": 1.29,
-            "id": 22679
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.29,
-        "cpu": 36.9,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.60"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "macs": [
-        "fa:16:3e:32:8e:f4"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 0.07,
-              "label": "LOW"
-            },
-            "id": 22682
-          },
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 22679
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.05,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "6e0ebaac-1548-4f96-b71b-24a472e23c03",
-      "node_id": "44454C4C-3500-1039-805A-C3C04F445A31",
-      "node_name": "db8-ca-3a-6b-ba-48.slescloud.tld",
-      "aggressor_ids": [
-        "6751dd16-e53e-4479-b220-35b0ec09915e"
-      ],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 1,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E4C",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/b6769181-f7fc-4ce0-8927-1f69347eb09b",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/b6769181-f7fc-4ce0-8927-1f69347eb09b"
-      },
-      "vm_instantiation_detailed_id": "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "vm_instantiation_simple_id": "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "id": "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "victim_ids": [],
-      "cloud_id": "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "utilization": {
-        "ipc": 1.63,
-        "uptime": 37660,
-        "scu_total": 1.69,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "1"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 0.0,
-            "id": 1904
-          },
-          {
-            "scu_current": 1.69,
-            "id": 1905
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.69,
-        "cpu": 41.53,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.59"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "macs": [
-        "fa:16:3e:40:d3:62"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 3.61,
-              "label": "MEDIUM"
-            },
-            "id": 1904
-          },
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 1905
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.04,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "b6769181-f7fc-4ce0-8927-1f69347eb09b",
-      "node_id": "36353430-3831-4D58-5134-313530304E4C",
-      "node_name": "da0-d3-c1-01-a8-c8.slescloud.tld",
-      "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 1,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=8252c6b2-afe4-441d-8556-72566052b2fd",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/8252c6b2-afe4-441d-8556-72566052b2fd",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/8252c6b2-afe4-441d-8556-72566052b2fd",
-        "nodes": "/api/v2/nodes/44454C4C-3700-1048-8037-C2C04F513232",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/8252c6b2-afe4-441d-8556-72566052b2fd",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/8252c6b2-afe4-441d-8556-72566052b2fd"
-      },
-      "vm_instantiation_detailed_id": "8252c6b2-afe4-441d-8556-72566052b2fd",
-      "vm_instantiation_simple_id": "8252c6b2-afe4-441d-8556-72566052b2fd",
-      "id": "8252c6b2-afe4-441d-8556-72566052b2fd",
-      "victim_ids": [],
-      "cloud_id": "8252c6b2-afe4-441d-8556-72566052b2fd",
-      "utilization": {
-        "ipc": 2.04,
-        "uptime": 37650,
-        "scu_total": 1.67,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "0"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 0.0,
-            "id": 15795
-          },
-          {
-            "scu_current": 1.67,
-            "id": 15800
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.67,
-        "cpu": 31.46,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.55"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-8252c6b2-afe4-441d-8556-72566052b2fd",
-      "macs": [
-        "fa:16:3e:77:2f:5c"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 8.63,
-              "label": "MEDIUM"
-            },
-            "id": 15795
-          },
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 15800
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.04,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "8252c6b2-afe4-441d-8556-72566052b2fd",
-      "node_id": "44454C4C-3700-1048-8037-C2C04F513232",
-      "node_name": "df8-bc-12-55-42-70.slescloud.tld",
-      "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 1,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "nodes": "/api/v2/nodes/44454C4C-3700-1048-8037-C2C04F513232",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/81c94937-43f9-4759-aceb-bf264e8b00fe",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/81c94937-43f9-4759-aceb-bf264e8b00fe"
-      },
-      "vm_instantiation_detailed_id": "81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "vm_instantiation_simple_id": "81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "id": "81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "victim_ids": [],
-      "cloud_id": "81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "utilization": {
-        "ipc": 2.04,
-        "uptime": 37648,
-        "scu_total": 1.67,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "1"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 1.67,
-            "id": 15839
-          },
-          {
-            "scu_current": 0.0,
-            "id": 15840
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.67,
-        "cpu": 31.4,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.57"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "macs": [
-        "fa:16:3e:8b:bf:e3"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 15839
-          },
-          {
-            "llc": {
-              "value": 25.89,
-              "label": "MEDIUM"
-            },
-            "id": 15840
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.05,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "81c94937-43f9-4759-aceb-bf264e8b00fe",
-      "node_id": "44454C4C-3700-1048-8037-C2C04F513232",
-      "node_name": "df8-bc-12-55-42-70.slescloud.tld",
-      "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 1,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=55031260-021c-440c-b849-df16f6dd12a7",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/55031260-021c-440c-b849-df16f6dd12a7",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/55031260-021c-440c-b849-df16f6dd12a7",
-        "nodes": "/api/v2/nodes/00000000-0000-0000-0000-002590A349A6",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/55031260-021c-440c-b849-df16f6dd12a7",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/55031260-021c-440c-b849-df16f6dd12a7"
-      },
-      "vm_instantiation_detailed_id": "55031260-021c-440c-b849-df16f6dd12a7",
-      "vm_instantiation_simple_id": "55031260-021c-440c-b849-df16f6dd12a7",
-      "id": "55031260-021c-440c-b849-df16f6dd12a7",
-      "victim_ids": [],
-      "cloud_id": "55031260-021c-440c-b849-df16f6dd12a7",
-      "utilization": {
-        "ipc": 1.55,
-        "uptime": 37656,
-        "scu_total": 1.53,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "0"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 1.53,
-            "id": 5064
-          },
-          {
-            "scu_current": 0.0,
-            "id": 5063
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.53,
-        "cpu": 38.11,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.54"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-55031260-021c-440c-b849-df16f6dd12a7",
-      "macs": [
-        "fa:16:3e:d6:59:d8"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 5064
-          },
-          {
-            "llc": {
-              "value": 15.09,
-              "label": "MEDIUM"
-            },
-            "id": 5063
+            "id": null
           }
         ],
         "system": {
           "llc": {
             "cache_usage": {
-              "used": 200,
-              "normalized": 0.12
+              "used": -1,
+              "normalized": -1.0
             },
-            "value": 0.04,
-            "cache_occupancy": 5,
+            "cache_occupancy": -1.0,
+            "value": null,
             "label": "LOW"
           }
         }
       },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "55031260-021c-440c-b849-df16f6dd12a7",
-      "node_id": "00000000-0000-0000-0000-002590A349A6",
-      "node_name": "d00-25-90-a3-49-a6.slescloud.tld",
+      "vm_instantiation_simple_id": null,
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": null,
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
+      "node_name": null,
       "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
+      "flavor_id": "bcce2695-6125-4035-8d81-b2743e0784db"
     },
     {
       "status": {
         "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
+          "SLA status: Unknown"
         ],
         "locked": false,
-        "sla_status": 1,
+        "sla_status": 0,
         "aggressor": 1,
-        "operational": 2,
+        "operational": 0,
         "trust_details": {
           "bios": 3,
           "vmm": 3
         },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 3,
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
         "trust": 3,
-        "short_message": "VM is healthy."
+        "short_message": "SLA definition for VM is not available. "
       },
       "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=6acf3500-6da9-4b83-9827-aae98225675f",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/6acf3500-6da9-4b83-9827-aae98225675f",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/6acf3500-6da9-4b83-9827-aae98225675f",
-        "aggressors": "/api/v2/vms?ids=6751dd16-e53e-4479-b220-35b0ec09915e",
-        "nodes": "/api/v2/nodes/44454C4C-3500-1039-805A-C3C04F445A31",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/6acf3500-6da9-4b83-9827-aae98225675f",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/6acf3500-6da9-4b83-9827-aae98225675f"
+        "flavors": "/api/v2/configuration/flavors/d48aae34-d8d4-44e3-a374-3451beb6b77e",
+        "uri": "/api/v2/vms/7f0f969b-cab2-48da-a010-9fa52ace6cda",
+        "logs": "/api/v2/logs?vm=7f0f969b-cab2-48da-a010-9fa52ace6cda"
       },
-      "vm_instantiation_detailed_id": "6acf3500-6da9-4b83-9827-aae98225675f",
-      "vm_instantiation_simple_id": "6acf3500-6da9-4b83-9827-aae98225675f",
-      "id": "6acf3500-6da9-4b83-9827-aae98225675f",
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": null,
+      "fixed_ips": null,
+      "id": "7f0f969b-cab2-48da-a010-9fa52ace6cda",
       "victim_ids": [],
-      "cloud_id": "6acf3500-6da9-4b83-9827-aae98225675f",
-
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "7f0f969b-cab2-48da-a010-9fa52ace6cda",
       "utilization": {
-        "ipc": 1.74,
-        "uptime": 37661,
+        "ipc": 0.0,
+        "uptime": null,
+        "network": null,
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
         "scu": {
-          "compute": 1,
-          "misc": 1,
-          "io_wait": 1
+          "compute": null,
+          "io_wait": null,
+          "misc": null
         },
         "cores": {
           "system": {
             "used": [
               {
-                "core": "-1",
-                "socket": "1"
+                "core": null,
+                "socket": null
               }
             ]
           }
         },
-        "threads": [
-          {
-            "scu_current": 0.0,
-            "id": 22639
-          },
-          {
-            "scu_current": 1.67,
-            "id": 22640
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "cpu": 36.93,
-        "network": null
+        "cpu": 0.0
       },
-      "fixed_ips": [
-        "192.168.123.53"
-      ],
       "graphite_url": "/render?target=stats.SAM",
       "floating_ips": null,
       "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 6,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 4
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": null,
+        "scu_allocated_min": null
       },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-6acf3500-6da9-4b83-9827-aae98225675f",
-      "macs": [
-        "fa:16:3e:37:95:fc"
-      ],
+      "sla_id": null,
+      "user_name": "admin",
+      "vm_name": "Vm1",
+      "macs": null,
       "contention": {
         "threads": [
           {
             "llc": {
-              "value": 12.36,
-              "label": "MEDIUM"
+              "value": null,
+              "label": null
             },
-            "id": 22639
-          },
-          {
-            "llc": {
-              "value": 0.04,
-              "label": "LOW"
-            },
-            "id": 22640
+            "id": null
           }
         ],
         "system": {
           "llc": {
-            "value": 0.04,
-            "cache_occupancy": 3,
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "cache_occupancy": -1.0,
+            "value": null,
             "label": "LOW"
           }
         }
       },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "6acf3500-6da9-4b83-9827-aae98225675f",
-      "node_id": "44454C4C-3500-1039-805A-C3C04F445A31",
-      "node_name": "db8-ca-3a-6b-ba-48.slescloud.tld",
-      "aggressor_ids": [
-        "6751dd16-e53e-4479-b220-35b0ec09915e"
-      ],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
-    },
-    {
-      "status": {
-        "sla_messages": [
-          "SLA status: Not violated (for 10h 24m)"
-        ],
-        "locked": false,
-        "sla_status": 1,
-        "aggressor": 1,
-        "operational": 2,
-        "trust_details": {
-          "bios": 3,
-          "vmm": 3
-        },
-        "long_message": "VM is healthy. VM is powered on. ",
-        "health": 1,
-        "victim": 3,
-        "trust": 3,
-        "short_message": "VM is healthy."
-      },
-      "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "logs": "/api/v2/logs?vm=40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "slas": "/api/v2/configuration/slas/876e9fcd-3809-4897-a28e-9dc537d67c9a",
-        "uri": "/api/v2/vms/40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "aggressors": "/api/v2/vms?ids=0da328aa-a0d0-4cc2-a3ce-54a67e27e9e5",
-        "nodes": "/api/v2/nodes/36353430-3831-4D58-5134-313530304E4C",
-        "vm_trust_reports": "/api/v2/vm_trust_reports/40d82778-8efa-4dee-bfa9-234d5e991eda",
-        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/40d82778-8efa-4dee-bfa9-234d5e991eda"
-      },
-      "vm_instantiation_detailed_id": "40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "vm_instantiation_simple_id": "40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "id": "40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "victim_ids": [],
-      "cloud_id": "40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "utilization": {
-        "ipc": 1.78,
-        "uptime": 37645,
-        "scu_total": 1.84,
-        "cores": {
-          "system": {
-            "used": [
-              {
-                "core": "-1",
-                "socket": "0"
-              }
-            ]
-          }
-        },
-        "threads": [
-          {
-            "scu_current": 0.0,
-            "id": 2303
-          },
-          {
-            "scu_current": 1.84,
-            "id": 2302
-          }
-        ],
-        "io": null,
-        "memory": "1048576 KB",
-        "scu_burst": 0.84,
-        "cpu": 41.5,
-        "network": null
-      },
-      "fixed_ips": [
-        "192.168.123.58"
-      ],
-      "graphite_url": "/render?target=stats.SAM",
-      "floating_ips": null,
-      "capabilities": {
-        "scu_allocated": 2.0,
-        "cores": 2,
-        "scu_allocated_max": 4.0,
-        "memory_size": "1048576 KB",
-        "scu_allocated_min": 2.0
-      },
-      "sla_id": "876e9fcd-3809-4897-a28e-9dc537d67c9a",
-      "vm_name": "bv-10-gips-40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "macs": [
-        "fa:16:3e:45:e1:eb"
-      ],
-      "contention": {
-        "threads": [
-          {
-            "llc": {
-              "value": 5.44,
-              "label": "MEDIUM"
-            },
-            "id": 2303
-          },
-          {
-            "llc": {
-              "value": 0.03,
-              "label": "LOW"
-            },
-            "id": 2302
-          }
-        ],
-        "system": {
-          "llc": {
-            "value": 0.03,
-            "cache_occupancy": 2,
-            "label": "LOW"
-          }
-        }
-      },
-      "sla_name": "Unsecure Silver VM",
-      "vm_trust_report_id": "40d82778-8efa-4dee-bfa9-234d5e991eda",
-      "node_id": "36353430-3831-4D58-5134-313530304E4C",
-      "node_name": "da0-d3-c1-01-a8-c8.slescloud.tld",
-      "aggressor_ids": [
-        "0da328aa-a0d0-4cc2-a3ce-54a67e27e9e5"
-      ],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
+      "vm_instantiation_simple_id": null,
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": null,
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
+      "node_name": null,
+      "aggressor_ids": [],
+      "flavor_id": "d48aae34-d8d4-44e3-a374-3451beb6b77e"
     },
     {
       "status": {
@@ -1049,19 +228,40 @@
         "short_message": "VM's health is unknown."
       },
       "links": {
-        "flavors": "/api/v2/configuration/flavors/694dc2bf-285e-4865-b45d-e9f3124fe2db",
-        "uri": "/api/v2/vms/a414f887-a031-469b-952d-a779227129cf",
-        "logs": "/api/v2/logs?vm=a414f887-a031-469b-952d-a779227129cf"
+        "flavors": "/api/v2/configuration/flavors/6d1c1351-1e70-4ee2-b116-460a8244d237",
+        "logs": "/api/v2/logs?vm=978d2831-3058-4a20-b99b-03ea79bc5de7",
+        "slas": "/api/v2/configuration/slas/698c3f70-79ce-4e9d-83c9-37c56933a724",
+        "uri": "/api/v2/vms/978d2831-3058-4a20-b99b-03ea79bc5de7",
+        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/978d2831-3058-4a20-b99b-03ea79bc5de7",
+        "nodes": "/api/v2/nodes/B7E1E400-0000-E400-E1B7-000000E4E1B7",
+        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/978d2831-3058-4a20-b99b-03ea79bc5de7"
       },
-      "vm_instantiation_detailed_id": null,
-      "vm_instantiation_simple_id": null,
-      "id": "a414f887-a031-469b-952d-a779227129cf",
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": "978d2831-3058-4a20-b99b-03ea79bc5de7",
+      "fixed_ips": [
+        "172.16.0.148"
+      ],
+      "id": "978d2831-3058-4a20-b99b-03ea79bc5de7",
       "victim_ids": [],
-      "cloud_id": "a414f887-a031-469b-952d-a779227129cf",
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "978d2831-3058-4a20-b99b-03ea79bc5de7",
       "utilization": {
         "ipc": 0.0,
         "uptime": null,
-        "scu_total": 0.0,
+        "network": null,
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
+        "scu": {
+          "compute": null,
+          "io_wait": null,
+          "misc": null
+        },
         "cores": {
           "system": {
             "used": [
@@ -1072,6 +272,202 @@
             ]
           }
         },
+        "cpu": 0.0
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": 0.5,
+        "cores": 1,
+        "scu_allocated_max": 1.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.5
+      },
+      "sla_id": "698c3f70-79ce-4e9d-83c9-37c56933a724",
+      "user_name": "admin",
+      "vm_name": "mathi-vm1",
+      "macs": [
+        "fa:16:3e:47:55:5a"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "cache_occupancy": -1.0,
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "vm_instantiation_simple_id": "978d2831-3058-4a20-b99b-03ea79bc5de7",
+      "sla_name": "mathi-sla",
+      "vm_trust_report_id": null,
+      "node_id": "B7E1E400-0000-E400-E1B7-000000E4E1B7",
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
+      "node_name": "node-18",
+      "aggressor_ids": [],
+      "flavor_id": "6d1c1351-1e70-4ee2-b116-460a8244d237"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown (for 105h 7m)"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM is healthy. VM is powered on. ",
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM is healthy."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/2bae223f-31ba-4566-a271-25c341c56760",
+        "logs": "/api/v2/logs?vm=a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+        "slas": "/api/v2/configuration/slas/724c5072-b9fe-4cd3-ac06-a3766441b05a",
+        "uri": "/api/v2/vms/a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+        "vm_instantiation_detailed": "/api/v2/vm_instantiation_detailed/a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+        "nodes": "/api/v2/nodes/B7E1E400-0000-E400-E1B7-000000E4E1B7",
+        "vm_trust_reports": "/api/v2/vm_trust_reports/a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+        "vm_instantiation_simple": "/api/v2/vm_instantiation_simple/a196af0b-3f2f-48b0-bcda-1b2c27480ed3"
+      },
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+      "fixed_ips": [
+        "172.16.0.230"
+      ],
+      "id": "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+      "victim_ids": [],
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+      "utilization": {
+        "ipc": 0.49,
+        "uptime": 476973,
+        "network": null,
+        "threads": [
+          {
+            "scu_current": 0.0,
+            "id": 110992
+          }
+        ],
+        "io": null,
+        "memory": "1048576 KB",
+        "scu": {
+          "compute": 0.05,
+          "io_wait": 0.0,
+          "misc": 0.05
+        },
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": "-1",
+                "socket": "0"
+              }
+            ]
+          }
+        },
+        "cpu": 7.23
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": 0.5,
+        "cores": 1,
+        "scu_allocated_max": 1.0,
+        "memory_size": "1048576 KB",
+        "scu_allocated_min": 0.5
+      },
+      "sla_id": "724c5072-b9fe-4cd3-ac06-a3766441b05a",
+      "user_name": "admin",
+      "vm_name": "MSVM",
+      "macs": [
+        "fa:16:3e:cc:2c:4e"
+      ],
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 0.12,
+              "label": "LOW"
+            },
+            "id": 110992
+          }
+        ],
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "cache_occupancy": -1.0,
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "vm_instantiation_simple_id": "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+      "sla_name": "MS460SLASCU",
+      "vm_trust_report_id": "a196af0b-3f2f-48b0-bcda-1b2c27480ed3",
+      "node_id": "B7E1E400-0000-E400-E1B7-000000E4E1B7",
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
+      "node_name": "node-18",
+      "aggressor_ids": [],
+      "flavor_id": "2bae223f-31ba-4566-a271-25c341c56760"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available. "
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/d48aae34-d8d4-44e3-a374-3451beb6b77e",
+        "uri": "/api/v2/vms/ab2976d9-ab87-49f4-aaee-bc3202c1f53c",
+        "logs": "/api/v2/logs?vm=ab2976d9-ab87-49f4-aaee-bc3202c1f53c"
+      },
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": null,
+      "fixed_ips": null,
+      "id": "ab2976d9-ab87-49f4-aaee-bc3202c1f53c",
+      "victim_ids": [],
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "ab2976d9-ab87-49f4-aaee-bc3202c1f53c",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "network": null,
         "threads": [
           {
             "scu_current": null,
@@ -1079,23 +475,36 @@
           }
         ],
         "io": null,
-        "memory": "1024 MB",
-        "scu_burst": 0.0,
-        "cpu": 0.0,
-        "network": null
+        "memory": "512 MB",
+        "scu": {
+          "compute": null,
+          "io_wait": null,
+          "misc": null
+        },
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "cpu": 0.0
       },
-      "fixed_ips": null,
       "graphite_url": "/render?target=stats.SAM",
       "floating_ips": null,
       "capabilities": {
         "scu_allocated": null,
-        "cores": 2,
+        "cores": 1,
         "scu_allocated_max": null,
-        "memory_size": "1024 MB",
+        "memory_size": null,
         "scu_allocated_min": null
       },
       "sla_id": null,
-      "vm_name": "bv-10-gips-a414f887-a031-469b-952d-a779227129cf",
+      "user_name": "admin",
+      "vm_name": "VM2",
       "macs": null,
       "contention": {
         "threads": [
@@ -1109,18 +518,128 @@
         ],
         "system": {
           "llc": {
-            "value": 0.0,
-            "cache_occupancy": 1,
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "cache_occupancy": -1.0,
+            "value": null,
             "label": "LOW"
           }
         }
       },
+      "vm_instantiation_simple_id": null,
       "sla_name": null,
       "vm_trust_report_id": null,
       "node_id": null,
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
       "node_name": null,
       "aggressor_ids": [],
-      "flavor_id": "694dc2bf-285e-4865-b45d-e9f3124fe2db"
+      "flavor_id": "d48aae34-d8d4-44e3-a374-3451beb6b77e"
+    },
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available. "
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/bcce2695-6125-4035-8d81-b2743e0784db",
+        "uri": "/api/v2/vms/adbe5077-6f41-49a7-9f74-b45aec68c961",
+        "logs": "/api/v2/logs?vm=adbe5077-6f41-49a7-9f74-b45aec68c961"
+      },
+      "tenant_name": "admin",
+      "vm_instantiation_detailed_id": null,
+      "fixed_ips": null,
+      "id": "adbe5077-6f41-49a7-9f74-b45aec68c961",
+      "victim_ids": [],
+      "user_id": "ef66eccc78fe40a8824b2e4f04cdd338",
+      "cloud_id": "adbe5077-6f41-49a7-9f74-b45aec68c961",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "network": null,
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "512 MB",
+        "scu": {
+          "compute": null,
+          "io_wait": null,
+          "misc": null
+        },
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": null,
+                "socket": null
+              }
+            ]
+          }
+        },
+        "cpu": 0.0
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 1,
+        "scu_allocated_max": null,
+        "memory_size": null,
+        "scu_allocated_min": null
+      },
+      "sla_id": null,
+      "user_name": "admin",
+      "vm_name": "msw-test",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "cache_occupancy": -1.0,
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "vm_instantiation_simple_id": null,
+      "sla_name": null,
+      "vm_trust_report_id": null,
+      "node_id": null,
+      "tenant_id": "74fb550455354c6b8815d6b0f5d3ac6f",
+      "node_name": null,
+      "aggressor_ids": [],
+      "flavor_id": "bcce2695-6125-4035-8d81-b2743e0784db"
     }
   ]
 }

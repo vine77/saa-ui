@@ -5,12 +5,14 @@
       "attestation_type": "PCR",
       "description": "",
       "osname": null,
-      "trust_node_ids": [],
+      "trust_node_ids": [
+        "B7E1E400-0000-E400-E1B7-000000E4E1B7"
+      ],
       "oemname": "Intel Corp.",
       "mle_manifests": [],
-      "version": "01.03.0002",
+      "version": "01.06.0002",
       "osversion": null,
-      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAxLjAzLjAwMDInKV0p",
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAxLjA2LjAwMDInKV0p",
       "node_id": null,
       "mle_type": "BIOS"
     },
@@ -19,12 +21,14 @@
       "attestation_type": "MODULE",
       "description": "",
       "osname": "Ubuntu",
-      "trust_node_ids": [],
+      "trust_node_ids": [
+        "B7E1E400-0000-E400-E1B7-000000E4E1B7"
+      ],
       "oemname": null,
       "mle_manifests": [],
-      "version": "12.04-1.0.0",
+      "version": "12.04-2.0.0",
       "osversion": "12.04",
-      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMS4wLjAnKV0p",
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMi4wLjAnKV0p",
       "node_id": null,
       "mle_type": "VMM"
     }
