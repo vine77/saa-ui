@@ -8,4 +8,8 @@
     <a {{action "disableAutoRefresh"}} {{bind-attr class=":btn isAutoRefreshEnabled::active"}}><i class="icon-pause"></i> Disable Refresh</a>
     <a {{action "enableAutoRefresh"}} {{bind-attr class=":btn isAutoRefreshEnabled:active"}}><i class="icon-play"></i> Enable Refresh</a>
   </div>
+  <div class="input-append">
+    {{input value=apiDomain placeholder="API Domain"}}
+    <a {{action "clearApiDomain"}} class="btn"><i class="icon-ban-circle"></i> Clear API Domain</a>
+  </div>
 </footer>
