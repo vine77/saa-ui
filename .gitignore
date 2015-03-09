@@ -5,13 +5,10 @@ temp
 scripts/templates.js
 styles/main.css
 styles/theme.css
-
-# Ignore node_modules not used for Node.js server (i.e. dev/build tools)
 npm-debug.log
-node_modules/
-!node_modules/.bin/
-!node_modules/crypto/
-!node_modules/express/
-
+node_modules
+bower_components
+components
 dist
 vendor
+public/styles/theme.css
