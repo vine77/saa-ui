@@ -17,13 +17,8 @@ App.SettingsMailserverController = Ember.ObjectController.extend(Ember.Validatio
       var self = this;
       var mailserver = this.get('model');
       this.set('isActionPending', true);
-
       var self = this;
-      self.validate().then(null, function() {
-        var errorMessages = [];
-        App.event('Form fields did not validate - please provide valid data.', App.ERROR);
-        self.set('isActionPending', false);
-        self.validate().then(function() {
+      self.validate().then(function(){
           mailserver.save().then(function () {
             self.set('isActionPending', false);
             App.event('Successfully updated mail server settings.', App.SUCCESS);
@@ -31,7 +26,10 @@ App.SettingsMailserverController = Ember.ObjectController.extend(Ember.Validatio
             self.set('isActionPending', false);
             App.xhrError(xhr, 'Failed to update mail server settings.');
           });
-        })
+      }, function() {
+        var errorMessages = [];
+        self.set('isActionPending', false);
+        App.event('Form fields did not validate - please provide valid data.', App.ERROR);
       });
     },
     cancel: function () {
