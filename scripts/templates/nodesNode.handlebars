@@ -76,6 +76,18 @@
           </td>
         </tr>
         <tr>
+          <th class="column-medium">Tenant</th>
+          <td>
+            <ul class="comma-separated">
+              {{#each tenants}}
+                <li>{{name}}</li>
+              {{else}}
+                <li><span class="not-applicable">n/a</span></li>
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+        <tr>
           <th class="column-medium">Trust</th>
           <td>
             {{#view App.TooltipView titleBinding="trustMessage"}}

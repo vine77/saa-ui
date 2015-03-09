@@ -69,5 +69,6 @@ App.Node = DS.Model.extend({
   // Relationships
   nodeTrustReport: DS.belongsTo('nodeTrustReport'),
   trustNode: DS.belongsTo('trustNode'),
-  vms: DS.hasMany('vm', {async: true})
+  vms: DS.hasMany('vm', {async: true}),
+  tenants: DS.hasMany('tenant', {async: true})
 });

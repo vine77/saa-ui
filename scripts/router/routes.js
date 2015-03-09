@@ -30,6 +30,8 @@ App.ApplicationRoute = Ember.Route.extend({
     });
     this.controllerFor('vms').set('model', this.store.all('vm'));
     this.controllerFor('nodes').set('model', this.store.all('node'));
+    this.controllerFor('vms').set('tenants', this.store.all('tenant'));
+    this.controllerFor('nodes').set('tenants', this.store.all('tenant'));
   },
   removeCookies: function () {
     Ember.$.removeCookie('auth_pubtkt');
@@ -185,6 +187,7 @@ App.AppRoute = Ember.Route.extend({
         self.store.find('sla');
         self.store.find('flavor');
         self.store.find('vm');
+        self.store.find('tenant');
         App.mtWilson.check().then(function () {
           if (App.mtWilson.get('isInstalled')) {
             self.store.find('trustMle');
