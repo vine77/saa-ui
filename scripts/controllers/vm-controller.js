@@ -199,16 +199,16 @@ App.VmController = Ember.ObjectController.extend({
     return message;
   }.property('isRange', 'utilization.scu_total', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
-    var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc') + this.get('utilization.scu.io_wait');
+    var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
     var burst =  this.get('capabilities.scu_allocated_min') - currentUtilization;
     if (Ember.isEmpty(burst)) burst = 0;
     return burst;
-  }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'utilization.scu.compute', 'utilization.scu.misc', 'utilization.scu.io_wait'),
+  }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'utilization.scu.compute', 'utilization.scu.misc'),
   utilizationCurrent: function() {
-    var total = this.get('utilization.scu.compute') + this.get('utilization.scu.misc') + this.get('utilization.scu.io_wait');
+    var total = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
     if (Ember.isEmpty(total)) total = 0;
     return Math.max(0, total).toFixed(2);
-  }.property('utilization.scu.compute','utilization.scu.misc','utilization.scu.io_wait', 'utilizationBurst'),
+  }.property('utilization.scu.compute','utilization.scu.misc', 'utilizationBurst'),
   utilizationBurstWidth: function() {
     if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
     var percent = 100 * parseFloat(this.get('utilizationBurst')) / parseFloat(this.get('capabilities.scu_allocated_max'));
@@ -256,12 +256,6 @@ App.VmController = Ember.ObjectController.extend({
          "size": self.get('utilizationCurrent'),
          "fill_type": "light-green",
          "children": [
-          {
-            "name": "IO Wait",
-            "size": self.get('utilization.scu.io_wait'),
-            "fill_type": "brown",
-            "description": "Utilization"
-          },
           {
             "name": "Miscellaneous",
             "size": self.get('utilization.scu.misc'),

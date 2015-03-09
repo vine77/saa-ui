@@ -340,7 +340,7 @@ App.NodeController = Ember.ObjectController.extend({
     var returnArray = [];
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
-        var utilizationCurrent = (+item.compute + +item.io_wait + +item.misc).toFixed(2);
+        var utilizationCurrent = (+item.compute + +item.misc).toFixed(2);
         var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
 
         if (item.type == 'vm') {
@@ -356,7 +356,6 @@ App.NodeController = Ember.ObjectController.extend({
           min: item.min,
           max: item.max,
           compute: item.compute,
-          ioWait: item.io_wait,
           misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
           utilizationCurrent: utilizationCurrent,
@@ -422,11 +421,6 @@ App.NodeController = Ember.ObjectController.extend({
           {
             "name": "Miscellaneous",
             "fill_type": "yellow",
-            "size": item.misc
-          },
-          {
-            "name": "IO Wait",
-            "fill_type": "brown",
             "size": item.misc
           }
         ]
