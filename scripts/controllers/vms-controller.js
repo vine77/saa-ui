@@ -53,6 +53,13 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   sortProperty: 'name',
   sortAscending: true,
   filterProperties: ['name', 'nodeName'],
+  isMatch: function (record) {
+    if (!this.get('selectedTenant')) return true;
+    if (Ember.isEmpty(record.get('tenant'))) return false;
+    return record.get('tenant.id') === this.get('selectedTenant.id');
+  },
+  isMatchObserves: ['selectedTenant'],
+  selectedTenant: null,
   multipleVmsAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),

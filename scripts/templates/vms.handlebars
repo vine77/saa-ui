@@ -1,17 +1,15 @@
 <div id="vms" class="container-fluid">
   <div class="row-fluid">
     <div class="content">
-      <div class="treemap"></div>
       <div class="header">
-        <div class="global-actions">
-          {{!--
-          <a {{action "renderTreemap"}} {{bind-attr class=":btn isTreemapVisible:active"}}><i class="icon-bar-chart"></i> Visualize</a>
-          --}}
-        </div>
-        <div id="filter-form" class="input-prepend pull-right clear-input">
-          <span class="add-on"><i class="icon-search"></i></span>
-          {{view Ember.TextField id="filter" type="search" valueBinding="filterQuery" placeholder="Filter VMs"}}
-          <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+        <div class="span7"></div>
+        <div class="span5 text-right">
+          <div id="filter-form" class="input-prepend clear-input">
+            <span class="add-on"><i class="icon-search"></i></span>
+            {{view Ember.TextField id="filter" class="input-medium" type="search" valueBinding="filterQuery" placeholder="Filter VMs"}}
+            <a class="close clear-button" type="reset" {{action "clearFilter"}}>&times;</a>
+          </div>
+          {{view "Ember.Select" class="input-medium" prompt="All tenants" content=tenants value=selectedTenant optionLabelPath="content.name"}}
         </div>
       </div>
       <div class="table table-bordered expandable">

@@ -1,22 +1,25 @@
 /**
  * Creates a filterable table
  *
- * filterQuery: Bind to input filter/search text
+ * filterQuery: Bind to input search text
+ * filterProperties: Populate this with an array containing the strings referencing the model properties to search through (with filterQuery)
+ * isMatch: Overwrite this with a function that takes in a record and returns true if that record should match the filter
+ * isMatchObserves: An array with property names used in isMatch
+ * filteredModel: This is the filtered model that should be exposed to the user
  * clearFilter: Call this action to clear filterQuery
- * filterProperties: Populate this with an array containing the strings referencing the model properties that you want to search through
- * filterModel: This is the filtered model that should be exposed to the user
  */
 App.Filterable = Ember.Mixin.create({
   filterQuery: '',
   filterProperties: [],
   filteredModel: [],
+  isMatch: null,
+  isMatchObserves: [],
   filterModel: function () {
+    console.log('filterModel');
     var searchText = this.get('filterQuery');
-    if (!searchText) {
-      this.set('filteredModel', this);
-      return this;
-    } else {
-      var results = this.filter(function (item, index, enumerable) {
+    var results = this;
+    if (searchText) {
+      results = results.filter(function (item, index, enumerable) {
         var isMatched = false;
         this.get('filterProperties').forEach(function (property, index, array) {
           var haystack = item.get(property);
@@ -26,10 +29,21 @@ App.Filterable = Ember.Mixin.create({
         });
         return isMatched;
       }, this);
-      this.set('filteredModel', results);
-      return results;
     }
+    if (typeof this.get('isMatch') === 'function') {
+      results = results.filter(function (item) {
+        var isMatch = this.get('isMatch');
+        return isMatch.apply(this, [item]);
+      }, this);
+    }
+    this.set('filteredModel', results);
+    return results;
   }.observes('this.@each'),
+  addIsMatchObservers: function() {
+    this.get('isMatchObserves').forEach(function(item) {
+      Ember.addObserver(this, item, this, 'filterModel');
+    }, this);
+  }.on('init'),
   debouncedFilterQueryObserver: Ember.debouncedObserver(function () {
     this.filterModel();
   }, 'filterQuery', 500),

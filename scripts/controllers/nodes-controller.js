@@ -53,6 +53,13 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
   sortProperty: 'name',
   sortAscending: true,
   filterProperties: ['name'],
+  isMatch: function (record) {
+    if (!this.get('selectedTenant')) return true;
+    if (Ember.isEmpty(record.get('tenants'))) return false;
+    return record.get('tenants').contains(this.get('selectedTenant'));
+  },
+  isMatchObserves: ['selectedTenant'],
+  selectedTenant: null,
   totalVms: function () {
     if (this.get('model') === undefined) return null;
     return this.get('model').reduce(function (previousValue, item, index, enumerable) {
