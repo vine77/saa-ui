@@ -8,9 +8,9 @@ App.SettingsControllerController = Ember.Controller.extend({
       if (confirmed) {
         this.store.createRecord('action', {
           name: 'reset_controller'
-        }).save().then(function () {
+        }).save().then(function (action) {
           self.set('isActionPending', false);
-          App.event('Successfully reset the controller', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to reset the controller');
@@ -26,9 +26,9 @@ App.SettingsControllerController = Ember.Controller.extend({
       if (confirmed) {
         this.store.createRecord('action', {
           name: 'shutdown_controller'
-        }).save().then(function () {
+        }).save().then(function (action) {
           self.set('isActionPending', false);
-          App.event('Successfully shutdown controller', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           self.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to shutdown controller');

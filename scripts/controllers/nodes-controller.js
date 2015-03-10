@@ -260,10 +260,10 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           name: 'reboot',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
-          App.event('Successfully started rebooting node "' + node.get('name') + '".', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
@@ -281,9 +281,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "unregister"
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully unregistered node "' + node.get('name') + '".', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
@@ -304,7 +304,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           }
         }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully set the agent mode of node "' + node.get('name') + '" to monitored.', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set the agent mode of node "' + node.get('name') + '" to monitored.');
@@ -332,9 +332,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           options: {
             agent_mode: mode
           }
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully set agent mode of node "' + node.get('name') + '" to assured.', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set agent mode of node "' + node.get('name') + '" to assured.');
@@ -350,9 +350,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "scheduler_unmark"
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully unset node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
           //node.set('schedulerMark', null);
         }, function (xhr) {
           node.set('isActionPending', false);
@@ -407,9 +407,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
         this.store.createRecord('action', {
           name: 'trust_agent_config',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully started trust agent configuration for node "' + node.get('name') + '".', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
@@ -431,9 +431,9 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
             scheduler_mark: socketNumber,
             scheduler_persistent: true
           }
-        }).save().then(function () {
+        }).save().then(function (action) {
           node.set('isActionPending', false);
-          App.event('Successfully set node "' + node.get('name') + '" for VM placement.', App.SUCCESS);
+          App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
