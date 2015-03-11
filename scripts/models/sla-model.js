@@ -20,13 +20,10 @@ App.Sla = DS.Model.extend({
 
   // Relationships
   slos: DS.hasMany('slo', {async: true}),
-  //flavor: DS.belongsTo('flavor'),
-  //flavors: DS.hasMany('flavor'),
   flavors: DS.hasMany('flavor', {async: true}),
 
   // Computed Properties
   sloTypes: function () {
-    //return this.get('slos').getEach('sloType').toString();
     return this.get('slos').map(function (item, index, enumerable) {
       if (!item || !item.get('sloType')) return null;
       if (item.get('sloType') === 'trusted_platform') {

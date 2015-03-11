@@ -13,5 +13,5 @@ App.Flavor = DS.Model.extend({
 
   // Relationships
   vms: DS.hasMany('vm', {async: true}),
-  sla: DS.belongsTo('sla')
+  sla: DS.belongsTo('sla', {async: true})
 });

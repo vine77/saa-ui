@@ -40,29 +40,30 @@ App.SlasController = Ember.ArrayController.extend(App.Filterable, App.Sortable, 
       this.store.find('sla');
     },
     deleteSla: function (sla) {
-/*
-      sla.get('flavors').then(function(flavors) {
-        console.log('flavors', flavors);
-        flavors.forEach(function(item, index, enumerable){
-          console.log('flavor item', item);
-        });
-      });
-*/
       var confirmationMessage = 'Are you sure you want to delete SLA "' + sla.get('name') + '"?';
-
-      //if (sla.get('flavor')) {
-        confirmationMessage += ' Warning: This action will also delete the associated flavor(s)!';
-      //}
-      var confirmedDelete = confirm(confirmationMessage);
-      if (confirmedDelete) {
-        sla.deleteRecord();
-        sla.save().then(function () {
-          App.event('Successfully deleted SLA "' + sla.get('name') + '".', App.SUCCESS);
-        }, function (xhr) {
-          sla.rollback();
-          App.xhrError(xhr, 'Failed to delete SLA "' + sla.get('name') + '".');
-        });
-      }
+      sla.get('flavors').then(function(flavors) {
+        if (flavors.get('length') > 0) {
+          flavors = flavors.mapBy('name').compact();
+          if (Ember.isEmpty(flavors)) {
+            confirmationMessage += ' Warning: This action will also delete the associated flavor(s).';
+          } else {
+            confirmationMessage += ' Warning: This action will also delete the associated flavors: ';
+            confirmationMessage += flavors.map(function(item, index, enumerable) {
+              return '"' + item + '"';
+            }).join(', ') + '.';
+          }
+        }
+        var confirmedDelete = confirm(confirmationMessage);
+        if (confirmedDelete) {
+          sla.deleteRecord();
+          sla.save().then(function () {
+            App.event('Successfully deleted SLA "' + sla.get('name') + '".', App.SUCCESS);
+          }, function (xhr) {
+            sla.rollback();
+            App.xhrError(xhr, 'Failed to delete SLA "' + sla.get('name') + '".');
+          });
+        }
+      });
     },
   }
 });
