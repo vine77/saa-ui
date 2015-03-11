@@ -27,7 +27,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     sortBy: 'utilization.scus.total.current'
   }, {
     title: 'Memory',
-    description: 'Memory utilization',
+    description: 'This column displays the physical memory <i>used</i> by VMs and applications. Please check horizon for information on memory <i>allocated</i> for VMs.',
     sortBy: 'utilization.memory.used'
   },{
     title: 'N. Load',
