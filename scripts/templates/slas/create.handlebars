@@ -40,9 +40,7 @@
         {{/if}}
       </p>
 
-
-
-      {{#each slo in slos}}
+      {{#each slo in slos itemController="slo"}}
         <div class="slo-row separator-top">
           {{view Ember.Select viewName="select" class="input-medium"
             content=slo.possibleSloTemplates
