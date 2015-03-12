@@ -16,17 +16,17 @@
         {{/if}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="trustMessage"}}
+        {{#view App.TooltipView dataHtml=true titleBinding="trustMessage"}}
           {{trustIcon status.trust}}
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="slaMessage"}}
+        {{#view App.TooltipView dataHtml=true titleBinding="slaMessage"}}
           <i {{bind-attr class="slaIconClass"}}></i>
         {{/view}}
       </div></td>
       <td class="column-small"><div class="cell-container">
-        {{#view App.TooltipView titleBinding="noisyMessage"}}
+        {{#view App.TooltipView dataHtml=true titleBinding="noisyMessage"}}
           {{#if isAggressor}}
             <i {{bind-attr class=":icon-bullhorn :error"}}></i>
           {{/if}}

@@ -690,7 +690,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
   }.property('status.short_message', 'status.health', 'isAgentInstalled'),
   operationalMessage: function () {
-    return '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    return 'State: ' + App.codeToOperational(this.get('status.operational')).capitalize();
   }.property('status.operational'),
   nodeType: function () {
     var services = this.get('cloudServices').mapBy('name');
@@ -887,7 +887,7 @@ App.ServiceController = Ember.ObjectController.extend({
      return App.overallHealth(health, operational);
   }.property(),
   healthMessage: function() {
-    return 'Healthy State: ' + App.priorityToType(this.get('health')).capitalize();
+    return 'Health State: ' + App.priorityToType(this.get('health')).capitalize();
   }.property('health'),
   operationalMessage: function() {
     return 'Operational State: ' + App.codeToOperational(this.get('operational')).capitalize();

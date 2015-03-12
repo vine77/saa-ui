@@ -90,7 +90,7 @@
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#view App.TooltipView titleBinding="trustMessage"}}
+            {{#view App.TooltipView dataHtml=true titleBinding="trustMessage"}}
               {{trustIcon status.trust_status.trust}}
               {{trust status.trust_status.trust}}
             {{/view}}

@@ -27,7 +27,7 @@ App.VmController = Ember.ObjectController.extend({
   operationalMessage: function () {
     var operationalMessage = '';
     if (this.get('isSlaMissing')) operationalMessage += 'VM is missing an SLA.<br>';
-    operationalMessage += '<strong>State</strong>: ' + App.codeToOperational(this.get('status.operational')).capitalize();
+    operationalMessage += 'State: ' + App.codeToOperational(this.get('status.operational')).capitalize();
     return operationalMessage;
   }.property('status.operational'),
   isUntrusted: Ember.computed.equal('status.trust', App.UNTRUSTED),
