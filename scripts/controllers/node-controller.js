@@ -1,61 +1,9 @@
-App.NodesColumnsController = App.ColumnsController.extend({
-  content: [{
-    description: 'State (Health/Operational State)',
-    sortBy: 'state',
-    icon: 'icon-off'
-  }, {
-    description: 'Trust Status',
-    sortBy: 'isTrusted',
-    icon: 'icon-lock'
-  }, {
-    description: 'Node Type (Assured, Monitored, Non-SAA)',
-    sortBy: 'samControlled',
-    icon: 'icon-trophy'
-  }, {
-    title: 'Hostname',
-    sortBy: 'name',
-    sortAscending: true
-  }, {
-    title: 'VMs',
-    sortBy: 'vmInfo.count'
-  }, {
-    title: 'Capacity',
-    sortBy: 'cpuSort'
-  }, {
-    title: 'Allocation',
-    description: 'Maximum measured capacity is in SCUs (Service Compute Units) or cores (depending on node mode), while the chart indicates how much of that capacity is used.',
-    sortBy: 'utilization.scus.total.current'
-  }, {
-    title: 'Memory',
-    description: 'This column displays the physical memory <i>used</i> by VMs and applications. Please check horizon for information on memory <i>allocated</i> for VMs.',
-    sortBy: 'utilization.memory.used'
-  },{
-    title: 'N. Load',
-    description: '<strong>Normalized load</strong> is Linux load average divided by the number of CPUs visible to OS (including hyperthreading).' +
-      '<ul>' +
-        '<li><strong>Green (0-1)</strong> indicates there is no contention for CPU resources.</li>' +
-        '<li><strong>Orange (1-2)</strong> indicates there is some contention for CPU resources, but the system may still be operating within acceptable range.</li>' +
-        '<li><strong>Red (2+)</strong> indicates that there is considerable contention for CPU resources and the system may be operating sub-optimally and action should be taken by the system administrator.</li>' +
-      '</ul>',
-    sortBy: 'utilization.normalized_load'
-  }, {
-    title: 'Contention',
-    description: 'LLC cache contention',
-    sortBy: 'contention.llc.system.value'
-  }, {
-    title: 'Actions'
-  }]
-});
-
 App.NodeController = Ember.ObjectController.extend({
   needs: ['nodes', 'logBar', 'application'],
-  // Controller Properties
-
-  isSelected: false,
   isExpanded: false,
+  isSelected: false,
   isActionPending: false,
   isRebooting: false,
-
   nodeActions: function() {
     return  [
       App.ActionController.create({
@@ -326,8 +274,6 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('contentionMessage', 'vmContention.max', 'osContention.max', 'sixWindContention.max'),
 
   scuUnallocated: function() {
-    //if (App.isEmpty(this.get('utilization.scu.system.max')) || App.isEmpty(this.get('utilization.scu.cgroups'))) return 0;
-    //return this.get('utilization.scu.system.max') - this.get('utilization.scu.cgroups').reduce(function(previousValue, item) { return previousValue + item.max; }, 0);
     if (App.isEmpty(this.get('utilization.scu.system.max')) || App.isEmpty(this.get('utilization.scu.system.allocated'))) return 0;
     return (this.get('utilization.scu.system.max') - this.get('utilization.scu.system.allocated')).toFixed(2);
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
@@ -504,8 +450,8 @@ App.NodeController = Ember.ObjectController.extend({
   ],
   currentSunburstCacheValue: 'contention.system.llc.cache_occupancy',
   vmsExist: function() {
-    return (this.get('vms') && !App.isEmpty(this.get('vms')));
-  }.property('vms.@each', 'vms'),
+    return Ember.isEmpty(this.get('vms'));
+  }.property('vms.@each'),
   vmCacheSunburstAvailable: function() {
     var self = this;
     var data = this.get('vms').filter(function(item, index, enumerable) {
@@ -684,7 +630,7 @@ App.NodeController = Ember.ObjectController.extend({
     }
     if (App.isEmpty(this.get('status.short_message'))) {
       // If status message is empty, just show health as a string
-      return '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+      return 'Health: ' + App.priorityToType(this.get('status.health')).capitalize();
     } else {
       return this.get('status.short_message').trim().replace('!', '.').capitalize();
     }
@@ -699,15 +645,6 @@ App.NodeController = Ember.ObjectController.extend({
     if (services.indexOf('networking') !== -1) return 'networking';
     if (services.indexOf('storage') !== -1) return 'storage';
     return 'generic';
-  }.property('cloudServices'),
-  servicesClass: function () {
-    return 'icon-' + this.get('nodeType');
-  }.property('nodeType'),
-  servicesMessage: function () {
-    if (!this.get('cloudServices')) return null;
-    return '<strong>Services:</strong><br>' + this.get('cloudServices').map(function (item, index, enumerable) {
-      return item.name.toString().capitalize() + ': ' + App.overallHealth(item.health, item.operational).capitalize();
-    }).join('<br>');
   }.property('cloudServices'),
 
   isTrustRegistered: Ember.computed.bool('trustNode'),
@@ -758,11 +695,9 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    if (App.isEmpty(this.get('systemScuUtilization'))) {
-      return '<strong>SAA Compute Units</strong>: N/A';
-    } else {
-      return 'SAA Compute Units: ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
-    }
+    var message = 'SAA Compute Units: ';
+    if (App.isEmpty(this.get('systemScuUtilization'))) return message + 'N/A';
+    return message + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
   }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeWidth: function () {
     if (this.get('utilization.scu.system.allocated') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
@@ -780,9 +715,9 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('contention.llc.system.value'),
   contentionMessage: function() {
     if (App.isEmpty(this.get('contention.llc.system.value'))) {
-      return '<strong>System LLC Cache Contention</strong>: N/A';
+      return 'System LLC Cache Contention: N/A';
     } else {
-      var message = '<strong>Overall LLC Cache Contention:</strong> ' + this.get('systemContention');
+      var message = 'Overall LLC Cache Contention: ' + this.get('systemContention');
       var sockets = this.get('contention.sockets');
       if (!Ember.isArray(sockets) || sockets.length === 0) return message;
       return message + '<br>' + sockets.map(function(socket) {
@@ -807,9 +742,6 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('capabilities.sockets'),
 
   // Icons for list view table
-  servicesIcon: function () {
-    return '<i class="icon-' + this.get('nodeType') + '" title="' + this.get('servicesMessage') + '"></i>';
-  }.property('nodeType', 'servicesMessage'),
   trustIcon: function () {
     // TODO: trustMessage and isTrustRegisteredMessage
     if (this.get('isTrustRegistered')) {

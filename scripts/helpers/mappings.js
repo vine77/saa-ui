@@ -38,7 +38,7 @@ App.ASSURED_CORES_PHYSICAL = 4;
 App.NEUTRON = 1;
 App.NOVA = 2;
 
-//Constants for trust configuration
+// Constants for trust configuration
 App.TRUST_CONFIG_UNKNOWN = 0;
 App.TRUST_CONFIG_FALSE = 1;
 App.TRUST_CONFIG_TRUE = 2
@@ -54,6 +54,8 @@ App.caseMapping = {
   'slos': 'SLOs'
 };
 
+App.NOT_APPLICABLE = '<span class="not-applicable">n/a</span>'.htmlSafe();
+
 App.typeToSortOrder = function(type) {
   switch(type) {
     case 'os':
@@ -68,6 +70,8 @@ App.typeToSortOrder = function(type) {
 App.codeToMode = function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
   switch (code) {
+    case null:
+      return null;
     case App.NON_SAM:
       return 'non-SAA';
     case App.MONITORED:
@@ -86,6 +90,8 @@ App.codeToMode = function(code) {
 App.codeToTrustConfig = function(code) {
   if (typeof type === 'string') code = code.toLowerCase();
   switch (code) {
+    case null:
+      return null;
     case 'unknown':
     case 'n/a':
     case App.TRUST_CONFIG_UNKNOWN:
@@ -105,74 +111,6 @@ App.codeToTrustConfig = function(code) {
   }
 }
 
-App.trustConfigToCode = function(trustConfig) {
-  if (typeof type === 'string') code = code.toLowerCase();
-  switch (trustConfig) {
-    case 'unknown':
-    case 'n/a':
-    case App.TRUST_CONFIG_UNKNOWN:
-    case App.TRUST_CONFIG_UNKNOWN.toString():
-      return App.TRUST_CONFIG_UNKNOWN;
-    case 'false':
-    case App.TRUST_CONFIG_FALSE:
-    case App.TRUST_CONFIG_FALSE.toString():
-      return App.TRUST_CONFIG_FALSE;
-    case 'true':
-    case App.TRUST_CONFIG_TRUE:
-    case App.TRUST_CONFIG_TRUE.toString():
-      return App.TRUST_CONFIG_TRUE;
-  }
-}
-
-
-
-/**
- * Convert string representation of priority to corresponding integer codes
- *
- * @param {string} type A string representing priority level: 'unknown', 'success', 'warning', or 'error'
- * @return {number} The corresponding numerical code for that priority level
- */
-App.typeToPriority = function (type) {
-  if (typeof type === 'string') type = type.toLowerCase();
-  switch (type) {
-    // Unknown
-    case 'unknown':
-    case 'n/a':
-    case App.UNKNOWN:
-    case App.UNKNOWN.toString():
-      return App.UNKNOWN;
-    // Success
-    case 'success':
-    case 'good':
-    case App.SUCCESS:
-    case App.SUCCESS.toString():
-      return App.SUCCESS;
-    // Info
-    case 'info':
-    case App.INFO:
-    case App.INFO.toString():
-      return App.INFO;
-    // Warning
-    case 'warning':
-    case App.WARNING:
-    case App.WARNING.toString():
-      return App.WARNING;
-    // Error
-    case 'error':
-    case 'danger':
-    case 'important':
-    case 'bad':
-    case 'critical':
-    case App.ERROR:
-    case App.ERROR.toString():
-    case App.CRITICAL:
-    case App.CRITICAL.toString():
-      return App.ERROR;
-    default:
-      return null;
-  }
-};
-
 /**
  * Convert integer code of priority to corresponding string representation
  *
@@ -182,6 +120,8 @@ App.typeToPriority = function (type) {
 App.priorityToType = function (priority, good) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
+    case null:
+      return null;
     // Unknown
     case 'unknown':
     case 'n/a':
@@ -229,6 +169,8 @@ App.priorityToType = function (priority, good) {
 App.priorityToIconClass = function (priority) {
   if (typeof priority === 'string') priority = priority.toLowerCase();
   switch (priority) {
+    case null:
+      return 'hide';
     case App.UNKNOWN:
     case App.UNKNOWN.toString():
     case 'unknown':
@@ -271,6 +213,8 @@ App.priorityToIconClass = function (priority) {
 App.codeToOperational = function (code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
+    case null:
+      return null;
     case App.UNKNOWN:
     case App.UNKNOWN.toString():
     case 'unknown':
@@ -334,77 +278,6 @@ App.codeToOperational = function (code) {
 };
 
 /**
- * Convert string representation of operational status to corresponding integer code
- *
- * @param {string} code A string representation of operational status
- * @return {number} The corresponding integer code for that operational status
- */
-App.operationalToCode = function (operational) {
-  if (typeof operational === 'string') operational = operational.toLowerCase();
-  switch (operational) {
-    case App.UNKNOWN:
-    case App.UNKNOWN.toString():
-    case 'unknown':
-    case 'n/a':
-      return App.UNKNOWN;
-    case App.ON:
-    case App.ON.toString():
-    case 'on':
-      return App.ON;
-    case App.OFF:
-    case App.OFF.toString():
-    case 'off':
-      return App.OFF;
-    case App.REBOOTING:
-    case App.REBOOTING.toString():
-    case 'rebooting':
-      return App.REBOOTING;
-    case App.PAUSED:
-    case App.PAUSED.toString():
-    case 'paused':
-      return App.PAUSED;
-    case App.SUSPENDED:
-    case App.SUSPENDED.toString():
-    case 'suspended':
-      return App.SUSPENDED;
-    case App.LIVE_MIGRATING:
-    case App.LIVE_MIGRATING.toString():
-    case 'live migrating':
-      return App.LIVE_MIGRATING;
-    case App.MIGRATING_RESIZING:
-    case App.MIGRATING_RESIZING.toString():
-    case 'migrating resizing':
-      return App.MIGRATING_RESIZING;
-    case App.CONFIRMATION_NEEDED:
-    case App.CONFIRMATION_NEEDED.toString():
-    case 'confirmation needed':
-      return App.CONFIRMATION_NEEDED;
-    case App.REVERTING:
-    case App.REVERTING.toString():
-    case 'reverting':
-      return App.REVERTING;
-    case App.MIGRATION_BLOCKED:
-    case App.MIGRATION_BLOCKED.toString():
-    case 'migration blocked':
-      return App.MIGRATION_BLOCKED;
-    case App.SHELVING:
-    case App.SHELVING.toString():
-    case 'shelving':
-      return App.SHELVING;
-    case App.SHELVED:
-    case App.SHELVED.toString():
-    case 'shelved':
-      return App.SHELVED;
-    case App.SHELVED_OFFLOADED:
-    case App.SHELVED_OFFLOADED.toString():
-    case 'shelved offloaded':
-      return App.SHELVED_OFFLOADED;
-    default:
-      return App.UNKNOWN;
-  }
-};
-
-/**
  * Convert operational status to corresponding icon class
  *
  * @param {number} code A numerical code for operational status (the corresponding string representation works too)
@@ -413,6 +286,8 @@ App.operationalToCode = function (operational) {
 App.operationalToIconClass = function (code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
+    case null:
+      return 'hide';
     case App.UNKNOWN:
     case App.UNKNOWN.toString():
     case 'unknown':
@@ -485,6 +360,8 @@ App.overallHealth = function (health, operational) {
 
 App.trustToString = function (value) {
   switch (value) {
+    case null:
+      return null;
     case App.UNKNOWN:
     case '0':
       return 'unknown';
@@ -498,7 +375,7 @@ App.trustToString = function (value) {
     case '3':
       return 'unregistered';
     default:
-      return 'n/a';
+      return App.NOT_APPLICABLE;
   }
 }
 
@@ -511,6 +388,8 @@ App.trustToString = function (value) {
 App.trustToIconClass = function (code) {
   if (typeof code === 'string') code = code.toLowerCase();
   switch (code) {
+    case null:
+      return 'hide';
     case App.UNKNOWN:
     case App.UNKNOWN.toString():
       return 'icon-question-sign unknown';

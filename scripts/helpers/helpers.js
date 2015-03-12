@@ -1,7 +1,3 @@
-// Common helpers
-
-App.NOT_APPLICABLE = '<span class="not-applicable">n/a</span>'.htmlSafe();
-
 // Generate a v4 (random) UUID
 App.uuid = function () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -66,15 +62,6 @@ App.event = function (message, type, notify, title, sticky) {
     var prefix = (type === 'info' || type === 'error') ? 'An ' : 'A ';
     message = prefix + type + ' event occurred';
   }
-  // Add event to events model
-  // TODO: Move this to router or controller in order to call this.store.createRecord
-  /*
-  App.Event.createRecord({
-    message: message,
-    priority: App.typeToPriority(type),
-    timestamp: moment().valueOf()
-  });
-  */
   if (typeof notify === 'undefined' || notify === true) {
     var notifyTitle = (typeof title === 'undefined' || !title) ? null : title;
     App.notify(message, type, notifyTitle, sticky);
@@ -211,11 +198,13 @@ Ember.Handlebars.registerBoundHelper('readableError', function (xhr) {
 });
 
 Ember.Handlebars.registerBoundHelper('capitalize', function (string) {
-  return (App.isEmpty(string)) ? App.NOT_APPLICABLE : string.toString().capitalize();
+  if (typeof string !== 'string') return null;
+  return string.toString().capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('uppercase', function (string) {
-  return (App.isEmpty(string)) ? App.NOT_APPLICABLE : string.toString().toUpperCase();
+  if (typeof string !== 'string') return null;
+  return string.toString().toUpperCase();
 });
 
 Ember.Handlebars.registerBoundHelper('numberOf', function (items) {
@@ -228,45 +217,41 @@ Ember.Handlebars.registerBoundHelper('concatenate', function (items) {
 }, '@each');
 
 Ember.Handlebars.registerBoundHelper('timeago', function (time) {
-  return (App.isEmpty(time)) ? App.NOT_APPLICABLE : new Handlebars.SafeString('<time class="timeago" datetime="' + moment(time).format() + '" title="' + moment(time).format('YYYY-MM-DD hh:mm:ss') + '"' + '>' + moment(time).fromNow() + '</time>');
+  if (!time) return null;
+  if (time == -1) return App.NOT_APPLICABLE;
+  return new Handlebars.SafeString('<time class="timeago" datetime="' + moment(time).format() + '" title="' + moment(time).format('YYYY-MM-DD hh:mm:ss') + '"' + '>' + moment(time).fromNow() + '</time>');
 });
 
 Ember.Handlebars.registerBoundHelper('duration', function (duration) {
-  return (App.isEmpty(duration)) ? App.NOT_APPLICABLE : moment.duration(duration, "seconds").humanize();
+  if (!duration) return null;
+  if (duration == -1) return App.NOT_APPLICABLE;
+  return (App.isEmpty(duration)) ? App.NOT_APPLICABLE : moment.duration(duration, 'seconds').humanize();
 });
 
 Ember.Handlebars.registerBoundHelper('timestamp', function (time) {
-  if (!App.isEmpty(time)) {
-    if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
-    return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format() + '">' + moment(time).format('LLL') + '</time>');
-  } else {
-    return App.NOT_APPLICABLE;
-  }
+  if (!time) return null;
+  if (time == -1) return App.NOT_APPLICABLE;
+  if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
+  return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format() + '">' + moment(time).format('LLL') + '</time>');
 });
 
 Ember.Handlebars.registerBoundHelper('year', function (time) {
-  if (!App.isEmpty(time)) {
-    if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
-    return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format('YYYY') + '">' + moment(time).format('YYYY') + '</time>');
-  } else {
-    return App.NOT_APPLICABLE;
-  }
+  if (!time) return null;
+  if (time == -1) return App.NOT_APPLICABLE;
+  if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
+  return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format('YYYY') + '">' + moment(time).format('YYYY') + '</time>');
 });
 
 Ember.Handlebars.registerBoundHelper('na', function (value) {
-  return (App.isEmpty(value)) ? App.NOT_APPLICABLE : value;
-});
-
-Ember.Handlebars.registerBoundHelper('naZero', function (value) {
-  return (value === 0 || App.isEmpty(value)) ? App.NOT_APPLICABLE : value;
+  return (value == -1) ? App.NOT_APPLICABLE : value;
 });
 
 Ember.Handlebars.registerBoundHelper('status', function (code) {
-  return (App.isEmpty(code)) ? App.NOT_APPLICABLE : App.priorityToType(code).toString().capitalize();
+  return (code == -1) ? App.NOT_APPLICABLE : App.priorityToType(code).toString().capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('operational', function (code) {
-  return (App.isEmpty(code)) ? App.NOT_APPLICABLE : App.codeToOperational(code).toString().capitalize();
+  return (code == -1) ? App.NOT_APPLICABLE : App.codeToOperational(code).toString().capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('healthIcon', function (code) {
@@ -278,7 +263,7 @@ Ember.Handlebars.registerBoundHelper('healthText', function (code) {
 });
 
 Ember.Handlebars.registerBoundHelper('trust', function (code) {
-  return (App.isEmpty(code)) ? App.NOT_APPLICABLE : App.trustToString(code).capitalize();
+  return (code == -1) ? App.NOT_APPLICABLE : App.trustToString(code).capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('trustIcon', function (code) {
@@ -499,13 +484,11 @@ Ember.debouncedObserver = function (debounceFunction, property, interval) {
 };
 
 
-//Generic isEmpty detection and string handling
+// Generic isEmpty detection and string handling
 App.na = function(value) {
-  if (App.isEmpty(value)) {
-    return 'N/A';
-  } else {
-    return value;
-  }
+  if (!value) return null;
+  if (value == -1) return App.NOT_APPLICABLE;
+  return value;
 }
 
 App.isComputeSlo = function(sloType) {

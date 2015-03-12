@@ -55,7 +55,7 @@
         {{else}}
           <div class="allocation">
             {{#if hasCompute}}
-              {{#view App.TooltipView titleBinding="allocationMessage"}}
+              {{#view App.TooltipView dataHtml=true titleBinding="allocationMessage"}}
                 <div {{bind-attr class=":allocation-bar isRange"}}>
                   <div class="allocation-range"></div> {{! light orange dashed }}
                   <div class="allocation-min" {{bind-attr style="allocationMinWidth"}}></div> {{! light green solid }}

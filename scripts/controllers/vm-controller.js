@@ -13,10 +13,10 @@ App.VmController = Ember.ObjectController.extend({
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     var healthMessage = '';
-    if (this.get('isSlaMissing')) healthMessage += "<strong>Warning</strong>: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
+    if (this.get('isSlaMissing')) healthMessage += "Warning: This VM is on an assured node, but is missing an SLA, which breaks the node's ability to control resource usage.<br>";
     if (App.isEmpty(this.get('status.short_message')) && App.isEmpty(this.get('status.long_message'))) {
       // If both short and long messages are empty, show health as message
-      healthMessage +=  '<strong>Health</strong>: ' + App.priorityToType(this.get('status.health')).capitalize();
+      healthMessage +=  'Health: ' + App.priorityToType(this.get('status.health')).capitalize();
     } else if (App.isEmpty(this.get('status.long_message'))) {  // Short message only
       healthMessage +=  this.get('status.short_message').capitalize();
     } else {  // Default to long message
@@ -109,11 +109,11 @@ App.VmController = Ember.ObjectController.extend({
     return Math.round(this.get('contention.system.llc.value') * 100) / 100;
   }.property('contention.system.llc.value'),
   contentionMessage: function () {
+    var message = 'Overall Cache Contention: ';
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
-      return '<strong>Contention Not Available</strong>';
+      return messsage + 'N/A';
     } else {
-      var message = 'Overall Cache Contention: ' + this.get('contention.system.llc.value');
-      return message;
+      return message + this.get('contention.system.llc.value');
     }
   }.property('contention.system.llc.value'),
   contentionWidth: function () {
