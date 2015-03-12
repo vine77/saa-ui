@@ -38,22 +38,6 @@ App.ProfileController = App.FormController.extend({
       this.set('newPassword2', '');
       $('#profile-newPassword1').focus();
     } else {
-      /*
-      var email_configured = (this.email != '');
-      email_configured = (this.email != '');
-      if (this.getMailServer) {
-        var mailServerValid = true;
-        var mail_controller = route.controllerFor('settings.mailserver');
-        mailServerValid = mail_controller.saveConfig(route, false);
-        if (!mailServerValid) {
-          email_configured = false;
-        }
-      }
-      if (!email_configured) {
-        var message = 'A valid email is needed to recover if you forget the password. Are you sure you want to continue without this configured?';
-        if (!confirm(message)) return false;
-      }
-      */
       user.setProperties({
         username: this.get('username'),
         oldPassword: this.get('oldPassword'),
@@ -77,45 +61,6 @@ App.ProfileController = App.FormController.extend({
         self.set('isPending', false);
         App.xhrError(xhr, 'An error occurred while attempting to update the user profile.');
       });
-
-      /*
-      var nextRoute = controller.get('redirectOnSave');
-      var updateStatus = function(message, isSuccess) {
-        return function(model, controller, route, error_args) {
-          if (isSuccess && (nextRoute != '')) {
-            route.controllerFor(nextRoute).showNotification(message);
-          } else {
-            if (!isSuccess) {
-              var error = error_args[0].error;
-              if (typeof(error) != 'undefined') {
-                message = message + ' ' + controller.errorString(error);
-              }
-            }
-            controller.showNotification(message);
-          }
-          model.reload();
-          controller.reset_form();
-          if (isSuccess) {
-            controller.set('getEmail', true);
-            controller.set('getMailServer', false);
-          }
-        }
-      };
-      if (model.get('isDirty')) {
-        var handlers = {
-          'didUpdate': {postFun:updateStatus('Profile saved successfully.', true)},
-          'becameError': {postFun:updateStatus('Failed to save profile.', false), resetState: true},
-        };
-        if (nextRoute != '') {
-          handlers['didUpdate'].nextRoute = nextRoute;
-        }
-        controller.setDisable(true);
-        App.modelhelper.doTransaction(model, controller, route, handlers);
-      } else {
-        controller.showNotification('');
-        controller.reset_form();
-      }
-      */
     }
   },
   sendTestEmail: function (route) {
