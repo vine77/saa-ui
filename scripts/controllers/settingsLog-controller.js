@@ -2,11 +2,11 @@ App.SettingsLogController = Ember.Controller.extend(Ember.Validations.Mixin, {
   validations: {
     'model.configuredSize': {
       presence: { message: 'is required - must not be blank' },
-      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0 }
+      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0, lessThanOrEqualTo: 100000000000000000 }
     },
     'model.maximumDays': {
       presence: { message: 'is required - must not be blank' },
-      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0 }
+      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0, lessThanOrEqualTo: 100000000000000000 }
     }
   },
   isActionPending: false,

@@ -119,15 +119,22 @@ App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
     } else if (sizeInBytes === 0) {
       return '0';
     }
+    var sizeInBytesStored = sizeInBytes.toFixed(1);
     // Default to binary/IEC prefixes rather than decimal/SI prefixes
     var byteUnits = (decimalPrefix) ? ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
     var power = (decimalPrefix) ? 1000 : 1024;
     var i = 0;
+
     while (sizeInBytes >= power) {
       sizeInBytes = sizeInBytes / power;
       i++;
     }
-    return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
+    if (typeof(byteUnits[i]) != "undefined") {
+      return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
+    } else {
+      //too large
+      return sizeInBytesStored + ' ' + 'B';
+    }
   }
 };
 App.readableSize = function (size) {
