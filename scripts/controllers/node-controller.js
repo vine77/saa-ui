@@ -700,14 +700,14 @@ App.NodeController = Ember.ObjectController.extend({
     return message + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
   }.property('systemScuUtilization', 'utilization.scu.system.max'),
   computeWidth: function () {
-    if (this.get('utilization.scu.system.allocated') === 0 || App.isEmpty(this.get('utilization.scu.system.value'))) {
+    if (this.get('scuTotal') === 0 || App.isEmpty(this.get('scuTotal'))) {
       return 'display:none;';
     } else {
       percent = App.rangeToPercentage(this.get('utilization.scu.system.allocated'), 0, this.get('utilization.scu.system.max'));
       return 'width:' + percent + '%;';
     }
-  }.property('utilization.scu.system.allocated', 'utilization.scu.system.max'),
-  computeExists: Ember.computed.notEmpty('utilization.scu.system.value'),
+  }.property('scuTotal', 'utilization.scu.system.allocated', 'utilization.scu.system.max'),
+  computeExists: Ember.computed.notEmpty('scuTotal'),
 
   hasContention: Ember.computed.notEmpty('systemContention'),
   contentionFormatted: function () {

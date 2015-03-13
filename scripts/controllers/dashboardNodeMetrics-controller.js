@@ -52,11 +52,9 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }
   }.property('controllers.nodes.percentOfRam'),
 
-
-
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('utilization.scu.system.value') > 0) ? item.get('utilization.scu.system.value') : 0;
+      var count = (item.get('scuTotal') > 0) ? item.get('scuTotal') : 0;
       return previousValue + count;
     }, 0);
   }.property('controllers.nodes.@each'),
