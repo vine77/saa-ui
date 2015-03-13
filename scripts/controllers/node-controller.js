@@ -351,7 +351,7 @@ App.NodeController = Ember.ObjectController.extend({
     var unallocatedSegment = {
       "name": "Unallocated",
       "fill_type": "gray",
-      "size": self.get('scuValuesUnallocated')
+      "size": self.get('scuValuesUnallocated').toFixed(2)
     }
     layout.children.push(unallocatedSegment);
 
@@ -382,14 +382,14 @@ App.NodeController = Ember.ObjectController.extend({
             {
               "name": "VM Utilization",
               "fill_type": "light-green",
-              "size": self.get('vmUtilization'),
+              "size": self.get('vmUtilization').toFixed(2),
               "detailsChildren": detailsChildren,
               "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",
               "fill_type": "gray",
-              "size": self.get('vmNotUtilized')
+              "size": self.get('vmNotUtilized').toFixed(2)
             }
           ]
         };
@@ -397,19 +397,19 @@ App.NodeController = Ember.ObjectController.extend({
         var vmBestEffortSegment = {
           "name": "VM Best Effort",
           "fill_type": "gray",
-          "size": self.get('vmBestEffortAllocation'),
+          "size": self.get('vmBestEffortAllocation').toFixed(2),
           "children": [
             {
               "name": "VM Utilization",
               "fill_type": "light-green",
-              "size": self.get('vmBestEffortUtilization'),
+              "size": self.get('vmBestEffortUtilization').toFixed(2),
               "detailsChildren": detailsChildren,
               "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",
               "fill_type": "gray",
-              "size": self.get('vmBestEffortNotUtilized')
+              "size": self.get('vmBestEffortNotUtilized').toFixed(2)
             }
           ]
         };
@@ -472,7 +472,7 @@ App.NodeController = Ember.ObjectController.extend({
         "name": "Cache Occupancy",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0)?item.get(self.get('currentSunburstCacheValue')):0),
+        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0)?item.get(self.get('currentSunburstCacheValue')).toFixed(2):0),
         "route": "vmsVm",
         "routeId": item.get('id'),
         "routeLabel": item.get('id')

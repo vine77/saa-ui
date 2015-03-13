@@ -202,7 +202,7 @@ App.VmController = Ember.ObjectController.extend({
     var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
     var burst =  this.get('capabilities.scu_allocated_min') - currentUtilization;
     if (Ember.isEmpty(burst)) burst = 0;
-    return burst;
+    return burst.toFixed(2);
   }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'utilization.scu.compute', 'utilization.scu.misc'),
   utilizationCurrent: function() {
     var total = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
@@ -235,10 +235,6 @@ App.VmController = Ember.ObjectController.extend({
   utilizationBurstStyle: function() {
     return this.get('utilizationBurstWidth') + this.get('utilizationBurstLeft');
   }.property('utilizationBurstWidth', 'utilizationBurstLeft'),
-
-  //utilizationSunburstExists: function() {
-    //return this.get
-  //}
 
   utilizationSunburst: function () {
     var self = this;
