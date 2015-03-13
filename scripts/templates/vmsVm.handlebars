@@ -50,8 +50,27 @@
           <td>{{readableSize capabilities.memory_size}}</td>
         </tr>
         <tr>
-          <th class="column-medium">vCPU</th>
-          <td>{{capitalize capabilities.cores}} vCPU</td>
+          <th class="column-medium">vCPUs</th>
+          <td>{{capabilities.cores}} vCPU(s)</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Socket/Core Pinning</th>
+          <td>
+            <ul class="unstyled">
+              {{#each used in utilization.cores.system.used}}
+                <li>
+                  <ul class="comma-separated">
+                    {{#isNonNegativeNumber used.socket}}
+                      <li>Socket #{{used.socket}}</li>
+                    {{/isNonNegativeNumber}}
+                    {{#isNonNegativeNumber used.core}}
+                      <li>Core #{{used.core}}</li>
+                    {{/isNonNegativeNumber}}
+                  </ul>
+                </li>
+              {{/each}}
+            </ul>
+          </td>
         </tr>
         <tr>
           <th class="column-medium">MAC Addresses</th>
@@ -127,36 +146,12 @@
     <div class="tab-pane utilization">
       <table class="table table-bordered">
         <tr>
-          <th class="column-medium">Number of Cores</th>
-          <td> {{na cores}} </td>
-        </tr>
-        <tr>
-          <th class="column-medium">Socket/Core Pinning</th>
-          <td>
-            <ul class="unstyled">
-              {{#each used in utilization.cores.system.used}}
-                <li>
-                  <ul class="comma-separated">
-                    {{#isNonNegativeNumber used.socket}}
-                      <li>Socket #{{used.socket}}</li>
-                    {{/isNonNegativeNumber}}
-                    {{#isNonNegativeNumber used.core}}
-                      <li>Core #{{used.core}}</li>
-                    {{/isNonNegativeNumber}}
-                  </ul>
-                </li>
-              {{/each}}
-            </ul>
-          </td>
-        </tr>
-        <tr>
           <th class="column-medium">Utilization</th>
           <td>
-            {{na utilization.scu_total}} SCU
-            {{#if suRange}}out of {{suRange}} SCU allocated{{/if}}
+            {{na utilization.scu_total " SCUs"}}
+            {{#if suRange}}out of {{suRange}} SCUs allocated{{/if}}
             {{#unlessEmpty utilization.scu_overload}}
-              <br>
-              SCU overhead is {{utilization.scu_overload}} SCU
+              <br>SCU overhead is {{utilization.scu_overload}} SCU
             {{/unlessEmpty}}
           </td>
         </tr>

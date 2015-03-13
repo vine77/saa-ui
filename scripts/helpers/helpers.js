@@ -89,7 +89,7 @@ App.isEmpty = function (value) {
   return (Ember.isEmpty(value) || value === -1);
 };
 App.readableSizeToBytes = function (stringSize, decimalPrefix) {
-  if (!stringSize) return null;
+  if (Ember.isEmpty(stringSize)) return null;
   var intSize = parseInt(stringSize);
   var inputUnits = stringSize.replace(intSize, '').trim().toUpperCase();
   var decimalUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -107,37 +107,31 @@ App.readableSizeToBytes = function (stringSize, decimalPrefix) {
   }
 };
 App.bytesToReadableSize = function (sizeInBytes, multiplier, decimalPrefix) {
+  if (Ember.isEmpty(sizeInBytes)) return null;
+  if (sizeInBytes === -1) return App.NOT_APPLICABLE;
   if (typeof sizeInBytes !== 'number') sizeInBytes = parseInt(sizeInBytes);
-  if (sizeInBytes === NaN || Ember.isEmpty(sizeInBytes)) {
-    return App.NOT_APPLICABLE;
-  } else {
-    if (multiplier !== undefined) {
-      sizeInBytes = sizeInBytes * multiplier;
-    }
-    if (sizeInBytes < 0) {
-      return App.NOT_APPLICABLE;
-    } else if (sizeInBytes === 0) {
-      return '0';
-    }
-    var sizeInBytesStored = sizeInBytes.toFixed(1);
-    // Default to binary/IEC prefixes rather than decimal/SI prefixes
-    var byteUnits = (decimalPrefix) ? ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-    var power = (decimalPrefix) ? 1000 : 1024;
-    var i = 0;
-
-    while (sizeInBytes >= power) {
-      sizeInBytes = sizeInBytes / power;
-      i++;
-    }
-    if (typeof(byteUnits[i]) != "undefined") {
-      return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
-    } else {
-      //too large
-      return sizeInBytesStored + ' ' + 'B';
-    }
+  if (sizeInBytes === NaN) return App.NOT_APPLICABLE;
+  if (multiplier !== undefined) {
+    sizeInBytes = sizeInBytes * multiplier;
   }
+  if (sizeInBytes < 0) {
+    return App.NOT_APPLICABLE;
+  } else if (sizeInBytes === 0) {
+    return '0';
+  }
+  // Default to binary/IEC prefixes rather than decimal/SI prefixes
+  var byteUnits = (decimalPrefix) ? ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+  var power = (decimalPrefix) ? 1000 : 1024;
+  var i = 0;
+  while (sizeInBytes >= power) {
+    sizeInBytes = sizeInBytes / power;
+    i++;
+  }
+  return Math.max(sizeInBytes, 0.1).toFixed(1) + ' ' + byteUnits[i];
 };
 App.readableSize = function (size) {
+  if (Ember.isEmpty(size)) return null;
+  if (size === -1) return App.NOT_APPLICABLE;
   if (typeof size === 'string') {
     // Assume backend is using historic units for customary binary prefixes
     var byteUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -205,12 +199,14 @@ Ember.Handlebars.registerBoundHelper('readableError', function (xhr) {
 });
 
 Ember.Handlebars.registerBoundHelper('capitalize', function (string) {
-  if (typeof string !== 'string') return null;
+  if (Ember.isEmpty(string)) return null;
+  if (string == -1) return App.NOT_APPLICABLE;
   return string.toString().capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('uppercase', function (string) {
-  if (typeof string !== 'string') return null;
+  if (Ember.isEmpty(string)) return null;
+  if (string == -1) return App.NOT_APPLICABLE;
   return string.toString().toUpperCase();
 });
 
@@ -224,33 +220,38 @@ Ember.Handlebars.registerBoundHelper('concatenate', function (items) {
 }, '@each');
 
 Ember.Handlebars.registerBoundHelper('timeago', function (time) {
-  if (!time) return null;
+  if (Ember.isEmpty(time)) return null;
   if (time == -1) return App.NOT_APPLICABLE;
   return new Handlebars.SafeString('<time class="timeago" datetime="' + moment(time).format() + '" title="' + moment(time).format('YYYY-MM-DD hh:mm:ss') + '"' + '>' + moment(time).fromNow() + '</time>');
 });
 
 Ember.Handlebars.registerBoundHelper('duration', function (duration) {
-  if (!duration) return null;
+  if (Ember.isEmpty(duration)) return null;
   if (duration == -1) return App.NOT_APPLICABLE;
   return (App.isEmpty(duration)) ? App.NOT_APPLICABLE : moment.duration(duration, 'seconds').humanize();
 });
 
 Ember.Handlebars.registerBoundHelper('timestamp', function (time) {
-  if (!time) return null;
+  if (Ember.isEmpty(time)) return null;
   if (time == -1) return App.NOT_APPLICABLE;
   if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
   return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format() + '">' + moment(time).format('LLL') + '</time>');
 });
 
 Ember.Handlebars.registerBoundHelper('year', function (time) {
-  if (!time) return null;
+  if (Ember.isEmpty(time)) return null;
   if (time == -1) return App.NOT_APPLICABLE;
   if (typeof time === 'number') time *= 1000;  // Convert from Unix timestamp to milliseconds from epoch
   return new Handlebars.SafeString('<time class="timestamp" datetime="' + moment(time).format('YYYY') + '">' + moment(time).format('YYYY') + '</time>');
 });
 
-Ember.Handlebars.registerBoundHelper('na', function (value) {
-  return (value == -1) ? App.NOT_APPLICABLE : value;
+Ember.Handlebars.registerBoundHelper('na', function (value, options) {
+  if (Ember.isEmpty(value)) return null;
+  if (value == -1) return App.NOT_APPLICABLE;
+  var fullString = value.toString();
+  if (options.hash.suffix) returnValue = returnValue + options.hash.suffix;
+  if (options.hash.prefix) returnValue = options.hash.prefix + returnValue;
+  return fullString;
 });
 
 Ember.Handlebars.registerBoundHelper('status', function (code) {
@@ -298,11 +299,9 @@ Ember.Handlebars.registerBoundHelper('readableMegabytes', function (sizeInMegaby
 });
 
 Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
-  if (value) {
-    return value.toFixed(1);
-  } else {
-    return App.NOT_APPLICABLE;
-  }
+  if (Ember.isEmpty(value)) return null;
+  if (value == -1) return App.NOT_APPLICABLE;
+  return value.toFixed(1);
 });
 
 Ember.Handlebars.registerBoundHelper('toFixed', function (number, digits) {
@@ -493,7 +492,7 @@ Ember.debouncedObserver = function (debounceFunction, property, interval) {
 
 // Generic isEmpty detection and string handling
 App.na = function(value) {
-  if (!value) return null;
+  if (Ember.isEmpty(value)) return null;
   if (value == -1) return App.NOT_APPLICABLE;
   return value;
 }
