@@ -41,6 +41,7 @@ App.Vm = DS.Model.extend({
 
   // Relationships
   node: DS.belongsTo('node'),
+  flavor: DS.belongsTo('flavor'),
   sla: DS.belongsTo('sla'),
   vmInstantiationDetailed: DS.belongsTo('vmInstantiationDetailed'),
   vmInstantiationSimple: DS.belongsTo('vmInstantiationSimple'),

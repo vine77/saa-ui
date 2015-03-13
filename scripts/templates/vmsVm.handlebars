@@ -176,7 +176,13 @@
     <div class="tab-pane slas">
       <table class="table table-bordered">
         <tr>
-          <th class="column-medium">SLA Name</th>
+          <th class="column-medium">Flavor</th>
+          <td>
+            {{#link-to "flavor" flavor}}{{capitalize flavor.name}}{{/link-to}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">SLA</th>
           <td>
             {{#if sla}}
               {{#unless sla.deleted}}
