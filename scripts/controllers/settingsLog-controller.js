@@ -1,4 +1,14 @@
-App.SettingsLogController = Ember.Controller.extend({
+App.SettingsLogController = Ember.Controller.extend(Ember.Validations.Mixin, {
+  validations: {
+    'model.configuredSize': {
+      presence: { message: 'is required - must not be blank' },
+      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0 }
+    },
+    'model.maximumDays': {
+      presence: { message: 'is required - must not be blank' },
+      numericality: { onlyInteger: true, greaterThanOrEqualTo: 0 }
+    }
+  },
   isActionPending: false,
   isDeleteActionPending: false,
   unavailableSpaceWidth: function () {
@@ -26,12 +36,17 @@ App.SettingsLogController = Ember.Controller.extend({
     update: function (modelId) {
       var self = this;
       this.set('isActionPending', true);
-      this.store.getById('logSetting', modelId).save().then(function () {
+      self.validate().then(function(){
+        this.store.getById('logSetting', modelId).save().then(function () {
+          self.set('isActionPending', false);
+          App.event('Successfully updated  log settings.', App.SUCCESS);
+        }, function (xhr) {
+          self.set('isActionPending', false);
+          App.xhrError(xhr, 'Failed to update log settings.');
+        });
+      }, function() {
         self.set('isActionPending', false);
-        App.event('Successfully updated  log settings.', App.SUCCESS);
-      }, function (xhr) {
-        self.set('isActionPending', false);
-        App.xhrError(xhr, 'Failed to update log settings.');
+        App.event('Form fields did not validate - please provide valid data.', App.ERROR);
       });
     },
     cancel: function (model) {

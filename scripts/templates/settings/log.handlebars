@@ -17,6 +17,9 @@
         <label class="control-label">Maximum Size:</label>
         <div class="controls">
           {{view Ember.TextField valueBinding="model.configuredSize" class="input-small"}} MiB
+          {{#if errors.model.configuredSize}}
+            <span class="text-error">{{errors.model.configuredSize}}</span>
+          {{/if}}
         </div>
       </div>
       <p class="alert"><strong>Please Note:</strong>
@@ -29,6 +32,9 @@
         <label class="control-label">Maximum Days:</label>
         <div class="controls">
           {{view Ember.TextField valueBinding="model.maximumDays" class="input-small"}} days
+          {{#if errors.model.maximumDays}}
+            <span class="text-error">{{errors.model.maximumDays}}</span>
+          {{/if}}
         </div>
         <br />
         <p class="alert"><strong>Please Note:</strong>
