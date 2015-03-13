@@ -158,11 +158,11 @@ App.numberWithCommas = function (number) {
   if (number){
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-}
+};
 
 App.isOdd = function (number) {
   return (number % 2) == 1;
-}
+};
 
 App.isCriticalityPlus = function(criticality) {
   var criticality = (typeof criticality.get === 'function' ? criticality.get('label') : criticality.label);
@@ -172,7 +172,11 @@ App.isCriticalityPlus = function(criticality) {
   } else {
     return false;
   }
-}
+};
+
+App.strip = function(number) {
+  return parseFloat(number.toPrecision(12));
+};
 
 // Handlebars helpers
 
@@ -249,8 +253,8 @@ Ember.Handlebars.registerBoundHelper('na', function (value, options) {
   if (Ember.isEmpty(value)) return null;
   if (value == -1) return App.NOT_APPLICABLE;
   var fullString = value.toString();
-  if (options.hash && options.hash.suffix) returnValue = returnValue + options.hash.suffix;
-  if (options.hash && options.hash.prefix) returnValue = options.hash.prefix + returnValue;
+  if (options.hash && options.hash.suffix) fullString = fullString + options.hash.suffix;
+  if (options.hash && options.hash.prefix) fullString = options.hash.prefix + fullString;
   return fullString;
 });
 
@@ -304,12 +308,15 @@ Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
   return value.toFixed(1);
 });
 
+Ember.Handlebars.registerBoundHelper('percent', function(value) {
+  if (Ember.isEmpty(value)) return null;
+  if (value == -1) return App.NOT_APPLICABLE;
+  return App.strip(value * 100) + '%';
+});
+
 Ember.Handlebars.registerBoundHelper('toFixed', function (number, digits) {
-  if (isNaN(parseFloat(number))) {
-    return null;
-  } else {
-    number = parseFloat(number);
-  }
+  if (isNaN(parseFloat(number))) return null;
+  number = parseFloat(number);
   if (digits === undefined) digits = 0;
   return number.toFixed(digits);
 });
@@ -318,17 +325,6 @@ Ember.Handlebars.registerBoundHelper('numberWithCommas', function (value) {
   return App.numberWithCommas(value);
 });
 
-/*
-Ember.Handlebars.registerHelper('eachWithParams', function(property, options) {
-  console.log('>here<');
-  console.log('property', property);
-  console.log('options', options);
-  Ember.defineProperty(this, 'isLive', Ember.computed('isNew', 'isDeleted', 'isLoading', function() {
-    return !model.get('isNew') && !model.get('isDeleted') && !model.get('isLoading');
-  }));
-  //return Ember.Handlebars.helpers.boundIf.call(this, "isLive", options);
-});
-*/
 
 // Miscellaneous helpers
 App.selectTab = function (event) {

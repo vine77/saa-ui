@@ -111,7 +111,7 @@ App.VmController = Ember.ObjectController.extend({
   contentionMessage: function () {
     var message = 'Overall Cache Contention: ';
     if (App.isEmpty(this.get('contention.system.llc.value'))) {
-      return messsage + 'N/A';
+      return message + 'N/A';
     } else {
       return message + this.get('contention.system.llc.value');
     }

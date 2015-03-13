@@ -148,7 +148,7 @@
         <tr>
           <th class="column-medium">Utilization</th>
           <td>
-            {{na scuTotal " SCUs"}}
+            {{na scuTotal suffix=" SCUs"}}
             {{#if suRange}}out of {{suRange}} SCUs allocated{{/if}}
             {{#unlessEmpty utilization.scu_overload}}
               <br>SCU overhead is {{utilization.scu_overload}} SCU
@@ -170,6 +170,22 @@
         <tr>
           <th class="column-medium">Uptime</th>
           <td>{{duration utilization.uptime}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cache contention</th>
+          <td>{{na contention.system.llc.value}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cache used (moving average)</th>
+          <td>{{na contention.system.llc.cache_usage.used suffix=" KiB"}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cache occupancy (moving average)</th>
+          <td>{{percent contention.system.llc.cache_usage.normalized}}</td>
+        </tr>
+        <tr>
+          <th class="column-medium">Cache occupancy (instantaneous)</th>
+          <td>{{percent contention.system.llc.cache_occupancy}}</td>
         </tr>
       </table>
     </div>
