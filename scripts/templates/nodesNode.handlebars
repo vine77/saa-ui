@@ -81,8 +81,6 @@
             <ul class="comma-separated">
               {{#each tenants}}
                 <li>{{name}}</li>
-              {{else}}
-                <li><span class="not-applicable">n/a</span></li>
               {{/each}}
             </ul>
           </td>
@@ -197,8 +195,6 @@
               <div style="margin:8px">
                 {{{contentionDetailsMessage}}}
               </div>
-            {{else}}
-              <span class="not-applicable">n/a</span>
             {{/if}}
           </td>
         </tr>
@@ -410,8 +406,6 @@
                       <li>Trust Status: {{modulelog.truststatus}}</li>
                     </ul>
                   {{/each}}
-                {{else}}
-                  <span class="not-applicable">N/A</span>
                 {{/if}}
               </td>
             </tr>

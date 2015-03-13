@@ -93,11 +93,11 @@
                       <div class="contention-gradient"></div>
                     </div>
                   </div>
-                   {{#if scuCurrentExceedsMax}}
-                     <span style="color:red;"><strong>{{na utilization.scu.system.allocated}}</strong></span>
-                   {{else}}
-                     {{na utilization.scu.system.allocated}}
-                   {{/if}}
+                  {{#if scuCurrentExceedsMax}}
+                    <span style="color:red;"><strong>{{na utilization.scu.system.allocated}}</strong></span>
+                  {{else}}
+                    {{na utilization.scu.system.allocated}}
+                  {{/if}}
                   <div class="popover-content" style="display:none;">
                     <div style="width:550px;">
                       <h5> System </h5>
@@ -112,7 +112,7 @@
                               }}
                             </td>
                           </tr>
-                                                    <tr>
+                          <tr>
                             <td class="column-compressed" style="line-height:30px;"> Unallocated: {{scuUnallocated}} of {{utilization.scu.system.max}} total </td>
                           </tr>
                           <tr>
@@ -145,8 +145,6 @@
                     </div>
                   </div>
                 {{/view}}
-              {{else}}
-                <span class="not-applicable">n/a</span>
               {{/if}}
             {{else}}
               {{#unlessEmpty utilization.cores.system.used}}
@@ -155,12 +153,8 @@
                   thresholdMax=utilization.cores.system.max
                   title="Cores"
                 }}
-              {{else}}
-                <span class="not-applicable">n/a</span>
               {{/unlessEmpty}}
             {{/unless}}
-          {{else}}
-            <span class="not-applicable">n/a</span>
           {{/unless}}
         </div>
       </div></td>
@@ -235,10 +229,7 @@
               </div>
             {{/view}}
           </div>
-        {{else}}
-          <span class="not-applicable">n/a</span>
         {{/if}}
-
       </div></td>
       <td>
         <div class="cell-container overflow-visible">

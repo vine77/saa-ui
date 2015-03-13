@@ -32,8 +32,6 @@
           <td>
             {{#if controllers.application.isEnabled}}
               {{#link-to "nodes"}}{{controllers.nodes.length}} nodes{{/link-to}}
-            {{else}}
-              <span class="not-applicable">n/a</span>
             {{/if}}
           </td>
         </tr>
@@ -42,8 +40,6 @@
           <td>
             {{#if controllers.application.isEnabled}}
               {{#link-to "vms"}}{{controllers.vms.length}} VMs{{/link-to}}
-            {{else}}
-              <span class="not-applicable">n/a</span>
             {{/if}}
           </td>
         </tr>
