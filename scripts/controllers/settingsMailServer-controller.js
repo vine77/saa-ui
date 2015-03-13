@@ -9,7 +9,8 @@ App.SettingsMailserverController = Ember.ObjectController.extend(Ember.Validatio
       presence: { message: 'is required - must not be blank' }
     },
     sender_email: {
-      presence: { message: 'is required - must not be blank' }
+      presence: { message: 'is required - must not be blank' },
+      format: /.+@.+\..{2,4}/
     }
   },
   actions: {
