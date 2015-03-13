@@ -236,6 +236,9 @@ App.VmController = Ember.ObjectController.extend({
     return this.get('utilizationBurstWidth') + this.get('utilizationBurstLeft');
   }.property('utilizationBurstWidth', 'utilizationBurstLeft'),
 
+  utilizationSunburstExists: function() {
+    return (this.get('capabilities.scu_allocated_min') && !App.isEmpty(this.get('capabilities.scu_allocated_min')) && this.get('capabilities.scu_allocated_max') && !App.isEmpty(this.get('capabilities.scu_allocated_max')));
+  }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationSunburst: function () {
     var self = this;
     return  {

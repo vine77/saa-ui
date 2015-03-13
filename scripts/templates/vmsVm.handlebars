@@ -528,9 +528,11 @@
       {{/if}}
     </div>
     <div class="tab-pane scu">
-      <div style="text-align:center">
-        {{sunburst-chart dataSource=utilizationSunburst width=400 height=400}}
-      </div>
+      {{#if utilizationSunburstExists}}
+        <div style="text-align:center">
+          {{sunburst-chart dataSource=utilizationSunburst width=400 height=400}}
+        </div>
+      {{/if}}
       {{partial "scu-definition"}}
     </div>
   </div>
