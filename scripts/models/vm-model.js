@@ -17,6 +17,11 @@ App.Vm = DS.Model.extend({
   utilization: DS.attr(),
   tenantName: DS.attr('string'),
 
+  // Computed properties
+  scuTotal: function() {
+    return this.get('utilization.scu.compute') + this.get('utilization.scu.io_wait') + this.get('utilization.scu.misc');
+  }.property('utilization.scu.compute', 'utilization.scu.io_wait', 'utilization.scu.misc'),
+
   // Computed properties for sorting
   state: function () {
     return this.get('status.health') + '.' + this.get('status.operational');

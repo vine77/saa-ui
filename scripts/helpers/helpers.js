@@ -249,8 +249,8 @@ Ember.Handlebars.registerBoundHelper('na', function (value, options) {
   if (Ember.isEmpty(value)) return null;
   if (value == -1) return App.NOT_APPLICABLE;
   var fullString = value.toString();
-  if (options.hash.suffix) returnValue = returnValue + options.hash.suffix;
-  if (options.hash.prefix) returnValue = options.hash.prefix + returnValue;
+  if (options.hash && options.hash.suffix) returnValue = returnValue + options.hash.suffix;
+  if (options.hash && options.hash.prefix) returnValue = options.hash.prefix + returnValue;
   return fullString;
 });
 

@@ -10,36 +10,6 @@ App.Node = DS.Model.extend({
   contention: DS.attr(),
   ids: DS.attr(),
   name: DS.attr('string'),
-  // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
-  samControlled: Ember.computed.alias('status.mode'),
-  isAssured: function() {
-    switch(this.get('samControlled')) {
-      case '2':
-      case 2:
-      case App.ASSURED_SCU_VCPU:
-        return true;
-        break;
-      case '3':
-      case 3:
-      case App.ASSURED_SCU_VM:
-        return true;
-        break;
-      case '4':
-      case 4:
-      case App.ASSURED_CORES_PHYSICAL:
-        return true;
-        break;
-      default:
-        return false;
-        break;
-    }
-  }.property('samControlled'),
-  isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
-  isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
-  isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
-  samRegistered: function () {
-    return this.get('status.mode') == App.MONITORED || this.get('isAssured');
-  }.property('status.mode'),
   schedulerMark: DS.attr('number'),
   schedulerPersistent: DS.attr('boolean'),
   status: DS.attr(),
@@ -47,8 +17,25 @@ App.Node = DS.Model.extend({
   utilization: DS.attr(),
   vmInfo: DS.attr(),
 
+  samControlled: Ember.computed.alias('status.mode'),  // 0: Not under SAA control (agent not installed), 1: SAA monitored, 2: SAA assured (can place SLA VMs on node)
   memory: Ember.computed.alias('utilization.cloud.memory'),
   vcpus: Ember.computed.alias('utilization.cloud.vcpus'),
+
+  // Computed properties
+  scuTotal: function() {
+    return this.get('utilization.scu.system.compute') + this.get('utilization.scu.system.io_wait') + this.get('utilization.scu.system.misc');
+  }.property('utilization.scu.system.compute', 'utilization.scu.system.io_wait', 'utilization.scu.system.misc'),
+  isAssured: function() {
+    return this.get('samControlled') == App.ASSURED_SCU_VCPU ||
+      this.get('samControlled') == App.ASSURED_SCU_VM ||
+      this.get('samControlled') == App.ASSURED_CORES_PHYSICAL;
+  }.property('samControlled'),
+  isAssuredScuVcpu: Ember.computed.equal('samControlled', App.ASSURED_SCU_VCPU),
+  isAssuredScuVm: Ember.computed.equal('samControlled', App.ASSURED_SCU_VM),
+  isAssuredCoresPhysical: Ember.computed.equal('samControlled', App.ASSURED_CORES_PHYSICAL),
+  samRegistered: function () {
+    return this.get('status.mode') == App.MONITORED || this.get('isAssured');
+  }.property('status.mode'),
 
   // Computed properties for sorting
   state: function () {

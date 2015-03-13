@@ -148,8 +148,8 @@ App.VmController = Ember.ObjectController.extend({
 
   // Compute SCU allocation floor/ceiling computed properties
   hasCompute: function () {
-    return !Ember.isEmpty(this.get('utilization.scu_total')) && !Ember.isEmpty(this.get('suFloor'));
-  }.property('utilization.scu_total', 'suFloor'),
+    return !Ember.isEmpty(this.get('scuTotal')) && !Ember.isEmpty(this.get('suFloor'));
+  }.property('scuTotal', 'suFloor'),
   suFloor: Ember.computed.alias('capabilities.scu_allocated_min'),
   suCeiling: Ember.computed.alias('capabilities.scu_allocated_max'),
   isRange: function () {
@@ -173,9 +173,9 @@ App.VmController = Ember.ObjectController.extend({
     return 'width:' + this.get('allocationMin') + 'px;';
   }.property('allocationMin'),
   allocationCurrent: function () {
-    if (Ember.isEmpty(this.get('utilization.scu_total'))) return 0;
-    return 100 * parseFloat(this.get('utilization.scu_total')) / parseFloat(this.get('capabilities.scu_allocated_max'));
-  }.property('utilization.scu_total', 'capabilities.scu_allocated_max'),
+    if (Ember.isEmpty(this.get('scuTotal'))) return 0;
+    return 100 * parseFloat(this.get('scuTotal')) / parseFloat(this.get('capabilities.scu_allocated_max'));
+  }.property('scuTotal', 'capabilities.scu_allocated_max'),
   allocationCurrentWidth: function () {
     return 'width:' + this.get('allocationCurrent') + 'px;';
   }.property('allocationCurrent'),
@@ -188,16 +188,16 @@ App.VmController = Ember.ObjectController.extend({
   allocationMessage: function () {
     var message = '';
     if (this.get('isRange')) {
-      message += '<strong>Total: ' + this.get('utilization.scu_total') + '</strong><br>';
+      message += '<strong>Total: ' + this.get('scuTotal') + '</strong><br>';
       message += 'Non-bursting: ' + this.get('utilizationCurrent') + '<br>';
       message += 'Bursting: ' + this.get('utilizationBurst') + '<br>';
       message += 'Min Allocated: ' + this.get('capabilities.scu_allocated_min') + '<br>';
       message += 'Burst Allocated: ' + this.get('capabilities.scu_allocated_max');
     } else {
-      return '<strong>Total: ' + this.get('utilization.scu_total') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.scu_allocated_min');
+      return '<strong>Total: ' + this.get('scuTotal') + '</strong><br>' + 'Allocated: ' + this.get('capabilities.scu_allocated_min');
     }
     return message;
-  }.property('isRange', 'utilization.scu_total', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
+  }.property('isRange', 'scuTotal', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
     var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
     var burst =  this.get('capabilities.scu_allocated_min') - currentUtilization;
