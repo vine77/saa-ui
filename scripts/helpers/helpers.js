@@ -174,7 +174,8 @@ App.isCriticalityPlus = function(criticality) {
   }
 };
 
-App.strip = function(number) {
+App.stripFloat = function(number) {
+  if (typeof number !== 'number') number = parseFloat(number);
   return parseFloat(number.toPrecision(12));
 };
 
@@ -311,7 +312,7 @@ Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
 Ember.Handlebars.registerBoundHelper('percent', function(value) {
   if (Ember.isEmpty(value)) return null;
   if (value == -1) return App.NOT_APPLICABLE;
-  return App.strip(value * 100) + '%';
+  return App.stripFloat(value * 100) + '%';
 });
 
 Ember.Handlebars.registerBoundHelper('toFixed', function (number, digits) {
