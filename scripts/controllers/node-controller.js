@@ -296,7 +296,7 @@ App.NodeController = Ember.ObjectController.extend({
           var guaranteed = item.max;
           var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
         }
-
+        var ulitizationCurrentAvailable = (!isNaN(utilizationCurrent));
         returnArray.push({
           type: item.type.toUpperCase(),
           min: item.min,
@@ -304,9 +304,10 @@ App.NodeController = Ember.ObjectController.extend({
           compute: item.compute,
           misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
-          utilizationCurrent: utilizationCurrent,
+          utilizationCurrent: ((ulitizationCurrentAvailable)?utilizationCurrent:0),
           notUtilized: notUtilized,
-          guaranteed: guaranteed
+          guaranteed: guaranteed,
+          ulitizationCurrentAvailable: ulitizationCurrentAvailable
         });
       });
     }
