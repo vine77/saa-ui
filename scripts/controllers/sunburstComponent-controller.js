@@ -151,8 +151,8 @@ App.SunburstChartComponent = Ember.Component.extend({
       this.set('totalSize', path.node().__data__.value);
       defaultExplanation();
       function mouseover(d, i) {
-          var percentage =  (100 * d.value / self.get('totalSize').toPrecision(3));
-          var percentageString = percentage.toFixed(2) + "%";
+          var percentage = 100 * d.value / self.get('totalSize');
+          var percentageString = App.stripFloat(percentage) + "%";
           if (percentage < 0.1) {
             percentageString = "< 0.1%";
           }

@@ -97,32 +97,9 @@ App.NodeController = Ember.ObjectController.extend({
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
-  systemScuUtilization: function() {
-    var systemScuUtilization = 0;
-    if (this.get('scuUtilizationCgroups')) {
-      this.get('scuUtilizationCgroups').forEach( function(item, index, enumerable) {
-        systemScuUtilization = systemScuUtilization + item.value;
-      });
-    }
-    return systemScuUtilization.toFixed();
-    //return this.get('utilization.scu.system.allocated');
-  }.property('scuUtilizationCgroups.@each'),
-
   systemContention: function() {
     return this.get('contention.llc.system.value');
-    /*
-    var contentionScu = 0;
-    if (this.get('contentionCgroups')) {
-      this.get('contentionCgroups').forEach( function(item, index, enumerable) {
-        contentionScu = contentionScu + item.value;
-      });
-    }
-    return contentionScu;
-    */
-  //}.property('contentionCgroups.@each'),
   }.property('contention.llc.system.value'),
-
-// contention.llc.system.value
 
   utilizationCoresCgroups: function() {
     return this.get('utilization.cores.cgroups');
@@ -179,15 +156,13 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuTooltip: function() {
     var messages = [];
-
-    messages.push('System:  ' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
-
+    messages.push('System:  ' + this.get('scuTotal') + ' out of ' + this.get('utilization.scu.system.max'));
     if (!!this.get('scuOsUtilization.max')) { messages.push('OS: ' + this.get('scuOsUtilization.value') + ' out of ' + this.get('scuOsUtilization.max')); }
     if (!!this.get('scu6WindUtilization.max')) { messages.push('6Wind: </strong>' + this.get('scu6WindUtilization.value') + ' out of ' + this.get('scu6WindUtilization.max')); }
     if (!!this.get('scuVmUtilization.max')) { messages.push('VM: ' + this.get('scuVmUtilization.value') + ' out of ' + this.get('scuVmUtilization.max')); }
-    if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + this.get('scuUnallocated').toFixed(2)); }
+    if (!!this.get('scuUnallocated')) { messages.push('Unallocated: ' + App.stripFloat(this.get('scuUnallocated'))); }
     return messages.join('<br>');
-  }.property('systemScuUtilization', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
+  }.property('scuTotal', 'utilization.scu.system.max', 'scuOsUtilization.max', 'scu6WindUtilization.max', 'scuUnallocated'),
   scuPopoverCgroups: function() {
     var messages = [];
     if (!!this.get('scuOsUtilization.max')) {
@@ -219,10 +194,10 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuPopoverTitle: function() {
     var messages = [];
-    messages.push('<strong>Overall Node Total:</strong> &#9;&#9;' + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max'));
-    if (!!this.get('scuUnallocated')) { messages.push('<strong>Node Unallocated:</strong> &#9;&#9;' + this.get('scuUnallocated').toFixed(2) + ' out of ' + this.get('utilization.scu.system.max') ); }
+    messages.push('<strong>Overall Node Total:</strong> &#9;&#9;' + this.get('scuTotal') + ' out of ' + this.get('utilization.scu.system.max'));
+    if (!!this.get('scuUnallocated')) { messages.push('<strong>Node Unallocated:</strong> &#9;&#9;' + App.stripFloat(this.get('scuUnallocated')) + ' out of ' + this.get('utilization.scu.system.max') ); }
     return messages.join('<br />');
-  }.property('systemScuUtilization', 'scuUnallocated', 'utilization.scu.system.max'),
+  }.property('scuTotal', 'scuUnallocated', 'utilization.scu.system.max'),
   contentionPopoverCgroups: function() {
     var messages = [];
     if (!!this.get('osContention.max')) {
@@ -275,7 +250,7 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuUnallocated: function() {
     if (App.isEmpty(this.get('utilization.scu.system.max')) || App.isEmpty(this.get('utilization.scu.system.allocated'))) return 0;
-    return (this.get('utilization.scu.system.max') - this.get('utilization.scu.system.allocated')).toFixed(2);
+    return (this.get('utilization.scu.system.max') - App.stripFloat(this.get('utilization.scu.system.allocated')));
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
   scuValuesExist: function () {
@@ -286,17 +261,16 @@ App.NodeController = Ember.ObjectController.extend({
     var returnArray = [];
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
-        var utilizationCurrent = (+item.compute + +item.misc).toFixed(2);
-        var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
-
+        var utilizationCurrent = App.stripFloat(item.compute + item.io_wait + item.misc);
+        var notUtilized = Math.max(0, App.stripFloat(item.max - utilizationCurrent));
         if (item.type == 'vm') {
           var guaranteed = item.min;
-          var notUtilized = Math.max(0, (item.min - utilizationCurrent).toFixed(2));
+          var notUtilized = Math.max(0, App.stripFloat(item.min - utilizationCurrent));
         } else {
           var guaranteed = item.max;
-          var notUtilized = Math.max(0, (item.max - utilizationCurrent).toFixed(2));
+          var notUtilized = Math.max(0, App.stripFloat(item.max - utilizationCurrent));
         }
-        var ulitizationCurrentAvailable = (!isNaN(utilizationCurrent));
+        var ulitizationCurrentAvailable = !Ember.isEmpty(utilizationCurrent);
         returnArray.push({
           type: item.type.toUpperCase(),
           min: item.min,
@@ -304,7 +278,7 @@ App.NodeController = Ember.ObjectController.extend({
           compute: item.compute,
           misc: item.misc,
           sortOrder: App.typeToSortOrder(item.type),
-          utilizationCurrent: ((ulitizationCurrentAvailable)?utilizationCurrent:0),
+          utilizationCurrent: (ulitizationCurrentAvailable) ? utilizationCurrent : 0,
           notUtilized: notUtilized,
           guaranteed: guaranteed,
           ulitizationCurrentAvailable: ulitizationCurrentAvailable
@@ -320,11 +294,11 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('scuValues.@each'),
   vmNotUtilized: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
-    return Math.max(0, (vm.min - this.get('vmUtilization')).toFixed(2) );
+    return Math.max(0, App.stripFloat(vm.min - this.get('vmUtilization')));
   }.property('scuValues.@each', 'vmUtilization'),
   vmBestEffortAllocation: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
-    return vm && Math.max(0, (vm.max - vm.min).toFixed(2));
+    return vm && Math.max(0, App.stripFloat(vm.max - vm.min));
   }.property('scuValues.@each'),
   vmBestEffortUtilization: function() {
     var vm = this.get('scuValues').findBy('type', 'VM');
@@ -335,10 +309,10 @@ App.NodeController = Ember.ObjectController.extend({
     return vm && Math.max(0, (this.get('vmBestEffortAllocation') - this.get('vmBestEffortUtilization')));
   }.property('scuValues.@each', 'vmBestEffortUtilization', 'vmBestEffortAllocation'),
   scuValuesGuaranteedSum: function() {
-    return this.get('scuValues').reduce(function(previousValue, item, index, enumerable) {
+    return App.stripFloat(this.get('scuValues').reduce(function(previousValue, item, index, enumerable) {
       if (item.type == "VM") { return previousValue + item.min; }
       return previousValue + item.max;
-    }, 0).toFixed(2);
+    }, 0));
   }.property('scuValues.@each'),
   scuValuesUnallocated: function() {
     return Math.max(0, (this.get('utilization.scu.system.max') - this.get('scuValuesGuaranteedSum') - this.get('vmBestEffortAllocation')).toFixed(2));
@@ -352,7 +326,7 @@ App.NodeController = Ember.ObjectController.extend({
     var unallocatedSegment = {
       "name": "Unallocated",
       "fill_type": "gray",
-      "size": self.get('scuValuesUnallocated').toFixed(2)
+      "size": App.stripFloat(self.get('scuValuesUnallocated'))
     }
     layout.children.push(unallocatedSegment);
 
@@ -383,14 +357,14 @@ App.NodeController = Ember.ObjectController.extend({
             {
               "name": "VM Utilization",
               "fill_type": "light-green",
-              "size": self.get('vmUtilization').toFixed(2),
+              "size": App.stripFloat(self.get('vmUtilization')),
               "detailsChildren": detailsChildren,
               "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",
               "fill_type": "gray",
-              "size": self.get('vmNotUtilized').toFixed(2)
+              "size": App.stripFloat(self.get('vmNotUtilized'))
             }
           ]
         };
@@ -398,19 +372,19 @@ App.NodeController = Ember.ObjectController.extend({
         var vmBestEffortSegment = {
           "name": "VM Best Effort",
           "fill_type": "gray",
-          "size": self.get('vmBestEffortAllocation').toFixed(2),
+          "size": App.stripFloat(self.get('vmBestEffortAllocation')),
           "children": [
             {
               "name": "VM Utilization",
               "fill_type": "light-green",
-              "size": self.get('vmBestEffortUtilization').toFixed(2),
+              "size": App.stripFloat(self.get('vmBestEffortUtilization')),
               "detailsChildren": detailsChildren,
               "eventSiblingId": "VM"
             },
             {
               "name": "Not Utilized",
               "fill_type": "gray",
-              "size": self.get('vmBestEffortNotUtilized').toFixed(2)
+              "size": App.stripFloat(self.get('vmBestEffortNotUtilized'))
             }
           ]
         };
@@ -473,7 +447,7 @@ App.NodeController = Ember.ObjectController.extend({
         "name": "Cache Occupancy",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0)?item.get(self.get('currentSunburstCacheValue')).toFixed(2):0),
+        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0),
         "route": "vmsVm",
         "routeId": item.get('id'),
         "routeLabel": item.get('id')
@@ -697,9 +671,9 @@ App.NodeController = Ember.ObjectController.extend({
 
   computeMessage: function() {
     var message = 'SAA Compute Units: ';
-    if (App.isEmpty(this.get('systemScuUtilization'))) return message + 'N/A';
-    return message + this.get('systemScuUtilization') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
-  }.property('systemScuUtilization', 'utilization.scu.system.max'),
+    if (App.isEmpty(this.get('scuTotal'))) return message + 'N/A';
+    return message + this.get('scuTotal') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
+  }.property('scuTotal', 'utilization.scu.system.max'),
   computeWidth: function () {
     if (this.get('scuTotal') === 0 || App.isEmpty(this.get('scuTotal'))) {
       return 'display:none;';

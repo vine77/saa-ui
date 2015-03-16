@@ -63,11 +63,6 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
   multipleVmsAreSelected: function () {
     return this.get('model').filterProperty('isSelected').length > 1;
   }.property('model.@each.isSelected'),
-  isTreemapVisible: false,
-  treemapData: {
-    'name': 'Cluster',
-    'children': []
-  },
 
   numberOfPages: function () {
     return Math.ceil(this.get('length')/this.get('listView.pageSize'));
@@ -117,100 +112,6 @@ App.VmsController = Ember.ArrayController.extend(App.Filterable, App.Sortable, {
         self.set('isActionPending', false);
         App.xhrError(xhr, 'Failed to load VM trust report.');
       });
-    },
-    renderTreemap: function () {
-      if (this.isTreemapVisible) {
-        $('.treemap').slideUp();
-        this.set('isTreemapVisible', false);
-        return;
-      }
-      $('.treemap').slideDown();
-      this.set('isTreemapVisible', true);
-
-      // Generate object for D3 treemap layout
-      var vms = {};
-      var json = [];
-      this.store.all('vm').forEach(function (item, index, enumerable) {
-        if (!vms.hasOwnProperty(item.get('nodeName'))) vms[item.get('nodeName')] = [];
-        vms[item.get('nodeName')].push({
-          id: item.get('id'),
-          name: item.get('name'),
-          nodeName: item.get('nodeName'),
-          status: {
-            health: item.get('status.health')
-          },
-          capabilities: {
-            memory_size: App.readableSizeToBytes(item.get('capabilities.memory_size')),
-            scu_allocated: item.get('capabilities.scu_allocated_max')
-          },
-          utilization: {
-            memory: App.readableSizeToBytes(item.get('utilization.memory')),
-            scu_current: item.get('scu_current.scu_total')
-          }
-        });
-      });
-      for (var nodeName in vms) {
-        if (!vms.hasOwnProperty(nodeName)) continue;
-        var vmsOnHost = vms[nodeName];
-        json.push({
-          name: nodeName,
-          children: vmsOnHost
-        });
-      }
-      json = {
-        name: 'Cluster',
-        children: json
-      };
-      this.treemapData = json;
-
-      // Draw treemap
-      var treemap = d3.layout.treemap()
-        .sticky(true)
-        .size([$('.treemap').width(), 200])
-        .value(function (d) {
-          if (d.capabilities && d.capabilities.memory_size) {
-            return d.capabilities.memory_size;
-          } else {
-            return null;
-          }
-        });
-      var container = d3.select('.treemap');
-      var color = d3.scale.category20c();
-      var treemapNodes = container.selectAll('.node')
-        .data(treemap(this.treemapData))
-        .enter()
-        .append('div')
-        .attr('class', 'node')
-        .style('left', function (d) { return d.x + 'px'; })
-        .style('top', function (d) { return d.y + 'px'; })
-        .style('width', function (d) { return Math.max(0, d.dx - 1) + 'px'; })
-        .style('height', function (d) { return Math.max(0, d.dy - 1) + 'px'; })
-        .style('background', function (d) { return d.children ? null : color(d.nodeName); })
-        .html(function (d) { return '<a href="/#/vms/' + d.id + '">' + d.name + '</a>'; });
     }
   }
 });
-
-  /*
-  isGrouped: function () {
-    return (!!this.get('sortProperties') && this.get('sortProperties')[0] === 'node');
-  }.property('sortProperties'),
-  groupedModel: function () {
-    if (this.get('isGrouped')) {
-      var groupBy = 'node.name';
-      var groups = {};
-      this.forEach(function (item, index, enumerable) {
-        var groupName = item.get(groupBy);
-        if (typeof groups[groupName] === 'undefined') groups[groupName] = [];
-        groups[groupName].push(item);
-      });
-      indexedGroups = [];
-      $.each(groups, function (index, item) {
-        indexedGroups.push(item);
-      });
-      return indexedGroups;
-    } else {
-      return [this];
-    }
-  }.property('model.@each', 'sortProperties', 'sortAscending'),
-  */

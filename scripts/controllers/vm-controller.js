@@ -199,16 +199,15 @@ App.VmController = Ember.ObjectController.extend({
     return message;
   }.property('isRange', 'scuTotal', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
-    var currentUtilization = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
-    var burst =  this.get('capabilities.scu_allocated_min') - currentUtilization;
+    var burst =  this.get('capabilities.scu_allocated_min') - this.get('scuTotal');
     if (Ember.isEmpty(burst)) burst = 0;
-    return burst.toFixed(2);
-  }.property('utilizationCurrent', 'capabilities.scu_allocated_min', 'utilization.scu.compute', 'utilization.scu.misc'),
+    return App.stripFloat(burst);
+  }.property('capabilities.scu_allocated_min', 'scuTotal'),
   utilizationCurrent: function() {
-    var total = this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
+    var total = this.get('scuTotal');
     if (Ember.isEmpty(total)) total = 0;
-    return Math.max(0, total).toFixed(2);
-  }.property('utilization.scu.compute','utilization.scu.misc', 'utilizationBurst'),
+    return App.stripFloat(Math.max(0, total));
+  }.property('scuTotal', 'utilizationBurst'),
   utilizationBurstWidth: function() {
     if (Ember.isEmpty(this.get('capabilities.scu_allocated_max'))) return null;
     var percent = 100 * parseFloat(this.get('utilizationBurst')) / parseFloat(this.get('capabilities.scu_allocated_max'));
