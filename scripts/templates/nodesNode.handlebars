@@ -126,10 +126,16 @@
             {{/if}}
           </td>
         </tr>
-        {{#if status.ipmi_sensors_in_error}}
+        {{#if status.health_details.ipmi.sensors_in_error}}
           <tr>
             <th class="column-medium">IPMI Sensors in Error</th>
-            <td>{{#each status.ipmi_sensors_in_error}}{{this}}, {{/each}}</td>
+            <td>
+              <ul class="comma-separated">
+                {{#each status.ipmi_sensors_in_error}}
+                  <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </td>
           <tr>
         {{/if}}
       </table>
