@@ -14,6 +14,7 @@ App.Router.map(function () {
       this.route('user', {path: 'users/:user_id'});
       this.route('dev');
       this.route('log');
+      this.route('overrides');
       this.route('trust');
       this.route('controller');
     });
