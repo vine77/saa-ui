@@ -58,6 +58,21 @@
       </div>
     </section>
     <section>
+      <legend>Network Configuration Overrides</legend> <br>
+      {{#each value in networkOverrides itemController="override"}}
+        <div class="control-group">
+          <label class="control-label" for="">{{value.model.name}}</label>
+          <div class="controls">
+            {{input type="text" value=value.model.value disabled=value.isDisabled size="50" placeholder=placeholder}}
+            <label class="checkbox" style="vertical-align:middle; display:inline-block;">
+              {{input type="checkbox" value=value.model.value name="isAdmin" checked=value.isDefault}}
+              Use Default
+            </label>
+          </div>
+        </div>
+      {{/each}}
+    </section>
+    <section>
       <legend>Management Interface</legend>
       <div class="control-group">
         <label class="control-label">MAC Address:</label>

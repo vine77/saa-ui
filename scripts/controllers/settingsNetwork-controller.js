@@ -1,4 +1,10 @@
 App.SettingsNetworkController = Ember.Controller.extend({
+  needs: ['overrides'],
+  networkOverrides: function() {
+    return this.get('controllers.overrides.model.configurationValues') && this.get('controllers.overrides.model.configurationValues').filter(function(item, index, enumerable){
+      return (item.section == "ntp" || item.section == "dns");
+    });
+  }.property('controllers.overrides.model.configurationValues.@each'),
   isActionPending: false,
   networkTypeText: function () {
     if (this.get('networkType.setting') == App.NEUTRON) {
@@ -10,6 +16,13 @@ App.SettingsNetworkController = Ember.Controller.extend({
   actions: {
     save: function () {
       var self = this;
+
+      this.store.getById('override', 'current').save().then( function() {
+         App.event('Successfully updated configuration overrides.', App.SUCCESS);
+      }, function(xhr) {
+        App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
+      });
+
       var externalIpChanged = App.network.get('external.address') != App.network.get('serverExternal.address');
       var externalChangedToDynamic = (App.network.get('external.dhcp') && App.network.get('external.dhcp') != App.network.get('serverExternal.dhcp'));
       if (externalChangedToDynamic) {
