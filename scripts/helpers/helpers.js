@@ -174,9 +174,10 @@ App.isCriticalityPlus = function(criticality) {
   }
 };
 
-App.stripFloat = function(number) {
+App.stripFloat = function(number, precision) {
+  if (typeof precision === 'undefined') precision = 3;
   if (typeof number !== 'number') number = parseFloat(number);
-  return parseFloat(number.toPrecision(12));
+  return parseFloat(number.toPrecision(precision));
 };
 
 // Handlebars helpers
