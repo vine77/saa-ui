@@ -1,10 +1,14 @@
 <section id="upload">
   <h3>Configuration Overrides</h3>
+
+  model: {{model.configurationValues}} <br>
+  model.configurationValues: {{model.configurationValues}} <br>
+
   <div class="well-clean shadow-lifted">
     {{#if controllers.overrides.configurationValuesExist}}
       {{#if controllers.application.isConfigured}}
         <form id="overridesForm" class="form-horizontal" method="post">
-          {{#each value in this.controllers.overrides.model.configurationValues itemController="override"}}
+          {{#each value in model.configurationValues itemController="override"}}
             <div class="control-group">
               <label class="control-label" for="">{{value.model.name}}</label>
               <div class="controls">

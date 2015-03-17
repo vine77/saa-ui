@@ -535,6 +535,11 @@ App.SettingsLogRoute = Ember.Route.extend({
     return this.store.find('logSetting', 'current');
   }
 });
+App.SettingsOverridesRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('override', 'current');
+  }
+});
 App.SettingsUsersRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('user');

@@ -4,7 +4,7 @@ App.OverridesController = Ember.ArrayController.extend({
   }.property('model.configurationValues.length'),
   init: function () {
     this._super();
-    this.set('content', this.store.find('override', 'current'));
+    this.set('model', this.store.find('override', 'current'));
   }
 });
 
