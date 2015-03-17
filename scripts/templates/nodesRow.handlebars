@@ -173,11 +173,11 @@
         </div>
       </td>
       <td><div class="cell-container">
-        {{#if utilization.normalized_load}}
+        {{#unlessEmpty utilization.normalized_load}}
           {{progress-bar-stacked value=utilization.normalized_load overallWidth="90%" thresholdOne=1 thresholdTwo=2 thresholdThree=3}}
         {{else}}
           {{na utilization.normalized_load}}
-        {{/if}}
+        {{/unlessEmpty}}
       </div></td>
       <td><div class="cell-container">
         {{#if hasContention}}
