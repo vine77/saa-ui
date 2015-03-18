@@ -17,11 +17,13 @@ App.SettingsNetworkController = Ember.Controller.extend({
   actions: {
     save: function () {
       var self = this;
-
-      this.store.getById('override', 'current').save().then( function() {
-         App.event('Successfully updated configuration overrides.', App.SUCCESS);
-      }, function(xhr) {
-        App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
+      this.store.find('override', 'current').then(function(current) {
+        current.set('configurationValues', self.get('configurationValues'));
+        current.save().then( function() {
+           App.event('Successfully updated configuration overrides.', App.SUCCESS);
+        }, function(xhr) {
+          App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
+        });
       });
 
       var externalIpChanged = App.network.get('external.address') != App.network.get('serverExternal.address');
@@ -62,6 +64,11 @@ App.SettingsNetworkController = Ember.Controller.extend({
     },
     cancel: function () {
       App.network.check();
+      var self = this;
+      this.store.find('override', 'current').then(function(current) {
+        current.reload();
+        self.set('configurationValues', current.get('configurationValues'));
+      });
     }
   }
 });

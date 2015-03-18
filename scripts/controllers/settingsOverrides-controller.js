@@ -7,6 +7,9 @@ App.SettingsOverridesController = Ember.ObjectController.extend({
       }, function(xhr) {
         App.xhrError(xhr, 'An error occurred while attempting to override configuration values.');
       });
+    },
+    cancel: function() {
+      this.get('model').reload();
     }
   }
 });

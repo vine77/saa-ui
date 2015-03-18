@@ -15,10 +15,13 @@
             </div>
           </div>
         {{/each}}
-        <div class="control-group">
-          <div class="controls">
-            <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
-            <i id="overridesLoading" class="loading hide"></i>
+        <div class="form-actions">
+          <div class="control-group">
+            <div class="controls">
+              <a class="btn" {{action "cancel"}}>Cancel</a>
+              <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
+              <i id="overridesLoading" class="loading hide"></i>
+            </div>
           </div>
         </div>
       </form>
