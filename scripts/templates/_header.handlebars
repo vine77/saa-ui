@@ -43,6 +43,9 @@
               <ul class="dropdown-menu pull-right">
                 {{#unless isReadycloud}}
                   <li>{{#link-to "settings.upload"}}Upload{{/link-to}}</li>
+                  {{#if isConfigured}}
+                    <li>{{#link-to "settings.overrides"}}Configuration Overrides{{/link-to}}</li>
+                  {{/if}}
                   <li>{{#link-to "settings.network"}}Network{{/link-to}}</li>
                 {{/unless}}
                 {{#unless isFramed}}
