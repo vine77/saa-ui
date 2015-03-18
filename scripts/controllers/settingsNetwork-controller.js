@@ -1,15 +1,16 @@
 App.SettingsNetworkController = Ember.Controller.extend({
-  needs: ['overrides'],
+  configurationValues: [],
   networkOverrides: function() {
-    return this.get('controllers.overrides.model.configurationValues') && this.get('controllers.overrides.model.configurationValues').filter(function(item, index, enumerable){
-      return (item.section == "ntp" || item.section == "dns");
+    return this.get('configurationValues').filter(function(item, index, enumerable) {
+      return (item.section === 'ntp' || item.section === 'dns');
     });
-  }.property('controllers.overrides.model.configurationValues.@each'),
+  }.property('configurationValues.@each'),
+  networkOverridesExist: Ember.computed.gt('networkOverrides.length', 0),
   isActionPending: false,
   networkTypeText: function () {
-    if (this.get('networkType.setting') == App.NEUTRON) {
+    if (this.get('networkType.setting') === App.NEUTRON) {
       return 'Neutron';
-    } else if (this.get('networkType.setting') == App.NOVA) {
+    } else if (this.get('networkType.setting') === App.NOVA) {
       return 'Nova';
     }
   }.property('networkType.setting'),

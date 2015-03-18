@@ -1,33 +1,29 @@
 <section id="upload">
   <h3>Configuration Overrides</h3>
-
-  model: {{model.configurationValues}} <br>
-  model.configurationValues: {{model.configurationValues}} <br>
-
   <div class="well-clean shadow-lifted">
-    {{#if controllers.overrides.configurationValuesExist}}
-      {{#if controllers.application.isConfigured}}
-        <form id="overridesForm" class="form-horizontal" method="post">
-          {{#each value in model.configurationValues itemController="override"}}
-            <div class="control-group">
-              <label class="control-label" for="">{{value.model.name}}</label>
-              <div class="controls">
-                {{input type="text" value=value.model.value disabled=value.isDisabled size="50" placeholder=placeholder}}
-                <label class="checkbox" style="vertical-align:middle; display:inline-block;">
-                  {{input type="checkbox" value=value.model.value name="isAdmin" checked=value.isDefault}}
-                  Use Default
-                </label>
-              </div>
-            </div>
-          {{/each}}
+    {{#if configurationValuesExist}}
+      <form id="overridesForm" class="form-horizontal">
+        {{#each config in model.configurationValues itemController="override"}}
           <div class="control-group">
+            <label class="control-label">{{config.model.name}}</label>
             <div class="controls">
-              <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
-              <i id="overridesLoading" class="loading hide"></i>
+              {{input type="text" value=config.model.value disabled=config.isDisabled size="50" placeholder=placeholder}}
+              <label class="checkbox" style="vertical-align:middle; display:inline-block;">
+                {{input type="checkbox" value=config.model.value name="isAdmin" checked=config.isDefault}}
+                Use Default
+              </label>
             </div>
           </div>
-        </form>
-      {{/if}}
+        {{/each}}
+        <div class="control-group">
+          <div class="controls">
+            <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
+            <i id="overridesLoading" class="loading hide"></i>
+          </div>
+        </div>
+      </form>
+    {{else}}
+      No configuration override values were found.
     {{/if}}
   </div>
 </section>

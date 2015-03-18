@@ -1,13 +1,3 @@
-App.OverridesController = Ember.ArrayController.extend({
-  configurationValuesExist: function() {
-    return this.get('model.configurationValues.length') > 0;
-  }.property('model.configurationValues.length'),
-  init: function () {
-    this._super();
-    this.set('model', this.store.find('override', 'current'));
-  }
-});
-
 App.OverrideController = Ember.ObjectController.extend({
   isDefault: false,
   isDefaultObserver: function() {
@@ -17,15 +7,11 @@ App.OverrideController = Ember.ObjectController.extend({
       } else {
         this.set('model.value', this.get('model.default_value'));
       }
-      //this.set('model.value', this.get('model.default_value'));
     } else {
       this.set('model.value', null);
     }
   }.observes('isDefault'),
-  isDisabled: function() {
-    //return Ember.isEmpty(this.get('model.value'));
-    return this.get('isDefault');
-  }.property('model.@each', 'model.value'),
+  isDisabled: Ember.computed.alias('isDefault'),
   isIP: function() {
     var ipValue = this.get('model.default_value');
     var ipPattern = '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$';

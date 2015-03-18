@@ -522,7 +522,11 @@ App.SettingsUploadRoute = Ember.Route.extend({
 App.SettingsNetworkRoute = Ember.Route.extend({
   setupController: function (controller, model) {
     this._super(controller, model);
+    App.network.check();
     controller.set('networkType', this.store.find('networkType', 'current'));
+    this.store.find('override', 'current').then(function(current) {
+      controller.set('configurationValues', current.get('configurationValues'));
+    });
   }
 });
 App.SettingsMailserverRoute = Ember.Route.extend({
@@ -538,6 +542,10 @@ App.SettingsLogRoute = Ember.Route.extend({
 App.SettingsOverridesRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('override', 'current');
+  },
+  setupController: function(controller, model) {
+    this._super(controller, model);
+    model.reload();
   }
 });
 App.SettingsUsersRoute = Ember.Route.extend({
