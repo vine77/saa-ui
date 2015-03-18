@@ -1,8 +1,7 @@
 <section id="upload">
   <h3>Configuration Overrides</h3>
-  <div class="well-clean shadow-lifted">
     {{#if configurationValuesExist}}
-      <form id="overridesForm" class="form-horizontal">
+      <form id="overridesForm" class="form-horizontal well-clean shadow-lifted">
         {{#each config in model.configurationValues itemController="override"}}
           <div class="control-group">
             <label class="control-label">{{config.model.name}}</label>
@@ -16,13 +15,12 @@
           </div>
         {{/each}}
         <div class="form-actions">
-          <div class="control-group">
-            <div class="controls">
-              <a class="btn" {{action "cancel"}}>Cancel</a>
-              <a class="btn btn-primary" {{action updateOverrides}}>Submit</a>
-              <i id="overridesLoading" class="loading hide"></i>
-            </div>
-          </div>
+          {{#unless isActionPending}}
+            <a class="btn" {{action "cancel"}}>Cancel</a>
+            <a class="btn btn-primary" {{action "updateOverrides"}}>Save</a>
+          {{else}}
+            <a class="btn btn-primary" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving...</a>
+          {{/unless}}
         </div>
       </form>
     {{else}}
