@@ -257,10 +257,11 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isRebooting', true);
       var confirmed = confirm('Are you sure you want to reboot node "' + node.get('name') + '"?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           name: 'reboot',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           node.set('isRebooting', false);
           App.event(action.get('message'), action.get('health'));
@@ -268,6 +269,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
           node.set('isActionPending', false);
           node.set('isRebooting', false);
           App.xhrError(xhr, 'Failed to reboot node "' + node.get('name') + '".');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -278,15 +280,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isActionPending', true);
       var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "unregister"
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unregister node "' + node.get('name') + '".');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -296,18 +300,20 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to monitored?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "set_agent_mode",
           options: {
             agent_mode: App.MONITORED
           }
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set the agent mode of node "' + node.get('name') + '" to monitored.');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -326,18 +332,20 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to set the agent mode of node "' + node.get('name') + '" to ' + App.codeToMode(mode) + '?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "set_agent_mode",
           options: {
             agent_mode: mode
           }
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set agent mode of node "' + node.get('name') + '" to assured.');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -347,16 +355,18 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to unset node "' + node.get('name') + '" for future VM placement and return to standard VM placement?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "scheduler_unmark"
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
           //node.set('schedulerMark', null);
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to unset node "' + node.get('name') + '" for VM placement.');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -404,15 +414,17 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       node.set('isActionPending', true);
       var confirmed = confirm('Are you sure you want to configure the trust agent for node "' + node.get('name') + '"?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           name: 'trust_agent_config',
           node: this.store.getById('node', node.get('id'))
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to configure the trust agent for node "' + node.get('name') + '".');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
@@ -424,19 +436,21 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       socketNumber = Ember.isEmpty(socketNumber) ? 0 : parseInt(socketNumber.toFixed());
       var confirmed = confirm('Are you sure you want all future VMs to be placed on node "' + node.get('name') + '" (socket ' + socketNumber + ')?');
       if (confirmed) {
-        this.store.createRecord('action', {
+        var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),
           name: "scheduler_mark",
           options: {
             scheduler_mark: socketNumber,
             scheduler_persistent: true
           }
-        }).save().then(function (action) {
+        });
+        action.save().then(function (action) {
           node.set('isActionPending', false);
           App.event(action.get('message'), action.get('health'));
         }, function (xhr) {
           node.set('isActionPending', false);
           App.xhrError(xhr, 'Failed to set node "' + node.get('name') + '" for VM placement.');
+          action.rollback();
         });
       } else {
         node.set('isActionPending', false);
