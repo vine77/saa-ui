@@ -267,15 +267,17 @@
     </div>
     <div class="tab-pane vms">
       {{#if vmsExist}}
-        {{#if vmCacheSunburstAvailable}}
-          {{view Ember.Select viewName="select"
+        {{view Ember.Select viewName="select"
           content=sunburstCacheValues
           optionValuePath="content.value"
           optionLabelPath="content.label"
           value=currentSunburstCacheValue}}
+        {{#if vmCacheSunburstAvailable}}
           <div style="text-align:center;">
             {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute"}}
           </div>
+        {{else}}
+          <div class="alert alert-warning">No data found.</div>
         {{/if}}
       {{/if}}
       <ul>

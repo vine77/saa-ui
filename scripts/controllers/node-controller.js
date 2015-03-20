@@ -425,8 +425,8 @@ App.NodeController = Ember.ObjectController.extend({
   ],
   currentSunburstCacheValue: 'contention.system.llc.cache_occupancy',
   vmsExist: function() {
-    return Ember.isEmpty(this.get('vms'));
-  }.property('vms.@each'),
+    return !Ember.isEmpty(this.get('vms'));
+  }.property('vms.@each', 'vms', 'scuValues'),
   vmCacheSunburstAvailable: function() {
     var self = this;
     var data = this.get('vms').filter(function(item, index, enumerable) {
