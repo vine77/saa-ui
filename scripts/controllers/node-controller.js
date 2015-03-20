@@ -261,7 +261,7 @@ App.NodeController = Ember.ObjectController.extend({
     var returnArray = [];
     if (this.get('scuUtilizationCgroups')) {
       this.get('scuUtilizationCgroups').forEach(function(item, index, enumerable) {
-        var utilizationCurrent = App.stripFloat(item.compute + item.io_wait + item.misc);
+        var utilizationCurrent = App.stripFloat(item.compute + item.misc);
         var notUtilized = Math.max(0, App.stripFloat(item.max - utilizationCurrent));
         if (item.type == 'vm') {
           var guaranteed = item.min;
