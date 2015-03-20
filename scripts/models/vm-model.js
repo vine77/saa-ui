@@ -19,7 +19,7 @@ App.Vm = DS.Model.extend({
 
   // Computed properties
   scuTotal: function() {
-    return this.get('utilization.scu.compute') + this.get('utilization.scu.io_wait') + this.get('utilization.scu.misc');
+    return this.get('utilization.scu.compute') + this.get('utilization.scu.misc');
   }.property('utilization.scu.compute', 'utilization.scu.io_wait', 'utilization.scu.misc'),
 
   // Computed properties for sorting

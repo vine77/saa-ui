@@ -200,6 +200,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('isRange', 'scuTotal', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
     var burst =  this.get('capabilities.scu_allocated_min') - this.get('scuTotal');
+    //var burst = this.get('scuTotal') - this.get('capabilities.scu_allocated_min');
     if (Ember.isEmpty(burst)) burst = 0;
     return App.stripFloat(burst);
   }.property('capabilities.scu_allocated_min', 'scuTotal'),
@@ -236,7 +237,13 @@ App.VmController = Ember.ObjectController.extend({
   }.property('utilizationBurstWidth', 'utilizationBurstLeft'),
 
   utilizationSunburstExists: function() {
-    return (this.get('capabilities.scu_allocated_min') && !App.isEmpty(this.get('capabilities.scu_allocated_min')) && this.get('capabilities.scu_allocated_max') && !App.isEmpty(this.get('capabilities.scu_allocated_max')));
+    if (
+      this.get('scuTotal') > 0.00000001 ||
+      this.get('capabilities.scu_allocated_min') &&
+      this.get('capabilities.scu_allocated_min') > -1 ||
+      this.get('capabilities.scu_allocated_max') &&
+      this.get('capabilities.scu_allocated_max') > -1
+    ){ return true } else { return false; };
   }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationSunburst: function () {
     var self = this;
