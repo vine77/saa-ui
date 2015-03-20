@@ -247,6 +247,7 @@ App.VmController = Ember.ObjectController.extend({
   }.property('capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationSunburst: function () {
     var self = this;
+    var notBursting = App.stripFloat(self.get('capabilities.scu_allocated_max').toFixed(2) - self.get('utilizationBurst').toFixed(2));
     return  {
      "name": "scu_chart",
      "children": [
@@ -296,7 +297,7 @@ App.VmController = Ember.ObjectController.extend({
           {
             "name": "Not Bursting",
             "fill_type": "gray",
-            "size": self.get('capabilities.scu_allocated_max') - self.get('utilizationBurst')
+            "size": notBursting
           }
         ]
       }
