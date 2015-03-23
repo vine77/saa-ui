@@ -84,7 +84,6 @@
       </td>
       <td><div class="cell-container">
         <div class="contention">
-          {{#unless isMonitored}}
             {{#unless isAssuredCoresPhysical}}
               {{#if computeExists}}
                 {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
@@ -159,7 +158,6 @@
                 }}
               {{/unlessEmpty}}
             {{/unless}}
-          {{/unless}}
         </div>
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
