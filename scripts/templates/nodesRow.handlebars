@@ -164,7 +164,12 @@
       <td>
         <div class="cell-container">
           {{#if percentOfMemoryAvailable}}
-            {{progress-bar width=percentOfMemoryWidth containerWidth="width:60%;" percentValue=percentOfMemory message=percentOfMemoryMessage}}
+            {{progress-bar-simple
+              value=memoryUsed
+              thresholdMax=maxMemory
+              bytesToReadableSize=true
+              title="Memory"
+            }}
           {{else}}
             {{readableSize utilization.memory.used}}
           {{/if}}

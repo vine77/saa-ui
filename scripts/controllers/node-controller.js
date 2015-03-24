@@ -541,6 +541,9 @@ App.NodeController = Ember.ObjectController.extend({
   maxMemory: function() {
     return parseFloat( App.readableSizeToBytes(this.get('capabilities.memory_size')));
   }.property('capabilities.memory_size'),
+  memoryUsed: function() {
+    return parseFloat(App.readableSizeToBytes(this.get('utilization.memory.used')));
+  }.property('utilization.memory.used'),
   percentOfMemory: function () {
     return Math.round(100 * parseFloat(App.readableSizeToBytes(this.get('utilization.memory.used')) ) / this.get('maxMemory'));
   }.property('utilization.memory.used', 'maxMemory'),

@@ -2,6 +2,7 @@ App.ProgressBarSimpleComponent = Ember.Component.extend({
   thresholdOne: null,
   thresholdMax: null,
   progressBarColor: 'bar-success',
+  bytesToReadableSize: false,
   progressStyle: function() {
     return 'overflow:visible;'+
       'position:relative;'+
@@ -10,12 +11,17 @@ App.ProgressBarSimpleComponent = Ember.Component.extend({
       'text-align:center;';
   }.property(),
   currentValueStyle: function() {
-    var left = ~~this.get('barRange1Percentage');
-    var right = 100 - left;
-    if (this.get('barRange1Percentage') < 10) {
-      return 'position:absolute; top:5px; left:' + left + '%';
+    if (this.get('bytesToReadableSize')) {
+      return 'position:absolute; top:3px; white-space: nowrap; left:0%';
     } else {
-      return 'position:absolute; top:5px; right:' + right + '%';
+      var left = ~~this.get('barRange1Percentage');
+      var right = 100 - left;
+      if (this.get('barRange1Percentage') < 15) {
+        return 'position:absolute; top:5px; white-space: nowrap; left:' + left + '%';
+      } else {
+        var right = 70;
+        return 'position:absolute; top:5px; white-space: nowrap; right:' + right + '%';
+      }
     }
   }.property('barRange1Percentage'),
   barRange1Percentage: function() {
@@ -24,4 +30,18 @@ App.ProgressBarSimpleComponent = Ember.Component.extend({
   barRange1Style: function() {
     return 'width:' + this.get('barRange1Percentage') + '%';
   }.property('barRange1Percentage'),
+  thresholdMaxFormatted: function() {
+    if (this.get('bytesToReadableSize')) {
+      return App.bytesToReadableSize(this.get('thresholdMax'));
+    } else {
+      return this.get('thresholdMax');
+    }
+  }.property('thresholdMax'),
+  valueFormatted: function() {
+    if (this.get('bytesToReadableSize')) {
+      return App.bytesToReadableSize(this.get('value'));
+    } else {
+      return this.get('value');
+    }
+  }.property('value')
 });
