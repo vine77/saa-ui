@@ -52,6 +52,14 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
     }
   }.property('controllers.nodes.percentOfRam'),
 
+  isPercentOfPhysicalMemoryAvailable: function () {
+    if (isNaN(this.get('controllers.nodes.percentOfPhysicalMemory'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('controllers.nodes.percentOfPhysicalMemory'),
+
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
       var count = (item.get('scuTotal') > 0) ? item.get('scuTotal') : 0;

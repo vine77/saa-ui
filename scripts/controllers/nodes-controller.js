@@ -96,6 +96,13 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       return previousValue + count;
     }, 0);
   }.property('model.@each.memory.used'),
+  totalPhysicalMemory: function () {
+    if (this.get('model') === undefined) return null;
+    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+      var count = (App.readableSizeToBytes(item.get('utilization.memory.used')) > 0) ? App.readableSizeToBytes(item.get('utilization.memory.used')) : 0;
+      return previousValue + count;
+    }, 0);
+  }.property('model.@each'),
   totalRamGibibyte: function() {
     return App.readableSize(this.get('totalRam') * 1048576);
   }.property('totalRam'),
@@ -106,16 +113,33 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
       return previousValue + count;
     }, 0);
   }.property('model.@each.memory.max'),
+  maxPhysicalMemory: function () {
+    if (this.get('model') === undefined) return null;
+    return this.get('model').reduce(function (previousValue, item, index, enumerable) {
+      var count = (App.readableSizeToBytes(item.get('capabilities.memory_size')) > 0) ? App.readableSizeToBytes(item.get('capabilities.memory_size')) : 0;
+      return previousValue + count;
+    }, 0);
+  }.property('model.@each'),
   totalRamMessage: function () {
     return App.readableSize(this.get('totalRam') * 1048576) + ' out of ' + App.readableSize(this.get('maxRam') * 1048576);
   }.property('totalRam', 'maxRam'),
+  totalPhysicalMemoryMessage: function () {
+    return App.readableSize(this.get('totalPhysicalMemory') * 1048576) + ' out of ' + App.readableSize(this.get('maxPhysicalMemory') * 1048576);
+  }.property('totalPhysicalMemory', 'maxPhysicalMemory'),
   totalRamWidth: function () {
     var percentage = (this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100;
     return 'width:' + percentage + '%;';
   }.property('totalRam', 'maxRam'),
+  totalPhysicalMemoryWidth: function () {
+    var percentage = (this.get('maxPhysicalMemory') == 0) ? 0 : (this.get('totalPhysicalMemory')/this.get('maxPhysicalMemory')) * 100;
+    return 'width:' + percentage + '%;';
+  }.property('totalPhysicalMemory', 'maxPhysicalMemory'),
   percentOfRam: function () {
     return Math.round((this.get('maxRam') == 0) ? 0 : (this.get('totalRam')/this.get('maxRam')) * 100);
   }.property('totalRam', 'maxRam'),
+  percentOfPhysicalMemory: function () {
+    return Math.round((this.get('maxPhysicalMemory') == 0) ? 0 : (this.get('totalPhysicalMemory')/this.get('maxPhysicalMemory')) * 100);
+  }.property('totalPhysicalMemory', 'maxPhysicalMemory'),
 
   numberOfPages: function () {
     return Math.ceil(this.get('length')/this.get('listView.pageSize'));

@@ -47,20 +47,39 @@
           {{/if}}
           {{#if isPercentOfRamAvailable}}
             <tr>
-              <td class="column-medium"><strong>Total RAM Usage</strong></td>
+              <td class="column-medium"><strong>Memory reserved for VMs</strong></td>
               <td>
-                  <div class="progress progress-success portlet-progress">
-                    <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
-                  </div>
-                  <div class="portlet-progress-value">
-                    <small>
-                      {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
-                        {{#link-to "nodes"}}
-                          {{controllers.nodes.percentOfRam}}%
-                        {{/link-to}}
-                      {{/view}}
-                    </small>
-                  </div>
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small>
+                    {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                      {{#link-to "nodes"}}
+                        {{controllers.nodes.percentOfRam}}%
+                      {{/link-to}}
+                    {{/view}}
+                  </small>
+                </div>
+              </td>
+            </tr>
+          {{/if}}
+          {{#if isPercentOfPhysicalMemoryAvailable}}
+            <tr>
+              <td class="column-medium"> <strong> Physical memory </strong> </td>
+              <td>
+                <div class="progress progress-success portlet-progress">
+                  <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
+                </div>
+                <div class="portlet-progress-value">
+                  <small>
+                    {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
+                      {{#link-to "nodes"}}
+                        {{controllers.nodes.percentOfPhysicalMemory}}%
+                      {{/link-to}}
+                    {{/view}}
+                  </small>
+                </div>
               </td>
             </tr>
           {{/if}}
