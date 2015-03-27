@@ -26,8 +26,8 @@ App.NodesColumnsController = App.ColumnsController.extend({
     description: 'Maximum measured capacity is in SCUs (Service Compute Units) or cores (depending on node mode), while the chart indicates how much of that capacity is used.',
     sortBy: 'utilization.scus.total.current'
   }, {
-    title: 'Memory',
-    description: 'This column displays the physical memory <i>used</i> by VMs and applications. Please check horizon for information on memory <i>allocated</i> for VMs.',
+    title: 'RAM Used',
+    description: 'Physical memory used by VMs and applications.',
     sortBy: 'utilization.memory.used'
   },{
     title: 'N. Load',
