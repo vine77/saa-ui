@@ -213,13 +213,19 @@
           <td>{{na utilization.normalized_load}}</td>
         </tr>
         <tr>
-          <th class="column-medium">Memory</th>
+          <th class="column-medium">Physical Memory</th>
           <td>
             {{readableSize utilization.memory.used}} out of {{readableSize capabilities.memory_size}}
             {{#unlessEmpty utilization.memory.ksm_sharing}}
               <br>Memory saved due to Kernel Samepage Merging (KSM):
               {{readableSize utilization.memory.ksm_sharing}}
             {{/unlessEmpty}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium">Memory reserved for VMs</th>
+          <td>
+            {{readableSize utilization.cloud.memory.used}} out of {{readableSize utilization.cloud.memory.max}}
           </td>
         </tr>
         <tr>
