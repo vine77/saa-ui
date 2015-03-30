@@ -3,6 +3,7 @@ App.ProgressBarSimpleComponent = Ember.Component.extend({
   thresholdMax: null,
   progressBarColor: 'bar-success',
   bytesToReadableSize: false,
+  displayMaximum: true,
   progressStyle: function() {
     return 'overflow:visible;'+
       'position:relative;'+
@@ -19,7 +20,6 @@ App.ProgressBarSimpleComponent = Ember.Component.extend({
       if (this.get('barRange1Percentage') < 15) {
         return 'position:absolute; top:5px; white-space: nowrap; left:' + left + '%';
       } else {
-        var right = 70;
         return 'position:absolute; top:5px; white-space: nowrap; right:' + right + '%';
       }
     }

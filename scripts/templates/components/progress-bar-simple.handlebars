@@ -4,7 +4,11 @@
   </span>
   <div  {{bind-attr style=barRange1Style class=":bar progressBarColor"}}></div>
   <span style="position:absolute; bottom:55%; right:0px;">
-    <span style="font-size:9px;">{{thresholdMaxFormatted}}</span>
+    <span style="font-size:9px;">
+      {{#if displayMaximum}}
+        {{thresholdMaxFormatted}}
+      {{/if}}
+    </span>
   </span>
   <span {{bind-attr style=currentValueStyle}}>
     <span style="font-size:9px;">{{valueFormatted}}</span>
