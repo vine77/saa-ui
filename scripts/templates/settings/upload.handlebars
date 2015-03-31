@@ -36,7 +36,7 @@
       <legend>Neutron</legend>
       <div class="control-group">
         <label class="control-label" for="inputEmail">
-        Upload <code>neutron.conf</code> (Havana) or <code>ovs_quantum_plugin.ini</code> (Grizzly)
+        Upload <code>neutron.conf</code> (or <code>ovs_quantum_plugin.ini</code> for Grizzly)
         {{#if isNeutronConfigRequired}}(required){{/if}}
         </label>
         <div class="controls">
@@ -54,7 +54,7 @@
           <label class="radio inline">{{view Ember.RadioButton name="networkType" selection=networkType.setting value="2"}} Nova</label>
         </div>
       </div>
-      <p class="instructions">Please upload your OpenStack Neutron network configuration file containing the database connection string. For OpenStack Grizzly, this file can be found on the OpenStack controller node at <code>/etc/quantum/plugins/openvswitch/ovsquantum_plugin.ini</code>.  For the Havana release the file to upload is <code>/etc/neutron/neutron.conf</code>. This file is not required if the network type is Nova.</p>
+      <p class="instructions">Please upload your OpenStack Neutron network configuration file containing the database connection string. For OpenStack Havana or later, this file can be found on the OpenStack controller node at <code>/etc/neutron/neutron.conf</code>. For OpenStack Grizzly, the file to upload is <code>/etc/quantum/plugins/openvswitch/ovsquantum_plugin.ini</code>. Note: This file is not required if the network type is Nova.</p>
     </form>
     <form id="keystoneConfForm" {{bind-attr class=":form-horizontal showButtons"}} enctype="multipart/form-data">
       <input type="hidden" name="app" value="sam">
