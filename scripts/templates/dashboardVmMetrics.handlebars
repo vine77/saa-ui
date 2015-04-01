@@ -11,18 +11,19 @@
             <tr>
               <td class="column-medium"><strong>Trusted VMs</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
-                        {{#link-to "vms"}}
-                          {{percentOfTrusted}}%
-                        {{/link-to}}
-                      {{/view}}
+                      {{#link-to "vms"}}
+                        {{percentOfTrusted}}%
+                      {{/link-to}}
+                      <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -30,18 +31,19 @@
             <tr>
               <td class="column-medium"><strong>Victim VMs</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfVictimsWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
-                        {{#link-to "vms"}}
-                          {{percentOfVictims}}%
-                        {{/link-to}}
-                      {{/view}}
+                      {{#link-to "vms"}}
+                        {{percentOfVictims}}%
+                      {{/link-to}}
+                      <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -49,18 +51,19 @@
             <tr>
               <td class="column-medium"><strong>Aggressor VMs</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfAggressorsWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
-                        {{#link-to "vms"}}
-                          {{percentOfAggressors}}%
-                        {{/link-to}}
-                      {{/view}}
+                      {{#link-to "vms"}}
+                        {{percentOfAggressors}}%
+                      {{/link-to}}
+                      <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -68,18 +71,19 @@
             <tr>
               <td class="column-medium"><strong>vCPUs</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalVcpusWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage"}}
-                        {{#link-to "vms"}}
-                          {{totalVcpusPercent}}%
-                        {{/link-to}}
-                      {{/view}}
+                      {{#link-to "vms"}}
+                        {{totalVcpusPercent}}%
+                      {{/link-to}}
+                      <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -97,16 +101,17 @@
               <td> {{#link-to "vmsVm" contentionVm}}{{contentionVm.name}}{{/link-to}}</td>
               <td>
                 {{#if contentionVm.hasContention}}
-                  <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionVm.contentionMessage"}}
+                  {{#view App.TooltipView titleBinding="contentionVm.contentionMessage"}}
+                    <div class="contention nowrap">
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionVm.contentionWidth"}}>
                           <div class="contention-gradient"></div>
                         </div>
                       </div>
                       {{na contentionVm.contentionFormatted}}
-                    {{/view}}
-                  </div>
+                      <a> <i class="icon-question-sign"></i> </a>
+                    </div>
+                  {{/view}}
                 {{/if}}
               </td>
             </tr>

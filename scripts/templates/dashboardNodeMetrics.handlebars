@@ -11,18 +11,19 @@
             <tr>
               <td class="column-medium"><strong>Trusted Nodes</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
                         {{#link-to "nodes"}}
                           {{percentOfTrusted}}%
                         {{/link-to}}
-                      {{/view}}
+                        <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -30,18 +31,19 @@
             <tr>
               <td class="column-medium"><strong>SAA Nodes</strong></td>
               <td>
+                {{#view App.TooltipView titleBinding="totalControlledMessage"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
                   </div>
                   <div class="portlet-progress-value">
                     <small>
-                      {{#view App.TooltipView titleBinding="totalControlledMessage"}}
                         {{#link-to "nodes"}}
                           {{percentOfControlled}}%
                         {{/link-to}}
-                      {{/view}}
+                        <a> <i class="icon-question-sign"></i> </a>
                     </small>
                   </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -49,18 +51,19 @@
             <tr>
               <td class="column-medium"><strong>Memory reserved for VMs</strong></td>
               <td>
-                <div class="progress progress-success portlet-progress">
-                  <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
-                </div>
-                <div class="portlet-progress-value">
-                  <small>
-                    {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small>
                       {{#link-to "nodes"}}
                         {{controllers.nodes.percentOfRam}}%
                       {{/link-to}}
-                    {{/view}}
-                  </small>
-                </div>
+                      <a> <i class="icon-question-sign"></i> </a>
+                    </small>
+                  </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -68,18 +71,19 @@
             <tr>
               <td class="column-medium"> <strong> Physical memory </strong> </td>
               <td>
-                <div class="progress progress-success portlet-progress">
-                  <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
-                </div>
-                <div class="portlet-progress-value">
-                  <small>
-                    {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small>
                       {{#link-to "nodes"}}
                         {{controllers.nodes.percentOfPhysicalMemory}}%
                       {{/link-to}}
-                    {{/view}}
-                  </small>
-                </div>
+                      <a> <i class="icon-question-sign"></i> </a>
+                    </small>
+                  </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -87,18 +91,19 @@
             <tr>
               <td class="column-medium"><strong>Total SCU Usage</strong></td>
               <td>
-                <div class="progress progress-success portlet-progress">
-                  <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
-                </div>
-                <div class="portlet-progress-value">
-                  <small>
-                    {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+                {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+                  <div class="progress progress-success portlet-progress">
+                    <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
+                  </div>
+                  <div class="portlet-progress-value">
+                    <small>
                       {{#link-to "nodes"}}
                         {{usedOfAvailableSuPercent}}%
                       {{/link-to}}
-                    {{/view}}
-                  </small>
-                </div>
+                      <a> <i class="icon-question-sign"></i> </a>
+                    </small>
+                  </div>
+                {{/view}}
               </td>
             </tr>
           {{/if}}
@@ -124,6 +129,7 @@
                         </div>
                       </div>
                       {{na contentionNode.contentionFormatted}}
+                      <a> <i class="icon-question-sign"></i> </a>
                     {{/view}}
                   </div>
                 {{/if}}
