@@ -41,7 +41,7 @@
     </div>
     <div class="control-group">
       <label class="control-label">Email
-        {{#view App.TooltipView title="Recipient's Email"}}
+        {{#view App.TooltipView title="Recipient's Email" style="width:10%"}}
           <a> <i class="icon-question-sign"></i> </a>
         {{/view}}
       </label>
@@ -57,7 +57,7 @@
       <div class="controls">
         {{#unless isTestEmailActionPending}}
           <button class="btn btn-primary" type="button" {{action "testEmail"}}>Send Test Email</button>
-          {{#view App.TooltipView title="This will send a test email to recipient in the Email field above"}}
+          {{#view App.TooltipView style="width:10%" title="This will send a test email to recipient in the Email field above"}}
             <a> <i class="icon-question-sign"></i> </a>
           {{/view}}
         {{else}}
