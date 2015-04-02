@@ -35,7 +35,7 @@
           {{/if}}
         {{/view}}
       </div></td>
-      <td><div class="cell-container"><a {{action "expand" this}}>{{name}}</a></div></td>
+      <td><div class="cell-container truncate"><a {{action "expand" this}}>{{name}}</a></div></td>
       <td><div class="cell-container">
         {{#if node.samControlled}}
           {{#link-to "nodesNode" node}}{{nodeName}}{{/link-to}}
