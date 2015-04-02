@@ -28,7 +28,8 @@ App.Node = DS.Model.extend({
     var misc = this.get('utilization.scu.system.misc');
     if (Ember.isEmpty(compute) && Ember.isEmpty(ioWait) && Ember.isEmpty(misc)) return null;
     if ((compute === -1) || (ioWait === -1) || (misc === -1)) return -1;
-    return (compute || 0) + (ioWait || 0) + (misc || 0);
+    var returnValue = (compute || 0) + (ioWait || 0) + (misc || 0);
+    return returnValue.toFixed(2);
   }.property('utilization.scu.system.compute', 'utilization.scu.system.io_wait', 'utilization.scu.system.misc'),
   isAssured: function() {
     return this.get('samControlled') == App.ASSURED_SCU_VCPU ||
