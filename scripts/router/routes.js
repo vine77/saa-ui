@@ -30,7 +30,7 @@ App.ApplicationRoute = Ember.Route.extend({
     });
     this.controllerFor('vms').set('model', this.store.all('vm'));
     this.controllerFor('nodes').set('model', this.store.all('node'));
-     this.controllerFor('nodes').set('cgroups', this.store.all('cgroup'));
+    this.controllerFor('nodes').set('cgroups', this.store.all('cgroup'));
     this.controllerFor('vms').set('tenants', this.store.all('tenant'));
     this.controllerFor('nodes').set('tenants', this.store.all('tenant'));
   },

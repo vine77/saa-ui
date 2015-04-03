@@ -4,6 +4,10 @@ App.NodeController = Ember.ObjectController.extend({
   isSelected: false,
   isActionPending: false,
   isRebooting: false,
+  cgroups: Ember.computed.filter('controllers.nodes.cgroups', function(cgroup) {
+    var isCgroup = cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm';
+    return isCgroup && cgroup.get('node.id') === this.get('node.id');
+  }),
   nodeActions: function() {
     return  [
       App.ActionController.create({
@@ -434,42 +438,34 @@ App.NodeController = Ember.ObjectController.extend({
     return (data.length > 0);
   }.property('vms', 'vms.@each', 'currentSunburstCacheValue'),
   vmsCacheSunburst: function() {
+    var self = this;
     var layout = {
       "name": "scu_chart",
       "children": []
     };
-    var self = this;
-    this.get('vms').forEach( function(item, index, enumerable) {
+    this.get('vms').forEach(function(item) {
       var segment = {
-        "name": "VM Cache Used",
-        "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
-        "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0),
-        "route": "vmsVm",
-        "routeId": item.get('id'),
-        "routeLabel": item.get('name')
-      }
+        name: 'VM Cache Used',
+        dynamic_color: App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
+        description: 'Contention: ' + item.get('contention.system.llc.value'),
+        size: ((item.get(self.get('currentSunburstCacheValue')) >= 0) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0),
+        route: 'vmsVm',
+        routeId: item.get('id'),
+        routeLabel: item.get('name')
+      };
       layout.children.push(segment);
     });
-
-
-    //var sunburstCgroups = this.store.all('cgroup').filterBy('node.id', self.get('id')).filter(function(cgroup) {
-    var sunburstCgroups = this.get('controllers.nodes.cgroups').filterBy('node.id', self.get('id')).filter(function(cgroup) {
-      return (cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm');
-    });
-
-    sunburstCgroups.forEach(function(item, index, enumerable){
+    this.get('cgroups').forEach(function(item) {
       var segment = {
-        "name": item.get('type').toUpperCase() + " Cache Used",
-        "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
-        "description": 'Contention: '+item.get('contention.system.llc.value'),
-        "size": ((item.get(self.get('currentSunburstCacheValue')) >= -1) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0)
-      }
+        name: item.get('type').toUpperCase() + " Cache Used",
+        dynamic_color: App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
+        description: 'Contention: ' + item.get('contention.system.llc.value'),
+        size: ((item.get(self.get('currentSunburstCacheValue')) >= -1) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0)
+      };
       layout.children.push(segment);
     });
-
     return layout;
-  }.property('vms.@each', 'vms','currentSunburstCacheValue', 'controllers.nodes.cgroups.@each'),
+  }.property('vms.@each', 'cgroups.@each', 'currentSunburstCacheValue'),
 
   scuCurrentExceedsMax: function() {
     var returnVal = false;
