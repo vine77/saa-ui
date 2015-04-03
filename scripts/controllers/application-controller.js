@@ -100,6 +100,7 @@ App.ApplicationController = Ember.Controller.extend({
           });
         }
         this.store.find('node');
+        this.store.find('cgroup');
         this.store.find('action');
       }
     }

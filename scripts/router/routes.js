@@ -30,6 +30,7 @@ App.ApplicationRoute = Ember.Route.extend({
     });
     this.controllerFor('vms').set('model', this.store.all('vm'));
     this.controllerFor('nodes').set('model', this.store.all('node'));
+     this.controllerFor('nodes').set('cgroups', this.store.all('cgroup'));
     this.controllerFor('vms').set('tenants', this.store.all('tenant'));
     this.controllerFor('nodes').set('tenants', this.store.all('tenant'));
   },
@@ -196,6 +197,7 @@ App.AppRoute = Ember.Route.extend({
         }, function () {
           self.store.find('node');
         }),
+        self.store.find('cgroup');
         App.network.check();
         self.store.find('action');
         //self.store.find('user');
