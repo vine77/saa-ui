@@ -224,6 +224,9 @@ App.SunburstChartComponent = Ember.Component.extend({
               var d3SvgSelector = d3.select('[data-id="'+self.get('customId')+'"] .sunburst-link-container');
               d3.select('[data-id="'+self.get("customId")+'"] .sunburst-link')
                 .text(d.routeLabel).call(svgTextEllipsis, d.routeLabel, widthOfTextContainer, d3SvgSelector);
+            } else {
+              d3.select('[data-id="'+self.get("customId")+'"] .sunburst-link')
+              .text('');
             }
           }
 

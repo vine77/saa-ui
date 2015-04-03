@@ -14,7 +14,7 @@
         "system": {
           "llc": {
             "cache_usage": {
-              "used": null,
+              "used": 1000000,
               "normalized": null
             },
             "value": 0.59,

@@ -418,12 +418,9 @@ App.NodeController = Ember.ObjectController.extend({
     return layout;
   }.property('scuValues.@each', 'scuValues'),
   sunburstCacheValues: [
-    { "value": "contention.system.llc.cache_occupancy", "label": "LLC Cache Occupancy" },
-    { "value": "contention.system.llc.value", "label": "LLC Cache Contention" },
-    { "value": "contention.system.llc.cache_usage.normalized", "label": "Cache Usage: Normalized" },
-    { "value": "contention.system.llc.cache_usage.used", "label": "Cache Usage: Used" }
+    { "value": "contention.system.llc.cache_usage.used", "label": "Cache Used" }
   ],
-  currentSunburstCacheValue: 'contention.system.llc.cache_occupancy',
+  currentSunburstCacheValue: 'contention.system.llc.cache_usage.used',
   vmsExist: function() {
     return !Ember.isEmpty(this.get('vms'));
   }.property('vms.@each', 'vms', 'scuValues'),
@@ -444,18 +441,35 @@ App.NodeController = Ember.ObjectController.extend({
     var self = this;
     this.get('vms').forEach( function(item, index, enumerable) {
       var segment = {
-        "name": "Cache Occupancy",
+        "name": "VM Cache Used",
         "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
         "description": 'Contention: '+item.get('contention.system.llc.value'),
         "size": ((item.get(self.get('currentSunburstCacheValue')) >= 0) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0),
         "route": "vmsVm",
         "routeId": item.get('id'),
-        "routeLabel": item.get('id')
+        "routeLabel": item.get('name')
       }
-      layout.children.push(segment)
+      layout.children.push(segment);
     });
+
+
+    //var sunburstCgroups = this.store.all('cgroup').filterBy('node.id', self.get('id')).filter(function(cgroup) {
+    var sunburstCgroups = this.get('controllers.nodes.cgroups').filterBy('node.id', self.get('id')).filter(function(cgroup) {
+      return (cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm');
+    });
+
+    sunburstCgroups.forEach(function(item, index, enumerable){
+      var segment = {
+        "name": item.get('type').toUpperCase() + " Cache Used",
+        "dynamic_color": App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
+        "description": 'Contention: '+item.get('contention.system.llc.value'),
+        "size": ((item.get(self.get('currentSunburstCacheValue')) >= -1) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0)
+      }
+      layout.children.push(segment);
+    });
+
     return layout;
-  }.property('vms.@each', 'vms','currentSunburstCacheValue'),
+  }.property('vms.@each', 'vms','currentSunburstCacheValue', 'controllers.nodes.cgroups.@each'),
 
   scuCurrentExceedsMax: function() {
     var returnVal = false;
