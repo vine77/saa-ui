@@ -62,8 +62,9 @@ App.DashboardNodeMetricsController = Ember.Controller.extend({
 
   totalCurrentSu: function() {
     return this.get('controllers.nodes').reduce(function (previousValue, item, index, enumerable) {
-      var count = (item.get('scuTotal') > 0) ? item.get('scuTotal') : 0;
-      return previousValue + count;
+      var count = (item.get('scuTotal') > -1) ? item.get('scuTotal') : 0;
+      console.log('count', count);
+      return +previousValue + +count;
     }, 0);
   }.property('controllers.nodes.@each'),
   totalSuMax: function() {
