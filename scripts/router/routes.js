@@ -257,6 +257,11 @@ App.NodesNodeRoute = Ember.Route.extend({
     this._super(controller, model);
     this.controllerFor('nodes').setEach('isExpanded', false);
     this.controllerFor('nodes').findBy('id', model.get('id')).set('isExpanded', true);
+    // TODO: This type of thing shouldn't be needed after upgrading to ED w/ SSOT
+    model.set('cgroups', this.controllerFor('nodes').get('cgroups').filter(function(cgroup) {
+      var isNonAggregateCgroup = cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm';
+      return isNonAggregateCgroup && (model.get('id') === cgroup.get('node.id'));
+    }));
   },
   actions: {
     closeDetails: function() {

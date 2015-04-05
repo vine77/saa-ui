@@ -12,6 +12,7 @@ App.Cgroup = DS.Model.extend({
   }.property('utilization.scu.compute', 'utilization.scu.io_wait', 'utilization.scu.misc'),
 
   // Relationships
-  node: DS.belongsTo('node', {async: true})
+  // TODO: Should be async after upgrading to ED w/ SSOT
+  node: DS.belongsTo('node')
 
 });
