@@ -4,9 +4,8 @@ App.NodeController = Ember.ObjectController.extend({
   isSelected: false,
   isActionPending: false,
   isRebooting: false,
-  cgroups: Ember.computed.filter('controllers.nodes.cgroups', function(cgroup) {
-    var isCgroup = cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm';
-    return isCgroup && cgroup.get('node.id') === this.get('node.id');
+  filteredCgroups: Ember.computed.filter('cgroups', function(cgroup) {
+    return cgroup.get('type') !== 'node' && cgroup.get('type') !== 'vm';
   }),
   nodeActions: function() {
     return  [
@@ -455,7 +454,7 @@ App.NodeController = Ember.ObjectController.extend({
       };
       layout.children.push(segment);
     });
-    this.get('cgroups').forEach(function(item) {
+    this.get('filteredCgroups').forEach(function(item) {
       var segment = {
         name: item.get('type').toUpperCase() + " Cache Used",
         dynamic_color: App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
