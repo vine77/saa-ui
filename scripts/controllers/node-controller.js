@@ -1,5 +1,5 @@
 App.NodeController = Ember.ObjectController.extend({
-  needs: ['nodes', 'logBar', 'application'],
+  needs: ['nodes', 'logBar', 'application', 'vms'],
   isExpanded: false,
   isSelected: false,
   isActionPending: false,
@@ -421,7 +421,9 @@ App.NodeController = Ember.ObjectController.extend({
     return layout;
   }.property('scuValues.@each', 'scuValues'),
   sunburstCacheValues: [
-    { "value": "contention.system.llc.cache_usage.used", "label": "Cache Used" }
+    { "value": "contention.system.llc.cache_usage.used", "label": "Cache Used" },
+    { "value": "capabilities.scu_allocated_min", "label": "SCU Allocation" },
+    { "value": "utilizationCurrent", "label": "SCU Utilization" }
   ],
   currentSunburstCacheValue: 'contention.system.llc.cache_usage.used',
   vmsExist: function() {
@@ -429,7 +431,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('vms.@each', 'vms', 'scuValues'),
   vmCacheSunburstAvailable: function() {
     var self = this;
-    var data = this.get('vms').filter(function(item, index, enumerable) {
+    var data = this.get('controllers.vms').filterBy('node.id', self.get('id')).filter(function(item, index, enumerable) {
       if (item.get(self.get('currentSunburstCacheValue')) >= 0) {
         return item.get(self.get('currentSunburstCacheValue'));
       }
@@ -440,31 +442,130 @@ App.NodeController = Ember.ObjectController.extend({
     var self = this;
     var layout = {
       "name": "scu_chart",
+      "units": "KiB",
       "children": []
     };
-    this.get('vms').forEach(function(item) {
-      var segment = {
-        name: 'VM Cache Used',
-        dynamic_color: App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
-        description: 'Contention: ' + item.get('contention.system.llc.value'),
-        size: ((item.get(self.get('currentSunburstCacheValue')) >= 0) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0),
-        route: 'vmsVm',
-        routeId: item.get('id'),
-        routeLabel: item.get('name')
-      };
-      layout.children.push(segment);
-    });
-    this.get('filteredCgroups').forEach(function(item) {
-      var segment = {
-        name: item.get('type').toUpperCase() + " Cache Used",
-        dynamic_color: App.rangeToColor(item.get('contention.system.llc.value'), 0, 50, 25, 40),
-        description: 'Contention: ' + item.get('contention.system.llc.value'),
-        size: ((item.get(self.get('currentSunburstCacheValue')) >= -1) ? App.stripFloat(item.get(self.get('currentSunburstCacheValue'))) : 0)
-      };
-      layout.children.push(segment);
-    });
+    var self = this;
+
+    switch(self.get('currentSunburstCacheValue')) {
+      case "contention.system.llc.cache_usage.used":
+        layout.units = "KiB";
+        // Append VM segments
+        this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
+          var segment = {
+            name: "VM Cache Used",
+            dynamic_color: App.rangeToColor(vm.get('contention.system.llc.value'), 0, 50, 25, 40),
+            description: 'Contention: ' + vm.get('contention.system.llc.value'),
+            size: ((vm.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(vm.get('contention.system.llc.cache_usage.used')) : 0),
+            route: "vmsVm",
+            routeId: vm.get('id'),
+            routeLabel: vm.get('name')
+          }
+          layout.children.push(segment);
+        });
+        // Append other cgroup segments
+        this.get('filteredCgroups').forEach(function(cgroup) {
+          var segment = {
+            name: cgroup.get('type').toUpperCase(),
+            dynamic_color: App.rangeToColor(cgroup.get('contention.system.llc.value'), 0, 50, 25, 40),
+            description: 'Contention: ' + cgroup.get('contention.system.llc.value'),
+            size: ((cgroup.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(cgroup.get('contention.system.llc.cache_usage.used')) : 0)
+          }
+          layout.children.push(segment);
+        });
+        break;
+      case "capabilities.scu_allocated_min":
+        layout.units = "SCUs";
+        //Append VM segments
+        var minAllocatedTotal = 0;
+        this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
+          var segment = {
+            name: "VM",
+            description: "Allocation",
+            fill_type: "blue",
+            size: ((vm.get('capabilities.scu_allocated_min') >= -1) ? App.stripFloat(vm.get('capabilities.scu_allocated_min')) : 0),
+            route: "vmsVm",
+            routeId: vm.get('id'),
+            routeLabel: vm.get('name')
+          }
+          layout.children.push(segment);
+          minAllocatedTotal = minAllocatedTotal + vm.get('capabilities.scu_allocated_min');
+        });
+        // Append other cgroup segments
+        this.get('filteredCgroups').forEach(function(cgroup) {
+          var segment = {
+            name: cgroup.get('type').toUpperCase(),
+            description: "Allocation",
+            fill_type: "blue",
+            size: ((cgroup.get('capabilities.scu_allocated_min') >= -1) ? App.stripFloat(cgroup.get('capabilities.scu_allocated_min')) : 0),
+          }
+          layout.children.push(segment);
+          minAllocatedTotal = minAllocatedTotal + cgroup.get('capabilities.scu_allocated_min');
+        });
+        // Append unallocated segment
+        var segment = {
+          name: "VM",
+          description: "Unallocated",
+          fill_type: "gray",
+          size: (this.get('utilization.scu.system.max') - minAllocatedTotal).toFixed(2)
+        }
+        layout.children.push(segment);
+        break;
+      case "utilizationCurrent":
+        layout.units = "SCUs";
+        // Append VM segments
+        var utilizationCurrentTotal = 0;
+        this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
+          var segment = {
+            name: "VM",
+            //dynamic_color: App.rangeToColor(vm.get('contention.system.llc.value'), 0, 50, 25, 40),
+            fill_type: "light-green",
+            description: "Utilization",
+            size: ((vm.get('utilizationCurrent') >= -1) ? App.stripFloat(vm.get('utilizationCurrent')) : 0),
+            route: "vmsVm",
+            routeId: vm.get('id'),
+            routeLabel: vm.get('name')
+          };
+          layout.children.push(segment);
+          utilizationCurrentTotal = utilizationCurrentTotal + vm.get('utilizationCurrent');
+        });
+        // Append cgroup segments
+        this.get('filteredCgroups').forEach(function(cgroup) {
+          var compute = cgroup.get('utilization.scu.compute');
+          var ioWait = cgroup.get('utilization.scu.io_wait');
+          var misc = cgroup.get('utilization.scu.misc');
+          if (Ember.isEmpty(compute) && Ember.isEmpty(ioWait) && Ember.isEmpty(misc)) {
+            var utilizationCurrent = null;
+          } else if ((compute === -1) || (ioWait === -1) || (misc === -1)) {
+            var utilizationCurrent = null;
+          } else {
+            var utilizationCurrent = (compute || 0) + (ioWait || 0) + (misc || 0);
+            var utilizationCurrent = utilizationCurrent.toFixed(2);
+          };
+          cgroup.set('utilizationCurrent', utilizationCurrent);
+          var segment = {
+            name: cgroup.get('type').toUpperCase(),
+            fill_type: "light-green",
+            description: "Utilization",
+            size: ((cgroup.get('utilizationCurrent') >= -1) ? App.stripFloat(cgroup.get('utilizationCurrent')) : 0)
+          };
+          layout.children.push(segment);
+          utilizationCurrentTotal = +utilizationCurrentTotal + +cgroup.get('utilizationCurrent');
+        });
+        // Append unutilized segment
+        var segment = {
+          name: "VM",
+          description: "Unutilized",
+          fill_type: "gray",
+          size: (this.get('utilization.scu.system.max') - utilizationCurrentTotal).toFixed(2)
+        }
+        layout.children.push(segment);
+        break;
+      default:
+        break;
+    }
     return layout;
-  }.property('vms.@each', 'cgroups.@each', 'currentSunburstCacheValue'),
+  }.property('vms.@each', 'cgroupsTest.@each', 'currentSunburstCacheValue'),
 
   scuCurrentExceedsMax: function() {
     var returnVal = false;
@@ -891,3 +992,4 @@ App.ScuValueController = Ember.ObjectController.extend({
     return !(this.get('min') === this.get('max'));
   }.property('min', 'max')
 });
+

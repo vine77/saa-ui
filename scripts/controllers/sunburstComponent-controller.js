@@ -53,6 +53,7 @@ App.SunburstChartComponent = Ember.Component.extend({
     "light-green": "rgb(106, 185, 117)",
     "dark-green": "#45924f",
     "blue": "rgb(86, 135, 209)",
+    "dark-blue": "rgb(63, 98, 151)",
     "orange": "rgb(222, 120, 59)",
     "yellow": "#FFF79A",
     "red": "rgb(128, 21, 21)",
@@ -114,7 +115,7 @@ App.SunburstChartComponent = Ember.Component.extend({
       .style("opacity", 1);
 
       dataSource.children.forEach( function(item, index, enumerable){
-        $('[data-id="'+self.get('customId')+'"] .sunburst-details').append('<div class="sunburst-details-item"> <div class="sunburst-details-swatch" style="background-color:'+self.get('colors')[item.fill_type]+';"> </div><span class="sunburst-details-label">' + item.name + ' ' + item.size + ' '+self.get('units')+'</span></div>');
+        $('[data-id="'+self.get('customId')+'"] .sunburst-details').append('<div class="sunburst-details-item"> <div class="sunburst-details-swatch" style="background-color:'+self.get('colors')[item.fill_type]+';"> </div><span class="sunburst-details-label">' + item.name + ' ' + item.size + ' ' + self.get('units') + '</span></div>');
       });
   },
 
@@ -354,6 +355,10 @@ App.SunburstChartComponent = Ember.Component.extend({
   }.property('width', 'height'),
 
   dataSourceObserver: function() {
+    if (!Ember.isEmpty(this.get('dataSource.units'))) {
+      this.set('units', this.get('dataSource.units'));
+    }
+
     this.draw();
   }.observes('dataSource.@each'),
 

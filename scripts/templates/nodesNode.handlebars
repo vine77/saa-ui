@@ -4,7 +4,7 @@
     <li class="active"><a onclick="App.selectTab(event)">Details</a></li>
     <li><a onclick="App.selectTab(event)">Utilization</a></li>
     <li><a onclick="App.selectTab(event)">Capabilities</a></li>
-    <li><a onclick="App.selectTab(event)">VMs</a></li>
+    <li><a onclick="App.selectTab(event)">Charts</a></li>
     <li><a onclick="App.selectTab(event)">Graphs</a></li>
     <li><a onclick="App.selectTab(event)">Trust</a></li>
     <li><a onclick="App.selectTab(event)">MLEs</a></li>
@@ -126,6 +126,18 @@
             {{else}}
               IPMI interface is unavailable
             {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th class="column-medium"> VMs </th>
+          <td>
+            <ul>
+              {{#each vm in vms}}
+                <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
+              {{else}}
+                <li>No VMs</li>
+              {{/each}}
+            </ul>
           </td>
         </tr>
         {{#if status.health_details.ipmi.sensors_in_error}}
@@ -275,8 +287,7 @@
         <tr>
       </table>
     </div>
-    <div class="tab-pane vms">
-      {{#if vmsExist}}
+    <div class="tab-pane charts">
         {{view Ember.Select viewName="select"
           content=sunburstCacheValues
           optionValuePath="content.value"
@@ -284,19 +295,11 @@
           value=currentSunburstCacheValue}}
         {{#if vmCacheSunburstAvailable}}
           <div style="text-align:center;">
-            {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="VMs Overview" units="KiB" action="changeRoute"}}
+            {{sunburst-chart dataSource=vmsCacheSunburst width=350 height=350 chartTitle="Overview" units="KiB" action="changeRoute"}}
           </div>
         {{else}}
           <div class="alert alert-warning">No data found.</div>
         {{/if}}
-      {{/if}}
-      <ul>
-        {{#each vm in vms}}
-          <li>{{#link-to "vmsVm" vm}}{{vm.name}}{{/link-to}}</li>
-        {{else}}
-          <li>No VMs</li>
-        {{/each}}
-      </ul>
     </div>
     <div class="tab-pane graphs">
       <div class="btn-group">
