@@ -11,10 +11,6 @@ App.ApplicationController = Ember.Controller.extend({
     this.resizeHandler();
     $(window).bind('resize', Ember.$.proxy(this.get('resizeHandler'), this));
   },
-  apiDomain: localStorage.apiDomain,
-  apiDomainObserver: function () {
-    localStorage.apiDomain = this.get('apiDomain');
-  }.observes('apiDomain'),
   width: null,
   height: null,
   resizeHandler: function () {
@@ -146,10 +142,6 @@ App.ApplicationController = Ember.Controller.extend({
     },
     enableAutoRefresh: function () {
       this.set('isAutoRefreshEnabled', true);
-    },
-    clearApiDomain: function () {
-      this.set('apiDomain', undefined);
-      localStorage.removeItem('apiDomain');
     }
   }
 });
