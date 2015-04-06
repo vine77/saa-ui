@@ -11,7 +11,7 @@
             <tr>
               <td class="column-medium"><strong>Trusted VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
@@ -31,7 +31,7 @@
             <tr>
               <td class="column-medium"><strong>Victim VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalVictimsMessage"}}
+                {{#view App.TooltipView titleBinding="totalVictimsMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfVictimsWidth"}} ></div>
                   </div>
@@ -51,7 +51,7 @@
             <tr>
               <td class="column-medium"><strong>Aggressor VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalAggressorsMessage"}}
+                {{#view App.TooltipView titleBinding="totalAggressorsMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfAggressorsWidth"}} ></div>
                   </div>
@@ -71,7 +71,7 @@
             <tr>
               <td class="column-medium"><strong>vCPUs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalVcpusWidth"}} ></div>
                   </div>
@@ -101,7 +101,7 @@
               <td> {{#link-to "vmsVm" contentionVm}}{{contentionVm.name}}{{/link-to}}</td>
               <td>
                 {{#if contentionVm.hasContention}}
-                  {{#view App.TooltipView titleBinding="contentionVm.contentionMessage"}}
+                  {{#view App.TooltipView titleBinding="contentionVm.contentionMessage" style="width:100%"}}
                     <div class="contention nowrap">
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionVm.contentionWidth"}}>

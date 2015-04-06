@@ -11,7 +11,7 @@
             <tr>
               <td class="column-medium"><strong>Trusted Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalTrustedMessage"}}
+                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
@@ -31,7 +31,7 @@
             <tr>
               <td class="column-medium"><strong>SAA Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalControlledMessage"}}
+                {{#view App.TooltipView titleBinding="totalControlledMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
                   </div>
@@ -51,7 +51,7 @@
             <tr>
               <td class="column-medium"><strong>Memory reserved for VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
                   </div>
@@ -71,7 +71,7 @@
             <tr>
               <td class="column-medium"> <strong> Physical memory </strong> </td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
                   </div>
@@ -91,7 +91,7 @@
             <tr>
               <td class="column-medium"><strong>Total SCU Usage</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage"}}
+                {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="usedOfAvailableSuWidth"}} ></div>
                   </div>
@@ -122,7 +122,7 @@
               <td>
                 {{#if contentionNode.hasContention}}
                   <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage"}}
+                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage" style="width:100%"}}
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionNode.contentionWidth"}}>
                           <div class="contention-gradient"></div>
