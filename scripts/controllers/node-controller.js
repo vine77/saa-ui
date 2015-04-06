@@ -253,7 +253,7 @@ App.NodeController = Ember.ObjectController.extend({
 
   scuUnallocated: function() {
     if (App.isEmpty(this.get('utilization.scu.system.max')) || App.isEmpty(this.get('utilization.scu.system.allocated'))) return 0;
-    return (this.get('utilization.scu.system.max') - App.stripFloat(this.get('utilization.scu.system.allocated')));
+    return Math.max(0, this.get('utilization.scu.system.max') - App.stripFloat(this.get('utilization.scu.system.allocated')));
   }.property('utilization.scu.system.max', 'utilization.scu.cgroups.@each'),
 
   scuValuesExist: function () {

@@ -83,9 +83,10 @@
         </div>
       </td>
       <td><div class="cell-container">
-        <div class="contention">
-            {{#unless isAssuredCoresPhysical}}
-              {{#if computeExists}}
+        {{#unless isAssuredCoresPhysical}}
+          {{#if computeExists}}
+            {{#unlessEmpty utilization.scu.system.max}}
+              <div class="contention">
                 {{#view App.PopoverView title="SAA Compute Units" dataTrigger="hover"}}
                   <div class="contention-bar">
                     <div class="contention-bar-width" {{bind-attr style="computeWidth"}} >
@@ -149,17 +150,22 @@
                   </div>
                   <a> <i class="icon-question-sign"></i> </a>
                 {{/view}}
-              {{/if}}
+              </div>
             {{else}}
-              {{#unlessEmpty utilization.cores.system.used}}
-                {{progress-bar-simple
-                  value=utilization.cores.system.used
-                  thresholdMax=utilization.cores.system.max
-                  title="Cores"
-                }}
-              {{/unlessEmpty}}
-            {{/unless}}
-        </div>
+              {{na utilization.scu.system.allocated suffix=" SCUs"}}
+            {{/unlessEmpty}}
+          {{/if}}
+        {{else}}
+          {{#unlessEmpty utilization.cores.system.used}}
+            <div class="contention">
+              {{progress-bar-simple
+                value=utilization.cores.system.used
+                thresholdMax=utilization.cores.system.max
+                title="Cores"
+              }}
+            </div>
+          {{/unlessEmpty}}
+        {{/unless}}
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
       <td>

@@ -22,7 +22,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     title: 'Capacity',
     sortBy: 'cpuSort'
   }, {
-    title: 'Allocation',
+    title: 'Allocated',
     description: 'Maximum measured capacity is in SCUs (Service Compute Units) or cores (depending on node mode), while the chart indicates how much of that capacity is used.',
     sortBy: 'utilization.scus.total.current'
   }, {
