@@ -127,6 +127,14 @@ App.VmController = Ember.ObjectController.extend({
   contentionValueExists: function () {
     return typeof this.get('contention.system.llc.value') !== 'undefined' && this.get('contention.system.llc.value') !== null;
   }.property('contention.system.llc.value'),
+  cacheOccupancyMessage: function() {
+    var normalized = this.get('contention.system.llc.cache_usage.normalized');
+    var instantaneous = this.get('contention.system.llc.cache_occupancy');
+    var lines = [];
+    if (!Ember.isEmpty(normalized)) lines.push('Cache occupancy (moving average): ' + App.stripFloat(normalized * 100) + '%');
+    if (!Ember.isEmpty(instantaneous)) lines.push('Cache occupancy (instantaneous): ' + App.stripFloat(instantaneous * 100) + '%');
+    return lines.join('<br>');
+  }.property('contention.system.llc.cache_usage.normalized', 'contention.system.llc.cache_occupancy'),
   isOn: function () {
     return (this.get('status.operational') === App.ON);
   }.property('status.operational'),

@@ -195,16 +195,19 @@
           <td>{{na contention.system.llc.value}}</td>
         </tr>
         <tr>
-          <th class="column-medium">Cache used (moving average)</th>
+          <th class="column-medium">Cache used</th>
           <td>{{readableBytes contention.system.llc.cache_usage.used}}</td>
         </tr>
         <tr>
-          <th class="column-medium">Cache occupancy (moving average)</th>
-          <td>{{percent contention.system.llc.cache_usage.normalized}}</td>
-        </tr>
-        <tr>
-          <th class="column-medium">Cache occupancy (instantaneous)</th>
-          <td>{{percent contention.system.llc.cache_occupancy}}</td>
+          <th class="column-medium">Cache occupancy</th>
+          <td>
+            {{#unlessEmpty contention.system.llc.cache_usage.normalized}}
+              {{#view App.TooltipView dataHtml=true titleBinding="cacheOccupancyMessage"}}
+                {{percent contention.system.llc.cache_usage.normalized}}
+                <a><i class="icon-question-sign"></i></a>
+              {{/view}}
+            {{/unlessEmpty}}
+          </td>
         </tr>
       </table>
     </div>
