@@ -8,7 +8,6 @@ App.LoginController = App.FormController.extend({
   username: '',
   password: '',
   csrfToken: null,
-  sessionKey: null,
   alert: '',
   isPending: false,
   session: null,
@@ -16,13 +15,15 @@ App.LoginController = App.FormController.extend({
   isDefaultTenant: Ember.computed.equal('tenantType', 'default'),
   tenantName: '',
   setHeaders: function () {
+    var csrfToken = this.get('csrfToken');
+    //Ember.$.cookie('token', csrfToken);
     Ember.$.ajaxSetup({
       headers: {
-        "X-CSRF-Token": this.get('csrfToken'),
-        "X-Session-Key": this.get('sessionKey')
+        "X-CSRF-Token": csrfToken
       }
     });
-  }.observes('csrfToken', 'sessionKey'),
+    sessionStorage.csrfToken = csrfToken;
+  }.observes('csrfToken'),
   refreshSession: function () {
     Ember.run.later(this, 'refreshSession', 120000);  // Refresh every 2 minutes
     if (this.get('loggedIn') && this.get('controllers.application.isAutoRefreshEnabled')) {
@@ -77,7 +78,6 @@ App.LoginController = App.FormController.extend({
       });
       session.save().then(function (session) {
         self.set('csrfToken', session.get('csrfToken'));
-        self.set('sessionKey', session.get('key'));
         self.set('isPending', false);
         self.set('loggedIn', true);
         self.transitionToAttempted();
@@ -85,10 +85,8 @@ App.LoginController = App.FormController.extend({
         self.set('isPending', false);
         if (xhr instanceof DS.InvalidError) {  // status == 422
           var csrfToken = xhr.errors.message.csrf_token;
-          var sessionKey = xhr.errors.message.key;
           var setProfile = xhr.errors.message.set_profile;
           self.set('csrfToken', csrfToken);
-          self.set('sessionKey', sessionKey);
           self.transitionToRoute('profile', self.get('username'));
         } else if (xhr.status === 401) {
           self.set('alert', 'The username or password you entered was incorrect. Please try again.');

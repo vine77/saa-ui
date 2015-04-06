@@ -140,6 +140,10 @@ App.ProfileRoute = Ember.Route.extend({
 // Routes under /app require authentication
 App.AppRoute = Ember.Route.extend({
   beforeModel: function (transition) {
+    if (sessionStorage.csrfToken) {
+      this.controllerFor('login').set('csrfToken', sessionStorage.csrfToken);
+      this.controllerFor('login').set('loggedIn', true);
+    }
     var loggedIn = this.controllerFor('login').get('loggedIn');
     if (!loggedIn) {
       transition.send('redirectToLogin', transition);
@@ -156,7 +160,6 @@ App.AppRoute = Ember.Route.extend({
     return this.store.find('session', 'current_session').then(function (session) {
       self.controllerFor('login').set('session', session);
       self.controllerFor('login').set('csrfToken', session.get('csrfToken'));
-      self.controllerFor('login').set('sessionKey', session.get('key'));
       self.controllerFor('login').set('username', session.get('username'));
     }).then(function () {
       // Update link for OpenStack Horizon (must occur after authentication)
