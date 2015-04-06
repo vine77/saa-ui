@@ -50,11 +50,9 @@
         {{na suRange}} SCU
       </div></td>
       <td><div class="cell-container">
-        {{#if isAssuredCoresPhysical}}
-          {{utilization.cores.system.used.length}} vCPU
-        {{else}}
-          <div class="allocation">
-            {{#if hasCompute}}
+        {{#unlessEmpty scuTotal}}
+          {{#if hasCompute}}
+            <div class="allocation">
               {{#view App.TooltipView dataHtml=true titleBinding="allocationMessage"}}
                 <div {{bind-attr class=":allocation-bar isRange"}}>
                   <div class="allocation-range"></div> {{! light orange dashed }}
@@ -67,11 +65,15 @@
                 {{na scuTotal}}
                 <a> <i class="icon-question-sign"></i> </a>
               {{/view}}
-            {{else}}
-              {{na scuTotal}}
-            {{/if}}
-          </div>
-        {{/if}}
+            </div>
+          {{else}}
+            {{scuTotal}} SCUs
+          {{/if}}
+        {{else}}
+          {{#if isAssuredCoresPhysical}}
+            {{utilization.cores.system.used.length}} vCPU
+          {{/if}}
+        {{/unlessEmpty}}
       </div></td>
       {{!-- <td><div class="cell-container">{{na utilization.ipc}}</div></td> --}}
       <td><div class="cell-container">{{readableSize utilization.memory}}</div></td>

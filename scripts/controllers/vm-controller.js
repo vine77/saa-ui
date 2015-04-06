@@ -199,8 +199,7 @@ App.VmController = Ember.ObjectController.extend({
     return message;
   }.property('isRange', 'scuTotal', 'utilizationCurrent', 'utilizationBurst', 'capabilities.scu_allocated_min', 'capabilities.scu_allocated_max'),
   utilizationBurst: function() {
-    var burst =  this.get('capabilities.scu_allocated_min') - this.get('scuTotal');
-    //var burst = this.get('scuTotal') - this.get('capabilities.scu_allocated_min');
+    var burst = Math.max(0, this.get('scuTotal') - this.get('capabilities.scu_allocated_min'));
     if (Ember.isEmpty(burst)) burst = 0;
     return App.stripFloat(burst);
   }.property('capabilities.scu_allocated_min', 'scuTotal'),

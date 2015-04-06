@@ -150,11 +150,25 @@
         <tr>
           <th class="column-medium">Utilization</th>
           <td>
-            {{na scuTotal suffix=" SCUs"}}
-            {{#if suRange}}out of {{suRange}} SCUs allocated{{/if}}
-            {{#unlessEmpty utilization.scu_overload}}
-              <br>SCU overhead is {{utilization.scu_overload}} SCU
-            {{/unlessEmpty}}
+            <ul class="unstyled">
+              {{#unlessEmpty scuTotal}}
+                <li>
+                  {{na scuTotal suffix=" SCUs"}}
+                  {{#if suRange}}out of {{suRange}} SCUs allocated{{/if}}
+                </li>
+              {{/unlessEmpty}}
+              {{#unlessEmpty utilization.scu_overload}}
+                <li>SCU overhead is {{utilization.scu_overload}} SCU</li>
+              {{/unlessEmpty}}
+              {{#if isAssuredCoresPhysical}}
+                {{#if utilization.cores.system.used.length}}
+                  <li>
+                    {{utilization.cores.system.used.length}} vCPU
+                    {{#if capabilities.cores}}out of {{capabilities.cores}} vCPU{{/if}}
+                  </li>
+                {{/if}}
+              {{/if}}
+            </ul>
           </td>
         </tr>
         <tr>
@@ -163,7 +177,10 @@
         </tr>
         <tr>
           <th class="column-medium">Memory</th>
-          <td>{{readableSize utilization.memory}} out of {{readableSize capabilities.memory_size}}</td>
+          <td>
+            {{readableSize utilization.memory}}
+            {{#if capabilities.memory_size}} out of {{readableSize capabilities.memory_size}}{{/if}}
+          </td>
         </tr>
         <tr>
           <th class="column-medium">CPU</th>
