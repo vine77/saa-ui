@@ -49,7 +49,12 @@
           {{/if}}
           {{#if isPercentOfRamAvailable}}
             <tr>
-              <td class="column-medium"><strong>Memory reserved for VMs</strong></td>
+              <td class="column-medium">
+                {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%"}}
+                  <strong>Memory reserved for VMs</strong>
+                  <a> <i class="icon-question-sign"></i> </a>
+                {{/view}}
+              </td>
               <td>
                 {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
@@ -69,7 +74,7 @@
           {{/if}}
           {{#if isPercentOfPhysicalMemoryAvailable}}
             <tr>
-              <td class="column-medium"> <strong> Physical memory </strong> </td>
+              <td class="column-medium"> <strong> Physical RAM Usage </strong> </td>
               <td>
                 {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">

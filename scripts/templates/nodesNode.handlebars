@@ -229,7 +229,7 @@
           <td>{{na utilization.normalized_load}}</td>
         </tr>
         <tr>
-          <th class="column-medium">Physical Memory</th>
+          <th class="column-medium">Physical RAM Usage</th>
           <td>
             {{readableSize utilization.memory.used}} out of {{readableSize capabilities.memory_size}}
             {{#unlessEmpty utilization.memory.ksm_sharing}}
@@ -239,7 +239,12 @@
           </td>
         </tr>
         <tr>
-          <th class="column-medium">Memory reserved for VMs</th>
+          <th class="column-medium">
+            {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%"}}
+              <strong>Memory reserved for VMs</strong>
+              <a> <i class="icon-question-sign"></i> </a>
+            {{/view}}
+          </th>
           <td>
             {{readableSize utilization.cloud.memory.used}} out of {{readableSize utilization.cloud.memory.max}}
           </td>
