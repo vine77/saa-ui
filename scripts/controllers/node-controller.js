@@ -431,13 +431,32 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('vms.@each', 'vms', 'scuValues'),
   vmCacheSunburstAvailable: function() {
     var self = this;
-    var data = this.get('controllers.vms').filterBy('node.id', self.get('id')).filter(function(item, index, enumerable) {
-      if (item.get(self.get('currentSunburstCacheValue')) >= 0) {
+    var vmData = this.get('controllers.vms').filterBy('node.id', self.get('id')).filter(function(item, index, enumerable) {
+      if (item.get(self.get('currentSunburstCacheValue')) > -1) {
         return item.get(self.get('currentSunburstCacheValue'));
       }
     });
-    return (data.length > 0);
-  }.property('vms', 'vms.@each', 'currentSunburstCacheValue'),
+    var cgroupData = this.get('filteredCgroups').filter(function(cgroup, index, enumerable) {
+      if (self.get('currentSunburstCacheValue') === 'utilizationCurrent') {
+        var compute = cgroup.get('utilization.scu.compute');
+        var ioWait = cgroup.get('utilization.scu.io_wait');
+        var misc = cgroup.get('utilization.scu.misc');
+        if (Ember.isEmpty(compute) && Ember.isEmpty(ioWait) && Ember.isEmpty(misc)) {
+          var utilizationCurrent = null;
+        } else if ((compute === -1) || (ioWait === -1) || (misc === -1)) {
+          var utilizationCurrent = null;
+        } else {
+          var utilizationCurrent = (compute || 0) + (ioWait || 0) + (misc || 0);
+          var utilizationCurrent = utilizationCurrent.toFixed(2);
+        };
+        cgroup.set('utilizationCurrent', utilizationCurrent);
+      }
+      if (cgroup.get(self.get('currentSunburstCacheValue')) > -1) {
+        return cgroup.get(self.get('currentSunburstCacheValue'));
+      }
+    });
+    return (vmData.length > 0 || cgroupData.length > 0);
+  }.property('vms', 'vms.@each', 'currentSunburstCacheValue', 'filteredCgroups', 'filteredCgroups.@each'),
   vmsCacheSunburst: function() {
     var self = this;
     var layout = {
@@ -504,8 +523,7 @@ App.NodeController = Ember.ObjectController.extend({
         });
         // Append unallocated segment
         var segment = {
-          name: "VM",
-          description: "Unallocated",
+          name: "Unallocated",
           fill_type: "gray",
           size: (this.get('utilization.scu.system.max') - minAllocatedTotal).toFixed(2)
         }
@@ -554,8 +572,7 @@ App.NodeController = Ember.ObjectController.extend({
         });
         // Append unutilized segment
         var segment = {
-          name: "VM",
-          description: "Unutilized",
+          name: "Unutilized",
           fill_type: "gray",
           size: (this.get('utilization.scu.system.max') - utilizationCurrentTotal).toFixed(2)
         }
