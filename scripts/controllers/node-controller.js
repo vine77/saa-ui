@@ -423,13 +423,14 @@ App.NodeController = Ember.ObjectController.extend({
   sunburstCacheValues: [
     { "value": "contention.system.llc.cache_usage.used", "label": "Cache Used" },
     { "value": "capabilities.scu_allocated_min", "label": "SCU Allocation" },
-    { "value": "utilizationCurrent", "label": "SCU Utilization" }
+    { "value": "utilizationCurrent", "label": "SCU Utilization" },
+    { "value": "utilization.memory", "label": "VMs Memory Allocation" }
   ],
   currentSunburstCacheValue: 'contention.system.llc.cache_usage.used',
   vmsExist: function() {
     return !Ember.isEmpty(this.get('vms'));
   }.property('vms.@each', 'vms', 'scuValues'),
-  vmCacheSunburstAvailable: function() {
+  cacheSunburstAvailable: function() {
     var self = this;
     var vmData = this.get('controllers.vms').filterBy('node.id', self.get('id')).filter(function(item, index, enumerable) {
       if (item.get(self.get('currentSunburstCacheValue')) > -1) {
@@ -438,18 +439,7 @@ App.NodeController = Ember.ObjectController.extend({
     });
     var cgroupData = this.get('filteredCgroups').filter(function(cgroup, index, enumerable) {
       if (self.get('currentSunburstCacheValue') === 'utilizationCurrent') {
-        var compute = cgroup.get('utilization.scu.compute');
-        var ioWait = cgroup.get('utilization.scu.io_wait');
-        var misc = cgroup.get('utilization.scu.misc');
-        if (Ember.isEmpty(compute) && Ember.isEmpty(ioWait) && Ember.isEmpty(misc)) {
-          var utilizationCurrent = null;
-        } else if ((compute === -1) || (ioWait === -1) || (misc === -1)) {
-          var utilizationCurrent = null;
-        } else {
-          var utilizationCurrent = (compute || 0) + (ioWait || 0) + (misc || 0);
-          var utilizationCurrent = utilizationCurrent.toFixed(2);
-        };
-        cgroup.set('utilizationCurrent', utilizationCurrent);
+        cgroup.set('utilizationCurrent', cgroup.get('scuTotal'));
       }
       if (cgroup.get(self.get('currentSunburstCacheValue')) > -1) {
         return cgroup.get(self.get('currentSunburstCacheValue'));
@@ -465,8 +455,34 @@ App.NodeController = Ember.ObjectController.extend({
       "children": []
     };
     var self = this;
-
     switch(self.get('currentSunburstCacheValue')) {
+      case "utilization.memory":
+        layout.units = "MiB";
+        var memoryAllocatedTotal = 0;
+        // Append VM segments
+        this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
+          var memoryAllocated = App.readableSizeToBytes(vm.get('utilization.memory')) / 1048576;
+          var segment = {
+            name: "VM",
+            fill_type: "blue",
+            description: 'Memory',
+            size: ((memoryAllocated >= 0) ? App.stripFloat(memoryAllocated) : 0),
+            route: "vmsVm",
+            routeId: vm.get('id'),
+            routeLabel: vm.get('name')
+          }
+          layout.children.push(segment);
+          memoryAllocatedTotal = memoryAllocatedTotal + memoryAllocated;
+        });
+        // Append unallocated segment
+        var segment = {
+          name: "Unallocated",
+          fill_type: "gray",
+          description: "Memory",
+          size: ((self.get('utilization.cloud.memory.max')) - memoryAllocatedTotal).toFixed(2)
+        }
+        layout.children.push(segment);
+        break;
       case "contention.system.llc.cache_usage.used":
         layout.units = "KiB";
         // Append VM segments
@@ -549,18 +565,7 @@ App.NodeController = Ember.ObjectController.extend({
         });
         // Append cgroup segments
         this.get('filteredCgroups').forEach(function(cgroup) {
-          var compute = cgroup.get('utilization.scu.compute');
-          var ioWait = cgroup.get('utilization.scu.io_wait');
-          var misc = cgroup.get('utilization.scu.misc');
-          if (Ember.isEmpty(compute) && Ember.isEmpty(ioWait) && Ember.isEmpty(misc)) {
-            var utilizationCurrent = null;
-          } else if ((compute === -1) || (ioWait === -1) || (misc === -1)) {
-            var utilizationCurrent = null;
-          } else {
-            var utilizationCurrent = (compute || 0) + (ioWait || 0) + (misc || 0);
-            var utilizationCurrent = utilizationCurrent.toFixed(2);
-          };
-          cgroup.set('utilizationCurrent', utilizationCurrent);
+          cgroup.set('utilizationCurrent', cgroup.get('scuTotal'));
           var segment = {
             name: cgroup.get('type').toUpperCase(),
             fill_type: "light-green",
