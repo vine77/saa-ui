@@ -4,7 +4,8 @@
   .brand {
     @brandingVerticalPadding: 8px;
     height: @navbarHeight - (2 * @brandingVerticalPadding);
-    padding: @brandingVerticalPadding 20px;
+    padding: @brandingVerticalPadding 12px;
+    font-weight: 100;
     #logo-company {
       display: inline-block;
       height: @navbarHeight - (2 * @brandingVerticalPadding);
@@ -14,11 +15,14 @@
     .application-title {
       position: absolute;
       top: 15px;
-      left: 100px;
+      left: 87px;
       margin-top: 3px;
       vertical-align: top;
       font-size: 26px;
-      font-weight: 400;
+      word-spacing: -2px;
+      strong {
+        font-weight: 400;
+      }
     }
   }
   > .navbar-inner > .container {
