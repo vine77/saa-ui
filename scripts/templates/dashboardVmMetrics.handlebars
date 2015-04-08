@@ -11,7 +11,7 @@
             <tr>
               <td class="column-medium"><strong>Trusted VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
@@ -20,7 +20,7 @@
                       {{#link-to "vms"}}
                         {{percentOfTrusted}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -31,7 +31,7 @@
             <tr>
               <td class="column-medium"><strong>Victim VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalVictimsMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="totalVictimsMessage" placement="right" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfVictimsWidth"}} ></div>
                   </div>
@@ -40,7 +40,7 @@
                       {{#link-to "vms"}}
                         {{percentOfVictims}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -51,7 +51,7 @@
             <tr>
               <td class="column-medium"><strong>Aggressor VMs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalAggressorsMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="totalAggressorsMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfAggressorsWidth"}} ></div>
                   </div>
@@ -60,7 +60,7 @@
                       {{#link-to "vms"}}
                         {{percentOfAggressors}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -71,7 +71,7 @@
             <tr>
               <td class="column-medium"><strong>vCPUs</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalVcpusMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalVcpusWidth"}} ></div>
                   </div>
@@ -80,7 +80,7 @@
                       {{#link-to "vms"}}
                         {{totalVcpusPercent}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -101,7 +101,7 @@
               <td> {{#link-to "vmsVm" contentionVm}}{{contentionVm.name}}{{/link-to}}</td>
               <td>
                 {{#if contentionVm.hasContention}}
-                  {{#view App.TooltipView titleBinding="contentionVm.contentionMessage" style="width:100%"}}
+                  {{#view App.TooltipView titleBinding="contentionVm.contentionMessage" style="width:100%" placement="right"}}
                     <div class="contention nowrap">
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionVm.contentionWidth"}}>
@@ -109,7 +109,7 @@
                         </div>
                       </div>
                       {{na contentionVm.contentionFormatted}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </div>
                   {{/view}}
                 {{/if}}

@@ -11,7 +11,7 @@
             <tr>
               <td class="column-medium"><strong>Trusted Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfTrustedWidth"}} ></div>
                   </div>
@@ -20,7 +20,7 @@
                         {{#link-to "nodes"}}
                           {{percentOfTrusted}}%
                         {{/link-to}}
-                        <a> <i class="icon-question-sign"></i> </a>
+                        <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -31,7 +31,7 @@
             <tr>
               <td class="column-medium"><strong>SAA Nodes</strong></td>
               <td>
-                {{#view App.TooltipView titleBinding="totalControlledMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="totalControlledMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="percentOfControlledWidth"}} ></div>
                   </div>
@@ -40,7 +40,7 @@
                         {{#link-to "nodes"}}
                           {{percentOfControlled}}%
                         {{/link-to}}
-                        <a> <i class="icon-question-sign"></i> </a>
+                        <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -50,13 +50,13 @@
           {{#if isPercentOfRamAvailable}}
             <tr>
               <td class="column-medium">
-                {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%"}}
+                {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%" placement="right"}}
                   <strong>Memory reserved for VMs</strong>
-                  <a> <i class="icon-question-sign"></i> </a>
+                  <a> <i class="icon-info-sign"></i> </a>
                 {{/view}}
               </td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalRamMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalRamWidth"}} ></div>
                   </div>
@@ -65,7 +65,7 @@
                       {{#link-to "nodes"}}
                         {{controllers.nodes.percentOfRam}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -76,7 +76,7 @@
             <tr>
               <td class="column-medium"> <strong> Physical RAM Usage </strong> </td>
               <td>
-                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage" style="width:100%"}}
+                {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
                     <div class="bar" {{bind-attr style="controllers.nodes.totalPhysicalMemoryWidth"}} ></div>
                   </div>
@@ -85,7 +85,7 @@
                       {{#link-to "nodes"}}
                         {{controllers.nodes.percentOfPhysicalMemory}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -105,7 +105,7 @@
                       {{#link-to "nodes"}}
                         {{usedOfAvailableSuPercent}}%
                       {{/link-to}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     </small>
                   </div>
                 {{/view}}
@@ -127,14 +127,14 @@
               <td>
                 {{#if contentionNode.hasContention}}
                   <div class="contention nowrap">
-                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage" style="width:100%"}}
+                    {{#view App.TooltipView titleBinding="contentionNode.contentionMessage" style="width:100%" placement="right"}}
                       <div class="contention-bar">
                         <div class="contention-bar-width" {{bind-attr style="contentionNode.contentionWidth"}}>
                           <div class="contention-gradient"></div>
                         </div>
                       </div>
                       {{na contentionNode.contentionFormatted}}
-                      <a> <i class="icon-question-sign"></i> </a>
+                      <a> <i class="icon-info-sign"></i> </a>
                     {{/view}}
                   </div>
                 {{/if}}

@@ -25,9 +25,9 @@
         <tr>
           <th class="column-medium">Health</th>
           <td>
-            {{#view App.TooltipView titleBinding="healthMessage"}}
+            {{#view App.TooltipView titleBinding="healthMessage" placement="right"}}
               {{healthIcon status.health}} {{status status.health}}
-              <a> <i class="icon-question-sign"></i> </a>
+              <a> <i class="icon-info-sign"></i> </a>
             {{/view}}
           </td>
         </tr>
@@ -92,7 +92,7 @@
             {{#view App.TooltipView dataHtml=true titleBinding="trustMessage"}}
               {{trustIcon status.trust_status.trust}}
               {{trust status.trust_status.trust}}
-              <a> <i class="icon-question-sign"></i> </a>
+              <a> <i class="icon-info-sign"></i> </a>
             {{/view}}
           </td>
         </tr>
@@ -242,7 +242,7 @@
           <th class="column-medium">
             {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%"}}
               <strong>Memory reserved for VMs</strong>
-              <a> <i class="icon-question-sign"></i> </a>
+              <a> <i class="icon-info-sign"></i> </a>
             {{/view}}
           </th>
           <td>

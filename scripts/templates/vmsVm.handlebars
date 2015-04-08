@@ -25,7 +25,7 @@
           <td>
             {{#view App.TooltipView titleBinding="healthMessage"}}
               {{healthIcon status.health}} {{status status.health}}
-              <a> <i class="icon-question-sign"></i> </a>
+              <a> <i class="icon-info-sign"></i> </a>
             {{/view}}
           </td>
         </tr>
@@ -40,10 +40,10 @@
         <tr>
           <th class="column-medium">Trust</th>
           <td>
-            {{#view App.TooltipView dataHtml=true titleBinding="trustMessage"}}
+            {{#view App.TooltipView dataHtml=true titleBinding="trustMessage" placement="right"}}
               {{trustIcon status.trust}}
               {{trust status.trust}}
-              <a> <i class="icon-question-sign"></i> </a>
+              <a> <i class="icon-info-sign"></i> </a>
             {{/view}}
           </td>
         </tr>
@@ -202,9 +202,9 @@
           <th class="column-medium">Cache occupancy</th>
           <td>
             {{#unlessEmpty contention.system.llc.cache_usage.normalized}}
-              {{#view App.TooltipView dataHtml=true titleBinding="cacheOccupancyMessage"}}
+              {{#view App.TooltipView dataHtml=true titleBinding="cacheOccupancyMessage" placement="right"}}
                 {{percent contention.system.llc.cache_usage.normalized}}
-                <a><i class="icon-question-sign"></i></a>
+                <a><i class="icon-info-sign"></i></a>
               {{/view}}
             {{/unlessEmpty}}
           </td>
