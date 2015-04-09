@@ -6,12 +6,12 @@
     <section id="log-informational-values">
       <legend>Log Details</legend>
       <br>
-      <div>Current Log Disk Size: {{readableMegabytes model.actualSize}}</div>
+      <div>Current Log Disk Size: {{readableMebibyte model.actualSize}}</div>
       <dl>
         <div class="progress progress-success disk-horizontal-bar">
           <div class="bar" {{bind-attr style="unavailableSpaceWidth"}}></div>
         </div>
-        <small>{{readableMegabytes model.configuredSize}}</small>
+        <small>{{readableMebibyte model.configuredSize}}</small>
       </dl>
       <div class="control-group">
         <label class="control-label">Maximum Size:</label>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <p class="alert"><strong>Please Note:</strong>
-      When the current size approaches maximum size or available space (exceeds about {{readableMegabytes model.thresholdSize}}), old logs will be deleted hourly.
+      When the current size approaches maximum size or available space (exceeds about {{readableMebibyte model.thresholdSize}}), old logs will be deleted hourly.
       </p>
     </section>
     <section id="settable-values">

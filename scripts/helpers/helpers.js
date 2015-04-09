@@ -300,8 +300,12 @@ Ember.Handlebars.registerBoundHelper('readableBytes', function (sizeInBytes) {
   return App.bytesToReadableSize(sizeInBytes);
 });
 
-Ember.Handlebars.registerBoundHelper('readableMegabytes', function (sizeInMegabytes) {
-  return App.bytesToReadableSize(sizeInMegabytes, 1048576);
+Ember.Handlebars.registerBoundHelper('readableMebibyte', function (sizeInMebibytes) {
+  return App.bytesToReadableSize(sizeInMebibytes, 1048576);
+});
+
+Ember.Handlebars.registerBoundHelper('readableGibibyte', function (sizeInGibibytes) {
+  return App.bytesToReadableSize(sizeInGibibytes, 1073741824);
 });
 
 Ember.Handlebars.registerBoundHelper('oneDecimal', function (value) {
