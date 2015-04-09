@@ -290,6 +290,11 @@
           <td>{{readableSize capabilities.memory_size}}</td>
         </tr>
         <tr>
+          <th class="column-medium">Total Disk Usage</th>
+          <td>
+            {{readableGibibyte utilization.cloud.disk.used}} out of {{readableGibibyte utilization.cloud.disk.max}}
+          </td>
+        </tr>
       </table>
     </div>
     <div class="tab-pane charts">
