@@ -10,43 +10,11 @@ App.NodeController = Ember.ObjectController.extend({
   nodeActions: function() {
     return  [
       App.ActionController.create({
-        name: 'Export Trust Report',
-        method: 'exportTrustReport',
-        icon: 'icon-external-link',
-        disabledWhileRebooting: false,
-        sortOrder: 0,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Remove Trust',
-        method: 'removeTrust',
-        icon: 'icon-unlock',
-        disabledWhileRebooting: true,
-        sortOrder: 1,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Add Trust',
-        method: 'addTrust',
-        icon: 'icon-lock',
-        disabledWhileRebooting: true,
-        sortOrder: 2,
-        node: this
-      }),
-      App.ActionController.create({
-        name: 'Fingerprint',
-        method: 'trustFingerprint',
-        icon: 'icon-hand-up',
-        disabledWhileRebooting: true,
-        sortOrder: 3,
-        node: this
-      }),
-      App.ActionController.create({
         name: 'Configure Trust Agent',
         method: 'configureTrustAgent',
         icon: 'icon-unlock-alt',
         disabledWhileRebooting: true,
-        sortOrder: 4,
+        sortOrder: 0,
         node: this
       }),
       App.ActionController.create({
@@ -54,7 +22,39 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'unregister',
         icon: 'icon-remove',
         disabledWhileRebooting: false,
-        sortOrder: 6,
+        sortOrder: 1,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Fingerprint',
+        method: 'trustFingerprint',
+        icon: 'icon-hand-up',
+        disabledWhileRebooting: true,
+        sortOrder: 2,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Add Trust',
+        method: 'addTrust',
+        icon: 'icon-lock',
+        disabledWhileRebooting: true,
+        sortOrder: 3,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Export Trust Report',
+        method: 'exportTrustReport',
+        icon: 'icon-external-link',
+        disabledWhileRebooting: false,
+        sortOrder: 4,
+        node: this
+      }),
+      App.ActionController.create({
+        name: 'Remove Trust',
+        method: 'removeTrust',
+        icon: 'icon-unlock',
+        disabledWhileRebooting: true,
+        sortOrder: 5,
         node: this
       }),
       App.ActionController.create({
@@ -62,7 +62,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'setMonitored',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 7,
+        sortOrder: 6,
         node: this
       }),
       App.ActionController.create({
@@ -70,7 +70,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'setAssuredVm',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 8,
+        sortOrder: 7,
         node: this
       }),
       App.ActionController.create({
@@ -78,7 +78,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'setAssuredCores',
         icon: 'icon-trophy',
         disabledWhileRebooting: true,
-        sortOrder: 9,
+        sortOrder: 8,
         node: this
       }),
       App.ActionController.create({
@@ -86,7 +86,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'schedule',
         icon: 'icon-magnet',
         disabledWhileRebooting: true,
-        sortOrder: 4,
+        sortOrder: 9,
         node: this
       }),
       App.ActionController.create({
@@ -94,7 +94,7 @@ App.NodeController = Ember.ObjectController.extend({
         method: 'unschedule',
         icon: 'icon-magnet',
         disabledWhileRebooting: false,
-        sortOrder: 5,
+        sortOrder: 10,
         node: this
       })
     ];
