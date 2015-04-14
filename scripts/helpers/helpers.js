@@ -300,6 +300,10 @@ Ember.Handlebars.registerBoundHelper('readableBytes', function (sizeInBytes) {
   return App.bytesToReadableSize(sizeInBytes);
 });
 
+Ember.Handlebars.registerBoundHelper('readableKibibyte', function (sizeInBytes) {
+  return App.bytesToReadableSize(sizeInBytes, 1024);
+});
+
 Ember.Handlebars.registerBoundHelper('readableMebibyte', function (sizeInMebibytes) {
   return App.bytesToReadableSize(sizeInMebibytes, 1048576);
 });
