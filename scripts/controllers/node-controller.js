@@ -484,7 +484,7 @@ App.NodeController = Ember.ObjectController.extend({
         layout.children.push(segment);
         break;
       case "contention.system.llc.cache_usage.used":
-        layout.units = "KiB";
+        layout.units = "Bytes";
         // Append VM segments
         this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
           var segment = {
