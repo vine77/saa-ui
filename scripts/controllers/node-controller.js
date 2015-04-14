@@ -484,14 +484,15 @@ App.NodeController = Ember.ObjectController.extend({
         layout.children.push(segment);
         break;
       case "contention.system.llc.cache_usage.used":
-        layout.units = "Bytes";
+        layout.units = "KiB";
         // Append VM segments
         this.get('controllers.vms').filterBy('node.id', self.get('id')).forEach( function(vm, index, enumerable) {
+          // Convert size value to KiB
           var segment = {
             name: "VM Cache Used",
             dynamic_color: App.rangeToColor(vm.get('contention.system.llc.value'), 0, 50, 25, 40),
             description: 'Contention: ' + vm.get('contention.system.llc.value'),
-            size: ((vm.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(vm.get('contention.system.llc.cache_usage.used')) : 0),
+            size: ((vm.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(vm.get('contention.system.llc.cache_usage.used') / 1024) : 0),
             route: "vmsVm",
             routeId: vm.get('id'),
             routeLabel: vm.get('name')
@@ -504,7 +505,7 @@ App.NodeController = Ember.ObjectController.extend({
             name: cgroup.get('type').toUpperCase(),
             dynamic_color: App.rangeToColor(cgroup.get('contention.system.llc.value'), 0, 50, 25, 40),
             description: 'Contention: ' + cgroup.get('contention.system.llc.value'),
-            size: ((cgroup.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(cgroup.get('contention.system.llc.cache_usage.used')) : 0)
+            size: ((cgroup.get('contention.system.llc.cache_usage.used') >= 0) ? App.stripFloat(cgroup.get('contention.system.llc.cache_usage.used') / 1024) : 0)
           }
           layout.children.push(segment);
         });
