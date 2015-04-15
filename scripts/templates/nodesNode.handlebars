@@ -160,30 +160,18 @@
           <tr>
             <th class="column-medium">Cores</th>
             <td>
+              {{utilization.cores.system.used}} out of {{utilization.cores.system.max}} cores
               {{#if hasCores}}
-                {{progress-bar-adjacent
-                  numberOfBars="3"
-                  barMin1="0"
-                  barMax1=osCores
-                  barValue1=osCores
-                  barTitle1="OS Cores"
-                  barMin2="0"
-                  barMax2=vmCores
-                  barValue2=vmCores
-                  barTitle2="VM Cores"
-                  barMin3="0"
-                  barMax3=sixWindCores
-                  barValue3=sixWindCores
-                  barTitle3="6Wind Cores"
-                }}
                 <ul>
-                  <li><strong>{{utilization.cores.system.used}} out of {{utilization.cores.system.max}} cores</strong></li>
-                  <li>OS Cores: {{osCores}} </li>
-                  <li>VM Cores: {{vmCores}} </li>
-                  <li>6Wind Cores: {{sixWindCores}} </li>
+                  {{#each cgroup in utilizationCoresCgroups}}
+                    <li>
+                      {{#view App.TooltipView title=cgroup.locations}}
+                        {{uppercase cgroup.type}} cores: {{cgroup.used.length}}
+                        <a><i class="icon-info-sign"></i></a>
+                      {{/view}}
+                    </li>
+                  {{/each}}
                 </ul>
-              {{else}}
-                {{utilization.cores.system.used}} out of {{utilization.cores.system.max}} cores
               {{/if}}
             </td>
           </tr>

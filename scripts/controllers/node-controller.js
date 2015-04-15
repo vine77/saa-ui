@@ -100,35 +100,27 @@ App.NodeController = Ember.ObjectController.extend({
     ];
   }.property('@each', 'App.mtWilson.isInstalled'),
 
-  systemContention: function() {
-    return this.get('contention.llc.system.value');
-  }.property('contention.llc.system.value'),
+  systemContention: Ember.computed.alias('contention.llc.system.value'),
 
+  hasCores: Ember.computed.gte('utilizationCoresCgroups.length', 1),
+  /** Clean up utilization.cores.cgroups by removing items referencing -1, and add a "locations" string */
   utilizationCoresCgroups: function() {
-    return this.get('utilization.cores.cgroups');
+    return this.get('utilization.cores.cgroups').map(function(cgroup) {
+      if (Ember.isEmpty(cgroup.used)) return undefined;
+      var usedCores = cgroup.used.filter(function(core) {
+        return core.socket !== -1 && core.socket !== '-1' && core.core !== -1 && core.core !== '-1';
+      });
+      if (Ember.isEmpty(usedCores)) return undefined;
+      var locations = usedCores.map(function(core) {
+        return 'Socket ' + core.socket + ' Core ' + core.core;
+      }).join(', ');
+      return {
+        type: cgroup.type,
+        used: usedCores,
+        locations: locations
+      };
+    }).filter(function(cgroup) { return cgroup !== undefined; });
   }.property('utilization.cores.cgroups.@each'),
-  hasCores: function() {
-    return (this.get('osCores') > 1 && this.get('vmCores') > 1);
-  }.property('osCores'),
-
-  osCores: function() {
-    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', 'os')) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', 'os').used) return 0;
-    return this.get('utilization.cores.cgroups').findBy('type', 'os').used.length;
-  }.property('utilizationCoresCgroups.@each'),
-  vmCores: function() {
-    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', 'vm')) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', 'vm').used) return 0;
-    return this.get('utilization.cores.cgroups').findBy('type', 'vm').used.length;
-  }.property('utilizationCoresCgroups.@each'),
-  sixWindCores: function() {
-    if (Ember.isEmpty(this.get('utilization.cores.cgroups'))) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', '6Wind')) return 0;
-    if (!this.get('utilization.cores.cgroups').findBy('type', '6Wind').used) return 0;
-    return this.get('utilization.cores.cgroups').findBy('type', '6Wind').used.length;
-  }.property('utilizationCoresCgroups.@each'),
 
   scuUtilizationCgroups: function() {
     return this.get('utilization.scu.cgroups');
