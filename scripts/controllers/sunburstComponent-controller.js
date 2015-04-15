@@ -27,6 +27,12 @@ App.SunburstChartComponent = Ember.Component.extend({
   height: 600,
   units: 'SCUs',
   dataSource: null,
+  isSizeDynamic: function() {
+    return this.get('dataSource.isSizeDynamic');
+  }.property('dataSource', 'dataSource.isSizeDynamic', 'dataSource.@each'),
+  sizeMultiplier: function() {
+    return this.get('dataSource.sizeMultiplier');
+  }.property('dataSource', 'dataSource.sizeMultiplier', 'dataSource.@each'),
   legend: false,
   action: false,
   gCustomId: 'g' + this.get('elementId'),
@@ -175,8 +181,18 @@ App.SunburstChartComponent = Ember.Component.extend({
             .text(percentageString);
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-title')
             .text(d.name);
-          d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
+          if (self.get('isSizeDynamic')) {
+            if (!Ember.isEmpty(self.get('sizeMultiplier'))) {
+              var readableSize = App.bytesToReadableSize(d.size, self.get('sizeMultiplier'));
+            } else {
+              var readableSize = App.bytesToReadableSize(d.size);
+            }
+            d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
+            .text(readableSize);
+          } else {
+            d3.select('[data-id="'+self.get('customId')+'"] .sunburst-description')
             .text(d.size + " " + self.get('units'));
+          }
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-fill_type')
             .text(d.description);
           d3.select('[data-id="'+self.get('customId')+'"] .sunburst-details')
@@ -210,7 +226,6 @@ App.SunburstChartComponent = Ember.Component.extend({
               return (node.eventSiblingId !== undefined && node.eventSiblingId == d.eventSiblingId);
             })
             .style("opacity", 1);
-
 
           // Update link values
           if (!Ember.isEmpty(self.get('action'))) {
@@ -358,9 +373,8 @@ App.SunburstChartComponent = Ember.Component.extend({
     if (!Ember.isEmpty(this.get('dataSource.units'))) {
       this.set('units', this.get('dataSource.units'));
     }
-
     this.draw();
-  }.observes('dataSource.@each'),
+  }.observes('dataSource.@each', 'dataSource.isSizeDynamic'),
 
   didInsertElement: function() {
     this.set('gCustomId', App.uuid());
