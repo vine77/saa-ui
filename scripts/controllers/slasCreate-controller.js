@@ -18,7 +18,6 @@ App.SlasCreateController = Ember.ObjectController.extend({
     return this.store.all('sloTemplate');
   }.property(),
   slaTypes: function() {
-    var self = this;
     return this.get('sloTemplates').map(function(item) {
       if (item) return item.get('elementName');
     }).uniq().map(function(item) {
@@ -27,8 +26,6 @@ App.SlasCreateController = Ember.ObjectController.extend({
         label: item,
         disabled: item === 'os'
       };
-    }).filter(function(item, index, self) {
-      if (item.value != 'os') { return true; } else { return false; }
     });
   }.property('sloTemplates.@each.elementName'),
   slaType: Ember.computed.alias('model.type'),
