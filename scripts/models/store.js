@@ -256,11 +256,15 @@ DS.Model.reopen({
   }
 });
 
-//Extend Ember.SelectOption so that disabled attribute for indivudal options may be used.
+// Extend Ember.SelectOption so that disabled attribute for indivudal options may be used.
 Ember.SelectOption.reopen({
-  attributeBindings: ['value', 'selected', 'disabled'],
+  attributeBindings: ['value', 'selected', 'disabled', 'style'],
   disabled: function() {
-    var content = this.get('content');
-    return content.disabled || false;
-  }.property('content')
+    if (Ember.isEmpty(this.get('content'))) return false;
+    return !!this.get('content').disabled;
+  }.property('content'),
+  style: function() {
+    if (Ember.isEmpty(this.get('content'))) return;
+    return (this.get('content').visible) ? undefined : 'display:none';
+  }.property('visible')
 });

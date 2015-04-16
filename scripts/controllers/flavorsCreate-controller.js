@@ -11,7 +11,8 @@ App.FlavorsCreateController = Ember.ObjectController.extend({
       return {
         value: item,
         label: item,
-        disabled: item === 'os'
+        disabled: item === 'os',
+        visible: item !== 'os'
       };
     });
   }.property('sloTemplates.@each.elementName'),
