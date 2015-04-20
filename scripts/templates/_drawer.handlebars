@@ -1,89 +1,41 @@
 {{#if loggedIn}}
-  {{#unless isEnabled}}
-    <div id="drawer" {{bind-attr class="isDrawerExpanded:expanded"}}>
-      <div class="drawer-frame page">
-        <ul class="nav nav-tabs bottom">
-          <li class="showHide"><a {{action "hideDrawer"}}><i class="icon-double-angle-down"></i> Hide</a></li>
-        </ul>
-        <ul class="nav nav-tabs top">
-          <li>
-            <a {{action "expandDrawer" "logs"}} data-toggle="tab" data-target="#drawer-logs">
-              <i class="icon-file"></i> Logs
-              {{#unless controllers.statuses.logsAreVisible}}
-                {{healthIcon controllers.statuses.loggingStatus.health}}
-              {{/unless}}
-            </a>
-          </li>
-          <li class="help"><a {{action "expandDrawer" "help"}} data-toggle="tab" data-target="#drawer-help"><i class="icon-question-sign"></i> Help</a></li>
-          <li class="about"><a {{action "expandDrawer" "about"}} data-toggle="tab" data-target="#drawer-about"><i class="icon-info-sign"></i> About</a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="drawer-logs" class="tab-pane active">
-            {{render "logBar"}}
-          </div>
-          <div class="tab-pane active" id="drawer-help">
-            <iframe {{bind-attr src="helpUrl"}} id="docs"></iframe>
-          </div>
-          {{partial "about"}}
+  <div id="drawer" {{bind-attr class="isDrawerExpanded:expanded"}}>
+    <div class="drawer-frame page">
+      <ul class="nav nav-tabs bottom">
+        <li class="showHide"><a {{action "hideDrawer"}}><i class="icon-double-angle-down"></i> Hide</a></li>
+      </ul>
+      <ul class="nav nav-tabs top">
+        <li>
+          <a {{action "expandDrawer" "logs"}} data-toggle="tab" data-target="#drawer-logs">
+            <i class="icon-file"></i> Logs
+            {{#unless controllers.statuses.logsAreVisible}}
+              {{healthIcon controllers.statuses.loggingStatus.health}}
+            {{/unless}}
+          </a>
+        </li>
+        <li class="help"><a {{action "expandDrawer" "help"}} data-toggle="tab" data-target="#drawer-help"><i class="icon-question-sign"></i> Help</a></li>
+        <li class="about"><a {{action "expandDrawer" "about"}} data-toggle="tab" data-target="#drawer-about"><i class="icon-info-sign"></i> About</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="drawer-logs" class="tab-pane active">
+          {{render "logBar"}}
         </div>
-      </div>
-    </div>
-  {{else}}
-    <div id="drawer" {{bind-attr class="isDrawerExpanded:expanded"}}>
-      <div class="drawer-frame page">
-        <ul class="nav nav-tabs bottom">
-          <li class="showHide"><a {{action "hideDrawer"}}><i class="icon-double-angle-down"></i> Hide</a></li>
-        </ul>
-        <ul class="nav nav-tabs top">
-          <li>
-            <a {{action "expandDrawer" "logs"}} data-toggle="tab" data-target="#drawer-logs">
-              <i class="icon-file"></i> Logs
-              {{#unless controllers.statuses.logsAreVisible}}
-                {{healthIcon controllers.statuses.loggingStatus.health}}
-              {{/unless}}
-            </a>
-          </li>
-
-          <li class="help"><a {{action "expandDrawer" "help"}} data-toggle="tab" data-target="#drawer-help"><i class="icon-question-sign"></i> Help</a></li>
-          <li class="about"><a {{action "expandDrawer" "about"}} data-toggle="tab" data-target="#drawer-about"><i class="icon-info-sign"></i> About</a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="drawer-logs" class="tab-pane active">
-            {{render "logBar"}}
-          </div>
-          <div id="drawer-graphs" class="tab-pane">
-            <ul class="nav nav-pills">
-              <li class="active"><a data-toggle="tab" data-target="#drawer-graphs-contextual">Contextual Graphs</a></li>
-              <li><a {{action "loadFrame" "graphs"}} data-toggle="tab" data-target="#drawer-graphs-all">All Graphs</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane fade in active" id="drawer-graphs-contextual">
-                <div class="content">
-                  {{render "contextualGraphs"}}
-                </div>
-              </div>
-              <div id="drawer-graphs-all" class="tab-pane fade">
-                <iframe></iframe>
-              </div>
+        <div id="drawer-help" class="tab-pane active">
+          <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" data-target="#drawer-help-definitions">Definitions</a></li>
+            <li><a data-toggle="tab" data-target="#drawer-help-api">API Help</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="drawer-help-definitions" class="tab-pane fade in active">
+              {{partial "definitions"}}
+            </div>
+            <div id="drawer-help-api" class="tab-pane fade">
+              <iframe {{bind-attr src="helpUrl"}} id="docs"></iframe>
             </div>
           </div>
-          <div id="drawer-help" class="tab-pane active">
-            <ul class="nav nav-pills">
-              <li class="active"><a data-toggle="tab" data-target="#drawer-help-definitions">Definitions</a></li>
-              <li><a data-toggle="tab" data-target="#drawer-help-api">API Help</a></li>
-            </ul>
-            <div class="tab-content">
-              <div id="drawer-help-definitions" class="tab-pane fade in active">
-                {{partial "definitions"}}
-              </div>
-              <div id="drawer-help-api" class="tab-pane fade">
-                <iframe {{bind-attr src="helpUrl"}} id="docs"></iframe>
-              </div>
-            </div>
-          </div>
-          {{partial "about"}}
         </div>
+        {{partial "about"}}
       </div>
     </div>
-  {{/unless}}
+  </div>
 {{/if}}
