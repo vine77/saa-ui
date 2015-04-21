@@ -260,11 +260,11 @@ DS.Model.reopen({
 Ember.SelectOption.reopen({
   attributeBindings: ['value', 'selected', 'disabled', 'style'],
   disabled: function() {
-    if (Ember.isEmpty(this.get('content'))) return false;
+    if (Ember.isEmpty(this.get('content')) || Ember.isEmpty(this.get('content').disabled)) return false;
     return !!this.get('content').disabled;
   }.property('content'),
   style: function() {
-    if (Ember.isEmpty(this.get('content'))) return;
-    return (this.get('content').visible) ? undefined : 'display:none';
+    if (Ember.isEmpty(this.get('content')) || Ember.isEmpty(this.get('content').visible)) return undefined;
+    return (!!this.get('content').visible) ? undefined : 'display:none';
   }.property('visible')
 });
