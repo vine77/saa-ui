@@ -8,7 +8,7 @@ App.NodesColumnsController = App.ColumnsController.extend({
     sortBy: 'isTrusted',
     icon: 'icon-lock'
   }, {
-    description: 'Node Type (Assured, Monitored, Non-SAA)',
+    description: 'Node Type (Assured, Monitored, Unmonitored)',
     sortBy: 'samControlled',
     icon: 'icon-trophy'
   }, {
@@ -302,7 +302,7 @@ App.NodesController = Ember.ArrayController.extend(App.Filterable, App.Sortable,
     },
     unregister: function (node) {
       node.set('isActionPending', true);
-      var confirmed = confirm('Note: You must uninstall the SAA node agent before doing the unregister action, or the node will be re-register once the SAA agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
+      var confirmed = confirm('Note: You must uninstall the assurance node agent before doing the unregister action, or the node will be re-register once the agent sends its next heartbeat message. Are you sure you want to unregister node "' + node.get('name') + '"? It will thereafter not be managed by ' + App.application.title + '.');
       if (confirmed) {
         var action = this.store.createRecord('action', {
           node: this.store.getById('node', node.get('id')),

@@ -35,7 +35,7 @@ App.Nova = Ember.Object.extend({
   },
   start: function () {
     // Start SAA
-    App.log('Starting ' + App.application.get('title'), App.SUCCESS, false);
+    App.log('Starting Intel® Assurance Appliance', App.SUCCESS, false);
     return Ember.$.ajax({
       type: 'PUT',
       url: (App.getApiDomain()) + '/api/v3/start',

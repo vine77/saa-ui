@@ -3,9 +3,7 @@
     <div class="container-fluid">
       <div class="brand">
         <img id="logo-company" src="images/logo-intel-white.svg" alt="Intel">
-        <div class="application-title">
-          SAA
-        </div>
+        <div class="application-title"></div>
       </div>
       {{#if loggedIn}}
         <nav class="nav-collapse collapse pull-right">
@@ -57,7 +55,7 @@
                   <li>{{#link-to "settings.trust"}}Trust{{/link-to}}</li>
                 {{/if}}
                 {{#unless isFramed}}
-                  <li>{{#link-to "settings.controller"}}SAA Appliance{{/link-to}}</li>
+                  <li>{{#link-to "settings.controller"}}Appliance{{/link-to}}</li>
                 {{/unless}}
               </ul>
             </li>

@@ -9,7 +9,7 @@
           </tr>
           {{#if isPercentOfTrustedAvailable}}
             <tr>
-              <td class="column-medium"><strong>Trusted Nodes</strong></td>
+              <td class="column-medium"><strong>Trusted nodes</strong></td>
               <td>
                 {{#view App.TooltipView titleBinding="totalTrustedMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
@@ -29,7 +29,7 @@
           {{/if}}
           {{#if isPercentOfControlledAvailable}}
             <tr>
-              <td class="column-medium"><strong>SAA Nodes</strong></td>
+              <td class="column-medium"><strong>Assured and monitored nodes</strong></td>
               <td>
                 {{#view App.TooltipView titleBinding="totalControlledMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
@@ -50,7 +50,7 @@
           {{#if isPercentOfRamAvailable}}
             <tr>
               <td class="column-medium">
-                {{#view App.TooltipView title="Used to maximum memory reserved by OpenStack for VMs" style="width:100%" placement="right"}}
+                {{#view App.TooltipView title="Used out of maximum memory reserved by OpenStack for VMs" style="width:100%" placement="right"}}
                   <strong>Memory reserved for VMs</strong>
                   <a> <i class="icon-info-sign"></i> </a>
                 {{/view}}
@@ -74,7 +74,7 @@
           {{/if}}
           {{#if isPercentOfPhysicalMemoryAvailable}}
             <tr>
-              <td class="column-medium"> <strong> Physical RAM Usage </strong> </td>
+              <td class="column-medium"><strong>Physical RAM</strong></td>
               <td>
                 {{#view App.TooltipView titleBinding="controllers.nodes.totalPhysicalMemoryMessage" style="width:100%" placement="right"}}
                   <div class="progress progress-success portlet-progress">
@@ -94,7 +94,7 @@
           {{/if}}
           {{#if isUsedOfAvailableSuPercentAvailable}}
             <tr>
-              <td class="column-medium"><strong>Total SCU Usage</strong></td>
+              <td class="column-medium"><strong>Total SCU usage</strong></td>
               <td>
                 {{#view App.TooltipView titleBinding="usedOfAvailableSuMessage" style="width:100%"}}
                   <div class="progress progress-success portlet-progress">

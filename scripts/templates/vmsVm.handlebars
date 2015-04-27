@@ -354,7 +354,7 @@
               <td>{{vmInstantiationSimple.nodesCount.total}}</td>
             </tr>
             <tr>
-              <td># of SAA-controlled nodes</td>
+              <td># of controlled nodes</td>
               <td>{{vmInstantiationSimple.nodesCount.under_saa_control}}</td>
             </tr>
           </tbody>
@@ -362,7 +362,7 @@
 
         {{#if vmInstantiationSimple.nodesCount.total}}
           <div class="alert alert-info">
-            The {{vmInstantiationSimple.nodesCount.total}} node{{#if vmInstantiationSimple.multipleNodes}}s{{/if}} on which this VM was considered to be placed {{#if vmInstantiationSimple.multipleNodes}}are{{else}}is{{/if}} listed below along with criteria used by the SAA scheduler to make the {{#if vmInstantiationSimple.selectedNode}}decision to place the VM on node "{{vmInstantiationSimple.selectedNode.name}}"{{else}}VM placement decision{{/if}}.
+            The {{vmInstantiationSimple.nodesCount.total}} node{{#if vmInstantiationSimple.multipleNodes}}s{{/if}} on which this VM was considered to be placed {{#if vmInstantiationSimple.multipleNodes}}are{{else}}is{{/if}} listed below along with criteria used by the scheduler to make the {{#if vmInstantiationSimple.selectedNode}}decision to place the VM on node "{{vmInstantiationSimple.selectedNode.name}}"{{else}}VM placement decision{{/if}}.
           </div>
         {{/if}}
         <ul class="nav nav-tabs">

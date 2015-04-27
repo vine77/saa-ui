@@ -729,7 +729,7 @@ App.NodeController = Ember.ObjectController.extend({
   isUnhealthy: Ember.computed.not('isHealthy'),
   healthMessage: function () {
     if (!this.get('isAgentInstalled') && App.isEmpty(this.get('status.short_message'))) {
-      return 'Not under ' + App.application.get('title') + ' control';
+      return 'Not managed by Intel® Assurance';
     }
     if (App.isEmpty(this.get('status.short_message'))) {
       // If status message is empty, just show health as a string
@@ -798,7 +798,7 @@ App.NodeController = Ember.ObjectController.extend({
   }.property('status.trust_status.trust_config_details.tagent_expected_version', 'status.trust_status.trust_config_details.tagent_actual_version', 'status.trust_status.trust_config_details.tagent_paired', 'status.trust_status.trust_config_details.tagent_running', 'status.trust_status.trust_config_details.tagent_installed', 'status.trust_status.trust_config_details.tboot_measured_launch', 'status.trust_status.trust_config_details.tpm_enabled', 'status.trust_status.trust_config_details.trust_config'),
 
   computeMessage: function() {
-    var message = 'SAA Compute Units: ';
+    var message = 'Service Compute Units: ';
     if (App.isEmpty(this.get('scuTotal'))) return message + 'N/A';
     return message + this.get('scuTotal') + ' out of ' + this.get('utilization.scu.system.max') + ' SCU';
   }.property('scuTotal', 'utilization.scu.system.max'),

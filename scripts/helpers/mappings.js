@@ -73,7 +73,7 @@ App.codeToMode = function(code) {
     case null:
       return null;
     case App.NON_SAM:
-      return 'non-SAA';
+      return 'unmonitored';
     case App.MONITORED:
       return 'monitored';
     case App.ASSURED_SCU_VCPU:
