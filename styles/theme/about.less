@@ -19,9 +19,23 @@
       min-height: 140px;
     }
     .license-body {
-      height: 230px;
+      height: 300px;
       padding-right: 1em;
       overflow: auto;
+    }
+    .expand-actions {
+      margin-top: -15px;
+      text-align: right;
+    }
+    pre {
+      word-break: normal;
+    }
+    .license {
+      height: 15px;
+      overflow: hidden;
+      &.expanded {
+        height: auto;
+      }
     }
   }
 }

@@ -111,6 +111,14 @@ App.ApplicationController = Ember.Controller.extend({
       $('#drawer ul.nav-tabs > li').removeClass('active');
       this.set('isDrawerExpanded', false);
     },
+    expand: function(target) {
+      Ember.$('#' + target).addClass('expanded');
+      this.set(target.camelize() + 'Expanded', true);
+    },
+    contract: function(target) {
+      Ember.$('#' + target).removeClass('expanded');
+      this.set(target.camelize() + 'Expanded', false);
+    },
     loadFrame: function (target) {
       var iframe = $('#drawer-' + target + '-all > iframe');
       if (iframe.attr('src') === undefined) {

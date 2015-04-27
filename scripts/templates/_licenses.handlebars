@@ -1,0 +1,25 @@
+<h3>Licenses</h3>
+<div class="license-body">
+  <h4>
+    Intel® Assurance Software
+  </h4>
+  <div class="expand-actions">
+    {{#if licenseSaaExpanded}}
+      <a {{action "contract" "license-saa"}}>Close</a>
+    {{else}}
+      <a {{action "expand" "license-saa"}}>Expand</a>
+    {{/if}}
+  </div>
+  <pre id="license-saa" class="license">{{partial "license-saa"}}</pre>
+  <h4>Intel® Cloud Integrity Technology Software</h4>
+  <div class="expand-actions">
+    {{#if licenseCitExpanded}}
+      <a {{action "contract" "license-cit"}}>Close</a>
+    {{else}}
+      <a {{action "expand" "license-cit"}}>Expand</a>
+    {{/if}}
+  </div>
+  <pre id="license-cit" class="license">{{partial "license-cit"}}</pre>
+  <h4>Third-Party Open Source Software</h4>
+  <pre>Licenses are associated with their respective packages. Please refer to the build scripts for those packages.</pre>
+</div>
