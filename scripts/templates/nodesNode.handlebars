@@ -145,7 +145,7 @@
             <th class="column-medium">IPMI Sensors in Error</th>
             <td>
               <ul class="comma-separated">
-                {{#each status.ipmi_sensors_in_error}}
+                {{#each status.health_details.ipmi.sensors_in_error}}
                   <li>{{this}}</li>
                 {{/each}}
               </ul>
