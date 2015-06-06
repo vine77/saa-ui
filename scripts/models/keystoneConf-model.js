@@ -4,7 +4,7 @@ App.KeystoneConf = Ember.Object.extend({
   check: function () {
     // Check if conf file exists
     return Ember.$.ajax({
-      url: (App.getApiDomain()) + '/api/v3/configs',
+      url: (App.getApiDomain()) + '/api/v3/configs.json',
       type: 'GET',
       dataType: "json",
       complete: function (xhr) {
@@ -24,7 +24,7 @@ App.KeystoneConf = Ember.Object.extend({
     var formData = new FormData($('#keystoneConfForm')[0]);
     return Ember.$.ajax({
       type: 'PUT',
-      url: (App.getApiDomain()) + '/api/v3/configs',
+      url: (App.getApiDomain()) + '/api/v3/configs.json',
       data: formData,
       complete: function (xhr) {
         if (xhr.status === 200) $('#keystoneConfForm').find('.fileupload i').removeClass().addClass('icon-ok-circle');
