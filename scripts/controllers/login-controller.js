@@ -76,11 +76,13 @@ App.LoginController = App.FormController.extend({
         password: this.get('password'),
         tenant: this.get('isDefaultTenant') ? '' : this.get('tenantName')
       });
-      session.save().then(function (session) {
-        self.set('csrfToken', session.get('csrfToken'));
+      // Only use finally for demo
+      session.save().finally(function (session) {
+        if (session) self.set('csrfToken', session.get('csrfToken'));
         self.set('isPending', false);
         self.set('loggedIn', true);
         self.transitionToAttempted();
+      /*
       }, function (xhr) {
         self.set('isPending', false);
         if (xhr instanceof DS.InvalidError) {  // status == 422
@@ -96,6 +98,7 @@ App.LoginController = App.FormController.extend({
         } else {
           App.xhrError(xhr, 'An error occurred while attempting to log in.');
         }
+      */
       });
     }
   }
