@@ -1,0 +1,396 @@
+{
+  "slos": [
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/30d1fa74-7f60-4b65-a0eb-331032cf8266",
+        "slas": "/api/v1/configuration/slas/f1619099-9ae8-4a69-b630-191be986b924"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "f1619099-9ae8-4a69-b630-191be986b924",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "30d1fa74-7f60-4b65-a0eb-331032cf8266"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <2.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/05cb43fa-da5d-4e47-85d0-25ac91ade9c3",
+        "slas": "/api/v1/configuration/slas/f1619099-9ae8-4a69-b630-191be986b924"
+      },
+      "deleted": false,
+      "value": "2.0;2.0",
+      "sla_id": "f1619099-9ae8-4a69-b630-191be986b924",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "05cb43fa-da5d-4e47-85d0-25ac91ade9c3"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/02ba4370-4755-4626-8be8-9afcd6164a70",
+        "slas": "/api/v1/configuration/slas/bc92b5ee-f29e-4090-8e1a-af02b2c9691f"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "bc92b5ee-f29e-4090-8e1a-af02b2c9691f",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "02ba4370-4755-4626-8be8-9afcd6164a70"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <2.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/d20e61ab-cbe8-4028-9e5c-fca895b91a95",
+        "slas": "/api/v1/configuration/slas/bc92b5ee-f29e-4090-8e1a-af02b2c9691f"
+      },
+      "deleted": false,
+      "value": "2.0;2.0",
+      "sla_id": "bc92b5ee-f29e-4090-8e1a-af02b2c9691f",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "d20e61ab-cbe8-4028-9e5c-fca895b91a95"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/d45f669f-e60b-4e09-99e3-47c43f5d3856",
+        "slas": "/api/v1/configuration/slas/b406367d-4104-40b2-ae00-d6ef8501d3b3"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "b406367d-4104-40b2-ae00-d6ef8501d3b3",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "d45f669f-e60b-4e09-99e3-47c43f5d3856"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <2.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/ad1a16d0-b321-4ae4-9db6-63b84327a9ce",
+        "slas": "/api/v1/configuration/slas/b406367d-4104-40b2-ae00-d6ef8501d3b3"
+      },
+      "deleted": false,
+      "value": "2.0;4.0",
+      "sla_id": "b406367d-4104-40b2-ae00-d6ef8501d3b3",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "ad1a16d0-b321-4ae4-9db6-63b84327a9ce"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/488c8296-3a1e-459c-9056-c476f3989c28",
+        "slas": "/api/v1/configuration/slas/bf718737-7264-480e-817a-9277847d6af2"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "bf718737-7264-480e-817a-9277847d6af2",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "488c8296-3a1e-459c-9056-c476f3989c28"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <2.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/c60c12af-af2e-4d46-8d6d-daaa877c8689",
+        "slas": "/api/v1/configuration/slas/bf718737-7264-480e-817a-9277847d6af2"
+      },
+      "deleted": false,
+      "value": "2.0;4.0",
+      "sla_id": "bf718737-7264-480e-817a-9277847d6af2",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "c60c12af-af2e-4d46-8d6d-daaa877c8689"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/d6d6f539-49c3-4a6e-bc52-d281d7c92893",
+        "slas": "/api/v1/configuration/slas/2f280098-40ae-43e5-81ef-c161426bb4e2"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "2f280098-40ae-43e5-81ef-c161426bb4e2",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "d6d6f539-49c3-4a6e-bc52-d281d7c92893"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <1.0;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/f94751f6-286c-49a2-9573-de3d156b6fb8",
+        "slas": "/api/v1/configuration/slas/2f280098-40ae-43e5-81ef-c161426bb4e2"
+      },
+      "deleted": false,
+      "value": "1.0;1.0",
+      "sla_id": "2f280098-40ae-43e5-81ef-c161426bb4e2",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "f94751f6-286c-49a2-9573-de3d156b6fb8"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/6e604ecd-e729-489d-b28c-a6c550de67a1",
+        "slas": "/api/v1/configuration/slas/befec5e8-9c53-4a0a-bb04-1993020cf224"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "befec5e8-9c53-4a0a-bb04-1993020cf224",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "6e604ecd-e729-489d-b28c-a6c550de67a1"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <1.0;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/dba9f2e9-0c0f-40c8-862b-dfe08199884a",
+        "slas": "/api/v1/configuration/slas/befec5e8-9c53-4a0a-bb04-1993020cf224"
+      },
+      "deleted": false,
+      "value": "1.0;1.0",
+      "sla_id": "befec5e8-9c53-4a0a-bb04-1993020cf224",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "dba9f2e9-0c0f-40c8-862b-dfe08199884a"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/19f6a327-6ca6-4f06-8597-7654d07d559a",
+        "slas": "/api/v1/configuration/slas/780b18da-05c0-478c-81be-5ae8f8546fa8"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "780b18da-05c0-478c-81be-5ae8f8546fa8",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "19f6a327-6ca6-4f06-8597-7654d07d559a"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <1.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/ccd1ab77-e9ad-4b4c-9e1e-3afecb581acb",
+        "slas": "/api/v1/configuration/slas/780b18da-05c0-478c-81be-5ae8f8546fa8"
+      },
+      "deleted": false,
+      "value": "1.0;2.0",
+      "sla_id": "780b18da-05c0-478c-81be-5ae8f8546fa8",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "ccd1ab77-e9ad-4b4c-9e1e-3afecb581acb"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/1da953b0-4929-4822-bc15-4e46cd990cc8",
+        "slas": "/api/v1/configuration/slas/49547b50-2ef6-4aea-a86f-845691615e1e"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "49547b50-2ef6-4aea-a86f-845691615e1e",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "1da953b0-4929-4822-bc15-4e46cd990cc8"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <1.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/66ffe00c-04a3-4682-9dd7-550b00ee4c65",
+        "slas": "/api/v1/configuration/slas/49547b50-2ef6-4aea-a86f-845691615e1e"
+      },
+      "deleted": false,
+      "value": "1.0;2.0",
+      "sla_id": "49547b50-2ef6-4aea-a86f-845691615e1e",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "66ffe00c-04a3-4682-9dd7-550b00ee4c65"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/960ae1a4-f261-42ec-a636-6b914a792f65",
+        "slas": "/api/v1/configuration/slas/8a0ae707-6217-412c-8fd2-64a1d6423878"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "8a0ae707-6217-412c-8fd2-64a1d6423878",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "960ae1a4-f261-42ec-a636-6b914a792f65"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0.5;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/a99ff301-6e86-4873-aebf-53237cd13e59",
+        "slas": "/api/v1/configuration/slas/8a0ae707-6217-412c-8fd2-64a1d6423878"
+      },
+      "deleted": false,
+      "value": "0.5;1.0",
+      "sla_id": "8a0ae707-6217-412c-8fd2-64a1d6423878",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "a99ff301-6e86-4873-aebf-53237cd13e59"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/85f9c14e-e8ac-46f9-9c23-eab61e859529",
+        "slas": "/api/v1/configuration/slas/ad3d387f-ba4f-4aaa-8e1a-71c12f4ae5c0"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "ad3d387f-ba4f-4aaa-8e1a-71c12f4ae5c0",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "85f9c14e-e8ac-46f9-9c23-eab61e859529"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0.5;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/d8cd1401-4ad6-4af5-8eb1-0830210a03e6",
+        "slas": "/api/v1/configuration/slas/ad3d387f-ba4f-4aaa-8e1a-71c12f4ae5c0"
+      },
+      "deleted": false,
+      "value": "0.5;1.0",
+      "sla_id": "ad3d387f-ba4f-4aaa-8e1a-71c12f4ae5c0",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "d8cd1401-4ad6-4af5-8eb1-0830210a03e6"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/b9512f09-cdfe-4895-84ec-c63aec72b3bf",
+        "slas": "/api/v1/configuration/slas/d7e48542-90a1-4b32-8542-4dd7e9b3ad80"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "d7e48542-90a1-4b32-8542-4dd7e9b3ad80",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "b9512f09-cdfe-4895-84ec-c63aec72b3bf"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/49ae8ee5-2b64-485c-ac9a-e32e0d3be34f",
+        "slas": "/api/v1/configuration/slas/d7e48542-90a1-4b32-8542-4dd7e9b3ad80"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "d7e48542-90a1-4b32-8542-4dd7e9b3ad80",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "49ae8ee5-2b64-485c-ac9a-e32e0d3be34f"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/c0004a6c-68f3-4a5c-a2ec-10473ff7b443",
+        "slas": "/api/v1/configuration/slas/c9934c13-3e72-499f-937d-f3b4f09baf7f"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "c9934c13-3e72-499f-937d-f3b4f09baf7f",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "c0004a6c-68f3-4a5c-a2ec-10473ff7b443"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0;1.0> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/81d05323-cdb1-47b4-b040-8cca57953a72",
+        "slas": "/api/v1/configuration/slas/c9934c13-3e72-499f-937d-f3b4f09baf7f"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "c9934c13-3e72-499f-937d-f3b4f09baf7f",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "81d05323-cdb1-47b4-b040-8cca57953a72"
+    },
+    {
+      "description": "Node is trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/eb0e1eef-bbd6-48ab-8269-75cefb7d0b80",
+        "slas": "/api/v1/configuration/slas/7c3dfe6a-fdd9-4a1c-b937-15f853280588"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "7c3dfe6a-fdd9-4a1c-b937-15f853280588",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "eb0e1eef-bbd6-48ab-8269-75cefb7d0b80"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0;0.5> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/d207e563-e81b-4d29-ab7c-d3bafe03a163",
+        "slas": "/api/v1/configuration/slas/7c3dfe6a-fdd9-4a1c-b937-15f853280588"
+      },
+      "deleted": false,
+      "value": "0.0;0.5",
+      "sla_id": "7c3dfe6a-fdd9-4a1c-b937-15f853280588",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "d207e563-e81b-4d29-ab7c-d3bafe03a163"
+    },
+    {
+      "description": "Node is not trusted.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/373cedc8-7c8f-49b1-b906-0856cc04ce94",
+        "uri": "/api/v1/configuration/slos/cc6a58b5-e6c8-4448-aeeb-5604b8e000cb",
+        "slas": "/api/v1/configuration/slas/f3cce2d9-0d09-4306-bc41-018c8f61b982"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "f3cce2d9-0d09-4306-bc41-018c8f61b982",
+      "operator": "equals",
+      "slo_template_id": "373cedc8-7c8f-49b1-b906-0856cc04ce94",
+      "id": "cc6a58b5-e6c8-4448-aeeb-5604b8e000cb"
+    },
+    {
+      "description": "Service Compute Units value available for each VM core shall be within <0;0.5> range.",
+      "links": {
+        "slo_templates": "/api/v1/configuration/slo_templates/d0bbd95d-577f-4696-a060-59563497f13b",
+        "uri": "/api/v1/configuration/slos/0fa78231-b52b-4591-b44a-e774abe3fe77",
+        "slas": "/api/v1/configuration/slas/f3cce2d9-0d09-4306-bc41-018c8f61b982"
+      },
+      "deleted": false,
+      "value": "0.0;0.5",
+      "sla_id": "f3cce2d9-0d09-4306-bc41-018c8f61b982",
+      "operator": "in_range",
+      "slo_template_id": "d0bbd95d-577f-4696-a060-59563497f13b",
+      "id": "0fa78231-b52b-4591-b44a-e774abe3fe77"
+    }
+  ]
+}

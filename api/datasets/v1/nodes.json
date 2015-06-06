@@ -1,0 +1,1310 @@
+{
+  "nodes": [
+    {
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "agent_version": "1.1.2.53",
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "\u001b[1;31mError: Unrecognized command: version\u001b[0;39m ",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "1.2.2",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "long_message": "Unknown operational state of node.SAA agent is installed. ",
+        "health": 0,
+        "mode": 1,
+        "ipmi": true,
+        "operational": 0,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "ids": {
+        "platform_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "mac": "00:1e:67:47:f6:82",
+        "ip_address": "172.24.0.21",
+        "cloud_id": "E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+        "logs": "/api/v1/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682"
+      },
+      "utilization": {
+        "ipc": null,
+        "scu_max": 39.52,
+        "sockets": [
+          {
+            "socket_number": -1,
+            "scu_current": 2.47,
+            "scu_max": 19.76
+          },
+          {
+            "socket_number": -1,
+            "scu_current": 0.0,
+            "scu_max": 19.76
+          }
+        ],
+        "network": null,
+        "cpu_frequency_current": null,
+        "normalized_load": 0.03,
+        "scu_current": 2.47,
+        "io": null,
+        "memory": {
+          "used": "4020696 KB",
+          "ksm_sharing": null
+        },
+        "cpu": {
+          "iowait": 924.96,
+          "idle": 23697998.4,
+          "total": 0.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          },
+          "disk": {
+            "max": 82,
+            "used": 0
+          },
+          "memory": {
+            "max": 23926,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "uri": "/nodes/E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": null,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "node_name": "novamgmt21.mgmt",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "logs_url": "/logs?node=E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "tier": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-08-20T16:37:44+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-08-20T16:37:46+0000",
+          "health": 0,
+          "name": "scheduler",
+          "operational": 1
+        }
+      ],
+      "id": "E7F5D9AB-C294-E111-BD1D-001E6747F682",
+      "vm_ids": [],
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": -1,
+            "llc": {
+              "value": 0.94,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": -1,
+            "llc": {
+              "value": 0.0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.94,
+            "label": "LOW"
+          }
+        }
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=973D1534-B403-E211-BBFA-001E673B9418",
+        "vms": "/api/v1/vms?ids=8b6236a4-dd16-444c-8cac-dcc1ad077d1b,6117023f-be07-4869-a60f-b468e48e05a1,4eae292b-0852-43cd-a760-517df61b4020,5f3f5c25-a843-446f-9819-8d1f99755dc2,6ff842ea-5bee-442e-a978-a94a1fbf2d0f,c4a5beb7-6927-4069-8fe3-02f180b060b8,99e924ca-c4e7-433a-b9f1-4ece101db796,29ece284-8010-48e0-8519-bfd68e73de30,6e5b9fbe-b298-447e-aa96-ef13296f6c57,26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb,66b571da-cded-4945-bc9d-d4858ae07456,69b3a92a-5efd-47fd-bbba-fb3778280a6a,7813f35d-f4f0-47f3-926f-82ef5f89d89a,45d569e3-8bec-41a1-bc1d-e9af61215a49,9152f137-923e-412b-ad45-23ca62816c19,eddc25c5-2a9a-46bf-9a6b-f46a8f8cef32,30a34b6e-3904-40d3-bf23-ae99100adc48",
+        "uri": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
+      },
+      "uri": "/nodes/973D1534-B403-E211-BBFA-001E673B9418",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "973D1534-B403-E211-BBFA-001E673B9418",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null,
+        "max_scu_per_core": 5
+      },
+      "vm_info": {
+        "count": 17,
+        "max": null
+      },
+      "memory": {
+        "max": 36123,
+        "used": 16288
+      },
+      "vm_ids": [
+        "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "6117023f-be07-4869-a60f-b468e48e05a1",
+        "4eae292b-0852-43cd-a760-517df61b4020",
+        "5f3f5c25-a843-446f-9819-8d1f99755dc2",
+        "6ff842ea-5bee-442e-a978-a94a1fbf2d0f",
+        "c4a5beb7-6927-4069-8fe3-02f180b060b8",
+        "99e924ca-c4e7-433a-b9f1-4ece101db796",
+        "29ece284-8010-48e0-8519-bfd68e73de30",
+        "6e5b9fbe-b298-447e-aa96-ef13296f6c57",
+        "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb",
+        "66b571da-cded-4945-bc9d-d4858ae07456",
+        "69b3a92a-5efd-47fd-bbba-fb3778280a6a",
+        "7813f35d-f4f0-47f3-926f-82ef5f89d89a",
+        "45d569e3-8bec-41a1-bc1d-e9af61215a49",
+        "9152f137-923e-412b-ad45-23ca62816c19",
+        "eddc25c5-2a9a-46bf-9a6b-f46a8f8cef32",
+        "30a34b6e-3904-40d3-bf23-ae99100adc48"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Unknown operational state of node.SAM agent is installed. ",
+        "health": 4,
+        "mode": 3,
+        "trust": 3,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=973D1534-B403-E211-BBFA-001E673B9418",
+      "tier": null,
+      "ids": {
+        "platform_id": "973D1534-B403-E211-BBFA-001E673B9418",
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": "973D1534-B403-E211-BBFA-001E673B9418"
+      },
+      "node_name": "clientnode8.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 23
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=0730E39E-65E6-E111-BD3C-001E675AF475",
+        "vms": "/api/v1/vms?ids=962cf7e0-e058-4825-9173-879cdc4be11a,251efa22-3b60-41e3-bb91-cb223ba4c961,d7c191b4-2897-4eda-8b1a-0738d6f02eff,9e916d53-85e3-4087-836e-afb1184deee7,7b5bdd65-bb13-4985-b76a-f5d6c5a8fe72,48f59eba-71d0-4061-958f-ad74375e7440,e48ddca6-ee75-4d9f-827f-5762e0e15de0,c421e1ca-9c02-4757-9e26-ead1648ca168,3c499a65-1a43-48a9-81d0-a4d5db8846a9,28efd9f3-f8b7-45da-9d35-408bda83ef7a,5ace0012-7c32-4602-ba37-08973357dd7d,f8002be8-8b83-487d-82b4-deb4a88c8ec5,9d494a46-8597-41a2-b39a-0206f3d26f9a,c32f4c45-4755-4e14-b7f5-2d6c2fae28f7,3c9c66ec-c3e1-41d3-8247-c49e0f76f8a6,25087d2c-9631-414b-bc3d-b3bf78cf97db,9b7830c3-52be-4cd4-a121-c361debda442,6eca840b-95f7-440b-a1d4-005e238e1874,9daf9bba-690f-499b-8d6e-5ab43144696a,15fe5818-802e-48f4-8ff4-436c8f83391c,2b1b5910-66a4-450b-842d-cb2462e58d8a,11a59552-9841-4314-a696-3e1ad797dc0e",
+        "uri": "/api/v1/nodes/0730E39E-65E6-E111-BD3C-001E675AF475"
+      },
+      "uri": "/nodes/0730E39E-65E6-E111-BD3C-001E675AF475",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "0730E39E-65E6-E111-BD3C-001E675AF475",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        },
+        "cores": {
+          "system": {
+            "used": 6,
+            "max": 32
+          },
+          "cgroups": [
+            {
+              "type": "os",
+              "used": [
+                {
+                  "socket": "0",
+                  "core": "1"
+                },
+                {
+                  "socket": "0",
+                  "core": "2"
+                }
+              ]
+            },
+            {
+              "type": "6Wind",
+              "used": [
+                {
+                  "socket": "0",
+                  "core": "1"
+                }
+              ]
+            },
+            {
+              "type": "vm",
+              "used": [
+                {
+                  "socket": "1",
+                  "core": "0"
+                },
+                {
+                  "socket": "1",
+                  "core": "1"
+                },
+                {
+                  "socket": "1",
+                  "core": "2"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null,
+        "max_scu_per_core": 6
+      },
+      "vm_info": {
+        "count": 22,
+        "max": null
+      },
+      "memory": {
+        "max": 36072,
+        "used": 25920
+      },
+      "vm_ids": [
+        "962cf7e0-e058-4825-9173-879cdc4be11a",
+        "251efa22-3b60-41e3-bb91-cb223ba4c961",
+        "d7c191b4-2897-4eda-8b1a-0738d6f02eff",
+        "9e916d53-85e3-4087-836e-afb1184deee7",
+        "7b5bdd65-bb13-4985-b76a-f5d6c5a8fe72",
+        "48f59eba-71d0-4061-958f-ad74375e7440",
+        "e48ddca6-ee75-4d9f-827f-5762e0e15de0",
+        "c421e1ca-9c02-4757-9e26-ead1648ca168",
+        "3c499a65-1a43-48a9-81d0-a4d5db8846a9",
+        "28efd9f3-f8b7-45da-9d35-408bda83ef7a",
+        "5ace0012-7c32-4602-ba37-08973357dd7d",
+        "f8002be8-8b83-487d-82b4-deb4a88c8ec5",
+        "9d494a46-8597-41a2-b39a-0206f3d26f9a",
+        "c32f4c45-4755-4e14-b7f5-2d6c2fae28f7",
+        "3c9c66ec-c3e1-41d3-8247-c49e0f76f8a6",
+        "25087d2c-9631-414b-bc3d-b3bf78cf97db",
+        "9b7830c3-52be-4cd4-a121-c361debda442",
+        "6eca840b-95f7-440b-a1d4-005e238e1874",
+        "9daf9bba-690f-499b-8d6e-5ab43144696a",
+        "15fe5818-802e-48f4-8ff4-436c8f83391c",
+        "2b1b5910-66a4-450b-842d-cb2462e58d8a",
+        "11a59552-9841-4314-a696-3e1ad797dc0e"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Unknown operational state of node.SAM agent is installed. ",
+        "health": 4,
+        "mode": 4,
+        "trust": 3,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=0730E39E-65E6-E111-BD3C-001E675AF475",
+      "tier": null,
+      "ids": {
+        "platform_id": "0730E39E-65E6-E111-BD3C-001E675AF475",
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": "0730E39E-65E6-E111-BD3C-001E675AF475"
+      },
+      "node_name": "clientnode9.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 34
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=B7E28200-0000-8200-E2B7-00000082E2B7",
+        "vms": "/api/v1/vms?ids=a95b56af-57f5-46b7-8b54-0cfb39943b2d,289f9d5e-0c0e-4d04-9dd9-ac5421d47806,0d60c6bf-b6ae-43ff-825b-72d7956916a0,7e74a040-f07e-4e40-a580-5332a91fb961,55e2dd90-c273-4c38-a55e-c010ce506bed,8b682ce1-f21f-4f91-b7d8-d7b983bad3e1,645cdec9-1c32-48a8-a667-580dde5eba56,5ee73a47-ae3f-4a52-9c32-b44ee9e04ef2,46540f7c-d195-4a7d-b829-8045f49a6d05,b6c8803c-2bf9-47b2-b573-006a24273c21,dbfa01b6-a279-4736-a622-97141c115f8d,665ad2f3-1cfc-4d27-9a8c-71c63515f99f,e18082bf-302d-4049-ae92-f09a5589621f,52f0e9d8-7898-4530-b15c-b4fc844bb517,444c1b14-06a4-4de0-8d89-299f4cb9f343,519dddf6-60b9-438b-9cb8-27446188f15c,8fd3ad80-d079-440b-8fdc-aa579596c4a0,622533bc-b749-40f5-a718-10463e9dea81,b1151997-ae5e-4f6a-a853-ae5819840498,770c56df-01df-4bfc-8d7b-62ba6b04504b,bacba934-86f6-4ffd-b548-90e47ae3c04d,5bf08381-4c24-43e7-a28f-a21519f1d2f4,847ccbb9-5765-40e6-a0c5-607148f4392a,22d4fa99-3ef8-47cb-934f-101161c2701f,db0f9dc8-0b95-4a89-b770-a202e025538d,297bc0ea-2612-4f9f-b137-3f933f1083cf,ef343f78-c426-42cf-b322-20df68f35165,700c4508-be2a-486f-a014-7643a10dbe72,27dadf8b-ea88-453a-af8a-2e3a466887da,aee089cf-ca8f-4f1a-9a6a-c14e621e347c,9092f2a5-7c3b-47fd-a876-e349768cc8a7,59e32012-f765-4b1e-9107-5ec4314f53af,de0f3f48-5310-4110-90d5-4395a1843193,225a3605-9d53-4b95-88ec-85c523d418c9,48cfb825-62c9-4093-805e-8c72a99f0360,cb61a96c-8a11-4b4b-a049-ba36a3bbcf44,e83fefb3-7201-4414-8765-026d7359f23f,f56b3112-07de-4af7-89cc-894eb681faac,f4db1597-bb2d-4426-9541-9deb7657fa8f,57e81428-bc37-4d6e-8430-f7de606e2b6a,0781f6a9-8866-4919-8418-4f4903e78e48,a3167992-22ae-4eed-8ba0-52a37a2d6522,8407fdb1-dd7a-437b-9fc4-37c3273ac6ff,c765502e-6d3f-4976-abb0-8101f520ee1a,2dcd1146-4b10-48f6-9f11-efb569a0b257,7efd6fe7-fdc3-48dd-b941-b0d065fbb196,5b9371c6-e2e7-4881-9879-26087af52511,44ffcc86-ef15-488a-9f73-8867300ab3ac,ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4,2edf8248-6c75-486f-af8b-3bbb37b8a141,915396c5-2d8a-455c-8d0e-39a00ca1784c,bd7d88b8-cbb5-43bd-a759-335c6132c2d1,39d90d6d-58f6-4c2d-a25a-31f59de9a0e6,f48c3366-58cb-4f37-a18d-decea2938dce,0b7c31b5-e1e7-4e87-a530-d6203f3f305b,351dcded-4840-4606-b070-425cae1a59d1,557c2e11-1dfc-4c09-922b-024279b92b63,745cde1f-a3e7-43d4-88a9-a927430af41f,f798b07a-b28d-45e6-8167-ea5550fe9e46,97457619-1c08-4713-a507-a71186907b35,bee50c6e-de36-47a8-8bbb-d0a9022fcca4,23f630bf-539b-40f3-ad5e-ef285b804f77,2686450a-0f84-4c4a-8867-fd00583d9082,89df0383-ae8f-4d53-a131-63d00ca43bd9,e161e761-9153-408c-935d-c81148e87475,2a7916b6-8808-433f-a673-c0d7f8c382e2,92bc611d-c8db-498f-bf9b-072742821122,84af3566-555a-44ef-bbc9-7435812400d4,01ad3eab-8dd5-4017-9261-5789b487141d,9c2cf44b-f8cb-419a-b2e8-06df0baa69f3,4c75a702-10e4-462c-9d49-36161b812159,1dcba328-a200-4edc-95a9-1412c9e41cd8,7dbf6942-810a-4f83-b6d4-a6a662b4f2e9,3d55dbd2-6944-49e2-b7bd-e9b2547a3368,66c09441-6336-4869-9eb0-64ee8bc95425,5d3d975a-a11f-465c-ac0b-0a32b61f54d4,1b642330-7fc4-43c4-a8e9-422ff9344a1c,1ffd5243-a8cd-4030-be0d-c402d5ad0397,3c6bdd9f-16b3-4cde-9236-e04a79720619,64e3a3ee-0290-4440-86da-0cab29a250d5,bc1fa734-2e5b-4353-9d43-1a3127781f6e,08b5bcfd-8578-42b6-aab7-868fe55e378f,2a573651-c239-44df-8956-f0e60088ebc4,e2c3cca4-cf57-4f4f-bf7c-7c20ac3d7271,bf1e2ac4-f448-4821-afc9-d1b1ccbcda04,e587a100-ea78-48d8-9012-f9e73d1114bd,53e99011-3949-448b-b4e7-538dbcf6594d,1fa76318-b413-4822-a1fb-48ba4987176e,cc368ff7-5613-4d35-afb3-5a5cb150de30,8e2f9748-e47f-43df-961e-54ba4ec13a1d",
+        "uri": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
+      },
+      "uri": "/nodes/B7E28200-0000-8200-E2B7-00000082E2B7",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null,
+        "max_scu_per_core": 7
+      },
+      "vm_info": {
+        "count": 90,
+        "max": null
+      },
+      "memory": {
+        "max": 54265,
+        "used": 60736
+      },
+      "vm_ids": [
+        "a95b56af-57f5-46b7-8b54-0cfb39943b2d",
+        "289f9d5e-0c0e-4d04-9dd9-ac5421d47806",
+        "0d60c6bf-b6ae-43ff-825b-72d7956916a0",
+        "7e74a040-f07e-4e40-a580-5332a91fb961",
+        "55e2dd90-c273-4c38-a55e-c010ce506bed",
+        "8b682ce1-f21f-4f91-b7d8-d7b983bad3e1",
+        "645cdec9-1c32-48a8-a667-580dde5eba56",
+        "5ee73a47-ae3f-4a52-9c32-b44ee9e04ef2",
+        "46540f7c-d195-4a7d-b829-8045f49a6d05",
+        "b6c8803c-2bf9-47b2-b573-006a24273c21",
+        "dbfa01b6-a279-4736-a622-97141c115f8d",
+        "665ad2f3-1cfc-4d27-9a8c-71c63515f99f",
+        "e18082bf-302d-4049-ae92-f09a5589621f",
+        "52f0e9d8-7898-4530-b15c-b4fc844bb517",
+        "444c1b14-06a4-4de0-8d89-299f4cb9f343",
+        "519dddf6-60b9-438b-9cb8-27446188f15c",
+        "8fd3ad80-d079-440b-8fdc-aa579596c4a0",
+        "622533bc-b749-40f5-a718-10463e9dea81",
+        "b1151997-ae5e-4f6a-a853-ae5819840498",
+        "770c56df-01df-4bfc-8d7b-62ba6b04504b",
+        "bacba934-86f6-4ffd-b548-90e47ae3c04d",
+        "5bf08381-4c24-43e7-a28f-a21519f1d2f4",
+        "847ccbb9-5765-40e6-a0c5-607148f4392a",
+        "22d4fa99-3ef8-47cb-934f-101161c2701f",
+        "db0f9dc8-0b95-4a89-b770-a202e025538d",
+        "297bc0ea-2612-4f9f-b137-3f933f1083cf",
+        "ef343f78-c426-42cf-b322-20df68f35165",
+        "700c4508-be2a-486f-a014-7643a10dbe72",
+        "27dadf8b-ea88-453a-af8a-2e3a466887da",
+        "aee089cf-ca8f-4f1a-9a6a-c14e621e347c",
+        "9092f2a5-7c3b-47fd-a876-e349768cc8a7",
+        "59e32012-f765-4b1e-9107-5ec4314f53af",
+        "de0f3f48-5310-4110-90d5-4395a1843193",
+        "225a3605-9d53-4b95-88ec-85c523d418c9",
+        "48cfb825-62c9-4093-805e-8c72a99f0360",
+        "cb61a96c-8a11-4b4b-a049-ba36a3bbcf44",
+        "e83fefb3-7201-4414-8765-026d7359f23f",
+        "f56b3112-07de-4af7-89cc-894eb681faac",
+        "f4db1597-bb2d-4426-9541-9deb7657fa8f",
+        "57e81428-bc37-4d6e-8430-f7de606e2b6a",
+        "0781f6a9-8866-4919-8418-4f4903e78e48",
+        "a3167992-22ae-4eed-8ba0-52a37a2d6522",
+        "8407fdb1-dd7a-437b-9fc4-37c3273ac6ff",
+        "c765502e-6d3f-4976-abb0-8101f520ee1a",
+        "2dcd1146-4b10-48f6-9f11-efb569a0b257",
+        "7efd6fe7-fdc3-48dd-b941-b0d065fbb196",
+        "5b9371c6-e2e7-4881-9879-26087af52511",
+        "44ffcc86-ef15-488a-9f73-8867300ab3ac",
+        "ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4",
+        "2edf8248-6c75-486f-af8b-3bbb37b8a141",
+        "915396c5-2d8a-455c-8d0e-39a00ca1784c",
+        "bd7d88b8-cbb5-43bd-a759-335c6132c2d1",
+        "39d90d6d-58f6-4c2d-a25a-31f59de9a0e6",
+        "f48c3366-58cb-4f37-a18d-decea2938dce",
+        "0b7c31b5-e1e7-4e87-a530-d6203f3f305b",
+        "351dcded-4840-4606-b070-425cae1a59d1",
+        "557c2e11-1dfc-4c09-922b-024279b92b63",
+        "745cde1f-a3e7-43d4-88a9-a927430af41f",
+        "f798b07a-b28d-45e6-8167-ea5550fe9e46",
+        "97457619-1c08-4713-a507-a71186907b35",
+        "bee50c6e-de36-47a8-8bbb-d0a9022fcca4",
+        "23f630bf-539b-40f3-ad5e-ef285b804f77",
+        "2686450a-0f84-4c4a-8867-fd00583d9082",
+        "89df0383-ae8f-4d53-a131-63d00ca43bd9",
+        "e161e761-9153-408c-935d-c81148e87475",
+        "2a7916b6-8808-433f-a673-c0d7f8c382e2",
+        "92bc611d-c8db-498f-bf9b-072742821122",
+        "84af3566-555a-44ef-bbc9-7435812400d4",
+        "01ad3eab-8dd5-4017-9261-5789b487141d",
+        "9c2cf44b-f8cb-419a-b2e8-06df0baa69f3",
+        "4c75a702-10e4-462c-9d49-36161b812159",
+        "1dcba328-a200-4edc-95a9-1412c9e41cd8",
+        "7dbf6942-810a-4f83-b6d4-a6a662b4f2e9",
+        "3d55dbd2-6944-49e2-b7bd-e9b2547a3368",
+        "66c09441-6336-4869-9eb0-64ee8bc95425",
+        "5d3d975a-a11f-465c-ac0b-0a32b61f54d4",
+        "1b642330-7fc4-43c4-a8e9-422ff9344a1c",
+        "1ffd5243-a8cd-4030-be0d-c402d5ad0397",
+        "3c6bdd9f-16b3-4cde-9236-e04a79720619",
+        "64e3a3ee-0290-4440-86da-0cab29a250d5",
+        "bc1fa734-2e5b-4353-9d43-1a3127781f6e",
+        "08b5bcfd-8578-42b6-aab7-868fe55e378f",
+        "2a573651-c239-44df-8956-f0e60088ebc4",
+        "e2c3cca4-cf57-4f4f-bf7c-7c20ac3d7271",
+        "bf1e2ac4-f448-4821-afc9-d1b1ccbcda04",
+        "e587a100-ea78-48d8-9012-f9e73d1114bd",
+        "53e99011-3949-448b-b4e7-538dbcf6594d",
+        "1fa76318-b413-4822-a1fb-48ba4987176e",
+        "cc368ff7-5613-4d35-afb3-5a5cb150de30",
+        "8e2f9748-e47f-43df-961e-54ba4ec13a1d"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Unknown operational state of node.SAM agent is installed. ",
+        "health": 4,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B7E28200-0000-8200-E2B7-00000082E2B7",
+      "tier": null,
+      "ids": {
+        "platform_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": "B7E28200-0000-8200-E2B7-00000082E2B7"
+      },
+      "node_name": "clientnode4.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 102
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/00F400BD-762A-E211-9C53-001E67343C15",
+        "logs": "/api/v1/logs?node=00F400BD-762A-E211-9C53-001E67343C15"
+      },
+      "uri": "/nodes/00F400BD-762A-E211-9C53-001E67343C15",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "00F400BD-762A-E211-9C53-001E67343C15",
+      "utilization": {
+        "scu": {
+          "system": {
+            "value": 30.0,
+            "min": 0,
+            "max": 800.0
+          },
+          "cgroups": [
+            {
+              "type": "vm",
+              "value": 12,
+              "min": 0,
+              "max": 12.0
+            },
+            {
+              "type": "os",
+              "value": 13,
+              "min": 0,
+              "max": 13.0
+            },
+            {
+              "type": "6wind",
+              "value": 14.0,
+              "min": 0,
+              "max": 14
+            }
+          ]
+        },
+         "cores": {
+          "system": {
+            "used": 6,
+            "max": 32
+          },
+          "cgroups": [
+            {
+              "type": "os",
+              "used": [
+                {
+                  "socket": "0",
+                  "core": "1"
+                },
+                {
+                  "socket": "0",
+                  "core": "2"
+                }
+              ]
+            },
+            {
+              "type": "6Wind",
+              "used": [
+                {
+                  "socket": "0",
+                  "core": "1"
+                }
+              ]
+            },
+            {
+              "type": "vm",
+              "used": [
+                {
+                  "socket": "1",
+                  "core": "0"
+                },
+                {
+                  "socket": "1",
+                  "core": "1"
+                },
+                {
+                  "socket": "1",
+                  "core": "2"
+                }
+              ]
+            }
+          ]
+        },
+        "uptime": null,
+        "network": null,
+        "ipc": 0.32,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": {
+          "used": "3042272 KB",
+          "ksm_sharing": null
+        },
+        "cpu": {
+          "iowait": 2015.36,
+          "idle": 54822728.16,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        },
+        "cloud": {
+          "memory": {
+            "max": 72379,
+            "used": 512
+          },
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "memory_size": "49152 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2,
+        "max_scu_per_core": 8
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SAM Agent reports unknown. SAM agent is installed. Node is powered on. Compute service is working. Compute service is enabled. ",
+        "health": 0,
+        "mode": 1,
+        "trust": 3,
+        "short_message": "SAM Agent reports unknown. ",
+        "ipmi_sensors_in_error": ["System Fan 1B", "System Fan 2B", "System Fan 3B", "System Fan 4B", "System Fan 5B", "System Fan 6A", "System Fan 6B", "BB +5.0V", "BB +3.3V", "BB +5.0V STBY", "BB +3.3V AUX", "BB +1.05Vccp P1", "BB +1.5 P1MEM CD", "BB +1.5 P2MEM AB", "BB +1.5 P2MEM CD", "BB +1.1V STBY", "BB +3.3 RSR2 PGD"]
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 3,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 8,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 11,
+            "label": "MEDIUM"
+          }
+        },
+        "cgroups": [
+          {
+            "type": "os",
+            "value": 11,
+            "min": 0,
+            "max": 30,
+            "label": "MEDIUM"
+          },
+          {
+            "type": "vm",
+            "value": 11,
+            "min": 0,
+            "max": 30,
+            "label": "MEDIUM"
+          },
+          {
+            "type": "6Wind",
+            "value": 11,
+            "min": 0,
+            "max": 30,
+            "label": "MEDIUM"
+          }
+        ]
+      },
+      "logs_url": "/logs?node=00F400BD-762A-E211-9C53-001E67343C15",
+      "tier": null,
+      "ids": {
+        "platform_id": "00F400BD-762A-E211-9C53-001E67343C15",
+        "mac": "00:1e:67:34:3c:15",
+        "ip_address": "192.168.3.106",
+        "cloud_id": "00F400BD-762A-E211-9C53-001E67343C15"
+      },
+      "node_name": "clientnode6.hpr.com"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/C19346D2-73E6-520C-BDBD-AAD0BD566CBD",
+        "logs": "/api/v1/logs?node=C19346D2-73E6-520C-BDBD-AAD0BD566CBD"
+      },
+      "uri": "/nodes/None",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [],
+      "id": "C19346D2-73E6-520C-BDBD-AAD0BD566CBD",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 36037,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Compute service is not reporting. No compute service found. SAM agent is not installed. ",
+        "health": 0,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "Compute service is not reporting. No compute service found. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=None",
+      "tier": null,
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "node_name": "clientnode3.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/60D2FFA3-38BF-5462-BAFC-80764A9C622F",
+        "logs": "/api/v1/logs?node=60D2FFA3-38BF-5462-BAFC-80764A9C622F"
+      },
+      "uri": "/nodes/None",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2013-12-09T21:55:30+0000",
+          "health": 4,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "60D2FFA3-38BF-5462-BAFC-80764A9C622F",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 36072,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Compute service is not reporting. SAM agent is not installed. Compute service is enabled. ",
+        "health": 4,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "Compute service is not reporting. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": 15,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=None",
+      "tier": null,
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "node_name": "clientnode5.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/CAF4B84A-34BD-5645-A426-E25A633A849D",
+        "logs": "/api/v1/logs?node=CAF4B84A-34BD-5645-A426-E25A633A849D"
+      },
+      "uri": "/nodes/None",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "CAF4B84A-34BD-5645-A426-E25A633A849D",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 30042,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SAM agent is not installed. Compute service is working. Compute service is enabled. ",
+        "health": 2,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "SAM agent is not installed. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": 45,
+            "label": "HIGH"
+          }
+        }
+      },
+      "logs_url": "/logs?node=None",
+      "tier": null,
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "node_name": "clientnode2.hpr.com",
+      "vcpus": {
+        "max": 384,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C",
+        "logs": "/api/v1/logs?node=D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
+      },
+      "uri": "/nodes/None",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:47+0000",
+          "health": 1,
+          "name": "consoleauth",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-01-08T01:16:47+0000",
+          "health": 1,
+          "name": "cert",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-01-08T01:16:45+0000",
+          "health": 1,
+          "name": "scheduler",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-01-08T01:16:50+0000",
+          "health": 1,
+          "name": "conductor",
+          "operational": 2
+        },
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 48186,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SAM agent is not installed. Compute service is working. Compute service is enabled. ",
+        "health": 2,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "SAM agent is not installed. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=None",
+      "tier": null,
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "node_name": "clientnode1.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/D7E6ED8E-7996-518C-AAEF-DF3A1A60286B",
+        "logs": "/api/v1/logs?node=D7E6ED8E-7996-518C-AAEF-DF3A1A60286B"
+      },
+      "uri": "/nodes/None",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2013-12-17T22:56:30+0000",
+          "health": 4,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "D7E6ED8E-7996-518C-AAEF-DF3A1A60286B",
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 36123,
+        "used": 8704
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": null,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Compute service is not reporting. SAM agent is not installed. Compute service is enabled. ",
+        "health": 4,
+        "mode": 0,
+        "trust": 3,
+        "short_message": "Compute service is not reporting. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=None",
+      "tier": null,
+      "ids": {
+        "platform_id": null,
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": null
+      },
+      "node_name": "clientnode7.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 4
+      }
+    }
+  ]
+}

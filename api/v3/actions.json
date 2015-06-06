@@ -1,0 +1,2559 @@
+{
+  "actions": [
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/00000000-0000-0000-0000-002590A348E6"
+      },
+      "started": "2015-04-03T00:11:27+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "00000000-0000-0000-0000-002590A348E6",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-48.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-03T00:11:27+00:00",
+      "vm_id": null,
+      "id": 126,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_unmark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T21:04:27+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Node \"node-40.domain.tld\" preselection for VM placement has been removed.",
+      "last_update": "2015-04-02T21:04:27+00:00",
+      "vm_id": null,
+      "id": 125,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T20:16:45+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-40.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T20:16:45+00:00",
+      "vm_id": null,
+      "id": 124,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/809314C4-4C89-E411-906E-0012795D96DD"
+      },
+      "started": "2015-04-02T19:07:25+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "809314C4-4C89-E411-906E-0012795D96DD",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-42.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T19:07:25+00:00",
+      "vm_id": null,
+      "id": 123,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/809314C4-4C89-E411-906E-0012795D96DD"
+      },
+      "started": "2015-04-02T19:06:15+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "809314C4-4C89-E411-906E-0012795D96DD",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node node-42.domain.tld has been performed.",
+      "last_update": "2015-04-02T19:06:15+00:00",
+      "vm_id": null,
+      "id": 122,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/711BD796-1753-4A91-8C10-186AF3725D46"
+      },
+      "started": "2015-04-02T19:02:31+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "711BD796-1753-4A91-8C10-186AF3725D46",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUST\" succeeded.",
+      "last_update": "2015-04-02T19:02:32+00:00",
+      "vm_id": null,
+      "id": 121,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/51C117F2-1161-4833-A616-AF31E49BCAF4"
+      },
+      "started": "2015-04-02T19:02:30+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "51C117F2-1161-4833-A616-AF31E49BCAF4",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"SCUUNTRUST\" succeeded.",
+      "last_update": "2015-04-02T19:02:31+00:00",
+      "vm_id": null,
+      "id": 120,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/2BC3E79B-438C-4E35-ABC5-7B72329E7333"
+      },
+      "started": "2015-04-02T18:54:15+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "2BC3E79B-438C-4E35-ABC5-7B72329E7333",
+      "blocking": false,
+      "message": "Creation of flavor \"test-core-unsec\" succeeded.",
+      "last_update": "2015-04-02T18:54:15+00:00",
+      "vm_id": null,
+      "id": 119,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T18:50:42+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 1,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 1 of \"node-40.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T18:50:42+00:00",
+      "vm_id": null,
+      "id": 118,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_unmark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T18:50:33+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Node \"node-40.domain.tld\" preselection for VM placement has been removed.",
+      "last_update": "2015-04-02T18:50:33+00:00",
+      "vm_id": null,
+      "id": 117,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T18:39:42+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-40.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T18:39:42+00:00",
+      "vm_id": null,
+      "id": 116,
+      "severity": 1
+    },
+    {
+      "status": 4,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T18:32:57+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Cannot change agent mode while there are VMs running on specified node.",
+      "last_update": "2015-04-02T18:32:57+00:00",
+      "vm_id": null,
+      "id": 115,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/001BDF4B-7588-E211-94A6-001E6749D3F5"
+      },
+      "started": "2015-04-02T18:21:54+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 1
+      },
+      "sla_id": null,
+      "node_id": "001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node node-50.domain.tld has been performed.",
+      "last_update": "2015-04-02T18:21:54+00:00",
+      "vm_id": null,
+      "id": 114,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "scheduler_unmark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T17:26:39+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Node \"node-40.domain.tld\" preselection for VM placement has been removed.",
+      "last_update": "2015-04-02T17:26:39+00:00",
+      "vm_id": null,
+      "id": 113,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/94B8EEE8-B0D1-4723-BA36-0B57AF4F9D92"
+      },
+      "started": "2015-04-02T16:01:55+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "94B8EEE8-B0D1-4723-BA36-0B57AF4F9D92",
+      "blocking": false,
+      "message": "Creation of flavor \"bv-unsec-silver\" succeeded.",
+      "last_update": "2015-04-02T16:01:56+00:00",
+      "vm_id": null,
+      "id": 112,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "started": "2015-04-02T15:28:02+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-40.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T15:28:02+00:00",
+      "vm_id": null,
+      "id": 111,
+      "severity": 1
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:16:12+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:16:13+00:00",
+      "vm_id": null,
+      "id": 110,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:59+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:59+00:00",
+      "vm_id": null,
+      "id": 109,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:57+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:58+00:00",
+      "vm_id": null,
+      "id": 108,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:56+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:56+00:00",
+      "vm_id": null,
+      "id": 107,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:49+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:50+00:00",
+      "vm_id": null,
+      "id": 106,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:47+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:48+00:00",
+      "vm_id": null,
+      "id": 105,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:41+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:42+00:00",
+      "vm_id": null,
+      "id": 104,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:39+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:39+00:00",
+      "vm_id": null,
+      "id": 103,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:32+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:33+00:00",
+      "vm_id": null,
+      "id": 102,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:30+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:31+00:00",
+      "vm_id": null,
+      "id": 101,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T04:15:20+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"msscuuntrust\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T04:15:20+00:00",
+      "vm_id": null,
+      "id": 100,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/DCDDA232-4731-4374-9686-B50C65E08587"
+      },
+      "started": "2015-04-02T04:00:46+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "DCDDA232-4731-4374-9686-B50C65E08587",
+      "blocking": false,
+      "message": "Update of flavor \"MSscuuntrust\" succeeded.",
+      "last_update": "2015-04-02T04:00:46+00:00",
+      "vm_id": null,
+      "id": 99,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE"
+      },
+      "started": "2015-04-02T03:04:55+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTT\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T03:04:55+00:00",
+      "vm_id": null,
+      "id": 98,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE"
+      },
+      "started": "2015-04-02T03:04:32+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTT\" failed. Flavor not found",
+      "last_update": "2015-04-02T03:04:32+00:00",
+      "vm_id": null,
+      "id": 97,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE"
+      },
+      "started": "2015-04-02T03:04:13+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTT\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:04:14+00:00",
+      "vm_id": null,
+      "id": 96,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE"
+      },
+      "started": "2015-04-02T03:03:44+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "D2ADE8D3-E8AF-4F8C-A75A-9E252A0670DE",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUSTT\" succeeded.",
+      "last_update": "2015-04-02T03:03:45+00:00",
+      "vm_id": null,
+      "id": 95,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:32+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:33+00:00",
+      "vm_id": null,
+      "id": 94,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:30+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:31+00:00",
+      "vm_id": null,
+      "id": 93,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:29+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:29+00:00",
+      "vm_id": null,
+      "id": 92,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:27+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:28+00:00",
+      "vm_id": null,
+      "id": 91,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:25+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:26+00:00",
+      "vm_id": null,
+      "id": 90,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:16+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:17+00:00",
+      "vm_id": null,
+      "id": 89,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:14+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:15+00:00",
+      "vm_id": null,
+      "id": 88,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:03:12+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:03:13+00:00",
+      "vm_id": null,
+      "id": 87,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:57+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:58+00:00",
+      "vm_id": null,
+      "id": 86,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:47+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:47+00:00",
+      "vm_id": null,
+      "id": 85,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:45+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:46+00:00",
+      "vm_id": null,
+      "id": 84,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:07+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:08+00:00",
+      "vm_id": null,
+      "id": 83,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:05+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:06+00:00",
+      "vm_id": null,
+      "id": 82,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:03+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:04+00:00",
+      "vm_id": null,
+      "id": 81,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:02:01+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:02:01+00:00",
+      "vm_id": null,
+      "id": 80,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:44+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:44+00:00",
+      "vm_id": null,
+      "id": 79,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:42+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:43+00:00",
+      "vm_id": null,
+      "id": 78,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:40+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:41+00:00",
+      "vm_id": null,
+      "id": 77,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:38+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:39+00:00",
+      "vm_id": null,
+      "id": 76,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:36+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:37+00:00",
+      "vm_id": null,
+      "id": 75,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:34+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:34+00:00",
+      "vm_id": null,
+      "id": 74,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:31+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:31+00:00",
+      "vm_id": null,
+      "id": 73,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T03:01:16+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T03:01:17+00:00",
+      "vm_id": null,
+      "id": 72,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:12+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:12+00:00",
+      "vm_id": null,
+      "id": 70,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:12+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:12+00:00",
+      "vm_id": null,
+      "id": 71,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:11+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:11+00:00",
+      "vm_id": null,
+      "id": 69,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:10+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:10+00:00",
+      "vm_id": null,
+      "id": 68,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:09+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:09+00:00",
+      "vm_id": null,
+      "id": 67,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:59:07+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:59:07+00:00",
+      "vm_id": null,
+      "id": 66,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:58:43+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:58:43+00:00",
+      "vm_id": null,
+      "id": 65,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:58:05+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. Flavor not found",
+      "last_update": "2015-04-02T02:58:05+00:00",
+      "vm_id": null,
+      "id": 64,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:57:34+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T02:57:35+00:00",
+      "vm_id": null,
+      "id": 63,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/1DC0A091-FDD6-4645-A5D3-A27325BA2835"
+      },
+      "started": "2015-04-02T02:56:34+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "1DC0A091-FDD6-4645-A5D3-A27325BA2835",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTINGG\" succeeded.",
+      "last_update": "2015-04-02T02:56:35+00:00",
+      "vm_id": null,
+      "id": 62,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/0465B0FF-520B-4112-B97B-C5803A95E6AF"
+      },
+      "started": "2015-04-02T02:56:09+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "0465B0FF-520B-4112-B97B-C5803A95E6AF",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTING\" succeeded.",
+      "last_update": "2015-04-02T02:56:10+00:00",
+      "vm_id": null,
+      "id": 61,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:42+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:42+00:00",
+      "vm_id": null,
+      "id": 60,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:41+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:41+00:00",
+      "vm_id": null,
+      "id": 59,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:40+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:40+00:00",
+      "vm_id": null,
+      "id": 58,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:38+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:38+00:00",
+      "vm_id": null,
+      "id": 57,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:37+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:37+00:00",
+      "vm_id": null,
+      "id": 56,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:55:29+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTING\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-02T02:55:29+00:00",
+      "vm_id": null,
+      "id": 55,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/ACCA710D-F9A8-4095-9322-59A0F6F54968"
+      },
+      "started": "2015-04-02T02:54:05+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "ACCA710D-F9A8-4095-9322-59A0F6F54968",
+      "blocking": false,
+      "message": "Update of flavor \"MSINTERESTINGFLAVOR\" succeeded.",
+      "last_update": "2015-04-02T02:54:06+00:00",
+      "vm_id": null,
+      "id": 54,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/2210E615-7D3A-4ED3-A161-BE4719791881"
+      },
+      "started": "2015-04-02T02:53:02+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "2210E615-7D3A-4ED3-A161-BE4719791881",
+      "blocking": false,
+      "message": "Creation of flavor \"MSINTERESTINGFLAVOR\" succeeded.",
+      "last_update": "2015-04-02T02:53:03+00:00",
+      "vm_id": null,
+      "id": 53,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/36A42D50-628A-4798-9F08-B99412DC71C9"
+      },
+      "started": "2015-04-02T02:53:02+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "36A42D50-628A-4798-9F08-B99412DC71C9",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"MSSCU\" succeeded.",
+      "last_update": "2015-04-02T02:53:02+00:00",
+      "vm_id": null,
+      "id": 52,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:53+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:48:53+00:00",
+      "vm_id": null,
+      "id": 51,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:51+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:48:51+00:00",
+      "vm_id": null,
+      "id": 50,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:47+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. Flavor is deleted.",
+      "last_update": "2015-04-02T02:48:47+00:00",
+      "vm_id": null,
+      "id": 49,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:40+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. Flavor not found",
+      "last_update": "2015-04-02T02:48:41+00:00",
+      "vm_id": null,
+      "id": 48,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:36+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. Flavor not found",
+      "last_update": "2015-04-02T02:48:37+00:00",
+      "vm_id": null,
+      "id": 47,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:48:23+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Update of flavor \"MSSCUUNTRUSTTTT\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T02:48:24+00:00",
+      "vm_id": null,
+      "id": 46,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/8757B3D7-5AE3-41E9-99E9-B98C13FA794A"
+      },
+      "started": "2015-04-02T02:47:08+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "8757B3D7-5AE3-41E9-99E9-B98C13FA794A",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUSTTTT\" succeeded.",
+      "last_update": "2015-04-02T02:47:09+00:00",
+      "vm_id": null,
+      "id": 45,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:46:28+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T02:46:29+00:00",
+      "vm_id": null,
+      "id": 44,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/2EB09F31-3A42-42BA-A522-16EF3D7936FF"
+      },
+      "started": "2015-04-02T02:46:14+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "2EB09F31-3A42-42BA-A522-16EF3D7936FF",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"SCUNOTRUST\" succeeded.",
+      "last_update": "2015-04-02T02:46:14+00:00",
+      "vm_id": null,
+      "id": 42,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-02T02:46:14+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSSCUUNTRUST\" failed. OpenStack API reports error.",
+      "last_update": "2015-04-02T02:46:15+00:00",
+      "vm_id": null,
+      "id": 43,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-02T02:43:40+00:00",
+      "user": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      },
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Socket 0 of \"node-52.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2015-04-02T02:43:40+00:00",
+      "vm_id": null,
+      "id": 41,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/80FCF37C-2701-E411-906E-0017A4403562"
+      },
+      "started": "2015-04-02T01:16:19+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-37.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-02T01:16:19+00:00",
+      "vm_id": null,
+      "id": 40,
+      "severity": 1
+    },
+    {
+      "status": 4,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-02T01:15:58+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 1
+      },
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Cannot change agent mode while there are VMs running on specified node.",
+      "last_update": "2015-04-02T01:15:58+00:00",
+      "vm_id": null,
+      "id": 39,
+      "severity": 1
+    },
+    {
+      "status": 4,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-02T01:15:48+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Cannot change agent mode while there are VMs running on specified node.",
+      "last_update": "2015-04-02T01:15:48+00:00",
+      "vm_id": null,
+      "id": 38,
+      "severity": 1
+    },
+    {
+      "status": 4,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-02T01:15:30+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Cannot change agent mode while there are VMs running on specified node.",
+      "last_update": "2015-04-02T01:15:30+00:00",
+      "vm_id": null,
+      "id": 37,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/0E5130E9-B00B-4451-950F-C3A264A2AC05"
+      },
+      "started": "2015-04-02T00:42:05+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "0E5130E9-B00B-4451-950F-C3A264A2AC05",
+      "blocking": false,
+      "message": "Creation of flavor \"trust\" succeeded.",
+      "last_update": "2015-04-02T00:42:06+00:00",
+      "vm_id": null,
+      "id": 36,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/E3D22E33-D805-462C-B4DD-BAC8EFAE1651"
+      },
+      "started": "2015-04-02T00:42:05+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "E3D22E33-D805-462C-B4DD-BAC8EFAE1651",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"MStrustscu\" succeeded.",
+      "last_update": "2015-04-02T00:42:05+00:00",
+      "vm_id": null,
+      "id": 35,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/C9AC9FFD-ADE1-4E74-BD1D-C989242A0368"
+      },
+      "started": "2015-04-01T23:51:29+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "C9AC9FFD-ADE1-4E74-BD1D-C989242A0368",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"MSTRUST\" succeeded.",
+      "last_update": "2015-04-01T23:51:29+00:00",
+      "vm_id": null,
+      "id": 33,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/4F8D7F92-AAC6-4B3F-BD6C-6FEFF56C9682"
+      },
+      "started": "2015-04-01T23:51:29+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "4F8D7F92-AAC6-4B3F-BD6C-6FEFF56C9682",
+      "blocking": false,
+      "message": "Creation of flavor \"MStrust\" succeeded.",
+      "last_update": "2015-04-01T23:51:30+00:00",
+      "vm_id": null,
+      "id": 34,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/30343536-3138-584D-5134-313530304E52"
+      },
+      "started": "2015-04-01T23:47:50+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-54.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T23:47:50+00:00",
+      "vm_id": null,
+      "id": 32,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/30343536-3138-584D-5134-313530304E52"
+      },
+      "started": "2015-04-01T23:41:22+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-54.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T23:41:22+00:00",
+      "vm_id": null,
+      "id": 31,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "started": "2015-04-01T23:15:41+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-53.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T23:15:41+00:00",
+      "vm_id": null,
+      "id": 30,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-01T23:14:03+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-52.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T23:14:03+00:00",
+      "vm_id": null,
+      "id": 29,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "update_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/498A1CE3-5A48-4ABB-BADD-8A7923F42343"
+      },
+      "started": "2015-04-01T23:13:28+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "498A1CE3-5A48-4ABB-BADD-8A7923F42343",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Update of SLA \"msscuuntrust-core\" succeeded.",
+      "last_update": "2015-04-01T23:13:28+00:00",
+      "vm_id": null,
+      "id": 28,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/8A9BC581-6A8B-4B3A-BAAF-664FE30C71AF"
+      },
+      "started": "2015-04-01T23:11:52+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "8A9BC581-6A8B-4B3A-BAAF-664FE30C71AF",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Update of SLA \"msscuuntrust\" succeeded.",
+      "last_update": "2015-04-01T23:11:53+00:00",
+      "vm_id": null,
+      "id": 27,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/BA8B2379-C66B-4F97-B841-8BDDCFE8D8A6"
+      },
+      "started": "2015-04-01T23:08:59+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "BA8B2379-C66B-4F97-B841-8BDDCFE8D8A6",
+      "blocking": false,
+      "message": "Creation of flavor \"MSscuuntrust\" succeeded.",
+      "last_update": "2015-04-01T23:09:00+00:00",
+      "vm_id": null,
+      "id": 26,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/FE27D842-B500-4994-8E89-2F5F5E411972"
+      },
+      "started": "2015-04-01T23:08:59+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "FE27D842-B500-4994-8E89-2F5F5E411972",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"msscuuntrust\" succeeded.",
+      "last_update": "2015-04-01T23:08:59+00:00",
+      "vm_id": null,
+      "id": 25,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "started": "2015-04-01T23:05:42+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-52.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T23:05:42+00:00",
+      "vm_id": null,
+      "id": 24,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "started": "2015-04-01T22:48:07+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-53.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T22:48:07+00:00",
+      "vm_id": null,
+      "id": 23,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "set_agent_mode",
+      "links": {
+        "nodes": "/api/v3/nodes/80FCF37C-2701-E411-906E-0017A4403562"
+      },
+      "started": "2015-04-01T22:13:39+00:00",
+      "user": null,
+      "options": {
+        "agent_mode": 4
+      },
+      "sla_id": null,
+      "node_id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Set agent mode action for node node-37.domain.tld has been performed.",
+      "last_update": "2015-04-01T22:13:39+00:00",
+      "vm_id": null,
+      "id": 22,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/FD9EC1AD-EBB8-4366-9255-72B8D8F41605"
+      },
+      "started": "2015-04-01T22:12:29+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "FD9EC1AD-EBB8-4366-9255-72B8D8F41605",
+      "blocking": false,
+      "message": "Creation of flavor \"MSdefaultSLA\" succeeded.",
+      "last_update": "2015-04-01T22:12:29+00:00",
+      "vm_id": null,
+      "id": 21,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/0CC86664-CEE9-4A07-95FE-3DF4EC68E17E"
+      },
+      "started": "2015-04-01T21:59:07+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "0CC86664-CEE9-4A07-95FE-3DF4EC68E17E",
+      "blocking": false,
+      "message": "Update of flavor \"MSF1\" succeeded.",
+      "last_update": "2015-04-01T21:59:08+00:00",
+      "vm_id": null,
+      "id": 20,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/C1B6F468-B993-4607-9506-1BAAF64AD63C"
+      },
+      "started": "2015-04-01T21:59:00+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "C1B6F468-B993-4607-9506-1BAAF64AD63C",
+      "blocking": false,
+      "message": "Update of flavor \"MSF1\" failed. Flavor with given new name already exists (MSF11).",
+      "last_update": "2015-04-01T21:59:00+00:00",
+      "vm_id": null,
+      "id": 19,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "update_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/C1B6F468-B993-4607-9506-1BAAF64AD63C"
+      },
+      "started": "2015-04-01T21:58:41+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "C1B6F468-B993-4607-9506-1BAAF64AD63C",
+      "blocking": false,
+      "message": "Update of flavor \"MSF1\" failed. Flavor with given new name already exists (MSF11).",
+      "last_update": "2015-04-01T21:58:41+00:00",
+      "vm_id": null,
+      "id": 18,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/2E96ABC8-DA6C-44F8-823E-C6C5FBB01DA8"
+      },
+      "started": "2015-04-01T21:58:28+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "2E96ABC8-DA6C-44F8-823E-C6C5FBB01DA8",
+      "blocking": false,
+      "message": "Creation of flavor \"MSF11\" succeeded.",
+      "last_update": "2015-04-01T21:58:28+00:00",
+      "vm_id": null,
+      "id": 17,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-01T21:58:21+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSF1\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-01T21:58:21+00:00",
+      "vm_id": null,
+      "id": 16,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/UNSET"
+      },
+      "started": "2015-04-01T21:58:13+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "UNSET",
+      "blocking": false,
+      "message": "Creation of flavor \"MSF1\" failed. Flavor with given name already exists.",
+      "last_update": "2015-04-01T21:58:13+00:00",
+      "vm_id": null,
+      "id": 15,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/C1B6F468-B993-4607-9506-1BAAF64AD63C"
+      },
+      "started": "2015-04-01T21:57:33+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "C1B6F468-B993-4607-9506-1BAAF64AD63C",
+      "blocking": false,
+      "message": "Creation of flavor \"MSF1\" succeeded.",
+      "last_update": "2015-04-01T21:57:33+00:00",
+      "vm_id": null,
+      "id": 14,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "started": "2015-04-01T21:55:03+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-53.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T21:55:03+00:00",
+      "vm_id": null,
+      "id": 13,
+      "severity": 1
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/F28C2F42-4D58-4B06-BAA3-1555A755DF8B"
+      },
+      "started": "2015-04-01T21:12:46+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "F28C2F42-4D58-4B06-BAA3-1555A755DF8B",
+      "blocking": false,
+      "message": "Creation of flavor \"bv-sec-gips-2-1M-8G\" succeeded.",
+      "last_update": "2015-04-01T21:12:46+00:00",
+      "vm_id": null,
+      "id": 12,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/96B2E9B8-0B90-40E2-A5AC-F3509B2C0930"
+      },
+      "started": "2015-04-01T21:12:45+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "96B2E9B8-0B90-40E2-A5AC-F3509B2C0930",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-sec-gip\" succeeded.",
+      "last_update": "2015-04-01T21:12:46+00:00",
+      "vm_id": null,
+      "id": 11,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/5340783F-1EF6-42CC-A6E2-E55D6A6A288A"
+      },
+      "started": "2015-04-01T21:10:38+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "5340783F-1EF6-42CC-A6E2-E55D6A6A288A",
+      "blocking": false,
+      "message": "Creation of flavor \"bv-sec-15121\" succeeded.",
+      "last_update": "2015-04-01T21:10:38+00:00",
+      "vm_id": null,
+      "id": 10,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/4F53747D-14F8-4210-9B97-EC7F52765BE2"
+      },
+      "started": "2015-04-01T21:10:37+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "4F53747D-14F8-4210-9B97-EC7F52765BE2",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-sec-1-512-1\" succeeded.",
+      "last_update": "2015-04-01T21:10:38+00:00",
+      "vm_id": null,
+      "id": 9,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_flavor",
+      "links": {
+        "flavors": "/api/v3/configuration/flavors/F664D4F4-AE64-4850-8722-458902AF5A02"
+      },
+      "started": "2015-04-01T21:09:28+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": null,
+      "done": true,
+      "flavor_id": "F664D4F4-AE64-4850-8722-458902AF5A02",
+      "blocking": false,
+      "message": "Creation of flavor \"bv-unsec-1-512-1\" succeeded.",
+      "last_update": "2015-04-01T21:09:29+00:00",
+      "vm_id": null,
+      "id": 8,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/3A7E84C8-9EA7-4B92-ACA6-184A2CA06311"
+      },
+      "started": "2015-04-01T21:09:27+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "3A7E84C8-9EA7-4B92-ACA6-184A2CA06311",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" succeeded.",
+      "last_update": "2015-04-01T21:09:28+00:00",
+      "vm_id": null,
+      "id": 7,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/UNSET"
+      },
+      "started": "2015-04-01T21:09:02+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "UNSET",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" failed. Bad parameters passed: Compute SLO value (&lt0.0;0.5&gt) is not valid range &ltA;B&gt definition. B is less then minimum allowed value: 1.0.",
+      "last_update": "2015-04-01T21:09:02+00:00",
+      "vm_id": null,
+      "id": 6,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/UNSET"
+      },
+      "started": "2015-04-01T21:08:17+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "UNSET",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" failed. Bad parameters passed: Compute SLO value (&lt0.1;0.5&gt) is not valid range &ltA;B&gt definition. A or B value is not divisible by 0.5.",
+      "last_update": "2015-04-01T21:08:17+00:00",
+      "vm_id": null,
+      "id": 5,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/UNSET"
+      },
+      "started": "2015-04-01T21:08:14+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "UNSET",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" failed. Bad parameters passed: Compute SLO value (&lt0.1;0.5&gt) is not valid range &ltA;B&gt definition. A or B value is not divisible by 0.5.",
+      "last_update": "2015-04-01T21:08:14+00:00",
+      "vm_id": null,
+      "id": 4,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/UNSET"
+      },
+      "started": "2015-04-01T21:08:11+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "UNSET",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" failed. Bad parameters passed: Compute SLO value (&lt0.1;0.5&gt) is not valid range &ltA;B&gt definition. A or B value is not divisible by 0.5.",
+      "last_update": "2015-04-01T21:08:11+00:00",
+      "vm_id": null,
+      "id": 3,
+      "severity": null
+    },
+    {
+      "status": 4,
+      "name": "create_sla_definition",
+      "links": {
+        "slas": "/api/v3/configuration/slas/UNSET"
+      },
+      "started": "2015-04-01T21:08:00+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": "UNSET",
+      "node_id": null,
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Creation of SLA \"bv-unsec-1c-512m-1g\" failed. Bad parameters passed: Compute SLO value (&lt0.1;0.5&gt) is not valid range &ltA;B&gt definition. A or B value is not divisible by 0.5.",
+      "last_update": "2015-04-01T21:08:00+00:00",
+      "vm_id": null,
+      "id": 2,
+      "severity": null
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v3/nodes/4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "started": "2015-04-01T20:52:46+00:00",
+      "user": null,
+      "options": {},
+      "sla_id": null,
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "done": true,
+      "flavor_id": null,
+      "blocking": false,
+      "message": "Trust agent config action for node \"node-53.domain.tld\" has been performed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2015-04-01T20:52:46+00:00",
+      "vm_id": null,
+      "id": 1,
+      "severity": 1
+    }
+  ]
+}

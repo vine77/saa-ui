@@ -1,0 +1,80 @@
+{
+  "vm_instantiation_simple": {
+    "vm_name": "test-251efa22-3b60-41e3-bb91-cb223ba4c961",
+    "slo_gates": [
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/0e1af692-606b-442b-8f66-26e2f0ae45eb"
+        },
+        "nodes_count": 3,
+        "description": "Node`s Trust Server status.",
+        "slo_id": "0e1af692-606b-442b-8f66-26e2f0ae45eb"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+        },
+        "nodes_count": 3,
+        "description": "SAM Units capacity of node's core must be greater or equal to 0.",
+        "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+        },
+        "nodes_count": 3,
+        "description": "Node's available SAM Units value shall be greater or equal to 0.0.",
+        "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+        },
+        "nodes_count": 3,
+        "description": "SAM Units capacity of node's sockets must be greater or equal to 0.",
+        "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9"
+      }
+    ],
+    "links": {
+      "flavors": "/api/v1/configuration/flavors/e4d642f1-c6d3-4812-a1f3-7c94de93f9ca",
+      "vms": "/api/v1/vms/251efa22-3b60-41e3-bb91-cb223ba4c961",
+      "slas": "/api/v1/configuration/slas/6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c"
+    },
+    "schedule_time": "2014-01-06T23:04:13+0000",
+    "nodes_count": {
+      "under_saa_control": 3,
+      "total": 3
+    },
+    "sla_name": "GIPS violation unsecure",
+    "vm_trust_status": false,
+    "sla_id": "6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
+    "ranked_nodes": [
+      {
+        "node_id": "0730E39E-65E6-E111-BD3C-001E675AF475",
+        "selected": true,
+        "links": {
+          "nodes": "/api/v1/nodes/0730E39E-65E6-E111-BD3C-001E675AF475"
+        }
+      },
+      {
+        "node_id": "973D1534-B403-E211-BBFA-001E673B9418",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
+        }
+      },
+      {
+        "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
+        }
+      }
+    ],
+    "flavor_id": "e4d642f1-c6d3-4812-a1f3-7c94de93f9ca",
+    "generation_time": "2014-01-08T01:17:02+0000",
+    "scheduled_by_saa": true,
+    "vm_id": "251efa22-3b60-41e3-bb91-cb223ba4c961",
+    "id": "251efa22-3b60-41e3-bb91-cb223ba4c961"
+  }
+}

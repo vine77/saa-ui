@@ -1,0 +1,1173 @@
+{
+  "slas": [
+    {
+      "name": "Unsecure Platinum VM - no burst",
+      "links": {
+        "uri": "/api/v2/configuration/slas/c2b39b30-adeb-45ea-ab00-098cd8106368",
+        "slos": "/api/v2/configuration/slos?ids=91eed289-76c6-4494-b7c5-28e6267c2e11,6c64a5ea-b82d-416d-92df-7355dfa834d0"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "91eed289-76c6-4494-b7c5-28e6267c2e11",
+        "6c64a5ea-b82d-416d-92df-7355dfa834d0"
+      ],
+      "is_default": false,
+      "class_id": "7e472ace-68c8-4244-9380-7265d467e4e9",
+      "version": 1,
+      "type": "vm",
+      "flavor_id": "3",
+      "id": "c2b39b30-adeb-45ea-ab00-098cd8106368"
+    },
+    {
+      "name": "Secure Platinum VM - no burst",
+      "links": {
+        "uri": "/api/v2/configuration/slas/aa1b765d-390c-45b1-bd20-cb4c2aefb4fb",
+        "slos": "/api/v2/configuration/slos?ids=b01f342d-dba9-47cc-8c8f-429950684ac4,da8dd282-7d99-4f2e-b590-9a06a3f61e0f"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "b01f342d-dba9-47cc-8c8f-429950684ac4",
+        "da8dd282-7d99-4f2e-b590-9a06a3f61e0f"
+      ],
+      "is_default": false,
+      "class_id": "13b35a2d-7743-4f92-b6f7-e93bc5ec013c",
+      "version": 1,
+      "type": "vm",
+      "id": "aa1b765d-390c-45b1-bd20-cb4c2aefb4fb"
+    },
+    {
+      "name": "Unsecure Platinum VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/3b7dd1de-d758-4510-a0c1-bc34c79b5cb9",
+        "slos": "/api/v2/configuration/slos?ids=3226a34b-30ed-45ce-970c-1e4474efa8b5,b6c77195-ce26-4b0e-b7d2-fb15e61a03e8"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "3226a34b-30ed-45ce-970c-1e4474efa8b5",
+        "b6c77195-ce26-4b0e-b7d2-fb15e61a03e8"
+      ],
+      "is_default": false,
+      "class_id": "0f8d85a1-1506-41cc-9a0a-539e252e21e8",
+      "version": 1,
+      "type": "vm",
+      "id": "3b7dd1de-d758-4510-a0c1-bc34c79b5cb9"
+    },
+    {
+      "name": "Secure Platinum VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/9b744cdc-2319-45df-b122-08eaf28ae5f4",
+        "slos": "/api/v2/configuration/slos?ids=c7a6303e-6182-464e-aa73-be65913635e1,a7d0c8d6-f2bc-4489-bc10-b3c5cfdba0de"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "c7a6303e-6182-464e-aa73-be65913635e1",
+        "a7d0c8d6-f2bc-4489-bc10-b3c5cfdba0de"
+      ],
+      "is_default": false,
+      "class_id": "83e8ddb5-70dc-416d-a85a-40d31c1f4701",
+      "version": 1,
+      "type": "vm",
+      "id": "9b744cdc-2319-45df-b122-08eaf28ae5f4"
+    },
+    {
+      "name": "Unsecure Gold VM - no burst",
+      "links": {
+        "uri": "/api/v2/configuration/slas/aca591e0-43e2-490c-8ce8-d0fa67473fb4",
+        "slos": "/api/v2/configuration/slos?ids=4cb4cc0b-a2fb-430e-a6a0-3dffdf275738,533e13a0-2eae-4a45-bd85-6c4927a6ceb2"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "4cb4cc0b-a2fb-430e-a6a0-3dffdf275738",
+        "533e13a0-2eae-4a45-bd85-6c4927a6ceb2"
+      ],
+      "is_default": false,
+      "class_id": "376c76b3-9063-4657-b730-9d206fbf2713",
+      "version": 1,
+      "type": "vm",
+      "id": "aca591e0-43e2-490c-8ce8-d0fa67473fb4"
+    },
+    {
+      "name": "Secure Gold VM - no burst",
+      "links": {
+        "uri": "/api/v2/configuration/slas/1e814c4c-ef1e-45ca-828b-c0a1545eaef0",
+        "slos": "/api/v2/configuration/slos?ids=8042c85b-fb5d-4af4-a44c-a1fb4ce0a10c,913783e5-c5a8-434f-8f27-ab7cb51abfce"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "8042c85b-fb5d-4af4-a44c-a1fb4ce0a10c",
+        "913783e5-c5a8-434f-8f27-ab7cb51abfce"
+      ],
+      "is_default": false,
+      "class_id": "356e4a83-4f6c-4944-ad90-9e11cdd66ab9",
+      "version": 1,
+      "type": "vm",
+      "id": "1e814c4c-ef1e-45ca-828b-c0a1545eaef0"
+    },
+    {
+      "name": "Unsecure Gold VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/da0e8abf-50a6-4b46-ac09-0debf54b6962",
+        "slos": "/api/v2/configuration/slos?ids=1548c020-7f20-4980-8a5b-07faa67044dd,4f94bbd0-71f1-47c9-b9cc-bd252f1649d3"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "1548c020-7f20-4980-8a5b-07faa67044dd",
+        "4f94bbd0-71f1-47c9-b9cc-bd252f1649d3"
+      ],
+      "is_default": false,
+      "class_id": "ccfaceb3-0b13-4485-91de-122c25842540",
+      "version": 1,
+      "type": "vm",
+      "id": "da0e8abf-50a6-4b46-ac09-0debf54b6962"
+    },
+    {
+      "name": "Secure Gold VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/e782e4af-440a-4164-80e9-8f371aaca96d",
+        "slos": "/api/v2/configuration/slos?ids=aa484e15-6376-445d-aa58-254a993f4f3f,faf27168-d281-4904-b011-8b795ae096a9"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "aa484e15-6376-445d-aa58-254a993f4f3f",
+        "faf27168-d281-4904-b011-8b795ae096a9"
+      ],
+      "is_default": false,
+      "class_id": "80e73eaf-ad38-4f2e-8804-3871ea266ca0",
+      "version": 1,
+      "type": "vm",
+      "id": "e782e4af-440a-4164-80e9-8f371aaca96d"
+    },
+    {
+      "name": "Unsecure Silver VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/0702fc85-8eea-49e9-8cf2-552885bb3e37",
+        "slos": "/api/v2/configuration/slos?ids=36bc234b-8202-427a-a3ec-18ea72f46c7e,16c60f4a-61a5-472f-b5ae-febc9cb2c591"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "36bc234b-8202-427a-a3ec-18ea72f46c7e",
+        "16c60f4a-61a5-472f-b5ae-febc9cb2c591"
+      ],
+      "is_default": false,
+      "class_id": "37aeda46-348b-40c5-ab71-8caac014335a",
+      "version": 1,
+      "type": "vm",
+      "id": "0702fc85-8eea-49e9-8cf2-552885bb3e37"
+    },
+    {
+      "name": "Secure Silver VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/6fad552a-9062-4116-85bb-081e8f777321",
+        "slos": "/api/v2/configuration/slos?ids=5099b115-ebff-4da6-974d-8c34adeb250f,2bb8785f-3442-4ef6-9b8a-e0df41fb7fe0"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "5099b115-ebff-4da6-974d-8c34adeb250f",
+        "2bb8785f-3442-4ef6-9b8a-e0df41fb7fe0"
+      ],
+      "is_default": false,
+      "class_id": "711b4856-6ed6-4e4f-9c5f-9e39bcfd6e51",
+      "version": 1,
+      "type": "vm",
+      "id": "6fad552a-9062-4116-85bb-081e8f777321"
+    },
+    {
+      "name": "Unsecure Bronze VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/bf10c26a-2bd5-499d-98bd-aacf3ed67fdd",
+        "slos": "/api/v2/configuration/slos?ids=c9735ec8-629c-43b2-b03a-3845410ac640,6bbc75e8-8404-4eb9-9cf7-0c69d45d117e"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "c9735ec8-629c-43b2-b03a-3845410ac640",
+        "6bbc75e8-8404-4eb9-9cf7-0c69d45d117e"
+      ],
+      "is_default": false,
+      "class_id": "3279ed8e-8fef-43c1-80f5-fd97fa28d77a",
+      "version": 1,
+      "type": "vm",
+      "id": "bf10c26a-2bd5-499d-98bd-aacf3ed67fdd"
+    },
+    {
+      "name": "Secure Bronze VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/6392fc1e-bb9c-4d94-9c5e-19de445661c6",
+        "slos": "/api/v2/configuration/slos?ids=c3dc9cf0-c406-4ef6-ac98-b457bbd124ce,e86cf673-1d4e-441d-a803-1232165f0f3e"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "c3dc9cf0-c406-4ef6-ac98-b457bbd124ce",
+        "e86cf673-1d4e-441d-a803-1232165f0f3e"
+      ],
+      "is_default": false,
+      "class_id": "a25469c4-8284-442d-a02a-d3180d44c46e",
+      "version": 1,
+      "type": "vm",
+      "id": "6392fc1e-bb9c-4d94-9c5e-19de445661c6"
+    },
+    {
+      "name": "GIPS violation secure VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/34522d86-434f-4661-ab1a-96750c88a0f0",
+        "slos": "/api/v2/configuration/slos?ids=49aab236-7c78-4d9a-b20f-0b82eba94f5b,32edc7a9-4350-4f6b-b47c-152d3451ec6f"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "49aab236-7c78-4d9a-b20f-0b82eba94f5b",
+        "32edc7a9-4350-4f6b-b47c-152d3451ec6f"
+      ],
+      "is_default": false,
+      "class_id": "8bb61d86-e666-4c4e-b6e7-7a3b8526741c",
+      "version": 1,
+      "type": "vm",
+      "id": "34522d86-434f-4661-ab1a-96750c88a0f0"
+    },
+    {
+      "name": "GIPS violation unsecure VM",
+      "links": {
+        "uri": "/api/v2/configuration/slas/8f9920c0-8952-4a6c-8e8d-a322864356b6",
+        "slos": "/api/v2/configuration/slos?ids=7882d0b8-dcc8-47c4-ac7b-d43b07a36a92,b575cd73-8dfb-43cd-ba20-5a4b57a0d47d"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "7882d0b8-dcc8-47c4-ac7b-d43b07a36a92",
+        "b575cd73-8dfb-43cd-ba20-5a4b57a0d47d"
+      ],
+      "is_default": false,
+      "class_id": "f74bbcfc-2882-4039-ac92-954a1f1ecb87",
+      "version": 1,
+      "type": "vm",
+      "id": "8f9920c0-8952-4a6c-8e8d-a322864356b6"
+    },
+    {
+      "name": "1 Core assured secure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/3a848574-63ea-4023-8b34-5d4f9bef2c65",
+        "slos": "/api/v2/configuration/slos?ids=34f7fffc-5eed-485b-8004-557b81e72737,14b2ebc9-afd6-4277-af30-c7b4897fa633"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "34f7fffc-5eed-485b-8004-557b81e72737",
+        "14b2ebc9-afd6-4277-af30-c7b4897fa633"
+      ],
+      "is_default": false,
+      "class_id": "6bd7ba43-9144-4f8c-8e42-00540f432de4",
+      "version": 1,
+      "type": "vm",
+      "id": "3a848574-63ea-4023-8b34-5d4f9bef2c65"
+    },
+    {
+      "name": "1 Core assured unsecure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/74518ee2-7448-44b0-ab23-39cf0ff8ddd9",
+        "slos": "/api/v2/configuration/slos?ids=b702fde3-ede7-4742-8c7e-976805078fd5,ae29ed86-04e0-4bbd-bdee-31211e0c9a2e"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "b702fde3-ede7-4742-8c7e-976805078fd5",
+        "ae29ed86-04e0-4bbd-bdee-31211e0c9a2e"
+      ],
+      "is_default": false,
+      "class_id": "e2ec25fc-219e-48f6-9429-ff263ace8811",
+      "version": 1,
+      "type": "vm",
+      "id": "74518ee2-7448-44b0-ab23-39cf0ff8ddd9"
+    },
+    {
+      "name": "2 Cores assured secure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/58910dde-cade-4af6-85cd-b7336a4a0c34",
+        "slos": "/api/v2/configuration/slos?ids=8686894f-2bf9-4110-8bfb-bf0cd745cf45,6a3c8cfe-cfd3-43df-ad49-bee33c8879b2"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "8686894f-2bf9-4110-8bfb-bf0cd745cf45",
+        "6a3c8cfe-cfd3-43df-ad49-bee33c8879b2"
+      ],
+      "is_default": false,
+      "class_id": "27d32748-c674-488d-9c1d-a038075a0784",
+      "version": 1,
+      "type": "vm",
+      "id": "58910dde-cade-4af6-85cd-b7336a4a0c34"
+    },
+    {
+      "name": "2 Cores assured unsecure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/c719cc72-aa13-4d08-b382-43ef88475f0a",
+        "slos": "/api/v2/configuration/slos?ids=d2e5d5b0-0fe2-43fc-9c86-fec5d4a9b30b,66fa68e5-5a52-402d-9a40-54886d231fe5"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "d2e5d5b0-0fe2-43fc-9c86-fec5d4a9b30b",
+        "66fa68e5-5a52-402d-9a40-54886d231fe5"
+      ],
+      "is_default": false,
+      "class_id": "99fd6077-33a7-4b7e-bc9b-11d7a04d0e37",
+      "version": 1,
+      "type": "vm",
+      "id": "c719cc72-aa13-4d08-b382-43ef88475f0a"
+    },
+    {
+      "name": "4 Cores assured secure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/f25dff82-f831-48c4-a3ef-109d43393415",
+        "slos": "/api/v2/configuration/slos?ids=156fdfab-18a2-482d-a7e2-c89698f19161,85d15691-6fff-479d-9ea9-b321ac661826"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "156fdfab-18a2-482d-a7e2-c89698f19161",
+        "85d15691-6fff-479d-9ea9-b321ac661826"
+      ],
+      "is_default": false,
+      "class_id": "01f978e9-52ec-43a0-8e19-9d4bd065ead7",
+      "version": 1,
+      "type": "vm",
+      "id": "f25dff82-f831-48c4-a3ef-109d43393415"
+    },
+    {
+      "name": "4 Cores assured unsecure",
+      "links": {
+        "uri": "/api/v2/configuration/slas/89882285-a3a9-4a59-a3da-63b0333e0776",
+        "slos": "/api/v2/configuration/slos?ids=02270d50-4925-4238-b65f-ece7f175b0d7,d042664b-8095-4e8d-aea4-d68fdbae7cfe"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "02270d50-4925-4238-b65f-ece7f175b0d7",
+        "d042664b-8095-4e8d-aea4-d68fdbae7cfe"
+      ],
+      "is_default": false,
+      "class_id": "57e47888-a1fc-44ab-8f40-90a7cb079cad",
+      "version": 1,
+      "type": "vm",
+      "id": "89882285-a3a9-4a59-a3da-63b0333e0776"
+    },
+    {
+      "name": "Operating system SLA",
+      "links": {
+        "uri": "/api/v2/configuration/slas/1fa349f1-c0df-415a-ad58-ae436517250a",
+        "slos": "/api/v2/configuration/slos?ids=b225d49d-4da1-4e46-bfc4-b3e932806cd0"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "b225d49d-4da1-4e46-bfc4-b3e932806cd0"
+      ],
+      "is_default": false,
+      "class_id": "5fc72fa0-2034-4a39-b789-9b39738a8b6b",
+      "version": 1,
+      "type": "os",
+      "id": "1fa349f1-c0df-415a-ad58-ae436517250a"
+    },
+    {
+      "name": "Default cgroup SLA",
+      "links": {
+        "uri": "/api/v2/configuration/slas/74c6bf71-9c90-429a-b8da-3e45ca3335e5",
+        "slos": "/api/v2/configuration/slos?ids=324f1ca5-818f-4afd-9fef-a3dc16e9eb0c"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "324f1ca5-818f-4afd-9fef-a3dc16e9eb0c"
+      ],
+      "is_default": true,
+      "class_id": "11038b9f-f7fa-4b75-9753-497b0845211f",
+      "version": 1,
+      "type": "application",
+      "id": "74c6bf71-9c90-429a-b8da-3e45ca3335e5"
+    },
+    {
+      "name": "Default secure vm SLA for assured-cores-physical mode",
+      "links": {
+        "uri": "/api/v2/configuration/slas/e8b0f8a4-17c2-41a7-8f93-9e3e3f209738",
+        "slos": "/api/v2/configuration/slos?ids=5c60ef54-78dd-486c-8065-065511a4ab22,bb18296c-74f7-4dde-af6e-d8574991316f"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "5c60ef54-78dd-486c-8065-065511a4ab22",
+        "bb18296c-74f7-4dde-af6e-d8574991316f"
+      ],
+      "is_default": true,
+      "class_id": "0c4c82db-2c6f-468b-85b9-449e64514c0e",
+      "version": 1,
+      "type": "vm",
+      "id": "e8b0f8a4-17c2-41a7-8f93-9e3e3f209738"
+    },
+    {
+      "name": "Default unsecure vm SLA for assured-cores-physical mode",
+      "links": {
+        "uri": "/api/v2/configuration/slas/0c6ae430-4418-42ea-81da-687de068e0c1",
+        "slos": "/api/v2/configuration/slos?ids=6e085497-ab55-49fc-91eb-2e2ae24462b1,196f02af-d9ea-4cb1-8f9d-e6410d544a46"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "6e085497-ab55-49fc-91eb-2e2ae24462b1",
+        "196f02af-d9ea-4cb1-8f9d-e6410d544a46"
+      ],
+      "is_default": true,
+      "class_id": "0d6d8111-2c6f-468b-85b9-449e64514c0e",
+      "version": 1,
+      "type": "vm",
+      "id": "0c6ae430-4418-42ea-81da-687de068e0c1"
+    },
+    {
+      "name": "Default secure vm SLA for assured-scu-vm mode",
+      "links": {
+        "uri": "/api/v2/configuration/slas/afa87b38-4fae-4af0-b910-0957129fb6b0",
+        "slos": "/api/v2/configuration/slos?ids=5c9e61cb-e678-4ada-85c6-deef9b9f88db,1b8d25d2-9ae6-4b21-a89c-1734a0156516"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "5c9e61cb-e678-4ada-85c6-deef9b9f88db",
+        "1b8d25d2-9ae6-4b21-a89c-1734a0156516"
+      ],
+      "is_default": true,
+      "class_id": "67c07613-42c7-4cf8-9132-48abc5bd47c8",
+      "version": 1,
+      "type": "vm",
+      "id": "afa87b38-4fae-4af0-b910-0957129fb6b0"
+    },
+    {
+      "name": "Default unsecure vm SLA for assured-scu-vm mode",
+      "links": {
+        "uri": "/api/v2/configuration/slas/ab766aaa-d516-4bef-b1cf-e3126a8dfa62",
+        "slos": "/api/v2/configuration/slos?ids=9ccca90f-3b26-4471-b2e6-373d15662690,ab39354d-cde6-4d7f-a39a-d1799f77511b"
+      },
+      "deleted": false,
+      "enabled": true,
+      "slo_ids": [
+        "9ccca90f-3b26-4471-b2e6-373d15662690",
+        "ab39354d-cde6-4d7f-a39a-d1799f77511b"
+      ],
+      "is_default": true,
+      "class_id": "82d11428-42c7-4cf8-9132-48abc5bd47c8",
+      "version": 1,
+      "type": "vm",
+      "id": "ab766aaa-d516-4bef-b1cf-e3126a8dfa62"
+    }
+  ],
+  "slos": [
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/6c64a5ea-b82d-416d-92df-7355dfa834d0",
+        "slas": "/api/v2/configuration/slas/c2b39b30-adeb-45ea-ab00-098cd8106368"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "c2b39b30-adeb-45ea-ab00-098cd8106368",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "6c64a5ea-b82d-416d-92df-7355dfa834d0"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <4.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/91eed289-76c6-4494-b7c5-28e6267c2e11",
+        "slas": "/api/v2/configuration/slas/c2b39b30-adeb-45ea-ab00-098cd8106368"
+      },
+      "deleted": false,
+      "value": "4.0;4.0",
+      "sla_id": "c2b39b30-adeb-45ea-ab00-098cd8106368",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "91eed289-76c6-4494-b7c5-28e6267c2e11"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/da8dd282-7d99-4f2e-b590-9a06a3f61e0f",
+        "slas": "/api/v2/configuration/slas/aa1b765d-390c-45b1-bd20-cb4c2aefb4fb"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "aa1b765d-390c-45b1-bd20-cb4c2aefb4fb",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "da8dd282-7d99-4f2e-b590-9a06a3f61e0f"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <4.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/b01f342d-dba9-47cc-8c8f-429950684ac4",
+        "slas": "/api/v2/configuration/slas/aa1b765d-390c-45b1-bd20-cb4c2aefb4fb"
+      },
+      "deleted": false,
+      "value": "4.0;4.0",
+      "sla_id": "aa1b765d-390c-45b1-bd20-cb4c2aefb4fb",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "b01f342d-dba9-47cc-8c8f-429950684ac4"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/b6c77195-ce26-4b0e-b7d2-fb15e61a03e8",
+        "slas": "/api/v2/configuration/slas/3b7dd1de-d758-4510-a0c1-bc34c79b5cb9"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "3b7dd1de-d758-4510-a0c1-bc34c79b5cb9",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "b6c77195-ce26-4b0e-b7d2-fb15e61a03e8"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <4.0;8.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/3226a34b-30ed-45ce-970c-1e4474efa8b5",
+        "slas": "/api/v2/configuration/slas/3b7dd1de-d758-4510-a0c1-bc34c79b5cb9"
+      },
+      "deleted": false,
+      "value": "4.0;8.0",
+      "sla_id": "3b7dd1de-d758-4510-a0c1-bc34c79b5cb9",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "3226a34b-30ed-45ce-970c-1e4474efa8b5"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/a7d0c8d6-f2bc-4489-bc10-b3c5cfdba0de",
+        "slas": "/api/v2/configuration/slas/9b744cdc-2319-45df-b122-08eaf28ae5f4"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "9b744cdc-2319-45df-b122-08eaf28ae5f4",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "a7d0c8d6-f2bc-4489-bc10-b3c5cfdba0de"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <4.0;8.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/c7a6303e-6182-464e-aa73-be65913635e1",
+        "slas": "/api/v2/configuration/slas/9b744cdc-2319-45df-b122-08eaf28ae5f4"
+      },
+      "deleted": false,
+      "value": "4.0;8.0",
+      "sla_id": "9b744cdc-2319-45df-b122-08eaf28ae5f4",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "c7a6303e-6182-464e-aa73-be65913635e1"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/533e13a0-2eae-4a45-bd85-6c4927a6ceb2",
+        "slas": "/api/v2/configuration/slas/aca591e0-43e2-490c-8ce8-d0fa67473fb4"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "aca591e0-43e2-490c-8ce8-d0fa67473fb4",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "533e13a0-2eae-4a45-bd85-6c4927a6ceb2"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <2.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/4cb4cc0b-a2fb-430e-a6a0-3dffdf275738",
+        "slas": "/api/v2/configuration/slas/aca591e0-43e2-490c-8ce8-d0fa67473fb4"
+      },
+      "deleted": false,
+      "value": "2.0;2.0",
+      "sla_id": "aca591e0-43e2-490c-8ce8-d0fa67473fb4",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "4cb4cc0b-a2fb-430e-a6a0-3dffdf275738"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/913783e5-c5a8-434f-8f27-ab7cb51abfce",
+        "slas": "/api/v2/configuration/slas/1e814c4c-ef1e-45ca-828b-c0a1545eaef0"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "1e814c4c-ef1e-45ca-828b-c0a1545eaef0",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "913783e5-c5a8-434f-8f27-ab7cb51abfce"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <2.0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/8042c85b-fb5d-4af4-a44c-a1fb4ce0a10c",
+        "slas": "/api/v2/configuration/slas/1e814c4c-ef1e-45ca-828b-c0a1545eaef0"
+      },
+      "deleted": false,
+      "value": "2.0;2.0",
+      "sla_id": "1e814c4c-ef1e-45ca-828b-c0a1545eaef0",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "8042c85b-fb5d-4af4-a44c-a1fb4ce0a10c"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/4f94bbd0-71f1-47c9-b9cc-bd252f1649d3",
+        "slas": "/api/v2/configuration/slas/da0e8abf-50a6-4b46-ac09-0debf54b6962"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "da0e8abf-50a6-4b46-ac09-0debf54b6962",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "4f94bbd0-71f1-47c9-b9cc-bd252f1649d3"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <2.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/1548c020-7f20-4980-8a5b-07faa67044dd",
+        "slas": "/api/v2/configuration/slas/da0e8abf-50a6-4b46-ac09-0debf54b6962"
+      },
+      "deleted": false,
+      "value": "2.0;4.0",
+      "sla_id": "da0e8abf-50a6-4b46-ac09-0debf54b6962",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "1548c020-7f20-4980-8a5b-07faa67044dd"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/faf27168-d281-4904-b011-8b795ae096a9",
+        "slas": "/api/v2/configuration/slas/e782e4af-440a-4164-80e9-8f371aaca96d"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "e782e4af-440a-4164-80e9-8f371aaca96d",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "faf27168-d281-4904-b011-8b795ae096a9"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <2.0;4.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/aa484e15-6376-445d-aa58-254a993f4f3f",
+        "slas": "/api/v2/configuration/slas/e782e4af-440a-4164-80e9-8f371aaca96d"
+      },
+      "deleted": false,
+      "value": "2.0;4.0",
+      "sla_id": "e782e4af-440a-4164-80e9-8f371aaca96d",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "aa484e15-6376-445d-aa58-254a993f4f3f"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/16c60f4a-61a5-472f-b5ae-febc9cb2c591",
+        "slas": "/api/v2/configuration/slas/0702fc85-8eea-49e9-8cf2-552885bb3e37"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "0702fc85-8eea-49e9-8cf2-552885bb3e37",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "16c60f4a-61a5-472f-b5ae-febc9cb2c591"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <1;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/36bc234b-8202-427a-a3ec-18ea72f46c7e",
+        "slas": "/api/v2/configuration/slas/0702fc85-8eea-49e9-8cf2-552885bb3e37"
+      },
+      "deleted": false,
+      "value": "1.0;2.0",
+      "sla_id": "0702fc85-8eea-49e9-8cf2-552885bb3e37",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "36bc234b-8202-427a-a3ec-18ea72f46c7e"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/2bb8785f-3442-4ef6-9b8a-e0df41fb7fe0",
+        "slas": "/api/v2/configuration/slas/6fad552a-9062-4116-85bb-081e8f777321"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "6fad552a-9062-4116-85bb-081e8f777321",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "2bb8785f-3442-4ef6-9b8a-e0df41fb7fe0"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <1;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/5099b115-ebff-4da6-974d-8c34adeb250f",
+        "slas": "/api/v2/configuration/slas/6fad552a-9062-4116-85bb-081e8f777321"
+      },
+      "deleted": false,
+      "value": "1.0;2.0",
+      "sla_id": "6fad552a-9062-4116-85bb-081e8f777321",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "5099b115-ebff-4da6-974d-8c34adeb250f"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/6bbc75e8-8404-4eb9-9cf7-0c69d45d117e",
+        "slas": "/api/v2/configuration/slas/bf10c26a-2bd5-499d-98bd-aacf3ed67fdd"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "bf10c26a-2bd5-499d-98bd-aacf3ed67fdd",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "6bbc75e8-8404-4eb9-9cf7-0c69d45d117e"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/c9735ec8-629c-43b2-b03a-3845410ac640",
+        "slas": "/api/v2/configuration/slas/bf10c26a-2bd5-499d-98bd-aacf3ed67fdd"
+      },
+      "deleted": false,
+      "value": "0.0;2.0",
+      "sla_id": "bf10c26a-2bd5-499d-98bd-aacf3ed67fdd",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "c9735ec8-629c-43b2-b03a-3845410ac640"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/e86cf673-1d4e-441d-a803-1232165f0f3e",
+        "slas": "/api/v2/configuration/slas/6392fc1e-bb9c-4d94-9c5e-19de445661c6"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "6392fc1e-bb9c-4d94-9c5e-19de445661c6",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "e86cf673-1d4e-441d-a803-1232165f0f3e"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <0;2.0> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/c3dc9cf0-c406-4ef6-ac98-b457bbd124ce",
+        "slas": "/api/v2/configuration/slas/6392fc1e-bb9c-4d94-9c5e-19de445661c6"
+      },
+      "deleted": false,
+      "value": "0.0;2.0",
+      "sla_id": "6392fc1e-bb9c-4d94-9c5e-19de445661c6",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "c3dc9cf0-c406-4ef6-ac98-b457bbd124ce"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/32edc7a9-4350-4f6b-b47c-152d3451ec6f",
+        "slas": "/api/v2/configuration/slas/34522d86-434f-4661-ab1a-96750c88a0f0"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "34522d86-434f-4661-ab1a-96750c88a0f0",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "32edc7a9-4350-4f6b-b47c-152d3451ec6f"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <0;1> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/49aab236-7c78-4d9a-b20f-0b82eba94f5b",
+        "slas": "/api/v2/configuration/slas/34522d86-434f-4661-ab1a-96750c88a0f0"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "34522d86-434f-4661-ab1a-96750c88a0f0",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "49aab236-7c78-4d9a-b20f-0b82eba94f5b"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/b575cd73-8dfb-43cd-ba20-5a4b57a0d47d",
+        "slas": "/api/v2/configuration/slas/8f9920c0-8952-4a6c-8e8d-a322864356b6"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "8f9920c0-8952-4a6c-8e8d-a322864356b6",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "b575cd73-8dfb-43cd-ba20-5a4b57a0d47d"
+    },
+    {
+      "description": "Service Compute Units value available for each VM shall be within <0;1> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/7882d0b8-dcc8-47c4-ac7b-d43b07a36a92",
+        "slas": "/api/v2/configuration/slas/8f9920c0-8952-4a6c-8e8d-a322864356b6"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "8f9920c0-8952-4a6c-8e8d-a322864356b6",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "7882d0b8-dcc8-47c4-ac7b-d43b07a36a92"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/34f7fffc-5eed-485b-8004-557b81e72737",
+        "slas": "/api/v2/configuration/slas/3a848574-63ea-4023-8b34-5d4f9bef2c65"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "3a848574-63ea-4023-8b34-5d4f9bef2c65",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "34f7fffc-5eed-485b-8004-557b81e72737"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/14b2ebc9-afd6-4277-af30-c7b4897fa633",
+        "slas": "/api/v2/configuration/slas/3a848574-63ea-4023-8b34-5d4f9bef2c65"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "3a848574-63ea-4023-8b34-5d4f9bef2c65",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "14b2ebc9-afd6-4277-af30-c7b4897fa633"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/b702fde3-ede7-4742-8c7e-976805078fd5",
+        "slas": "/api/v2/configuration/slas/74518ee2-7448-44b0-ab23-39cf0ff8ddd9"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "74518ee2-7448-44b0-ab23-39cf0ff8ddd9",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "b702fde3-ede7-4742-8c7e-976805078fd5"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/ae29ed86-04e0-4bbd-bdee-31211e0c9a2e",
+        "slas": "/api/v2/configuration/slas/74518ee2-7448-44b0-ab23-39cf0ff8ddd9"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "74518ee2-7448-44b0-ab23-39cf0ff8ddd9",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "ae29ed86-04e0-4bbd-bdee-31211e0c9a2e"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 2.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/8686894f-2bf9-4110-8bfb-bf0cd745cf45",
+        "slas": "/api/v2/configuration/slas/58910dde-cade-4af6-85cd-b7336a4a0c34"
+      },
+      "deleted": false,
+      "value": "2",
+      "sla_id": "58910dde-cade-4af6-85cd-b7336a4a0c34",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "8686894f-2bf9-4110-8bfb-bf0cd745cf45"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/6a3c8cfe-cfd3-43df-ad49-bee33c8879b2",
+        "slas": "/api/v2/configuration/slas/58910dde-cade-4af6-85cd-b7336a4a0c34"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "58910dde-cade-4af6-85cd-b7336a4a0c34",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "6a3c8cfe-cfd3-43df-ad49-bee33c8879b2"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 2.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/d2e5d5b0-0fe2-43fc-9c86-fec5d4a9b30b",
+        "slas": "/api/v2/configuration/slas/c719cc72-aa13-4d08-b382-43ef88475f0a"
+      },
+      "deleted": false,
+      "value": "2",
+      "sla_id": "c719cc72-aa13-4d08-b382-43ef88475f0a",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "d2e5d5b0-0fe2-43fc-9c86-fec5d4a9b30b"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/66fa68e5-5a52-402d-9a40-54886d231fe5",
+        "slas": "/api/v2/configuration/slas/c719cc72-aa13-4d08-b382-43ef88475f0a"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "c719cc72-aa13-4d08-b382-43ef88475f0a",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "66fa68e5-5a52-402d-9a40-54886d231fe5"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 4.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/156fdfab-18a2-482d-a7e2-c89698f19161",
+        "slas": "/api/v2/configuration/slas/f25dff82-f831-48c4-a3ef-109d43393415"
+      },
+      "deleted": false,
+      "value": "4",
+      "sla_id": "f25dff82-f831-48c4-a3ef-109d43393415",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "156fdfab-18a2-482d-a7e2-c89698f19161"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/85d15691-6fff-479d-9ea9-b321ac661826",
+        "slas": "/api/v2/configuration/slas/f25dff82-f831-48c4-a3ef-109d43393415"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "f25dff82-f831-48c4-a3ef-109d43393415",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "85d15691-6fff-479d-9ea9-b321ac661826"
+    },
+    {
+      "description": "Number of exclusive cores for each VM shall be equal to 4.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/02270d50-4925-4238-b65f-ece7f175b0d7",
+        "slas": "/api/v2/configuration/slas/89882285-a3a9-4a59-a3da-63b0333e0776"
+      },
+      "deleted": false,
+      "value": "4",
+      "sla_id": "89882285-a3a9-4a59-a3da-63b0333e0776",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "02270d50-4925-4238-b65f-ece7f175b0d7"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/d042664b-8095-4e8d-aea4-d68fdbae7cfe",
+        "slas": "/api/v2/configuration/slas/89882285-a3a9-4a59-a3da-63b0333e0776"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "89882285-a3a9-4a59-a3da-63b0333e0776",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "d042664b-8095-4e8d-aea4-d68fdbae7cfe"
+    },
+    {
+      "description": "Default number of exclusive cores for operating system shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/89f438b7-a503-46a9-b57d-da3f6a20b524",
+        "uri": "/api/v2/configuration/slos/b225d49d-4da1-4e46-bfc4-b3e932806cd0",
+        "slas": "/api/v2/configuration/slas/1fa349f1-c0df-415a-ad58-ae436517250a"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "1fa349f1-c0df-415a-ad58-ae436517250a",
+      "operator": "equals",
+      "slo_template_id": "89f438b7-a503-46a9-b57d-da3f6a20b524",
+      "id": "b225d49d-4da1-4e46-bfc4-b3e932806cd0"
+    },
+    {
+      "description": "Default number of exclusive cores for each cgroup shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/b1629cd5-2480-404b-a83c-408bf485cb3d",
+        "uri": "/api/v2/configuration/slos/324f1ca5-818f-4afd-9fef-a3dc16e9eb0c",
+        "slas": "/api/v2/configuration/slas/74c6bf71-9c90-429a-b8da-3e45ca3335e5"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "74c6bf71-9c90-429a-b8da-3e45ca3335e5",
+      "operator": "equals",
+      "slo_template_id": "b1629cd5-2480-404b-a83c-408bf485cb3d",
+      "id": "324f1ca5-818f-4afd-9fef-a3dc16e9eb0c"
+    },
+    {
+      "description": "Default number of exclusive cores for each VM shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/5c60ef54-78dd-486c-8065-065511a4ab22",
+        "slas": "/api/v2/configuration/slas/e8b0f8a4-17c2-41a7-8f93-9e3e3f209738"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "e8b0f8a4-17c2-41a7-8f93-9e3e3f209738",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "5c60ef54-78dd-486c-8065-065511a4ab22"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/bb18296c-74f7-4dde-af6e-d8574991316f",
+        "slas": "/api/v2/configuration/slas/e8b0f8a4-17c2-41a7-8f93-9e3e3f209738"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "e8b0f8a4-17c2-41a7-8f93-9e3e3f209738",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "bb18296c-74f7-4dde-af6e-d8574991316f"
+    },
+    {
+      "description": "Default number of exclusive cores for each VM shall be equal to 1.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "uri": "/api/v2/configuration/slos/6e085497-ab55-49fc-91eb-2e2ae24462b1",
+        "slas": "/api/v2/configuration/slas/0c6ae430-4418-42ea-81da-687de068e0c1"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "0c6ae430-4418-42ea-81da-687de068e0c1",
+      "operator": "equals",
+      "slo_template_id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "id": "6e085497-ab55-49fc-91eb-2e2ae24462b1"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/196f02af-d9ea-4cb1-8f9d-e6410d544a46",
+        "slas": "/api/v2/configuration/slas/0c6ae430-4418-42ea-81da-687de068e0c1"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "0c6ae430-4418-42ea-81da-687de068e0c1",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "196f02af-d9ea-4cb1-8f9d-e6410d544a46"
+    },
+    {
+      "description": "SLO shall be used on trusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/1b8d25d2-9ae6-4b21-a89c-1734a0156516",
+        "slas": "/api/v2/configuration/slas/afa87b38-4fae-4af0-b910-0957129fb6b0"
+      },
+      "deleted": false,
+      "value": "1",
+      "sla_id": "afa87b38-4fae-4af0-b910-0957129fb6b0",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "1b8d25d2-9ae6-4b21-a89c-1734a0156516"
+    },
+    {
+      "description": "Default Service Compute Units value available for each VM shall be within <0;1> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/5c9e61cb-e678-4ada-85c6-deef9b9f88db",
+        "slas": "/api/v2/configuration/slas/afa87b38-4fae-4af0-b910-0957129fb6b0"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "afa87b38-4fae-4af0-b910-0957129fb6b0",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "5c9e61cb-e678-4ada-85c6-deef9b9f88db"
+    },
+    {
+      "description": "SLO shall be used on untrusted node.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "uri": "/api/v2/configuration/slos/ab39354d-cde6-4d7f-a39a-d1799f77511b",
+        "slas": "/api/v2/configuration/slas/ab766aaa-d516-4bef-b1cf-e3126a8dfa62"
+      },
+      "deleted": false,
+      "value": "0",
+      "sla_id": "ab766aaa-d516-4bef-b1cf-e3126a8dfa62",
+      "operator": "equals",
+      "slo_template_id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "id": "ab39354d-cde6-4d7f-a39a-d1799f77511b"
+    },
+    {
+      "description": "Default Service Compute Units value available for each VM shall be within <0;1> range.",
+      "links": {
+        "slo_templates": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "uri": "/api/v2/configuration/slos/9ccca90f-3b26-4471-b2e6-373d15662690",
+        "slas": "/api/v2/configuration/slas/ab766aaa-d516-4bef-b1cf-e3126a8dfa62"
+      },
+      "deleted": false,
+      "value": "0.0;1.0",
+      "sla_id": "ab766aaa-d516-4bef-b1cf-e3126a8dfa62",
+      "operator": "in_range",
+      "slo_template_id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "id": "9ccca90f-3b26-4471-b2e6-373d15662690"
+    }
+  ]
+}

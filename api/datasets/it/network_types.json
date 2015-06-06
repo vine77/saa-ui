@@ -1,0 +1,12 @@
+{
+  "network_types": [
+    {
+      "description": "nova",
+      "version": 1,
+      "debug_id": 84450143,
+      "resource_id": null,
+      "setting": 2,
+      "id": "current"
+    }
+  ]
+}

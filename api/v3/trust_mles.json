@@ -1,0 +1,85 @@
+{
+  "trust_mles": [
+    {
+      "name": "Dell_Inc.",
+      "attestation_type": "PCR",
+      "description": "",
+      "osname": null,
+      "trust_node_ids": [
+        "4C4C4544-005A-3810-8037-B2C04F513232"
+      ],
+      "oemname": "Dell Inc.",
+      "mle_manifests": [],
+      "version": "2.2.2",
+      "osversion": null,
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9JbmMuJyksICgnT2VtTmFtZScsIHUnRGVsbCBJbmMuJyksICgnT3NOYW1lJywgTm9uZSksICgnT3NWZXJzaW9uJywgTm9uZSksICgnVmVyc2lvbicsIHUnMi4yLjInKV0p",
+      "node_id": null,
+      "mle_type": "BIOS"
+    },
+    {
+      "name": "Dell_QEMU",
+      "attestation_type": "MODULE",
+      "description": "",
+      "osname": "Ubuntu",
+      "trust_node_ids": [
+        "4C4C4544-005A-3810-8037-B2C04F513232",
+        "4C4C4544-0057-3310-8035-C3C04F503232"
+      ],
+      "oemname": null,
+      "mle_manifests": [],
+      "version": "12.04-2.0.0",
+      "osversion": "12.04",
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9RRU1VJyksICgnT2VtTmFtZScsIE5vbmUpLCAoJ09zTmFtZScsIHUnVWJ1bnR1JyksICgnT3NWZXJzaW9uJywgdScxMi4wNCcpLCAoJ1ZlcnNpb24nLCB1JzEyLjA0LTIuMC4wJyldKQ==",
+      "node_id": null,
+      "mle_type": "VMM"
+    },
+    {
+      "name": "Dell_Inc.",
+      "attestation_type": "PCR",
+      "description": "",
+      "osname": null,
+      "trust_node_ids": [
+        "4C4C4544-0057-3310-8035-C3C04F503232"
+      ],
+      "oemname": "Dell Inc.",
+      "mle_manifests": [],
+      "version": "1.0.4",
+      "osversion": null,
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9JbmMuJyksICgnT2VtTmFtZScsIHUnRGVsbCBJbmMuJyksICgnT3NOYW1lJywgTm9uZSksICgnT3NWZXJzaW9uJywgTm9uZSksICgnVmVyc2lvbicsIHUnMS4wLjQnKV0p",
+      "node_id": null,
+      "mle_type": "BIOS"
+    },
+    {
+      "name": "HP",
+      "attestation_type": "PCR",
+      "description": "",
+      "osname": null,
+      "trust_node_ids": [
+        "30343536-3138-584D-5134-313530304E52"
+      ],
+      "oemname": "HP",
+      "mle_manifests": [],
+      "version": "P71",
+      "osversion": null,
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSFAnKSwgKCdPZW1OYW1lJywgdSdIUCcpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1J1A3MScpXSk=",
+      "node_id": null,
+      "mle_type": "BIOS"
+    },
+    {
+      "name": "HP_Romley_QEMU",
+      "attestation_type": "MODULE",
+      "description": "",
+      "osname": "Ubuntu",
+      "trust_node_ids": [
+        "30343536-3138-584D-5134-313530304E52"
+      ],
+      "oemname": null,
+      "mle_manifests": [],
+      "version": "12.04-2.0.0",
+      "osversion": "12.04",
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSFBfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMi4wLjAnKV0p",
+      "node_id": null,
+      "mle_type": "VMM"
+    }
+  ]
+}

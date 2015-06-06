@@ -1,0 +1,118 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=973D1534-B403-E211-BBFA-001E673B9418",
+        "vms": "/api/v1/vms?ids=8b6236a4-dd16-444c-8cac-dcc1ad077d1b,6117023f-be07-4869-a60f-b468e48e05a1,4eae292b-0852-43cd-a760-517df61b4020,5f3f5c25-a843-446f-9819-8d1f99755dc2,6ff842ea-5bee-442e-a978-a94a1fbf2d0f,c4a5beb7-6927-4069-8fe3-02f180b060b8,99e924ca-c4e7-433a-b9f1-4ece101db796,29ece284-8010-48e0-8519-bfd68e73de30,6e5b9fbe-b298-447e-aa96-ef13296f6c57,26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb,66b571da-cded-4945-bc9d-d4858ae07456,69b3a92a-5efd-47fd-bbba-fb3778280a6a,7813f35d-f4f0-47f3-926f-82ef5f89d89a,45d569e3-8bec-41a1-bc1d-e9af61215a49,9152f137-923e-412b-ad45-23ca62816c19,eddc25c5-2a9a-46bf-9a6b-f46a8f8cef32,30a34b6e-3904-40d3-bf23-ae99100adc48",
+        "uri": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
+      },
+      "uri": "/nodes/973D1534-B403-E211-BBFA-001E673B9418",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "973D1534-B403-E211-BBFA-001E673B9418",
+      "sam_registered": true,
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 17,
+        "max": null
+      },
+      "memory": {
+        "max": 36123,
+        "used": 16288
+      },
+      "vm_ids": [
+        "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "6117023f-be07-4869-a60f-b468e48e05a1",
+        "4eae292b-0852-43cd-a760-517df61b4020",
+        "5f3f5c25-a843-446f-9819-8d1f99755dc2",
+        "6ff842ea-5bee-442e-a978-a94a1fbf2d0f",
+        "c4a5beb7-6927-4069-8fe3-02f180b060b8",
+        "99e924ca-c4e7-433a-b9f1-4ece101db796",
+        "29ece284-8010-48e0-8519-bfd68e73de30",
+        "6e5b9fbe-b298-447e-aa96-ef13296f6c57",
+        "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb",
+        "66b571da-cded-4945-bc9d-d4858ae07456",
+        "69b3a92a-5efd-47fd-bbba-fb3778280a6a",
+        "7813f35d-f4f0-47f3-926f-82ef5f89d89a",
+        "45d569e3-8bec-41a1-bc1d-e9af61215a49",
+        "9152f137-923e-412b-ad45-23ca62816c19",
+        "eddc25c5-2a9a-46bf-9a6b-f46a8f8cef32",
+        "30a34b6e-3904-40d3-bf23-ae99100adc48"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Unknown operational state of node.SAM agent is installed. ",
+        "health": 4,
+        "mode": 2,
+        "trust": 3,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=973D1534-B403-E211-BBFA-001E673B9418",
+      "tier": null,
+      "ids": {
+        "platform_id": "973D1534-B403-E211-BBFA-001E673B9418",
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": "973D1534-B403-E211-BBFA-001E673B9418"
+      },
+      "node_name": "clientnode8.hpr.com",
+      "vcpus": {
+        "max": 256,
+        "used": 23
+      }
+    }
+  ]
+}

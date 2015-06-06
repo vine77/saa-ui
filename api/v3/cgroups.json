@@ -1,0 +1,1810 @@
+{
+  "cgroups": [
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": 1000000,
+              "normalized": null
+            },
+            "value": 0.59,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.17,
+          "misc": 0.03
+        },
+        "memory": 2307496
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 10.26,
+        "memory_size": 16353704,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-38.domain.tld",
+      "node_id": "71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+      "type": "os",
+      "id": "13e4e85c-e0dc-5a65-9ec5-20577670f859"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.16,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.18,
+          "misc": 0.04
+        },
+        "memory": 2005568
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 6.82,
+        "memory_size": 24595192,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-49.domain.tld",
+      "node_id": "809E7718-2B88-E211-BE20-001E6749D3CB",
+      "type": "os",
+      "id": "73cde1dd-6488-5a9c-b7c6-f90ac1be0dcf"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Failed to schedule host service. Host service is pending configuration. "
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.9400000000000001,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.1,
+          "misc": 0.04
+        },
+        "memory": 3136816
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 0.0,
+        "memory_size": 49367792,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-50.domain.tld",
+      "node_id": "001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "type": "os",
+      "id": "74e72ef7-aa1c-534e-b87c-c33d6ce577a6"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.13,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.42,
+          "misc": 0.0
+        },
+        "memory": 3119680
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 7.38,
+        "memory_size": 65808184,
+        "scu_allocated_min": 1.23
+      },
+      "node_name": "node-53.domain.tld",
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "type": "os",
+      "id": "5abb1ecf-3c8d-52aa-9d3b-a93ae49c9708"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.04,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 8,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-53.domain.tld",
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "type": "vm",
+      "id": "5fb1ff62-2bd2-5f79-84d9-9a30a7a5a767"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 12,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": 50786181,
+              "normalized": 1.08
+            },
+            "value": 1.73,
+            "cache_occupancy": 1.03
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 1.65,
+          "misc": 0.0
+        },
+        "memory": 2097152
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 2.0,
+        "vcpus": 2,
+        "scu_allocated_max": 4.76,
+        "memory_size": 2097152,
+        "scu_allocated_min": 4.76
+      },
+      "node_name": "node-40.domain.tld",
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "type": "vm",
+      "id": "e9994bfd-c981-5b84-a854-e8a29449fe93"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": 47510204,
+              "normalized": 1.0
+            },
+            "value": 0.51,
+            "cache_occupancy": 1.0
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.29,
+          "misc": 0.0
+        },
+        "memory": 2958808
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 1.0,
+        "vcpus": 0,
+        "scu_allocated_max": 2.38,
+        "memory_size": 65851368,
+        "scu_allocated_min": 2.38
+      },
+      "node_name": "node-40.domain.tld",
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "type": "os",
+      "id": "12ff2b91-0ba1-5869-92f5-938bbc018179"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.32,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.17,
+          "misc": 0.0
+        },
+        "memory": 2480424
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 9.1,
+        "memory_size": 41150352,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-46.domain.tld",
+      "node_id": "D1B6E130-06AA-E111-A357-001E674F8348",
+      "type": "os",
+      "id": "4872a919-e7c0-59d0-9986-9a25330351c8"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.33,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.28,
+          "misc": 0.0
+        },
+        "memory": 3935312
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 16.51,
+        "memory_size": 65865960,
+        "scu_allocated_min": 1.18
+      },
+      "node_name": "node-47.domain.tld",
+      "node_id": "008A53D5-F566-E411-AD05-001E670DD8D4",
+      "type": "os",
+      "id": "2f22829a-4085-5917-9fa9-f77366361642"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.51,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 6,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-47.domain.tld",
+      "node_id": "008A53D5-F566-E411-AD05-001E670DD8D4",
+      "type": "vm",
+      "id": "8f3376ae-c212-53fb-a7df-2416c0384db0"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.05,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 6,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-51.domain.tld",
+      "node_id": "00D4360E-304B-E311-906E-001635649F5C",
+      "type": "vm",
+      "id": "19a68987-c790-5d02-bd74-1963f79a80f0"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.37,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.33,
+          "misc": 0.0
+        },
+        "memory": 3510948
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 15.38,
+        "memory_size": 65866084,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-51.domain.tld",
+      "node_id": "00D4360E-304B-E311-906E-001635649F5C",
+      "type": "os",
+      "id": "b0e9063b-8e38-5e1f-9d52-5cf4ebe54d68"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.05,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 5,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-54.domain.tld",
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "type": "vm",
+      "id": "62b13460-6692-5a3e-8484-b9e10296e0ab"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.97,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.46,
+          "misc": 0.0
+        },
+        "memory": 2952240
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 7.11,
+        "memory_size": 32965508,
+        "scu_allocated_min": 1.19
+      },
+      "node_name": "node-54.domain.tld",
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "type": "os",
+      "id": "8e4df938-c267-5898-ab9d-928910736f16"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": 0,
+              "normalized": 0.0
+            },
+            "value": 3.75,
+            "cache_occupancy": 0.0
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 2,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-37.domain.tld",
+      "node_id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "type": "vm",
+      "id": "ff13018a-bed5-5f4c-aff2-812d556f0e35"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": 45423652,
+              "normalized": 1.74
+            },
+            "value": 0.53,
+            "cache_occupancy": 1.77
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.27,
+          "misc": 0.01
+        },
+        "memory": 4205024
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 2.0,
+        "vcpus": 0,
+        "scu_allocated_max": 2.92,
+        "memory_size": 65865960,
+        "scu_allocated_min": 2.92
+      },
+      "node_name": "node-37.domain.tld",
+      "node_id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "type": "os",
+      "id": "1e54926e-eddd-5f67-a96c-baf6c50bf998"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.89,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.18,
+          "misc": 0.0
+        },
+        "memory": 2117632
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 6.82,
+        "memory_size": 40891584,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-41.domain.tld",
+      "node_id": "D1155F35-3BE5-E011-BD1D-001E6729018E",
+      "type": "os",
+      "id": "7f772d2b-eb24-579d-add8-98bf73d6afee"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 3.59,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 2,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-48.domain.tld",
+      "node_id": "00000000-0000-0000-0000-002590A348E6",
+      "type": "vm",
+      "id": "211184c9-c7eb-5e08-9905-f628f8e47da6"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.11,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.42,
+          "misc": 0.03
+        },
+        "memory": 1761432
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 11.74,
+        "memory_size": 41240620,
+        "scu_allocated_min": 1.47
+      },
+      "node_name": "node-48.domain.tld",
+      "node_id": "00000000-0000-0000-0000-002590A348E6",
+      "type": "os",
+      "id": "004e48a5-55d5-579f-8727-95b3db0bac52"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.69,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 5,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-39.domain.tld",
+      "node_id": "00EF0E08-D031-E311-906E-001635649F5C",
+      "type": "vm",
+      "id": "727898a7-391e-538a-9f84-019bb96b00d2"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.77,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.27,
+          "misc": 0.0
+        },
+        "memory": 2760568
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 9.85,
+        "memory_size": 65851340,
+        "scu_allocated_min": 1.23
+      },
+      "node_name": "node-39.domain.tld",
+      "node_id": "00EF0E08-D031-E311-906E-001635649F5C",
+      "type": "os",
+      "id": "9cd4baf8-6fb4-5e69-afff-8afd56317436"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.05,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": null,
+          "misc": null
+        },
+        "memory": null
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 8,
+        "scu_allocated_max": 0.0,
+        "memory_size": null,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-52.domain.tld",
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "type": "vm",
+      "id": "6c7cd7fc-d86a-502b-9819-a794c3018760"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.54,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.43,
+          "misc": 0.0
+        },
+        "memory": 3178292
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 7.89,
+        "memory_size": 32961220,
+        "scu_allocated_min": 0.99
+      },
+      "node_name": "node-52.domain.tld",
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "type": "os",
+      "id": "6cb82d47-59a8-5ec8-be70-19ddc90aac19"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.30000000000000004,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.21,
+          "misc": 0.0
+        },
+        "memory": 3406740
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 16.51,
+        "memory_size": 65851224,
+        "scu_allocated_min": 1.18
+      },
+      "node_name": "node-43.domain.tld",
+      "node_id": "8044A4D9-6D5A-E311-906E-001635649F5C",
+      "type": "os",
+      "id": "bc0111d3-d80f-5d76-a501-45f1be57c176"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": -1,
+              "normalized": -1.0
+            },
+            "value": 0.22,
+            "cache_occupancy": -1.0
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.26,
+          "misc": 0.02
+        },
+        "memory": 1448320
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 1.0,
+        "vcpus": 0,
+        "scu_allocated_max": 2.38,
+        "memory_size": 65866072,
+        "scu_allocated_min": 2.38
+      },
+      "node_name": "node-42.domain.tld",
+      "node_id": "809314C4-4C89-E411-906E-0012795D96DD",
+      "type": "os",
+      "id": "551e7b1e-f5e5-5800-aea3-3ab0fc918215"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.72,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.2,
+          "misc": 0.0
+        },
+        "memory": 2481616
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 10.23,
+        "memory_size": 41150232,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-45.domain.tld",
+      "node_id": "F12F1EE7-01AA-E111-A0C9-001E674F8338",
+      "type": "os",
+      "id": "6468cf3c-5e80-520d-bf58-b49ca1a2b03e"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.23,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.17,
+          "misc": 0.03
+        },
+        "memory": 2307496
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 10.26,
+        "memory_size": 16353704,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-38.domain.tld",
+      "node_id": "71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+      "type": "node",
+      "id": "7c560843-e98c-5d63-b19b-2ed109576aa8"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.55,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.18,
+          "misc": 0.04
+        },
+        "memory": 2005568
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 6.82,
+        "memory_size": 24595192,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-49.domain.tld",
+      "node_id": "809E7718-2B88-E211-BE20-001E6749D3CB",
+      "type": "node",
+      "id": "e23c2e44-82d3-5706-bbbb-d270a0f8cd29"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Failed to schedule the following host services: os. Host services pending configuration: os. "
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.63,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.1,
+          "misc": 0.04
+        },
+        "memory": 3136816
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 0.0,
+        "memory_size": 49367792,
+        "scu_allocated_min": 0.0
+      },
+      "node_name": "node-50.domain.tld",
+      "node_id": "001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "type": "node",
+      "id": "fce35058-1191-5538-bc51-dc544f1f03e1"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.22,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.42,
+          "misc": 0.0
+        },
+        "memory": 3119680
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 8,
+        "scu_allocated_max": 7.38,
+        "memory_size": 65808184,
+        "scu_allocated_min": 1.23
+      },
+      "node_name": "node-53.domain.tld",
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "type": "node",
+      "id": "c7b5f041-27e4-5117-aa75-5082105dd538"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.57,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 1.95,
+          "misc": 0.0
+        },
+        "memory": 5055960
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 3.0,
+        "vcpus": 2,
+        "scu_allocated_max": 7.14,
+        "memory_size": 67948520,
+        "scu_allocated_min": 7.14
+      },
+      "node_name": "node-40.domain.tld",
+      "node_id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "type": "node",
+      "id": "fdf5dc2c-ae89-5369-b0b4-0e5780fd04aa"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.95,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.17,
+          "misc": 0.0
+        },
+        "memory": 2480424
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 9.1,
+        "memory_size": 41150352,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-46.domain.tld",
+      "node_id": "D1B6E130-06AA-E111-A357-001E674F8348",
+      "type": "node",
+      "id": "756240d7-6c94-5f62-8403-79e926b07a92"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.44,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.28,
+          "misc": 0.0
+        },
+        "memory": 3935312
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 6,
+        "scu_allocated_max": 16.51,
+        "memory_size": 65865960,
+        "scu_allocated_min": 1.18
+      },
+      "node_name": "node-47.domain.tld",
+      "node_id": "008A53D5-F566-E411-AD05-001E670DD8D4",
+      "type": "node",
+      "id": "3a88d133-3674-5bde-ad61-210b00c12da2"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.35,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.33,
+          "misc": 0.0
+        },
+        "memory": 3510948
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 6,
+        "scu_allocated_max": 15.38,
+        "memory_size": 65866084,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-51.domain.tld",
+      "node_id": "00D4360E-304B-E311-906E-001635649F5C",
+      "type": "node",
+      "id": "8325e898-22c3-532f-b992-cfaf42e77783"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.57,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.46,
+          "misc": 0.0
+        },
+        "memory": 2952240
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 5,
+        "scu_allocated_max": 7.11,
+        "memory_size": 32965508,
+        "scu_allocated_min": 1.19
+      },
+      "node_name": "node-54.domain.tld",
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "type": "node",
+      "id": "c372cce7-e217-5ec9-a022-41395d1d7c94"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.7,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.27,
+          "misc": 0.01
+        },
+        "memory": 4205024
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 2.0,
+        "vcpus": 2,
+        "scu_allocated_max": 2.92,
+        "memory_size": 65865960,
+        "scu_allocated_min": 2.92
+      },
+      "node_name": "node-37.domain.tld",
+      "node_id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "type": "node",
+      "id": "15859468-f336-52eb-81d6-6f919d0c4bab"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.49,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.18,
+          "misc": 0.0
+        },
+        "memory": 2117632
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 6.82,
+        "memory_size": 40891584,
+        "scu_allocated_min": 1.14
+      },
+      "node_name": "node-41.domain.tld",
+      "node_id": "D1155F35-3BE5-E011-BD1D-001E6729018E",
+      "type": "node",
+      "id": "1fca6b1e-9a3c-54fa-973a-200b2a63c437"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.8,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.42,
+          "misc": 0.03
+        },
+        "memory": 1761432
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 2,
+        "scu_allocated_max": 11.74,
+        "memory_size": 41240620,
+        "scu_allocated_min": 1.47
+      },
+      "node_name": "node-48.domain.tld",
+      "node_id": "00000000-0000-0000-0000-002590A348E6",
+      "type": "node",
+      "id": "0043b488-e204-52f5-b7a0-b56d9bd1ebd7"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.38,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.27,
+          "misc": 0.0
+        },
+        "memory": 2760568
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 5,
+        "scu_allocated_max": 9.85,
+        "memory_size": 65851340,
+        "scu_allocated_min": 1.23
+      },
+      "node_name": "node-39.domain.tld",
+      "node_id": "00EF0E08-D031-E311-906E-001635649F5C",
+      "type": "node",
+      "id": "542b55bd-72b1-5016-93b8-d999522b5196"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 0,
+        "victim": 1,
+        "trust": 2,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.57,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.43,
+          "misc": 0.0
+        },
+        "memory": 3178292
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 8,
+        "scu_allocated_max": 7.89,
+        "memory_size": 32961220,
+        "scu_allocated_min": 0.99
+      },
+      "node_name": "node-52.domain.tld",
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "type": "node",
+      "id": "2e969dc7-d974-5a22-91c5-f849130b8851"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.38,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.21,
+          "misc": 0.0
+        },
+        "memory": 3406740
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 16.51,
+        "memory_size": 65851224,
+        "scu_allocated_min": 1.18
+      },
+      "node_name": "node-43.domain.tld",
+      "node_id": "8044A4D9-6D5A-E311-906E-001635649F5C",
+      "type": "node",
+      "id": "98ccf3a8-4316-50a1-9c3b-a268f00b053d"
+    },
+    {
+      "status": {
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 0.21,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.26,
+          "misc": 0.02
+        },
+        "memory": 1448320
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": 1.0,
+        "vcpus": 0,
+        "scu_allocated_max": 2.38,
+        "memory_size": 65866072,
+        "scu_allocated_min": 2.38
+      },
+      "node_name": "node-42.domain.tld",
+      "node_id": "809314C4-4C89-E411-906E-0012795D96DD",
+      "type": "node",
+      "id": "80cc4dcd-8bde-5823-b1f7-21b8759f2694"
+    },
+    {
+      "status": {
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "Host services applied successfully."
+      },
+      "contention": {
+        "system": {
+          "llc": {
+            "cache_usage": {
+              "used": null,
+              "normalized": null
+            },
+            "value": 1.12,
+            "cache_occupancy": null
+          }
+        }
+      },
+      "utilization": {
+        "scu": {
+          "compute": 0.2,
+          "misc": 0.0
+        },
+        "memory": 2481616
+      },
+      "cgroups_data": null,
+      "capabilities": {
+        "cores": null,
+        "vcpus": 0,
+        "scu_allocated_max": 10.23,
+        "memory_size": 41150232,
+        "scu_allocated_min": 1.28
+      },
+      "node_name": "node-45.domain.tld",
+      "node_id": "F12F1EE7-01AA-E111-A0C9-001E674F8338",
+      "type": "node",
+      "id": "4596f736-0b7c-52ab-93be-eb2ddb7a6c37"
+    }
+  ]
+}
