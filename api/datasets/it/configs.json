@@ -1,0 +1,20 @@
+{
+  "configs": [
+    {
+      "id": "novaFile",
+      "exists": true
+    },
+    {
+      "id": "openrcFile",
+      "exists": true
+    },
+    {
+      "id": "quantumFile",
+      "exists": true
+    },
+    {
+      "id": "KeystoneCaCertFile",
+      "exists": false
+    }
+  ]
+}

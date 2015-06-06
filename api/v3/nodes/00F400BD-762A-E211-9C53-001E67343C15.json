@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v1/nodes/00F400BD-762A-E211-9C53-001E67343C15",
+        "logs": "/api/v1/logs?node=00F400BD-762A-E211-9C53-001E67343C15"
+      },
+      "uri": "/nodes/00F400BD-762A-E211-9C53-001E67343C15",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "00F400BD-762A-E211-9C53-001E67343C15",
+      "sam_registered": true,
+      "utilization": {
+        "scu_current": 2.3,
+        "scu_max": 73.6,
+        "uptime": null,
+        "network": null,
+        "ipc": 0.32,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": "3042272 KB",
+        "cpu": {
+          "iowait": 2015.36,
+          "idle": 54822728.16,
+          "total": 0,
+          "steal": 0,
+          "guest": 0
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "memory_size": "49152 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "memory": {
+        "max": 72379,
+        "used": 512
+      },
+      "vm_ids": [],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SAM Agent reports unknown. SAM agent is installed. Node is powered on. Compute service is working. Compute service is enabled. ",
+        "health": 0,
+        "mode": 2,
+        "trust": 3,
+        "short_message": "SAM Agent reports unknown. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [
+          {
+            "socket_number": 1,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          },
+          {
+            "socket_number": 0,
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=00F400BD-762A-E211-9C53-001E67343C15",
+      "tier": null,
+      "ids": {
+        "platform_id": "00F400BD-762A-E211-9C53-001E67343C15",
+        "mac": "00:1e:67:34:3c:15",
+        "ip_address": "192.168.3.106",
+        "cloud_id": "00F400BD-762A-E211-9C53-001E67343C15"
+      },
+      "node_name": "clientnode6.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 0
+      }
+    }
+  ]
+}

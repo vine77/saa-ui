@@ -1,0 +1,25 @@
+{
+  "vm_trust_report": {
+    "vm_name": "instance-000006a3",
+    "template_id": "",
+    "attestations": [
+      {
+        "node": {
+          "trust_status": 1,
+          "trust_details": {
+            "bios": 1,
+            "vmm": 1
+          },
+          "node_id": "973D1534-B403-E211-BBFA-001E673B9418",
+          "node_name": "clientnode8.hpr.com",
+          "ip_address": null,
+          "attestation_time": "2014-01-06T23:33:45+0000"
+        },
+        "vm_start": "2014-01-06T23:33:45+0000"
+      }
+    ],
+    "generation_time": "2014-01-08T01:17:35+0000",
+    "vm_id": "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb",
+    "id": "26e7fbff-7f2b-4087-b09d-f9a5dcc16cdb"
+  }
+}

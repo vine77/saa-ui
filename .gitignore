@@ -12,4 +12,3 @@ components
 dist
 vendor
 public/styles/theme.css
-api

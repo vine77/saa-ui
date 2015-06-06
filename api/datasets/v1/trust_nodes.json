@@ -1,0 +1,71 @@
+{
+  "trust_nodes": [
+    {
+      "processor_info": null,
+      "vmm_osname": "Ubuntu",
+      "id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "port": 0,
+      "hostname": "192.168.3.104",
+      "aik_sha1": null,
+      "location": null,
+      "bios_version": "0003",
+      "pcr_logs": [
+        {
+          "modulelogs": [],
+          "name": 17,
+          "value": "7caa23c1ea83aa07fa0e767ec894a8e27670dd76",
+          "truststatus": 1,
+          "whitelistvalue": "7CAA23C1EA83AA07FA0E767EC894A8E27670DD76",
+          "verified_on": 1384982771268
+        },
+        {
+          "modulelogs": [],
+          "name": 0,
+          "value": "96de0a6254c21eb91af18b06637f12bee046c471",
+          "truststatus": 1,
+          "whitelistvalue": "96DE0A6254C21EB91AF18B06637F12BEE046C471",
+          "verified_on": 1384982771268
+        },
+        {
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "27569b1882c3255583fe24505cd56863eaa11aa2",
+              "value": "27569b1882c3255583fe24505cd56863eaa11aa2",
+              "truststatus": 1
+            }
+          ],
+          "name": 19,
+          "value": "352bcf61c555d5e5e18898a06e0b45daeeb4a1ba",
+          "truststatus": 1,
+          "whitelistvalue": "",
+          "verified_on": 1384982771268
+        },
+        {
+          "modulelogs": [],
+          "name": 18,
+          "value": "0c689e0dc7c329dc0a67f847c892fc94c4cd7218",
+          "truststatus": 1,
+          "whitelistvalue": "0C689E0DC7C329DC0A67F847C892FC94C4CD7218",
+          "verified_on": 1384982771268
+        }
+      ],
+      "email": null,
+      "addon_connection_string": "intel:https://192.168.3.104:9999",
+      "description": null,
+      "aik_certificate": null,
+      "node_id": "B7C80B00-0000-0B00-C8B7-0000000BC8B7",
+      "trust_mle_ids": [
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfQ29ycC4nKSwgKCdPZW1OYW1lJywgdSdJbnRlbCBDb3JwLicpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1JzAwMDMnKV0p",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMS4wLjAnKV0p"
+      ],
+      "ipaddress": "192.168.3.104",
+      "bios_oem": "Intel Corp.",
+      "vmm_name": "Intel_Romley_QEMU",
+      "bios_name": "Intel_Corp.",
+      "vmm_version": "12.04-1.0.0",
+      "aik_publickey": null,
+      "vmm_osversion": "12.04"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "trust_mles": [
+    {
+      "name": "Intel_Romley_QEMU",
+      "attestation_type": "MODULE",
+      "description": "",
+      "osname": "Ubuntu",
+      "trust_node_ids": [],
+      "oemname": null,
+      "mle_manifests": [
+        {
+          "name": "19",
+          "value": ""
+        },
+        {
+          "name": "18",
+          "value": "9B80A4822D06CA703345014ED2B8979E9E57EE8C"
+        }
+      ],
+      "version": "12.04-1.0.0",
+      "osversion": "12.04",
+      "id": "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSW50ZWxfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMS4wLjAnKV0p",
+      "node_id": null,
+      "mle_type": "VMM"
+    }
+  ]
+}

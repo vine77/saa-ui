@@ -1,0 +1,205 @@
+{
+  "trust_nodes": [
+    {
+      "processor_info": null,
+      "vmm_osname": "Ubuntu",
+      "id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "port": 0,
+      "hostname": "node-52.domain.tld",
+      "aik_sha1": null,
+      "location": null,
+      "bios_version": "2.2.2",
+      "pcr_logs": [
+        {
+          "modulelogs": [],
+          "name": 17,
+          "value": "502bb4be1f9618f8934409cdbdc86aacb9ce1cb1",
+          "truststatus": 1,
+          "whitelistvalue": "502BB4BE1F9618F8934409CDBDC86AACB9CE1CB1",
+          "verified_on": 1428082557251
+        },
+        {
+          "modulelogs": [],
+          "name": 0,
+          "value": "5420d349c33257974ed3ebaf06f6267e1ba384ac",
+          "truststatus": 1,
+          "whitelistvalue": "5420D349C33257974ED3EBAF06F6267E1BA384AC",
+          "verified_on": 1428082557251
+        },
+        {
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "6a01df413a98619c3b1646f312de1a192f9f3001",
+              "value": "6a01df413a98619c3b1646f312de1a192f9f3001",
+              "truststatus": 1
+            }
+          ],
+          "name": 19,
+          "value": "b426b672afbfddd838f20173daf8cf552136cf61",
+          "truststatus": 1,
+          "whitelistvalue": "",
+          "verified_on": 1428082557251
+        },
+        {
+          "modulelogs": [],
+          "name": 18,
+          "value": "c4de1e4efe58b0210c12047fc5a9378c6468c53b",
+          "truststatus": 1,
+          "whitelistvalue": "C4DE1E4EFE58B0210C12047FC5A9378C6468C53B",
+          "verified_on": 1428082557251
+        }
+      ],
+      "email": null,
+      "addon_connection_string": "intel:https://node-52.domain.tld:1443",
+      "description": null,
+      "aik_certificate": null,
+      "node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "trust_mle_ids": [
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9JbmMuJyksICgnT2VtTmFtZScsIHUnRGVsbCBJbmMuJyksICgnT3NOYW1lJywgTm9uZSksICgnT3NWZXJzaW9uJywgTm9uZSksICgnVmVyc2lvbicsIHUnMi4yLjInKV0p",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9RRU1VJyksICgnT2VtTmFtZScsIE5vbmUpLCAoJ09zTmFtZScsIHUnVWJ1bnR1JyksICgnT3NWZXJzaW9uJywgdScxMi4wNCcpLCAoJ1ZlcnNpb24nLCB1JzEyLjA0LTIuMC4wJyldKQ=="
+      ],
+      "ipaddress": "node-52.domain.tld",
+      "bios_oem": "Dell Inc.",
+      "vmm_name": "Dell_QEMU",
+      "bios_name": "Dell_Inc.",
+      "vmm_version": "12.04-2.0.0",
+      "aik_publickey": null,
+      "vmm_osversion": "12.04"
+    },
+    {
+      "processor_info": null,
+      "vmm_osname": "Ubuntu",
+      "id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "port": 0,
+      "hostname": "node-53.domain.tld",
+      "aik_sha1": null,
+      "location": null,
+      "bios_version": "1.0.4",
+      "pcr_logs": [
+        {
+          "modulelogs": [],
+          "name": 17,
+          "value": "3364766718b0a5c22a1f112a213e656c091202f3",
+          "truststatus": 1,
+          "whitelistvalue": "3364766718B0A5C22A1F112A213E656C091202F3",
+          "verified_on": 1428082552452
+        },
+        {
+          "modulelogs": [],
+          "name": 0,
+          "value": "6c43ea6092de8cc43d90f5ce8cd7f40d1d2ef547",
+          "truststatus": 1,
+          "whitelistvalue": "6C43EA6092DE8CC43D90F5CE8CD7F40D1D2EF547",
+          "verified_on": 1428082552452
+        },
+        {
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "33afdd645b040063f5fafdec3f090711292dadd8",
+              "value": "33afdd645b040063f5fafdec3f090711292dadd8",
+              "truststatus": 1
+            }
+          ],
+          "name": 19,
+          "value": "5e5891d4563a926fb876c5919234d25b049bef57",
+          "truststatus": 1,
+          "whitelistvalue": "",
+          "verified_on": 1428082552452
+        },
+        {
+          "modulelogs": [],
+          "name": 18,
+          "value": "c4de1e4efe58b0210c12047fc5a9378c6468c53b",
+          "truststatus": 1,
+          "whitelistvalue": "C4DE1E4EFE58B0210C12047FC5A9378C6468C53B",
+          "verified_on": 1428082552452
+        }
+      ],
+      "email": null,
+      "addon_connection_string": "intel:https://node-53.domain.tld:1443",
+      "description": null,
+      "aik_certificate": null,
+      "node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "trust_mle_ids": [
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9JbmMuJyksICgnT2VtTmFtZScsIHUnRGVsbCBJbmMuJyksICgnT3NOYW1lJywgTm9uZSksICgnT3NWZXJzaW9uJywgTm9uZSksICgnVmVyc2lvbicsIHUnMS4wLjQnKV0p",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnRGVsbF9RRU1VJyksICgnT2VtTmFtZScsIE5vbmUpLCAoJ09zTmFtZScsIHUnVWJ1bnR1JyksICgnT3NWZXJzaW9uJywgdScxMi4wNCcpLCAoJ1ZlcnNpb24nLCB1JzEyLjA0LTIuMC4wJyldKQ=="
+      ],
+      "ipaddress": "node-53.domain.tld",
+      "bios_oem": "Dell Inc.",
+      "vmm_name": "Dell_QEMU",
+      "bios_name": "Dell_Inc.",
+      "vmm_version": "12.04-2.0.0",
+      "aik_publickey": null,
+      "vmm_osversion": "12.04"
+    },
+    {
+      "processor_info": null,
+      "vmm_osname": "Ubuntu",
+      "id": "30343536-3138-584D-5134-313530304E52",
+      "port": 0,
+      "hostname": "node-54.domain.tld",
+      "aik_sha1": null,
+      "location": null,
+      "bios_version": "P71",
+      "pcr_logs": [
+        {
+          "modulelogs": [],
+          "name": 17,
+          "value": "502bb4be1f9618f8934409cdbdc86aacb9ce1cb1",
+          "truststatus": 1,
+          "whitelistvalue": "502BB4BE1F9618F8934409CDBDC86AACB9CE1CB1",
+          "verified_on": 1428082549135
+        },
+        {
+          "modulelogs": [],
+          "name": 0,
+          "value": "5b8c632fa4dfb26e7e661186f8d3adc2260b46a7",
+          "truststatus": 1,
+          "whitelistvalue": "5B8C632FA4DFB26E7E661186F8D3ADC2260B46A7",
+          "verified_on": 1428082549135
+        },
+        {
+          "modulelogs": [
+            {
+              "componentname": "initrd",
+              "whitelistvalue": "0349157d43ecce4084058b68d1e6adf14734af8e",
+              "value": "0349157d43ecce4084058b68d1e6adf14734af8e",
+              "truststatus": 1
+            }
+          ],
+          "name": 19,
+          "value": "205a83c8fa0ce25b11f8bde13e4f76de848fa030",
+          "truststatus": 1,
+          "whitelistvalue": "",
+          "verified_on": 1428082549135
+        },
+        {
+          "modulelogs": [],
+          "name": 18,
+          "value": "c4de1e4efe58b0210c12047fc5a9378c6468c53b",
+          "truststatus": 1,
+          "whitelistvalue": "C4DE1E4EFE58B0210C12047FC5A9378C6468C53B",
+          "verified_on": 1428082549135
+        }
+      ],
+      "email": null,
+      "addon_connection_string": "intel:https://node-54.domain.tld:1443",
+      "description": null,
+      "aik_certificate": null,
+      "node_id": "30343536-3138-584D-5134-313530304E52",
+      "trust_mle_ids": [
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSFAnKSwgKCdPZW1OYW1lJywgdSdIUCcpLCAoJ09zTmFtZScsIE5vbmUpLCAoJ09zVmVyc2lvbicsIE5vbmUpLCAoJ1ZlcnNpb24nLCB1J1A3MScpXSk=",
+        "T3JkZXJlZERpY3QoWygnTmFtZScsIHUnSFBfUm9tbGV5X1FFTVUnKSwgKCdPZW1OYW1lJywgTm9uZSksICgnT3NOYW1lJywgdSdVYnVudHUnKSwgKCdPc1ZlcnNpb24nLCB1JzEyLjA0JyksICgnVmVyc2lvbicsIHUnMTIuMDQtMi4wLjAnKV0p"
+      ],
+      "ipaddress": "node-54.domain.tld",
+      "bios_oem": "HP",
+      "vmm_name": "HP_Romley_QEMU",
+      "bios_name": "HP",
+      "vmm_version": "12.04-2.0.0",
+      "aik_publickey": null,
+      "vmm_osversion": "12.04"
+    }
+  ]
+}

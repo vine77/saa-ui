@@ -1,0 +1,4 @@
+{
+  "error_message": "Invalid request: invalid gateway address. '10.23.34.3' is invalid or not in the network defined by '10.23.35.70/255.255.255.0'",
+  "error_code": 400
+}

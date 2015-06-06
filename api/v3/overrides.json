@@ -1,0 +1,65 @@
+{
+  "overrides": [
+    {
+      "configuration_values": [
+        {
+          "default_value": "mysql://nova:openstack@172.24.0.12/nova",
+          "section": "openstack_db_connection",
+          "id": "sql_connection",
+          "value": "",
+          "name": "sql_connection"
+        },
+        {
+          "default_value": "mysql://quantum:openstack@172.24.0.12:3306/ovs_quantum",
+          "section": "openstack_db_connection",
+          "id": "sql_network_service_connection",
+          "value": "",
+          "name": "sql_network_service_connection"
+        },
+        {
+          "default_value": "127.0.0.1",
+          "section": "dns",
+          "id": "internal_dns",
+          "value": "",
+          "name": "internal_dns"
+        },
+        {
+          "default_value": "",
+          "section": "dns",
+          "id": "internal_default_domain",
+          "value": "",
+          "name": "internal_default_domain"
+        },
+        {
+          "default_value": "172.24.0.12:5672",
+          "section": "amqp_general",
+          "id": "amqp",
+          "value": "",
+          "name": "amqp"
+        },
+        {
+          "default_value": "",
+          "section": "ntp",
+          "id": "ntp_server",
+          "value": "",
+          "name": "ntp_server"
+        },
+        {
+          "default_value": "http://172.24.0.12:8774/api/v2",
+          "section": "openstack_services",
+          "id": "nova_url",
+          "value": "",
+          "name": "nova_url"
+        },
+        {
+          "default_value": "172.24.0.12",
+          "section": "horizon",
+          "id": "horizon_host",
+          "value": "",
+          "name": "horizon_host"
+        }
+      ],
+      "id": "current"
+    }
+  ]
+}

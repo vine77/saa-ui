@@ -1,0 +1,183 @@
+{
+  "slo_templates": [
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/942d618a-a279-41fb-9863-f6f3624a213f",
+        "slos": "/api/v2/configuration/slos?ids=91eed289-76c6-4494-b7c5-28e6267c2e11,b01f342d-dba9-47cc-8c8f-429950684ac4,3226a34b-30ed-45ce-970c-1e4474efa8b5,c7a6303e-6182-464e-aa73-be65913635e1,4cb4cc0b-a2fb-430e-a6a0-3dffdf275738,8042c85b-fb5d-4af4-a44c-a1fb4ce0a10c,1548c020-7f20-4980-8a5b-07faa67044dd,aa484e15-6376-445d-aa58-254a993f4f3f,36bc234b-8202-427a-a3ec-18ea72f46c7e,5099b115-ebff-4da6-974d-8c34adeb250f,c9735ec8-629c-43b2-b03a-3845410ac640,c3dc9cf0-c406-4ef6-ac98-b457bbd124ce,49aab236-7c78-4d9a-b20f-0b82eba94f5b,7882d0b8-dcc8-47c4-ac7b-d43b07a36a92,5c9e61cb-e678-4ada-85c6-deef9b9f88db,9ccca90f-3b26-4471-b2e6-373d15662690"
+      },
+      "class_name": "performance",
+      "operators": [
+        {
+          "operator": "in_range",
+          "description": "Service Compute Units value available for each VM shall be within <[MIN];[MAX]> range."
+        }
+      ],
+      "deleted": false,
+      "value_type": "range",
+      "element_name": "vm",
+      "id": "942d618a-a279-41fb-9863-f6f3624a213f",
+      "unit": "SCU",
+      "slo_type": "assured-scu-vm"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/77320c08-53f7-44bd-aa07-dd6180e7e075",
+        "slos": "/api/v2/configuration/slos?ids=6c64a5ea-b82d-416d-92df-7355dfa834d0,da8dd282-7d99-4f2e-b590-9a06a3f61e0f,b6c77195-ce26-4b0e-b7d2-fb15e61a03e8,a7d0c8d6-f2bc-4489-bc10-b3c5cfdba0de,533e13a0-2eae-4a45-bd85-6c4927a6ceb2,913783e5-c5a8-434f-8f27-ab7cb51abfce,4f94bbd0-71f1-47c9-b9cc-bd252f1649d3,faf27168-d281-4904-b011-8b795ae096a9,16c60f4a-61a5-472f-b5ae-febc9cb2c591,2bb8785f-3442-4ef6-9b8a-e0df41fb7fe0,6bbc75e8-8404-4eb9-9cf7-0c69d45d117e,e86cf673-1d4e-441d-a803-1232165f0f3e,32edc7a9-4350-4f6b-b47c-152d3451ec6f,b575cd73-8dfb-43cd-ba20-5a4b57a0d47d,14b2ebc9-afd6-4277-af30-c7b4897fa633,ae29ed86-04e0-4bbd-bdee-31211e0c9a2e,6a3c8cfe-cfd3-43df-ad49-bee33c8879b2,66fa68e5-5a52-402d-9a40-54886d231fe5,85d15691-6fff-479d-9ea9-b321ac661826,d042664b-8095-4e8d-aea4-d68fdbae7cfe,bb18296c-74f7-4dde-af6e-d8574991316f,196f02af-d9ea-4cb1-8f9d-e6410d544a46,1b8d25d2-9ae6-4b21-a89c-1734a0156516,ab39354d-cde6-4d7f-a39a-d1799f77511b"
+      },
+      "class_name": "security",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "SLO shall be used on [IS_TRUSTED] node."
+        }
+      ],
+      "deleted": false,
+      "value_type": "boolean",
+      "element_name": "vm",
+      "id": "77320c08-53f7-44bd-aa07-dd6180e7e075",
+      "unit": "",
+      "slo_type": "trusted_platform"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/fd352516-700c-40d4-8b80-87477de8e394",
+        "slos": "/api/v2/configuration/slos?ids=34f7fffc-5eed-485b-8004-557b81e72737,b702fde3-ede7-4742-8c7e-976805078fd5,8686894f-2bf9-4110-8bfb-bf0cd745cf45,d2e5d5b0-0fe2-43fc-9c86-fec5d4a9b30b,156fdfab-18a2-482d-a7e2-c89698f19161,02270d50-4925-4238-b65f-ece7f175b0d7,5c60ef54-78dd-486c-8065-065511a4ab22,6e085497-ab55-49fc-91eb-2e2ae24462b1"
+      },
+      "class_name": "performance",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Number of exclusive cores for each VM shall be equal to [NUMBER]."
+        }
+      ],
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "vm",
+      "id": "fd352516-700c-40d4-8b80-87477de8e394",
+      "unit": "CORES",
+      "slo_type": "assured-cores-physical"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/53da97fa-db6c-49e0-ba91-2952bc721ade"
+      },
+      "class_name": "user_name",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "User name shall be equal to [STRING]"
+        }
+      ],
+      "deleted": false,
+      "value_type": "string",
+      "element_name": "application",
+      "id": "53da97fa-db6c-49e0-ba91-2952bc721ade",
+      "unit": "",
+      "slo_type": "user_name"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/ffa830fd-cf67-4480-a3a4-59c9e1f59460"
+      },
+      "class_name": "group_name",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Group name shall be equal to [STRING]"
+        }
+      ],
+      "deleted": false,
+      "value_type": "string",
+      "element_name": "application",
+      "id": "ffa830fd-cf67-4480-a3a4-59c9e1f59460",
+      "unit": "",
+      "slo_type": "group_name"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/04898559-0a27-4963-b8e0-b2a10fd88064"
+      },
+      "class_name": "process_name",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Process name shall be equal to [STRING]"
+        }
+      ],
+      "deleted": false,
+      "value_type": "string",
+      "element_name": "application",
+      "id": "04898559-0a27-4963-b8e0-b2a10fd88064",
+      "unit": "",
+      "slo_type": "process_name"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/f4c474cc-b500-4bca-9d27-0a2149eddcfe"
+      },
+      "class_name": "host_aggregation",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Host aggregate name shall be equal to [STRING]"
+        },
+        {
+          "operator": "in",
+          "description": "Host aggregate name shall exist in list [STRING]"
+        },
+        {
+          "operator": "not equals",
+          "description": "Host aggregate name shall not be equal to [STRING]"
+        },
+        {
+          "operator": "not in",
+          "description": "Host aggregate names shall not exist in list [STRING]"
+        }
+      ],
+      "deleted": false,
+      "value_type": "string",
+      "element_name": "application",
+      "id": "f4c474cc-b500-4bca-9d27-0a2149eddcfe",
+      "unit": "",
+      "slo_type": "host_aggregation"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/b1629cd5-2480-404b-a83c-408bf485cb3d",
+        "slos": "/api/v2/configuration/slos?ids=324f1ca5-818f-4afd-9fef-a3dc16e9eb0c"
+      },
+      "class_name": "performance",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Number of exclusive cores for each Application shall be equal to [NUMBER]."
+        }
+      ],
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "application",
+      "id": "b1629cd5-2480-404b-a83c-408bf485cb3d",
+      "unit": "CORES",
+      "slo_type": "assured-cores-physical"
+    },
+    {
+      "links": {
+        "uri": "/api/v2/configuration/slo_templates/89f438b7-a503-46a9-b57d-da3f6a20b524",
+        "slos": "/api/v2/configuration/slos?ids=b225d49d-4da1-4e46-bfc4-b3e932806cd0"
+      },
+      "class_name": "performance",
+      "operators": [
+        {
+          "operator": "equals",
+          "description": "Number of exclusive cores for each OS shall be equal to [NUMBER]."
+        }
+      ],
+      "deleted": false,
+      "value_type": "integer",
+      "element_name": "os",
+      "id": "89f438b7-a503-46a9-b57d-da3f6a20b524",
+      "unit": "CORES",
+      "slo_type": "assured-cores-physical"
+    }
+  ]
+}

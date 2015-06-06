@@ -1,0 +1,93 @@
+    {
+      "status": {
+        "sla_messages": [
+          "SLA status: Healthy"
+        ],
+        "locked": false,
+        "sla_status": 1,
+        "aggressor": 1,
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "SLA definition for VM is not available. VM's task state is unknown. ",
+        "health": 4,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "SLA definition for VM is not available."
+      },
+      "links": {
+        "flavors": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18",
+        "nodes": "/api/v2/nodes/64EC022B-7294-E111-BD1D-001E6747F342",
+        "uri": "/api/v2/vms/61b80f12-819e-4c12-8335-322fb31e3dd1",
+        "logs": "/api/v2/logs?vm=61b80f12-819e-4c12-8335-322fb31e3dd1"
+      },
+      "vm_instantiation_detailed_id": null,
+      "vm_instantiation_simple_id": null,
+      "id": "61b80f12-819e-4c12-8335-322fb31e3dd1",
+      "victim_ids": [],
+      "cloud_id": "61b80f12-819e-4c12-8335-322fb31e3dd1",
+      "utilization": {
+        "ipc": 0.0,
+        "uptime": null,
+        "scu_total": 0.0,
+        "cores": {
+          "system": {
+            "used": [
+              {
+                "core": "2",
+                "socket": "2"
+              }
+            ]
+          }
+        },
+        "threads": [
+          {
+            "scu_current": null,
+            "id": null
+          }
+        ],
+        "io": null,
+        "memory": "2048 MB",
+        "scu_burst": 0.0,
+        "cpu": 0.0,
+        "network": null
+      },
+      "fixed_ips": null,
+      "graphite_url": "/render?target=stats.SAM",
+      "floating_ips": null,
+      "capabilities": {
+        "scu_allocated": null,
+        "cores": 2,
+        "scu_allocated_max": null,
+        "memory_size": "2048 MB",
+        "scu_allocated_min": null
+      },
+      "sla_id": "74c6bf71-9c90-429a-b8da-3e45ca3335e5",
+      "vm_name": "michael-nnag-image",
+      "macs": null,
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": null,
+              "label": null
+            },
+            "id": null
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0.0,
+            "label": "LOW"
+          }
+        }
+      },
+      "sla_name": "1 Core assured secure",
+      "vm_trust_report_id": null,
+      "node_id": "64EC022B-7294-E111-BD1D-001E6747F342",
+      "node_name": "novamgmt35",
+      "aggressor_ids": [],
+      "flavor_id": "4ad7488a-6c96-471c-945c-17d96958bc18"
+    }

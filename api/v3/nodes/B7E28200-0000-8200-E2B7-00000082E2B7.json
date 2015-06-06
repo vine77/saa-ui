@@ -1,0 +1,191 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v1/logs?node=B7E28200-0000-8200-E2B7-00000082E2B7",
+        "vms": "/api/v1/vms?ids=a95b56af-57f5-46b7-8b54-0cfb39943b2d,289f9d5e-0c0e-4d04-9dd9-ac5421d47806,0d60c6bf-b6ae-43ff-825b-72d7956916a0,7e74a040-f07e-4e40-a580-5332a91fb961,55e2dd90-c273-4c38-a55e-c010ce506bed,8b682ce1-f21f-4f91-b7d8-d7b983bad3e1,645cdec9-1c32-48a8-a667-580dde5eba56,5ee73a47-ae3f-4a52-9c32-b44ee9e04ef2,46540f7c-d195-4a7d-b829-8045f49a6d05,b6c8803c-2bf9-47b2-b573-006a24273c21,dbfa01b6-a279-4736-a622-97141c115f8d,665ad2f3-1cfc-4d27-9a8c-71c63515f99f,e18082bf-302d-4049-ae92-f09a5589621f,52f0e9d8-7898-4530-b15c-b4fc844bb517,444c1b14-06a4-4de0-8d89-299f4cb9f343,519dddf6-60b9-438b-9cb8-27446188f15c,8fd3ad80-d079-440b-8fdc-aa579596c4a0,622533bc-b749-40f5-a718-10463e9dea81,b1151997-ae5e-4f6a-a853-ae5819840498,770c56df-01df-4bfc-8d7b-62ba6b04504b,bacba934-86f6-4ffd-b548-90e47ae3c04d,5bf08381-4c24-43e7-a28f-a21519f1d2f4,847ccbb9-5765-40e6-a0c5-607148f4392a,22d4fa99-3ef8-47cb-934f-101161c2701f,db0f9dc8-0b95-4a89-b770-a202e025538d,297bc0ea-2612-4f9f-b137-3f933f1083cf,ef343f78-c426-42cf-b322-20df68f35165,700c4508-be2a-486f-a014-7643a10dbe72,27dadf8b-ea88-453a-af8a-2e3a466887da,aee089cf-ca8f-4f1a-9a6a-c14e621e347c,9092f2a5-7c3b-47fd-a876-e349768cc8a7,59e32012-f765-4b1e-9107-5ec4314f53af,de0f3f48-5310-4110-90d5-4395a1843193,225a3605-9d53-4b95-88ec-85c523d418c9,48cfb825-62c9-4093-805e-8c72a99f0360,cb61a96c-8a11-4b4b-a049-ba36a3bbcf44,e83fefb3-7201-4414-8765-026d7359f23f,f56b3112-07de-4af7-89cc-894eb681faac,f4db1597-bb2d-4426-9541-9deb7657fa8f,57e81428-bc37-4d6e-8430-f7de606e2b6a,0781f6a9-8866-4919-8418-4f4903e78e48,a3167992-22ae-4eed-8ba0-52a37a2d6522,8407fdb1-dd7a-437b-9fc4-37c3273ac6ff,c765502e-6d3f-4976-abb0-8101f520ee1a,2dcd1146-4b10-48f6-9f11-efb569a0b257,7efd6fe7-fdc3-48dd-b941-b0d065fbb196,5b9371c6-e2e7-4881-9879-26087af52511,44ffcc86-ef15-488a-9f73-8867300ab3ac,ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4,2edf8248-6c75-486f-af8b-3bbb37b8a141,915396c5-2d8a-455c-8d0e-39a00ca1784c,bd7d88b8-cbb5-43bd-a759-335c6132c2d1,39d90d6d-58f6-4c2d-a25a-31f59de9a0e6,f48c3366-58cb-4f37-a18d-decea2938dce,0b7c31b5-e1e7-4e87-a530-d6203f3f305b,351dcded-4840-4606-b070-425cae1a59d1,557c2e11-1dfc-4c09-922b-024279b92b63,745cde1f-a3e7-43d4-88a9-a927430af41f,f798b07a-b28d-45e6-8167-ea5550fe9e46,97457619-1c08-4713-a507-a71186907b35,bee50c6e-de36-47a8-8bbb-d0a9022fcca4,23f630bf-539b-40f3-ad5e-ef285b804f77,2686450a-0f84-4c4a-8867-fd00583d9082,89df0383-ae8f-4d53-a131-63d00ca43bd9,e161e761-9153-408c-935d-c81148e87475,2a7916b6-8808-433f-a673-c0d7f8c382e2,92bc611d-c8db-498f-bf9b-072742821122,84af3566-555a-44ef-bbc9-7435812400d4,01ad3eab-8dd5-4017-9261-5789b487141d,9c2cf44b-f8cb-419a-b2e8-06df0baa69f3,4c75a702-10e4-462c-9d49-36161b812159,1dcba328-a200-4edc-95a9-1412c9e41cd8,7dbf6942-810a-4f83-b6d4-a6a662b4f2e9,3d55dbd2-6944-49e2-b7bd-e9b2547a3368,66c09441-6336-4869-9eb0-64ee8bc95425,5d3d975a-a11f-465c-ac0b-0a32b61f54d4,1b642330-7fc4-43c4-a8e9-422ff9344a1c,1ffd5243-a8cd-4030-be0d-c402d5ad0397,3c6bdd9f-16b3-4cde-9236-e04a79720619,64e3a3ee-0290-4440-86da-0cab29a250d5,bc1fa734-2e5b-4353-9d43-1a3127781f6e,08b5bcfd-8578-42b6-aab7-868fe55e378f,2a573651-c239-44df-8956-f0e60088ebc4,e2c3cca4-cf57-4f4f-bf7c-7c20ac3d7271,bf1e2ac4-f448-4821-afc9-d1b1ccbcda04,e587a100-ea78-48d8-9012-f9e73d1114bd,53e99011-3949-448b-b4e7-538dbcf6594d,1fa76318-b413-4822-a1fb-48ba4987176e,cc368ff7-5613-4d35-afb3-5a5cb150de30,8e2f9748-e47f-43df-961e-54ba4ec13a1d",
+        "uri": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
+      },
+      "uri": "/nodes/B7E28200-0000-8200-E2B7-00000082E2B7",
+      "sam_controlled": 2,
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2014-01-08T01:16:48+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+      "sam_registered": true,
+      "utilization": {
+        "scu_current": null,
+        "scu_max": null,
+        "uptime": null,
+        "network": null,
+        "ipc": null,
+        "cpu_frequency_current": null,
+        "io": null,
+        "memory": null,
+        "cpu": {
+          "iowait": null,
+          "idle": null,
+          "total": null,
+          "steal": null,
+          "guest": null
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": null,
+        "cores_per_socket": null,
+        "cpu_frequency": null,
+        "turbo_mode": null,
+        "memory_size": null,
+        "cpu_type": null,
+        "cache_size": null,
+        "sockets": null
+      },
+      "vm_info": {
+        "count": 90,
+        "max": null
+      },
+      "memory": {
+        "max": 54265,
+        "used": 60736
+      },
+      "vm_ids": [
+        "a95b56af-57f5-46b7-8b54-0cfb39943b2d",
+        "289f9d5e-0c0e-4d04-9dd9-ac5421d47806",
+        "0d60c6bf-b6ae-43ff-825b-72d7956916a0",
+        "7e74a040-f07e-4e40-a580-5332a91fb961",
+        "55e2dd90-c273-4c38-a55e-c010ce506bed",
+        "8b682ce1-f21f-4f91-b7d8-d7b983bad3e1",
+        "645cdec9-1c32-48a8-a667-580dde5eba56",
+        "5ee73a47-ae3f-4a52-9c32-b44ee9e04ef2",
+        "46540f7c-d195-4a7d-b829-8045f49a6d05",
+        "b6c8803c-2bf9-47b2-b573-006a24273c21",
+        "dbfa01b6-a279-4736-a622-97141c115f8d",
+        "665ad2f3-1cfc-4d27-9a8c-71c63515f99f",
+        "e18082bf-302d-4049-ae92-f09a5589621f",
+        "52f0e9d8-7898-4530-b15c-b4fc844bb517",
+        "444c1b14-06a4-4de0-8d89-299f4cb9f343",
+        "519dddf6-60b9-438b-9cb8-27446188f15c",
+        "8fd3ad80-d079-440b-8fdc-aa579596c4a0",
+        "622533bc-b749-40f5-a718-10463e9dea81",
+        "b1151997-ae5e-4f6a-a853-ae5819840498",
+        "770c56df-01df-4bfc-8d7b-62ba6b04504b",
+        "bacba934-86f6-4ffd-b548-90e47ae3c04d",
+        "5bf08381-4c24-43e7-a28f-a21519f1d2f4",
+        "847ccbb9-5765-40e6-a0c5-607148f4392a",
+        "22d4fa99-3ef8-47cb-934f-101161c2701f",
+        "db0f9dc8-0b95-4a89-b770-a202e025538d",
+        "297bc0ea-2612-4f9f-b137-3f933f1083cf",
+        "ef343f78-c426-42cf-b322-20df68f35165",
+        "700c4508-be2a-486f-a014-7643a10dbe72",
+        "27dadf8b-ea88-453a-af8a-2e3a466887da",
+        "aee089cf-ca8f-4f1a-9a6a-c14e621e347c",
+        "9092f2a5-7c3b-47fd-a876-e349768cc8a7",
+        "59e32012-f765-4b1e-9107-5ec4314f53af",
+        "de0f3f48-5310-4110-90d5-4395a1843193",
+        "225a3605-9d53-4b95-88ec-85c523d418c9",
+        "48cfb825-62c9-4093-805e-8c72a99f0360",
+        "cb61a96c-8a11-4b4b-a049-ba36a3bbcf44",
+        "e83fefb3-7201-4414-8765-026d7359f23f",
+        "f56b3112-07de-4af7-89cc-894eb681faac",
+        "f4db1597-bb2d-4426-9541-9deb7657fa8f",
+        "57e81428-bc37-4d6e-8430-f7de606e2b6a",
+        "0781f6a9-8866-4919-8418-4f4903e78e48",
+        "a3167992-22ae-4eed-8ba0-52a37a2d6522",
+        "8407fdb1-dd7a-437b-9fc4-37c3273ac6ff",
+        "c765502e-6d3f-4976-abb0-8101f520ee1a",
+        "2dcd1146-4b10-48f6-9f11-efb569a0b257",
+        "7efd6fe7-fdc3-48dd-b941-b0d065fbb196",
+        "5b9371c6-e2e7-4881-9879-26087af52511",
+        "44ffcc86-ef15-488a-9f73-8867300ab3ac",
+        "ad6ba8f0-3998-4f2e-9b6b-3ad0164f24d4",
+        "2edf8248-6c75-486f-af8b-3bbb37b8a141",
+        "915396c5-2d8a-455c-8d0e-39a00ca1784c",
+        "bd7d88b8-cbb5-43bd-a759-335c6132c2d1",
+        "39d90d6d-58f6-4c2d-a25a-31f59de9a0e6",
+        "f48c3366-58cb-4f37-a18d-decea2938dce",
+        "0b7c31b5-e1e7-4e87-a530-d6203f3f305b",
+        "351dcded-4840-4606-b070-425cae1a59d1",
+        "557c2e11-1dfc-4c09-922b-024279b92b63",
+        "745cde1f-a3e7-43d4-88a9-a927430af41f",
+        "f798b07a-b28d-45e6-8167-ea5550fe9e46",
+        "97457619-1c08-4713-a507-a71186907b35",
+        "bee50c6e-de36-47a8-8bbb-d0a9022fcca4",
+        "23f630bf-539b-40f3-ad5e-ef285b804f77",
+        "2686450a-0f84-4c4a-8867-fd00583d9082",
+        "89df0383-ae8f-4d53-a131-63d00ca43bd9",
+        "e161e761-9153-408c-935d-c81148e87475",
+        "2a7916b6-8808-433f-a673-c0d7f8c382e2",
+        "92bc611d-c8db-498f-bf9b-072742821122",
+        "84af3566-555a-44ef-bbc9-7435812400d4",
+        "01ad3eab-8dd5-4017-9261-5789b487141d",
+        "9c2cf44b-f8cb-419a-b2e8-06df0baa69f3",
+        "4c75a702-10e4-462c-9d49-36161b812159",
+        "1dcba328-a200-4edc-95a9-1412c9e41cd8",
+        "7dbf6942-810a-4f83-b6d4-a6a662b4f2e9",
+        "3d55dbd2-6944-49e2-b7bd-e9b2547a3368",
+        "66c09441-6336-4869-9eb0-64ee8bc95425",
+        "5d3d975a-a11f-465c-ac0b-0a32b61f54d4",
+        "1b642330-7fc4-43c4-a8e9-422ff9344a1c",
+        "1ffd5243-a8cd-4030-be0d-c402d5ad0397",
+        "3c6bdd9f-16b3-4cde-9236-e04a79720619",
+        "64e3a3ee-0290-4440-86da-0cab29a250d5",
+        "bc1fa734-2e5b-4353-9d43-1a3127781f6e",
+        "08b5bcfd-8578-42b6-aab7-868fe55e378f",
+        "2a573651-c239-44df-8956-f0e60088ebc4",
+        "e2c3cca4-cf57-4f4f-bf7c-7c20ac3d7271",
+        "bf1e2ac4-f448-4821-afc9-d1b1ccbcda04",
+        "e587a100-ea78-48d8-9012-f9e73d1114bd",
+        "53e99011-3949-448b-b4e7-538dbcf6594d",
+        "1fa76318-b413-4822-a1fb-48ba4987176e",
+        "cc368ff7-5613-4d35-afb3-5a5cb150de30",
+        "8e2f9748-e47f-43df-961e-54ba4ec13a1d"
+      ],
+      "status": {
+        "locked": false,
+        "agent_version": "1.0.4.322",
+        "operational": 0,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "Unknown operational state of node.SAM agent is installed. ",
+        "health": 4,
+        "mode": 2,
+        "trust": 3,
+        "short_message": "Unknown operational state of node."
+      },
+      "trust_node_id": null,
+      "contention": {
+        "sockets": [],
+        "system": {
+          "llc": {
+            "value": null,
+            "label": "LOW"
+          }
+        }
+      },
+      "logs_url": "/logs?node=B7E28200-0000-8200-E2B7-00000082E2B7",
+      "tier": null,
+      "ids": {
+        "platform_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+        "mac": null,
+        "ip_address": null,
+        "cloud_id": "B7E28200-0000-8200-E2B7-00000082E2B7"
+      },
+      "node_name": "clientnode4.hpr.com",
+      "vcpus": {
+        "max": 512,
+        "used": 102
+      }
+    }
+  ]
+}

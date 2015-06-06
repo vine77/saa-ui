@@ -1,0 +1,462 @@
+{
+  "statuses": [
+    {
+      "children_ids": [
+        "scheduler",
+        "cloud_communication",
+        "agent_communication",
+        "configuration",
+        "storage"
+      ],
+      "exposed_health": 1,
+      "name": "System",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "system"
+    },
+    {
+      "children_ids": [
+        "configuration_process",
+        "sam_config_files",
+        "ntp_status",
+        "mw_installation"
+      ],
+      "exposed_health": 1,
+      "name": "Configuration",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "configuration"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Trust server",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "configuration"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "mw_installation"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "NTP Status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "configuration"
+      ],
+      "health": 1,
+      "message": "Last updated on Mar  9 2015 15:23:49 UTC (Host: 10.22.226.104)",
+      "id": "ntp_status"
+    },
+    {
+      "children_ids": [
+        "amqp",
+        "nodes_data_storage",
+        "amqp_request_processor",
+        "scheduler_plugin_version",
+        "cloud_scheduling_service",
+        "host_services_engine"
+      ],
+      "exposed_health": 1,
+      "name": "Scheduler",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "scheduler"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "SAA scheduling engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "amqp_request_processor"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Cloud scheduling engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "cloud_scheduling_service"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "SAA scheduler plugin",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "scheduler_plugin_version"
+    },
+    {
+      "children_ids": [
+        "cloud_rest_api",
+        "cloud_database"
+      ],
+      "exposed_health": 1,
+      "name": "Cloud communication",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "cloud_communication"
+    },
+    {
+      "children_ids": [
+        "amqp"
+      ],
+      "exposed_health": 1,
+      "name": "Agents communication",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "agent_communication"
+    },
+    {
+      "children_ids": [
+        "disk_mount",
+        "disk_space",
+        "nodes_data_storage",
+        "logging_communication",
+        "log_database"
+      ],
+      "exposed_health": 1,
+      "name": "Storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "system"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "storage"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "AMQP message bus",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler",
+        "agent_communication"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "amqp"
+    },
+    {
+      "children_ids": [
+        "persistent_db",
+        "ramfs",
+        "volatile_db"
+      ],
+      "exposed_health": 1,
+      "name": "Nodes data storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler",
+        "storage"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "nodes_data_storage"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Volatile storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "volatile_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Persistent storage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "persistent_db"
+    },
+    {
+      "children_ids": [
+        "keystone_connection",
+        "nova_connection",
+        "keystone_authentication"
+      ],
+      "exposed_health": 1,
+      "name": "REST API",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_communication"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "cloud_rest_api"
+    },
+    {
+      "children_ids": [
+        "nova_db",
+        "network_db",
+        "keystone_db",
+        "data_synchronization_engine"
+      ],
+      "exposed_health": 1,
+      "name": "Database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_communication"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "cloud_database"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Keystone connection",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_rest_api"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "keystone_connection"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Nova connection",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_rest_api"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "nova_connection"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Keystone authentication",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_rest_api"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "keystone_authentication"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Nova database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Nova database.",
+      "id": "nova_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Keystone database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Keystone Database.",
+      "id": "keystone_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Network database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Connected to Network Database.",
+      "id": "network_db"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Data synchronization engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "cloud_database"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "data_synchronization_engine"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Host Services engine",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "scheduler"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "host_services_engine"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Configuration process status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "configuration"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "configuration_process"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Configuration data status",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "configuration"
+      ],
+      "health": 1,
+      "message": "Health status: Ok",
+      "id": "sam_config_files"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Disk mount",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "storage"
+      ],
+      "health": 1,
+      "message": "/data mounted successfully",
+      "id": "disk_mount"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "RAMFS usage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "nodes_data_storage"
+      ],
+      "health": 1,
+      "message": "RAMFS data usage: 13.81%",
+      "id": "ramfs"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Disk usage",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "storage"
+      ],
+      "health": 1,
+      "message": "Disk usage: 1%",
+      "id": "disk_space"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Log database",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "storage"
+      ],
+      "health": 1,
+      "message": "Database not redundant",
+      "id": "log_database"
+    },
+    {
+      "children_ids": [],
+      "exposed_health": 1,
+      "name": "Logging Communications",
+      "is_notification": false,
+      "action_name": [],
+      "parent_ids": [
+        "storage"
+      ],
+      "health": 1,
+      "message": "Receiving logs",
+      "id": "logging_communication"
+    }
+  ]
+}

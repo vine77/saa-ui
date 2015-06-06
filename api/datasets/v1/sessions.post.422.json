@@ -1,0 +1,10 @@
+{
+  "errors": {
+    "message": {
+      "set_profile": true,
+      "mail_server": true,
+      "csrf_token": "8daAs1iMKwHZCCzwA3FWQtlDJfIlcCNb",
+      "change_password": true
+    }
+  }
+}

@@ -1,0 +1,3954 @@
+{
+  "nodes": [
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=80FCF37C-2701-E411-906E-0017A4403562",
+        "vms": "/api/v3/vms?ids=588d4c96-ac0c-424d-8817-db1742f546bf,f969dda2-f18d-49e9-8f94-9df1186808f6",
+        "uri": "/api/v3/nodes/80FCF37C-2701-E411-906E-0017A4403562"
+      },
+      "logs_url": "/logs?node=80FCF37C-2701-E411-906E-0017A4403562",
+      "uri": "/nodes/80FCF37C-2701-E411-906E-0017A4403562",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:07+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "80FCF37C-2701-E411-906E-0017A4403562",
+      "utilization": {
+        "ipc": 0.24,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 1.0378875934861989,
+          "idle": 3986.17,
+          "total": 4000.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "5928996 KB",
+          "ksm_sharing": "85100 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 5.84,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 5.84
+            },
+            {
+              "max": 2.92,
+              "type": "os",
+              "compute": 0.26,
+              "misc": 0.04,
+              "min": 2.92
+            }
+          ],
+          "system": {
+            "max": 58.4,
+            "allocated": 8.76,
+            "compute": 0.26,
+            "misc": 0.04,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 29.2,
+              "allocated": 5.84
+            },
+            {
+              "socket_number": 0,
+              "max": 29.2,
+              "allocated": 2.92
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "0",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 20,
+            "used": 3
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 640,
+            "used": 2
+          },
+          "disk": {
+            "max": 685,
+            "used": 10
+          },
+          "memory": {
+            "max": 96483,
+            "used": 1536
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 10,
+        "cpu_frequency": "2600 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.46,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "25600 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 2,
+        "max": null
+      },
+      "vm_ids": [
+        "588d4c96-ac0c-424d-8817-db1742f546bf",
+        "f969dda2-f18d-49e9-8f94-9df1186808f6"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 4,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.02
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "2.0.4",
+            "tagent_running": 2,
+            "tpm_enabled": 2,
+            "tagent_paired": 2,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.63,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "MEDIUM",
+              "type": "vm",
+              "value": 3.36,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.61,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.6,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.57,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "80FCF37C-2701-E411-906E-0017A4403562",
+        "mac": "4e:03:93:12:4a:4b",
+        "ip_address": "192.168.0.2",
+        "cloud_id": "80FCF37C-2701-E411-906E-0017A4403562"
+      },
+      "node_name": "node-37.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/D1155F35-3BE5-E011-BD1D-001E6729018E",
+        "logs": "/api/v3/logs?node=D1155F35-3BE5-E011-BD1D-001E6729018E"
+      },
+      "logs_url": "/logs?node=D1155F35-3BE5-E011-BD1D-001E6729018E",
+      "uri": "/nodes/D1155F35-3BE5-E011-BD1D-001E6729018E",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:12+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "D1155F35-3BE5-E011-BD1D-001E6729018E",
+      "utilization": {
+        "ipc": 0.57,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 2.503707318150648,
+          "idle": 2385.25,
+          "total": 2400.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "3906364 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 6.82,
+              "type": "os",
+              "compute": 0.19,
+              "misc": 0.0,
+              "min": 1.14
+            },
+            {
+              "max": 2.27,
+              "type": "os",
+              "compute": 0.0,
+              "misc": 0.0,
+              "min": 2.27
+            }
+          ],
+          "system": {
+            "max": 27.28,
+            "allocated": 3.41,
+            "compute": 0.19,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 13.64,
+              "allocated": 3.41
+            },
+            {
+              "socket_number": 0,
+              "max": 13.64,
+              "allocated": 1.13
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            },
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 12,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.01,
+        "cloud": {
+          "vcpus": {
+            "max": 384,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 59899,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.14,
+        "memory_size": "40960 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": false,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 0
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.11
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.85,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 2.66,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.13,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.48,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "D1155F35-3BE5-E011-BD1D-001E6729018E",
+        "mac": "7e:6b:cb:c9:f8:47",
+        "ip_address": "192.168.0.6",
+        "cloud_id": "D1155F35-3BE5-E011-BD1D-001E6729018E"
+      },
+      "node_name": "node-41.domain.tld"
+    },
+    {
+      "scheduler_persistent": true,
+      "links": {
+        "logs": "/api/v3/logs?node=00000000-0000-0000-0000-002590A348E6",
+        "vms": "/api/v3/vms?ids=1c4eb536-1663-458f-92d3-1ac72d75606d",
+        "uri": "/api/v3/nodes/00000000-0000-0000-0000-002590A348E6"
+      },
+      "logs_url": "/logs?node=00000000-0000-0000-0000-002590A348E6",
+      "uri": "/nodes/00000000-0000-0000-0000-002590A348E6",
+      "scheduler_mark": 0,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:10+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "00000000-0000-0000-0000-002590A348E6",
+      "utilization": {
+        "ipc": 0.54,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.6021077292125387,
+          "idle": 3161.15,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "2490952 KB",
+          "ksm_sharing": "29696 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 2.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 1.0
+            },
+            {
+              "max": 11.74,
+              "type": "os",
+              "compute": 0.31,
+              "misc": 0.04,
+              "min": 1.47
+            }
+          ],
+          "system": {
+            "max": 46.985,
+            "allocated": 2.47,
+            "compute": 0.31,
+            "misc": 0.04,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 23.49,
+              "allocated": 1.47
+            },
+            {
+              "socket_number": 0,
+              "max": 23.49,
+              "allocated": 2.47
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.01,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 2
+          },
+          "disk": {
+            "max": 685,
+            "used": 20
+          },
+          "memory": {
+            "max": 60411,
+            "used": 1024
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2600 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.47,
+        "memory_size": "40976 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 1,
+        "max": null
+      },
+      "vm_ids": [
+        "1c4eb536-1663-458f-92d3-1ac72d75606d"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.02
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.11,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "MEDIUM",
+              "type": "vm",
+              "value": 1.9,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.36,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 2.91,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.74,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "00000000-0000-0000-0000-002590A348E6",
+        "mac": "0e:d8:a0:63:ae:4a",
+        "ip_address": "192.168.0.13",
+        "cloud_id": "00000000-0000-0000-0000-002590A348E6"
+      },
+      "node_name": "node-48.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=00EF0E08-D031-E311-906E-001635649F5C",
+        "vms": "/api/v3/vms?ids=937ce888-7c69-48e6-af21-078e431bd1f3,273ab9db-0c32-4864-8a96-ac7cb0fe24b6,92c196c9-06bf-484d-83ef-ff35d0a22188,9574d62f-5dfb-4162-973a-ecc08f8e4268,ad6ba536-bab7-43c1-9568-28cab7d63f5f",
+        "uri": "/api/v3/nodes/00EF0E08-D031-E311-906E-001635649F5C"
+      },
+      "logs_url": "/logs?node=00EF0E08-D031-E311-906E-001635649F5C",
+      "uri": "/nodes/00EF0E08-D031-E311-906E-001635649F5C",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:11+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "00EF0E08-D031-E311-906E-001635649F5C",
+      "utilization": {
+        "ipc": 0.37,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 1.105527638190955,
+          "idle": 3172.26,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "4578044 KB",
+          "ksm_sharing": "277804 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 9.85,
+              "type": "os",
+              "compute": 0.29,
+              "misc": 0.0,
+              "min": 1.23
+            },
+            {
+              "max": 5.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 2.5
+            }
+          ],
+          "system": {
+            "max": 39.375,
+            "allocated": 3.73,
+            "compute": 0.285,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 19.69,
+              "allocated": 2.74
+            },
+            {
+              "socket_number": 0,
+              "max": 19.69,
+              "allocated": 2.24
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.01,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 5
+          },
+          "disk": {
+            "max": 685,
+            "used": 5
+          },
+          "memory": {
+            "max": 96460,
+            "used": 2560
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.23,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 5,
+        "max": null
+      },
+      "vm_ids": [
+        "937ce888-7c69-48e6-af21-078e431bd1f3",
+        "273ab9db-0c32-4864-8a96-ac7cb0fe24b6",
+        "92c196c9-06bf-484d-83ef-ff35d0a22188",
+        "9574d62f-5dfb-4162-973a-ecc08f8e4268",
+        "ad6ba536-bab7-43c1-9568-28cab7d63f5f"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.04
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.58,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 2.5,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.24,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.53,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.34,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "00EF0E08-D031-E311-906E-001635649F5C",
+        "mac": "1e:64:cf:c6:8b:4d",
+        "ip_address": "192.168.0.4",
+        "cloud_id": "00EF0E08-D031-E311-906E-001635649F5C"
+      },
+      "node_name": "node-39.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=4C4C4544-005A-3810-8037-B2C04F513232",
+        "node_trust_reports": "/api/v3/node_trust_reports/4C4C4544-005A-3810-8037-B2C04F513232",
+        "uri": "/api/v3/nodes/4C4C4544-005A-3810-8037-B2C04F513232",
+        "vms": "/api/v3/vms?ids=0c75d3e2-52c3-4399-be52-213bcb604826,7258cb1a-879d-4194-9364-d86d9ff03e3b,657cf196-72f4-426b-93ff-90b689d13848,d5ae9555-2f6f-4879-af6f-41f4f96a308c",
+        "trust_nodes": "/api/v3/trust_nodes/4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "logs_url": "/logs?node=4C4C4544-005A-3810-8037-B2C04F513232",
+      "uri": "/nodes/4C4C4544-005A-3810-8037-B2C04F513232",
+      "scheduler_mark": null,
+      "node_trust_report_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:09+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "utilization": {
+        "ipc": 0.9,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.0,
+          "idle": 2854.66,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 159.39
+        },
+        "io": null,
+        "memory": {
+          "used": "5407732 KB",
+          "ksm_sharing": "773212 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 7.89,
+              "type": "os",
+              "compute": 0.43,
+              "misc": 0.0,
+              "min": 0.99
+            },
+            {
+              "max": 4.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 2.0
+            }
+          ],
+          "system": {
+            "max": 31.565,
+            "allocated": 2.99,
+            "compute": 0.43,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 15.78,
+              "allocated": 1.99
+            },
+            {
+              "socket_number": 0,
+              "max": 15.78,
+              "allocated": 1.99
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.06,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 8
+          },
+          "disk": {
+            "max": 685,
+            "used": 32
+          },
+          "memory": {
+            "max": 48282,
+            "used": 4096
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2000 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 0.99,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 4,
+        "max": null
+      },
+      "vm_ids": [
+        "0c75d3e2-52c3-4399-be52-213bcb604826",
+        "7258cb1a-879d-4194-9364-d86d9ff03e3b",
+        "657cf196-72f4-426b-93ff-90b689d13848",
+        "d5ae9555-2f6f-4879-af6f-41f4f96a308c"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 2,
+            "vmm": 2
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "2.0.4",
+            "tagent_running": 2,
+            "tpm_enabled": 2,
+            "tagent_paired": 2,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 2,
+          "trust": 2
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 2.37,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.05,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.37,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.63,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.46,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "4C4C4544-005A-3810-8037-B2C04F513232",
+        "mac": "aa:6d:f9:0e:2e:43",
+        "ip_address": "192.168.0.17",
+        "cloud_id": "4C4C4544-005A-3810-8037-B2C04F513232"
+      },
+      "node_name": "node-52.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/8044A4D9-6D5A-E311-906E-001635649F5C",
+        "logs": "/api/v3/logs?node=8044A4D9-6D5A-E311-906E-001635649F5C"
+      },
+      "logs_url": "/logs?node=8044A4D9-6D5A-E311-906E-001635649F5C",
+      "uri": "/nodes/8044A4D9-6D5A-E311-906E-001635649F5C",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:09+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "8044A4D9-6D5A-E311-906E-001635649F5C",
+      "utilization": {
+        "ipc": 0.48,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.30201674792572025,
+          "idle": 5588.76,
+          "total": 5600.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "5197116 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 16.51,
+              "type": "os",
+              "compute": 0.3,
+              "misc": 0.0,
+              "min": 1.18
+            }
+          ],
+          "system": {
+            "max": 66.035,
+            "allocated": 1.18,
+            "compute": 0.3,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 33.02,
+              "allocated": 1.18
+            },
+            {
+              "socket_number": 0,
+              "max": 33.02,
+              "allocated": 1.18
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 28,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 896,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 96460,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 14,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.18,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "35840 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.03
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.3,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.55,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.38,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.45,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "8044A4D9-6D5A-E311-906E-001635649F5C",
+        "mac": "1e:b2:56:51:36:47",
+        "ip_address": "192.168.0.8",
+        "cloud_id": "8044A4D9-6D5A-E311-906E-001635649F5C"
+      },
+      "node_name": "node-43.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/809314C4-4C89-E411-906E-0012795D96DD",
+        "logs": "/api/v3/logs?node=809314C4-4C89-E411-906E-0012795D96DD"
+      },
+      "logs_url": "/logs?node=809314C4-4C89-E411-906E-0012795D96DD",
+      "uri": "/nodes/809314C4-4C89-E411-906E-0012795D96DD",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:11+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "809314C4-4C89-E411-906E-0012795D96DD",
+      "utilization": {
+        "ipc": 0.45,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 1.1387163561076605,
+          "idle": 7188.24,
+          "total": 7200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "3195888 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 2.38,
+              "type": "os",
+              "compute": 0.26,
+              "misc": 0.02,
+              "min": 2.38
+            }
+          ],
+          "system": {
+            "max": 85.71,
+            "allocated": 2.38,
+            "compute": 0.26,
+            "misc": 0.02,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 42.85,
+              "allocated": 2.38
+            },
+            {
+              "socket_number": 0,
+              "max": 42.85,
+              "allocated": 0.0
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "26",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 36,
+            "used": 1
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 1152,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 96483,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 18,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.19,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "46080 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.36",
+        "operational": 2,
+        "long_message": "Mismatched versions of SAA Agent (15.1a.rel.36) and SAA Server (15.1a.rel.32). Update SAA Agent Version to match SAA Controller version. SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 4,
+        "mode": 4,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.01
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "Mismatched versions of SAA Agent (15.1a.rel.36) and SAA Server (15.1a.rel.32). Update SAA Agent Version to match SAA Controller version. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.22,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.22,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.45,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.22,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "809314C4-4C89-E411-906E-0012795D96DD",
+        "mac": "96:52:cb:f6:ba:44",
+        "ip_address": "192.168.0.7",
+        "cloud_id": "809314C4-4C89-E411-906E-0012795D96DD"
+      },
+      "node_name": "node-42.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/F12F1EE7-01AA-E111-A0C9-001E674F8338",
+        "logs": "/api/v3/logs?node=F12F1EE7-01AA-E111-A0C9-001E674F8338"
+      },
+      "logs_url": "/logs?node=F12F1EE7-01AA-E111-A0C9-001E674F8338",
+      "uri": "/nodes/F12F1EE7-01AA-E111-A0C9-001E674F8338",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:06+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "F12F1EE7-01AA-E111-A0C9-001E674F8338",
+      "utilization": {
+        "ipc": 0.46,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 2.5047097203433952,
+          "idle": 3187.59,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "4480296 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 10.23,
+              "type": "os",
+              "compute": 0.19,
+              "misc": 0.0,
+              "min": 1.28
+            },
+            {
+              "max": 2.56,
+              "type": "os",
+              "compute": 0.0,
+              "misc": 0.0,
+              "min": 2.56
+            }
+          ],
+          "system": {
+            "max": 40.92,
+            "allocated": 3.84,
+            "compute": 0.19,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 20.46,
+              "allocated": 1.28
+            },
+            {
+              "socket_number": 0,
+              "max": 20.46,
+              "allocated": 3.84
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                }
+              ],
+              "type": "os"
+            },
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 60277,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2700 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.28,
+        "memory_size": "40960 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": false,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 0
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.02
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.32,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.41,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.95,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.06,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "F12F1EE7-01AA-E111-A0C9-001E674F8338",
+        "mac": "c2:a2:4b:6e:66:46",
+        "ip_address": "192.168.0.10",
+        "cloud_id": "F12F1EE7-01AA-E111-A0C9-001E674F8338"
+      },
+      "node_name": "node-45.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+        "logs": "/api/v3/logs?node=71CC0C1A-91F7-B240-9CF3-0F59D3F02D30"
+      },
+      "logs_url": "/logs?node=71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+      "uri": "/nodes/71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:10+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+      "utilization": {
+        "ipc": 0.41,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.0,
+          "idle": 3184.06,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "3257420 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 10.26,
+              "type": "os",
+              "compute": 0.18,
+              "misc": 0.03,
+              "min": 1.28
+            }
+          ],
+          "system": {
+            "max": 41.03,
+            "allocated": 1.28,
+            "compute": 0.175,
+            "misc": 0.03,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 20.52,
+              "allocated": 1.28
+            },
+            {
+              "socket_number": 0,
+              "max": 20.52,
+              "allocated": 1.28
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 23955,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2600 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.28,
+        "memory_size": "16384 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.59,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 2.21,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.05,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.36,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "71CC0C1A-91F7-B240-9CF3-0F59D3F02D30",
+        "mac": "2a:d1:d3:b4:24:44",
+        "ip_address": "192.168.0.3",
+        "cloud_id": "71CC0C1A-91F7-B240-9CF3-0F59D3F02D30"
+      },
+      "node_name": "node-38.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/809E7718-2B88-E211-BE20-001E6749D3CB",
+        "logs": "/api/v3/logs?node=809E7718-2B88-E211-BE20-001E6749D3CB"
+      },
+      "logs_url": "/logs?node=809E7718-2B88-E211-BE20-001E6749D3CB",
+      "uri": "/nodes/809E7718-2B88-E211-BE20-001E6749D3CB",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:11+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "809E7718-2B88-E211-BE20-001E6749D3CB",
+      "utilization": {
+        "ipc": 0.52,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.4016088498864674,
+          "idle": 2383.93,
+          "total": 2400.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "2976648 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 6.82,
+              "type": "os",
+              "compute": 0.18,
+              "misc": 0.04,
+              "min": 1.14
+            }
+          ],
+          "system": {
+            "max": 27.28,
+            "allocated": 1.14,
+            "compute": 0.18,
+            "misc": 0.04,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 13.64,
+              "allocated": 1.13
+            },
+            {
+              "socket_number": 0,
+              "max": 13.64,
+              "allocated": 1.13
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 12,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 384,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 36027,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.14,
+        "memory_size": "24576 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.02
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.16,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.29,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 2.23,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.66,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "809E7718-2B88-E211-BE20-001E6749D3CB",
+        "mac": "0e:84:3e:74:23:4d",
+        "ip_address": "192.168.0.14",
+        "cloud_id": "809E7718-2B88-E211-BE20-001E6749D3CB"
+      },
+      "node_name": "node-49.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/001BDF4B-7588-E211-94A6-001E6749D3F5",
+        "logs": "/api/v3/logs?node=001BDF4B-7588-E211-94A6-001E6749D3F5"
+      },
+      "logs_url": "/logs?node=001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "uri": "/nodes/001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:09+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "001BDF4B-7588-E211-94A6-001E6749D3F5",
+      "utilization": {
+        "ipc": 0.44,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.4021117678992713,
+          "idle": 2384.71,
+          "total": 2400.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "3136816 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [],
+          "system": {
+            "max": 0.0,
+            "allocated": 2.27,
+            "compute": 0.1,
+            "misc": 0.04,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": null,
+              "allocated": null
+            },
+            {
+              "socket_number": 0,
+              "max": null,
+              "allocated": null
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            },
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 12,
+            "used": null
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 384,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 72315,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": null,
+        "memory_size": "49152 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 1,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.02
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.94,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.59,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.69,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 1.61,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "001BDF4B-7588-E211-94A6-001E6749D3F5",
+        "mac": "82:f1:d4:43:1d:46",
+        "ip_address": "192.168.0.15",
+        "cloud_id": "001BDF4B-7588-E211-94A6-001E6749D3F5"
+      },
+      "node_name": "node-50.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=4C4C4544-0057-3310-8035-C3C04F503232",
+        "node_trust_reports": "/api/v3/node_trust_reports/4C4C4544-0057-3310-8035-C3C04F503232",
+        "uri": "/api/v3/nodes/4C4C4544-0057-3310-8035-C3C04F503232",
+        "vms": "/api/v3/vms?ids=f3c5a97e-4b02-4deb-adf3-ec84bb32db18,8686be35-0c4b-4eb8-b20a-a0cd63f689a3,7c3fb6dd-2011-454c-9d33-0ae54b5777bf,f4b47879-eda6-4588-8ed1-4c8e75c8baee",
+        "trust_nodes": "/api/v3/trust_nodes/4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "logs_url": "/logs?node=4C4C4544-0057-3310-8035-C3C04F503232",
+      "uri": "/nodes/4C4C4544-0057-3310-8035-C3C04F503232",
+      "scheduler_mark": null,
+      "node_trust_report_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:12+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "utilization": {
+        "ipc": 1.22,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.0,
+          "idle": 2135.08,
+          "total": 2400.0,
+          "steal": 0.0,
+          "guest": 119.93
+        },
+        "io": null,
+        "memory": {
+          "used": "5543420 KB",
+          "ksm_sharing": "777316 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 7.38,
+              "type": "os",
+              "compute": 0.42,
+              "misc": 0.0,
+              "min": 1.23
+            },
+            {
+              "max": 4.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 2.0
+            }
+          ],
+          "system": {
+            "max": 29.53,
+            "allocated": 3.23,
+            "compute": 0.42,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 14.77,
+              "allocated": 2.23
+            },
+            {
+              "socket_number": 0,
+              "max": 14.77,
+              "allocated": 2.23
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 12,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.07,
+        "cloud": {
+          "vcpus": {
+            "max": 384,
+            "used": 8
+          },
+          "disk": {
+            "max": 685,
+            "used": 32
+          },
+          "memory": {
+            "max": 96397,
+            "used": 4096
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.23,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 4,
+        "max": null
+      },
+      "vm_ids": [
+        "f3c5a97e-4b02-4deb-adf3-ec84bb32db18",
+        "8686be35-0c4b-4eb8-b20a-a0cd63f689a3",
+        "7c3fb6dd-2011-454c-9d33-0ae54b5777bf",
+        "f4b47879-eda6-4588-8ed1-4c8e75c8baee"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.01
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 2,
+            "vmm": 2
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "2.0.4",
+            "tagent_running": 2,
+            "tpm_enabled": 2,
+            "tagent_paired": 2,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 2,
+          "trust": 2
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.13,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.04,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.26,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.26,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.26,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "4C4C4544-0057-3310-8035-C3C04F503232",
+        "mac": "5a:5e:ab:b5:19:49",
+        "ip_address": "192.168.0.18",
+        "cloud_id": "4C4C4544-0057-3310-8035-C3C04F503232"
+      },
+      "node_name": "node-53.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=80EEAC25-E281-E311-906E-001635649F5C",
+        "vms": "/api/v3/vms?ids=d0f7bfe6-b7f1-4ebc-b964-8400505535be,7471f104-91a8-4fe3-bd4e-56b4a4d87463",
+        "uri": "/api/v3/nodes/80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "logs_url": "/logs?node=80EEAC25-E281-E311-906E-001635649F5C",
+      "uri": "/nodes/80EEAC25-E281-E311-906E-001635649F5C",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:13+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "80EEAC25-E281-E311-906E-001635649F5C",
+      "utilization": {
+        "ipc": 0.14,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.207469772687164,
+          "idle": 7181.02,
+          "total": 7200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "5950040 KB",
+          "ksm_sharing": "118116 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 2.38,
+              "type": "os",
+              "compute": 0.29,
+              "misc": 0.0,
+              "min": 2.38
+            },
+            {
+              "max": 4.76,
+              "type": "vm",
+              "compute": 1.65,
+              "misc": 0.0,
+              "min": 4.76
+            }
+          ],
+          "system": {
+            "max": 85.71,
+            "allocated": 7.14,
+            "compute": 1.945,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 42.85,
+              "allocated": 4.76
+            },
+            {
+              "socket_number": 0,
+              "max": 42.85,
+              "allocated": 2.38
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "26",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            },
+            {
+              "used": [
+                {
+                  "core": "8",
+                  "socket": "0"
+                },
+                {
+                  "core": "25",
+                  "socket": "1"
+                }
+              ],
+              "type": "vm"
+            }
+          ],
+          "system": {
+            "max": 36,
+            "used": 3
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 1152,
+            "used": 2
+          },
+          "disk": {
+            "max": 685,
+            "used": 25
+          },
+          "memory": {
+            "max": 96460,
+            "used": 2048
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 18,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.19,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "46080 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 2,
+        "max": null
+      },
+      "vm_ids": [
+        "d0f7bfe6-b7f1-4ebc-b964-8400505535be",
+        "7471f104-91a8-4fe3-bd4e-56b4a4d87463"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 4,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.51,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 1.73,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.57,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.71,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.58,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "80EEAC25-E281-E311-906E-001635649F5C",
+        "mac": "8e:55:22:e8:31:45",
+        "ip_address": "192.168.0.5",
+        "cloud_id": "80EEAC25-E281-E311-906E-001635649F5C"
+      },
+      "node_name": "node-40.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "uri": "/api/v3/nodes/D1B6E130-06AA-E111-A357-001E674F8348",
+        "logs": "/api/v3/logs?node=D1B6E130-06AA-E111-A357-001E674F8348"
+      },
+      "logs_url": "/logs?node=D1B6E130-06AA-E111-A357-001E674F8348",
+      "uri": "/nodes/D1B6E130-06AA-E111-A357-001E674F8348",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:14+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "D1B6E130-06AA-E111-A357-001E674F8348",
+      "utilization": {
+        "ipc": 0.44,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.9985046865405789,
+          "idle": 3183.91,
+          "total": 3200.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "4475676 KB",
+          "ksm_sharing": "0 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 9.1,
+              "type": "os",
+              "compute": 0.17,
+              "misc": 0.0,
+              "min": 1.14
+            },
+            {
+              "max": 2.27,
+              "type": "os",
+              "compute": 0.0,
+              "misc": 0.0,
+              "min": 2.27
+            }
+          ],
+          "system": {
+            "max": 36.375,
+            "allocated": 3.41,
+            "compute": 0.165,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 18.19,
+              "allocated": 3.42
+            },
+            {
+              "socket_number": 0,
+              "max": 18.19,
+              "allocated": 1.14
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            },
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 16,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.01,
+        "cloud": {
+          "vcpus": {
+            "max": 512,
+            "used": 0
+          },
+          "disk": {
+            "max": 685,
+            "used": 0
+          },
+          "memory": {
+            "max": 60277,
+            "used": 0
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 8,
+        "cpu_frequency": "2400 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.14,
+        "memory_size": "40960 MB",
+        "cpu_type": "",
+        "cache_size": "20480 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 0,
+        "max": null
+      },
+      "vm_ids": [],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": false,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 0
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.03
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. IPMI interface is unavailable. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.32,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.0,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 1.16,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.76,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.98,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [],
+      "ids": {
+        "platform_id": "D1B6E130-06AA-E111-A357-001E674F8348",
+        "mac": "5a:d0:5b:9d:39:45",
+        "ip_address": "192.168.0.11",
+        "cloud_id": "D1B6E130-06AA-E111-A357-001E674F8348"
+      },
+      "node_name": "node-46.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=008A53D5-F566-E411-AD05-001E670DD8D4",
+        "vms": "/api/v3/vms?ids=e6f207a6-e855-44c8-ad4f-2e7cff988d3e,f299f3b8-336a-45ba-bdfe-32656b87c359,577cdde2-aeeb-4dfa-bffb-b0f46d82ee55,ac092c99-e06e-4c7d-9d9e-69eb5822e9f8,ba21e7ab-d24c-4712-a356-6004e1d766c0,ed0a547b-ba25-4cc2-b546-55aeea15a368",
+        "uri": "/api/v3/nodes/008A53D5-F566-E411-AD05-001E670DD8D4"
+      },
+      "logs_url": "/logs?node=008A53D5-F566-E411-AD05-001E670DD8D4",
+      "uri": "/nodes/008A53D5-F566-E411-AD05-001E670DD8D4",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:14+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "008A53D5-F566-E411-AD05-001E670DD8D4",
+      "utilization": {
+        "ipc": 0.46,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.5015045135406218,
+          "idle": 5559.24,
+          "total": 5600.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "6257528 KB",
+          "ksm_sharing": "340228 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 16.51,
+              "type": "os",
+              "compute": 0.28,
+              "misc": 0.0,
+              "min": 1.18
+            },
+            {
+              "max": 7.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 3.5
+            }
+          ],
+          "system": {
+            "max": 66.035,
+            "allocated": 4.68,
+            "compute": 0.28,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 33.02,
+              "allocated": 2.94
+            },
+            {
+              "socket_number": 0,
+              "max": 33.02,
+              "allocated": 2.94
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 28,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.0,
+        "cloud": {
+          "vcpus": {
+            "max": 896,
+            "used": 6
+          },
+          "disk": {
+            "max": 685,
+            "used": 10
+          },
+          "memory": {
+            "max": 96483,
+            "used": 3072
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 14,
+        "cpu_frequency": "2300 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.18,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "35840 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 6,
+        "max": null
+      },
+      "vm_ids": [
+        "e6f207a6-e855-44c8-ad4f-2e7cff988d3e",
+        "f299f3b8-336a-45ba-bdfe-32656b87c359",
+        "577cdde2-aeeb-4dfa-bffb-b0f46d82ee55",
+        "ac092c99-e06e-4c7d-9d9e-69eb5822e9f8",
+        "ba21e7ab-d24c-4712-a356-6004e1d766c0",
+        "ed0a547b-ba25-4cc2-b546-55aeea15a368"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 2,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.33,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.51,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.4,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.36,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.35,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "008A53D5-F566-E411-AD05-001E670DD8D4",
+        "mac": "3e:a2:d1:04:ed:46",
+        "ip_address": "192.168.0.12",
+        "cloud_id": "008A53D5-F566-E411-AD05-001E670DD8D4"
+      },
+      "node_name": "node-47.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=00D4360E-304B-E311-906E-001635649F5C",
+        "vms": "/api/v3/vms?ids=e8d1bb67-ed08-4ad8-b512-80c66a0a98b6,d09845b9-07a3-415b-971b-4845298cd2c7,464340f3-d4a5-4aed-9112-b05f670bbc1f,689ec0d4-5c45-45f8-a385-3bebd99e616d,9a1d58f6-18ac-41af-9058-c662c9b68af7,8a1140a9-4bc3-4e6c-abd1-d0382fdf4d0c",
+        "uri": "/api/v3/nodes/00D4360E-304B-E311-906E-001635649F5C"
+      },
+      "logs_url": "/logs?node=00D4360E-304B-E311-906E-001635649F5C",
+      "uri": "/nodes/00D4360E-304B-E311-906E-001635649F5C",
+      "scheduler_mark": null,
+      "node_trust_report_id": null,
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:08+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "00D4360E-304B-E311-906E-001635649F5C",
+      "utilization": {
+        "ipc": 0.49,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.10090817356205853,
+          "idle": 4769.41,
+          "total": 4800.0,
+          "steal": 0.0,
+          "guest": 0.0
+        },
+        "io": null,
+        "memory": {
+          "used": "5538772 KB",
+          "ksm_sharing": "345112 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 6.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 3.0
+            },
+            {
+              "max": 15.38,
+              "type": "os",
+              "compute": 0.33,
+              "misc": 0.0,
+              "min": 1.28
+            }
+          ],
+          "system": {
+            "max": 61.525,
+            "allocated": 4.28,
+            "compute": 0.33,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 30.76,
+              "allocated": 2.78
+            },
+            {
+              "socket_number": 0,
+              "max": 30.76,
+              "allocated": 2.78
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 24,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.01,
+        "cloud": {
+          "vcpus": {
+            "max": 768,
+            "used": 6
+          },
+          "disk": {
+            "max": 685,
+            "used": 6
+          },
+          "memory": {
+            "max": 96483,
+            "used": 3072
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 12,
+        "cpu_frequency": "2500 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.28,
+        "memory_size": "65536 MB",
+        "cpu_type": "",
+        "cache_size": "30720 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 6,
+        "max": null
+      },
+      "vm_ids": [
+        "e8d1bb67-ed08-4ad8-b512-80c66a0a98b6",
+        "d09845b9-07a3-415b-971b-4845298cd2c7",
+        "464340f3-d4a5-4aed-9112-b05f670bbc1f",
+        "689ec0d4-5c45-45f8-a385-3bebd99e616d",
+        "9a1d58f6-18ac-41af-9058-c662c9b68af7",
+        "8a1140a9-4bc3-4e6c-abd1-d0382fdf4d0c"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 3,
+            "vmm": 3
+          },
+          "trust_config_details": {
+            "tagent_installed": 1,
+            "tagent_actual_version": "",
+            "tagent_running": 1,
+            "tpm_enabled": 1,
+            "tagent_paired": 1,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 1
+          },
+          "trust_config": 1,
+          "trust": 3
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": null,
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 0.37,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 1.05,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.33,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.34,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.41,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "00D4360E-304B-E311-906E-001635649F5C",
+        "mac": "4a:82:6f:6f:8f:46",
+        "ip_address": "192.168.0.16",
+        "cloud_id": "00D4360E-304B-E311-906E-001635649F5C"
+      },
+      "node_name": "node-51.domain.tld"
+    },
+    {
+      "scheduler_persistent": false,
+      "links": {
+        "logs": "/api/v3/logs?node=30343536-3138-584D-5134-313530304E52",
+        "node_trust_reports": "/api/v3/node_trust_reports/30343536-3138-584D-5134-313530304E52",
+        "uri": "/api/v3/nodes/30343536-3138-584D-5134-313530304E52",
+        "vms": "/api/v3/vms?ids=948ba11b-df10-4af3-b966-ee6b7945a91e,2b44c9bb-3a51-4433-ab80-e59be4ca4981,525cbab2-ac61-4eaf-95ca-c381873bf942",
+        "trust_nodes": "/api/v3/trust_nodes/30343536-3138-584D-5134-313530304E52"
+      },
+      "logs_url": "/logs?node=30343536-3138-584D-5134-313530304E52",
+      "uri": "/nodes/30343536-3138-584D-5134-313530304E52",
+      "scheduler_mark": null,
+      "node_trust_report_id": "30343536-3138-584D-5134-313530304E52",
+      "cloud_services": [
+        {
+          "last_update": "2015-04-03T19:15:14+0000",
+          "health": 1,
+          "name": "compute",
+          "operational": 2
+        }
+      ],
+      "id": "30343536-3138-584D-5134-313530304E52",
+      "utilization": {
+        "ipc": 0.7,
+        "network": null,
+        "cpu_frequency_current": null,
+        "cpu": {
+          "iowait": 0.0,
+          "idle": 2254.33,
+          "total": 2400.0,
+          "steal": 0.0,
+          "guest": 58.38
+        },
+        "io": null,
+        "memory": {
+          "used": "4527140 KB",
+          "ksm_sharing": "316516 KB"
+        },
+        "scu": {
+          "cgroups": [
+            {
+              "max": 7.11,
+              "type": "os",
+              "compute": 0.46,
+              "misc": 0.0,
+              "min": 1.19
+            },
+            {
+              "max": 3.0,
+              "type": "vm",
+              "compute": null,
+              "misc": null,
+              "min": 1.5
+            }
+          ],
+          "system": {
+            "max": 28.42,
+            "allocated": 2.69,
+            "compute": 0.46,
+            "misc": 0.0,
+            "min": 0.0
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 14.21,
+              "allocated": 1.69
+            },
+            {
+              "socket_number": 0,
+              "max": 14.21,
+              "allocated": 2.19
+            }
+          ]
+        },
+        "cores": {
+          "cgroups": [
+            {
+              "used": [
+                {
+                  "core": "-1",
+                  "socket": "0"
+                },
+                {
+                  "core": "-1",
+                  "socket": "1"
+                }
+              ],
+              "type": "os"
+            }
+          ],
+          "system": {
+            "max": 12,
+            "used": 0
+          }
+        },
+        "normalized_load": 0.04,
+        "cloud": {
+          "vcpus": {
+            "max": 384,
+            "used": 5
+          },
+          "disk": {
+            "max": 685,
+            "used": 21
+          },
+          "memory": {
+            "max": 48288,
+            "used": 2560
+          }
+        }
+      },
+      "graphite_url": "/render?target=stats.SAM",
+      "capabilities": {
+        "hyperthreading": true,
+        "cores_per_socket": 6,
+        "cpu_frequency": "2500 MHz",
+        "turbo_mode": true,
+        "max_scu_per_core": 1.19,
+        "memory_size": "32768 MB",
+        "cpu_type": "",
+        "cache_size": "15360 kB",
+        "sockets": 2
+      },
+      "vm_info": {
+        "count": 3,
+        "max": null
+      },
+      "vm_ids": [
+        "948ba11b-df10-4af3-b966-ee6b7945a91e",
+        "2b44c9bb-3a51-4433-ab80-e59be4ca4981",
+        "525cbab2-ac61-4eaf-95ca-c381873bf942"
+      ],
+      "status": {
+        "uptime": null,
+        "locked": false,
+        "ipmi": true,
+        "agent_version": "15.1a.rel.32",
+        "operational": 2,
+        "long_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. ",
+        "health": 1,
+        "mode": 3,
+        "health_details": {
+          "ipmi": {
+            "sensors_in_error": null,
+            "health": 1
+          },
+          "paging": {
+            "health": 1,
+            "value": 0.0
+          },
+          "io_wait": {
+            "health": 1,
+            "value": 0.0
+          },
+          "swap": {
+            "health": 1,
+            "value": 0.0
+          }
+        },
+        "trust_status": {
+          "trust_details": {
+            "bios": 2,
+            "vmm": 2
+          },
+          "trust_config_details": {
+            "tagent_installed": 2,
+            "tagent_actual_version": "2.0.4",
+            "tagent_running": 2,
+            "tpm_enabled": 2,
+            "tagent_paired": 2,
+            "tagent_expected_version": "2.0.4",
+            "tboot_measured_launch": 2
+          },
+          "trust_config": 2,
+          "trust": 2
+        },
+        "short_message": "SAA agent is installed. Node is powered on. SAA Agent reports success. Compute service is working. Compute service is enabled. "
+      },
+      "trust_node_id": "30343536-3138-584D-5134-313530304E52",
+      "contention": {
+        "llc": {
+          "cgroups": [
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "os",
+              "value": 1.33,
+              "min": 0.0
+            },
+            {
+              "max": 50.0,
+              "label": "LOW",
+              "type": "vm",
+              "value": 0.04,
+              "min": 0.0
+            }
+          ],
+          "sockets": [
+            {
+              "socket_number": 1,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.65,
+              "min": 0.0
+            },
+            {
+              "socket_number": 0,
+              "max": 50.0,
+              "label": "LOW",
+              "value": 0.8,
+              "min": 0.0
+            }
+          ],
+          "system": {
+            "max": 50.0,
+            "label": "LOW",
+            "value": 0.74,
+            "min": 0.0
+          }
+        }
+      },
+      "user_ids": [
+        "bf025827c7a144ad8dbe933b29322823"
+      ],
+      "aggregate_ids": [],
+      "tier": null,
+      "tenant_ids": [
+        "acfc279cbc1a46e591101796fe90bcf5"
+      ],
+      "ids": {
+        "platform_id": "30343536-3138-584D-5134-313530304E52",
+        "mac": "96:e1:5e:0a:9b:42",
+        "ip_address": "192.168.0.19",
+        "cloud_id": "30343536-3138-584D-5134-313530304E52"
+      },
+      "node_name": "node-54.domain.tld"
+    }
+  ]
+}

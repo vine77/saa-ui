@@ -1,0 +1,155 @@
+{
+  "flavors": [
+    {
+      "name": "m1.medium",
+      "links": {
+        "vms": "/api/v2/vms?ids=e446ef2d-984a-47db-ad82-2547ef661727,77c2be08-07ff-4a28-a3d0-d773cf5340e2,49d6e6ac-c3e0-4949-ba48-fa94aa049298,ad17ddc2-0d6e-4c7f-adcb-cde8bf692907,c79407e0-a285-4d03-90b8-5e0fa04d1dc3,0349a53c-b062-4a5a-a1ce-3b384f43528a,be07e90a-0402-471e-ac4e-a1209be42ab3,5ba41933-80e3-49f9-9737-87d6b0a7f8bb",
+        "uri": "/api/v2/configuration/flavors/3"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": "c2b39b30-adeb-45ea-ab00-098cd8106368",
+      "vcpus": 2,
+      "swap": 0,
+      "memory": 4096,
+      "root": 40,
+      "id": "3",
+      "vm_ids": [
+        "e446ef2d-984a-47db-ad82-2547ef661727",
+        "77c2be08-07ff-4a28-a3d0-d773cf5340e2",
+        "49d6e6ac-c3e0-4949-ba48-fa94aa049298",
+        "ad17ddc2-0d6e-4c7f-adcb-cde8bf692907",
+        "c79407e0-a285-4d03-90b8-5e0fa04d1dc3",
+        "0349a53c-b062-4a5a-a1ce-3b384f43528a",
+        "be07e90a-0402-471e-ac4e-a1209be42ab3",
+        "5ba41933-80e3-49f9-9737-87d6b0a7f8bb"
+      ]
+    },
+    {
+      "name": "m1.tiny",
+      "links": {
+        "vms": "/api/v2/vms?ids=7b8eb7b0-24f3-409e-a5ea-8395092d4015,07acdf4a-41b2-4fec-8f8c-ade78d95446f",
+        "uri": "/api/v2/configuration/flavors/1"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 512,
+      "root": 0,
+      "id": "1",
+      "vm_ids": [
+        "7b8eb7b0-24f3-409e-a5ea-8395092d4015",
+        "07acdf4a-41b2-4fec-8f8c-ade78d95446f"
+      ]
+    },
+    {
+      "name": "m1.large",
+      "links": {
+        "uri": "/api/v2/configuration/flavors/4"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 4,
+      "swap": 0,
+      "memory": 8192,
+      "root": 80,
+      "id": "4",
+      "vm_ids": []
+    },
+    {
+      "name": "m1.xlarge",
+      "links": {
+        "uri": "/api/v2/configuration/flavors/5"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 8,
+      "swap": 0,
+      "memory": 16384,
+      "root": 160,
+      "id": "5",
+      "vm_ids": []
+    },
+    {
+      "name": "m1.small",
+      "links": {
+        "vms": "/api/v2/vms?ids=c0cd7123-3e84-41bc-a169-17a39819a693",
+        "uri": "/api/v2/configuration/flavors/2"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 1,
+      "swap": 0,
+      "memory": 2048,
+      "root": 20,
+      "id": "2",
+      "vm_ids": [
+        "c0cd7123-3e84-41bc-a169-17a39819a693"
+      ]
+    },
+    {
+      "name": "sunil-test",
+      "links": {
+        "vms": "/api/v2/vms?ids=3a921c1c-ad0f-48e9-b73a-64ff404df694",
+        "uri": "/api/v2/configuration/flavors/7e67b45b-2eff-4406-bd28-9000a68645e4"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 2,
+      "swap": 0,
+      "memory": 1024,
+      "root": 0,
+      "id": "7e67b45b-2eff-4406-bd28-9000a68645e4",
+      "vm_ids": [
+        "3a921c1c-ad0f-48e9-b73a-64ff404df694"
+      ]
+    },
+    {
+      "name": "terry-unsec-bronze",
+      "links": {
+        "vms": "/api/v2/vms?ids=8a0f6100-e796-4bb6-8b07-fe52894cdf9e,5953581f-fc4f-49b9-a124-1ee0cc944fe5,61b80f12-819e-4c12-8335-322fb31e3dd1,4965a77f-3a9b-4a12-81b6-aab673f7b2f0,4037c3ad-4f80-406c-8b92-781ffc50f36d,da21e435-f551-45cc-8712-39b1be135355,9a0369a1-08b8-44e7-bb27-c3583513f086,33ca0931-a00e-4780-88fb-a67420c6dd1d,00bee174-a553-4d30-8078-e81e5c272677,5baf60a1-7798-41e7-ae4e-59c105d426fa",
+        "uri": "/api/v2/configuration/flavors/4ad7488a-6c96-471c-945c-17d96958bc18"
+      },
+      "deleted": false,
+      "rxtx_factor": 1.0,
+      "ephemeral": 0,
+      "public": 1,
+      "sla_id": null,
+      "vcpus": 2,
+      "swap": 0,
+      "memory": 2048,
+      "root": 30,
+      "id": "4ad7488a-6c96-471c-945c-17d96958bc18",
+      "vm_ids": [
+        "8a0f6100-e796-4bb6-8b07-fe52894cdf9e",
+        "5953581f-fc4f-49b9-a124-1ee0cc944fe5",
+        "61b80f12-819e-4c12-8335-322fb31e3dd1",
+        "4965a77f-3a9b-4a12-81b6-aab673f7b2f0",
+        "4037c3ad-4f80-406c-8b92-781ffc50f36d",
+        "da21e435-f551-45cc-8712-39b1be135355",
+        "9a0369a1-08b8-44e7-bb27-c3583513f086",
+        "33ca0931-a00e-4780-88fb-a67420c6dd1d",
+        "00bee174-a553-4d30-8078-e81e5c272677",
+        "5baf60a1-7798-41e7-ae4e-59c105d426fa"
+      ]
+    }
+  ]
+}

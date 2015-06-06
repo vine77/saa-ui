@@ -1,0 +1,112 @@
+{
+  "actions": [
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+      },
+      "started": "2014-02-06T19:17:46+00:00",
+      "id": 1,
+      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Trust agent config action for node \"node-24.domain.tld\" has been executed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2014-02-06T19:17:46+00:00",
+      "vm_id": null,
+      "options": {}
+    },
+    {
+      "status": 1,
+      "name": "trust_agent_config",
+      "links": {
+        "nodes": "/api/v1/nodes/009F695B-EC0C-E211-A2C5-001E67329FEA"
+      },
+      "started": "2014-02-06T19:18:01+00:00",
+      "id": 2,
+      "node_id": "009F695B-EC0C-E211-A2C5-001E67329FEA",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Trust agent config action for node \"node-17.domain.tld\" has been executed.  IPM mgmt IP is \"192.168.0.252\".",
+      "last_update": "2014-02-06T19:18:01+00:00",
+      "vm_id": null,
+      "options": {}
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+      },
+      "started": "2014-02-06T19:20:45+00:00",
+      "id": 3,
+      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Socket 0 of \"node-24.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2014-02-06T19:20:45+00:00",
+      "vm_id": null,
+      "options": {
+        "scheduler_mark": 0,
+        "scheduler_persistent": true
+      }
+    },
+    {
+      "status": 1,
+      "name": "scheduler_unmark",
+      "links": {
+        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+      },
+      "started": "2014-02-06T19:28:50+00:00",
+      "id": 4,
+      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Node \"node-24.domain.tld\" preselection for VM placement has been removed.",
+      "last_update": "2014-02-06T19:28:50+00:00",
+      "vm_id": null,
+      "options": {}
+    },
+    {
+      "status": 1,
+      "name": "scheduler_mark",
+      "links": {
+        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+      },
+      "started": "2014-02-06T19:28:57+00:00",
+      "id": 5,
+      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Socket 1 of \"node-24.domain.tld\" node has been preselected for VMs placement.",
+      "last_update": "2014-02-06T19:28:57+00:00",
+      "vm_id": null,
+      "options": {
+        "scheduler_mark": 1,
+        "scheduler_persistent": true
+      }
+    },
+    {
+      "status": 1,
+      "name": "scheduler_unmark",
+      "links": {
+        "nodes": "/api/v1/nodes/00000000-0000-0000-0000-002590C98B9C"
+      },
+      "started": "2014-02-06T19:31:50+00:00",
+      "id": 6,
+      "node_id": "00000000-0000-0000-0000-002590C98B9C",
+      "done": true,
+      "user": null,
+      "blocking": "false",
+      "message": "Node \"node-24.domain.tld\" preselection for VM placement has been removed.",
+      "last_update": "2014-02-06T19:31:51+00:00",
+      "vm_id": null,
+      "options": {}
+    }
+  ]
+}

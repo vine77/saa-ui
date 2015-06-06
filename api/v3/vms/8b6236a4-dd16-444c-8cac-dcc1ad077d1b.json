@@ -1,0 +1,127 @@
+{
+  "vms": [
+    {
+      "vm_name": "test-8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "status": {
+        "sla_messages": [
+          "SLA status for VM: unknown"
+        ],
+        "locked": false,
+        "sla_status": 0,
+        "aggressor": 1,
+        "operational": 2,
+        "trust_details": {
+          "bios": 3,
+          "vmm": 3
+        },
+        "long_message": "VM data is not available because VM was placed on a non-SAM node. VM is healthy. VM is powered on. ",
+        "health": 1,
+        "victim": 1,
+        "trust": 3,
+        "short_message": "VM data is not available because VM was placed on a non-SAM node."
+      },
+      "macs": [
+        "fa:16:3e:27:c4:7f"
+      ],
+      "cloud_id": "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "links": {
+        "logs": "/api/v1/logs?vm=8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "slas": "/api/v1/configuration/slas/6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
+        "uri": "/api/v1/vms/8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "vm_instantiation_detailed": "/api/v1/vm_instantiation_detailed/8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "nodes": "/api/v1/nodes/6FD37C45-BAA9-5FD3-BD19-9FFD24C28DA2",
+        "vm_trust_reports": "/api/v1/vm_trust_reports/8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+        "vm_instantiation_simple": "/api/v1/vm_instantiation_simple/8b6236a4-dd16-444c-8cac-dcc1ad077d1b"
+      },
+      "utilization": {
+        "scu_current": 0,
+        "ipc": 0,
+        "uptime": null,
+        "network": null,
+        "scu_burst": 0.42,
+        "scu_total": 0.42,
+        "threads": [
+          {
+            "scu_current": 0.42,
+            "id": 93978
+          },
+          {
+            "scu_current": 0,
+            "id": 93975
+          },
+          {
+            "scu_current": 0,
+            "id": 93977
+          },
+          {
+            "scu_current": 0,
+            "id": 93976
+          }
+        ],
+        "io": null,
+        "memory": "4145152 KB",
+        "cpu": 5.265603365826994
+      },
+      "vm_instantiation_simple_id": "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "graphite_url": "/render?target=stats.SAM",
+      "sla_name": "GIPS violation unsecure",
+      "floating_ips": null,
+      "capabilities": {
+        "cores": 4,
+        "memory_size": "4145152 KB",
+        "scu_allocated_max": 2,
+        "scu_allocated": 0,
+        "scu_allocated_min": 0
+      },
+      "node_name": "clientnode8.hpr.com",
+      "sla_id": "6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
+      "victim_ids": [],
+      "node_id": "6FD37C45-BAA9-5FD3-BD19-9FFD24C28DA2",
+      "aggressor_ids": [],
+      "vm_instantiation_detailed_id": "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "vm_trust_report_id": "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "fixed_ips": [
+        "192.168.90.14"
+      ],
+      "id": "8b6236a4-dd16-444c-8cac-dcc1ad077d1b",
+      "contention": {
+        "threads": [
+          {
+            "llc": {
+              "value": 0.08,
+              "label": "LOW"
+            },
+            "id": 93978
+          },
+          {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            },
+            "id": 93975
+          },
+          {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            },
+            "id": 93977
+          },
+          {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            },
+            "id": 93976
+          }
+        ],
+        "system": {
+          "llc": {
+            "value": 0,
+            "label": "LOW"
+          }
+        }
+      }
+    }
+  ]
+}

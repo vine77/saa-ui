@@ -1,0 +1,380 @@
+{
+  "vm_instantiation_detailed": {
+    "vm_name": "test-a95b56af-57f5-46b7-8b54-0cfb39943b2d",
+    "instantiation_nodes": [
+      {
+        "contention": {
+          "system": {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "llc": {
+                "value": 0,
+                "label": "LOW"
+              }
+            },
+            {
+              "socket_number": 0,
+              "llc": {
+                "value": 0,
+                "label": "LOW"
+              }
+            }
+          ]
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
+        },
+        "selected": true,
+        "instantiation_slos": [
+          {
+            "description": "Node`s Trust Server status.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/0e1af692-606b-442b-8f66-26e2f0ae45eb"
+            },
+            "value": 3,
+            "slo_id": "0e1af692-606b-442b-8f66-26e2f0ae45eb",
+            "passed": true,
+            "unit": ""
+          },
+          {
+            "description": "SAM Units capacity of node's core must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 5.4,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "Node's available SAM Units value shall be greater or equal to 0.0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 83.7,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "SAM Units capacity of node's sockets must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 40.5,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          }
+        ],
+        "internal_filters": [
+          {
+            "value": true,
+            "id": 1,
+            "passed": true,
+            "description": "VM is started using SLA aware flavor."
+          },
+          {
+            "value": true,
+            "id": 5,
+            "passed": true,
+            "description": "Node is healthy."
+          },
+          {
+            "value": true,
+            "id": 3,
+            "passed": true,
+            "description": "SAM Agent is running in assured mode."
+          },
+          {
+            "value": true,
+            "id": 4,
+            "passed": true,
+            "description": "SAM Agent version is the same as SAM IPM."
+          }
+        ],
+        "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7"
+      },
+      {
+        "contention": {
+          "system": {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          },
+          "sockets": [
+            {
+              "socket_number": 0,
+              "llc": {
+                "value": 0,
+                "label": "LOW"
+              }
+            }
+          ]
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
+        },
+        "selected": false,
+        "instantiation_slos": [
+          {
+            "description": "Node`s Trust Server status.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/0e1af692-606b-442b-8f66-26e2f0ae45eb"
+            },
+            "value": 3,
+            "slo_id": "0e1af692-606b-442b-8f66-26e2f0ae45eb",
+            "passed": true,
+            "unit": ""
+          },
+          {
+            "description": "SAM Units capacity of node's core must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 4.691875,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "Node's available SAM Units value shall be greater or equal to 0.0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 35.19,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "SAM Units capacity of node's sockets must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 35.19,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          }
+        ],
+        "internal_filters": [
+          {
+            "value": true,
+            "id": 1,
+            "passed": true,
+            "description": "VM is started using SLA aware flavor."
+          },
+          {
+            "value": true,
+            "id": 5,
+            "passed": true,
+            "description": "Node is healthy."
+          },
+          {
+            "value": true,
+            "id": 3,
+            "passed": true,
+            "description": "SAM Agent is running in assured mode."
+          },
+          {
+            "value": true,
+            "id": 4,
+            "passed": true,
+            "description": "SAM Agent version is the same as SAM IPM."
+          }
+        ],
+        "node_id": "973D1534-B403-E211-BBFA-001E673B9418"
+      },
+      {
+        "contention": {
+          "system": {
+            "llc": {
+              "value": 0,
+              "label": "LOW"
+            }
+          },
+          "sockets": [
+            {
+              "socket_number": 1,
+              "llc": {
+                "value": 0,
+                "label": "LOW"
+              }
+            },
+            {
+              "socket_number": 0,
+              "llc": {
+                "value": 0,
+                "label": "LOW"
+              }
+            }
+          ]
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/0730E39E-65E6-E111-BD3C-001E675AF475"
+        },
+        "selected": false,
+        "instantiation_slos": [
+          {
+            "description": "Node`s Trust Server status.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/0e1af692-606b-442b-8f66-26e2f0ae45eb"
+            },
+            "value": 3,
+            "slo_id": "0e1af692-606b-442b-8f66-26e2f0ae45eb",
+            "passed": true,
+            "unit": ""
+          },
+          {
+            "description": "SAM Units capacity of node's core must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 5.3725,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "Node's available SAM Units value shall be greater or equal to 0.0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 40.3,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          },
+          {
+            "description": "SAM Units capacity of node's sockets must be greater or equal to 0.",
+            "links": {
+              "slos": "/api/v1/configuration/slos/a06d3848-dcb7-4570-b1b4-90ac305333a9"
+            },
+            "value": 18.8,
+            "slo_id": "a06d3848-dcb7-4570-b1b4-90ac305333a9",
+            "passed": true,
+            "unit": "SU"
+          }
+        ],
+        "internal_filters": [
+          {
+            "value": true,
+            "id": 1,
+            "passed": true,
+            "description": "VM is started using SLA aware flavor."
+          },
+          {
+            "value": true,
+            "id": 5,
+            "passed": true,
+            "description": "Node is healthy."
+          },
+          {
+            "value": true,
+            "id": 3,
+            "passed": true,
+            "description": "SAM Agent is running in assured mode."
+          },
+          {
+            "value": true,
+            "id": 4,
+            "passed": true,
+            "description": "SAM Agent version is the same as SAM IPM."
+          }
+        ],
+        "node_id": "0730E39E-65E6-E111-BD3C-001E675AF475"
+      },
+      {
+        "contention": {
+          "system": {},
+          "sockets": []
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/CAF4B84A-34BD-5645-A426-E25A633A849D"
+        },
+        "selected": false,
+        "instantiation_slos": [],
+        "internal_filters": [
+          {
+            "value": false,
+            "id": 1,
+            "passed": false,
+            "description": "VM is started using SLA aware flavor."
+          }
+        ],
+        "node_id": "CAF4B84A-34BD-5645-A426-E25A633A849D"
+      },
+      {
+        "contention": {
+          "system": {},
+          "sockets": []
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/00F400BD-762A-E211-9C53-001E67343C15"
+        },
+        "selected": false,
+        "instantiation_slos": [],
+        "internal_filters": [
+          {
+            "value": true,
+            "id": 1,
+            "passed": true,
+            "description": "VM is started using SLA aware flavor."
+          },
+          {
+            "value": false,
+            "id": 5,
+            "passed": false,
+            "description": "Node is healthy."
+          }
+        ],
+        "node_id": "00F400BD-762A-E211-9C53-001E67343C15"
+      },
+      {
+        "contention": {
+          "system": {},
+          "sockets": []
+        },
+        "links": {
+          "nodes": "/api/v1/nodes/D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
+        },
+        "selected": false,
+        "instantiation_slos": [],
+        "internal_filters": [
+          {
+            "value": false,
+            "id": 1,
+            "passed": false,
+            "description": "VM is started using SLA aware flavor."
+          }
+        ],
+        "node_id": "D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
+      }
+    ],
+    "links": {
+      "flavors": "/api/v1/configuration/flavors/e4d642f1-c6d3-4812-a1f3-7c94de93f9ca",
+      "vms": "/api/v1/vms/a95b56af-57f5-46b7-8b54-0cfb39943b2d",
+      "slas": "/api/v1/configuration/slas/6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c"
+    },
+    "schedule_time": "2014-01-06T23:04:09+0000",
+    "nodes_count": {
+      "under_saa_control": 4,
+      "total": 6
+    },
+    "vm_trust_status": false,
+    "sla_id": "6fa140b9-c1ed-4bcc-8f1b-979f36e6ac0c",
+    "flavor_id": "e4d642f1-c6d3-4812-a1f3-7c94de93f9ca",
+    "generation_time": "2014-01-08T01:17:00+0000",
+    "scheduled_by_saa": true,
+    "vm_id": "a95b56af-57f5-46b7-8b54-0cfb39943b2d",
+    "id": "a95b56af-57f5-46b7-8b54-0cfb39943b2d"
+  }
+}

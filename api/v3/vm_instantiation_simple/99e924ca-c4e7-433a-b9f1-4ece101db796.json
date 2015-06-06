@@ -1,0 +1,101 @@
+{
+  "vm_instantiation_simple": {
+    "vm_name": "test2-99e924ca-c4e7-433a-b9f1-4ece101db796",
+    "slo_gates": [
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/d368f505-5997-4613-be4d-c194f015e4f6"
+        },
+        "nodes_count": 3,
+        "description": "Node`s Trust Server status.",
+        "slo_id": "d368f505-5997-4613-be4d-c194f015e4f6"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/1533a9b1-cfc2-40ad-a945-e093d60254ad"
+        },
+        "nodes_count": 3,
+        "description": "SAM Units capacity of node's core must be greater or equal to 0.",
+        "slo_id": "1533a9b1-cfc2-40ad-a945-e093d60254ad"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/1533a9b1-cfc2-40ad-a945-e093d60254ad"
+        },
+        "nodes_count": 3,
+        "description": "Node's available SAM Units value shall be greater or equal to 0.0.",
+        "slo_id": "1533a9b1-cfc2-40ad-a945-e093d60254ad"
+      },
+      {
+        "links": {
+          "slos": "/api/v1/configuration/slos/1533a9b1-cfc2-40ad-a945-e093d60254ad"
+        },
+        "nodes_count": 3,
+        "description": "SAM Units capacity of node's sockets must be greater or equal to 0.",
+        "slo_id": "1533a9b1-cfc2-40ad-a945-e093d60254ad"
+      }
+    ],
+    "links": {
+      "flavors": "/api/v1/configuration/flavors/0591ea84-e8af-4412-8914-305988157889",
+      "vms": "/api/v1/vms/99e924ca-c4e7-433a-b9f1-4ece101db796",
+      "slas": "/api/v1/configuration/slas/036b3499-4d29-4f45-a768-4ee096e0f5eb"
+    },
+    "schedule_time": "2014-01-06T23:31:08+0000",
+    "nodes_count": {
+      "under_saa_control": 4,
+      "total": 6
+    },
+    "sla_name": "Unsecure Bronze",
+    "vm_trust_status": false,
+    "sla_id": "036b3499-4d29-4f45-a768-4ee096e0f5eb",
+    "ranked_nodes": [
+      {
+        "node_id": "973D1534-B403-E211-BBFA-001E673B9418",
+        "selected": true,
+        "links": {
+          "nodes": "/api/v1/nodes/973D1534-B403-E211-BBFA-001E673B9418"
+        }
+      },
+      {
+        "node_id": "0730E39E-65E6-E111-BD3C-001E675AF475",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/0730E39E-65E6-E111-BD3C-001E675AF475"
+        }
+      },
+      {
+        "node_id": "B7E28200-0000-8200-E2B7-00000082E2B7",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/B7E28200-0000-8200-E2B7-00000082E2B7"
+        }
+      },
+      {
+        "node_id": "CAF4B84A-34BD-5645-A426-E25A633A849D",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/CAF4B84A-34BD-5645-A426-E25A633A849D"
+        }
+      },
+      {
+        "node_id": "00F400BD-762A-E211-9C53-001E67343C15",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/00F400BD-762A-E211-9C53-001E67343C15"
+        }
+      },
+      {
+        "node_id": "D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C",
+        "selected": false,
+        "links": {
+          "nodes": "/api/v1/nodes/D26EB14D-B1F3-5031-B5B2-4DF660D4EB5C"
+        }
+      }
+    ],
+    "flavor_id": "0591ea84-e8af-4412-8914-305988157889",
+    "generation_time": "2014-01-08T01:17:22+0000",
+    "scheduled_by_saa": true,
+    "vm_id": "99e924ca-c4e7-433a-b9f1-4ece101db796",
+    "id": "99e924ca-c4e7-433a-b9f1-4ece101db796"
+  }
+}
